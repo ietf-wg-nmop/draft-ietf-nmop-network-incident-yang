@@ -9,19 +9,19 @@ number:
 date:
 consensus: true
 v: 3
-area: AREA
-workgroup: WG Working Group
+area: "Operations and Management"
+workgroup: "Network Management Operations"
 keyword:
  - next generation
  - unicorn
  - sparkling distributed ledger
 venue:
-  group: WG
-  type: Working Group
-  mail: WG@example.com
-  arch: https://example.com/WG
-  github: USER/REPO
-  latest: https://example.com/LATEST
+  group: "Network Management Operations"
+  type: "Working Group"
+  mail: "nmop@ietf.org"
+  arch: "https://mailarchive.ietf.org/arch/browse/nmop/"
+  github: "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang"
+  latest: "https://ietf-wg-nmop.github.io/draft-ietf-nmop-network-incident-yang/draft-ietf-nmop-network-incident-yang.html"
 
 author:
  -
