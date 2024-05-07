@@ -3,7 +3,7 @@ title: "TODO - Your title"
 abbrev: "TODO - Abbreviation"
 category: info
 
-docname:  draft-ietf-nmop-network-incident-yang-latest
+docname: draft-ietf-nmop-network-incident-yang-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
 number:
 date:
@@ -25,9 +25,9 @@ venue:
 
 author:
  -
-    fullname: Your Name Here
+    fullname: "Med"
     organization: Your Organization Here
-    email: your.email@example.com
+    email: "mohamed.boucadair@orange.com"
 
 normative:
 
