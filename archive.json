@@ -1,0 +1,117 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2024-05-09T00:28:06.281651+00:00",
+  "repo": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "CallForAdoption",
+      "description": "",
+      "color": "B82C95"
+    },
+    {
+      "name": "DirectorateReview",
+      "description": "",
+      "color": "A57F80"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "Editorial",
+      "description": "",
+      "color": "ADA637"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "IESG Review",
+      "description": "",
+      "color": "3D11DF"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "WGLC",
+      "description": "",
+      "color": "c2e0c6"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    },
+    {
+      "name": "YANG",
+      "description": "",
+      "color": "B9B881"
+    }
+  ],
+  "issues": [
+    {
+      "number": 1,
+      "id": "I_kwDOL4Sz0s6IIKy7",
+      "title": "Dhruv comments",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/issues/1",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "- The phrasing \"..few amount of network incidents..\" is a bit odd.\r\n- There is a singular module defined in the I-D, but the abstract says plural \"modules\". \r\n- Recheck the reference at \"L3VPN services related with the interface will become unavailable [I-D.ietf-ippm-pam]\" or expand the text to correlate with the reference. \r\n- BCP14 template is repeated twice in Section 2\r\n- Section 7, please regenerate the tree, as it does not match the YANG module. For instance there is no leaf called \"csn\"...\r\n- Section 7.1 claims that there are two YANG modules \"ietf-incident-type\" and \"ietf-incident\" but the actual module in section 8 is a merged one.  \r\n- Section 7.{4,5}, some text needs to be added on the asynchronous nature of these RPC and how the incident client would learn about the output of these rpcs?\r\n- Section 8, update the WG details in the YANG module; the yang file formatting is off (use this command \"pyang --ietf --lint -f yang --keep-comments --yang-line-length 69 \" to fix that); \r\n- Is cross-domain == multi-layer (Section 3.3)? Think about making that clear.  Perhaps you should differentiate between inter-domain and inter-layer?\r\n- Is cause-name some well known cause or just free form string? (same for incident's name)\r\n- Please add a description for what are root-events and how it relates to root-cause \r\n- Section 9, security consideration is just the template, actual analysis is missing\r\n- Section 10, please fix the formatting of the IANA registry\r\n- Please run a grammar check tool\r\n- Please add JSON or XML examples\r\n",
+      "createdAt": "2024-05-07T17:05:18Z",
+      "updatedAt": "2024-05-07T17:05:18Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 2,
+      "id": "I_kwDOL4Sz0s6IIMTY",
+      "title": "Qiufang's comments",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/issues/2",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "\u2022\tSection 6.2, there are some RPCs defined that might change the status of an incident instance, I would suggest authors to consider adding a figure here to illustrate how each RPC operation would affect the incident status.\r\n\u2022\tSection 7.1, the text related to the \u201cietf-incident-type\u201d module should be removed as the draft doesn\u2019t have it anymore;\r\n\u2022\tSection 7.4 and 7.5, if the incident-diagnose and incident-resolve cannot be performed successfully (which I believe could be the very likely cases), an RPC error response should be returned with the error info. The draft is silent on this, maybe some errors could be defined to identify the reason why the servers fails to diagnose/resolve a particular incident instance.\r\n",
+      "createdAt": "2024-05-07T17:09:09Z",
+      "updatedAt": "2024-05-07T17:09:09Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
+  "pulls": []
+}
