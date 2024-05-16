@@ -122,13 +122,13 @@ informative:
 
 A network incident refers to an unexpected interruption of a network
 service, degradation of a network service quality, or sub-health of a
-network service.  Different data sources including alarms, metrics
+network service.  Different data sources including alarms, metrics,
 and other anomaly information can be aggregated into few amount of
 network incidents by data correlation analysis and the service impact
 analysis.
 
 This document defines YANG Modules for the network incident lifecycle
-management.  The YANG modules are meant to provide a standard way to
+management.  These YANG modules are meant to provide a standard way to
 report, diagnose, and resolve network incidents for the sake of
 network service health and root cause analysis.
 
@@ -137,18 +137,18 @@ network service health and root cause analysis.
 # Introduction
 
 {{?RFC8969}} defines a framework for Automating Service and Network
-Management with YANG to full life cycle network management.  A set of
-YANG data models have already been developed in IETF for Network
-performance monitoring and fault monitoring,e.g.,A YANG {{?RFC7950}}
+Management with YANG {{?RFC7950}} to full life cycle network management.  A set of
+YANG data models have already been developed in IETF for network
+performance monitoring and fault monitoring, e.g., a YANG
 data model for alarm management {{?RFC8632}} defines a standard
 interface for alarm management.  A data model for Network and VPN
 Service Performance Monitoring {{?RFC9375}} defines a standard interface
 for network performance management.  In addition, distributed tracing
-mechanism defined in {{W3C-Trace-Context}} can also be used to analyze
+mechanism defined in {{W3C-Trace-Context}} can be used to analyze
 and debug operations, such as configuration transactions, across
 multiple distributed systems.
 
-However these YANG data models for network maintenance are based on
+However, these YANG data models for network maintenance are based on
 specific data source information and manage alarms and performance
 metrics data separately by different layers in various different
 management systems.  In addition, the frequency and quantity of
@@ -156,47 +156,49 @@ alarms and performance metrics data reported to Operating Support
 System (OSS) are increased dramatically (in many cases multiple
 orders of magnitude) with the growth of service types and complexity
 and greatly overwhelm OSS platforms; with existing known dependency
-relation between fault, alarm and events at each layer (e.g.,packet
-layer or optical layer), , it is possible to compress a series of
+relation between fault, alarm and events at each layer (e.g., packet
+layer or optical layer), it is possible to compress series of
 alarms into fewer incidents and there are many solutions in the
-market today that essentially do this to some degree. However
-traditional solutions such as data compression are time-consuming
+market today that essentially do this to some degree. However,
+conventional solutions such as data compression are time-consuming
 and labor-intensive, usually rely on maintenance engineers' experience
 for data analysis, which result in low processing efficiency, inaccurate
-root cause identification and duplicated tickets.  In addition, it is also
+root cause identification and duplicated tickets.  It is also
 difficult to assess the impact of alarms, performance metrics and other
-anomaly data on network services without known relation across layer of
+anomaly data on network services without known relation across layers of
 the network topology data or the relation with other network topology data.
 
 To address these challenges, a network wide incident-centric solution
-is proposed to establish dependency relation with both network
-service and network topology at different layers , which not only can
-be used at specific layer in specific domain but also can be used to
-span across layer for multi-layer network troubleshooting.  A network
+is specified to establish the dependency relation with both network
+service and network topology at different layers, which not only can
+be used at a specific layer in a domain but also can be used to
+span across layers for multi-layer network troubleshooting.
+
+A network
 incident refers to an unexpected interruption of a network service,
 degradation of a network service quality, or sub-health of a network
-service {{TMF724A}}.  Different data sources including alarms, metrics
+service {{TMF724A}}.  Different data sources including alarms, metrics,
 and other anomaly information can be aggregated into few amount of
 incidents irrespective layer by correlation analysis and the service
-impact analysis.  For example, the protocols related to the interface
+impact analysis. For example, if the protocols related to the interface
 fail to work properly due to Service Level Objective (SLO) violation,
 large amount of alarms may be reported to upper layer management
 system and aggregated into one or a few incidents when some network
-services may be affected by this incident (e.g.  L3VPN services
-related with the interface will become unavailable
-{{?I-D.ietf-ippm-pam}} ).  An incident may also be raised through the
+services may be affected by this incident (e.g.,  L3VPN services
+bound to this interface will become unavailable
+{{?I-D.ietf-ippm-pam}}). An incident may also be raised through the
 analysis of some network performance metrics, for example, as
-described in SAIN {{?RFC9417}} , network services can be decomposed to
+described in SAIN {{?RFC9417}}, network services can be decomposed to
 several sub-services, specific metrics are monitored for each sub-
 service, symptoms will occur if services/sub-services are unhealthy
 (after analyzing metrics), these symptoms may raise one incident when
 it causes degradation of the network services.
 
 In addition, Artificial Intelligence (AI) and Machine Learning (ML)
-play a important role in the processing of large amounts of data with
-complex data correlations.  For example, Neural Network Algorithm or
+are key technologies in the processing of large amounts of data with
+complex data correlations. For example, Neural Network Algorithm or
 Hierarchy Aggregation Algorithm can be used to replace manual alarm
-data correlation.  Through online and offline learning, these
+data correlation. Through online and offline learning, these
 algorithms can be continuously optimized to improve the efficiency of
 fault diagnosis.
 
@@ -208,52 +210,48 @@ service quality, and improves network automation {{?RFC8969}}.
 
 {::boilerplate bcp14-tagged}
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-"SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
-"OPTIONAL" in this document are to be interpreted as described in BCP
-14 {{!RFC2119}} {{!RFC8174}} when, and only when, they appear in all
-capitals, as shown here.
-
 The following terms are defined in {{?RFC8632}} and are not redefined here:
 
 *  alarm
 
 The following terms are defined in this document:
 
-
-Network Incident:  An unexpected interruption of a network service,
+Network incident:
+:  An unexpected interruption of a network service,
    degradation of network service quality, or sub-health of a network
    service {{TMF724A}}.
 
-
-Problem:  The cause of one or more incidents.  The cause is not
-   usually known when a problem record is created, and the problem
+Problem:
+:  The cause of one or more incidents.  The cause is not
+   usually known when a problem record is created. The problem
    management process is responsible for further investigation
    {{TMF724A}}.
 
-Incident management:  Lifecycle management of incidents including
-   incident identification, reporting, acknowledge, diagnosis, and
+Incident management:
+:  Lifecycle management of incidents, including
+   incident identification, reporting, acknowledgement, diagnosis, and
    resolution.
 
-Incident management system:  An entity which implements incident
-   management. It include incident management server and incident
+Incident management system:
+:  An entity which implements incident
+   management. It is includes (but not limited to) incident management server and incident
    management client.
 
-Incident management server:  An entity which provides some functions
-   of incident management.  For example, it can detect an incident,
-   perform incident diagnosis, resolution and prediction,etc.
+Incident management server:
+:  An entity which provides which is responsible for detecting an incident,
+   performing incident diagnosis, resolution and prediction, etc.
 
-Incident management client:  An entity which can manage incidents.
+Incident management client:
+:  An entity which can manage incidents.
    For example, it can receive incident notifications, query the
-   information of incidents, instruct the incident management server
+   information of incidents, instruct an incident management server
    to diagnose, resolve, etc.
-
 
 # Sample Use Cases
 
-## Incident-Based Trouble Tickets dispatching
+## Incident-Based Trouble Tickets Dispatching
 
-Traditionally, the dispatching of trouble tickets is mostly based on
+Usually, the dispatching of trouble tickets is mostly based on
 alarms data analysis and need to involve operators' maintenance
 engineers.  These operators' maintenance engineers are able to
 monitor and detect that alarms at both end devices of specific
