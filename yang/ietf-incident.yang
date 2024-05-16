@@ -20,10 +20,10 @@ module ietf-incident {
   }
 
   organization
-    "IETF OPSAWG Working Group";
+    "IETF NMOP Working Group";
   contact
-    "WG Web:   <https://datatracker.ietf.org/wg/opsawg/>;
-     WG List:  <mailto:opsawg@ietf.org>
+    "WG Web:   <https://datatracker.ietf.org/wg/nmop/>;
+     WG List:  <mailto:nmop@ietf.org>
 
      Author:   Chong Feng
                <mailto:frank.fengchong@huawei.com>
