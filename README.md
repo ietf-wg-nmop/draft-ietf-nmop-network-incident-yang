@@ -1,6 +1,6 @@
 # TODO - Your title
 
-This is the working area for the IETF [NMOP Working Group](https://datatracker.ietf.org/wg/nmop/documents/) Internet-Draft, "TODO - Your title".
+This is the working area for the IETF [NMOP Working Group](https://datatracker.ietf.org/wg/nmop/documents/) Internet-Draft, "A YANG Data Model for Network Incident Management".
 
 * [Editor's Copy](https://ietf-wg-nmop.github.io/draft-ietf-nmop-network-incident-yang/#go.draft-ietf-nmop-network-incident-yang.html)
 * [Datatracker Page](https://datatracker.ietf.org/doc/draft-ietf-nmop-network-incident-yang)
