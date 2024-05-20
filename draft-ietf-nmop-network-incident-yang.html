@@ -13,12 +13,12 @@
 <meta content="
        A network incident refers to an unexpected interruption of a network
 service, degradation of a network service quality, or sub-health of a
-network service.  Different data sources including alarms, metrics
+network service.  Different data sources including alarms, metrics,
 and other anomaly information can be aggregated into few amount of
 network incidents by data correlation analysis and the service impact
 analysis. 
        This document defines YANG Modules for the network incident lifecycle
-management.  The YANG modules are meant to provide a standard way to
+management.  These YANG modules are meant to provide a standard way to
 report, diagnose, and resolve network incidents for the sake of
 network service health and root cause analysis. 
     " name="description">
@@ -1091,12 +1091,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">A network incident refers to an unexpected interruption of a network
 service, degradation of a network service quality, or sub-health of a
-network service.  Different data sources including alarms, metrics
+network service.  Different data sources including alarms, metrics,
 and other anomaly information can be aggregated into few amount of
 network incidents by data correlation analysis and the service impact
 analysis.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 <p id="section-abstract-2">This document defines YANG Modules for the network incident lifecycle
-management.  The YANG modules are meant to provide a standard way to
+management.  These YANG modules are meant to provide a standard way to
 report, diagnose, and resolve network incidents for the sake of
 network service health and root cause analysis.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
 </section>
@@ -1158,7 +1158,7 @@ network service health and root cause analysis.<a href="#section-abstract-2" cla
             <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-sample-use-cases" class="internal xref">Sample Use Cases</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
-                <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-incident-based-trouble-tick" class="internal xref">Incident-Based Trouble Tickets dispatching</a></p>
+                <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-incident-based-trouble-tick" class="internal xref">Incident-Based Trouble Tickets Dispatching</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
                 <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-incident-derivation-from-l3" class="internal xref">Incident Derivation from L3VPN services Unavailability</a></p>
@@ -1291,17 +1291,17 @@ network service health and root cause analysis.<a href="#section-abstract-2" cla
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
 <p id="section-1-1"><span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</span> defines a framework for Automating Service and Network
-Management with YANG to full life cycle network management.  A set of
-YANG data models have already been developed in IETF for Network
-performance monitoring and fault monitoring,e.g.,A YANG <span>[<a href="#RFC7950" class="cite xref">RFC7950</a>]</span>
+Management with YANG <span>[<a href="#RFC7950" class="cite xref">RFC7950</a>]</span> to full life cycle network management.  A set of
+YANG data models have already been developed in IETF for network
+performance monitoring and fault monitoring, e.g., a YANG
 data model for alarm management <span>[<a href="#RFC8632" class="cite xref">RFC8632</a>]</span> defines a standard
 interface for alarm management.  A data model for Network and VPN
 Service Performance Monitoring <span>[<a href="#RFC9375" class="cite xref">RFC9375</a>]</span> defines a standard interface
 for network performance management.  In addition, distributed tracing
-mechanism defined in <span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span> can also be used to analyze
+mechanism defined in <span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span> can be used to analyze
 and debug operations, such as configuration transactions, across
 multiple distributed systems.<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2">However these YANG data models for network maintenance are based on
+<p id="section-1-2">However, these YANG data models for network maintenance are based on
 specific data source information and manage alarms and performance
 metrics data separately by different layers in various different
 management systems.  In addition, the frequency and quantity of
@@ -1309,50 +1309,51 @@ alarms and performance metrics data reported to Operating Support
 System (OSS) are increased dramatically (in many cases multiple
 orders of magnitude) with the growth of service types and complexity
 and greatly overwhelm OSS platforms; with existing known dependency
-relation between fault, alarm and events at each layer (e.g.,packet
-layer or optical layer), , it is possible to compress a series of
+relation between fault, alarm and events at each layer (e.g., packet
+layer or optical layer), it is possible to compress series of
 alarms into fewer incidents and there are many solutions in the
-market today that essentially do this to some degree. However
-traditional solutions such as data compression are time-consuming
+market today that essentially do this to some degree. However,
+conventional solutions such as data compression are time-consuming
 and labor-intensive, usually rely on maintenance engineers' experience
 for data analysis, which result in low processing efficiency, inaccurate
-root cause identification and duplicated tickets.  In addition, it is also
+root cause identification and duplicated tickets.  It is also
 difficult to assess the impact of alarms, performance metrics and other
-anomaly data on network services without known relation across layer of
+anomaly data on network services without known relation across layers of
 the network topology data or the relation with other network topology data.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <p id="section-1-3">To address these challenges, a network wide incident-centric solution
-is proposed to establish dependency relation with both network
-service and network topology at different layers , which not only can
-be used at specific layer in specific domain but also can be used to
-span across layer for multi-layer network troubleshooting.  A network
+is specified to establish the dependency relation with both network
+service and network topology at different layers, which not only can
+be used at a specific layer in a domain but also can be used to
+span across layers for multi-layer network troubleshooting.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-4">A network
 incident refers to an unexpected interruption of a network service,
 degradation of a network service quality, or sub-health of a network
-service <span>[<a href="#TMF724A" class="cite xref">TMF724A</a>]</span>.  Different data sources including alarms, metrics
+service <span>[<a href="#TMF724A" class="cite xref">TMF724A</a>]</span>.  Different data sources including alarms, metrics,
 and other anomaly information can be aggregated into few amount of
 incidents irrespective layer by correlation analysis and the service
-impact analysis.  For example, the protocols related to the interface
+impact analysis. For example, if the protocols related to the interface
 fail to work properly due to Service Level Objective (SLO) violation,
 large amount of alarms may be reported to upper layer management
 system and aggregated into one or a few incidents when some network
-services may be affected by this incident (e.g.  L3VPN services
-related with the interface will become unavailable
-<span>[<a href="#I-D.ietf-ippm-pam" class="cite xref">I-D.ietf-ippm-pam</a>]</span> ).  An incident may also be raised through the
+services may be affected by this incident (e.g.,  L3VPN services
+bound to this interface will become unavailable
+<span>[<a href="#I-D.ietf-ippm-pam" class="cite xref">I-D.ietf-ippm-pam</a>]</span>). An incident may also be raised through the
 analysis of some network performance metrics, for example, as
-described in SAIN <span>[<a href="#RFC9417" class="cite xref">RFC9417</a>]</span> , network services can be decomposed to
+described in SAIN <span>[<a href="#RFC9417" class="cite xref">RFC9417</a>]</span>, network services can be decomposed to
 several sub-services, specific metrics are monitored for each sub-
 service, symptoms will occur if services/sub-services are unhealthy
 (after analyzing metrics), these symptoms may raise one incident when
-it causes degradation of the network services.<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">In addition, Artificial Intelligence (AI) and Machine Learning (ML)
-play a important role in the processing of large amounts of data with
-complex data correlations.  For example, Neural Network Algorithm or
+it causes degradation of the network services.<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-5">In addition, Artificial Intelligence (AI) and Machine Learning (ML)
+are key technologies in the processing of large amounts of data with
+complex data correlations. For example, Neural Network Algorithm or
 Hierarchy Aggregation Algorithm can be used to replace manual alarm
-data correlation.  Through online and offline learning, these
+data correlation. Through online and offline learning, these
 algorithms can be continuously optimized to improve the efficiency of
-fault diagnosis.<a href="#section-1-4" class="pilcrow">¶</a></p>
-<p id="section-1-5">This document defines a YANG data model for network incident lifecycle
+fault diagnosis.<a href="#section-1-5" class="pilcrow">¶</a></p>
+<p id="section-1-6">This document defines a YANG data model for network incident lifecycle
 management, which improves troubleshooting efficiency, ensures network
-service quality, and improves network automation <span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</span>.<a href="#section-1-5" class="pilcrow">¶</a></p>
+service quality, and improves network automation <span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</span>.<a href="#section-1-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conventions-and-definitions">
@@ -1364,38 +1365,58 @@ service quality, and improves network automation <span>[<a href="#RFC8969" class
 "<span class="bcp14">MAY</span>", and "<span class="bcp14">OPTIONAL</span>" in this document are to be interpreted as
 described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="cite xref">RFC8174</a>]</span> when, and only when, they
 appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶</a></p>
-<p id="section-2-2">The key words "<span class="bcp14">MUST</span>", "<span class="bcp14">MUST NOT</span>", "<span class="bcp14">REQUIRED</span>", "<span class="bcp14">SHALL</span>", "<span class="bcp14">SHALL NOT</span>",
-"<span class="bcp14">SHOULD</span>", "<span class="bcp14">SHOULD NOT</span>", "<span class="bcp14">RECOMMENDED</span>", "<span class="bcp14">NOT RECOMMENDED</span>", "<span class="bcp14">MAY</span>", and
-"<span class="bcp14">OPTIONAL</span>" in this document are to be interpreted as described in BCP
-14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="cite xref">RFC8174</a>]</span> when, and only when, they appear in all
-capitals, as shown here.<a href="#section-2-2" class="pilcrow">¶</a></p>
-<p id="section-2-3">The following terms are defined in <span>[<a href="#RFC8632" class="cite xref">RFC8632</a>]</span> and are not redefined here:<a href="#section-2-3" class="pilcrow">¶</a></p>
+<p id="section-2-2">The following terms are defined in <span>[<a href="#RFC8632" class="cite xref">RFC8632</a>]</span> and are not redefined here:<a href="#section-2-2" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-2-4.1">
-          <p id="section-2-4.1.1">alarm<a href="#section-2-4.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-2-3.1">
+          <p id="section-2-3.1.1">alarm<a href="#section-2-3.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="section-2-5">The following terms are defined in this document:<a href="#section-2-5" class="pilcrow">¶</a></p>
-<p id="section-2-6">Network Incident:  An unexpected interruption of a network service,
-   degradation of network service quality, or sub-health of a network
-   service <span>[<a href="#TMF724A" class="cite xref">TMF724A</a>]</span>.<a href="#section-2-6" class="pilcrow">¶</a></p>
-<p id="section-2-7">Problem:  The cause of one or more incidents.  The cause is not
-   usually known when a problem record is created, and the problem
-   management process is responsible for further investigation
-   <span>[<a href="#TMF724A" class="cite xref">TMF724A</a>]</span>.<a href="#section-2-7" class="pilcrow">¶</a></p>
-<p id="section-2-8">Incident management:  Lifecycle management of incidents including
-   incident identification, reporting, acknowledge, diagnosis, and
-   resolution.<a href="#section-2-8" class="pilcrow">¶</a></p>
-<p id="section-2-9">Incident management system:  An entity which implements incident
-   management. It include incident management server and incident
-   management client.<a href="#section-2-9" class="pilcrow">¶</a></p>
-<p id="section-2-10">Incident management server:  An entity which provides some functions
-   of incident management.  For example, it can detect an incident,
-   perform incident diagnosis, resolution and prediction,etc.<a href="#section-2-10" class="pilcrow">¶</a></p>
-<p id="section-2-11">Incident management client:  An entity which can manage incidents.
-   For example, it can receive incident notifications, query the
-   information of incidents, instruct the incident management server
-   to diagnose, resolve, etc.<a href="#section-2-11" class="pilcrow">¶</a></p>
+<p id="section-2-4">The following terms are defined in this document:<a href="#section-2-4" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-2-5">
+        <dt id="section-2-5.1">Network incident:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-5.2">
+          <p id="section-2-5.2.1">An unexpected interruption of a network service,
+degradation of network service quality, or sub-health of a network
+service <span>[<a href="#TMF724A" class="cite xref">TMF724A</a>]</span>.<a href="#section-2-5.2.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-5.3">Problem:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-5.4">
+          <p id="section-2-5.4.1">The cause of one or more incidents.  The cause is not
+usually known when a problem record is created. The problem
+management process is responsible for further investigation
+<span>[<a href="#TMF724A" class="cite xref">TMF724A</a>]</span>.<a href="#section-2-5.4.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-5.5">Incident management:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-5.6">
+          <p id="section-2-5.6.1">Lifecycle management of incidents, including
+incident identification, reporting, acknowledgement, diagnosis, and
+resolution.<a href="#section-2-5.6.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-5.7">Incident management system:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-5.8">
+          <p id="section-2-5.8.1">An entity which implements incident
+management. It is includes (but not limited to) incident management server and incident
+management client.<a href="#section-2-5.8.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-5.9">Incident management server:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-5.10">
+          <p id="section-2-5.10.1">An entity which provides which is responsible for detecting an incident,
+performing incident diagnosis, resolution and prediction, etc.<a href="#section-2-5.10.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-5.11">Incident management client:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-5.12">
+          <p id="section-2-5.12.1">An entity which can manage incidents.
+For example, it can receive incident notifications, query the
+information of incidents, instruct an incident management server
+to diagnose, resolve, etc.<a href="#section-2-5.12.1" class="pilcrow">¶</a></p>
+</dd>
+      <dd class="break"></dd>
+</dl>
 </section>
 </div>
 <div id="sample-use-cases">
@@ -1406,9 +1427,9 @@ capitals, as shown here.<a href="#section-2-2" class="pilcrow">¶</a></p>
 <div id="incident-based-trouble-tickets-dispatching">
 <section id="section-3.1">
         <h3 id="name-incident-based-trouble-tick">
-<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-incident-based-trouble-tick" class="section-name selfRef">Incident-Based Trouble Tickets dispatching</a>
+<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-incident-based-trouble-tick" class="section-name selfRef">Incident-Based Trouble Tickets Dispatching</a>
         </h3>
-<p id="section-3.1-1">Traditionally, the dispatching of trouble tickets is mostly based on
+<p id="section-3.1-1">Usually, the dispatching of trouble tickets is mostly based on
 alarms data analysis and need to involve operators' maintenance
 engineers.  These operators' maintenance engineers are able to
 monitor and detect that alarms at both end devices of specific
