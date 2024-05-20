@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                        L. M. C. Murillo
-Expires: 17 November 2024                                 Telefonica I+D
+Expires: 21 November 2024                                 Telefonica I+D
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                             16 May 2024
+                                                             20 May 2024
 
 
            A YANG Data Model for Network Incident Management
@@ -21,14 +21,14 @@ Abstract
 
    A network incident refers to an unexpected interruption of a network
    service, degradation of a network service quality, or sub-health of a
-   network service.  Different data sources including alarms, metrics
+   network service.  Different data sources including alarms, metrics,
    and other anomaly information can be aggregated into few amount of
    network incidents by data correlation analysis and the service impact
    analysis.
 
    This document defines YANG Modules for the network incident lifecycle
-   management.  The YANG modules are meant to provide a standard way to
-   report, diagnose, and resolve network incidents for the sake of
+   management.  These YANG modules are meant to provide a standard way
+   to report, diagnose, and resolve network incidents for the sake of
    network service health and root cause analysis.
 
 Status of This Memo
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 November 2024.
+   This Internet-Draft will expire on 21 November 2024.
 
 Copyright Notice
 
@@ -109,18 +109,18 @@ Table of Contents
 1.  Introduction
 
    [RFC8969] defines a framework for Automating Service and Network
-   Management with YANG to full life cycle network management.  A set of
-   YANG data models have already been developed in IETF for Network
-   performance monitoring and fault monitoring,e.g.,A YANG [RFC7950]
+   Management with YANG [RFC7950] to full life cycle network management.
+   A set of YANG data models have already been developed in IETF for
+   network performance monitoring and fault monitoring, e.g., a YANG
    data model for alarm management [RFC8632] defines a standard
    interface for alarm management.  A data model for Network and VPN
    Service Performance Monitoring [RFC9375] defines a standard interface
    for network performance management.  In addition, distributed tracing
-   mechanism defined in [W3C-Trace-Context] can also be used to analyze
-   and debug operations, such as configuration transactions, across
-   multiple distributed systems.
+   mechanism defined in [W3C-Trace-Context] can be used to analyze and
+   debug operations, such as configuration transactions, across multiple
+   distributed systems.
 
-   However these YANG data models for network maintenance are based on
+   However, these YANG data models for network maintenance are based on
    specific data source information and manage alarms and performance
    metrics data separately by different layers in various different
    management systems.  In addition, the frequency and quantity of
@@ -128,45 +128,46 @@ Table of Contents
    System (OSS) are increased dramatically (in many cases multiple
    orders of magnitude) with the growth of service types and complexity
    and greatly overwhelm OSS platforms; with existing known dependency
-   relation between fault, alarm and events at each layer (e.g.,packet
-   layer or optical layer), , it is possible to compress a series of
-   alarms into fewer incidents and there are many solutions in the
-   market today that essentially do this to some degree.  However
-   traditional solutions such as data compression are time-consuming and
-   labor-intensive, usually rely on maintenance engineers' experience
-   for data analysis, which result in low processing efficiency,
-   inaccurate root cause identification and duplicated tickets.  In
-   addition, it is also difficult to assess the impact of alarms,
-   performance metrics and other anomaly data on network services
-   without known relation across layer of the network topology data or
-   the relation with other network topology data.
+   relation between fault, alarm and events at each layer (e.g., packet
+   layer or optical layer), it is possible to compress series of alarms
+   into fewer incidents and there are many solutions in the market today
+   that essentially do this to some degree.  However, conventional
+   solutions such as data compression are time-consuming and labor-
+   intensive, usually rely on maintenance engineers' experience for data
+   analysis, which result in low processing efficiency, inaccurate root
+   cause identification and duplicated tickets.  It is also difficult to
+   assess the impact of alarms, performance metrics and other anomaly
+   data on network services without known relation across layers of the
+   network topology data or the relation with other network topology
+   data.
 
    To address these challenges, a network wide incident-centric solution
-   is proposed to establish dependency relation with both network
-   service and network topology at different layers , which not only can
-   be used at specific layer in specific domain but also can be used to
-   span across layer for multi-layer network troubleshooting.  A network
-   incident refers to an unexpected interruption of a network service,
-   degradation of a network service quality, or sub-health of a network
-   service [TMF724A].  Different data sources including alarms, metrics
-   and other anomaly information can be aggregated into few amount of
-   incidents irrespective layer by correlation analysis and the service
-   impact analysis.  For example, the protocols related to the interface
-   fail to work properly due to Service Level Objective (SLO) violation,
-   large amount of alarms may be reported to upper layer management
-   system and aggregated into one or a few incidents when some network
-   services may be affected by this incident (e.g.  L3VPN services
-   related with the interface will become unavailable
-   [I-D.ietf-ippm-pam] ).  An incident may also be raised through the
+   is specified to establish the dependency relation with both network
+   service and network topology at different layers, which not only can
+   be used at a specific layer in a domain but also can be used to span
+   across layers for multi-layer network troubleshooting.
+
+   A network incident refers to an unexpected interruption of a network
+   service, degradation of a network service quality, or sub-health of a
+   network service [TMF724A].  Different data sources including alarms,
+   metrics, and other anomaly information can be aggregated into few
+   amount of incidents irrespective layer by correlation analysis and
+   the service impact analysis.  For example, if the protocols related
+   to the interface fail to work properly due to Service Level Objective
+   (SLO) violation, large amount of alarms may be reported to upper
+   layer management system and aggregated into one or a few incidents
+   when some network services may be affected by this incident (e.g.,
+   L3VPN services bound to this interface will become unavailable
+   [I-D.ietf-ippm-pam]).  An incident may also be raised through the
    analysis of some network performance metrics, for example, as
-   described in SAIN [RFC9417] , network services can be decomposed to
+   described in SAIN [RFC9417], network services can be decomposed to
    several sub-services, specific metrics are monitored for each sub-
    service, symptoms will occur if services/sub-services are unhealthy
    (after analyzing metrics), these symptoms may raise one incident when
    it causes degradation of the network services.
 
    In addition, Artificial Intelligence (AI) and Machine Learning (ML)
-   play a important role in the processing of large amounts of data with
+   are key technologies in the processing of large amounts of data with
    complex data correlations.  For example, Neural Network Algorithm or
    Hierarchy Aggregation Algorithm can be used to replace manual alarm
    data correlation.  Through online and offline learning, these
@@ -186,12 +187,6 @@ Table of Contents
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
-   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
-   "OPTIONAL" in this document are to be interpreted as described in BCP
-   14 [RFC2119] [RFC8174] when, and only when, they appear in all
-   capitals, as shown here.
-
    The following terms are defined in [RFC8632] and are not redefined
    here:
 
@@ -199,31 +194,31 @@ Table of Contents
 
    The following terms are defined in this document:
 
-   Network Incident: An unexpected interruption of a network service,
-   degradation of network service quality, or sub-health of a network
-   service [TMF724A].
+   Network incident:  An unexpected interruption of a network service,
+      degradation of network service quality, or sub-health of a network
+      service [TMF724A].
 
-   Problem: The cause of one or more incidents.  The cause is not
-   usually known when a problem record is created, and the problem
-   management process is responsible for further investigation
-   [TMF724A].
+   Problem:  The cause of one or more incidents.  The cause is not
+      usually known when a problem record is created.  The problem
+      management process is responsible for further investigation
+      [TMF724A].
 
-   Incident management: Lifecycle management of incidents including
-   incident identification, reporting, acknowledge, diagnosis, and
-   resolution.
+   Incident management:  Lifecycle management of incidents, including
+      incident identification, reporting, acknowledgement, diagnosis,
+      and resolution.
 
-   Incident management system: An entity which implements incident
-   management.  It include incident management server and incident
-   management client.
+   Incident management system:  An entity which implements incident
+      management.  It is includes (but not limited to) incident
+      management server and incident management client.
 
-   Incident management server: An entity which provides some functions
-   of incident management.  For example, it can detect an incident,
-   perform incident diagnosis, resolution and prediction,etc.
+   Incident management server:  An entity which provides which is
+      responsible for detecting an incident, performing incident
+      diagnosis, resolution and prediction, etc.
 
-   Incident management client: An entity which can manage incidents.
-   For example, it can receive incident notifications, query the
-   information of incidents, instruct the incident management server to
-   diagnose, resolve, etc.
+   Incident management client:  An entity which can manage incidents.
+      For example, it can receive incident notifications, query the
+      information of incidents, instruct an incident management server
+      to diagnose, resolve, etc.
 
 3.  Sample Use Cases
 
@@ -234,11 +229,12 @@ Table of Contents
    maintenance engineers.  These operators' maintenance engineers are
    responsible to monitor and detect and correlate some alarms, e.g.,
    that alarms at both endpoints of a specific tunnel or at both optical
-   and IP layers which are associated with the same network fault.
-   Therefore, they can correlate these alarms to the same trouble
-   ticket, which is in the low automation.  If there are more alarms,
-   then the human costs for network maintenance are increased
-   accordingly.
+   and IP layers which are
+
+   associated with the same network fault.  Therefore, they can
+   correlate these alarms to the same trouble ticket, which is in the
+   low automation.  If there are more alarms, then the human costs for
+   network maintenance are increased accordingly.
 
    Some operators preconfigure accept-lists and adopt some coarse
    granularity data correlation rules for the alarm management.  This
@@ -928,22 +924,21 @@ Table of Contents
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-incident";
      prefix inc;
+
      import ietf-yang-types {
        prefix yang;
        reference
          "RFC 6991: Common YANG Data Types";
      }
-
      import ietf-alarms {
        prefix al;
        reference
          "RFC 8632: A YANG Data Model for Alarm Management";
      }
-
      import ietf-network {
-     prefix nw;
-     reference
-           "RFC 8345: A YANG Data Model for Network Topologies";
+       prefix nw;
+       reference
+         "RFC 8345: A YANG Data Model for Network Topologies";
      }
 
      organization
@@ -951,15 +946,21 @@ Table of Contents
      contact
        "WG Web:   <https://datatracker.ietf.org/wg/opsawg/>;
         WG List:  <mailto:opsawg@ietf.org>
-        Author:   Chong Feng  <mailto:frank.fengchong@huawei.com>
-        Author:   Tong Hu  <mailto:hutong@cmhi.chinamobile.com>
-        Author:   Luis Miguel Contreras Murillo <mailto:
-                  luismiguel.contrerasmurillo@telefonica.com>
-        Author :  Qin Wu   <mailto:bill.wu@huawei.com>
-        Author:   Chaode Yu   <mailto:yuchaode@huawei.com>
-        Author:   Nigel Davis   <mailto:ndavis@ciena.com>";
 
-    description
+        Author:   Chong Feng
+                  <mailto:frank.fengchong@huawei.com>
+        Author:   Tong Hu
+                  <mailto:hutong@cmhi.chinamobile.com>
+        Author:   Luis Miguel Contreras Murillo
+                  <mailto:luismiguel.contrerasmurillo@telefonica.com>
+        Author :  Qin Wu
+                  <mailto:bill.wu@huawei.com>
+        Author:   Chaode Yu
+                  <mailto:yuchaode@huawei.com>
+        Author:   Nigel Davis
+                  <mailto:ndavis@ciena.com>";
+
+     description
        "This module defines the interfaces for incident management
         lifecycle.
 
@@ -992,317 +993,416 @@ Table of Contents
         they appear in all capitals, as shown here. ";
 
      revision 2024-03-02 {
-       description "Merge incident yang with incident type yang
-       and fix broken ref.";
-       reference "RFC XXX: YANG module for network incident management.";
+       description
+         "Merge incident yang with incident type yang
+          and fix broken ref.";
+       reference
+         "RFC XXX: YANG module for network incident management.";
      }
 
-       //identities
+     //identities
+
      identity incident-domain {
-       description "The abstract identity to indicate the domain of
-                    an incident.";
+       description
+         "The abstract identity to indicate the domain of
+          an incident.";
      }
+
      identity single-domain {
        base incident-domain;
-       description "single domain.";
+       description
+         "single domain.";
      }
+
      identity access {
        base single-domain;
-       description "access domain.";
+       description
+         "access domain.";
      }
+
      identity ran {
        base access;
-       description "radio access network domain.";
+       description
+         "radio access network domain.";
      }
+
      identity transport {
        base single-domain;
-       description "transport domain.";
+       description
+         "transport domain.";
      }
+
      identity otn {
        base transport;
-       description "optical transport network domain.";
+       description
+         "optical transport network domain.";
      }
+
      identity ip {
        base single-domain;
-       description "ip domain.";
+       description
+         "ip domain.";
      }
+
      identity ptn {
        base ip;
-       description "packet transport network domain.";
+       description
+         "packet transport network domain.";
      }
 
      identity cross-domain {
        base incident-domain;
-       description "cross domain.";
+       description
+         "cross domain.";
      }
+
      identity incident-category {
-       description "The abstract identity for incident category.";
+       description
+         "The abstract identity for incident category.";
      }
+
      identity device {
        base incident-category;
-       description "device category.";
+       description
+         "device category.";
      }
+
      identity power-environment {
        base device;
-       description "power environment category.";
+       description
+         "power environment category.";
      }
+
      identity device-hardware {
        base device;
-       description "hardware of device category.";
+       description
+         "hardware of device category.";
      }
+
      identity device-software {
        base device;
-       description "software of device category";
+       description
+         "software of device category";
      }
+
      identity line {
        base device-hardware;
-       description "line card category.";
+       description
+         "line card category.";
      }
+
      identity maintenance {
        base incident-category;
-       description "maintenance category.";
+       description
+         "maintenance category.";
      }
+
      identity network {
        base incident-category;
-       description "network category.";
+       description
+         "network category.";
      }
+
      identity protocol {
        base incident-category;
-       description "protocol category.";
+       description
+         "protocol category.";
      }
+
      identity overlay {
        base incident-category;
-       description "overlay category";
+       description
+         "overlay category";
      }
+
      identity vm {
        base incident-category;
-       description "vm category.";
+       description
+         "vm category.";
      }
+
      identity event-type {
-           description "The abstract identity for Event type";
+       description
+         "The abstract identity for Event type";
      }
+
      identity alarm {
-           base event-type;
-           description "alarm event type.";
+       base event-type;
+       description
+         "alarm event type.";
      }
+
      identity notif {
-           base event-type;
-           description "Notification event type.";
+       base event-type;
+       description
+         "Notification event type.";
      }
+
      identity log {
-           base event-type;
-           description "Log event type.";
+       base event-type;
+       description
+         "Log event type.";
      }
+
      identity KPI {
-           base event-type;
-           description "KPI event type.";
+       base event-type;
+       description
+         "KPI event type.";
      }
+
      identity unknown {
-           base event-type;
-           description "Unknown event type.";
+       base event-type;
+       description
+         "Unknown event type.";
      }
+
      identity incident-class {
-           description "The abstract identity for Incident category.";
+       description
+         "The abstract identity for Incident category.";
      }
+
      identity problem {
-           base incident-class;
-           description
-             "It indicates the class of the incident is a problem
-             (i.e.,cause of the incident) for example an interface
-             fails to work.";
+       base incident-class;
+       description
+         "It indicates the class of the incident is a problem
+                (i.e.,cause of the incident) for example an interface
+                fails to work.";
      }
+
      identity sla-violation {
-           base incident-class;
-           description
-             "It indicates the class of the incident is a sla
-             violation, for example high CPU rate may cause
-             a fault in the future.";
+       base incident-class;
+       description
+         "It indicates the class of the incident is a sla
+                violation, for example high CPU rate may cause
+                a fault in the future.";
      }
+
      //typedefs
+
      typedef incident-priority {
        type enumeration {
          enum critical {
-           description "the incident MUST be handled immediately.";
+           description
+             "the incident MUST be handled immediately.";
          }
          enum high {
-           description "the incident should be handled as soon as
-                        possible.";
+           description
+             "the incident should be handled as soon as
+              possible.";
          }
          enum medium {
-           description "network services are not affected, or the
-                        services are slightly affected,but corrective
-                        measures need to be taken.";
+           description
+             "network services are not affected, or the
+              services are slightly affected,but corrective
+              measures need to be taken.";
          }
          enum low {
-           description "potential or imminent service-affecting
-                        incidents are detected,but services are
-                        not affected currently.";
+           description
+             "potential or imminent service-affecting
+              incidents are detected,but services are
+              not affected currently.";
          }
        }
-       description "define the priority of incident.";
+       description
+         "define the priority of incident.";
      }
 
      typedef incident-ref {
-           type leafref {
-             path "/inc:incidents/inc:incident/inc:incident-id";
-           }
-       description "reference a network incident.";
+       type leafref {
+         path "/inc:incidents/inc:incident/inc:incident-id";
+       }
+       description
+         "reference a network incident.";
      }
 
      //groupings
+
      grouping root-cause-info {
-           description "The information of root cause.";
-           leaf cause-name {
+       description
+         "The information of root cause.";
+       leaf cause-name {
          type string;
-             description "the name of cause";
-           }
-           leaf detail {
+         description
+           "the name of cause";
+       }
+       leaf detail {
          type string;
-             description "the detail information of the cause.";
-           }
+         description
+           "the detail information of the cause.";
+       }
      }
+
      grouping resources-info {
-       description "the grouping which defines the network
-                    resources of a node.";
+       description
+         "the grouping which defines the network
+          resources of a node.";
        uses nw:node-ref;
        list resource {
-         key name;
-         description "the resources of a network node.";
+         key "name";
+         description
+           "the resources of a network node.";
          leaf name {
-            type al:resource;
-            description "network resource name.";
+           type al:resource;
+           description
+             "network resource name.";
          }
        }
      }
 
      grouping incident-time-info {
-       description "the grouping defines incident time information.";
+       description
+         "the grouping defines incident time information.";
        leaf raise-time {
          type yang:date-and-time;
-         description "the time when an incident instance is raised.";
+         description
+           "the time when an incident instance is raised.";
        }
        leaf occur-time {
          type yang:date-and-time;
-         description "the time when an incident instance occurs.
-                      It's the occur time of the first event during
-                      incident detection.";
+         description
+           "the time when an incident instance occurs.
+            It's the occur time of the first event during
+            incident detection.";
        }
        leaf clear-time {
          type yang:date-and-time;
-         description "the time when an incident instance is
-                      resolved.";
+         description
+           "the time when an incident instance is
+            resolved.";
        }
        leaf ack-time {
          type yang:date-and-time;
-         description "the time when an incident instance is
-                      acknowledged.";
+         description
+           "the time when an incident instance is
+            acknowledged.";
        }
        leaf last-updated {
          type yang:date-and-time;
-         description "the latest time when an incident instance is
-                      updated";
+         description
+           "the latest time when an incident instance is
+            updated";
        }
      }
 
      grouping incident-info {
-       description "the grouping defines the information of an
-                    incident.";
+       description
+         "the grouping defines the information of an
+          incident.";
        leaf incident-no {
          type uint64;
          mandatory true;
-         description "The unique identifier of the incident instance.";
+         description
+           "The unique identifier of the incident instance.";
        }
        leaf-list service-instance {
          type string;
-         description "the related network service instances of
-                      the incident instance.";
+         description
+           "the related network service instances of
+            the incident instance.";
        }
        leaf name {
          type string;
          mandatory true;
-         description "the name of an incident.";
+         description
+           "the name of an incident.";
        }
        leaf type {
          type identityref {
-         base incident-class;
+           base incident-class;
          }
-       mandatory true;
-         description "The type of an incident.";
+         mandatory true;
+         description
+           "The type of an incident.";
        }
        leaf domain {
          type identityref {
            base incident-domain;
          }
          mandatory true;
-         description "the domain of an incident.";
+         description
+           "the domain of an incident.";
        }
        leaf priority {
          type incident-priority;
          mandatory true;
-         description "the priority of an incident instance.";
+         description
+           "the priority of an incident instance.";
        }
-
        leaf status {
          type enumeration {
            enum raised {
-             description "an incident instance is raised.";
+             description
+               "an incident instance is raised.";
            }
            enum updated {
-             description "the information of an incident instance
-                          is updated.";
+             description
+               "the information of an incident instance
+                is updated.";
            }
            enum cleared {
-             description "an incident is cleared.";
+             description
+               "an incident is cleared.";
            }
          }
-         default raised;
-         description "The status of an incident instance.";
+         default "raised";
+         description
+           "The status of an incident instance.";
        }
        leaf ack-status {
          type enumeration {
            enum acknowledged {
-             description "The incident has been acknowledged by user.";
+             description
+               "The incident has been acknowledged by user.";
            }
            enum unacknowledged {
-             description "The incident hasn't been acknowledged.";
+             description
+               "The incident hasn't been acknowledged.";
            }
          }
-         default unacknowledged;
-         description "the acknowledge status of an incident.";
+         default "unacknowledged";
+         description
+           "the acknowledge status of an incident.";
        }
        leaf category {
          type identityref {
            base incident-category;
          }
          mandatory true;
-         description "The category of an incident.";
+         description
+           "The category of an incident.";
        }
        leaf detail {
          type string;
-         description "detail information of this incident.";
+         description
+           "detail information of this incident.";
        }
        leaf resolve-advice {
          type string;
-         description "The advice to resolve this incident.";
+         description
+           "The advice to resolve this incident.";
        }
        container sources {
-         description "The source components.";
+         description
+           "The source components.";
          list source {
-           key node-ref;
-           uses resources-info;
+           key "node-ref";
            min-elements 1;
-           description "The source components of incident.";
+           description
+             "The source components of incident.";
+           uses resources-info;
          }
        }
-
-       container root-causes{
-         description "The root cause objects.";
+       container root-causes {
+         description
+           "The root cause objects.";
          list root-cause {
-           key node-ref;
-           description "the root causes of incident.";
+           key "node-ref";
+           description
+             "the root causes of incident.";
            uses resources-info {
-             augment resource {
-               description "augment root cause information.";
+             augment "resource" {
+               description
+                 "augment root cause information.";
                //if root cause object is a resource of a node
                uses root-cause-info;
              }
@@ -1312,80 +1412,96 @@ Table of Contents
          }
        }
        container root-events {
-         description "the root events of the incident.";
+         description
+           "the root events of the incident.";
          list root-event {
            key "type event-id";
-           description "the root event of the incident.";
+           description
+             "the root event of the incident.";
            leaf type {
              type leafref {
                path "../../../events/event/type";
              }
-             description "the event type.";
+             description
+               "the event type.";
            }
            leaf event-id {
              type leafref {
                path "../../../events/event[type = current()/../type]"
-                   +"/event-id";
+                  + "/event-id";
              }
-             description "the event identifier, such as uuid,
-                          sequence number, etc.";
+             description
+               "the event identifier, such as uuid,
+                sequence number, etc.";
            }
          }
        }
        container events {
-         description "related events.";
+         description
+           "related events.";
          list event {
            key "type event-id";
-           description "related events.";
+           description
+             "related events.";
            leaf type {
              type identityref {
-                     base event-type;
-                     }
-             description "event type.";
+               base event-type;
+             }
+             description
+               "event type.";
            }
            leaf event-id {
              type string;
-             description "the event identifier, such as uuid,
-                          sequence number, etc.";
+             description
+               "the event identifier, such as uuid,
+                sequence number, etc.";
            }
            choice event-type-info {
-             description "event type information.";
+             description
+               "event type information.";
              case alarm {
                when "derived-from-or-self(type, 'alarm')" {
-               description
-               "Only applies when type is alarm.";
+                 description
+                   "Only applies when type is alarm.";
                }
                container alarm {
-                 description "alarm type event.";
+                 description
+                   "alarm type event.";
                  leaf resource {
                    type leafref {
                      path "/al:alarms/al:alarm-list/al:alarm"
-                         +"/al:resource";
+                        + "/al:resource";
                    }
-                   description "network resource.";
-                   reference "RFC 8632: A YANG Data Model for Alarm
-                              Management";
+                   description
+                     "network resource.";
+                   reference
+                     "RFC 8632: A YANG Data Model for Alarm
+                      Management";
                  }
                  leaf alarm-type-id {
                    type leafref {
                      path "/al:alarms/al:alarm-list/al:alarm"
-                         +"[al:resource = current()/../resource]"
-                         +"/al:alarm-type-id";
+                        + "[al:resource = current()/../resource]"
+                        + "/al:alarm-type-id";
                    }
-                   description "alarm type id";
-                   reference "RFC 8632: A YANG Data Model for Alarm
-                               Management";
+                   description
+                     "alarm type id";
+                   reference
+                     "RFC 8632: A YANG Data Model for Alarm
+                       Management";
                  }
                  leaf alarm-type-qualifier {
                    type leafref {
                      path "/al:alarms/al:alarm-list/al:alarm"
-                         +"[al:resource = current()/../resource]"
-                         +"[al:alarm-type-id = current()/.."
-                         +"/alarm-type-id]/al:alarm-type-qualifier";
+                        + "[al:resource = current()/../resource]"
+                        + "[al:alarm-type-id = current()/.."
+                        + "/alarm-type-id]/al:alarm-type-qualifier";
                    }
-                   description "alarm type qualitifier";
-                   reference "RFC 8632: A YANG Data Model for Alarm
-                              Management";
+                   description
+                     "alarm type qualitifier";
+                   reference
+                     "RFC 8632: A YANG Data Model for Alarm
+                      Management";
                  }
                }
              }
@@ -1393,66 +1509,39 @@ Table of Contents
                //TODO
              }
              case log {
-             //TODO
+               //TODO
              }
              case KPI {
-             //TODO
+               //TODO
              }
              case unknown {
-             //TODO
+               //TODO
              }
            }
          }
-
-       }
-
-     }
-
-     //data definitions
-     container incidents {
-       config false;
-       description "the information of incidents.";
-       list incident {
-         key incident-no;
-         description "the information of incident.";
-         leaf incident-id {
-           type string;
-           description "the qualifier of an incident instance type.";
-         }
-         uses incident-info;
-         uses incident-time-info;
        }
      }
 
-     // notifications
-     notification incident-notification {
-       description "incident notification. It will be triggered when
-                    the incident is raised, updated or cleared.";
-       leaf incident-id {
-             type incident-ref;
-         description "the identifier of an incident instance.";
-       }
-       uses incident-info;
-       leaf time {
-         type yang:date-and-time;
-         description "occur time of an incident instance.";
-       }
-     }
      // rpcs
+
      rpc incident-acknowledge {
-       description "This rpc can be used to acknowledge the specified
-                    incidents.";
+       description
+         "This rpc can be used to acknowledge the specified
+          incidents.";
        input {
          leaf-list incident-id {
            type incident-ref;
-           description "the identifier of an incident instance.";
+           description
+             "the identifier of an incident instance.";
          }
        }
      }
+
      rpc incident-diagnose {
-       description "This rpc can be used to diagnose the specified
-                    incidents. The result of diagnosis will be reported
-                    by incident notification.";
+       description
+         "This rpc can be used to diagnose the specified
+          incidents. The result of diagnosis will be reported
+          by incident notification.";
        input {
          leaf-list incident-id {
            type incident-ref;
@@ -1463,15 +1552,55 @@ Table of Contents
      }
 
      rpc incident-resolve {
-       description "This rpc can be used to resolve the specified
-                    incidents. The result of resolution will be reported
-                    by incident notification.";
+       description
+         "This rpc can be used to resolve the specified
+          incidents. The result of resolution will be reported
+          by incident notification.";
        input {
          leaf-list incident-id {
            type incident-ref;
            description
              "the identifier of an incident instance.";
          }
+       }
+     }
+
+     // notifications
+
+     notification incident-notification {
+       description
+         "incident notification. It will be triggered when
+          the incident is raised, updated or cleared.";
+       leaf incident-id {
+         type incident-ref;
+         description
+           "the identifier of an incident instance.";
+       }
+       uses incident-info;
+       leaf time {
+         type yang:date-and-time;
+         description
+           "occur time of an incident instance.";
+       }
+     }
+
+     //data definitions
+
+     container incidents {
+       config false;
+       description
+         "the information of incidents.";
+       list incident {
+         key "incident-no";
+         description
+           "the information of incident.";
+         leaf incident-id {
+           type string;
+           description
+             "the qualifier of an incident instance type.";
+         }
+         uses incident-info;
+         uses incident-time-info;
        }
      }
    }
