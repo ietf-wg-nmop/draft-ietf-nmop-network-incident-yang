@@ -1161,13 +1161,13 @@ network service health and root cause analysis.<a href="#section-abstract-2" cla
                 <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-incident-based-trouble-tick" class="internal xref">Incident-Based Trouble Tickets Dispatching</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
-                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-incident-derivation-from-l3" class="internal xref">Incident Derivation from L3VPN services Unavailability</a></p>
+                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-incident-derivation-from-l3" class="internal xref">Incident Derivation from L3VPN Services Unavailability</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3">
                 <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-multi-layer-fault-demarcati" class="internal xref">Multi-layer Fault Demarcation</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.4">
-                <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="auto internal xref">3.4</a>.  <a href="#name-security-events-automated-n" class="internal xref">Security events Automated Noise reduction based on Situation awareness</a></p>
+                <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="auto internal xref">3.4</a>.  <a href="#name-security-events-automated-n" class="internal xref">Security Events Automated Noise Reduction based on Situation Awareness</a></p>
 </li>
             </ul>
 </li>
@@ -1429,63 +1429,61 @@ to diagnose, resolve, etc.<a href="#section-2-5.12.1" class="pilcrow">¶</a></p>
         <h3 id="name-incident-based-trouble-tick">
 <a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-incident-based-trouble-tick" class="section-name selfRef">Incident-Based Trouble Tickets Dispatching</a>
         </h3>
-<p id="section-3.1-1">Usually, the dispatching of trouble tickets is mostly based on
-alarms data analysis and need to involve operators' maintenance
-engineers.  These operators' maintenance engineers are able to
-monitor and detect that alarms at both end devices of specific
-network tunnel or at both optical layer and IP layer which are
-associated with the same network fault.  Therefore, they can
+<p id="section-3.1-1">Usually, the dispatching of trouble tickets in a network is mostly based on
+alarms data analysis and needs to involve operators' maintenance
+engineers.  These operators' maintenance engineers are responsible to
+monitor and detect and correlate some alarms, e.g., that alarms at both endpoints of a specific
+tunnel or at both optical and IP layers which are<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-2">associated with the same network fault.  Therefore, they can
 correlate these alarms to the same trouble ticket, which is in the
 low automation.  If there are more alarms, then the human costs for
-network maintenance are increased accordingly.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
-<p id="section-3.1-2">Some operators preconfigure whitelist and adopt some coarse
-granularity data correlation rules for the alarm management.  It
+network maintenance are increased accordingly.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
+<p id="section-3.1-3">Some operators preconfigure accept-lists and adopt some coarse
+granularity data correlation rules for the alarm management. This approach
 seems to improve fault management automation.  However, some trouble
-tickets could be missed if the filtering conditions are too strict.
+tickets might be missed if the filtering conditions are too strict.
 If the filtering conditions are not strict, it might end up with
-multiple trouble tickets being dispatched to the same network fault.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
-<p id="section-3.1-3">It is hard to achieve a perfect balance between the network
+multiple trouble tickets being dispatched to the same network fault.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
+<p id="section-3.1-4">It is hard to achieve a perfect balance between the network
 management automation and duplicated trouble tickets under the
-traditional working situations.  However, with the help of the
+conventional working situations.  However, with the help of the
 network incident management, massive alarms can be aggregated into a few
 network incidents based on service impact analysis, the number of
 trouble tickets will be greatly reduced.  At the same time, the
 efficiency of network troubleshooting can be largely improved. which
-address the pain point of traditional trouble ticket dispatching.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
+address the pain point of traditional trouble ticket dispatching.<a href="#section-3.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="incident-derivation-from-l3vpn-services-unavailability">
 <section id="section-3.2">
         <h3 id="name-incident-derivation-from-l3">
-<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-incident-derivation-from-l3" class="section-name selfRef">Incident Derivation from L3VPN services Unavailability</a>
+<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-incident-derivation-from-l3" class="section-name selfRef">Incident Derivation from L3VPN Services Unavailability</a>
         </h3>
-<p id="section-3.2-1">The service attachment points defined in <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span> represent the
-network reference points where network services can be delivered to
+<p id="section-3.2-1">The Service Attachment Points (SAPs) defined in <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span> represent the
+network reference points where network services can be delivered or are being delivered to
 customers.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
 <p id="section-3.2-2">SLOs can be used to characterize the ability of a particular set of
 nodes to communicate according to certain measurable expectations
 <span>[<a href="#I-D.ietf-ippm-pam" class="cite xref">I-D.ietf-ippm-pam</a>]</span>.  For example, an SLA might state that any given
 SLO applies to at least a certain percentage of packets, allowing for
 a certain level of packet loss and exceeding packet delay threshold
-to take place.  An SLA might establish a multi-tiered SLO of end to
-end latency as follows:<a href="#section-3.2-2" class="pilcrow">¶</a></p>
+to take place.  For example, an SLA might establish a multi-tiered SLO of end-to-end latency as follows:<a href="#section-3.2-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.2-3.1">
-            <p id="section-3.2-3.1.1">not to exceed 30 ms for any packet;<a href="#section-3.2-3.1.1" class="pilcrow">¶</a></p>
+            <p id="section-3.2-3.1.1">Not to exceed 30 ms for any packet.<a href="#section-3.2-3.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-3.2-3.2">
-            <p id="section-3.2-3.2.1">not to exceed 25 ms for 99.999% of packets;<a href="#section-3.2-3.2.1" class="pilcrow">¶</a></p>
+            <p id="section-3.2-3.2.1">Not to exceed 25 ms for 99.999% of packets.<a href="#section-3.2-3.2.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-3.2-3.3">
-            <p id="section-3.2-3.3.1">not to exceed 20 ms for 99% of packets.<a href="#section-3.2-3.3.1" class="pilcrow">¶</a></p>
+            <p id="section-3.2-3.3.1">Not to exceed 20 ms for 99% of packets.<a href="#section-3.2-3.3.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
-<p id="section-3.2-4">This SLA information can be bound with two or multiple service
-attachment point defined in <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>, so that the service
+<p id="section-3.2-4">This SLA information can be bound with two or multiple SAPs defined in <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>, so that the service
 orchestration layer can use these interfaces to commit the delivery
-of a service on specific point to point service topology or point to
-multi-point topology.  Upon specific levels of a threshold of an SLO
-is violated, a specific network incident, associated with,let's say
+of a service on specific point-to-point service topology or point to
+multi-point topology.  When specific levels of a threshold of an SLO
+is violated, a specific network incident, associated with, let's say
 L3VPN service will be derived.<a href="#section-3.2-4" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1499,19 +1497,19 @@ devices and optical-layer devices, it may cause correlative faults in
 both layers, i.e., packet layer and optical layer.  Specifically,
 fault propagation could be classified into three typical types.
 First, fault occurs at a packet-layer device will further cause fault
-(e.g.,WDM (wavelength division multiplexing) client fault) at an
+(e.g., Wavelength Division Multiplexing (WDM) client fault) at an
 optical-layer device.  Second, fault occurs at an optical-layer
-device will further cause fault (e.g., L3 link down) at a packet-
-layer device.  Third, fault occurs at the inter-layer link between a<a href="#section-3.3-1" class="pilcrow">¶</a></p>
-<p id="section-3.3-2">packet-layer device and an optical-layer device will further cause
-faults at both devices.  Traditionally, multiple operation teams are
+device will further cause fault (e.g., Layer 3 link down) at a packet-
+layer device.  Third, fault occurs at the inter-layer link between a
+packet-layer device and an optical-layer device will further cause
+faults at both devices.  Multiple operation teams are usually
 needed to first analyze huge amount of alarms (triggered by the above
 mentioned faults) from single network layer independently, then
 cooperate to locate the root cause through manually analyzing multi-
 layer topology data and service data, thus fault demarcation becomes
 more complex and time-consuming in multi-layer scenario than in
-single-layer scenario.<a href="#section-3.3-2" class="pilcrow">¶</a></p>
-<p id="section-3.3-3">With the help of network incident management, the management systems first
+single-layer scenario.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.3-2">With the help of network incident management, the management systems first
 automatically analyze root cause of the alarms at each single network
 layer and report corresponding incidents to the upper layer, then
 multi-layer management system comprehensively analyzes the topology
@@ -1525,13 +1523,13 @@ demarcation process is simplified and automated, the analyze result
 could be reported and visualized in time.  In this case, operation
 teams only have to confirm the analyze result and dispatch site
 engineers to perform relative maintenance actions (e.g., splice
-fiber) based on the root cause.<a href="#section-3.3-3" class="pilcrow">¶</a></p>
+fiber) based on the root cause.<a href="#section-3.3-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="security-events-automated-noise-reduction-based-on-situation-awareness">
 <section id="section-3.4">
         <h3 id="name-security-events-automated-n">
-<a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-security-events-automated-n" class="section-name selfRef">Security events Automated Noise reduction based on Situation awareness</a>
+<a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-security-events-automated-n" class="section-name selfRef">Security Events Automated Noise Reduction based on Situation Awareness</a>
         </h3>
 <p id="section-3.4-1">In the continuous data driven monitoring, tools used by the Security
 Operation Center (SoC) scan the network 24/7 to flag any
@@ -1566,7 +1564,7 @@ security implications that exist yet remain undiscovered.<a href="#section-3.4-2
 <figure id="figure-1">
         <div class="alignCenter art-text artwork" id="section-4-1.1">
 <pre>
-     +----------------------+-------------------+
+     +------------------------------------------+
      |                                          |
      |         Incident Management Client       |
      |                                          |
@@ -1577,7 +1575,7 @@ security implications that exist yet remain undiscovered.<a href="#section-3.4-2
         |Report   |Ack      |Diagnose |Resolve
         |         |         |         |
         |         V         V         V
-     +--+-------------------+---------+----------+
+     +--+----------------------------------------+
      |                                           |
      |                                           |
      |        Incident Management Server         |
@@ -1590,11 +1588,11 @@ security implications that exist yet remain undiscovered.<a href="#section-3.4-2
            |Alarm  |Operations       |Metrics
            |Report |Report           |/Telemetry
            |       |                 V
-+----------+-------+-----------------+------------------+
++----------+-------+------------------------------------+
 |                                                       |
 |                     Network                           |
 |                                                       |
-+------------------------------------+------------------+
++-------------------------------------------------------+
 
 </pre>
 </div>
@@ -1607,7 +1605,7 @@ components for the incident management are incident management client
 and incident management server.<a href="#section-4-2" class="pilcrow">¶</a></p>
 <p id="section-4-3">Incident management server can be deployed in network analytics
 platform, controllers and provides functionalities such as incident
-identification, report, diagnosis, resolution, querying for incident
+identification, report, diagnosis, resolution, or querying for incident
 lifecycle management.<a href="#section-4-3" class="pilcrow">¶</a></p>
 <p id="section-4-4">Incident management client can be deployed in the network OSS or
 other business systems of operators and invokes the functionalities
@@ -1631,8 +1629,8 @@ to diagnose this incident to find the root causes.<a href="#section-4-6.2.1" cla
         <li class="normal" id="section-4-6.3">
           <p id="section-4-6.3.1">If the root causes have been found, the client can resolve this
 incident by invoking the 'incident resolve' rpc operation,
-dispatching a ticket or using other functions (e.g. routing
-calculation,configuration)<a href="#section-4-6.3.1" class="pilcrow">¶</a></p>
+dispatching a ticket or using other functions (routing
+calculation, configuration, etc.)<a href="#section-4-6.3.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <div id="interworking-with-alarm-management">
@@ -1647,7 +1645,7 @@ calculation,configuration)<a href="#section-4-6.3.1" class="pilcrow">¶</a></p>
             +-----------------------------+
             |         OSS                 |
             |+-------+      +-----------+ |
-            ||alarm  |      | incident  | |
+            ||Alarm  |      | Incident  | |
             ||handler|      |  client   | |
             |+-------+      +-----------+ |
             +---^---------------^---------+
@@ -1656,26 +1654,26 @@ calculation,configuration)<a href="#section-4-6.3.1" class="pilcrow">¶</a></p>
             +---|---------------|---------+
             |   |  controller   |         |
             |   |               |         |
-            |+--+---++      +-----------+ |
-            ||alarm  |      |           | |
-            ||process+-----&gt;|  incident | |
+            |+--+----+      +-----------+ |
+            ||Alarm  |      |           | |
+            ||process+-----&gt;|  Incident | |
             ||       |alarm |   server  | |
-            |+------++      +-----------+ |
+            |+-------+      +-----------+ |
             |   ^              ^          |
-            +---+--------------|----------+
+            +---|--------------|----------+
                 |alarm         | metrics/trace/etc.
                 |              |
             +---+--------------+----------+
-            |         network             |
+            |         Network             |
             |                             |
             +-----------------------------+
 </pre>
 </div>
 <figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
-<a href="#name-interworking-with-alarm-mana" class="selfRef">Interworking with alarm management</a>
+<a href="#name-interworking-with-alarm-mana" class="selfRef">Interworking with Alarm Management</a>
           </figcaption></figure>
 </div>
-<p id="section-4.1-2">YANG model for the alarm management <span>[<a href="#RFC8632" class="cite xref">RFC8632</a>]</span> defines a standard
+<p id="section-4.1-2">A YANG model for the alarm management <span>[<a href="#RFC8632" class="cite xref">RFC8632</a>]</span> defines a standard
 interface to manage the lifecycle of alarms.  Alarms represent the
 undesirable state of network resources, alarm data model also defines
 the root causes and impacted services fields, but there may lack
@@ -1683,7 +1681,7 @@ sufficient information to determine them in lower layer system
 (mainly in devices level), so alarms do not always tell the status of
 services or the root causes.  As described in <span>[<a href="#RFC8632" class="cite xref">RFC8632</a>]</span>, alarm
 management act as a starting point for high-level fault management.
-While incident management often works at the network level, so it's
+While incident management often works at the network level, so it is
 possible to have enough information to perform correlation and
 service impact analysis.  Alarms can work as one of data sources of
 incident management and may be aggregated into few amount of
@@ -1691,12 +1689,12 @@ incidents by correlation analysis, network service impact and root
 causes may be determined during incident process.<a href="#section-4.1-2" class="pilcrow">¶</a></p>
 <p id="section-4.1-3">Incident also contains some related alarms,if needed users can query
 the information of alarms by alarm management interface <span>[<a href="#RFC8632" class="cite xref">RFC8632</a>]</span>.
-In some cases, e.g. cutover scenario, incident server may use alarm
+In some cases, e.g., cutover scenario, incident server may use alarm
 management interface <span>[<a href="#RFC8632" class="cite xref">RFC8632</a>]</span> to shelve some alarms.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
 <p id="section-4.1-4">Alarm management may keep the original process, alarms are reported
 from network to network controller or analytics and then reported to
-upper layer system(e.g.  OSS).  Upper layer system may store these
-alarms and provide the information for fault analysis (e.g. deeper
+upper layer system (e.g.,  OSS).  Upper layer system may store these
+alarms and provide the information for fault analysis (e.g., deeper
 analysis based on incident).<a href="#section-4.1-4" class="pilcrow">¶</a></p>
 <p id="section-4.1-5">Compared with alarm management, incident management provides not only
 incident reporting but also diagnosis and resolution functions, it's
@@ -1711,17 +1709,18 @@ Instead, they can work together to implement fault management.<a href="#section-
         <h3 id="name-interworking-with-sain">
 <a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-interworking-with-sain" class="section-name selfRef">Interworking with SAIN</a>
         </h3>
+<p id="section-4.2-1">SAIN <span>[<a href="#RFC9417" class="cite xref">RFC9417</a>]</span> defines an architecture of network service assurance.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
 <span id="name-interworking-with-sain-2"></span><div id="sain">
 <figure id="figure-3">
-          <div class="alignCenter art-text artwork" id="section-4.2-1.1">
+          <div class="alignCenter art-text artwork" id="section-4.2-2.1">
 <pre>
            +----------------+
-           | incident client|
+           | Incident client|
            +----------------+
                    ^
                    |incident
            +-------+--------+
-           |incident server |
+           |Incident server |
            +----------------+
                    ^
                    |symptoms
@@ -1733,7 +1732,7 @@ Instead, they can work together to implement fault management.<a href="#section-
                    |metrics
      +-------------+-------------+
      |                           |
-     |         network           |
+     |         Network           |
      |                           |
      +---------------------------+
 
@@ -1743,8 +1742,7 @@ Instead, they can work together to implement fault management.<a href="#section-
 <a href="#name-interworking-with-sain-2" class="selfRef">Interworking with SAIN</a>
           </figcaption></figure>
 </div>
-<p id="section-4.2-2">SAIN <span>[<a href="#RFC9417" class="cite xref">RFC9417</a>]</span> defines the architecture of network service assurance.
-A network service can be decomposed into some sub-services, and some
+<p id="section-4.2-3">A network service can be decomposed into some sub-services, and some
 metrics can be monitored for sub-services.  For example, a tunnel
 service can be decomposed into some peer tunnel interface sub-
 services and IP connectivity sub-service.  If some metrics are
@@ -1754,7 +1752,7 @@ based on symptoms, and then report it to upper layer system.  So,
 SAIN can be one way to identify incident, services, sub-services and
 metrics can be preconfigured via APIs defined by service assurance
 YANG model <span>[<a href="#RFC9418" class="cite xref">RFC9418</a>]</span> and incident will be reported if symptoms match
-the condition of incident.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
+the condition of incident.<a href="#section-4.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="relationship-with-rfc8969">
@@ -1798,9 +1796,11 @@ system tracing, and an incident should be reported.<a href="#section-4.4-1" clas
         <h3 id="name-incident-identification">
 <a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-incident-identification" class="section-name selfRef">Incident Identification</a>
         </h3>
+<p id="section-5.1-1">As depicted in <a href="#ident" class="auto internal xref">Figure 4</a>, multiple alarms, metrics, or hybrid can be
+aggregated into an incident after analysis.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
 <span id="name-incident-identification-2"></span><div id="ident">
 <figure id="figure-4">
-          <div class="alignCenter art-text artwork" id="section-5.1-1.1">
+          <div class="alignCenter art-text artwork" id="section-5.1-2.1">
 <pre>
             +--------------+
          +--|  Incident1   |
@@ -1828,22 +1828,20 @@ system tracing, and an incident should be reported.<a href="#section-4.4-1" clas
          |
          |  +--------------+
          +--|  Incident3   |
-                +--+-----------+
-                   |  +-----------+
-                   +--+ alarm1    |
-                   |  +-----------+
-                   |
-                   |  +-----------+
-                   +--| metric1   |
-                      +-----------+
+            +--+-----------+
+               |  +-----------+
+               +--+ alarm1    |
+               |  +-----------+
+               |
+               |  +-----------+
+               +--| metric1   |
+                  +-----------+
 </pre>
 </div>
 <figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
 <a href="#name-incident-identification-2" class="selfRef">Incident Identification</a>
           </figcaption></figure>
 </div>
-<p id="section-5.1-2">As described in <a href="#ident" class="auto internal xref">Figure 4</a>, multiple alarms, metrics, or hybrid can be
-aggregated into an incident after analysis.<a href="#section-5.1-2" class="pilcrow">¶</a></p>
 <p id="section-5.1-3">The network incident management server <span class="bcp14">MUST</span> be capable of identifying
 incidents.  Multiple alarms, metrics and other information are
 reported to incident server, and the server must analyze it and find
@@ -1880,7 +1878,7 @@ identification.  Observation timestamp defined in
           |     Controller     |
           |                    |
           |                    |
-          +-+-+-+----------+---+
+          +-+-+------------+---+
             ^ ^            ^
         IGP | |Interface   |IGP Peer
        Down | |Down        | Abnormal
@@ -1919,7 +1917,7 @@ anomaly, e.g., igp down, has impact on the service.<a href="#section-5.1-9" clas
                 +----+-----------------+
                          ^VPN A Degradation
                          |
-                 +---+----------------+
+                 +-------+------------+
                  |                    |
                  |     controller     |
                  |                    |

@@ -68,10 +68,10 @@ Table of Contents
    2.  Conventions and Definitions
    3.  Sample Use Cases
      3.1.  Incident-Based Trouble Tickets Dispatching
-     3.2.  Incident Derivation from L3VPN services Unavailability
+     3.2.  Incident Derivation from L3VPN Services Unavailability
      3.3.  Multi-layer Fault Demarcation
-     3.4.  Security events Automated Noise reduction based on
-           Situation awareness
+     3.4.  Security Events Automated Noise Reduction based on
+           Situation Awareness
    4.  Network Incident Management Architecture
      4.1.  Interworking with Alarm Management
      4.2.  Interworking with SAIN
@@ -224,59 +224,62 @@ Table of Contents
 
 3.1.  Incident-Based Trouble Tickets Dispatching
 
-   Usually, the dispatching of trouble tickets is mostly based on alarms
-   data analysis and need to involve operators' maintenance engineers.
-   These operators' maintenance engineers are able to monitor and detect
-   that alarms at both end devices of specific network tunnel or at both
-   optical layer and IP layer which are associated with the same network
-   fault.  Therefore, they can correlate these alarms to the same
-   trouble ticket, which is in the low automation.  If there are more
-   alarms, then the human costs for network maintenance are increased
-   accordingly.
+   Usually, the dispatching of trouble tickets in a network is mostly
+   based on alarms data analysis and needs to involve operators'
+   maintenance engineers.  These operators' maintenance engineers are
+   responsible to monitor and detect and correlate some alarms, e.g.,
+   that alarms at both endpoints of a specific tunnel or at both optical
+   and IP layers which are
 
-   Some operators preconfigure whitelist and adopt some coarse
-   granularity data correlation rules for the alarm management.  It
-   seems to improve fault management automation.  However, some trouble
-   tickets could be missed if the filtering conditions are too strict.
-   If the filtering conditions are not strict, it might end up with
-   multiple trouble tickets being dispatched to the same network fault.
+   associated with the same network fault.  Therefore, they can
+   correlate these alarms to the same trouble ticket, which is in the
+   low automation.  If there are more alarms, then the human costs for
+   network maintenance are increased accordingly.
+
+   Some operators preconfigure accept-lists and adopt some coarse
+   granularity data correlation rules for the alarm management.  This
+   approach seems to improve fault management automation.  However, some
+   trouble tickets might be missed if the filtering conditions are too
+   strict.  If the filtering conditions are not strict, it might end up
+   with multiple trouble tickets being dispatched to the same network
+   fault.
 
    It is hard to achieve a perfect balance between the network
    management automation and duplicated trouble tickets under the
-   traditional working situations.  However, with the help of the
+   conventional working situations.  However, with the help of the
    network incident management, massive alarms can be aggregated into a
    few network incidents based on service impact analysis, the number of
    trouble tickets will be greatly reduced.  At the same time, the
    efficiency of network troubleshooting can be largely improved. which
    address the pain point of traditional trouble ticket dispatching.
 
-3.2.  Incident Derivation from L3VPN services Unavailability
+3.2.  Incident Derivation from L3VPN Services Unavailability
 
-   The service attachment points defined in [RFC9408] represent the
-   network reference points where network services can be delivered to
-   customers.
+   The Service Attachment Points (SAPs) defined in [RFC9408] represent
+   the network reference points where network services can be delivered
+   or are being delivered to customers.
 
    SLOs can be used to characterize the ability of a particular set of
    nodes to communicate according to certain measurable expectations
    [I-D.ietf-ippm-pam].  For example, an SLA might state that any given
    SLO applies to at least a certain percentage of packets, allowing for
    a certain level of packet loss and exceeding packet delay threshold
-   to take place.  An SLA might establish a multi-tiered SLO of end to
-   end latency as follows:
+   to take place.  For example, an SLA might establish a multi-tiered
+   SLO of end-to-end latency as follows:
 
-   *  not to exceed 30 ms for any packet;
+   *  Not to exceed 30 ms for any packet.
 
-   *  not to exceed 25 ms for 99.999% of packets;
+   *  Not to exceed 25 ms for 99.999% of packets.
 
-   *  not to exceed 20 ms for 99% of packets.
+   *  Not to exceed 20 ms for 99% of packets.
 
-   This SLA information can be bound with two or multiple service
-   attachment point defined in [RFC9408], so that the service
-   orchestration layer can use these interfaces to commit the delivery
-   of a service on specific point to point service topology or point to
-   multi-point topology.  Upon specific levels of a threshold of an SLO
-   is violated, a specific network incident, associated with,let's say
-   L3VPN service will be derived.
+   This SLA information can be bound with two or multiple SAPs defined
+   in [RFC9408], so that the service orchestration layer can use these
+   interfaces to commit the delivery of a service on specific point-to-
+   point service topology or point to multi-point topology.  When
+   specific levels of a threshold of an SLO is violated, a specific
+   network incident, associated with, let's say L3VPN service will be
+   derived.
 
 3.3.  Multi-layer Fault Demarcation
 
@@ -285,19 +288,18 @@ Table of Contents
    both layers, i.e., packet layer and optical layer.  Specifically,
    fault propagation could be classified into three typical types.
    First, fault occurs at a packet-layer device will further cause fault
-   (e.g.,WDM (wavelength division multiplexing) client fault) at an
+   (e.g., Wavelength Division Multiplexing (WDM) client fault) at an
    optical-layer device.  Second, fault occurs at an optical-layer
-   device will further cause fault (e.g., L3 link down) at a packet-
-   layer device.  Third, fault occurs at the inter-layer link between a
-
-   packet-layer device and an optical-layer device will further cause
-   faults at both devices.  Traditionally, multiple operation teams are
-   needed to first analyze huge amount of alarms (triggered by the above
-   mentioned faults) from single network layer independently, then
-   cooperate to locate the root cause through manually analyzing multi-
-   layer topology data and service data, thus fault demarcation becomes
-   more complex and time-consuming in multi-layer scenario than in
-   single-layer scenario.
+   device will further cause fault (e.g., Layer 3 link down) at a
+   packet- layer device.  Third, fault occurs at the inter-layer link
+   between a packet-layer device and an optical-layer device will
+   further cause faults at both devices.  Multiple operation teams are
+   usually needed to first analyze huge amount of alarms (triggered by
+   the above mentioned faults) from single network layer independently,
+   then cooperate to locate the root cause through manually analyzing
+   multi- layer topology data and service data, thus fault demarcation
+   becomes more complex and time-consuming in multi-layer scenario than
+   in single-layer scenario.
 
    With the help of network incident management, the management systems
    first automatically analyze root cause of the alarms at each single
@@ -315,8 +317,8 @@ Table of Contents
    result and dispatch site engineers to perform relative maintenance
    actions (e.g., splice fiber) based on the root cause.
 
-3.4.  Security events Automated Noise reduction based on Situation
-      awareness
+3.4.  Security Events Automated Noise Reduction based on Situation
+      Awareness
 
    In the continuous data driven monitoring, tools used by the Security
    Operation Center (SoC) scan the network 24/7 to flag any
@@ -343,7 +345,7 @@ Table of Contents
 
 4.  Network Incident Management Architecture
 
-              +----------------------+-------------------+
+              +------------------------------------------+
               |                                          |
               |         Incident Management Client       |
               |                                          |
@@ -354,7 +356,7 @@ Table of Contents
                  |Report   |Ack      |Diagnose |Resolve
                  |         |         |         |
                  |         V         V         V
-              +--+-------------------+---------+----------+
+              +--+----------------------------------------+
               |                                           |
               |                                           |
               |        Incident Management Server         |
@@ -367,11 +369,11 @@ Table of Contents
                     |Alarm  |Operations       |Metrics
                     |Report |Report           |/Telemetry
                     |       |                 V
-         +----------+-------+-----------------+------------------+
+         +----------+-------+------------------------------------+
          |                                                       |
          |                     Network                           |
          |                                                       |
-         +------------------------------------+------------------+
+         +-------------------------------------------------------+
 
              Figure 1: Network Incident Management Architecture
 
@@ -381,8 +383,8 @@ Table of Contents
 
    Incident management server can be deployed in network analytics
    platform, controllers and provides functionalities such as incident
-   identification, report, diagnosis, resolution, querying for incident
-   lifecycle management.
+   identification, report, diagnosis, resolution, or querying for
+   incident lifecycle management.
 
    Incident management client can be deployed in the network OSS or
    other business systems of operators and invokes the functionalities
@@ -404,15 +406,15 @@ Table of Contents
 
    *  If the root causes have been found, the client can resolve this
       incident by invoking the 'incident resolve' rpc operation,
-      dispatching a ticket or using other functions (e.g. routing
-      calculation,configuration)
+      dispatching a ticket or using other functions (routing
+      calculation, configuration, etc.)
 
 4.1.  Interworking with Alarm Management
 
                         +-----------------------------+
                         |         OSS                 |
                         |+-------+      +-----------+ |
-                        ||alarm  |      | incident  | |
+                        ||Alarm  |      | Incident  | |
                         ||handler|      |  client   | |
                         |+-------+      +-----------+ |
                         +---^---------------^---------+
@@ -421,23 +423,23 @@ Table of Contents
                         +---|---------------|---------+
                         |   |  controller   |         |
                         |   |               |         |
-                        |+--+---++      +-----------+ |
-                        ||alarm  |      |           | |
-                        ||process+----->|  incident | |
+                        |+--+----+      +-----------+ |
+                        ||Alarm  |      |           | |
+                        ||process+----->|  Incident | |
                         ||       |alarm |   server  | |
-                        |+------++      +-----------+ |
+                        |+-------+      +-----------+ |
                         |   ^              ^          |
-                        +---+--------------|----------+
+                        +---|--------------|----------+
                             |alarm         | metrics/trace/etc.
                             |              |
                         +---+--------------+----------+
-                        |         network             |
+                        |         Network             |
                         |                             |
                         +-----------------------------+
 
-                Figure 2: Interworking with alarm management
+                Figure 2: Interworking with Alarm Management
 
-   YANG model for the alarm management [RFC8632] defines a standard
+   A YANG model for the alarm management [RFC8632] defines a standard
    interface to manage the lifecycle of alarms.  Alarms represent the
    undesirable state of network resources, alarm data model also defines
    the root causes and impacted services fields, but there may lack
@@ -445,7 +447,7 @@ Table of Contents
    (mainly in devices level), so alarms do not always tell the status of
    services or the root causes.  As described in [RFC8632], alarm
    management act as a starting point for high-level fault management.
-   While incident management often works at the network level, so it's
+   While incident management often works at the network level, so it is
    possible to have enough information to perform correlation and
    service impact analysis.  Alarms can work as one of data sources of
    incident management and may be aggregated into few amount of
@@ -454,13 +456,13 @@ Table of Contents
 
    Incident also contains some related alarms,if needed users can query
    the information of alarms by alarm management interface [RFC8632].
-   In some cases, e.g. cutover scenario, incident server may use alarm
+   In some cases, e.g., cutover scenario, incident server may use alarm
    management interface [RFC8632] to shelve some alarms.
 
    Alarm management may keep the original process, alarms are reported
    from network to network controller or analytics and then reported to
-   upper layer system(e.g.  OSS).  Upper layer system may store these
-   alarms and provide the information for fault analysis (e.g. deeper
+   upper layer system (e.g., OSS).  Upper layer system may store these
+   alarms and provide the information for fault analysis (e.g., deeper
    analysis based on incident).
 
    Compared with alarm management, incident management provides not only
@@ -473,13 +475,15 @@ Table of Contents
 
 4.2.  Interworking with SAIN
 
+   SAIN [RFC9417] defines an architecture of network service assurance.
+
                                +----------------+
-                               | incident client|
+                               | Incident client|
                                +----------------+
                                        ^
                                        |incident
                                +-------+--------+
-                               |incident server |
+                               |Incident server |
                                +----------------+
                                        ^
                                        |symptoms
@@ -491,13 +495,12 @@ Table of Contents
                                        |metrics
                          +-------------+-------------+
                          |                           |
-                         |         network           |
+                         |         Network           |
                          |                           |
                          +---------------------------+
 
                       Figure 3: Interworking with SAIN
 
-   SAIN [RFC9417] defines the architecture of network service assurance.
    A network service can be decomposed into some sub-services, and some
    metrics can be monitored for sub-services.  For example, a tunnel
    service can be decomposed into some peer tunnel interface sub-
@@ -536,45 +539,45 @@ Table of Contents
 
 5.1.  Incident Identification
 
-                                +--------------+
-                             +--|  Incident1   |
-                             |  +--+-----------+
-                             |     |  +-----------+
-                             |     +--+  alarm1   |
-                             |     |  +-----------+
-                             |     |
-                             |     |  +-----------+
-                             |     +--+  alarm2   |
-                             |     |  +-----------+
-                             |     |
-                             |     |  +-----------+
-                             |     +--+  alarm3   |
-                             |        +-----------+
-                             |  +--------------+
-                             +--|  Incident2   |
-                             |  +--+-----------+
-                             |     |  +-----------+
-                             |     +--+  metric1  |
-                             |     |  +-----------+
-                             |     |  +-----------+
-                             |     +--+  metric2  |
-                             |        +-----------+
-                             |
-                             |  +--------------+
-                             +--|  Incident3   |
-                                    +--+-----------+
-                                       |  +-----------+
-                                       +--+ alarm1    |
-                                       |  +-----------+
-                                       |
-                                       |  +-----------+
-                                       +--| metric1   |
-                                          +-----------+
+   As depicted in Figure 4, multiple alarms, metrics, or hybrid can be
+   aggregated into an incident after analysis.
+
+                                  +--------------+
+                               +--|  Incident1   |
+                               |  +--+-----------+
+                               |     |  +-----------+
+                               |     +--+  alarm1   |
+                               |     |  +-----------+
+                               |     |
+                               |     |  +-----------+
+                               |     +--+  alarm2   |
+                               |     |  +-----------+
+                               |     |
+                               |     |  +-----------+
+                               |     +--+  alarm3   |
+                               |        +-----------+
+                               |  +--------------+
+                               +--|  Incident2   |
+                               |  +--+-----------+
+                               |     |  +-----------+
+                               |     +--+  metric1  |
+                               |     |  +-----------+
+                               |     |  +-----------+
+                               |     +--+  metric2  |
+                               |        +-----------+
+                               |
+                               |  +--------------+
+                               +--|  Incident3   |
+                                  +--+-----------+
+                                     |  +-----------+
+                                     +--+ alarm1    |
+                                     |  +-----------+
+                                     |
+                                     |  +-----------+
+                                     +--| metric1   |
+                                        +-----------+
 
                      Figure 4: Incident Identification
-
-   As described in Figure 4, multiple alarms, metrics, or hybrid can be
-   aggregated into an incident after analysis.
 
    The network incident management server MUST be capable of identifying
    incidents.  Multiple alarms, metrics and other information are
@@ -611,7 +614,7 @@ Table of Contents
                      |     Controller     |
                      |                    |
                      |                    |
-                     +-+-+-+----------+---+
+                     +-+-+------------+---+
                        ^ ^            ^
                    IGP | |Interface   |IGP Peer
                   Down | |Down        | Abnormal
@@ -647,7 +650,7 @@ Table of Contents
                           +----+-----------------+
                                    ^VPN A Degradation
                                    |
-                           +---+----------------+
+                           +-------+------------+
                            |                    |
                            |     controller     |
                            |                    |
