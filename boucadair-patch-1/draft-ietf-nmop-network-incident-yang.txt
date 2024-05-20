@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                        L. M. C. Murillo
-Expires: 17 November 2024                                 Telefonica I+D
+Expires: 21 November 2024                                 Telefonica I+D
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                             16 May 2024
+                                                             20 May 2024
 
 
            A YANG Data Model for Network Incident Management
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 November 2024.
+   This Internet-Draft will expire on 21 November 2024.
 
 Copyright Notice
 
@@ -944,10 +944,10 @@ Table of Contents
      }
 
      organization
-       "IETF OPSAWG Working Group";
+       "IETF NMOP Working Group";
      contact
-       "WG Web:   <https://datatracker.ietf.org/wg/opsawg/>;
-        WG List:  <mailto:opsawg@ietf.org>
+       "WG Web:   <https://datatracker.ietf.org/wg/nmop/>;
+        WG List:  <mailto:nmop@ietf.org>
 
         Author:   Chong Feng
                   <mailto:frank.fengchong@huawei.com>
