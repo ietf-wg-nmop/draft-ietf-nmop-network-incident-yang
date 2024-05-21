@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-05-19T00:31:19.284817+00:00",
+  "timestamp": "2024-05-21T00:29:07.864494+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
   "labels": [
     {
@@ -183,7 +183,7 @@
       "id": "PR_kwDOL4Sz0s5vnPt9",
       "title": "yang formatting fixes",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/pull/3",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
@@ -192,18 +192,28 @@
       ],
       "body": "",
       "createdAt": "2024-05-16T05:46:49Z",
-      "updatedAt": "2024-05-16T05:48:38Z",
+      "updatedAt": "2024-05-20T00:36:19Z",
       "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
       "baseRefName": "main",
       "baseRefOid": "4c252f9fa986da5656ffedd463531640ea9e8fe4",
       "headRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
       "headRefName": "boucadair-patch-1",
       "headRefOid": "e8801bfc3269f073a15be5178cd5c45769f7f8c3",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
+      "closedAt": "2024-05-20T00:36:19Z",
+      "mergedAt": "2024-05-20T00:36:18Z",
+      "mergedBy": "billwuqin",
+      "mergeCommit": {
+        "oid": "5eabf358892510d9401de6d8deac7e24a78c79bb"
+      },
+      "comments": [
+        {
+          "author": "billwuqin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Thanks, the editorial changes look great.",
+          "createdAt": "2024-05-20T00:36:14Z",
+          "updatedAt": "2024-05-20T00:36:14Z"
+        }
+      ],
       "reviews": []
     },
     {
@@ -211,7 +221,7 @@
       "id": "PR_kwDOL4Sz0s5vnQFi",
       "title": "fix contact data",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/pull/4",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
@@ -220,18 +230,28 @@
       ],
       "body": "",
       "createdAt": "2024-05-16T05:48:16Z",
-      "updatedAt": "2024-05-16T05:48:49Z",
+      "updatedAt": "2024-05-20T00:37:03Z",
       "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
       "baseRefName": "boucadair-patch-1",
       "baseRefOid": "e8801bfc3269f073a15be5178cd5c45769f7f8c3",
       "headRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
       "headRefName": "boucadair-patch-2",
       "headRefOid": "b68b8ac32ce240bb56d8678a592bf143df53d018",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
+      "closedAt": "2024-05-20T00:37:03Z",
+      "mergedAt": "2024-05-20T00:37:03Z",
+      "mergedBy": "billwuqin",
+      "mergeCommit": {
+        "oid": "5cf741973b5607da70b90a348f3e4836fdeaa076"
+      },
+      "comments": [
+        {
+          "author": "billwuqin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Good catch.",
+          "createdAt": "2024-05-20T00:36:59Z",
+          "updatedAt": "2024-05-20T00:36:59Z"
+        }
+      ],
       "reviews": []
     },
     {
@@ -239,7 +259,7 @@
       "id": "PR_kwDOL4Sz0s5vnhrU",
       "title": "Edits to the first three Sections",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/pull/5",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
@@ -248,18 +268,28 @@
       ],
       "body": "",
       "createdAt": "2024-05-16T06:41:47Z",
-      "updatedAt": "2024-05-16T06:42:34Z",
+      "updatedAt": "2024-05-20T00:39:46Z",
       "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
       "baseRefName": "main",
       "baseRefOid": "4c252f9fa986da5656ffedd463531640ea9e8fe4",
       "headRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
       "headRefName": "boucadair-patch-3",
       "headRefOid": "2540c25b7bb42f369a7a5f83851ba6aec9ab9251",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
+      "closedAt": "2024-05-20T00:39:45Z",
+      "mergedAt": "2024-05-20T00:39:45Z",
+      "mergedBy": "billwuqin",
+      "mergeCommit": {
+        "oid": "71dfc76c23aa39219c9d1de085f8a5e1b22365b2"
+      },
+      "comments": [
+        {
+          "author": "billwuqin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "We remove incident type yang model, so the number of yang modules we proposed is reduced from 2 into 1. So I think the text still needs some tweak, besides this, all good changes.",
+          "createdAt": "2024-05-20T00:39:36Z",
+          "updatedAt": "2024-05-20T00:39:36Z"
+        }
+      ],
       "reviews": []
     },
     {
@@ -267,7 +297,7 @@
       "id": "PR_kwDOL4Sz0s5vno4M",
       "title": "Edit suggestions to the sample use cases",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/pull/6",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
@@ -276,17 +306,19 @@
       ],
       "body": "",
       "createdAt": "2024-05-16T07:00:48Z",
-      "updatedAt": "2024-05-16T07:00:57Z",
+      "updatedAt": "2024-05-20T00:43:28Z",
       "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
       "baseRefName": "main",
-      "baseRefOid": "4c252f9fa986da5656ffedd463531640ea9e8fe4",
+      "baseRefOid": "71dfc76c23aa39219c9d1de085f8a5e1b22365b2",
       "headRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
       "headRefName": "boucadair-patch-4",
-      "headRefOid": "65e15e3a95167869c596cc5e262836a2ce9496da",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "d029708006e2d0695dbb32e05e097a84d5162324",
+      "closedAt": "2024-05-20T00:43:27Z",
+      "mergedAt": "2024-05-20T00:43:27Z",
+      "mergedBy": "billwuqin",
+      "mergeCommit": {
+        "oid": "4933e6027f351f90df214c50de43793bd728512f"
+      },
       "comments": [],
       "reviews": []
     }
