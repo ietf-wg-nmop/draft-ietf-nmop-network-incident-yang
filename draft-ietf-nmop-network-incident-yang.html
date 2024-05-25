@@ -1043,7 +1043,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Hu, et al.</td>
-<td class="center">Expires 21 November 2024</td>
+<td class="center">Expires 26 November 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1056,12 +1056,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-nmop-network-incident-yang-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-05-20" class="published">20 May 2024</time>
+<time datetime="2024-05-25" class="published">25 May 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-11-21">21 November 2024</time></dd>
+<dd class="expires"><time datetime="2024-11-26">26 November 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1119,7 +1119,7 @@ network service health and root cause analysis.<a href="#section-abstract-2" cla
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 21 November 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 26 November 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1315,8 +1315,8 @@ alarms into fewer incidents and there are many solutions in the
 market today that essentially do this to some degree. However,
 conventional solutions such as data compression are time-consuming
 and labor-intensive, usually rely on maintenance engineers' experience
-for data analysis, which result in low processing efficiency, inaccurate
-root cause identification and duplicated tickets.  It is also
+for data analysis, which, in many cases, result in low processing efficiency,
+inaccurate root cause identification and duplicated tickets.  It is also
 difficult to assess the impact of alarms, performance metrics and other
 anomaly data on network services without known relation across layers of
 the network topology data or the relation with other network topology data.<a href="#section-1-2" class="pilcrow">¶</a></p>
@@ -1325,8 +1325,7 @@ is specified to establish the dependency relation with both network
 service and network topology at different layers, which not only can
 be used at a specific layer in a domain but also can be used to
 span across layers for multi-layer network troubleshooting.<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">A network
-incident refers to an unexpected interruption of a network service,
+<p id="section-1-4">A network incident refers to an unexpected interruption of a network service,
 degradation of a network service quality, or sub-health of a network
 service <span>[<a href="#TMF724A" class="cite xref">TMF724A</a>]</span>.  Different data sources including alarms, metrics,
 and other anomaly information can be aggregated into few amount of
@@ -1429,29 +1428,30 @@ to diagnose, resolve, etc.<a href="#section-2-5.12.1" class="pilcrow">¶</a></p>
         <h3 id="name-incident-based-trouble-tick">
 <a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-incident-based-trouble-tick" class="section-name selfRef">Incident-Based Trouble Tickets Dispatching</a>
         </h3>
-<p id="section-3.1-1">Usually, the dispatching of trouble tickets in a network is mostly based on
-alarms data analysis and needs to involve operators' maintenance
+<p id="section-3.1-1">Usually, the dispatching of trouble tickets in a network is mostly
+based on alarms data analysis and needs to involve operators' maintenance
 engineers.  These operators' maintenance engineers are responsible to
-monitor and detect and correlate some alarms, e.g., that alarms at both endpoints of a specific
-tunnel or at both optical and IP layers which are<a href="#section-3.1-1" class="pilcrow">¶</a></p>
-<p id="section-3.1-2">associated with the same network fault.  Therefore, they can
+monitor and detect and correlate some alarms, e.g., that alarms at
+both endpoints of a specific tunnel or at both optical and IP layers
+which are associated with the same network fault.  Therefore, they can
 correlate these alarms to the same trouble ticket, which is in the
-low automation.  If there are more alarms, then the human costs for
-network maintenance are increased accordingly.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
-<p id="section-3.1-3">Some operators preconfigure accept-lists and adopt some coarse
+low automation. If there are more alarms, then the human costs for
+network maintenance are increased accordingly.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-2">Some operators preconfigure accept-lists and adopt some coarse
 granularity data correlation rules for the alarm management. This approach
 seems to improve fault management automation.  However, some trouble
 tickets might be missed if the filtering conditions are too strict.
 If the filtering conditions are not strict, it might end up with
-multiple trouble tickets being dispatched to the same network fault.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
-<p id="section-3.1-4">It is hard to achieve a perfect balance between the network
+multiple trouble tickets being dispatched to the same network fault.
+It is hard to achieve a perfect balance between the network
 management automation and duplicated trouble tickets under the
-conventional working situations.  However, with the help of the
-network incident management, massive alarms can be aggregated into a few
-network incidents based on service impact analysis, the number of
-trouble tickets will be greatly reduced.  At the same time, the
-efficiency of network troubleshooting can be largely improved. which
-address the pain point of traditional trouble ticket dispatching.<a href="#section-3.1-4" class="pilcrow">¶</a></p>
+conventional working situations.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
+<p id="section-3.1-3">With the help of the network incident management, massive alarms can
+be aggregated into a few network incidents based on service impact
+analysis, the number of trouble tickets will be reduced.
+At the same time, the efficiency of network troubleshooting can be
+largely improved. which address the pain point of traditional trouble
+ticket dispatching.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="incident-derivation-from-l3vpn-services-unavailability">
@@ -1467,7 +1467,8 @@ nodes to communicate according to certain measurable expectations
 <span>[<a href="#I-D.ietf-ippm-pam" class="cite xref">I-D.ietf-ippm-pam</a>]</span>.  For example, an SLA might state that any given
 SLO applies to at least a certain percentage of packets, allowing for
 a certain level of packet loss and exceeding packet delay threshold
-to take place.  For example, an SLA might establish a multi-tiered SLO of end-to-end latency as follows:<a href="#section-3.2-2" class="pilcrow">¶</a></p>
+to take place.  For example, an SLA might establish a multi-tiered SLO
+of end-to-end latency as follows:<a href="#section-3.2-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.2-3.1">
             <p id="section-3.2-3.1.1">Not to exceed 30 ms for any packet.<a href="#section-3.2-3.1.1" class="pilcrow">¶</a></p>
@@ -1479,12 +1480,11 @@ to take place.  For example, an SLA might establish a multi-tiered SLO of end-to
             <p id="section-3.2-3.3.1">Not to exceed 20 ms for 99% of packets.<a href="#section-3.2-3.3.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
-<p id="section-3.2-4">This SLA information can be bound with two or multiple SAPs defined in <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>, so that the service
-orchestration layer can use these interfaces to commit the delivery
-of a service on specific point-to-point service topology or point to
-multi-point topology.  When specific levels of a threshold of an SLO
-is violated, a specific network incident, associated with, let's say
-L3VPN service will be derived.<a href="#section-3.2-4" class="pilcrow">¶</a></p>
+<p id="section-3.2-4">This SLA information can be bound with two or multiple SAPs defined in <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>,
+so that the service orchestration layer can use these interfaces to commit the delivery
+of a service on specific point-to-point service topology or point to multi-point topology.
+When specific levels of a threshold of an SLO is violated, a specific network incident,
+associated with, let's say L3VPN service will be derived.<a href="#section-3.2-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="multi-layer-fault-demarcation">

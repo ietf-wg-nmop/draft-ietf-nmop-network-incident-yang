@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                        L. M. C. Murillo
-Expires: 21 November 2024                                 Telefonica I+D
+Expires: 26 November 2024                                 Telefonica I+D
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                             20 May 2024
+                                                             25 May 2024
 
 
            A YANG Data Model for Network Incident Management
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 November 2024.
+   This Internet-Draft will expire on 26 November 2024.
 
 Copyright Notice
 
@@ -134,12 +134,12 @@ Table of Contents
    that essentially do this to some degree.  However, conventional
    solutions such as data compression are time-consuming and labor-
    intensive, usually rely on maintenance engineers' experience for data
-   analysis, which result in low processing efficiency, inaccurate root
-   cause identification and duplicated tickets.  It is also difficult to
-   assess the impact of alarms, performance metrics and other anomaly
-   data on network services without known relation across layers of the
-   network topology data or the relation with other network topology
-   data.
+   analysis, which, in many cases, result in low processing efficiency,
+   inaccurate root cause identification and duplicated tickets.  It is
+   also difficult to assess the impact of alarms, performance metrics
+   and other anomaly data on network services without known relation
+   across layers of the network topology data or the relation with other
+   network topology data.
 
    To address these challenges, a network wide incident-centric solution
    is specified to establish the dependency relation with both network
@@ -229,12 +229,11 @@ Table of Contents
    maintenance engineers.  These operators' maintenance engineers are
    responsible to monitor and detect and correlate some alarms, e.g.,
    that alarms at both endpoints of a specific tunnel or at both optical
-   and IP layers which are
-
-   associated with the same network fault.  Therefore, they can
-   correlate these alarms to the same trouble ticket, which is in the
-   low automation.  If there are more alarms, then the human costs for
-   network maintenance are increased accordingly.
+   and IP layers which are associated with the same network fault.
+   Therefore, they can correlate these alarms to the same trouble
+   ticket, which is in the low automation.  If there are more alarms,
+   then the human costs for network maintenance are increased
+   accordingly.
 
    Some operators preconfigure accept-lists and adopt some coarse
    granularity data correlation rules for the alarm management.  This
@@ -242,16 +241,16 @@ Table of Contents
    trouble tickets might be missed if the filtering conditions are too
    strict.  If the filtering conditions are not strict, it might end up
    with multiple trouble tickets being dispatched to the same network
-   fault.
-
-   It is hard to achieve a perfect balance between the network
+   fault.  It is hard to achieve a perfect balance between the network
    management automation and duplicated trouble tickets under the
-   conventional working situations.  However, with the help of the
-   network incident management, massive alarms can be aggregated into a
-   few network incidents based on service impact analysis, the number of
-   trouble tickets will be greatly reduced.  At the same time, the
-   efficiency of network troubleshooting can be largely improved. which
-   address the pain point of traditional trouble ticket dispatching.
+   conventional working situations.
+
+   With the help of the network incident management, massive alarms can
+   be aggregated into a few network incidents based on service impact
+   analysis, the number of trouble tickets will be reduced.  At the same
+   time, the efficiency of network troubleshooting can be largely
+   improved. which address the pain point of traditional trouble ticket
+   dispatching.
 
 3.2.  Incident Derivation from L3VPN Services Unavailability
 
