@@ -129,7 +129,7 @@ analysis.
 
 This document defines YANG Modules for the network incident lifecycle
 management.  These YANG modules are meant to provide a standard way to
-report, diagnose, and resolve network incidents for the sake of
+report, diagnose, and help resolve network incidents for the sake of
 network service health and root cause analysis.
 
 --- middle
@@ -244,7 +244,7 @@ Incident management client:
 :  An entity which can manage incidents.
    For example, it can receive incident notifications, query the
    information of incidents, instruct an incident management server
-   to diagnose, resolve, etc.
+   to diagnose, help resolve, etc.
 
 # Sample Use Cases
 
