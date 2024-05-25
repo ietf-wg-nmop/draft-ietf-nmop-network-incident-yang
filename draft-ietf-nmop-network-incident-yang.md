@@ -254,7 +254,7 @@ Usually, the dispatching of trouble tickets in a network is mostly
 based on alarms data analysis and needs to involve operators' maintenance
 engineers.  These operators' maintenance engineers are responsible to
 monitor and detect and correlate some alarms, e.g., that alarms at
-both endpoints of a specific tunnel or at both optical and IP layers 
+both endpoints of a specific tunnel or at both optical and IP layers
 which are associated with the same network fault.  Therefore, they can
 correlate these alarms to the same trouble ticket, which is in the
 low automation. If there are more alarms, then the human costs for
@@ -299,7 +299,7 @@ of end-to-end latency as follows:
 
 This SLA information can be bound with two or multiple SAPs defined in {{?RFC9408}},
 so that the service orchestration layer can use these interfaces to commit the delivery
-of a service on specific point-to-point service topology or point to multi-point topology. 
+of a service on specific point-to-point service topology or point to multi-point topology.
 When specific levels of a threshold of an SLO is violated, a specific network incident,
 associated with, let's say L3VPN service will be derived.
 
