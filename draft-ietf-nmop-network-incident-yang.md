@@ -127,8 +127,8 @@ and other anomaly information can be aggregated into few amount of
 network incidents by data correlation analysis and the service impact
 analysis.
 
-This document defines YANG Modules for the network incident lifecycle
-management.  These YANG modules are meant to provide a standard way to
+This document defines a YANG Module for the network incident lifecycle
+management.  This YANG module is meant to provide a standard way to
 report, diagnose, and help resolve network incidents for the sake of
 network service health and root cause analysis.
 
