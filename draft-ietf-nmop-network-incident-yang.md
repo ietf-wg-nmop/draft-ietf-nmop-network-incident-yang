@@ -773,19 +773,17 @@ operator can try to resolve the incident.
 
 ## Overview
 
-There are two YANG modules in the model.  The first module, "ietf-
-incident-type", provides common definitions such as incident domain,
-incident category, incident priority.  The second module, "ietf-
-incident", defines technology independent abstraction of network
-incident construct for alarm, log, performance metrics, etc.  The
-information reported in the incident include Root cause,
-priority,impact, suggestion, etc.  At the top of "ietf-incident"
-module is the Network Incident.  Network incident is represented as a
-list and indexed by "incident-id".  Each Network Incident is
-associated with a service instance, domain and sources.  Under
-sources, there is one or more sources.  Each source corresponds to
-node defined in the network topology model and network resource in
-the network device,e.g., interface.  In addition, "ietf-incident"
+There is one YANG module in the model, "ietf-incident", which defines
+technology independent abstraction of network incident construct for
+alarm, log, performance metrics, etc.  The information reported in
+the incident include Root cause, priority,impact, suggestion, etc.
+
+At the top of "ietf-incident" module is the Network Incident.
+Network incident is represented as a list and indexed by "incident-id".
+Each Network Incident is associated with a service instance, domain and
+sources.  Under sources, there is one or more sources.  Each source
+corresponds to node defined in the network topology model and network
+resource in the network device,e.g., interface.  In addition, "ietf-incident"
 support one general notification to report incident state changes and
 three rpcs to manage the network incidents.
 
