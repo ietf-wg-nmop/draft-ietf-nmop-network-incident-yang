@@ -162,7 +162,7 @@ alarms into fewer incidents and there are many solutions in the
 market today that essentially do this to some degree. However,
 conventional solutions such as data compression are time-consuming
 and labor-intensive, usually rely on maintenance engineers' experience
-for data analysis, which, in many cases, result in low processing efficiency, 
+for data analysis, which, in many cases, result in low processing efficiency,
 inaccurate root cause identification and duplicated tickets.  It is also
 difficult to assess the impact of alarms, performance metrics and other
 anomaly data on network services without known relation across layers of
@@ -250,10 +250,10 @@ Incident management client:
 
 ## Incident-Based Trouble Tickets Dispatching
 
-Usually, the dispatching of trouble tickets in a network is mostly 
+Usually, the dispatching of trouble tickets in a network is mostly
 based on alarms data analysis and needs to involve operators' maintenance
 engineers.  These operators' maintenance engineers are responsible to
-monitor and detect and correlate some alarms, e.g., that alarms at 
+monitor and detect and correlate some alarms, e.g., that alarms at
 both endpoints of a specific tunnel or at both optical and IP layers 
 which are associated with the same network fault.  Therefore, they can
 correlate these alarms to the same trouble ticket, which is in the
@@ -268,13 +268,13 @@ If the filtering conditions are not strict, it might end up with
 multiple trouble tickets being dispatched to the same network fault.
 It is hard to achieve a perfect balance between the network
 management automation and duplicated trouble tickets under the
-conventional working situations.  
+conventional working situations.
 
-With the help of the network incident management, massive alarms can 
-be aggregated into a few network incidents based on service impact 
-analysis, the number of trouble tickets will be reduced.  
+With the help of the network incident management, massive alarms can
+be aggregated into a few network incidents based on service impact
+analysis, the number of trouble tickets will be reduced.
 At the same time, the efficiency of network troubleshooting can be
-largely improved. which address the pain point of traditional trouble 
+largely improved. which address the pain point of traditional trouble
 ticket dispatching.
 
 ## Incident Derivation from L3VPN Services Unavailability
@@ -288,7 +288,7 @@ nodes to communicate according to certain measurable expectations
 {{?I-D.ietf-ippm-pam}}.  For example, an SLA might state that any given
 SLO applies to at least a certain percentage of packets, allowing for
 a certain level of packet loss and exceeding packet delay threshold
-to take place.  For example, an SLA might establish a multi-tiered SLO 
+to take place.  For example, an SLA might establish a multi-tiered SLO
 of end-to-end latency as follows:
 
 *  Not to exceed 30 ms for any packet.
@@ -297,10 +297,10 @@ of end-to-end latency as follows:
 
 *  Not to exceed 20 ms for 99% of packets.
 
-This SLA information can be bound with two or multiple SAPs defined in {{?RFC9408}}, 
+This SLA information can be bound with two or multiple SAPs defined in {{?RFC9408}},
 so that the service orchestration layer can use these interfaces to commit the delivery
-of a service on specific point-to-point service topology or point to multi-point topology.  
-When specific levels of a threshold of an SLO is violated, a specific network incident, 
+of a service on specific point-to-point service topology or point to multi-point topology. 
+When specific levels of a threshold of an SLO is violated, a specific network incident,
 associated with, let's say L3VPN service will be derived.
 
 ## Multi-layer Fault Demarcation
