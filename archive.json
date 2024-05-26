@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-05-23T00:28:28.651460+00:00",
+  "timestamp": "2024-05-26T00:31:42.267659+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
   "labels": [
     {
@@ -117,15 +117,15 @@
       "id": "I_kwDOL4Sz0s6JEIUL",
       "title": "One or more data models",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/issues/7",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/blob/4c252f9fa986da5656ffedd463531640ea9e8fe4/draft-ietf-nmop-network-incident-yang.md?plain=1#L130\r\n\r\nThe title suggests that one model is defined but the abstract talks about many. Please align",
       "createdAt": "2024-05-16T07:21:54Z",
-      "updatedAt": "2024-05-16T07:21:54Z",
-      "closedAt": null,
+      "updatedAt": "2024-05-25T07:56:49Z",
+      "closedAt": "2024-05-25T07:56:49Z",
       "comments": []
     },
     {
@@ -133,16 +133,24 @@
       "id": "I_kwDOL4Sz0s6JEJlx",
       "title": "resolve network incidents",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/issues/8",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "> management.  The YANG modules are meant to provide a standard way to\r\n> report, diagnose, and resolve network incidents for the sake of\r\n> network service health and root cause analysis.\r\n\r\nI don't think YANG modules \"resolve network incident\" but feed that process",
       "createdAt": "2024-05-16T07:23:52Z",
-      "updatedAt": "2024-05-16T07:23:52Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2024-05-25T07:53:21Z",
+      "closedAt": "2024-05-25T07:53:21Z",
+      "comments": [
+        {
+          "author": "billwuqin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "You are probably right, Some incidents can be Resolved automatically in the incident management server, but it \r\nshould get instructions from the Customer/Incident management client. for some incidents which can not be resolved, it needs to escalate to report. In you words, feed the process.\r\nMaybe I should reword as help resolve network incidents?",
+          "createdAt": "2024-05-25T07:51:16Z",
+          "updatedAt": "2024-05-25T07:51:16Z"
+        }
+      ]
     },
     {
       "number": 9,
@@ -165,16 +173,24 @@
       "id": "I_kwDOL4Sz0s6JEL6x",
       "title": "assess claimed benefits ",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/issues/10",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Many benefits are claimed in the intro and the sample use cases. I know this is -00, but it is not obvious how some of these claims are met with the architecture/YANG module. \r\n\r\nSoftening the tone would be required in some parts, but ...",
       "createdAt": "2024-05-16T07:28:52Z",
-      "updatedAt": "2024-05-16T07:28:52Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2024-05-25T07:54:26Z",
+      "closedAt": "2024-05-25T07:54:26Z",
+      "comments": [
+        {
+          "author": "billwuqin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Sure, have fixed in the latest version.",
+          "createdAt": "2024-05-25T07:54:01Z",
+          "updatedAt": "2024-05-25T07:54:01Z"
+        }
+      ]
     }
   ],
   "pulls": [
