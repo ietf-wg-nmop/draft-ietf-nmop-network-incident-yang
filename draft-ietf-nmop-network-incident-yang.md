@@ -123,7 +123,7 @@ informative:
 A network incident refers to an unexpected interruption of a network
 service, degradation of a network service quality, or sub-health of a
 network service.  Different data sources including alarms, metrics,
-and other anomaly information can be aggregated into few amount of
+and other anomaly information can be aggregated into a few amount of
 network incidents by data correlation analysis and the service impact
 analysis.
 
@@ -176,16 +176,14 @@ span across layers for multi-layer network troubleshooting.
 
 A network incident refers to an unexpected interruption of a network service,
 degradation of a network service quality, or sub-health of a network
-service {{TMF724A}}.  Different data sources including alarms, metrics,
-and other anomaly information can be aggregated into few amount of
-incidents irrespective layer by correlation analysis and the service
-impact analysis. For example, if the protocols related to the interface
-fail to work properly due to Service Level Objective (SLO) violation,
-large amount of alarms may be reported to upper layer management
-system and aggregated into one or a few incidents when some network
-services may be affected by this incident (e.g.,  L3VPN services
-bound to this interface will become unavailable
-{{?I-D.ietf-ippm-pam}}). An incident may also be raised through the
+service {{TMF724A}}. Different data sources including alarms, metrics,
+and other anomaly information can be aggregated into one or a few
+amount of incidents irrespective layer by correlation analysis and
+the service impact analysis.  For example, if the protocol-related interface
+fails to work properly, large amount of alarms may be reported to upper
+layer management system since a lot of network services may be affected by
+the interface, but only one aggregated incident regarding the abnormal
+interface will be reported. An incident may also be raised through the
 analysis of some network performance metrics, for example, as
 described in SAIN {{?RFC9417}}, network services can be decomposed to
 several sub-services, specific metrics are monitored for each sub-
@@ -789,21 +787,21 @@ three rpcs to manage the network incidents.
 
 ~~~~
 module: ietf-incident
-+--ro incidents
-   +--ro incident* [incident-id]
-	  +--ro incident-id string
-	  +--ro csn? uint64
-	  +--ro service-instance* string
-	  +--ro name? string
-	  +--ro type? enumeration
-	  +--ro domain? identityref
-	  +--ro priority? int:incident-priority
-	  +--ro status? enumeration
-	  +--ro ack-status? enumeration
-	  +--ro category? identityref
-	  +--ro detail? string
-	  +--ro resolve-advice? string
-	  +--ro sources
+  +--ro incidents
+     +--ro incident* [incident-no]
+        +--ro incident-id?        string
+        +--ro incident-no         uint64
+        +--ro service-instance*   string
+        +--ro name                string
+        +--ro type                identityref
+        +--ro domain              identityref
+        +--ro priority            incident-priority
+        +--ro status?             enumeration
+        +--ro ack-status?         enumeration
+        +--ro category            identityref
+        +--ro detail?             string
+        +--ro resolve-advice?     String
+           +--ro sources
 	  ...
 	  +--ro root-causes
 	  ...
@@ -949,12 +947,56 @@ resolved, a notification will be triggered to update the incident
 status to 'cleared'.  If the incident content is changed during this
 process, a notification update will be triggered.
 
+## RPC Failure
+If the RPC fails, the RPC error response MUST indicate the reason for the
+failure. The structures defined in this document MUST encode specific errors
+and be inserted in the error response to indicate the reason for the failure.
+The tree diagram [RFC8340] for structures are defined as follows:
+~~~
+  structure incident-acknowledge-error-info:
+    +-- incident-acknowledge-error-info
+       +-- incident-id?   incident-ref
+       +-- reason?        identityref
+       +-- description?   string
+  structure incident-diagnose-error-info:
+    +-- incident-diagnose-error-info
+       +-- incident-id?   incident-ref
+       +-- reason?        identityref
+       +-- description?   string
+  structure incident-resolve-error-info:
+    +-- incident-resolve-error-info
+       +-- incident-id?   incident-ref
+       +-- reason?        identityref
+       +-- description?   string
+~~~
+Valid errors that can occur for each structure defined in this doucment are described
+as follows:
+~~~
+incident-acknowledge-error-info
+-----------------------------------
+repeated-acknowledge
+
+incident-diagnose-error-info
+-----------------------------------
+root-cause-unlocated
+permission-denied
+operation-timeout
+resource-unavailable
+
+incident-resolve-error-info
+-----------------------------------
+root-cause-unresolved
+permission-denied
+operation-timeout
+resource-unavailable
+~~~
+
 # Network Incident Management YANG Module
 
 This module imports types defined in {{!RFC6991}}, {{!RFC8345}}, {{!RFC8632}}.
 
 ~~~~
-<CODE BEGINS> file "ietf-incident@2024-03-02.yang"
+<CODE BEGINS> file "ietf-incident@2024-06-06.yang"
 {::include-fold ./yang/ietf-incident.yang}
 <CODE ENDS>
 ~~~~
@@ -975,30 +1017,38 @@ provides the means to restrict access for particular NETCONF or
 RESTCONF users to a preconfigured subset of all available NETCONF or
 RESTCONF protocol operations and content.
 
-There are a number of data nodes defined in this YANG module that are
-writable/creatable/deletable (i.e., config true, which is the
-default).  These data nodes may be considered sensitive or vulnerable
-in some network environments.  Write operations (e.g., edit-config)
-to these data nodes without proper protection can have a negative
-effect on network operations.  These are the subtrees and data nodes
-and their sensitivity/vulnerability:
-
-<<TBC>>
-
 Some of the readable data nodes in this YANG module may be considered
 sensitive or vulnerable in some network environments.  It is thus
 important to control read access (e.g., via get, get-config, or
 notification) to these data nodes.  These are the subtrees and data
 nodes and their sensitivity/vulnerability:
 
-<<TBC>>
+'/incidents/incident': This list specifies the network incident entries.
+Unauthorized read access of this list can allow intruders to access
+incident information and potentially get a picture of the broken state
+of the network. Intruders may exploit the vulnerabilities of the network
+to cause further negative impact on the network. Care must be taken to
+ensure that this list are accessed only by authorized users.
 
 Some of the RPC operations in this YANG module may be considered
 sensitive or vulnerable in some network environments.  It is thus
 important to control access to these operations.  These are the
 operations and their sensitivity/vulnerability:
 
-<<TBC>>
+"incident-diagnose": This RPC operation performs network incident
+diagnosis and root cause locating. If a malicious or buggy client
+performs an unexpectedly large number of this operation, the result
+might be an excessive use of system resources on the server side as
+well as network resources.  Servers MUST ensure they have sufficient
+resources to fulfill this request; otherwise, they MUST reject the
+request.
+
+"incident-resolve": This RPC operation is used to resolve the network
+incident. If a malicious or buggy client performs an unexpectedly large
+number of this operation, the result might be an excessive use of system
+resources on the server side as well as network resources.  Servers MUST
+ensure they have sufficient resources to fulfill this request;
+otherwise, they MUST reject the request.
 
 # IANA Considerations
 
