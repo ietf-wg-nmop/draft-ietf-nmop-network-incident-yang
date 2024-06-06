@@ -14,7 +14,7 @@
        A network incident refers to an unexpected interruption of a network
 service, degradation of a network service quality, or sub-health of a
 network service.  Different data sources including alarms, metrics,
-and other anomaly information can be aggregated into few amount of
+and other anomaly information can be aggregated into a few amount of
 network incidents by data correlation analysis and the service impact
 analysis. 
        This document defines a YANG Module for the network incident lifecycle
@@ -1039,11 +1039,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">Network Incident Management</td>
-<td class="right">May 2024</td>
+<td class="right">June 2024</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Hu, et al.</td>
-<td class="center">Expires 26 November 2024</td>
+<td class="center">Expires 8 December 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1056,12 +1056,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-nmop-network-incident-yang-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-05-25" class="published">25 May 2024</time>
+<time datetime="2024-06-06" class="published">6 June 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-11-26">26 November 2024</time></dd>
+<dd class="expires"><time datetime="2024-12-08">8 December 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1092,7 +1092,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="section-abstract-1">A network incident refers to an unexpected interruption of a network
 service, degradation of a network service quality, or sub-health of a
 network service.  Different data sources including alarms, metrics,
-and other anomaly information can be aggregated into few amount of
+and other anomaly information can be aggregated into a few amount of
 network incidents by data correlation analysis and the service impact
 analysis.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 <p id="section-abstract-2">This document defines a YANG Module for the network incident lifecycle
@@ -1119,7 +1119,7 @@ network service health and root cause analysis.<a href="#section-abstract-2" cla
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 26 November 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 8 December 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1239,6 +1239,15 @@ network service health and root cause analysis.<a href="#section-abstract-2" cla
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.5">
                 <p id="section-toc.1-1.7.2.5.1"><a href="#section-7.5" class="auto internal xref">7.5</a>.  <a href="#name-incident-resolution-2" class="internal xref">Incident Resolution</a></p>
 </li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.6">
+                <p id="section-toc.1-1.7.2.6.1"><a href="#section-7.6" class="auto internal xref">7.6</a>.  <a href="#name-rpc-failure" class="internal xref">RPC Failure</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.7">
+                <p id="section-toc.1-1.7.2.7.1"><a href="#section-7.7" class="auto internal xref">7.7</a>.  <a href="#name-incident-diagnose-error-inf" class="internal xref">incident-diagnose-error-info</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.8">
+                <p id="section-toc.1-1.7.2.8.1"><a href="#section-7.8" class="auto internal xref">7.8</a>.  <a href="#name-incident-resolve-error-info" class="internal xref">incident-resolve-error-info</a></p>
+</li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
@@ -1327,16 +1336,14 @@ be used at a specific layer in a domain but also can be used to
 span across layers for multi-layer network troubleshooting.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <p id="section-1-4">A network incident refers to an unexpected interruption of a network service,
 degradation of a network service quality, or sub-health of a network
-service <span>[<a href="#TMF724A" class="cite xref">TMF724A</a>]</span>.  Different data sources including alarms, metrics,
-and other anomaly information can be aggregated into few amount of
-incidents irrespective layer by correlation analysis and the service
-impact analysis. For example, if the protocols related to the interface
-fail to work properly due to Service Level Objective (SLO) violation,
-large amount of alarms may be reported to upper layer management
-system and aggregated into one or a few incidents when some network
-services may be affected by this incident (e.g.,  L3VPN services
-bound to this interface will become unavailable
-<span>[<a href="#I-D.ietf-ippm-pam" class="cite xref">I-D.ietf-ippm-pam</a>]</span>). An incident may also be raised through the
+service <span>[<a href="#TMF724A" class="cite xref">TMF724A</a>]</span>. Different data sources including alarms, metrics,
+and other anomaly information can be aggregated into one or a few
+amount of incidents irrespective layer by correlation analysis and
+the service impact analysis.  For example, if the protocol-related interface
+fails to work properly, large amount of alarms may be reported to upper
+layer management system since a lot of network services may be affected by
+the interface, but only one aggregated incident regarding the abnormal
+interface will be reported. An incident may also be raised through the
 analysis of some network performance metrics, for example, as
 described in SAIN <span>[<a href="#RFC9417" class="cite xref">RFC9417</a>]</span>, network services can be decomposed to
 several sub-services, specific metrics are monitored for each sub-
@@ -2067,21 +2074,21 @@ three rpcs to manage the network incidents.<a href="#section-7.1-2" class="pilcr
 <div class="alignLeft art-text artwork" id="section-7.1-3">
 <pre>
 module: ietf-incident
-+--ro incidents
-   +--ro incident* [incident-id]
-          +--ro incident-id string
-          +--ro csn? uint64
-          +--ro service-instance* string
-          +--ro name? string
-          +--ro type? enumeration
-          +--ro domain? identityref
-          +--ro priority? int:incident-priority
-          +--ro status? enumeration
-          +--ro ack-status? enumeration
-          +--ro category? identityref
-          +--ro detail? string
-          +--ro resolve-advice? string
-          +--ro sources
+  +--ro incidents
+     +--ro incident* [incident-no]
+        +--ro incident-id?        string
+        +--ro incident-no         uint64
+        +--ro service-instance*   string
+        +--ro name                string
+        +--ro type                identityref
+        +--ro domain              identityref
+        +--ro priority            incident-priority
+        +--ro status?             enumeration
+        +--ro ack-status?         enumeration
+        +--ro category            identityref
+        +--ro detail?             string
+        +--ro resolve-advice?     String
+           +--ro sources
           ...
           +--ro root-causes
           ...
@@ -2248,6 +2255,63 @@ status to 'cleared'.  If the incident content is changed during this
 process, a notification update will be triggered.<a href="#section-7.5-3" class="pilcrow">¶</a></p>
 </section>
 </div>
+<div id="rpc-failure">
+<section id="section-7.6">
+        <h3 id="name-rpc-failure">
+<a href="#section-7.6" class="section-number selfRef">7.6. </a><a href="#name-rpc-failure" class="section-name selfRef">RPC Failure</a>
+        </h3>
+<p id="section-7.6-1">If the RPC fails, the RPC error response <span class="bcp14">MUST</span> indicate the reason for the
+failure. The structures defined in this document <span class="bcp14">MUST</span> encode specific errors
+and be inserted in the error response to indicate the reason for the failure.
+The tree diagram [RFC8340] for structures are defined as follows:
+~~~
+  structure incident-acknowledge-error-info:
+    +-- incident-acknowledge-error-info
+       +-- incident-id?   incident-ref
+       +-- reason?        identityref
+       +-- description?   string
+  structure incident-diagnose-error-info:
+    +-- incident-diagnose-error-info
+       +-- incident-id?   incident-ref
+       +-- reason?        identityref
+       +-- description?   string
+  structure incident-resolve-error-info:
+    +-- incident-resolve-error-info
+       +-- incident-id?   incident-ref
+       +-- reason?        identityref
+       +-- description?   string
+~~~
+Valid errors that can occur for each structure defined in this doucment are described
+as follows:
+~~~
+incident-acknowledge-error-info
+-----------------------------------
+repeated-acknowledge<a href="#section-7.6-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="incident-diagnose-error-info">
+<section id="section-7.7">
+        <h3 id="name-incident-diagnose-error-inf">
+<a href="#section-7.7" class="section-number selfRef">7.7. </a><a href="#name-incident-diagnose-error-inf" class="section-name selfRef">incident-diagnose-error-info</a>
+        </h3>
+<p id="section-7.7-1">root-cause-unlocated
+permission-denied
+operation-timeout
+resource-unavailable<a href="#section-7.7-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="incident-resolve-error-info">
+<section id="section-7.8">
+        <h3 id="name-incident-resolve-error-info">
+<a href="#section-7.8" class="section-number selfRef">7.8. </a><a href="#name-incident-resolve-error-info" class="section-name selfRef">incident-resolve-error-info</a>
+        </h3>
+<p id="section-7.8-1">root-cause-unresolved
+permission-denied
+operation-timeout
+resource-unavailable
+~~~<a href="#section-7.8-1" class="pilcrow">¶</a></p>
+</section>
+</div>
 </section>
 </div>
 <div id="network-incident-management-yang-module">
@@ -2257,7 +2321,7 @@ process, a notification update will be triggered.<a href="#section-7.5-3" class=
       </h2>
 <p id="section-8-1">This module imports types defined in <span>[<a href="#RFC6991" class="cite xref">RFC6991</a>]</span>, <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>, <span>[<a href="#RFC8632" class="cite xref">RFC8632</a>]</span>.<a href="#section-8-1" class="pilcrow">¶</a></p>
 <div class="breakable sourcecode" id="section-8-2">
-<pre>&lt;CODE BEGINS&gt; file "ietf-incident@2024-03-02.yang"
+<pre>&lt;CODE BEGINS&gt; file "ietf-incident@2024-06-06.yang"
 
 module ietf-incident {
   yang-version 1.1;
@@ -2964,25 +3028,34 @@ is HTTPS, and the mandatory-to-implement secure transport is TLS
 provides the means to restrict access for particular NETCONF or
 RESTCONF users to a preconfigured subset of all available NETCONF or
 RESTCONF protocol operations and content.<a href="#section-9-2" class="pilcrow">¶</a></p>
-<p id="section-9-3">There are a number of data nodes defined in this YANG module that are
-writable/creatable/deletable (i.e., config true, which is the
-default).  These data nodes may be considered sensitive or vulnerable
-in some network environments.  Write operations (e.g., edit-config)
-to these data nodes without proper protection can have a negative
-effect on network operations.  These are the subtrees and data nodes
-and their sensitivity/vulnerability:<a href="#section-9-3" class="pilcrow">¶</a></p>
-<p id="section-9-4">&lt;&lt;TBC&gt;&gt;<a href="#section-9-4" class="pilcrow">¶</a></p>
-<p id="section-9-5">Some of the readable data nodes in this YANG module may be considered
+<p id="section-9-3">Some of the readable data nodes in this YANG module may be considered
 sensitive or vulnerable in some network environments.  It is thus
 important to control read access (e.g., via get, get-config, or
 notification) to these data nodes.  These are the subtrees and data
-nodes and their sensitivity/vulnerability:<a href="#section-9-5" class="pilcrow">¶</a></p>
-<p id="section-9-6">&lt;&lt;TBC&gt;&gt;<a href="#section-9-6" class="pilcrow">¶</a></p>
-<p id="section-9-7">Some of the RPC operations in this YANG module may be considered
+nodes and their sensitivity/vulnerability:<a href="#section-9-3" class="pilcrow">¶</a></p>
+<p id="section-9-4">'/incidents/incident': This list specifies the network incident entries.
+Unauthorized read access of this list can allow intruders to access
+incident information and potentially get a picture of the broken state
+of the network. Intruders may exploit the vulnerabilities of the network
+to cause further negative impact on the network. Care must be taken to
+ensure that this list are accessed only by authorized users.<a href="#section-9-4" class="pilcrow">¶</a></p>
+<p id="section-9-5">Some of the RPC operations in this YANG module may be considered
 sensitive or vulnerable in some network environments.  It is thus
 important to control access to these operations.  These are the
-operations and their sensitivity/vulnerability:<a href="#section-9-7" class="pilcrow">¶</a></p>
-<p id="section-9-8">&lt;&lt;TBC&gt;&gt;<a href="#section-9-8" class="pilcrow">¶</a></p>
+operations and their sensitivity/vulnerability:<a href="#section-9-5" class="pilcrow">¶</a></p>
+<p id="section-9-6">"incident-diagnose": This RPC operation performs network incident
+diagnosis and root cause locating. If a malicious or buggy client
+performs an unexpectedly large number of this operation, the result
+might be an excessive use of system resources on the server side as
+well as network resources.  Servers <span class="bcp14">MUST</span> ensure they have sufficient
+resources to fulfill this request; otherwise, they <span class="bcp14">MUST</span> reject the
+request.<a href="#section-9-6" class="pilcrow">¶</a></p>
+<p id="section-9-7">"incident-resolve": This RPC operation is used to resolve the network
+incident. If a malicious or buggy client performs an unexpectedly large
+number of this operation, the result might be an excessive use of system
+resources on the server side as well as network resources.  Servers <span class="bcp14">MUST</span>
+ensure they have sufficient resources to fulfill this request;
+otherwise, they <span class="bcp14">MUST</span> reject the request.<a href="#section-9-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
