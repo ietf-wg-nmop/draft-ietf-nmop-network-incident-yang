@@ -968,12 +968,15 @@ Table of Contents
        reference
          "RFC 8345: A YANG Data Model for Network Topologies";
      }
+     import ietf-yang-structure-ext {
+       prefix sx;
+     }
 
      organization
-       "IETF OPSAWG Working Group";
+       "IETF NMOP Working Group";
      contact
-       "WG Web:   <https://datatracker.ietf.org/wg/opsawg/>;
-        WG List:  <mailto:opsawg@ietf.org>
+       "WG Web:   <https://datatracker.ietf.org/wg/nmop/>;
+        WG List:  <mailto:nmop@ietf.org>
 
         Author:   Chong Feng
                   <mailto:frank.fengchong@huawei.com>
@@ -987,7 +990,6 @@ Table of Contents
                   <mailto:yuchaode@huawei.com>
         Author:   Nigel Davis
                   <mailto:ndavis@ciena.com>";
-
      description
        "This module defines the interfaces for incident management
         lifecycle.
@@ -1020,7 +1022,7 @@ Table of Contents
         described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
         they appear in all capitals, as shown here. ";
 
-     revision 2024-03-02 {
+     revision 2024-06-06 {
        description
          "Merge incident yang with incident type yang
           and fix broken ref.";
@@ -1203,6 +1205,69 @@ Table of Contents
          "It indicates the class of the incident is a sla
                 violation, for example high CPU rate may cause
                 a fault in the future.";
+     }
+
+     identity acknowledge-error {
+       description
+         "Base identity for the problem found while attempting
+          to fulfill an 'incident-acknowledge' RPC request.";
+     }
+
+     identity diagnose-error {
+       description
+         "Base identity for the problem found while attempting
+          to fulfill an 'incident-diagnose' RPC request.";
+     }
+
+     identity resolve-error {
+       description
+         "Base identity for the problem found while attempting
+          to fulfill an 'incident-resolve' RPC request.";
+     }
+
+     identity repeated-acknowledge {
+       base acknowledge-error;
+       description
+         "The incident referred to has already been acknowledged.";
+     }
+
+     identity root-cause-unlocated {
+       base diagnose-error;
+       description
+         "Fails to locate the root causes when performing the
+          diagnosis operation. The detailed reason MUST be included
+          in the 'description'";
+     }
+
+     identity root-cause-unresolved {
+       base resolve-error;
+       description
+         "Fails to resolve the root causes when performing the
+          resolution operation. The detailed reason MUST be included
+          in the 'description'";
+     }
+
+     identity permission-denied {
+       base diagnose-error;
+       base resolve-error;
+       description
+         " The permission required for performing specific
+          detection/resolution task is not granted.";
+     }
+
+     identity operation-timeout {
+       base diagnose-error;
+       base resolve-error;
+       description
+         " The diagnosis/resolution time exceeds the preset time.";
+     }
+
+     identity resource-unavailable {
+       base diagnose-error;
+       base resolve-error;
+       description
+         " The resource is unavailable to perform
+           the diagnosis/resolution operation.";
      }
 
      //typedefs
@@ -1441,11 +1506,11 @@ Table of Contents
        }
        container root-events {
          description
-           "the root events of the incident.";
+           "the root cause related events of the incident.";
          list root-event {
            key "type event-id";
            description
-             "the root event of the incident.";
+             "the root cause related event of the incident.";
            leaf type {
              type leafref {
                path "../../../events/event/type";
@@ -1589,6 +1654,85 @@ Table of Contents
            type incident-ref;
            description
              "the identifier of an incident instance.";
+         }
+       }
+     }
+
+     sx:structure incident-acknowledge-error-info {
+       container incident-acknowledge-error-info {
+         description
+           "This structure data MAY be inserted in the RPC error
+            response to indicate the reason for the
+            incident acknowledge failure.";
+         leaf incident-id {
+           type incident-ref;
+           description
+             "Indicates the incident identifier that
+              fails the operation.";
+         }
+         leaf reason {
+           type identityref {
+             base acknowledge-error;
+           }
+           description
+             "Indicates the reason why the operation is failed.";
+         }
+         leaf description {
+           type string;
+           description
+             "Indicates the detailed description about the failure.";
+         }
+       }
+     }
+     sx:structure incident-diagnose-error-info {
+       container incident-diagnose-error-info {
+         description
+           "This structure data MAY be inserted in the RPC error
+            response to indicate the reason for the
+            incident diagnose failure.";
+         leaf incident-id {
+           type incident-ref;
+           description
+             "Indicates the incident identifier that
+              fails the operation.";
+         }
+         leaf reason {
+           type identityref {
+             base diagnose-error;
+           }
+           description
+             "Indicates the reason why the operation is failed.";
+         }
+         leaf description {
+           type string;
+           description
+             "Indicates the detailed description about the failure.";
+         }
+       }
+     }
+     sx:structure incident-resolve-error-info {
+       container incident-resolve-error-info {
+         description
+           "This structure data MAY be inserted in the RPC error
+            response to indicate the reason for the
+            incident resolution failure.";
+         leaf incident-id {
+           type incident-ref;
+           description
+             "Indicates the incident identifier that
+              fails the operation.";
+         }
+         leaf reason {
+           type identityref {
+             base resolve-error;
+           }
+           description
+             "Indicates the reason why the operation is failed.";
+         }
+         leaf description {
+           type string;
+           description
+             "Indicates the detailed description about the failure.";
          }
        }
      }
