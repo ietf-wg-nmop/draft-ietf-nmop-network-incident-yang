@@ -137,8 +137,8 @@ network service health and root cause analysis.
 # Introduction
 
 {{?RFC8969}} defines a framework for Automating Service and Network
-Management with YANG {{?RFC7950}} to full life cycle network management.  A set of
-YANG data models have already been developed in IETF for network
+Management with YANG {{?RFC7950}} to full life cycle network management.
+A set of YANG data models have already been developed in IETF for network
 performance monitoring and fault monitoring, e.g., a YANG
 data model for alarm management {{?RFC8632}} defines a standard
 interface for alarm management.  A data model for Network and VPN
@@ -176,7 +176,7 @@ span across layers for multi-layer network troubleshooting.
 
 A network incident refers to an undesired occurence such as an unexpected
 interruption of a network service,degradation of a network service quality,
-or sub-health of a network service {{?I-D.ietf-nmop-terminology}}{{TM724A}}.
+or sub-health of a network service {{?I-D.ietf-nmop-terminology}}{{TMF724A}}.
 Different data sources including alarms, metrics, and other anomaly information
 can be aggregated into one or a few amount of incidents irrespective layer by
 correlation analysis and the service impact analysis.  For example, if the
