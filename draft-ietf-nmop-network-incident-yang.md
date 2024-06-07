@@ -174,17 +174,17 @@ service and network topology at different layers, which not only can
 be used at a specific layer in a domain but also can be used to
 span across layers for multi-layer network troubleshooting.
 
-A network incident refers to an unexpected interruption of a network service,
-degradation of a network service quality, or sub-health of a network
-service {{TMF724A}}. Different data sources including alarms, metrics,
-and other anomaly information can be aggregated into one or a few
-amount of incidents irrespective layer by correlation analysis and
-the service impact analysis.  For example, if the protocol-related interface
-fails to work properly, large amount of alarms may be reported to upper
-layer management system since a lot of network services may be affected by
-the interface, but only one aggregated incident regarding the abnormal
-interface will be reported. An incident may also be raised through the
-analysis of some network performance metrics, for example, as
+A network incident refers to an undesired occurence such as an unexpected
+interruption of a network service,degradation of a network service quality,
+or sub-health of a network service {{?I-D.ietf-nmop-terminology}}{{TM724A}}.
+Different data sources including alarms, metrics, and other anomaly information
+can be aggregated into one or a few amount of incidents irrespective layer by
+correlation analysis and the service impact analysis.  For example, if the
+protocol-related interface fails to work properly, large amount of alarms may
+be reported to upper layer management system since a lot of network services
+may be affected by the interface, but only one aggregated incident regarding
+the abnormal interface will be reported. An incident may also be raised through
+the analysis of some network performance metrics, for example, as
 described in SAIN {{?RFC9417}}, network services can be decomposed to
 several sub-services, specific metrics are monitored for each sub-
 service, symptoms will occur if services/sub-services are unhealthy
@@ -214,15 +214,14 @@ The following terms are defined in {{?RFC8632}} and are not redefined here:
 The following terms are defined in this document:
 
 Network incident:
-:  An unexpected interruption of a network service,
-   degradation of network service quality, or sub-health of a network
-   service {{TMF724A}}.
+:  An occurrence that is not desired/required (as it may be indicative
+   of a future undesired State) {{?I-D.ietf-nmop-terminology}}.
 
 Problem:
-:  The cause of one or more incidents.  The cause is not
-   usually known when a problem record is created. The problem
-   management process is responsible for further investigation
-   {{TMF724A}}.
+:  A state regarded as undesirable and may require remedial action.
+   It is the cause of one or more incidents. The cause is not usually
+   known when a problem record is created.
+   {{?I-D.ietf-nmop-terminology}}.
 
 Incident management:
 :  Lifecycle management of incidents, including
@@ -231,8 +230,8 @@ Incident management:
 
 Incident management system:
 :  An entity which implements incident
-   management. It is includes (but not limited to) incident management server and incident
-   management client.
+   management. It is includes (but not limited to) incident management server
+   and incident management client.
 
 Incident management server:
 :  An entity which provides which is responsible for detecting an incident,
