@@ -743,28 +743,37 @@ The incident ID MUST be unique in the whole system.
 
 ## The Incident Lifecycle
 
+The incident model clearly separately incident instance lifecycle
+from operator incident lifecycle.
+o Incident instance lifecycle: The incident instrumentation that
+  control incident raised, updated and cleared.
+o Operator incident lifecycle: Operators acting upon incident with rpcs
+  like acknowledged, diagnosed and resolved.
+
 ### Incident Instance Lifecycle
 
 From an incident instance perspective, an incident can have the
 following lifecycle: 'raised', 'updated', 'cleared'.  When an
-incident is generated, the status is 'raised'.  If the status changes
-after the incident is generated, (for example, self-diagnosis,
-diagnosis command issued by the client, or any other condition causes
-the status to change but does not reach the 'cleared' level.) , the
-status changes to 'updated'.  When an incident is successfully
+incident instance is firstly generated, the status is 'raised'.  If the
+status changes after the incident instance is generated, (for example,
+self-diagnosis, diagnosis command issued by the client, or any other
+condition causes the status to change but does not reach the 'cleared'
+level.) , the status changes to 'updated'.  When an incident is successfully
 resolved, the status changes to 'cleared'.
 
 ### Operator Incident Lifecycle
 
-From an operator perspective, the lifecycle of an incident instance
-includes 'acknowledged', 'diagnosed', and 'resolved'.  When an
-incident instance is generated, the operator SHOULD acknowledge the
-incident.  And then the operator attempts to diagnose the incident
-(for example, find out the root cause and affected components).
-Diagnosis is not mandatory.  If the root cause and affected
-components are known when the incident is generated, diagnosis is not
-required.  After locating the root cause and affected components,
-operator can try to resolve the incident.
+Operators can act upon incident with incident rpcs. From an operator perspective,
+the lifecycle of an incident instance includes 'acknowledged', 'diagnosed', and
+'resolved'.
+
+When an incident instance is generated, the operator SHOULD acknowledge the incident
+with 'incident-acknowledge' rpc. And then the operator attempts to diagnose the incident
+with 'incident-diagnose' rpc (for example, find out the root cause and affected components).
+Diagnosis is not mandatory. If the root cause and affected components are known when the
+incident is generated, diagnosis is not required.  After locating the root cause and
+affected components, operator can try to resolve the incident by invoking 'incident-resolve'
+rpc.
 
 # Incident Data Model Design
 
