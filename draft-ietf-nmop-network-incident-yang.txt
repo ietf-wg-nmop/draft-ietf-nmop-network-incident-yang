@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                        L. M. C. Murillo
-Expires: 8 December 2024                                  Telefonica I+D
+Expires: 9 December 2024                                  Telefonica I+D
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                             6 June 2024
+                                                             7 June 2024
 
 
            A YANG Data Model for Network Incident Management
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 December 2024.
+   This Internet-Draft will expire on 9 December 2024.
 
 Copyright Notice
 
@@ -150,23 +150,24 @@ Table of Contents
    be used at a specific layer in a domain but also can be used to span
    across layers for multi-layer network troubleshooting.
 
-   A network incident refers to an unexpected interruption of a network
-   service, degradation of a network service quality, or sub-health of a
-   network service [TMF724A].  Different data sources including alarms,
-   metrics, and other anomaly information can be aggregated into one or
-   a few amount of incidents irrespective layer by correlation analysis
-   and the service impact analysis.  For example, if the protocol-
-   related interface fails to work properly, large amount of alarms may
-   be reported to upper layer management system since a lot of network
-   services may be affected by the interface, but only one aggregated
-   incident regarding the abnormal interface will be reported.  An
-   incident may also be raised through the analysis of some network
-   performance metrics, for example, as described in SAIN [RFC9417],
-   network services can be decomposed to several sub-services, specific
-   metrics are monitored for each sub- service, symptoms will occur if
-   services/sub-services are unhealthy (after analyzing metrics), these
-   symptoms may raise one incident when it causes degradation of the
-   network services.
+   A network incident refers to an undesired occurence such as an
+   unexpected interruption of a network service,degradation of a network
+   service quality, or sub-health of a network service
+   [I-D.ietf-nmop-terminology][TMF724A].  Different data sources
+   including alarms, metrics, and other anomaly information can be
+   aggregated into one or a few amount of incidents irrespective layer
+   by correlation analysis and the service impact analysis.  For
+   example, if the protocol-related interface fails to work properly,
+   large amount of alarms may be reported to upper layer management
+   system since a lot of network services may be affected by the
+   interface, but only one aggregated incident regarding the abnormal
+   interface will be reported.  An incident may also be raised through
+   the analysis of some network performance metrics, for example, as
+   described in SAIN [RFC9417], network services can be decomposed to
+   several sub-services, specific metrics are monitored for each sub-
+   service, symptoms will occur if services/sub-services are unhealthy
+   (after analyzing metrics), these symptoms may raise one incident when
+   it causes degradation of the network services.
 
    In addition, Artificial Intelligence (AI) and Machine Learning (ML)
    are key technologies in the processing of large amounts of data with
@@ -196,14 +197,14 @@ Table of Contents
 
    The following terms are defined in this document:
 
-   Network incident:  An unexpected interruption of a network service,
-      degradation of network service quality, or sub-health of a network
-      service [TMF724A].
+   Network incident:  An occurrence that is not desired/required (as it
+      may be indicative of a future undesired State)
+      [I-D.ietf-nmop-terminology].
 
-   Problem:  The cause of one or more incidents.  The cause is not
-      usually known when a problem record is created.  The problem
-      management process is responsible for further investigation
-      [TMF724A].
+   Problem:  A state regarded as undesirable and may require remedial
+      action.  It is the cause of one or more incidents.  The cause is
+      not usually known when a problem record is created.
+      [I-D.ietf-nmop-terminology].
 
    Incident management:  Lifecycle management of incidents, including
       incident identification, reporting, acknowledgement, diagnosis,
@@ -1928,6 +1929,14 @@ Informative References
               Work in Progress, Internet-Draft, draft-ietf-ippm-pam-09,
               1 December 2023, <https://datatracker.ietf.org/doc/html/
               draft-ietf-ippm-pam-09>.
+
+   [I-D.ietf-nmop-terminology]
+              Davis, N., Farrel, A., Graf, T., Wu, Q., and C. Yu, "Some
+              Key Terms for Network Incident and Problem Management",
+              Work in Progress, Internet-Draft, draft-ietf-nmop-
+              terminology-00, 27 May 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
+              terminology-00>.
 
    [I-D.quilbeuf-opsawg-configuration-tracing]
               Quilbeuf, J., Claise, B., Graf, T., Lopez, D., and S.
