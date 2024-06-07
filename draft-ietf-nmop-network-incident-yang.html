@@ -2013,6 +2013,12 @@ The incident ID <span class="bcp14">MUST</span> be unique in the whole system.<a
         <h3 id="name-the-incident-lifecycle">
 <a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-the-incident-lifecycle" class="section-name selfRef">The Incident Lifecycle</a>
         </h3>
+<p id="section-6.2-1">The incident model clearly separately incident instance lifecycle
+from operator incident lifecycle.
+o Incident instance lifecycle: The incident instrumentation that
+  control incident raised, updated and cleared.
+o Operator incident lifecycle: Operators acting upon incident with rpcs
+  like acknowledged, diagnosed and resolved.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
 <div id="incident-instance-lifecycle">
 <section id="section-6.2.1">
           <h4 id="name-incident-instance-lifecycle">
@@ -2020,11 +2026,11 @@ The incident ID <span class="bcp14">MUST</span> be unique in the whole system.<a
           </h4>
 <p id="section-6.2.1-1">From an incident instance perspective, an incident can have the
 following lifecycle: 'raised', 'updated', 'cleared'.  When an
-incident is generated, the status is 'raised'.  If the status changes
-after the incident is generated, (for example, self-diagnosis,
-diagnosis command issued by the client, or any other condition causes
-the status to change but does not reach the 'cleared' level.) , the
-status changes to 'updated'.  When an incident is successfully
+incident instance is firstly generated, the status is 'raised'.  If the
+status changes after the incident instance is generated, (for example,
+self-diagnosis, diagnosis command issued by the client, or any other
+condition causes the status to change but does not reach the 'cleared'
+level.) , the status changes to 'updated'.  When an incident is successfully
 resolved, the status changes to 'cleared'.<a href="#section-6.2.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -2033,15 +2039,16 @@ resolved, the status changes to 'cleared'.<a href="#section-6.2.1-1" class="pilc
           <h4 id="name-operator-incident-lifecycle">
 <a href="#section-6.2.2" class="section-number selfRef">6.2.2. </a><a href="#name-operator-incident-lifecycle" class="section-name selfRef">Operator Incident Lifecycle</a>
           </h4>
-<p id="section-6.2.2-1">From an operator perspective, the lifecycle of an incident instance
-includes 'acknowledged', 'diagnosed', and 'resolved'.  When an
-incident instance is generated, the operator <span class="bcp14">SHOULD</span> acknowledge the
-incident.  And then the operator attempts to diagnose the incident
-(for example, find out the root cause and affected components).
-Diagnosis is not mandatory.  If the root cause and affected
-components are known when the incident is generated, diagnosis is not
-required.  After locating the root cause and affected components,
-operator can try to resolve the incident.<a href="#section-6.2.2-1" class="pilcrow">¶</a></p>
+<p id="section-6.2.2-1">Operators can act upon incident with incident rpcs. From an operator perspective,
+the lifecycle of an incident instance includes 'acknowledged', 'diagnosed', and
+'resolved'.<a href="#section-6.2.2-1" class="pilcrow">¶</a></p>
+<p id="section-6.2.2-2">When an incident instance is generated, the operator <span class="bcp14">SHOULD</span> acknowledge the incident
+with 'incident-acknowledge' rpc. And then the operator attempts to diagnose the incident
+with 'incident-diagnose' rpc (for example, find out the root cause and affected components).
+Diagnosis is not mandatory. If the root cause and affected components are known when the
+incident is generated, diagnosis is not required.  After locating the root cause and
+affected components, operator can try to resolve the incident by invoking 'incident-resolve'
+rpc.<a href="#section-6.2.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
