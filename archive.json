@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-06-06T00:29:09.856601+00:00",
+  "timestamp": "2024-06-09T00:33:27.988494+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
   "labels": [
     {
@@ -88,11 +88,13 @@
       "state": "OPEN",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
-      "assignees": [],
+      "assignees": [
+        "billwuqin"
+      ],
       "labels": [],
       "body": "- The phrasing \"..few amount of network incidents..\" is a bit odd.\r\n- There is a singular module defined in the I-D, but the abstract says plural \"modules\". \r\n- Recheck the reference at \"L3VPN services related with the interface will become unavailable [I-D.ietf-ippm-pam]\" or expand the text to correlate with the reference. \r\n- BCP14 template is repeated twice in Section 2\r\n- Section 7, please regenerate the tree, as it does not match the YANG module. For instance there is no leaf called \"csn\"...\r\n- Section 7.1 claims that there are two YANG modules \"ietf-incident-type\" and \"ietf-incident\" but the actual module in section 8 is a merged one.  \r\n- Section 7.{4,5}, some text needs to be added on the asynchronous nature of these RPC and how the incident client would learn about the output of these rpcs?\r\n- Section 8, update the WG details in the YANG module; the yang file formatting is off (use this command \"pyang --ietf --lint -f yang --keep-comments --yang-line-length 69 \" to fix that); \r\n- Is cross-domain == multi-layer (Section 3.3)? Think about making that clear.  Perhaps you should differentiate between inter-domain and inter-layer?\r\n- Is cause-name some well known cause or just free form string? (same for incident's name)\r\n- Please add a description for what are root-events and how it relates to root-cause \r\n- Section 9, security consideration is just the template, actual analysis is missing\r\n- Section 10, please fix the formatting of the IANA registry\r\n- Please run a grammar check tool\r\n- Please add JSON or XML examples\r\n",
       "createdAt": "2024-05-07T17:05:18Z",
-      "updatedAt": "2024-05-07T17:05:18Z",
+      "updatedAt": "2024-06-07T06:37:25Z",
       "closedAt": null,
       "comments": []
     },
@@ -101,16 +103,26 @@
       "id": "I_kwDOL4Sz0s6IIMTY",
       "title": "Qiufang's comments",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/issues/2",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
-      "assignees": [],
+      "assignees": [
+        "billwuqin"
+      ],
       "labels": [],
       "body": "\u2022\tSection 6.2, there are some RPCs defined that might change the status of an incident instance, I would suggest authors to consider adding a figure here to illustrate how each RPC operation would affect the incident status.\r\n\u2022\tSection 7.1, the text related to the \u201cietf-incident-type\u201d module should be removed as the draft doesn\u2019t have it anymore;\r\n\u2022\tSection 7.4 and 7.5, if the incident-diagnose and incident-resolve cannot be performed successfully (which I believe could be the very likely cases), an RPC error response should be returned with the error info. The draft is silent on this, maybe some errors could be defined to identify the reason why the servers fails to diagnose/resolve a particular incident instance.\r\n",
       "createdAt": "2024-05-07T17:09:09Z",
-      "updatedAt": "2024-05-07T17:09:09Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2024-06-07T04:17:37Z",
+      "closedAt": "2024-06-07T04:17:37Z",
+      "comments": [
+        {
+          "author": "billwuqin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Fixed in the latest commit.",
+          "createdAt": "2024-06-07T04:17:33Z",
+          "updatedAt": "2024-06-07T04:17:33Z"
+        }
+      ]
     },
     {
       "number": 7,
@@ -157,16 +169,24 @@
       "id": "I_kwDOL4Sz0s6JEKSb",
       "title": "offload/sync with the terminology draft",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/issues/9",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/blob/4c252f9fa986da5656ffedd463531640ea9e8fe4/draft-ietf-nmop-network-incident-yang.md?plain=1#L207\r\n\r\nAlign with the terminology draft.",
       "createdAt": "2024-05-16T07:25:27Z",
-      "updatedAt": "2024-05-16T07:25:28Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2024-06-07T03:05:37Z",
+      "closedAt": "2024-06-07T03:05:37Z",
+      "comments": [
+        {
+          "author": "billwuqin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Fixed in the following two commits.\r\nhttps://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/commit/df5c970037551cca52a6923ceb5ec2240ec8300b\r\nhttps://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/commit/d7508db85859c3f5e5436ae351b0c6cdc365ac3a",
+          "createdAt": "2024-06-07T03:05:33Z",
+          "updatedAt": "2024-06-07T03:05:33Z"
+        }
+      ]
     },
     {
       "number": 10,
@@ -191,6 +211,22 @@
           "updatedAt": "2024-05-25T07:54:01Z"
         }
       ]
+    },
+    {
+      "number": 13,
+      "id": "I_kwDOL4Sz0s6LdgsZ",
+      "title": "incident-id vs incident-no",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/issues/13",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/blob/4c747144c025fc24bd4245ca0a4e1afa53ffbbf3/yang/ietf-incident.yang#L819C12-L819C22\r\n\r\nWhat is the link between these two? Are these overlapping? If not, we need to explain what we have both. Thanks.",
+      "createdAt": "2024-06-07T07:19:08Z",
+      "updatedAt": "2024-06-07T07:19:08Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -335,6 +371,58 @@
       "mergeCommit": {
         "oid": "4933e6027f351f90df214c50de43793bd728512f"
       },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 11,
+      "id": "PR_kwDOL4Sz0s5xwtPn",
+      "title": "yang validation checks",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/pull/11",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-06-07T07:09:48Z",
+      "updatedAt": "2024-06-07T07:09:48Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
+      "baseRefName": "main",
+      "baseRefOid": "4c747144c025fc24bd4245ca0a4e1afa53ffbbf3",
+      "headRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
+      "headRefName": "yang-lint",
+      "headRefOid": "a33f74dcad7f25e58783c2933735979f6399c358",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 12,
+      "id": "PR_kwDOL4Sz0s5xwuNy",
+      "title": "fix broken trees",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/pull/12",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-06-07T07:12:41Z",
+      "updatedAt": "2024-06-07T07:12:41Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
+      "baseRefName": "main",
+      "baseRefOid": "4c747144c025fc24bd4245ca0a4e1afa53ffbbf3",
+      "headRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
+      "headRefName": "broken-trees",
+      "headRefOid": "61db3da00bd5f55320bee3b32947bb910815c33e",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
       "comments": [],
       "reviews": []
     }
