@@ -230,7 +230,7 @@ Incident management:
 
 Incident management system:
 :  An entity which implements incident
-   management. It is includes (but not limited to) incident management server
+   management. It includes (but not limited to) incident management server
    and incident management client.
 
 Incident management server:
@@ -956,10 +956,13 @@ status to 'cleared'.  If the incident content is changed during this
 process, a notification update will be triggered.
 
 ## RPC Failure
+
 If the RPC fails, the RPC error response MUST indicate the reason for the
 failure. The structures defined in this document MUST encode specific errors
 and be inserted in the error response to indicate the reason for the failure.
+
 The tree diagram [RFC8340] for structures are defined as follows:
+
 ~~~
   structure incident-acknowledge-error-info:
     +-- incident-acknowledge-error-info
@@ -977,8 +980,10 @@ The tree diagram [RFC8340] for structures are defined as follows:
        +-- reason?        identityref
        +-- description?   string
 ~~~
+
 Valid errors that can occur for each structure defined in this doucment are described
 as follows:
+
 ~~~
 incident-acknowledge-error-info
 -----------------------------------
