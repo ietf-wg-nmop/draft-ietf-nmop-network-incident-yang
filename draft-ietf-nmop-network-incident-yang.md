@@ -1102,20 +1102,82 @@ Ziyang Xing for their valuable comments and great input to this work.
 
 --- back
 
+# Appendix Examples
+A.1 Network Incident management with specific network topology and the network service
+~~~~
+{
+	"incident-no": 56433218,
+	"incident-id": "line fault",
+	"service-instance*": "optical-svc-A",
+	"domain": "FAN",
+	"priority": "critical",
+	"occur-time": "2020-03-10T04:01:12Z",
+	"clear-time": "2020-03-10T06:01:12Z",
+	"ack-time": "2020-03-10T05:01:12Z",
+	"last-updated": "2020-03-10T05:31:12Z",
+	"status": "unacknowledged-and-uncleared",
+	"category": "Line",
+	"source": [
+		{
+			"node-ref": "D1",
+			"network-ref": "L2-topo-example",
+			"resource": [
+				{
+					"name": "7985e01a-5aad-11ea-b214-286ed488cf99"
+				}
+			]
+		}
+	],
+	"root-causes": [
+		{
+			"name": "Feeder fiber great loss change",
+			"detail-information": "The connector of the optical fiber is contaminated, Or the optical fiber is bent too much.",
+			"root-cause": {
+				"network-ref": "L2-topo-example",
+				"node-ref": "D1",
+				"resource": [
+					{
+						"name": "7985e01a-5aad-11ea-b214-286ed488cf99",
+						"cause-name": "ltp",
+						"detail": "Frame=0, Slot=6, Subslot=65535, Port=7, ODF= ODF001,  Level1Splitter= splitter0025"
+					}
+				]
+			}
+		}
+	],
+	"root-event": [
+		{
+			"event-id": "8921834",
+			"type": "alarm"
+		}
+	],
+	"events": [
+		{
+			"even-id": "8921832",
+			"type": "alarm"
+		},
+		{
+			"even-id": "8921833",
+			"type": "alarm"
+		},
+		{
+			"even-id": "8921834",
+			"type": "alarm"
+		}
+	]
+}
+~~~~
 # Changes between Revisions
 
-   v02 - v03
+   v00 - v01
    * Fix pyang compilation issue and yang lint issue.
 
-   v01 - v02
    * Fix Broken ref by using node-ref defined in RFC8345.
 
    * Update YANG data model based on issues raised in issue tracker of the github.
 
    * Shorten the list of authors to 5 based on chairs' comment and move additional authors
      to top 3 contributors.
-
-   v00 - v01
 
    * Merge ietf-incident-type.yang into ietf-incident.yang
 
@@ -1129,7 +1191,7 @@ Ziyang Xing for their valuable comments and great input to this work.
 
    * Other editorial changes.
 
-   v00 (draft-feng-nmop-network-incident-yang)
+   v00 (draft-ietf-nmop-network-incident-yang)
 
    *  Change draft name from draft-feng-opsawg-incident-management
       into draft-feng-nmop-netwrok-incident-yang
