@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                        L. M. C. Murillo
-Expires: 9 December 2024                                  Telefonica I+D
+Expires: 14 December 2024                                 Telefonica I+D
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                             7 June 2024
+                                                            12 June 2024
 
 
            A YANG Data Model for Network Incident Management
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 December 2024.
+   This Internet-Draft will expire on 14 December 2024.
 
 Copyright Notice
 
@@ -94,8 +94,6 @@ Table of Contents
      7.4.  Incident Diagnose
      7.5.  Incident Resolution
      7.6.  RPC Failure
-     7.7.  incident-diagnose-error-info
-     7.8.  incident-resolve-error-info
    8.  Network Incident Management YANG Module
    9.  Security Considerations
    10. IANA Considerations
@@ -105,7 +103,7 @@ Table of Contents
    References
      Normative References
      Informative References
-   Appendix A.  Changes between Revisions
+   Appendix A.  Appendix Examples
    Contributors
    Authors' Addresses
 
@@ -211,8 +209,8 @@ Table of Contents
       and resolution.
 
    Incident management system:  An entity which implements incident
-      management.  It is includes (but not limited to) incident
-      management server and incident management client.
+      management.  It includes (but not limited to) incident management
+      server and incident management client.
 
    Incident management server:  An entity which provides which is
       responsible for detecting an incident, performing incident
@@ -931,28 +929,46 @@ Table of Contents
    If the RPC fails, the RPC error response MUST indicate the reason for
    the failure.  The structures defined in this document MUST encode
    specific errors and be inserted in the error response to indicate the
-   reason for the failure.  The tree diagram [RFC8340] for structures
-   are defined as follows: ~~~ structure incident-acknowledge-error-
-   info: +-- incident-acknowledge-error-info +-- incident-id?  incident-
-   ref +-- reason?  identityref +-- description?  string structure
-   incident-diagnose-error-info: +-- incident-diagnose-error-info +--
-   incident-id?  incident-ref +-- reason?  identityref +-- description?
-   string structure incident-resolve-error-info: +-- incident-resolve-
-   error-info +-- incident-id?  incident-ref +-- reason?  identityref
-   +-- description?  string ~~~ Valid errors that can occur for each
-   structure defined in this doucment are described as follows: ~~~
-   incident-acknowledge-error-info -----------------------------------
+   reason for the failure.
+
+   The tree diagram [RFC8340] for structures are defined as follows:
+
+     structure incident-acknowledge-error-info:
+       +-- incident-acknowledge-error-info
+          +-- incident-id?   incident-ref
+          +-- reason?        identityref
+          +-- description?   string
+     structure incident-diagnose-error-info:
+       +-- incident-diagnose-error-info
+          +-- incident-id?   incident-ref
+          +-- reason?        identityref
+          +-- description?   string
+     structure incident-resolve-error-info:
+       +-- incident-resolve-error-info
+          +-- incident-id?   incident-ref
+          +-- reason?        identityref
+          +-- description?   string
+
+   Valid errors that can occur for each structure defined in this
+   doucment are described as follows:
+
+   incident-acknowledge-error-info
+   -----------------------------------
    repeated-acknowledge
 
-7.7.  incident-diagnose-error-info
+   incident-diagnose-error-info
+   -----------------------------------
+   root-cause-unlocated
+   permission-denied
+   operation-timeout
+   resource-unavailable
 
-   root-cause-unlocated permission-denied operation-timeout resource-
-   unavailable
-
-7.8.  incident-resolve-error-info
-
-   root-cause-unresolved permission-denied operation-timeout resource-
-   unavailable ~~~
+   incident-resolve-error-info
+   -----------------------------------
+   root-cause-unresolved
+   permission-denied
+   operation-timeout
+   resource-unavailable
 
 8.  Network Incident Management YANG Module
 
@@ -1865,10 +1881,11 @@ Acknowledgments
 
    The authors would like to thank Mohamed Boucadair, Robert Wilton,
    Benoit Claise, Oscar Gonzalez de Dios, Adrian Farrel, Mahesh
-   Jethanandani, Balazs Lengyel, Bo Wu, Qiufang Ma, Haomian Zheng,
-   YuanYao，Wei Wang, Peng Liu, Zongpeng Du, Zhengqiang Li, Andrew Liu ,
-   Joe Clark, Roland Scott, Alex Huang Feng, Kai Gao, Jensen Zhang,
-   Ziyang Xing for their valuable comments and great input to this work.
+   Jethanandani, Balazs Lengyel, Dhruv Dhody,Bo Wu, Qiufang Ma, Haomian
+   Zheng, YuanYao，Wei Wang, Peng Liu, Zongpeng Du, Zhengqiang Li, Andrew
+   Liu , Joe Clark, Roland Scott, Alex Huang Feng, Kai Gao, Jensen
+   Zhang, Ziyang Xing for their valuable comments and great input to
+   this work.
 
 References
 
@@ -1944,9 +1961,9 @@ Informative References
               Davis, N., Farrel, A., Graf, T., Wu, Q., and C. Yu, "Some
               Key Terms for Network Incident and Problem Management",
               Work in Progress, Internet-Draft, draft-ietf-nmop-
-              terminology-00, 27 May 2024,
+              terminology-01, 10 June 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
-              terminology-00>.
+              terminology-01>.
 
    [I-D.quilbeuf-opsawg-configuration-tracing]
               Quilbeuf, J., Claise, B., Graf, T., Lopez, D., and S.
@@ -2011,19 +2028,37 @@ Informative References
               <https://www.w3.org/TR/2021/REC-trace-context-
               1-20211123/>.
 
-Appendix A.  Changes between Revisions
+Appendix A.  Appendix Examples
 
-   v02 - v03 * Fix pyang compilation issue and yang lint issue.
+   A.1 Network Incident management with specific network topology and
+   the network service ~~~~ { "incident-no": 56433218, "incident-id":
+   "line fault", "service-instance*": "optical-svc-A", "domain": "FAN",
+   "priority": "critical", "occur-time": "2020-03-10T04:01:12Z", "clear-
+   time": "2020-03-10T06:01:12Z", "ack-time": "2020-03-10T05:01:12Z",
+   "last-updated": "2020-03-10T05:31:12Z", "status": "unacknowledged-
+   and-uncleared", "category": "Line", "source": [ { "node-ref": "D1",
+   "network-ref": "L2-topo-example", "resource": [ { "name": "7985e01a-
+   5aad-11ea-b214-286ed488cf99" } ] } ], "root-causes": [ { "name":
+   "Feeder fiber great loss change", "detail-information": "The
+   connector of the optical fiber is contaminated, Or the optical fiber
+   is bent too much.", "root-cause": { "network-ref": "L2-topo-example",
+   "node-ref": "D1", "resource": [ { "name": "7985e01a-5aad-11ea-
+   b214-286ed488cf99", "cause-name": "ltp", "detail": "Frame=0, Slot=6,
+   Subslot=65535, Port=7, ODF= ODF001, Level1Splitter= splitter0025" } ]
+   } } ], "root-event": [ { "event-id": "8921834", "type": "alarm" } ],
+   "events": [ { "even-id": "8921832", "type": "alarm" }, { "even-id":
+   "8921833", "type": "alarm" }, { "even-id": "8921834", "type": "alarm"
+   } ] } ~~~~ # Changes between Revisions
 
-   v01 - v02 * Fix Broken ref by using node-ref defined in RFC8345.
+   v00 - v01 * Fix pyang compilation issue and yang lint issue.
+
+   *  Fix Broken ref by using node-ref defined in RFC8345.
 
    *  Update YANG data model based on issues raised in issue tracker of
       the github.
 
    *  Shorten the list of authors to 5 based on chairs' comment and move
       additional authors to top 3 contributors.
-
-   v00 - v01
 
    *  Merge ietf-incident-type.yang into ietf-incident.yang
 
@@ -2037,7 +2072,7 @@ Appendix A.  Changes between Revisions
 
    *  Other editorial changes.
 
-   v00 (draft-feng-nmop-network-incident-yang)
+   v00 (draft-ietf-nmop-network-incident-yang)
 
    *  Change draft name from draft-feng-opsawg-incident-management into
       draft-feng-nmop-netwrok-incident-yang
