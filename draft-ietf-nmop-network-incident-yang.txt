@@ -1299,6 +1299,11 @@ Table of Contents
            the diagnosis/resolution operation.";
      }
 
+     identity cause-name {
+       description
+         "Base identity for the cause name.";
+     }
+
      //typedefs
 
      typedef incident-priority {
@@ -1343,7 +1348,9 @@ Table of Contents
        description
          "The information of root cause.";
        leaf cause-name {
-         type string;
+         type identityref{
+           base cause-name;
+         }
          description
            "the name of cause";
        }
