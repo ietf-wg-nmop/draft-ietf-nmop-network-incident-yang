@@ -28,4 +28,4 @@ jobs:
 
     - name: "Lint using pyang"
       run: |
-        make pyang-lint
+        make yanglint
