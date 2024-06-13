@@ -322,9 +322,9 @@ multi-layer scenario than in single-layer scenario.
 
 With the help of network incident management, the management systems first
 automatically analyze root cause of the alarms at each single network
-layer and report corresponding incidents to the multi-layer,multi-domain 
+layer and report corresponding incidents to the multi-layer,multi-domain
 management system, then such management system comprehensively analyzes the
-topology relationship and service relationship between the root causes of 
+topology relationship and service relationship between the root causes of
 both layers.  The inner relationship among the alarms will be identified
 and finally the root cause will be located among multiple layers.  By
 cooperating with the integrated Optical time-domain reflectometer
