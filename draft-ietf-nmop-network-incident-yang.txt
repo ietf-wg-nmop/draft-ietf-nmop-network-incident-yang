@@ -296,27 +296,28 @@ Table of Contents
    between a packet-layer device and an optical-layer device will
    further cause faults at both devices.  Multiple operation teams are
    usually needed to first analyze huge amount of alarms (triggered by
-   the above mentioned faults) from single network layer independently,
-   then cooperate to locate the root cause through manually analyzing
-   multi- layer topology data and service data, thus fault demarcation
-   becomes more complex and time-consuming in multi-layer scenario than
-   in single-layer scenario.
+   the above mentioned faults) from single network layer (either packet
+   layer or optical layer)independently, then cooperate to locate the
+   root cause through manually analyzing multi-layer topology data and
+   service data, thus fault demarcation becomes more complex and time-
+   consuming in multi-layer scenario than in single-layer scenario.
 
    With the help of network incident management, the management systems
    first automatically analyze root cause of the alarms at each single
-   network layer and report corresponding incidents to the upper layer,
-   then multi-layer management system comprehensively analyzes the
-   topology relationship and service relationship between the root
-   causes of both layers.  The inner relationship among the alarms will
-   be identified and finally the root cause will be located among
-   multiple layers.  By cooperating with the integrated Optical time-
-   domain reflectometer (OTDR) within the network device, we can
-   determine the target optical exchange station before site visits.
-   Therefore, the overall fault demarcation process is simplified and
-   automated, the analyze result could be reported and visualized in
-   time.  In this case, operation teams only have to confirm the analyze
-   result and dispatch site engineers to perform relative maintenance
-   actions (e.g., splice fiber) based on the root cause.
+   network layer and report corresponding incidents to the multi-
+   layer,multi-domain management system, then such management system
+   comprehensively analyzes the topology relationship and service
+   relationship between the root causes of both layers.  The inner
+   relationship among the alarms will be identified and finally the root
+   cause will be located among multiple layers.  By cooperating with the
+   integrated Optical time-domain reflectometer (OTDR) within the
+   network device, we can determine the target optical exchange station
+   before site visits.  Therefore, the overall fault demarcation process
+   is simplified and automated, the analyze result could be reported and
+   visualized in time.  In this case, operation teams only have to
+   confirm the analyze result and dispatch site engineers to perform
+   relative maintenance actions (e.g., splice fiber) based on the root
+   cause.
 
 3.4.  Security Events Automated Noise Reduction based on Situation
       Awareness
