@@ -900,13 +900,14 @@ Table of Contents
    |  |          -> /inc:incidents/inc:incident/inc:incident-id
 
    After an incident is generated, incident diagnose rpc can be used to
-   diagnose the incident and locate the root causes.  Diagnosis can be
-   performed on some detection tasks, such as BFD detection, flow
-   detection, telemetry collection, short-term threshold alarm,
-   configuration error check, or test packet injection.
+   diagnose the incident and locate the root causes.  On demand
+   Diagnosis can be performed on some detection tasks, such as BFD
+   detection, flow detection, telemetry collection, short-term threshold
+   alarm, configuration error check, or test packet injection.
 
-   After the diagnosis is performed, a incident update notification will
-   be triggered to report the latest status of the incident.
+   After the on demand diagnosis is performed sucessfully, a separate
+   incident update notification will be triggered to report the latest
+   status of the incident asynchronously.
 
 7.5.  Incident Resolution
 
@@ -922,9 +923,9 @@ Table of Contents
 
    Incident resolve rpc allows multiple incident instances to be
    resolved at a time.  If an incident instance is successfully
-   resolved, a notification will be triggered to update the incident
-   status to 'cleared'.  If the incident content is changed during this
-   process, a notification update will be triggered.
+   resolved, a separate notification will be triggered to update the
+   incident status to 'cleared'.  If the incident content is changed
+   during this process, a notification update will be triggered.
 
 7.6.  RPC Failure
 

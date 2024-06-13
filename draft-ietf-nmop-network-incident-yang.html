@@ -2226,12 +2226,13 @@ to ensure that the client knows the incident.<a href="#section-7.3-2" class="pil
 </pre><a href="#section-7.4-1" class="pilcrow">¶</a>
 </div>
 <p id="section-7.4-2">After an incident is generated, incident diagnose rpc can be used to
-diagnose the incident and locate the root causes.  Diagnosis can be
-performed on some detection tasks, such as BFD detection, flow
+diagnose the incident and locate the root causes.  On demand Diagnosis
+can be performed on some detection tasks, such as BFD detection, flow
 detection, telemetry collection, short-term threshold alarm,
 configuration error check, or test packet injection.<a href="#section-7.4-2" class="pilcrow">¶</a></p>
-<p id="section-7.4-3">After the diagnosis is performed, a incident update notification will
-be triggered to report the latest status of the incident.<a href="#section-7.4-3" class="pilcrow">¶</a></p>
+<p id="section-7.4-3">After the on demand diagnosis is performed sucessfully, a separate incident
+update notification will be triggered to report the latest status of the incident
+asynchronously.<a href="#section-7.4-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="incident-resolution-1">
@@ -2253,7 +2254,7 @@ it).  How to resolve an incident instance is out of the scope of this
 document.<a href="#section-7.5-2" class="pilcrow">¶</a></p>
 <p id="section-7.5-3">Incident resolve rpc allows multiple incident instances to be
 resolved at a time.  If an incident instance is successfully
-resolved, a notification will be triggered to update the incident
+resolved, a separate notification will be triggered to update the incident
 status to 'cleared'.  If the incident content is changed during this
 process, a notification update will be triggered.<a href="#section-7.5-3" class="pilcrow">¶</a></p>
 </section>
