@@ -21,6 +21,7 @@ module ietf-incident {
   import ietf-yang-structure-ext {
     prefix sx;
   }
+
   organization
     "IETF NMOP Working Group";
   contact
