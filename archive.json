@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-06-13T00:29:34.230649+00:00",
+  "timestamp": "2024-06-16T00:32:56.437684+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
   "labels": [
     {
@@ -85,7 +85,7 @@
       "id": "I_kwDOL4Sz0s6IIKy7",
       "title": "Dhruv comments",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/issues/1",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [
@@ -94,9 +94,17 @@
       "labels": [],
       "body": "- The phrasing \"..few amount of network incidents..\" is a bit odd.\r\n- There is a singular module defined in the I-D, but the abstract says plural \"modules\". \r\n- Recheck the reference at \"L3VPN services related with the interface will become unavailable [I-D.ietf-ippm-pam]\" or expand the text to correlate with the reference. \r\n- BCP14 template is repeated twice in Section 2\r\n- Section 7, please regenerate the tree, as it does not match the YANG module. For instance there is no leaf called \"csn\"...\r\n- Section 7.1 claims that there are two YANG modules \"ietf-incident-type\" and \"ietf-incident\" but the actual module in section 8 is a merged one.  \r\n- Section 7.{4,5}, some text needs to be added on the asynchronous nature of these RPC and how the incident client would learn about the output of these rpcs?\r\n- Section 8, update the WG details in the YANG module; the yang file formatting is off (use this command \"pyang --ietf --lint -f yang --keep-comments --yang-line-length 69 \" to fix that); \r\n- Is cross-domain == multi-layer (Section 3.3)? Think about making that clear.  Perhaps you should differentiate between inter-domain and inter-layer?\r\n- Is cause-name some well known cause or just free form string? (same for incident's name)\r\n- Please add a description for what are root-events and how it relates to root-cause \r\n- Section 9, security consideration is just the template, actual analysis is missing\r\n- Section 10, please fix the formatting of the IANA registry\r\n- Please run a grammar check tool\r\n- Please add JSON or XML examples\r\n",
       "createdAt": "2024-05-07T17:05:18Z",
-      "updatedAt": "2024-06-07T06:37:25Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2024-06-13T13:05:31Z",
+      "closedAt": "2024-06-13T13:05:31Z",
+      "comments": [
+        {
+          "author": "billwuqin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Fixed.",
+          "createdAt": "2024-06-13T13:05:29Z",
+          "updatedAt": "2024-06-13T13:05:29Z"
+        }
+      ]
     },
     {
       "number": 2,
@@ -225,6 +233,22 @@
       "body": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/blob/4c747144c025fc24bd4245ca0a4e1afa53ffbbf3/yang/ietf-incident.yang#L819C12-L819C22\r\n\r\nWhat is the link between these two? Are these overlapping? If not, we need to explain what we have both. Thanks.",
       "createdAt": "2024-06-07T07:19:08Z",
       "updatedAt": "2024-06-07T07:19:08Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 15,
+      "id": "I_kwDOL4Sz0s6MWXs6",
+      "title": "pyang-lint tool issue needs to be fixed first",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/issues/15",
+      "state": "OPEN",
+      "author": "billwuqin",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/actions/runs/9525777377/job/26260370518\r\nI check with Martin, he provide one workaround as follows:\r\n@billwuqin, that's certainly a viable strategy. This pull request is a bit old, which means that it isn't necessarily how you would do it today.\r\n\r\nYou might do better with integrating the lint more tightly as I describe [in the documentation](https://github.com/martinthomson/i-d-template/blob/main/doc/TOOLS.md#linting-tools). For something like pyang-lint, you can get automated installation as described on the same page or in [the sourcecode](https://github.com/martinthomson/i-d-template/blob/main/deps.mk).\r\n\r\nThat means that you would only need to create a requirements.txt and add a rule approximately like:\r\n\r\nyang-files := $(wildcard *.yang)\r\nyang-file-markers := $(patsubst %.yang,.%.yang-lint,$(yang-files))\r\n.PHONY: pyang-lint\r\npyang-lint: $(pyang-lint-files)\r\n.%.yang-lint: %.yang $(DEPS_FILES)\r\n        pyang-lint $< | tee $@\r\nlint:: pyang-lint\r\n(I haven't debugged the above, but I hope that it is clear enough.)",
+      "createdAt": "2024-06-15T08:56:55Z",
+      "updatedAt": "2024-06-15T08:56:55Z",
       "closedAt": null,
       "comments": []
     }
@@ -449,26 +473,42 @@
       "id": "PR_kwDOL4Sz0s5yPb8X",
       "title": "fix broken example..",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/pull/14",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "There are issues to fix in this example.",
       "createdAt": "2024-06-12T13:54:17Z",
-      "updatedAt": "2024-06-12T13:54:17Z",
+      "updatedAt": "2024-06-13T09:01:29Z",
       "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
       "baseRefName": "main",
       "baseRefOid": "0042f08cb13eb05e60f92ff63788e6e29839dc3c",
       "headRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
       "headRefName": "fix-broken-example",
       "headRefOid": "2e2a9a387b2f7c6351b92474d8fc503e29c86edf",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-06-13T09:01:29Z",
+      "mergedAt": "2024-06-13T09:01:29Z",
+      "mergedBy": "billwuqin",
+      "mergeCommit": {
+        "oid": "74d47df90c760f802e2a117699c99fa9f2cb7dd3"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOL4Sz0s5-E36L",
+          "commit": {
+            "abbreviatedOid": "2e2a9a3"
+          },
+          "author": "billwuqin",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Looks good.",
+          "createdAt": "2024-06-13T09:01:20Z",
+          "updatedAt": "2024-06-13T09:01:20Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
