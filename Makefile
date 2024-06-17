@@ -9,3 +9,11 @@ else
 	git clone -q --depth 10 $(CLONE_ARGS) \
 	    -b main https://github.com/martinthomson/i-d-template $(LIBDIR)
 endif
+
+yang-files := $(wildcard *.yang)
+yang-file-markers := (patsubst(yang-files))
+.PHONY: pyang-lint
+pyang-lint: $(pyang-lint-files)
+.%.yang-lint: %.yang $(DEPS_FILES)
+	pyang-lint	<	|tee@	
+lint:: pyang-lint
