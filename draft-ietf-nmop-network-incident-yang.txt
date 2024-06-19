@@ -1336,7 +1336,7 @@ Table of Contents
 
      typedef incident-ref {
        type leafref {
-         path "/inc:incidents/inc:incident/inc:incident-id";
+         path "/inc:incidents/inc:incident/inc:incident-no";
        }
        description
          "reference a network incident.";
@@ -1431,11 +1431,13 @@ Table of Contents
          description
            "The type of an incident.";
        }
-       leaf incident-no {
-         type uint64;
-         mandatory true;
-         description
-           "The unique sequence number of the incident instance type.";
+           leaf incident-id {
+           type string;
+           description
+             "The unique qualifier of an incident instance type.
+              This leaf is used when the 'type' leaf cannot
+              uniquely identify the incident instance type.  Normally,
+              this is not the case, and this leaf is the empty string.";
        }
        leaf-list service-instance {
          type string;
@@ -1658,7 +1660,7 @@ Table of Contents
          "This rpc can be used to acknowledge the specified
           incidents.";
        input {
-         leaf-list incident-id {
+         leaf-list incident-no {
            type incident-ref;
            description
              "the identifier of an incident instance.";
@@ -1672,7 +1674,7 @@ Table of Contents
           incidents. The result of diagnosis will be reported
           by incident notification.";
        input {
-         leaf-list incident-id {
+         leaf-list incident-no {
            type incident-ref;
            description
              "the identifier of an incident instance.";
@@ -1686,7 +1688,7 @@ Table of Contents
           incidents. The result of resolution will be reported
           by incident notification.";
        input {
-         leaf-list incident-id {
+         leaf-list incident-no {
            type incident-ref;
            description
              "the identifier of an incident instance.";
@@ -1700,7 +1702,7 @@ Table of Contents
            "This structure data MAY be inserted in the RPC error
             response to indicate the reason for the
             incident acknowledge failure.";
-         leaf incident-id {
+         leaf incident-no {
            type incident-ref;
            description
              "Indicates the incident identifier that
@@ -1726,7 +1728,7 @@ Table of Contents
            "This structure data MAY be inserted in the RPC error
             response to indicate the reason for the
             incident diagnose failure.";
-         leaf incident-id {
+         leaf incident-no {
            type incident-ref;
            description
              "Indicates the incident identifier that
@@ -1752,7 +1754,7 @@ Table of Contents
            "This structure data MAY be inserted in the RPC error
             response to indicate the reason for the
             incident resolution failure.";
-         leaf incident-id {
+         leaf incident-no {
            type incident-ref;
            description
              "Indicates the incident identifier that
@@ -1779,7 +1781,7 @@ Table of Contents
        description
          "incident notification. It will be triggered when
           the incident is raised, updated or cleared.";
-       leaf incident-id {
+       leaf incident-no {
          type incident-ref;
          description
            "the identifier of an incident instance.";
@@ -1802,14 +1804,12 @@ Table of Contents
          key "name type incident-id";
          description
            "the information of incident.";
-         leaf incident-id {
-           type string;
-           description
-             "The unique qualifier of an incident instance type.
-              This leaf is used when the 'alarm-type-id' leaf cannot
-              uniquely identify the incident instance type.  Normally,
-              this is not the case, and this leaf is the empty string.";
-         }
+             leaf incident-no {
+         type uint64;
+         mandatory true;
+         description
+           "The unique sequence number of the incident instance.";
+       }
          uses incident-info;
          uses incident-time-info;
        }
