@@ -1174,6 +1174,23 @@ A.1 Network Incident management with specific network topology and the network s
 # Changes between Revisions
 
    v00 - v01
+
+   * Clarify the relationship between incident-no and incident-id.
+
+   * Fix Tree Diagram to align with YANG module code change.
+
+   * Add json example in the appendix.
+
+   * Add failure handling process for rpc error.
+
+   * Clarify the relationship between root events and root cause.
+
+   * Clarify synchronous nature of these RPCs.
+
+   * Clarify the relationship between inter-layer and inter-domain.
+
+   * Refer to terminology draft for terminology alignment.
+     
    * Fix pyang compilation issue and yang lint issue.
 
    * Fix Broken ref by using node-ref defined in RFC8345.
