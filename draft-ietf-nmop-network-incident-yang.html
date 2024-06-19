@@ -2762,18 +2762,6 @@ module ietf-incident {
     description
       "the grouping defines the information of an
        incident.";
-    leaf incident-no {
-      type uint64;
-      mandatory true;
-      description
-        "The unique identifier of the incident instance.";
-    }
-    leaf-list service-instance {
-      type string;
-      description
-        "the related network service instances of
-         the incident instance.";
-    }
     leaf name {
       type string;
       mandatory true;
@@ -2787,6 +2775,18 @@ module ietf-incident {
       mandatory true;
       description
         "The type of an incident.";
+    }
+    leaf incident-no {
+      type uint64;
+      mandatory true;
+      description
+        "The unique sequence number of the incident instance type.";
+    }
+    leaf-list service-instance {
+      type string;
+      description
+        "the related network service instances of
+         the incident instance.";
     }
     leaf domain {
       type identityref {
@@ -3144,13 +3144,16 @@ module ietf-incident {
     description
       "the information of incidents.";
     list incident {
-      key "incident-no";
+      key "name type incident-id";
       description
         "the information of incident.";
       leaf incident-id {
         type string;
         description
-          "the qualifier of an incident instance type.";
+          "The unique qualifier of an incident instance type.
+           This leaf is used when the 'alarm-type-id' leaf cannot
+           uniquely identify the incident instance type.  Normally,
+           this is not the case, and this leaf is the empty string.";
       }
       uses incident-info;
       uses incident-time-info;
