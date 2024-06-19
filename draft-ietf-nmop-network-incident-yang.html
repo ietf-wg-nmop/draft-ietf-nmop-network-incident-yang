@@ -2078,12 +2078,12 @@ three rpcs to manage the network incidents.<a href="#section-7.1-2" class="pilcr
 <pre>
 module: ietf-incident
   +--ro incidents
-     +--ro incident* [incident-no]
-        +--ro incident-id?        string
+     +--ro incident* [name type incident-id]
         +--ro incident-no         uint64
-        +--ro service-instance*   string
         +--ro name                string
         +--ro type                identityref
+        +--ro incident-id?        string
+        +--ro service-instance*   string
         +--ro domain              identityref
         +--ro priority            incident-priority
         +--ro status?             enumeration
@@ -2113,8 +2113,8 @@ rpcs:
 
 notifications:
   +---n incident-notification
-         +--ro incident-id?
-                         -&gt; /inc:incidents/inc:incident/inc:incident-id
+         +--ro incident-no?
+                         -&gt; /inc:incidents/inc:incident/inc:incident-no
          ...
          +--ro time? yang:date-and-time
 </pre><a href="#section-7.1-3" class="pilcrow">¶</a>
@@ -2130,12 +2130,12 @@ notifications:
 <pre>
 notifications:
   +---n incident-notification
-         +--ro incident-id?
-                         -&gt; /inc:incidents/inc:incident/inc:incident-id
-         +--ro incident-no? uint64
-         +--ro service-instance* string
+         +--ro incident-no?
+                         -&gt; /inc:incidents/inc:incident/inc:incident-no
          +--ro name? string
-         +--ro type? enumeration
+         +--ro type? identityref
+         +--ro incident-id? string
+         +--ro service-instance* string
          +--ro domain? identityref
          +--ro priority? int:incident-priority
          +--ro status? enumeration
@@ -2200,8 +2200,8 @@ would be set to 'cleared'.<a href="#section-7.2-2" class="pilcrow">¶</a></p>
 <pre>
 +---x incident-acknowledge
 |  +---w input
-|  |  +---w incident-id*
-|  |          -&gt; /inc:incidents/inc:incident/inc:incident-id
+|  |  +---w incident-no*
+|  |          -&gt; /inc:incidents/inc:incident/inc:incident-no
 </pre><a href="#section-7.3-1" class="pilcrow">¶</a>
 </div>
 <p id="section-7.3-2">After an incident is generated, updated, or cleared, (In some
@@ -2221,8 +2221,8 @@ to ensure that the client knows the incident.<a href="#section-7.3-2" class="pil
 <pre>
 +---x incident-diagnose
 |  +---w input
-|  |  +---w incident-id*
-|  |          -&gt; /inc:incidents/inc:incident/inc:incident-id
+|  |  +---w incident-no*
+|  |          -&gt; /inc:incidents/inc:incident/inc:incident-no
 </pre><a href="#section-7.4-1" class="pilcrow">¶</a>
 </div>
 <p id="section-7.4-2">After an incident is generated, incident diagnose rpc can be used to
@@ -2244,8 +2244,8 @@ asynchronously.<a href="#section-7.4-3" class="pilcrow">¶</a></p>
 <pre>
 +---x incident-resolve
  +---w input
- |  +---w incident-id*
- |          -&gt; /inc:incidents/inc:incident/inc:incident-id
+ |  +---w incident-no*
+ |          -&gt; /inc:incidents/inc:incident/inc:incident-no
 </pre><a href="#section-7.5-1" class="pilcrow">¶</a>
 </div>
 <p id="section-7.5-2">After the root causes and impacts are determined, incident-resolve
@@ -2272,17 +2272,17 @@ and be inserted in the error response to indicate the reason for the failure.<a 
 <pre>
   structure incident-acknowledge-error-info:
     +-- incident-acknowledge-error-info
-       +-- incident-id?   incident-ref
+       +-- incident-no?   incident-ref
        +-- reason?        identityref
        +-- description?   string
   structure incident-diagnose-error-info:
     +-- incident-diagnose-error-info
-       +-- incident-id?   incident-ref
+       +-- incident-no?   incident-ref
        +-- reason?        identityref
        +-- description?   string
   structure incident-resolve-error-info:
     +-- incident-resolve-error-info
-       +-- incident-id?   incident-ref
+       +-- incident-no?   incident-ref
        +-- reason?        identityref
        +-- description?   string
 </pre><a href="#section-7.6-3" class="pilcrow">¶</a>
