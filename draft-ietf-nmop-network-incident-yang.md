@@ -844,7 +844,7 @@ notifications:
   +---n incident-notification
 	 +--ro incident-id?
 			 -> /inc:incidents/inc:incident/inc:incident-id
-	 +--ro csn? uint64
+	 +--ro incident-no? uint64
 	 +--ro service-instance* string
 	 +--ro name? string
 	 +--ro type? enumeration
