@@ -796,12 +796,12 @@ three rpcs to manage the network incidents.
 ~~~~
 module: ietf-incident
   +--ro incidents
-     +--ro incident* [incident-no]
-        +--ro incident-id?        string
+     +--ro incident* [name type incident-id]
         +--ro incident-no         uint64
-        +--ro service-instance*   string
         +--ro name                string
         +--ro type                identityref
+        +--ro incident-id?        string
+        +--ro service-instance*   string
         +--ro domain              identityref
         +--ro priority            incident-priority
         +--ro status?             enumeration
@@ -831,8 +831,8 @@ rpcs:
 
 notifications:
   +---n incident-notification
-	 +--ro incident-id?
-			 -> /inc:incidents/inc:incident/inc:incident-id
+	 +--ro incident-no?
+			 -> /inc:incidents/inc:incident/inc:incident-no
 	 ...
 	 +--ro time? yang:date-and-time
 ~~~~
@@ -842,12 +842,12 @@ notifications:
 ~~~~
 notifications:
   +---n incident-notification
-	 +--ro incident-id?
-			 -> /inc:incidents/inc:incident/inc:incident-id
-	 +--ro incident-no? uint64
-	 +--ro service-instance* string
+	 +--ro incident-no?
+			 -> /inc:incidents/inc:incident/inc:incident-no
 	 +--ro name? string
-	 +--ro type? enumeration
+	 +--ro type? identityref
+	 +--ro incident-id? string
+	 +--ro service-instance* string
 	 +--ro domain? identityref
 	 +--ro priority? int:incident-priority
 	 +--ro status? enumeration
@@ -907,8 +907,8 @@ would be set to 'cleared'.
 ~~~~
 +---x incident-acknowledge
 |  +---w input
-|  |  +---w incident-id*
-|  |          -> /inc:incidents/inc:incident/inc:incident-id
+|  |  +---w incident-no*
+|  |          -> /inc:incidents/inc:incident/inc:incident-no
 ~~~~
 After an incident is generated, updated, or cleared, (In some
 scenarios where automatic diagnosis and resolution are supported, the
@@ -923,8 +923,8 @@ The incident-acknowledge rpc can confirm multiple incidents at a time
 ~~~~
 +---x incident-diagnose
 |  +---w input
-|  |  +---w incident-id*
-|  |          -> /inc:incidents/inc:incident/inc:incident-id
+|  |  +---w incident-no*
+|  |          -> /inc:incidents/inc:incident/inc:incident-no
 ~~~~
 After an incident is generated, incident diagnose rpc can be used to
 diagnose the incident and locate the root causes.  On demand Diagnosis
@@ -941,8 +941,8 @@ asynchronously.
 ~~~~
 +---x incident-resolve
  +---w input
- |  +---w incident-id*
- |          -> /inc:incidents/inc:incident/inc:incident-id
+ |  +---w incident-no*
+ |          -> /inc:incidents/inc:incident/inc:incident-no
 ~~~~
 
 After the root causes and impacts are determined, incident-resolve
@@ -967,17 +967,17 @@ The tree diagram [RFC8340] for structures are defined as follows:
 ~~~
   structure incident-acknowledge-error-info:
     +-- incident-acknowledge-error-info
-       +-- incident-id?   incident-ref
+       +-- incident-no?   incident-ref
        +-- reason?        identityref
        +-- description?   string
   structure incident-diagnose-error-info:
     +-- incident-diagnose-error-info
-       +-- incident-id?   incident-ref
+       +-- incident-no?   incident-ref
        +-- reason?        identityref
        +-- description?   string
   structure incident-resolve-error-info:
     +-- incident-resolve-error-info
-       +-- incident-id?   incident-ref
+       +-- incident-no?   incident-ref
        +-- reason?        identityref
        +-- description?   string
 ~~~
