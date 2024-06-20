@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-06-18T00:30:22.133633+00:00",
+  "timestamp": "2024-06-20T00:29:19.661490+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
   "labels": [
     {
@@ -225,31 +225,39 @@
       "id": "I_kwDOL4Sz0s6LdgsZ",
       "title": "incident-id vs incident-no",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/issues/13",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/blob/4c747144c025fc24bd4245ca0a4e1afa53ffbbf3/yang/ietf-incident.yang#L819C12-L819C22\r\n\r\nWhat is the link between these two? Are these overlapping? If not, we need to explain what we have both. Thanks.",
       "createdAt": "2024-06-07T07:19:08Z",
-      "updatedAt": "2024-06-07T07:19:08Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2024-06-19T04:00:08Z",
+      "closedAt": "2024-06-19T04:00:08Z",
+      "comments": [
+        {
+          "author": "billwuqin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Clarify the relationship between incident-no and incident-id, incident-id is optional qualifier and can be empty string while incident no is sequence number or serial number which is mandatory to have. I have made changes to both tree diagram and YANG model source code to reflect this.",
+          "createdAt": "2024-06-19T04:00:03Z",
+          "updatedAt": "2024-06-19T04:00:03Z"
+        }
+      ]
     },
     {
       "number": 15,
       "id": "I_kwDOL4Sz0s6MWXs6",
       "title": "pyang-lint tool issue needs to be fixed first",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/issues/15",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "billwuqin",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/actions/runs/9525777377/job/26260370518\r\nI check with Martin, he provide one workaround as follows:\r\n@billwuqin, that's certainly a viable strategy. This pull request is a bit old, which means that it isn't necessarily how you would do it today.\r\n\r\nYou might do better with integrating the lint more tightly as I describe [in the documentation](https://github.com/martinthomson/i-d-template/blob/main/doc/TOOLS.md#linting-tools). For something like pyang-lint, you can get automated installation as described on the same page or in [the sourcecode](https://github.com/martinthomson/i-d-template/blob/main/deps.mk).\r\n\r\nThat means that you would only need to create a requirements.txt and add a rule approximately like:\r\n\r\nyang-files := $(wildcard *.yang)\r\nyang-file-markers := $(patsubst %.yang,.%.yang-lint,$(yang-files))\r\n.PHONY: pyang-lint\r\npyang-lint: $(pyang-lint-files)\r\n.%.yang-lint: %.yang $(DEPS_FILES)\r\n        pyang-lint $< | tee $@\r\nlint:: pyang-lint\r\n(I haven't debugged the above, but I hope that it is clear enough.)",
       "createdAt": "2024-06-15T08:56:55Z",
-      "updatedAt": "2024-06-15T08:56:55Z",
-      "closedAt": null,
+      "updatedAt": "2024-06-18T06:43:29Z",
+      "closedAt": "2024-06-18T06:43:29Z",
       "comments": []
     }
   ],
