@@ -1134,7 +1134,8 @@ A.1 Network Incident management with specific network topology and the network s
   "root-causes": [
     {
       "name": "Feeder fiber great loss change",
-      "detail-information": "The connector of the optical fiber is contaminated, Or the optical fiber is bent too much.",
+      "detail-information": "The connector of the optical fiber
+       is contaminated, Or the optical fiber is bent too much.",
       "root-cause": {
         "network-ref": "example:L2-topo",
         "node-ref": "example:D1",
@@ -1142,7 +1143,8 @@ A.1 Network Incident management with specific network topology and the network s
           {
             "name": "7985e01a-5aad-11ea-b214-286ed488cf99",
             "cause-name": "ltp",
-            "detail": "Frame=0, Slot=6, Subslot=65535, Port=7, ODF= ODF001,  Level1Splitter= splitter0025"
+            "detail": "Frame=0, Slot=6, Subslot=65535, Port=7,
+            ODF= ODF001,  Level1Splitter= splitter0025"
           }
         ]
       }
