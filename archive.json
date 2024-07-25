@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-07-23T00:31:16.933538+00:00",
+  "timestamp": "2024-07-25T00:31:00.866002+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
   "labels": [
     {
@@ -258,6 +258,22 @@
       "createdAt": "2024-06-15T08:56:55Z",
       "updatedAt": "2024-06-18T06:43:29Z",
       "closedAt": "2024-06-18T06:43:29Z",
+      "comments": []
+    },
+    {
+      "number": 16,
+      "id": "I_kwDOL4Sz0s6Qp7ke",
+      "title": "Sync with TMF (See LS received 16/07/2024)",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/issues/16",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Per: https://mailarchive.ietf.org/arch/msg/nmop/LVZmlNOjDFjx3PqRLrjvTSnWnWg/\r\n\r\n> @authors of draft-ietf-nmop-network-incident-yang: Parts of the LS are relevant to the scope of the incident mgt draft. Sharing your thoughts and candidate actions would be appreciated. Thanks.",
+      "createdAt": "2024-07-24T08:24:32Z",
+      "updatedAt": "2024-07-24T08:24:32Z",
+      "closedAt": null,
       "comments": []
     }
   ],
