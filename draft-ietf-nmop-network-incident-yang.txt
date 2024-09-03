@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                        L. M. C. Murillo
-Expires: 31 December 2024                                 Telefonica I+D
+Expires: 7 March 2025                                     Telefonica I+D
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                            29 June 2024
+                                                        3 September 2024
 
 
            A YANG Data Model for Network Incident Management
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 31 December 2024.
+   This Internet-Draft will expire on 7 March 2025.
 
 Copyright Notice
 
@@ -70,8 +70,6 @@ Table of Contents
      3.1.  Incident-Based Trouble Tickets Dispatching
      3.2.  Incident Derivation from L3VPN Services Unavailability
      3.3.  Multi-layer Fault Demarcation
-     3.4.  Security Events Automated Noise Reduction based on
-           Situation Awareness
    4.  Network Incident Management Architecture
      4.1.  Interworking with Alarm Management
      4.2.  Interworking with SAIN
@@ -149,7 +147,7 @@ Table of Contents
    be used at a specific layer in a domain but also can be used to span
    across layers for multi-layer network troubleshooting.
 
-   A network incident refers to an undesired occurence such as an
+   A network incident refers to an undesired occurrence such as an
    unexpected interruption of a network service,degradation of a network
    service quality, or sub-health of a network service
    [I-D.ietf-nmop-terminology][TMF724A].  Different data sources
@@ -214,8 +212,8 @@ Table of Contents
       server and incident management client.
 
    Incident management server:  An entity which provides which is
-      responsible for detecting an incident, performing incident
-      diagnosis, resolution and prediction, etc.
+      responsible for detecting and reporting an incident, performing
+      incident diagnosis, resolution and prediction, etc.
 
    Incident management client:  An entity which can manage incidents.
       For example, it can receive incident notifications, query the
@@ -319,32 +317,6 @@ Table of Contents
    relative maintenance actions (e.g., splice fiber) based on the root
    cause.
 
-3.4.  Security Events Automated Noise Reduction based on Situation
-      Awareness
-
-   In the continuous data driven monitoring, tools used by the Security
-   Operation Center (SoC) scan the network 24/7 to flag any
-   abnormalities or suspicious activities.  As the SoC adds more tools
-   for security events detection, the volume of security events or
-   alerts grows continually. the overwhelming number of threat alerts
-   can cause threat fatigue.  In addition, many of these alerts do not
-   provide sufficient intelligence, context to investigate, or are false
-   positives.  False positives not only drain time and resources, but
-   can also distract teams from real incidents.
-
-   With the help of the network incident management, BERT(Bidirectional
-   Encoder Representations from Transformers) [BERT] classifier can be
-   adopted to analyses the suspicious activity and understands the
-   significance of the gathered data (through both facts and inferences)
-   and help operation and maintenance engineers focus on handling
-   important security events and avoid wasting resources on false
-   alerts, e.g., automatically determine whether 10,000 network security
-   events are real incidents and give reasonable explanations.
-   Progressively, Llama interpreter can be used to explain the reason
-   why such alerts are picked out and marked significant, what could be
-   the potential security implications that exist yet remain
-   undiscovered.
-
 4.  Network Incident Management Architecture
 
               +------------------------------------------+
@@ -388,10 +360,14 @@ Table of Contents
    identification, report, diagnosis, resolution, or querying for
    incident lifecycle management.
 
-   Incident management client can be deployed in the network OSS or
-   other business systems of operators and invokes the functionalities
-   provided by incident management server to meet the business
-   requirements of fault management.
+   Incident management client can be deployed either in the same network
+   platform, controller as the incident management server within a
+   single domain, or in the upper layer network analytics platform or
+   controller, e.g., multi-domain controller, invokes the
+   functionalities provided by incident management server to meet the
+   business requirements of fault management.  The entire incident
+   lifecycle management can be independent from or not under control of
+   the network OSS or other business system of operators.
 
    A typical workflow of network incident management is as follows:
 
@@ -417,7 +393,7 @@ Table of Contents
                         |         OSS                 |
                         |+-------+      +-----------+ |
                         ||Alarm  |      | Incident  | |
-                        ||handler|      |  client   | |
+                        ||handler|      |  handler   | |
                         |+-------+      +-----------+ |
                         +---^---------------^---------+
                             |               |
@@ -426,9 +402,9 @@ Table of Contents
                         |   |  controller   |         |
                         |   |               |         |
                         |+--+----+      +-----------+ |
-                        ||Alarm  |      |           | |
-                        ||process+----->|  Incident | |
-                        ||       |alarm |   server  | |
+                        ||Alarm  |      |  Incident | |
+                        ||process+----->|   Process | |
+                        ||       |alarm |           | |
                         |+-------+      +-----------+ |
                         |   ^              ^          |
                         +---|--------------|----------+
@@ -463,14 +439,18 @@ Table of Contents
 
    Alarm management may keep the original process, alarms are reported
    from network to network controller or analytics and then reported to
-   upper layer system (e.g., OSS).  Upper layer system may store these
-   alarms and provide the information for fault analysis (e.g., deeper
-   analysis based on incident).
+   upper layer system (e.g., the alarm handler within the OSS).
 
-   Compared with alarm management, incident management provides not only
-   incident reporting but also diagnosis and resolution functions, it's
-   possible to support self-healing and may be helpful for single-domain
-   closed-loop control.
+   Similarly, the incident are reported from the network to the network
+   controller or analytics and then reported to the upper layer system
+   (e.g., incident handler within the OSS).  Upper layer system may
+   store these incident and provide the information for fault analysis
+   (e.g., deeper analysis based on incident).
+
+   Different from alarm management, incident process within the
+   controller provides not only incident reporting but also diagnosis
+   and resolution functions, it's possible to support self-healing and
+   may be helpful for single-domain closed-loop control.
 
    Incident management is not a substitute for alarm management.
    Instead, they can work together to implement fault management.
@@ -480,12 +460,12 @@ Table of Contents
    SAIN [RFC9417] defines an architecture of network service assurance.
 
                                +----------------+
-                               | Incident client|
+                               |Incident handler|
                                +----------------+
                                        ^
                                        |incident
                                +-------+--------+
-                               |Incident server |
+                               |Incident process|
                                +----------------+
                                        ^
                                        |symptoms
@@ -508,12 +488,12 @@ Table of Contents
    service can be decomposed into some peer tunnel interface sub-
    services and IP connectivity sub-service.  If some metrics are
    evaluated to indicate unhealthy for specific sub-service, some
-   symptoms will be present.  Incident server may identify the incident
-   based on symptoms, and then report it to upper layer system.  So,
-   SAIN can be one way to identify incident, services, sub-services and
-   metrics can be preconfigured via APIs defined by service assurance
-   YANG model [RFC9418] and incident will be reported if symptoms match
-   the condition of incident.
+   symptoms will be present.  Incident process may identify the incident
+   based on symptoms, and then report it to incident handler within the
+   Operation Support System (OSS).  So, SAIN can be one way to identify
+   incident, services, sub-services and metrics can be preconfigured via
+   APIs defined by service assurance YANG model [RFC9418] and incident
+   will be reported if symptoms match the condition of incident.
 
 4.3.  Relationship with RFC8969
 
@@ -522,7 +502,7 @@ Table of Contents
    network layer and device layer, and contains service deployment,
    service optimization/assurance, and service diagnosis.  Incident
    works at the network layer and aggregates alarms, metrics and other
-   information from device layer, it's helpful to provfide service
+   information from device layer, it's helpful to provide service
    assurance.  And the incident diagnosis may be one way of service
    diagnosis.
 
@@ -680,15 +660,15 @@ Table of Contents
 5.2.  Incident Diagnosis
 
    After an incident is reported to the network incident management
-   client, the client MAY diagnose the incident to determine the root
-   cause.  Some diagnosis operations may affect the running network
-   services.  The client can choose not to perform that diagnosis
-   operation after determining the impact is not trivial.  The network
-   incident management server can also perform self-diagnosis.  However,
-   the self-diagnosis MUST not affect the running network services.
-   Possible diagnosis methods include link reachability detection, link
-   quality detection, alarm/log analysis, and short-term fine-grained
-   monitoring of network quality metrics, etc.
+   client, the incident management client MAY diagnose the incident to
+   determine the root cause.  Some diagnosis operations may affect the
+   running network services.  The client can choose not to perform that
+   diagnosis operation after determining the impact is not trivial.  The
+   network incident management server can also perform self-diagnosis.
+   However, the self-diagnosis MUST not affect the running network
+   services.  Possible diagnosis methods include link reachability
+   detection, link quality detection, alarm/log analysis, and short-term
+   fine-grained monitoring of network quality metrics, etc.
 
 5.3.  Incident Resolution
 
@@ -1971,11 +1951,11 @@ Informative References
 
    [I-D.ietf-nmop-terminology]
               Davis, N., Farrel, A., Graf, T., Wu, Q., and C. Yu, "Some
-              Key Terms for Network Incident and Problem Management",
-              Work in Progress, Internet-Draft, draft-ietf-nmop-
-              terminology-01, 10 June 2024,
+              Key Terms for Network Fault and Problem Management", Work
+              in Progress, Internet-Draft, draft-ietf-nmop-terminology-
+              04, 23 August 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
-              terminology-01>.
+              terminology-04>.
 
    [I-D.quilbeuf-opsawg-configuration-tracing]
               Quilbeuf, J., Claise, B., Graf, T., Lopez, D., and S.
