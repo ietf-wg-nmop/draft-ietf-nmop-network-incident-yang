@@ -462,7 +462,7 @@ management interface {{?RFC8632}} to shelve some alarms.
 
 Alarm management may keep the original process, alarms are reported
 from network to network controller or analytics and then reported to
-upper layer system (e.g., the alarm handler within the OSS). 
+upper layer system (e.g., the alarm handler within the OSS).
 
 Similarly, the incident are reported from the network to the network
 controller or analytics and then reported to the upper layer system
