@@ -174,7 +174,7 @@ service and network topology at different layers, which not only can
 be used at a specific layer in a domain but also can be used to
 span across layers for multi-layer network troubleshooting.
 
-A network incident refers to an undesired occurence such as an unexpected
+A network incident refers to an undesired occurrence such as an unexpected
 interruption of a network service,degradation of a network service quality,
 or sub-health of a network service {{?I-D.ietf-nmop-terminology}}{{TMF724A}}.
 Different data sources including alarms, metrics, and other anomaly information
@@ -234,8 +234,8 @@ Incident management system:
    and incident management client.
 
 Incident management server:
-:  An entity which provides which is responsible for detecting an incident,
-   performing incident diagnosis, resolution and prediction, etc.
+:  An entity which provides which is responsible for detecting and reporting
+   an incident, performing incident diagnosis, resolution and prediction, etc.
 
 Incident management client:
 :  An entity which can manage incidents.
@@ -336,30 +336,6 @@ teams only have to confirm the analyze result and dispatch site
 engineers to perform relative maintenance actions (e.g., splice
 fiber) based on the root cause.
 
-## Security Events Automated Noise Reduction based on Situation Awareness
-
-In the continuous data driven monitoring, tools used by the Security
-Operation Center (SoC) scan the network 24/7 to flag any
-abnormalities or suspicious activities.  As the SoC adds more tools
-for security events detection, the volume of security events or
-alerts grows continually. the overwhelming number of threat alerts
-can cause threat fatigue.  In addition, many of these alerts do not
-provide sufficient intelligence, context to investigate, or are false
-positives.  False positives not only drain time and resources, but
-can also distract teams from real incidents.
-
-With the help of the network incident management, BERT(Bidirectional Encoder
-Representations from Transformers) {{BERT}} classifier can be adopted to
-analyses the suspicious activity and understands the significance of
-the gathered data (through both facts and inferences) and help
-operation and maintenance engineers focus on handling important
-security events and avoid wasting resources on false alerts, e.g.,
-automatically determine whether 10,000 network security events are
-real incidents and give reasonable explanations.  Progressively,
-Llama interpreter can be used to explain the reason why such alerts
-are picked out and marked significant, what could be the potential
-security implications that exist yet remain undiscovered.
-
 
 # Network Incident Management Architecture
 
@@ -406,10 +382,14 @@ platform, controllers and provides functionalities such as incident
 identification, report, diagnosis, resolution, or querying for incident
 lifecycle management.
 
-Incident management client can be deployed in the network OSS or
-other business systems of operators and invokes the functionalities
-provided by incident management server to meet the business
-requirements of fault management.
+Incident management client can be deployed either in the same network
+platform, controller as the incident management server within a single
+domain, or in the upper layer network analytics platform or controller,
+e.g., multi-domain controller, invokes the functionalities provided by
+incident management server to meet the business requirements of fault
+management. The entire incident lifecycle management can be independent
+from or not under control of the network OSS or other business system
+of operators.
 
 A typical workflow of network incident management is as follows:
 
@@ -436,7 +416,7 @@ A typical workflow of network incident management is as follows:
             |         OSS                 |
             |+-------+      +-----------+ |
             ||Alarm  |      | Incident  | |
-            ||handler|      |  client   | |
+            ||handler|      |  handler   | |
             |+-------+      +-----------+ |
             +---^---------------^---------+
                 |               |
@@ -445,9 +425,9 @@ A typical workflow of network incident management is as follows:
             |   |  controller   |         |
             |   |               |         |
             |+--+----+      +-----------+ |
-            ||Alarm  |      |           | |
-            ||process+----->|  Incident | |
-            ||       |alarm |   server  | |
+            ||Alarm  |      |  Incident | |
+            ||process+----->|   Process | |
+            ||       |alarm |           | |
             |+-------+      +-----------+ |
             |   ^              ^          |
             +---|--------------|----------+
@@ -482,14 +462,18 @@ management interface {{?RFC8632}} to shelve some alarms.
 
 Alarm management may keep the original process, alarms are reported
 from network to network controller or analytics and then reported to
-upper layer system (e.g.,  OSS).  Upper layer system may store these
-alarms and provide the information for fault analysis (e.g., deeper
-analysis based on incident).
+upper layer system (e.g., alarm handler within the OSS). 
 
-Compared with alarm management, incident management provides not only
-incident reporting but also diagnosis and resolution functions, it's
-possible to support self-healing and may be helpful for single-domain
-closed-loop control.
+Similarly, the incident are reported from the network to the network
+controller or analytics and then reported to the upper layer system
+(e.g., incident handler within the OSS). Upper layer system may store
+these incident and provide the information for fault analysis (e.g.,
+deeper analysis based on incident).
+
+Different from alarm management, incident process  within the controller
+provides not only incident reporting but also diagnosis and resolution
+functions, it's possible to support self-healing and may be helpful
+for single-domain closed-loop control.
 
 Incident management is not a substitute for alarm management.
 Instead, they can work together to implement fault management.
@@ -500,12 +484,12 @@ SAIN {{?RFC9417}} defines an architecture of network service assurance.
 
 ~~~~
 	   +----------------+
-	   | Incident client|
+	   |Incident handler|
 	   +----------------+
 		   ^
 		   |incident
 	   +-------+--------+
-	   |Incident server |
+	   |Incident process|
 	   +----------------+
 		   ^
 		   |symptoms
@@ -529,12 +513,12 @@ metrics can be monitored for sub-services.  For example, a tunnel
 service can be decomposed into some peer tunnel interface sub-
 services and IP connectivity sub-service.  If some metrics are
 evaluated to indicate unhealthy for specific sub-service, some
-symptoms will be present.  Incident server may identify the incident
-based on symptoms, and then report it to upper layer system.  So,
-SAIN can be one way to identify incident, services, sub-services and
-metrics can be preconfigured via APIs defined by service assurance
-YANG model {{?RFC9418}} and incident will be reported if symptoms match
-the condition of incident.
+symptoms will be present.  Incident process may identify the incident
+based on symptoms, and then report it to incident handler within the
+Operation Support System (OSS).  So, SAIN can be one way to identify
+incident, services, sub-services and metrics can be preconfigured via
+APIs defined by service assurance YANG model {{?RFC9418}} and incident
+will be reported if symptoms match the condition of incident.
 
 ## Relationship with RFC8969
 
@@ -543,7 +527,7 @@ framework breaks down YANG modules into three layers, service layer,
 network layer and device layer, and contains service deployment,
 service optimization/assurance, and service diagnosis.  Incident
 works at the network layer and aggregates alarms, metrics and other
-information from device layer, it's helpful to provfide service
+information from device layer, it's helpful to provide service
 assurance.  And the incident diagnosis may be one way of service
 diagnosis.
 
@@ -703,8 +687,8 @@ triggered after service impact analysis.
 ## Incident Diagnosis
 
 After an incident is reported to the network incident management client, the
-client MAY diagnose the incident to determine the root cause.  Some
-diagnosis operations may affect the running network services.  The
+incident management client MAY diagnose the incident to determine the root cause.
+Some diagnosis operations may affect the running network services.  The
 client can choose not to perform that diagnosis operation after
 determining the impact is not trivial.  The network incident management
 server can also perform self-diagnosis.  However, the self-diagnosis
