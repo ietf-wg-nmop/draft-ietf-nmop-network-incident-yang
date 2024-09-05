@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-09-03T00:33:02.370873+00:00",
+  "timestamp": "2024-09-05T00:33:30.398569+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
   "labels": [
     {
@@ -272,9 +272,17 @@
       "labels": [],
       "body": "Per: https://mailarchive.ietf.org/arch/msg/nmop/LVZmlNOjDFjx3PqRLrjvTSnWnWg/\r\n\r\n> @authors of draft-ietf-nmop-network-incident-yang: Parts of the LS are relevant to the scope of the incident mgt draft. Sharing your thoughts and candidate actions would be appreciated. Thanks.",
       "createdAt": "2024-07-24T08:24:32Z",
-      "updatedAt": "2024-07-24T08:24:32Z",
+      "updatedAt": "2024-09-03T12:02:57Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "billwuqin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@Med\r\nFirst, it looks the current draft has already aligned with what TMF incident management API profile is doing, see annex A of LS, I agree the mapping between IETF Incident management and TMF API management is correct. It is not clear what else we need to do to make further alignment.\r\nFor the terminology, we referenced to both TMF incident terminology and IETF incident terminology work. Do we need to only reference IETF incident terminology work, it could be.\r\n\r\nSecondly, I think IETF incident management work focuses on network level incident management, will not be tied with OSS or under the control of OSS, We have made change to reflect in the latest version which hasn't been submitted yet, e.g., single domain close loop, multi-domain close loop scenarios.",
+          "createdAt": "2024-09-03T12:02:55Z",
+          "updatedAt": "2024-09-03T12:02:55Z"
+        }
+      ]
     }
   ],
   "pulls": [
