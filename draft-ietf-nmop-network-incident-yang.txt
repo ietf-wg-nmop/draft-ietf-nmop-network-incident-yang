@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                        L. M. C. Murillo
-Expires: 7 March 2025                                     Telefonica I+D
+Expires: 13 March 2025                                    Telefonica I+D
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                        3 September 2024
+                                                        9 September 2024
 
 
            A YANG Data Model for Network Incident Management
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 March 2025.
+   This Internet-Draft will expire on 13 March 2025.
 
 Copyright Notice
 
@@ -580,9 +580,8 @@ Table of Contents
    to knowledge base next time.
 
    As mentioned above, SAIN is another way to implement incident
-   identification.  Observation timestamp defined in
-   [I-D.tgraf-yang-push-observation-time] and trace context defined in
-   [W3C-Trace-Context] may be helpful for incident identification.
+   identification.  Trace context defined in [W3C-Trace-Context] may be
+   helpful for incident identification.
 
                     +----------------------+
                     |                      |
@@ -1972,14 +1971,6 @@ Informative References
               ctx-extension-03, 6 July 2023,
               <https://datatracker.ietf.org/doc/html/draft-rogaglia-
               netconf-trace-ctx-extension-03>.
-
-   [I-D.tgraf-yang-push-observation-time]
-              Graf, T., Claise, B., and A. H. Feng, "Support of Network
-              Observation Timestamping in YANG Notifications", Work in
-              Progress, Internet-Draft, draft-tgraf-yang-push-
-              observation-time-00, 4 March 2023,
-              <https://datatracker.ietf.org/doc/html/draft-tgraf-yang-
-              push-observation-time-00>.
 
    [RFC7950]  Bjorklund, M., Ed., "The YANG 1.1 Data Modeling Language",
               RFC 7950, DOI 10.17487/RFC7950, August 2016,
