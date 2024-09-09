@@ -605,9 +605,8 @@ knowledge base, and the incident will be identified faster according
 to knowledge base next time.
 
 As mentioned above, SAIN is another way to implement incident
-identification.  Observation timestamp defined in
-{{?I-D.tgraf-yang-push-observation-time}} and trace context defined in
-{{W3C-Trace-Context}} may be helpful for incident identification.
+identification.  Trace context defined in {{W3C-Trace-Context}}
+may be helpful for incident identification.
 
 ~~~~
 	 +----------------------+
