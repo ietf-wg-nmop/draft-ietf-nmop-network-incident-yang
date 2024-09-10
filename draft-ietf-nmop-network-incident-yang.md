@@ -207,21 +207,25 @@ service quality, and improves network automation {{?RFC8969}}.
 
 {::boilerplate bcp14-tagged}
 
-The following terms are defined in {{?RFC8632}} and are not redefined here:
+The following terms are defined in {{?RFC8632}}, {{?I-D.ietf-nmop-terminology}}
+and are not redefined here:
 
 *  alarm
+
+*  event
+
+*  problem
+
+*  incident
 
 The following terms are defined in this document:
 
 Network incident:
-:  An occurrence that is not desired/required (as it may be indicative
-   of a future undesired State) {{?I-D.ietf-nmop-terminology}}.
-
-Problem:
-:  A state regarded as undesirable and may require remedial action.
-   It is the cause of one or more incidents. The cause is not usually
-   known when a problem record is created.
-   {{?I-D.ietf-nmop-terminology}}.
+:  An undesired occurrence such as an unexpected interruption of
+   a network service,degradation of a network service quality, or
+   sub-health of a network service {{TMF724A}}.  A network incident
+   is a single unplanned event that causes network service interruption.
+   A problem is one cause or potential cause of one or more network incidents.
 
 Incident management:
 :  Lifecycle management of incidents, including
@@ -230,18 +234,22 @@ Incident management:
 
 Incident management system:
 :  An entity which implements incident
-   management. It includes (but not limited to) incident management server
-   and incident management client.
+   management. It includes (but not limited to) incident server
+   and incident client.
 
-Incident management server:
+Incident server:
 :  An entity which provides which is responsible for detecting and reporting
    an incident, performing incident diagnosis, resolution and prediction, etc.
 
-Incident management client:
+Incident client:
 :  An entity which can manage incidents.
    For example, it can receive incident notifications, query the
    information of incidents, instruct an incident management server
    to diagnose, help resolve, etc.
+
+Incident handler:
+: An entity which can receive incident notification, store and query the information of incidents
+  for fault analysis.
 
 # Sample Use Cases
 
@@ -342,7 +350,7 @@ fiber) based on the root cause.
 ~~~~
      +------------------------------------------+
      |                                          |
-     |         Incident Management Client       |
+     |            Incident  Client              |
      |                                          |
      |                                          |
      +------------+---------+---------+---------+
@@ -354,7 +362,7 @@ fiber) based on the root cause.
      +--+----------------------------------------+
      |                                           |
      |                                           |
-     |        Incident Management Server         |
+     |             Incident  Server              |
      |                                           |
      |                                           |
      |                                           |
@@ -374,15 +382,14 @@ fiber) based on the root cause.
  {:#arch title="Network Incident Management Architecture" artwork-align="center"}
 
 {{arch}} illustrates the network incident management architecture.  Two key
-components for the incident management are incident management client
-and incident management server.
+components for the incident management are incident client
+and incident server.
 
-Incident management server can be deployed in network analytics
-platform, controllers and provides functionalities such as incident
-identification, report, diagnosis, resolution, or querying for incident
-lifecycle management.
+Incident server can be deployed in network analytics platform, controllers
+and provides functionalities such as incident identification, report, diagnosis,
+resolution, or querying for incident lifecycle management.
 
-Incident management client can be deployed either in the same network
+Incident client can be deployed either in the same network
 platform, controller as the incident management server within a single
 domain, or in the upper layer network analytics platform or controller,
 e.g., multi-domain controller, invokes the functionalities provided by
@@ -394,17 +401,17 @@ of operators.
 A typical workflow of network incident management is as follows:
 
 * Some alarms or abnormal operations, network performance metrics
-   are reported from the network.  Incident management server
+   are reported from the network.  Incident server
    receives these alarms/abnormal operations/metrics and try to
    analyze the correlation of them, if the incidents are identified,
-   it will be reported to the client.  The impact of network services
+   it will be reported to the incident client.  The impact of network services
    will be also analyzed and will update the incident.
 
-* Incident management client receives the incident raised by server,
+* Incident client receives the incident raised by incident server,
   and acknowledge it.  Client may invoke the "incident diagnose" rpc
   to diagnose this incident to find the root causes.
 
-* If the root causes have been found, the client can resolve this
+* If the root causes have been found, the incident client can resolve this
   incident by invoking the 'incident resolve' rpc operation,
   dispatching a ticket or using other functions (routing
   calculation, configuration, etc.)
