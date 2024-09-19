@@ -158,7 +158,7 @@ orders of magnitude) with the growth of service types and complexity
 and greatly overwhelm OSS platforms; with existing known dependency
 relation between fault, alarm and events at each layer (e.g., packet
 layer or optical layer), it is possible to compress series of
-alarms into fewer incidents and there are many solutions in the
+alarms into fewer network incidents and there are many solutions in the
 market today that essentially do this to some degree. However,
 conventional solutions such as data compression are time-consuming
 and labor-intensive, usually rely on maintenance engineers' experience
@@ -178,17 +178,17 @@ A network incident refers to an undesired occurrence such as an unexpected
 interruption of a network service,degradation of a network service quality,
 or sub-health of a network service {{?I-D.ietf-nmop-terminology}}{{TMF724A}}.
 Different data sources including alarms, metrics, and other anomaly information
-can be aggregated into one or a few amount of incidents irrespective layer by
+can be aggregated into one or a few amount of network incidents irrespective layer by
 correlation analysis and the service impact analysis.  For example, if the
 protocol-related interface fails to work properly, large amount of alarms may
 be reported to upper layer management system since a lot of network services
-may be affected by the interface, but only one aggregated incident regarding
-the abnormal interface will be reported. An incident may also be raised through
+may be affected by the interface, but only one aggregated network incident regarding
+the abnormal interface will be reported. A network incident may also be raised through
 the analysis of some network performance metrics, for example, as
 described in SAIN {{?RFC9417}}, network services can be decomposed to
 several sub-services, specific metrics are monitored for each sub-
 service, symptoms will occur if services/sub-services are unhealthy
-(after analyzing metrics), these symptoms may raise one incident when
+(after analyzing metrics), these symptoms may raise one network incident when
 it causes degradation of the network services.
 
 In addition, Artificial Intelligence (AI) and Machine Learning (ML)
@@ -230,7 +230,10 @@ Network incident:
 Incident management:
 :  Lifecycle management of network incidents, including
    network incident identification, reporting, acknowledgement, diagnosis, and
-   resolution.
+   resolution. Different from fault management, it take various different data sources
+   including alarms, metrics, and other anomaly information and aggregate them into one
+   or a few amount of network incidents irrespective layer by correlation analysis and
+   the service impact analysis.
 
 Incident management system:
 :  An entity which implements network incident
@@ -330,7 +333,7 @@ multi-layer scenario than in single-layer scenario.
 
 With the help of network incident management, the management systems first
 automatically analyze root cause of the alarms at each single network
-layer and report corresponding incidents to the multi-layer,multi-domain
+layer and report corresponding network incidents to the multi-layer,multi-domain
 management system, then such management system comprehensively analyzes the
 topology relationship and service relationship between the root causes of
 both layers.  The inner relationship among the alarms will be identified
@@ -386,15 +389,15 @@ components for the incident management are incident client
 and incident server.
 
 Incident server can be deployed in network analytics platform, controllers
-and provides functionalities such as incident identification, report, diagnosis,
-resolution, or querying for incident lifecycle management.
+and provides functionalities such as network incident identification, report, diagnosis,
+resolution, or querying for network incident lifecycle management.
 
 Incident client can be deployed either in the same network
 platform, controller as the incident management server within a single
 domain, or in the upper layer network analytics platform or controller,
 e.g., multi-domain controller, invokes the functionalities provided by
 incident management server to meet the business requirements of fault
-management. The entire incident lifecycle management can be independent
+management. The entire network incident lifecycle management can be independent
 from or not under control of the network OSS or other business system
 of operators.
 
@@ -403,16 +406,16 @@ A typical workflow of network incident management is as follows:
 * Some alarms or abnormal operations, network performance metrics
    are reported from the network.  Incident server
    receives these alarms/abnormal operations/metrics and try to
-   analyze the correlation of them, if the incidents are identified,
+   analyze the correlation of them, if the network incidents are identified,
    it will be reported to the incident client.  The impact of network services
-   will be also analyzed and will update the incident.
+   will be also analyzed and will update the network incident.
 
-* Incident client receives the incident raised by incident server,
-  and acknowledge it.  Client may invoke the "incident diagnose" rpc
-  to diagnose this incident to find the root causes.
+* Incident client receives the network incident raised by incident server,
+  and acknowledge it.  Client may invoke the "network incident diagnose" rpc
+  to diagnose this network incident to find the root causes.
 
 * If the root causes have been found, the incident client can resolve this
-  incident by invoking the 'incident resolve' rpc operation,
+  network incident by invoking the 'network incident resolve' rpc operation,
   dispatching a ticket or using other functions (routing
   calculation, configuration, etc.)
 
@@ -455,14 +458,14 @@ sufficient information to determine them in lower layer system
 (mainly in devices level), so alarms do not always tell the status of
 services or the root causes.  As described in {{?RFC8632}}, alarm
 management act as a starting point for high-level fault management.
-While incident management often works at the network level, so it is
+While network incident management often works at the network level, so it is
 possible to have enough information to perform correlation and
 service impact analysis.  Alarms can work as one of data sources of
-incident management and may be aggregated into few amount of
-incidents by correlation analysis, network service impact and root
+network incident management and may be aggregated into few amount of
+network incidents by correlation analysis, network service impact and root
 causes may be determined during incident process.
 
-Incident also contains some related alarms,if needed users can query
+Network Incident also contains some related alarms,if needed users can query
 the information of alarms by alarm management interface {{?RFC8632}}.
 In some cases, e.g., cutover scenario, incident server may use alarm
 management interface {{?RFC8632}} to shelve some alarms.
@@ -471,14 +474,14 @@ Alarm management may keep the original process, alarms are reported
 from network to network controller or analytics and then reported to
 upper layer system (e.g., the alarm handler within the OSS).
 
-Similarly, the incident are reported from the network to the network
+Similarly, the network incident are reported from the network to the network
 controller or analytics and then reported to the upper layer system
 (e.g., incident handler within the OSS). Upper layer system may store
-these incident and provide the information for fault analysis (e.g.,
-deeper analysis based on incident).
+these network incidents and provide the information for fault analysis (e.g.,
+deeper analysis based on network incident).
 
-Different from alarm management, incident process  within the controller
-provides not only incident reporting but also diagnosis and resolution
+Different from alarm management, incident process within the controller
+provides not only network incident reporting but also diagnosis and resolution
 functions, it's possible to support self-healing and may be helpful
 for single-domain closed-loop control.
 
@@ -520,22 +523,22 @@ metrics can be monitored for sub-services.  For example, a tunnel
 service can be decomposed into some peer tunnel interface sub-
 services and IP connectivity sub-service.  If some metrics are
 evaluated to indicate unhealthy for specific sub-service, some
-symptoms will be present.  Incident process may identify the incident
+symptoms will be present.  Incident process may identify the network incident
 based on symptoms, and then report it to incident handler within the
 Operation Support System (OSS).  So, SAIN can be one way to identify
-incident, services, sub-services and metrics can be preconfigured via
-APIs defined by service assurance YANG model {{?RFC9418}} and incident
-will be reported if symptoms match the condition of incident.
+network incident, services, sub-services and metrics can be preconfigured via
+APIs defined by service assurance YANG model {{?RFC9418}} and the networkincident
+will be reported if symptoms match the condition of the network incident.
 
 ## Relationship with RFC8969
 
 {{?RFC8969}} defines a framework for network automation using YANG, this
 framework breaks down YANG modules into three layers, service layer,
 network layer and device layer, and contains service deployment,
-service optimization/assurance, and service diagnosis.  Incident
+service optimization/assurance, and service diagnosis.  Network incident
 works at the network layer and aggregates alarms, metrics and other
 information from device layer, it's helpful to provide service
-assurance.  And the incident diagnosis may be one way of service
+assurance.  And the network incident diagnosis may be one way of service
 diagnosis.
 
 ## Relationship with Trace Context
@@ -546,14 +549,14 @@ netconf extension for {{W3C-Trace-Context}} and
 {{?I-D.quilbeuf-opsawg-configuration-tracing}} defines a mechanism for
 configuration tracing.  If some errors occur when services are
 deploying, it's very easy to identify these errors by distributed
-system tracing, and an incident should be reported.
+system tracing, and a network incident should be reported.
 
 # Functional Interface Requirements between the Client and the Server
 
 ## Incident Identification
 
 As depicted in {{ident}}, multiple alarms, metrics, or hybrid can be
-aggregated into an incident after analysis.
+aggregated into a network incident after analysis.
 
 ~~~~
             +--------------+
@@ -594,26 +597,26 @@ aggregated into an incident after analysis.
 {:#ident title="Incident Identification" artwork-align="center"}
 
 The network incident management server MUST be capable of identifying
-incidents.  Multiple alarms, metrics and other information are
+network incidents.  Multiple alarms, metrics and other information are
 reported to incident server, and the server must analyze it and find
-out the correlations of them, if the correlation match the incident
-rules, incident will be identified and reported to the client.
+out the correlations of them, if the correlation match the network incident
+rules, network incident will be identified and reported to the client.
 Service impact analysis will be performed if an indent is identified,
-and the content of incident will be updated if impacted network
+and the content of network incident will be updated if impacted network
 services are detected.
 
-AI/ML may be used to identify the incident.  Expert system and online
+AI/ML may be used to identify the network incident.  Expert system and online
 learning can help AI to identify the correlation of alarms, metrics
 and other information by time-base correlation algorithm, topo-based
 correlation algorithm, etc.  For example, if interface is down, then
 many protocol alarms will be reported, AI will think these alarms
 have some correlations.  These correlations will be put into
-knowledge base, and the incident will be identified faster according
+knowledge base, and the network incident will be identified faster according
 to knowledge base next time.
 
-As mentioned above, SAIN is another way to implement incident
+As mentioned above, SAIN is another way to implement network incident
 identification.  Trace context defined in {{W3C-Trace-Context}}
-may be helpful for incident identification.
+may be helpful for network incident identification.
 
 ~~~~
 	 +----------------------+
@@ -641,14 +644,14 @@ VPN A       | |            |
 |    +---+       +---+         +---+        +---+   |
 +---------------------------------------------------+
 ~~~~
-{:#exam1 title="Example 1 of Incident Identification" artwork-align="center"}
+{:#exam1 title="Example 1 of Network Incident Identification" artwork-align="center"}
 
 As described in {{exam1}}, vpn a is deployed from PE1 to PE2, if a
 interface of P1 is going down, many alarms are triggered, such as
 interface down, igp down, and igp peer abnormal from P2.
 
 These alarms are aggregated and analyzed by the controller/incident
-management server, and then the incident 'vpn unavailable' is triggered
+management server, and then the network incident 'vpn unavailable' is triggered
 by the controller/incident management server.
 
 Note that incident management server can rely on data correlation technology such as
@@ -683,16 +686,16 @@ VPN A               |            |
 |    +---+       +---+         +---+        +---+    |
 +----------------------------------------------------+
 ~~~~
-{:#exam2 title="Example 2 of Incident Identification" artwork-align="center"}
+{:#exam2 title="Example 2 of Network Incident Identification" artwork-align="center"}
 
 As described in {{exam2}}, controller collect the network metrics from
 network elements, it finds the packet loss of P1 and the path delay
-of P2 exceed the thresholds, an incident 'VPN A degradation' may be
+of P2 exceed the thresholds, a network incident 'VPN A degradation' may be
 triggered after service impact analysis.
 
 ## Incident Diagnosis
 
-After an incident is reported to the network incident management client, the
+After a network incident is reported to the network incident management client, the
 incident management client MAY diagnose the incident to determine the root cause.
 Some diagnosis operations may affect the running network services.  The
 client can choose not to perform that diagnosis operation after
@@ -706,20 +709,20 @@ quality metrics, etc.
 ## Incident Resolution
 
 After the root cause is diagnosed, the client MAY resolve the
-incident.  The client MAY choose resolve the incident by invoking
+network incident.  The client MAY choose resolve the network incident by invoking
 other functions, such as routing calculation function, configuration
 function, dispatching a ticket or asking the server to resolve it.
 Generally, the client would attempt to directly resolve the root
 cause.  If the root cause cannot be resolved, an alternative solution
-SHOULD be required.  For example, if an incident caused by a physical
+SHOULD be required.  For example, if a network incident caused by a physical
 component failure, it cannot be automatically resolved, the standby
 link can be used to bypass the faulty component.
 
-Incident server will monitor the status of incident, if the faults
-are fixed, the server will update the status of incident to
-'cleared', and report the updated incident to the client.
+Incident server will monitor the status of the network incident, if the faults
+are fixed, the server will update the status of network incident to
+'cleared', and report the updated network incident to the client.
 
-Incident resolution may affect the running network services.  The
+Network incident resolution may affect the running network services.  The
 client can choose not to perform those operations after determining
 the impact is not trivial.
 
@@ -733,36 +736,36 @@ The incident ID MUST be unique in the whole system.
 
 ## The Incident Lifecycle
 
-The incident model clearly separately incident instance lifecycle
+The incident model clearly separately network incident instance lifecycle
 from operator incident lifecycle.
-o Incident instance lifecycle: The incident instrumentation that
-  control incident raised, updated and cleared.
-o Operator incident lifecycle: Operators acting upon incident with rpcs
+o Network incident instance lifecycle: The network incident instrumentation that
+  control network incident raised, updated and cleared.
+o Operator incident lifecycle: Operators acting upon the network incident with rpcs
   like acknowledged, diagnosed and resolved.
 
 ### Incident Instance Lifecycle
 
-From an incident instance perspective, an incident can have the
-following lifecycle: 'raised', 'updated', 'cleared'.  When an
+From a network incident instance perspective, a network incident can have the
+following lifecycle: 'raised', 'updated', 'cleared'.  When a network
 incident instance is firstly generated, the status is 'raised'.  If the
-status changes after the incident instance is generated, (for example,
+status changes after the network incident instance is generated, (for example,
 self-diagnosis, diagnosis command issued by the client, or any other
 condition causes the status to change but does not reach the 'cleared'
-level.) , the status changes to 'updated'.  When an incident is successfully
+level.) , the status changes to 'updated'.  When a network incident is successfully
 resolved, the status changes to 'cleared'.
 
 ### Operator Incident Lifecycle
 
-Operators can act upon incident with incident rpcs. From an operator perspective,
-the lifecycle of an incident instance includes 'acknowledged', 'diagnosed', and
+Operators can act upon network incident with network incident rpcs. From an operator perspective,
+the lifecycle of a network incident instance includes 'acknowledged', 'diagnosed', and
 'resolved'.
 
-When an incident instance is generated, the operator SHOULD acknowledge the incident
-with 'incident-acknowledge' rpc. And then the operator attempts to diagnose the incident
+When a network incident instance is generated, the operator SHOULD acknowledge the network incident
+with 'incident-acknowledge' rpc. And then the operator attempts to diagnose the network incident
 with 'incident-diagnose' rpc (for example, find out the root cause and affected components).
 Diagnosis is not mandatory. If the root cause and affected components are known when the
-incident is generated, diagnosis is not required.  After locating the root cause and
-affected components, operator can try to resolve the incident by invoking 'incident-resolve'
+network incident is generated, diagnosis is not required.  After locating the root cause and
+affected components, operator can try to resolve the network incident by invoking 'incident-resolve'
 rpc.
 
 # Incident Data Model Design
@@ -772,7 +775,7 @@ rpc.
 There is one YANG module in the model, "ietf-incident", which defines
 technology independent abstraction of network incident construct for
 alarm, log, performance metrics, etc.  The information reported in
-the incident include Root cause, priority,impact, suggestion, etc.
+the network incident include Root cause, priority,impact, suggestion, etc.
 
 At the top of "ietf-incident" module is the Network Incident.
 Network incident is represented as a list and indexed by "incident-id".
@@ -780,7 +783,7 @@ Each Network Incident is associated with a service instance, domain and
 sources.  Under sources, there is one or more sources.  Each source
 corresponds to node defined in the network topology model and network
 resource in the network device,e.g., interface.  In addition, "ietf-incident"
-support one general notification to report incident state changes and
+support one general notification to report network incident state changes and
 three rpcs to manage the network incidents.
 
 ~~~~
@@ -883,13 +886,13 @@ notifications:
 ~~~~
 
 A general notification, incident-notification, is provided here.
-When an incident instance is identified, the notification will be
+When a network incident instance is identified, the notification will be
 sent.  After a notification is generated, if the network incident management
 server performs self diagnosis or the client uses the interfaces
 provided by the network incident management server to deliver diagnosis and
 resolution actions, the notification update behavior is triggered,
 for example, the root cause objects and affected objects are updated.
-When an incident is successfully resolved, the status of the incident
+When a network incident is successfully resolved, the status of the network incident
 would be set to 'cleared'.
 
 ## Incident Acknowledge
@@ -916,14 +919,14 @@ The incident-acknowledge rpc can confirm multiple incidents at a time
 |  |  +---w incident-no*
 |  |          -> /inc:incidents/inc:incident/inc:incident-no
 ~~~~
-After an incident is generated, incident diagnose rpc can be used to
-diagnose the incident and locate the root causes.  On demand Diagnosis
+After a network incident is generated, network incident diagnose rpc can be used to
+diagnose the network incident and locate the root causes.  On demand Diagnosis
 can be performed on some detection tasks, such as BFD detection, flow
 detection, telemetry collection, short-term threshold alarm,
 configuration error check, or test packet injection.
 
-After the on demand diagnosis is performed sucessfully, a separate incident
-update notification will be triggered to report the latest status of the incident
+After the on demand diagnosis is performed sucessfully, a separate network incident
+update notification will be triggered to report the latest status of the network incident
 asynchronously.
 
 ## Incident Resolution
@@ -940,10 +943,10 @@ rpc can be used to resolve the incident (if the server can resolve
 it).  How to resolve an incident instance is out of the scope of this
 document.
 
-Incident resolve rpc allows multiple incident instances to be
-resolved at a time.  If an incident instance is successfully
-resolved, a separate notification will be triggered to update the incident
-status to 'cleared'.  If the incident content is changed during this
+Network incident resolve rpc allows multiple network incident instances to be
+resolved at a time.  If a network incident instance is successfully
+resolved, a separate notification will be triggered to update the network incident
+status to 'cleared'.  If the network incident content is changed during this
 process, a notification update will be triggered.
 
 ## RPC Failure
@@ -1029,7 +1032,7 @@ nodes and their sensitivity/vulnerability:
 
 '/incidents/incident': This list specifies the network incident entries.
 Unauthorized read access of this list can allow intruders to access
-incident information and potentially get a picture of the broken state
+network incident information and potentially get a picture of the broken state
 of the network. Intruders may exploit the vulnerabilities of the network
 to cause further negative impact on the network. Care must be taken to
 ensure that this list are accessed only by authorized users.
