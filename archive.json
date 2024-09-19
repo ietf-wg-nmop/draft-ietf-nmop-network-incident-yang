@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-09-17T00:28:10.319213+00:00",
+  "timestamp": "2024-09-19T00:34:33.838592+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
   "labels": [
     {
@@ -283,6 +283,22 @@
           "updatedAt": "2024-09-03T12:02:55Z"
         }
       ]
+    },
+    {
+      "number": 17,
+      "id": "I_kwDOL4Sz0s6XCMz7",
+      "title": "clarify incident management vs. fault management ",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/issues/17",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "See more context here: https://mailarchive.ietf.org/arch/msg/nmop/LXqGdhaf6gtOVjNReatEpI7yoT0/",
+      "createdAt": "2024-09-18T14:39:40Z",
+      "updatedAt": "2024-09-18T14:39:40Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
