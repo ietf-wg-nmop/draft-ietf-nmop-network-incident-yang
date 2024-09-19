@@ -228,28 +228,28 @@ Network incident:
    A problem is one cause or potential cause of one or more network incidents.
 
 Incident management:
-:  Lifecycle management of incidents, including
-   incident identification, reporting, acknowledgement, diagnosis, and
+:  Lifecycle management of network incidents, including
+   network incident identification, reporting, acknowledgement, diagnosis, and
    resolution.
 
 Incident management system:
-:  An entity which implements incident
+:  An entity which implements network incident
    management. It includes (but not limited to) incident server
    and incident client.
 
 Incident server:
 :  An entity which provides which is responsible for detecting and reporting
-   an incident, performing incident diagnosis, resolution and prediction, etc.
+   one network incident, performing network incident diagnosis, resolution and prediction, etc.
 
 Incident client:
-:  An entity which can manage incidents.
-   For example, it can receive incident notifications, query the
-   information of incidents, instruct an incident management server
+:  An entity which can manage network incidents.
+   For example, it can receive network incident notifications, query the
+   information of network incidents, instruct an incident management server
    to diagnose, help resolve, etc.
 
 Incident handler:
-: An entity which can receive incident notification, store and query the information of incidents
-  for fault analysis.
+: An entity which can receive network incident notification, store and query the information of 
+  network incidents for data analysis.
 
 # Sample Use Cases
 
