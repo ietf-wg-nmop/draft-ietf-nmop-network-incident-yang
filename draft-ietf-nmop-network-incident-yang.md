@@ -248,7 +248,7 @@ Incident client:
    to diagnose, help resolve, etc.
 
 Incident handler:
-: An entity which can receive network incident notification, store and query the information of 
+: An entity which can receive network incident notification, store and query the information of
   network incidents for data analysis.
 
 # Sample Use Cases
