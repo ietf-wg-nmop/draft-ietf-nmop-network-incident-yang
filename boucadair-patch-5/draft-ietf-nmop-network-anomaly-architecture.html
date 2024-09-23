@@ -1,0 +1,2102 @@
+<!DOCTYPE html>
+<html lang="en" class="Internet-Draft">
+<head>
+<meta charset="utf-8">
+<meta content="Common,Latin" name="scripts">
+<meta content="initial-scale=1.0" name="viewport">
+<title>An Architecture for a Network Anomaly Detection Framework</title>
+<meta content="Thomas Graf" name="author">
+<meta content="Wanting Du" name="author">
+<meta content="Pierre Francois" name="author">
+<meta content="
+       This document describes the motivation and architecture of a Network
+      Anomaly Detection Framework and the relationship to other documents
+      describing network symptom semantics and network incident lifecycle. 
+       The described architecture for detecting IP network service
+      interruption is generic applicable and extensible. Different
+      applications are being described and exampled with open-source running
+      code. 
+    " name="description">
+<meta content="xml2rfc 3.23.1" name="generator">
+<meta content="draft-ietf-nmop-network-anomaly-architecture-latest" name="ietf.draft">
+<!-- Generator version information:
+  xml2rfc 3.23.1
+    Python 3.12.6
+    ConfigArgParse 1.7
+    google-i18n-address 3.1.1
+    intervaltree 3.1.0
+    Jinja2 3.1.4
+    lxml 4.9.4
+    platformdirs 4.3.6
+    pycountry 22.3.5
+    PyYAML 6.0.1
+    requests 2.32.3
+    setuptools 70.3.0
+    wcwidth 0.2.13
+-->
+<link href="draft-ietf-nmop-network-anomaly-architecture.xml" rel="alternate" type="application/rfc+xml">
+<link href="#copyright" rel="license">
+<style type="text/css">@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-cyrillic.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-cyrillic.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Lora SemiBold'), local('Lora-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-semibold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Cabin Condensed';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Cabin Condensed';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Cabin Condensed';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Oxygen Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Oxygen Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  color-scheme: light dark;
+  --background-color: #fff;
+  --text-color: #222;
+  --title-color: #191919;
+  --link-color: #2a6496;
+  --highlight-color: #f9f9f9;
+  --line-color: #eee;
+  --pilcrow-weak: #ddd;
+  --pilcrow-strong: #bbb;
+  --small-font-size: 14.5px;
+  --font-mono: 'Oxygen Mono', monospace;
+  scrollbar-color: #bbb #eee;
+}
+body {
+  max-width: 600px;
+  margin: 75px auto;
+  padding: 0 5px;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  font: 16px/22px "Lora", serif;
+  scroll-behavior: smooth;
+}
+
+.ears {
+  display: none;
+}
+
+/* headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Cabin Condensed", sans-serif;
+  font-weight: 600;
+  margin: 0.8em 0 0.3em;
+  font-size-adjust: 0.5;
+  color: var(--title-color);
+}
+h1#title {
+  font-size: 32px;
+  line-height: 40px;
+  clear: both;
+}
+h1#title, h1#rfcnum {
+  margin: 1.5em 0 0.2em;
+}
+h1#rfcnum + h1#title {
+  margin: 0.2em 0;
+}
+
+h1, h2, h3 {
+  font-size: 22px;
+  line-height: 27px;
+}
+h4, h5, h6 {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+/* general structure */
+.author {
+  padding-bottom: 0.3em;
+}
+#abstract+p {
+  font-size: 18px;
+  line-height: 24px;
+}
+#abstract+p code, #abstract+p samp, #abstract+p tt {
+  font-size: 16px;
+  line-height: 0;
+}
+
+p {
+  padding: 0;
+  margin: 0.5em 0;
+  text-align: left;
+}
+div {
+  margin: 0;
+}
+.alignRight.art-text {
+  background-color: var(--highlight-color);
+  border: 1px solid var(--line-color);
+  border-radius: 3px;
+  padding: 0.5em 1em 0;
+  margin-bottom: 0.5em;
+}
+.alignRight.art-text pre {
+  padding: 0;
+  width: auto;
+}
+.alignRight {
+  margin: 1em 0;
+}
+.alignRight > *:first-child {
+  border: none;
+  margin: 0;
+  float: right;
+  clear: both;
+}
+.alignRight > *:nth-child(2) {
+  clear: both;
+  display: block;
+  border: none;
+}
+svg {
+  display: block;
+}
+/* font-family isn't space-separated, but =~ will have to do */
+svg[font-family~="monospace" i], svg [font-family~="monospace" i] {
+  font-family: var(--font-mono);
+}
+.alignCenter.art-text {
+  background-color: var(--highlight-color);
+  border: 1px solid var(--line-color);
+  border-radius: 3px;
+  padding: 0.5em 1em 0;
+  margin-bottom: 0.5em;
+}
+.alignCenter.art-text pre {
+  padding: 0;
+  width: auto;
+}
+.alignCenter {
+  margin: 1em 0;
+}
+.alignCenter > *:first-child {
+  border: none;
+  /* this isn't optimal, but it's an existence proof.  PrinceXML doesn't
+     support flexbox yet.
+  */
+  display: table;
+  margin: 0 auto;
+}
+
+/* lists */
+ol, ul {
+  padding: 0;
+  margin: 0 0 0.5em 2em;
+}
+:is(ol, ul) :is(ol, ul) {
+  margin-left: 1em;
+}
+li {
+  margin: 0 0 0.25em 0;
+}
+.ulCompact li {
+  margin: 0;
+}
+ul.empty, .ulEmpty {
+  list-style-type: none;
+}
+ul.empty li, .ulEmpty li {
+  margin-top: 0.5em;
+}
+:is(ul, ol).compact, .ulCompact, .olCompact {
+  line-height: 1;
+  margin: 0 0 0 2em;
+}
+
+/* definition lists */
+dl {
+  clear: left;
+  --indent: 3ch;
+  /* --indent: attr(indent ch); not supported in any browser, but we can dream */
+}
+dl.olPercent {
+  --indent: 5ch;
+}
+dl > dt {
+  float: left;
+  margin-right: 2ch;
+  min-width: 8ch;
+}
+dl.dlNewline > dt {
+  float: none;
+}
+dl > dd {
+  margin-bottom: .8em;
+  margin-left: var(--indent) !important; /* stupid element overrides */
+  min-height: 2ex;
+}
+dl.olPercent > dt {
+  min-width: calc(var(--indent) - 2ch);
+}
+:is(dl.compact, .dlCompact) > dd {
+  margin-bottom: 0;
+}
+:is(dl.compact, .dlCompact) > dd > :is(:first-child, .break:first-child + *) {
+  margin-top: 0;
+}
+:is(dl.compact, .dlCompact) > dd > :is(:last-child) {
+  margin-bottom: 0;
+}
+dl > dd > dl {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+}
+:is(dd, span).break {
+  display: none;
+}
+
+/* links */
+a, a[href].selfRef:hover {
+  text-decoration: none;
+}
+a[href] {
+  color: var(--link-color);
+}
+a[href].selfRef, .iref + a[href].internal {
+  color: var(--text-color);
+}
+a[href]:hover {
+  text-decoration: underline;
+}
+a[href].selfRef:hover {
+  background-color: var(--highlight-color);
+}
+a.xref:is(.cite, .auto), :is(#status-of-memo, #copyright) a {
+  white-space: nowrap;
+}
+
+/* Figures */
+tt, code, pre {
+  background-color: var(--highlight-color);
+  font: 14px/22px var(--font-mono);
+}
+tt, code {
+  /* changing the font for inline elements leads to different ascender
+     and descender heights; as we want to retain baseline alignment,
+     remove leading to avoid altering the final height of lines
+     note: this fails if these blocks take an entire line,
+     a different solution would be great */
+  line-height: 0;
+}
+:is(h1, h2, h3, h4, h5, h6) :is(tt, code) {
+  font-size: 84%;
+}
+pre {
+  border: 1px solid var(--line-color);
+  font-size: 13.5px;
+  line-height: 16px;
+  letter-spacing: -0.2px;
+  margin: 5px;
+  padding: 5px;
+}
+img {
+  max-width: 100%;
+}
+figure {
+  margin: 0.5em 0;
+  padding: 0;
+}
+figure blockquote {
+  margin: 0.8em 0.4em 0.4em;
+}
+figcaption, caption {
+  font-style: italic;
+  margin: 0.5em 1.5em;
+  text-align: left;
+}
+@media screen {
+  /* Auto-collapse boilerplate. */
+  :is(#status-of-memo, #copyright) p {
+    margin: -2px 0;
+    max-height: 0;
+    transition: max-height 2s ease, margin 0.5s ease 0.5s;
+    overflow: hidden;
+  }
+  :is(#status-of-memo, #copyright):hover p,
+  :is(#status-of-memo, #copyright) h2:target ~ p {
+    margin: 0.5em 0;
+    max-height: 500px;
+    overflow: auto;
+  }
+  pre, svg {
+    display: inline-block;
+    overflow-x: auto;
+  }
+  pre {
+    max-width: 100%;
+    width: calc(100% - 22px - 1em);
+  }
+  svg {
+    max-width: calc(100% - 22px - 1em);
+  }
+  figure pre {
+    display: block;
+    width: calc(100% - 25px);
+  }
+  :is(pre, svg) + .pilcrow {
+    display: inline-block;
+    vertical-align: text-bottom;
+    padding-bottom: 8px;
+  }
+}
+
+/* aside, blockquote */
+aside, blockquote {
+  margin-left: 0;
+  padding: 0 2em;
+  font-style: italic;
+}
+blockquote {
+  margin: 1em 0;
+}
+cite {
+  display: block;
+  text-align: right;
+  font-style: italic;
+}
+
+/* tables */
+table {
+  max-width: 100%;
+  margin: 0 0 1em;
+  border-collapse: collapse;
+}
+table.right {
+  margin-left: auto;
+}
+table.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+table.left {
+  margin-right: auto;
+}
+thead, tbody {
+  border: 1px solid var(--line-color);
+}
+th, td {
+  text-align: left;
+  vertical-align: top;
+  padding: 5px 10px;
+}
+th {
+  background-color: var(--line-color);
+}
+:is(tr:nth-child(2n), thead+tbody > tr:nth-child(2n+1)) > td {
+  background-color: var(--background-color);
+}
+:is(tr:nth-child(2n+1), thead+tbody > tr:nth-child(2n)) > td {
+  background-color: var(--highlight-color);
+}
+table caption {
+  margin: 0;
+  padding: 3px 0 3px 1em;
+}
+table p {
+  margin: 0;
+}
+
+/* pilcrow */
+a.pilcrow {
+  margin-left: 3px;
+  opacity: 0.2;
+  user-select: none;
+}
+a.pilcrow[href] { color: var(--pilcrow-weak); }
+a.pilcrow[href]:hover { text-decoration: none; }
+@media not print {
+  :hover > a.pilcrow {
+    opacity: 1;
+  }
+  a.pilcrow[href]:hover {
+    color: var(--pilcrow-strong);
+    background-color: transparent;
+  }
+}
+@media print {
+  a.pilcrow {
+    display: none;
+  }
+}
+
+/* misc */
+hr {
+  border: 0;
+  border-top: 1px solid var(--line-color);
+}
+.bcp14 {
+  font-variant: small-caps;
+  font-weight: 600;
+  font-size: var(--small-font-size);
+}
+.role {
+  font-variant: all-small-caps;
+}
+sub, sup {
+  line-height: 1;
+  font-size: 80%;
+}
+
+/* info block */
+#identifiers {
+  margin: 0;
+  font-size: var(--small-font-size);
+  line-height: 18px;
+  --identifier-width: 15ch;
+}
+#identifiers dt {
+  width: var(--identifier-width);
+  min-width: var(--identifier-width);
+  clear: left;
+  float: left;
+  text-align: right;
+  margin-right: 1ch;
+}
+#identifiers dd {
+  margin: 0;
+  margin-left: calc(1em + var(--identifier-width)) !important;
+  min-width: 5em;
+}
+#identifiers .authors .author {
+  display: inline-block;
+  margin-right: 1.5em;
+}
+#identifiers .authors .org {
+  font-style: italic;
+}
+
+/* The prepared/rendered info at the very bottom of the page */
+.docInfo {
+  color: #999;
+  font-size: 0.9em;
+  font-style: italic;
+  margin-top: 2em;
+}
+.docInfo .prepared {
+  float: left;
+}
+.docInfo .prepared {
+  float: right;
+}
+
+/* table of contents */
+#toc {
+  padding: 0.75em 0 2em 0;
+  margin-bottom: 1em;
+}
+#toc nav ul {
+  margin: 0 0.5em 0 0;
+  padding: 0;
+  list-style: none;
+}
+#toc nav li {
+  line-height: 1.3em;
+  margin: 2px 0;
+  padding-left: 1.2em;
+  text-indent: -1.2em;
+}
+#toc a.xref {
+  white-space: normal;
+}
+/* references */
+.references dt {
+  text-align: right;
+  font-weight: bold;
+  min-width: 10ch;
+  margin-right: 1.5ch;
+}
+.references dt:target::before {
+  content: "⇒";
+  width: 15px;
+  margin: 0 10px 0 -25px;
+}
+.references dd {
+  margin-left: 12ch !important;
+  overflow: auto;
+}
+
+.refInstance {
+  margin-bottom: 1.25em;
+}
+
+.references .ascii {
+  margin-bottom: 0.25em;
+}
+
+/* index */
+#rfc\.index\.index + ul {
+  margin-left: 0;
+}
+
+/* authors */
+address.vcard {
+  font-style: normal;
+  margin: 1em 0;
+}
+address.vcard .nameRole {
+  font-weight: 700;
+  margin-left: 0;
+}
+address.vcard .label {
+  margin: 0.5em 0;
+}
+address.vcard .type {
+  display: none;
+}
+.alternative-contact {
+  margin: 1.5em 0 1em;
+}
+hr.addr {
+  border-top: 1px dashed;
+  margin: 0;
+  color: #ddd;
+  max-width: calc(100% - 16px);
+}
+@media (min-width: 500px) {
+  #authors-addresses > section {
+    column-count: 2;
+    column-gap: 20px;
+  }
+  #authors-addresses > section > h2 {
+    column-span: all;
+  }
+  /* hack for break-inside: avoid-column */
+  #authors-addresses address {
+    display: inline-block;
+    break-inside: avoid-column;
+  }
+}
+
+.rfcEditorRemove p:first-of-type {
+  font-style: italic;
+}
+.cref {
+  background-color: rgba(249, 232, 105, 0.3);
+  padding: 2px 4px;
+}
+.crefSource {
+  font-style: italic;
+}
+/* alternative layout for smaller screens */
+@media screen and (max-width: 929px) {
+  #toc {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    padding: 1px 0 0 0;
+    margin: 0;
+    border-bottom: 1px solid #ccc;
+    opacity: 0.6;
+  }
+  #toc.active {
+      opacity: 1;
+  }
+  #toc h2 {
+    margin: 0;
+    padding: 2px 0 2px 6px;
+    padding-right: 1em;
+    font-size: 18px;
+    line-height: 24px;
+    min-width: 190px;
+    text-align: right;
+    background-color: #444;
+    color: white;
+    cursor: pointer;
+  }
+  #toc h2::before { /* css hamburger */
+    float: right;
+    position: relative;
+    width: 1em;
+    height: 1px;
+    left: -164px;
+    margin: 8px 0 0 0;
+    background: white none repeat scroll 0 0;
+    box-shadow: 0 4px 0 0 white, 0 8px 0 0 white;
+    content: "";
+  }
+  #toc nav {
+    display: none;
+    background-color: var(--background-color);
+    padding: 0.5em 1em 1em;
+    overflow: auto;
+    overscroll-behavior: contain;
+    height: calc(100vh - 48px);
+    border-left: 1px solid #ddd;
+  }
+  #toc.active nav {
+    display: block;
+  }
+  /* Make the collapsed ToC header render white on gray also when it's a link */
+  #toc h2 a,
+  #toc h2 a:link,
+  #toc h2 a:focus,
+  #toc h2 a:hover,
+  #toc a.toplink,
+  #toc a.toplink:hover {
+    color: white;
+    background-color: #444;
+    text-decoration: none;
+  }
+  #toc a.toplink {
+    margin-top: 2px;
+  }
+}
+
+/* alternative layout for wide screens */
+@media screen and (min-width: 930px) {
+  body {
+    padding-right: 360px;
+    padding-right: calc(min(180px + 20%, 500px));
+  }
+  #toc {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    right: calc(50vw - 480px);
+    width: 312px;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+  }
+  #toc h2 {
+    margin: 0;
+    padding: 0.25em 1em 1em 0;
+  }
+  #toc nav {
+    display: block;
+    height: calc(90vh - 84px);
+    bottom: 0;
+    padding: 0.5em 0 2em;
+    overflow: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+  }
+  #toc nav > ul  {
+    margin-bottom: 2em;
+  }
+  #toc ul {
+    margin: 0 0 0 4px;
+    font-size: var(--small-font-size);
+  }
+  #toc ul :is(p, li) {
+    margin: 2px 0;
+    line-height: 22px;
+  }
+  img { /* future proofing */
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* pagination */
+@media print {
+  body {
+    width: 100%;
+  }
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+  #n-copyright-notice {
+    border-bottom: none;
+  }
+  #toc, #n-introduction {
+    page-break-before: always;
+  }
+  #toc {
+    border-top: none;
+    padding-top: 0;
+  }
+  figure, pre, .vcard {
+    page-break-inside: avoid;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+  }
+  :is(h2, h3, h4, h5, h6)+*, dd {
+    page-break-before: avoid;
+  }
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 10pt;
+  }
+  table {
+    border: 1px solid #ddd;
+  }
+  td {
+    border-top: 1px solid #ddd;
+  }
+  .toplink {
+    display: none;
+  }
+}
+
+@page :first {
+  padding-top: 0;
+  @top-left {
+    content: normal;
+    border: none;
+  }
+  @top-center {
+    content: normal;
+    border: none;
+  }
+  @top-right {
+    content: normal;
+    border: none;
+  }
+}
+
+@page {
+  size: A4;
+  margin-bottom: 45mm;
+  padding-top: 20px;
+}
+
+/* Changes introduced to fix issues found during implementation */
+
+/* Separate body from document info even without intervening H1 */
+section {
+  clear: both;
+}
+
+/* Top align author divs, to avoid names without organization dropping level with org names */
+.author {
+  vertical-align: top;
+}
+
+/* Style section numbers with more space between number and title */
+.section-number {
+  padding-right: 0.5em;
+}
+
+/* Add styling for a link in the ToC that points to the top of the document */
+a.toplink {
+  float: right;
+  margin: 8px 0.5em 0;
+}
+
+/* Provide styling for table cell text alignment */
+table .text-left {
+  text-align: left;
+}
+table .text-center {
+  text-align: center;
+}
+table .text-right {
+  text-align: right;
+}
+
+/* Make the alternative author contact information look less like just another
+   author, and group it closer with the primary author contact information */
+.alternative-contact {
+  margin: 0.5em 0 0.25em 0;
+}
+address .non-ascii {
+  margin: 0 0 0 2em;
+}
+
+/* With it being possible to set tables with alignment
+  left, center, and right, { width: 100%; } does not make sense */
+table {
+  width: auto;
+}
+
+/* Avoid reference text that sits in a block with very wide left margin,
+   because of a long floating dt label.*/
+.references dd {
+  overflow: visible;
+}
+
+/* Control caption placement */
+caption {
+  caption-side: bottom;
+}
+
+/* Limit the width of the author address vcard, so names in right-to-left
+   script don't end up on the other side of the page. */
+
+address.vcard {
+  max-width: 20em;
+  margin-right: auto;
+}
+
+/* For address alignment dependent on LTR or RTL scripts */
+address div.left {
+  text-align: left;
+}
+address div.right {
+  text-align: right;
+}
+
+/* Dark mode. */
+@media (prefers-color-scheme: dark) {
+:root {
+  --background-color: #121212;
+  --text-color: #f0f0f0;
+  --title-color: #fff;
+  --link-color: #4da4f0;
+  --highlight-color: #282828;
+  --line-color: #444;
+  --pilcrow-weak: #444;
+  --pilcrow-strong: #666;
+  scrollbar-color: #777 #333;
+}
+}
+
+/* SVG Trick: a prefix match works because only black and white are allowed */
+svg :is([stroke="black"], [stroke^="#000"]) {
+  stroke: var(--text-color);
+}
+svg :is([stroke="white"], [stroke^="#fff"]) {
+  stroke: var(--background-color);
+}
+svg :is([fill="black"], [fill^="#000"], :not([fill])) {
+  fill: var(--text-color);
+}
+svg :is([fill="white"], [fill^="#fff"]) {
+  fill: var(--background-color);
+}
+</style>
+
+</head>
+<body class="xml2rfc">
+<table class="ears">
+<thead><tr>
+<td class="left">Internet-Draft</td>
+<td class="center">Network Anomaly Detection Framework</td>
+<td class="right">September 2024</td>
+</tr></thead>
+<tfoot><tr>
+<td class="left">Graf, et al.</td>
+<td class="center">Expires 13 March 2025</td>
+<td class="right">[Page]</td>
+</tr></tfoot>
+</table>
+<div id="external-metadata" class="document-information"></div>
+<div id="internal-metadata" class="document-information">
+<dl id="identifiers">
+<dt class="label-workgroup">Workgroup:</dt>
+<dd class="workgroup">NMOP</dd>
+<dt class="label-internet-draft">Internet-Draft:</dt>
+<dd class="internet-draft">draft-ietf-nmop-network-anomaly-architecture-latest</dd>
+<dt class="label-published">Published:</dt>
+<dd class="published">
+<time datetime="2024-09-09" class="published">9 September 2024</time>
+    </dd>
+<dt class="label-intended-status">Intended Status:</dt>
+<dd class="intended-status">Informational</dd>
+<dt class="label-expires">Expires:</dt>
+<dd class="expires"><time datetime="2025-03-13">13 March 2025</time></dd>
+<dt class="label-authors">Authors:</dt>
+<dd class="authors">
+<div class="author">
+      <div class="author-name">T. Graf</div>
+<div class="org">Swisscom</div>
+</div>
+<div class="author">
+      <div class="author-name">W. Du</div>
+<div class="org">Swisscom</div>
+</div>
+<div class="author">
+      <div class="author-name">P. Francois</div>
+<div class="org">INSA-Lyon</div>
+</div>
+</dd>
+</dl>
+</div>
+<h1 id="title">An Architecture for a Network Anomaly Detection Framework</h1>
+<section id="section-abstract">
+      <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
+<p id="section-abstract-1">This document describes the motivation and architecture of a Network
+      Anomaly Detection Framework and the relationship to other documents
+      describing network symptom semantics and network incident lifecycle.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-2">The described architecture for detecting IP network service
+      interruption is generic applicable and extensible. Different
+      applications are being described and exampled with open-source running
+      code.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
+</section>
+<section class="note rfcEditorRemove" id="section-note.1">
+      <h2 id="name-discussion-venues">
+<a href="#name-discussion-venues" class="section-name selfRef">Discussion Venues</a>
+      </h2>
+<p id="section-note.1-1">This note is to be removed before publishing as an RFC.<a href="#section-note.1-1" class="pilcrow">¶</a></p>
+<p id="section-note.1-2">Discussion of this document takes place on the Operations and
+      Management Area Working Group Working Group mailing list
+      (nmop@ietf.org), which is archived at <span><a href="https://mailarchive.ietf.org/arch/browse/nmop/">https://mailarchive.ietf.org/arch/browse/nmop/</a></span> .<a href="#section-note.1-2" class="pilcrow">¶</a></p>
+<p id="section-note.1-3">Source for this draft and an issue tracker can be found at <span><a href="https://github.com/network-analytics/draft-netana-nmop-network-anomaly-architecture/">https://github.com/network-analytics/draft-netana-nmop-network-anomaly-architecture/</a></span>
+      .<a href="#section-note.1-3" class="pilcrow">¶</a></p>
+</section>
+<div id="status-of-memo">
+<section id="section-boilerplate.1">
+        <h2 id="name-status-of-this-memo">
+<a href="#name-status-of-this-memo" class="section-name selfRef">Status of This Memo</a>
+        </h2>
+<p id="section-boilerplate.1-1">
+        This Internet-Draft is submitted in full conformance with the
+        provisions of BCP 78 and BCP 79.<a href="#section-boilerplate.1-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-2">
+        Internet-Drafts are working documents of the Internet Engineering Task
+        Force (IETF). Note that other groups may also distribute working
+        documents as Internet-Drafts. The list of current Internet-Drafts is
+        at <span><a href="https://datatracker.ietf.org/drafts/current/">https://datatracker.ietf.org/drafts/current/</a></span>.<a href="#section-boilerplate.1-2" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-3">
+        Internet-Drafts are draft documents valid for a maximum of six months
+        and may be updated, replaced, or obsoleted by other documents at any
+        time. It is inappropriate to use Internet-Drafts as reference
+        material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-4">
+        This Internet-Draft will expire on 13 March 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="copyright">
+<section id="section-boilerplate.2">
+        <h2 id="name-copyright-notice">
+<a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
+        </h2>
+<p id="section-boilerplate.2-1">
+            Copyright (c) 2024 IETF Trust and the persons identified as the
+            document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.2-2">
+            This document is subject to BCP 78 and the IETF Trust's Legal
+            Provisions Relating to IETF Documents
+            (<span><a href="https://trustee.ietf.org/license-info">https://trustee.ietf.org/license-info</a></span>) in effect on the date of
+            publication of this document. Please review these documents
+            carefully, as they describe your rights and restrictions with
+            respect to this document. Code Components extracted from this
+            document must include Revised BSD License text as described in
+            Section 4.e of the Trust Legal Provisions and are provided without
+            warranty as described in the Revised BSD License.<a href="#section-boilerplate.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="toc">
+<section id="section-toc.1">
+        <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
+<a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
+        </h2>
+<nav class="toc"><ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1">
+            <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="auto internal xref">1</a>.  <a href="#name-introduction" class="internal xref">Introduction</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.1">
+                <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="auto internal xref">1.1</a>.  <a href="#name-motivation" class="internal xref">Motivation</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.2">
+                <p id="section-toc.1-1.1.2.2.1" class="keepWithNext"><a href="#section-1.2" class="auto internal xref">1.2</a>.  <a href="#name-scope" class="internal xref">Scope</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
+            <p id="section-toc.1-1.2.1"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-conventions-and-definitions" class="internal xref">Conventions and Definitions</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.1">
+                <p id="section-toc.1-1.2.2.1.1"><a href="#section-2.1" class="auto internal xref">2.1</a>.  <a href="#name-terminology" class="internal xref">Terminology</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.2">
+                <p id="section-toc.1-1.2.2.2.1"><a href="#section-2.2" class="auto internal xref">2.2</a>.  <a href="#name-outlier-detection" class="internal xref">Outlier Detection</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.3">
+                <p id="section-toc.1-1.2.2.3.1"><a href="#section-2.3" class="auto internal xref">2.3</a>.  <a href="#name-knowledge-based-detection" class="internal xref">Knowledge Based Detection</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.4">
+                <p id="section-toc.1-1.2.2.4.1"><a href="#section-2.4" class="auto internal xref">2.4</a>.  <a href="#name-data-mesh" class="internal xref">Data Mesh</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-elements-of-the-architectur" class="internal xref">Elements of the Architecture</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
+                <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-service-inventory" class="internal xref">Service Inventory</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
+                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-sdd-configuration" class="internal xref">SDD Configuration</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3">
+                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-operational-data-collection" class="internal xref">Operational Data Collection</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.4">
+                <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="auto internal xref">3.4</a>.  <a href="#name-operational-data-aggregatio" class="internal xref">Operational Data Aggregation</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.5">
+                <p id="section-toc.1-1.3.2.5.1"><a href="#section-3.5" class="auto internal xref">3.5</a>.  <a href="#name-service-disruption-detection" class="internal xref">Service Disruption Detection</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.6">
+                <p id="section-toc.1-1.3.2.6.1"><a href="#section-3.6" class="auto internal xref">3.6</a>.  <a href="#name-alerting" class="internal xref">Alerting</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.7">
+                <p id="section-toc.1-1.3.2.7.1"><a href="#section-3.7" class="auto internal xref">3.7</a>.  <a href="#name-postmortem" class="internal xref">Postmortem</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.8">
+                <p id="section-toc.1-1.3.2.8.1"><a href="#section-3.8" class="auto internal xref">3.8</a>.  <a href="#name-replaying" class="internal xref">Replaying</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-implementation-status" class="internal xref">Implementation Status</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
+                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-cosmos-bright-lights" class="internal xref">Cosmos Bright Lights</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-contributors" class="internal xref">Contributors</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-acknowledgements" class="internal xref">Acknowledgements</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-references" class="internal xref">References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1">
+                <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="auto internal xref">8.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.2">
+                <p id="section-toc.1-1.8.2.2.1"><a href="#section-8.2" class="auto internal xref">8.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+</li>
+        </ul>
+</nav>
+</section>
+</div>
+<div id="Introduction">
+<section id="section-1">
+      <h2 id="name-introduction">
+<a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
+      </h2>
+<p id="section-1-1">Today's highly virtualized large scale IP networks are a challenge
+      for network operation to monitor due to its vast number of dependencies.
+      Humans are no longer capable to verify manually all dependencies end to
+      end in an appropriate time.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">IP networks are the backbone of today's society. We individually
+      depend on networks fulfilling the purpose of forwarding our IP packets
+      from A to B at any time of the day in a timely fashion. A loss of
+      connectivity for a short period of time has manyfold implications. From
+      unable to browse the web, watch a soccer game, access the company
+      intranet or even in life threatening situations being no longer able to
+      reach emergency services. Where increased packet forwarding delay due to
+      congestion, depending on the real-time character of the network
+      application, have none to severe impact on the performance of the
+      application.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">Networks are in general deterministic. However, the usage of networks
+      only somewhat. Humans, as in a large group of people, are somehow
+      predictable. There are time of the day patterns in terms of when we are
+      eating, sleeping, working or leisure. And these patterns are potentially
+      changing depending on age, profession and cultural background.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<div id="Motivation">
+<section id="section-1.1">
+        <h3 id="name-motivation">
+<a href="#section-1.1" class="section-number selfRef">1.1. </a><a href="#name-motivation" class="section-name selfRef">Motivation</a>
+        </h3>
+<p id="section-1.1-1">When operational or configurational changes in connectivity
+        services are happening, the objective therefore is to detect
+        interruption at network operation faster than the users using those
+        connectivity services.<a href="#section-1.1-1" class="pilcrow">¶</a></p>
+<p id="section-1.1-2">In order to achieve this objective, automation in network
+        monitoring is required since the amount or people operating the
+        network are simply outnumbered by the amount of people using
+        connectivity services.<a href="#section-1.1-2" class="pilcrow">¶</a></p>
+<p id="section-1.1-3">This automation needs to monitor network changes holistically by
+        monitoring all 3 network planes simultaneously for a given
+        connectivity service and detect whether that change is service
+        disruptive, received packets are no longer forwarded to the desired
+        destination, or not. A change in control and management plane indicate
+        a network topology change. Where a change in the forwarding plane
+        describe how the packets are being forwarded. Or in other words,
+        control and management plane changes can be attributed to network
+        state changes where forwarding plane to the outcome of these network
+        state changes.<a href="#section-1.1-3" class="pilcrow">¶</a></p>
+<p id="section-1.1-4">Since changes in networks are happening all the time due to the
+        vast number of dependencies, a scoring system is needed to indicate
+        whether the change is disruptive, the amount of transport sessions,
+        flows, are affected and whether such interruptions are usual or
+        exceptional.<a href="#section-1.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="Scope">
+<section id="section-1.2">
+        <h3 id="name-scope">
+<a href="#section-1.2" class="section-number selfRef">1.2. </a><a href="#name-scope" class="section-name selfRef">Scope</a>
+        </h3>
+<p id="section-1.2-1">Such objectives can be achieved by applying checks on network
+        modelled time series data containing semantics describing their
+        dependencies across network planes. These checks can be based on
+        domain knowledge, in essence, how networks should work, or on outlier
+        detection techniques that identify measurements deviating
+        significantly from the norm due to human factors.<a href="#section-1.2-1" class="pilcrow">¶</a></p>
+<p id="section-1.2-2">The described scope does not take the connectivity service intend
+        into account nor does it verify whether the intend is being achieved
+        all the time. Changes to the service intend causing service
+        disruptions are therefore considered service disruptions where on
+        monitoring systems taking the intend into account this is considered
+        as intended.<a href="#section-1.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="Conventions_and_Definitions">
+<section id="section-2">
+      <h2 id="name-conventions-and-definitions">
+<a href="#section-2" class="section-number selfRef">2. </a><a href="#name-conventions-and-definitions" class="section-name selfRef">Conventions and Definitions</a>
+      </h2>
+<p id="section-2-1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+      "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+      "OPTIONAL" in this document are to be interpreted as described in BCP 14
+      <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="cite xref">RFC8174</a>]</span> when, and only when,
+      they appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶</a></p>
+<div id="Terminology">
+<section id="section-2.1">
+        <h3 id="name-terminology">
+<a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-terminology" class="section-name selfRef">Terminology</a>
+        </h3>
+<p id="section-2.1-1">This document defines the following terms:<a href="#section-2.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.1-2">Outlier Detection: Is a systematic approach to identify rare data
+        points deviating significantly from the majority.<a href="#section-2.1-2" class="pilcrow">¶</a></p>
+<p id="section-2.1-3">Service Disruption Detection (SDD): The process of detecting a
+        service degradation by discovering anomalies in network monitoring
+        data.<a href="#section-2.1-3" class="pilcrow">¶</a></p>
+<p id="section-2.1-4">Service Disruption Detection System (SDDS): A system allowing to
+        perform SDD.<a href="#section-2.1-4" class="pilcrow">¶</a></p>
+<p id="section-2.1-5">Additionally it makes use of the terms defined in <span>[<a href="#I-D.ietf-nmop-terminology" class="cite xref">I-D.ietf-nmop-terminology</a>]</span> and <span>[<a href="#I-D.netana-nmop-network-anomaly-lifecycle" class="cite xref">I-D.netana-nmop-network-anomaly-lifecycle</a>]</span>.<a href="#section-2.1-5" class="pilcrow">¶</a></p>
+<p id="section-2.1-6">The following terms are used as defined in <span>[<a href="#I-D.ietf-nmop-terminology" class="cite xref">I-D.ietf-nmop-terminology</a>]</span> :<a href="#section-2.1-6" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-2.1-7.1">
+            <p id="section-2.1-7.1.1">System<a href="#section-2.1-7.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.1-7.2">
+            <p id="section-2.1-7.2.1">Resource<a href="#section-2.1-7.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.1-7.3">
+            <p id="section-2.1-7.3.1">Characteristic<a href="#section-2.1-7.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.1-7.4">
+            <p id="section-2.1-7.4.1">Condition<a href="#section-2.1-7.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.1-7.5">
+            <p id="section-2.1-7.5.1">Change<a href="#section-2.1-7.5.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.1-7.6">
+            <p id="section-2.1-7.6.1">Detect<a href="#section-2.1-7.6.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.1-7.7">
+            <p id="section-2.1-7.7.1">Event<a href="#section-2.1-7.7.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.1-7.8">
+            <p id="section-2.1-7.8.1">State<a href="#section-2.1-7.8.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.1-7.9">
+            <p id="section-2.1-7.9.1">Relevance<a href="#section-2.1-7.9.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.1-7.10">
+            <p id="section-2.1-7.10.1">Occurrence<a href="#section-2.1-7.10.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.1-7.11">
+            <p id="section-2.1-7.11.1">Incident<a href="#section-2.1-7.11.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.1-7.12">
+            <p id="section-2.1-7.12.1">Problem<a href="#section-2.1-7.12.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.1-7.13">
+            <p id="section-2.1-7.13.1">Symptom<a href="#section-2.1-7.13.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.1-7.14">
+            <p id="section-2.1-7.14.1">Cause<a href="#section-2.1-7.14.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.1-7.15">
+            <p id="section-2.1-7.15.1">Root Cause<a href="#section-2.1-7.15.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.1-7.16">
+            <p id="section-2.1-7.16.1">Consolidation<a href="#section-2.1-7.16.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.1-7.17">
+            <p id="section-2.1-7.17.1">Alert<a href="#section-2.1-7.17.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.1-7.18">
+            <p id="section-2.1-7.18.1">Transient<a href="#section-2.1-7.18.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.1-7.19">
+            <p id="section-2.1-7.19.1">Intermittent<a href="#section-2.1-7.19.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-2.1-8">Figure 2 in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-nmop-terminology-05#section-3" class="relref">Section 3</a> of [<a href="#I-D.ietf-nmop-terminology" class="cite xref">I-D.ietf-nmop-terminology</a>]</span> shows characteristics of observed
+        operational network telemetry metrics.<a href="#section-2.1-8" class="pilcrow">¶</a></p>
+<p id="section-2.1-9">Figure 4 in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-nmop-terminology-05#section-3" class="relref">Section 3</a> of [<a href="#I-D.ietf-nmop-terminology" class="cite xref">I-D.ietf-nmop-terminology</a>]</span> shows relationships between,
+        state, relevant state, problem, symptom, cause and alert.<a href="#section-2.1-9" class="pilcrow">¶</a></p>
+<p id="section-2.1-10">Figure 5 in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-nmop-terminology-05#section-3" class="relref">Section 3</a> of [<a href="#I-D.ietf-nmop-terminology" class="cite xref">I-D.ietf-nmop-terminology</a>]</span> shows relationships between
+        problem, symptom, cause and root cause.<a href="#section-2.1-10" class="pilcrow">¶</a></p>
+<p id="section-2.1-11">The following terms are used as defined in <span>[<a href="#I-D.netana-nmop-network-anomaly-lifecycle" class="cite xref">I-D.netana-nmop-network-anomaly-lifecycle</a>]</span> :<a href="#section-2.1-11" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-2.1-12.1">
+            <p id="section-2.1-12.1.1">False Positive<a href="#section-2.1-12.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.1-12.2">
+            <p id="section-2.1-12.2.1">False Negative<a href="#section-2.1-12.2.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+</section>
+</div>
+<div id="Outlier_Detection">
+<section id="section-2.2">
+        <h3 id="name-outlier-detection">
+<a href="#section-2.2" class="section-number selfRef">2.2. </a><a href="#name-outlier-detection" class="section-name selfRef">Outlier Detection</a>
+        </h3>
+<p id="section-2.2-1">Outlier Detection, also known as anomaly detection, describes a
+        systematic approach to identify rare data points deviating
+        significantly from the majority. Outliers can manifest as single data
+        point or as a sequence of data points. There are multiple ways in
+        general to classify anomalies, but for the context of this draft, the
+        following three classes are taken into account:<a href="#section-2.2-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-2.2-2">
+          <dt id="section-2.2-2.1">Global outliers:</dt>
+          <dd style="margin-left: 1.5em" id="section-2.2-2.2">An outlier is considered "global" if its behavior is outside the
+          entirety of the considered data set. For example, if the average
+          dropped packet count is between 0 and 10 per minute and a small
+          time-window gets the value 1000, this is considered a global
+          anomaly.<a href="#section-2.2-2.2" class="pilcrow">¶</a>
+</dd>
+        <dd class="break"></dd>
+</dl>
+<span class="break"></span><dl class="dlParallel" id="section-2.2-3">
+          <dt id="section-2.2-3.1">Contextual outliers:</dt>
+          <dd style="margin-left: 1.5em" id="section-2.2-3.2">An outlier is considered "contextual" if its behavior is within
+          a normal (expected) range, but it would not be expected based on
+          some context. Context can be defined as a function of multiple
+          parameters, such as time, location, etc. For example, the forwarded
+          packet volume overnight reaches levels which might be totally normal
+          for the daytime, but anomalous and unexpected for the
+          nighttime.<a href="#section-2.2-3.2" class="pilcrow">¶</a>
+</dd>
+        <dd class="break"></dd>
+</dl>
+<span class="break"></span><dl class="dlParallel" id="section-2.2-4">
+          <dt id="section-2.2-4.1">Collective outliers:</dt>
+          <dd style="margin-left: 1.5em" id="section-2.2-4.2">An outlier is considered "collective" if the behavior of each
+          single data point that are part of the anomaly are within expected
+          ranges (so they are not anomalous it either a contextual or a global
+          sense), but the group, taking all the data points together, is. Note
+          that the group can be made within a single time series (a sequence
+          of data points is anomalous) or across multiple metrics (e.g. if
+          looking at two metrics together, the combined behavior turns out to
+          be anomalous). In Network Telemetry time series, one way this can
+          manifest is that the amount of network paths and interface state
+          changes matches the time range when the forwarded packet volume
+          decreases as a group.<a href="#section-2.2-4.2" class="pilcrow">¶</a>
+</dd>
+        <dd class="break"></dd>
+</dl>
+<p id="section-2.2-5">For each outlier a score between 0 and 1 is being calculated. The
+        higher the value, the higher the probability that the observed data
+        point is an outlier. <span><a href="#VAP09" class="internal xref">Anomaly detection: A
+        survey</a> [<a href="#VAP09" class="cite xref">VAP09</a>]</span> gives additional details on anomaly detection and its
+        types.<a href="#section-2.2-5" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="Knowledge_Based_Detection">
+<section id="section-2.3">
+        <h3 id="name-knowledge-based-detection">
+<a href="#section-2.3" class="section-number selfRef">2.3. </a><a href="#name-knowledge-based-detection" class="section-name selfRef">Knowledge Based Detection</a>
+        </h3>
+<p id="section-2.3-1">Knowledge-based anomaly detection, also known as rule-based anomaly
+        detection, is a technique used to identify anomalies or outliers by
+        comparing them against predefined rules or patterns. This approach
+        relies on the use of domain-specific knowledge to set standards,
+        thresholds, or rules for what is considered "normal" behavior.
+        Traditionally, these rules are established manually by a knowledgeable
+        network engineer.<a href="#section-2.3-1" class="pilcrow">¶</a></p>
+<p id="section-2.3-2">Additionally, in the context of network anomaly detection, the
+        knowledge-based approach works hand in hand with the deterministic
+        understanding of the network, which is reflected in network modeling.
+        Components are organized into three network planes: the Management
+        Plane, the Control Plane, and the Forwarding Plane. A component can
+        relate to a physical, virtual, or configurational entity, or to a sum
+        of packets belonging to a flow being forwarded in a network.<a href="#section-2.3-2" class="pilcrow">¶</a></p>
+<p id="section-2.3-3">Such relationships can also be modelled in a Digital Map to
+        automate that process. <span>[<a href="#I-D.havel-nmop-digital-map-concept" class="cite xref">I-D.havel-nmop-digital-map-concept</a>]</span> examples a a concept and
+        <span>[<a href="#I-D.havel-nmop-digital-map" class="cite xref">I-D.havel-nmop-digital-map</a>]</span> an implementation for such
+        network modelled relationships.<a href="#section-2.3-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="Data_Mesh">
+<section id="section-2.4">
+        <h3 id="name-data-mesh">
+<a href="#section-2.4" class="section-number selfRef">2.4. </a><a href="#name-data-mesh" class="section-name selfRef">Data Mesh</a>
+        </h3>
+<p id="section-2.4-1">The <span><a href="#Deh22" class="internal xref">Data Mesh</a> [<a href="#Deh22" class="cite xref">Deh22</a>]</span> Architecture
+        distinguishes between operational and analytical data. Operational
+        data refers to collected data from operational systems. While
+        analytical data refers to insights gained from operational data.<a href="#section-2.4-1" class="pilcrow">¶</a></p>
+<div id="Operational_Network_Data">
+<section id="section-2.4.1">
+          <h4 id="name-operational-network-data">
+<a href="#section-2.4.1" class="section-number selfRef">2.4.1. </a><a href="#name-operational-network-data" class="section-name selfRef">Operational Network Data</a>
+          </h4>
+<p id="section-2.4.1-1">In terms of network observability, semantics of operational
+          network metrics are defined by IETF and are categorized as described
+          in the Network Telemetry Framework <span>[<a href="#RFC9232" class="cite xref">RFC9232</a>]</span> in the
+          following three different network planes:<a href="#section-2.4.1-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-2.4.1-2">
+            <dt id="section-2.4.1-2.1">Management Plane:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.4.1-2.2">Time series data describing the state changes and statistics
+            of a network node and its components. For example, Interface state
+            and statistics modelled in ietf-interfaces.yang <span>[<a href="#RFC8343" class="cite xref">RFC8343</a>]</span><a href="#section-2.4.1-2.2" class="pilcrow">¶</a>
+</dd>
+          <dd class="break"></dd>
+</dl>
+<span class="break"></span><dl class="dlParallel" id="section-2.4.1-3">
+            <dt id="section-2.4.1-3.1">Control Plane:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.4.1-3.2">Time series data describing the state and state changes of
+            network reachability. For example, BGP VPNv6 unicast updates and
+            withdrawals exported in BGP Monitoring Protocol (BMP) <span>[<a href="#RFC7854" class="cite xref">RFC7854</a>]</span> and modeled in BGP <span>[<a href="#RFC4364" class="cite xref">RFC4364</a>]</span><a href="#section-2.4.1-3.2" class="pilcrow">¶</a>
+</dd>
+          <dd class="break"></dd>
+</dl>
+<span class="break"></span><dl class="dlParallel" id="section-2.4.1-4">
+            <dt id="section-2.4.1-4.1">Forwarding Plane:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.4.1-4.2">Time series data describing the forwarding behavior of packets
+            and its data-plane context. For example, dropped packet count
+            modelled in IPFIX entity forwardingStatus(IE89) <span>[<a href="#RFC7270" class="cite xref">RFC7270</a>]</span> and packetDeltaCount(IE2) <span>[<a href="#RFC5102" class="cite xref">RFC5102</a>]</span> and exportet with IPFIX <span>[<a href="#RFC7011" class="cite xref">RFC7011</a>]</span> .<a href="#section-2.4.1-4.2" class="pilcrow">¶</a>
+</dd>
+          <dd class="break"></dd>
+</dl>
+</section>
+</div>
+<div id="Analyticsl_Observed_Symptoms">
+<section id="section-2.4.2">
+          <h4 id="name-analytical-observed-symptom">
+<a href="#section-2.4.2" class="section-number selfRef">2.4.2. </a><a href="#name-analytical-observed-symptom" class="section-name selfRef">Analytical Observed Symptoms</a>
+          </h4>
+<p id="section-2.4.2-1">The Service Disruption Detection process generates analytical
+          metrics describing symptom and outlier pattern of the connectivity
+          service disruption.<a href="#section-2.4.2-1" class="pilcrow">¶</a></p>
+<p id="section-2.4.2-2">The obeserved symptoms are categorized into: action, reason,
+          cause. Where action decribe the change in the network. The reason
+          explains why this changed occured and cause the trigger of that
+          change.<a href="#section-2.4.2-2" class="pilcrow">¶</a></p>
+<p id="section-2.4.2-3">Symptom definitions are described in <span><a href="https://datatracker.ietf.org/doc/html/draft-netana-nmop-network-anomaly-semantics-02#section-3" class="relref">Section 3</a> of [<a href="#I-D.netana-nmop-network-anomaly-semantics" class="cite xref">I-D.netana-nmop-network-anomaly-semantics</a>]</span> and symptom
+          outlier pattern semantics in <span><a href="https://datatracker.ietf.org/doc/html/draft-netana-nmop-network-anomaly-semantics-02#section-4" class="relref">Section 4</a> of [<a href="#I-D.netana-nmop-network-anomaly-semantics" class="cite xref">I-D.netana-nmop-network-anomaly-semantics</a>]</span> .<a href="#section-2.4.2-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="Elements_of_the_Architecture">
+<section id="section-3">
+      <h2 id="name-elements-of-the-architectur">
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-elements-of-the-architectur" class="section-name selfRef">Elements of the Architecture</a>
+      </h2>
+<p id="section-3-1">A system architecture aimed at detecting service disruptions is
+      typically built upon multiple components, for which design choices need
+      to be made. In this section, we describe the main components of the
+      architecture, and delve into considerations to be made when designing
+      such componenents in an implementation.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-3-2">The system architecture is illustrated in <a href="#fig_arch" class="auto internal xref">Figure 1</a>
+      and its main components are described in the following subsections.<a href="#section-3-2" class="pilcrow">¶</a></p>
+<span id="name-service-disruption-detectio"></span><div id="fig_arch">
+<figure id="figure-1">
+        <div class="alignCenter art-text artwork" id="section-3-3.1">
+<pre>
+
+         +---------+                     +-------------------+
+         |Service  |                     |     Alert and     |
+    |--- |Inventory|                     | Problem Management|
+    |    |         |                     |      System       |
+    |    +---------+                     +-------------------+
+    |      |                                      ^     Stream
+    |      |                                      |
+    |      |       +---------+           +-------------------+
+    |      |       | Post-   | Stream    |   Message Broker  |
+    |      |       | mortem  | &lt;-------- |  with Analytical  |
+    |      |       | System  |           |    Network Data   |
+    |      |       +---------+           +-------------------+
+    |      |            |                         ^     Stream
+    |      |            |                         |
+    |      |            |                +-------------------+
+    |      | Profile    | Fine           | Alert Aggregation | Store Label
+    |      | and        | Tune           | for Anomaly       | ------------|
+    |      | Generate   | SDD            | Detection         |             |
+    |      | SDD Config | Config         +-------------------+             |
+    |      |            |                       ^  ^  ^ Stream             |
+    |      v            v                       |  |  |                    ?
+    |   +-------------------+            +-------------------+        +---------+
+    |   | Service Disruption| Schedule   | Service Disruption| Replay |  Data   |
+    |   |     Detection     | ---------&gt; |     Detection     |&lt;------ | Storage |
+    |   |   Configuration   | Detection  |                   |        |         |
+    |   +-------------------+            +-------------------+        +---------+
+    |                                       ^ ^ Stream ^ ^ ^               ^
+    |                                       | |        | | |               |
+    |                                    +---------+---------+             |
+    |                                    | Network |  Data   | Store       |
+    |----------------------------------&gt; |  Model  |  Aggr.  | ------------|
+                                         |         | Process | Operational Data
+                                         +---------+---------+
+                                                ^  ^  ^ Stream
+                                                |  |  |
+                                         +-------------------+
+                                         |   Message Broker  |
+                                         |  with Operational |
+                                         |    Network Data   |
+                                         +-------------------+
+                                                ^  ^  ^ Stream
+ Subscribe                       Publish        |  |  |
+           +-------------------+         +-------------------+
+           | Network Node with | ------&gt; | Network Telemetry |
+ --------&gt; | Network Telemetry | ------&gt; |  Data Collection  |
+           |   Subscription    | ------&gt; |                   |
+           +-------------------+         +-------------------+
+
+</pre>
+</div>
+<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
+<a href="#name-service-disruption-detectio" class="selfRef">Service Disruption Detection Architecture</a>
+        </figcaption></figure>
+</div>
+<div id="Arch_Inventory">
+<section id="section-3.1">
+        <h3 id="name-service-inventory">
+<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-service-inventory" class="section-name selfRef">Service Inventory</a>
+        </h3>
+<p id="section-3.1-1">A service inventory is used to obtain a list of the connectivity
+        services for which Anomaly Detection is to be performed. A service
+        profiling process may be executed on the service in order to define a
+        configuration of the service disruption detection approach and
+        parameters to be used.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="Arch_Configuration">
+<section id="section-3.2">
+        <h3 id="name-sdd-configuration">
+<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-sdd-configuration" class="section-name selfRef">SDD Configuration</a>
+        </h3>
+<p id="section-3.2-1">Based on this service list and potential preliminary service
+        profiling, a configuration of the Service Disruption Detection is
+        produced. It defines the set of approaches that need to be applied to
+        perform SDD, as well as parameters that are to be set when executing
+        the algorithms performing SDD per se.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.2-2">As the service lives on, the configuration may be adapted as a
+        result of an evolution of the profiling being performed, as the result
+        of a postmortem analysis being produced as a result of an event
+        impacting the service, or the occurrence of false positives being
+        raised by the alerting system.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="Arch_Collection">
+<section id="section-3.3">
+        <h3 id="name-operational-data-collection">
+<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-operational-data-collection" class="section-name selfRef">Operational Data Collection</a>
+        </h3>
+<p id="section-3.3-1">Collection of network monitoring data involves the management of
+        the subscriptions to network telemetry on nodes of the network, and
+        the configuration of the collection infrastructure to receive the
+        monitoring data produced by the network.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.3-2">The monitoring data produced by the collection infrastructure is
+        then streamed through a message broker system. for further
+        processing.<a href="#section-3.3-2" class="pilcrow">¶</a></p>
+<p id="section-3.3-3">Networks tend to produce extremely large amounts of monitoring
+        data. To preserve scaling and reduce costs, decisions need to be made
+        on the duration of retention of such data in storage, and at which
+        level of storage they need to be kept. A retention time need to be set
+        on the raw data produced by the collection system, in accordance to
+        their utility for further used. This aspect will be elaborated in
+        further sections.<a href="#section-3.3-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="Arch_Aggregation">
+<section id="section-3.4">
+        <h3 id="name-operational-data-aggregatio">
+<a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-operational-data-aggregatio" class="section-name selfRef">Operational Data Aggregation</a>
+        </h3>
+<p id="section-3.4-1">Aggregation is the process of producing data upon which detection
+        of a service disruption can be performed, based on collected network
+        monitoring data.<a href="#section-3.4-1" class="pilcrow">¶</a></p>
+<p id="section-3.4-2">Pre-processing of collected network monitoring data is usually
+        performed so as to produce input for the Service Disruption Detection
+        component. This can be achieved in multiple ways, depending on the
+        architecture of the SDD component. As an example, the granularity at
+        which forwarding data is produced by the network may be too high for
+        the SDD algorithms, and instead be aggregated into a coarser dimension
+        for SDD execution.<a href="#section-3.4-2" class="pilcrow">¶</a></p>
+<p id="section-3.4-3">A retention time also needs to be decided upon for Aggregated data.
+        Note that the retention time must be set carefully, in accordance with
+        the replay ability requirement discussed in <a href="#Arch_Replaying" class="auto internal xref">Section 3.8</a>.<a href="#section-3.4-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="Arch_SDD">
+<section id="section-3.5">
+        <h3 id="name-service-disruption-detection">
+<a href="#section-3.5" class="section-number selfRef">3.5. </a><a href="#name-service-disruption-detection" class="section-name selfRef">Service Disruption Detection</a>
+        </h3>
+<p id="section-3.5-1">Service Disruption Detection processes the aggregated network data
+        in order to decide whether a service is degraded to the point where
+        network operation needs to be alerted of an ongoing problem within the
+        network.<a href="#section-3.5-1" class="pilcrow">¶</a></p>
+<p id="section-3.5-2">Two key aspects need to be considered when designing the SDD
+        component. First, the way the data is being processed needs to be
+        carefully designed, as networks typically produce extremely large
+        amounts of data which may hinder the scalability of the architecture.
+        Second, the algorithms used to make a decision to alert the operator
+        need to be designed in such a way that the operator can trust that a
+        targeted Service Disruption will be detected (no false negatives),
+        while not spamming the operator with alerts that do not reflect an
+        actual issue within the network (false positives) leading to alert
+        fatigue.<a href="#section-3.5-2" class="pilcrow">¶</a></p>
+<p id="section-3.5-3">Two approaches are typically followed to present the data to the
+        SDD system. Classically, the aggregated data can be stored in a
+        database that is polled at regular intervals by the SDD component for
+        decision making. Alternatively, a streaming approach can be followed
+        so as to process the data while they are being consumed from the
+        collection component.<a href="#section-3.5-3" class="pilcrow">¶</a></p>
+<p id="section-3.5-4">For SDD per-se, two families of algorithms can be decided upon.
+        First, knowledge based detection approaches can be used, mimicking the
+        process that human operators follow when looking at the data. Machine
+        Learning based outlier detection based approaches to detect deviations
+        from the norm.<a href="#section-3.5-4" class="pilcrow">¶</a></p>
+<div id="Modeling">
+<section id="section-3.5.1">
+          <h4 id="name-network-modeling">
+<a href="#section-3.5.1" class="section-number selfRef">3.5.1. </a><a href="#name-network-modeling" class="section-name selfRef">Network Modeling</a>
+          </h4>
+<p id="section-3.5.1-1">Some input to SDD is made of established knowledge of the network
+          that is unrelated to the dimensions according to which outlier
+          detection is performed. For example, the knowledge of the network
+          infrastructure may be required to perform some service disruption
+          detection. Such data need to be rendered accessible and updatable
+          for use by SDD. They may come from inventories, or automated
+          gathering of data from the network itself.<a href="#section-3.5.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="Profiling">
+<section id="section-3.5.2">
+          <h4 id="name-data-profiling">
+<a href="#section-3.5.2" class="section-number selfRef">3.5.2. </a><a href="#name-data-profiling" class="section-name selfRef">Data Profiling</a>
+          </h4>
+<p id="section-3.5.2-1">As rules cannot be crafted specifically for each customer, they
+          need to be defined according to pre-established service profiles.
+          Processing of monitoring data can be performed in order to associate
+          each service with a profile. External knowledge on the customer can
+          also help in associating a service with a profile.<a href="#section-3.5.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="Strategies">
+<section id="section-3.5.3">
+          <h4 id="name-detection-strategies">
+<a href="#section-3.5.3" class="section-number selfRef">3.5.3. </a><a href="#name-detection-strategies" class="section-name selfRef">Detection Strategies</a>
+          </h4>
+<p id="section-3.5.3-1">For a profile, a set of strategies is defined. Each strategy
+          captures one approach to look at the data (as a human operator does)
+          to observe if an abnormal situation is arising. Strategies are
+          defined as a function of observed outliers as defined in <a href="#Outlier_Detection" class="auto internal xref">Section 2.2</a> .<a href="#section-3.5.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.5.3-2">When one of the strategies applied for a profile detects a
+          concerning outlier or combined outlier, an alert needs to be
+          raised.<a href="#section-3.5.3-2" class="pilcrow">¶</a></p>
+<p id="section-3.5.3-3">Depending on the implementation of the architecture, a scheduler
+          may be needed in order to orchestrate the evaluation of the alert
+          levels for each strategy applied for a profile, for all service
+          instances associated with such profile.<a href="#section-3.5.3-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="RB_vs_ML">
+<section id="section-3.5.4">
+          <h4 id="name-machine-learning">
+<a href="#section-3.5.4" class="section-number selfRef">3.5.4. </a><a href="#name-machine-learning" class="section-name selfRef">Machine Learning</a>
+          </h4>
+<p id="section-3.5.4-1">Machine learning-based anomaly detection can also be seamlessly
+          integrated into such SDDS. Machine learning is commonly used for
+          detecting outliers or anomalies. Typically, unsupervised learning is
+          widely recognized for its applicability, given the inherent
+          characteristics of network data. Although machine learning requires
+          a sizeable amount of high-quality data and considerable advanced
+          training, the advantages it offers make these requirements
+          worthwhile. The power of this approach lies in its generalizability,
+          robustness, ability to simplify the fine-tuning process, and most
+          importantly, its capability to identify anomaly patterns that might
+          go unnoticed to the human observer.<a href="#section-3.5.4-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="Storage">
+<section id="section-3.5.5">
+          <h4 id="name-storage">
+<a href="#section-3.5.5" class="section-number selfRef">3.5.5. </a><a href="#name-storage" class="section-name selfRef">Storage</a>
+          </h4>
+<p id="section-3.5.5-1">Storage may be required to execute SDD, as some algorithms may be
+          relying on historical (aggregated) monitoring data in order to
+          detect anomalies. Careful considerations need to be made on the
+          level at which such data is stored, as slow access to such data may
+          be detrimental to the reactivity of the system.<a href="#section-3.5.5-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="Arch_Alerting">
+<section id="section-3.6">
+        <h3 id="name-alerting">
+<a href="#section-3.6" class="section-number selfRef">3.6. </a><a href="#name-alerting" class="section-name selfRef">Alerting</a>
+        </h3>
+<p id="section-3.6-1">When the SDD component decides that a service is undergoing a
+        disruption, a alert notification needs to be sent to the alert and
+        problem management system. Multiple practical aspects need to be taken
+        into account in this component.<a href="#section-3.6-1" class="pilcrow">¶</a></p>
+<p id="section-3.6-2">When the issue lasts longer than the interval at which the SDD
+        component runs, the alerting mechanism should not create multiple
+        tickets to the operator, so as to not overwhelm the management of the
+        issue. However, the information provided along with the alert should
+        be kept up to date during the full duration of the issue.<a href="#section-3.6-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="Arch_Postmortem">
+<section id="section-3.7">
+        <h3 id="name-postmortem">
+<a href="#section-3.7" class="section-number selfRef">3.7. </a><a href="#name-postmortem" class="section-name selfRef">Postmortem</a>
+        </h3>
+<span id="name-anomaly-detection-refinemen"></span><div id="simplified_lifecycle">
+<figure id="figure-2">
+          <div class="alignCenter art-text artwork" id="section-3.7-1.1">
+<pre>
+
+
+   Network Anomaly
+     Detection          Detected Symptoms
++-------------------+           &amp;
+|   +-----------+   |   Network Anomalies
+|   | Detection |---|-------------+
+|   |   Stage   |   |             |
+|   +-----------+   |             v
++---------^---------+        +-------------------+      Labels     +------------+
+          |                  | Anomaly Detection |----------------&gt;| Validation |
+          |                  |   Label Store     |&lt;----------------|   Stage    |
+          |                  +-------------------+     Revised     +------------+
+   +------------+                 |                    Labels
+   | Refinement |                 |
+   |   Stage    |&lt;----------------+
+   +------------+        Historical Symptoms
+                                  &amp;
+                          Network Anomalies
+
+
+</pre>
+</div>
+<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
+<a href="#name-anomaly-detection-refinemen" class="selfRef">Anomaly Detection Refinement Lifecycle</a>
+          </figcaption></figure>
+</div>
+<p id="section-3.7-2">Validation and refinement are performed during Postmortem.<a href="#section-3.7-2" class="pilcrow">¶</a></p>
+<p id="section-3.7-3">From an Anomaly Detection Lifecycle point of view as described in
+        <span>[<a href="#I-D.netana-nmop-network-anomaly-lifecycle" class="cite xref">I-D.netana-nmop-network-anomaly-lifecycle</a>]</span>, the
+        Service Disruption Detection Configuration evolves over time,
+        iteratively, looping over three main phases: detection, validation and
+        refinement.<a href="#section-3.7-3" class="pilcrow">¶</a></p>
+<p id="section-3.7-4">The Detection phase produces the alerts that are sent to the Alert
+        and Problem Management System and at the same time it stores the
+        network anomaly and symptom labels into the Label Store. This enables
+        network engineers to review the labels to validate and edit them as
+        needed.<a href="#section-3.7-4" class="pilcrow">¶</a></p>
+<p id="section-3.7-5">The Validation stage is typically performed by network engineers
+        reviewing the results of the detection and indicating which symptoms
+        and network anomalies have been useful for the identification of
+        problems in the network. The original labels from the Service
+        Disruption Detection are analyzed and an updated set of more accurate
+        labels is provided back to the label store.<a href="#section-3.7-5" class="pilcrow">¶</a></p>
+<p id="section-3.7-6">The resulting labels will be then provided back into the Network
+        Anomaly Detection via its refinement capabilities: the refinement is
+        about the update of the Service Disruption Detection configuration in
+        order to improve the results of the detection (e.g. false positives,
+        false negatives, accuracy of the boundaries, etc.).<a href="#section-3.7-6" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="Arch_Replaying">
+<section id="section-3.8">
+        <h3 id="name-replaying">
+<a href="#section-3.8" class="section-number selfRef">3.8. </a><a href="#name-replaying" class="section-name selfRef">Replaying</a>
+        </h3>
+<p id="section-3.8-1">When a service disruption has been detected, it is essential for
+        the human operator to be able to analyze the data which led to the
+        raising of an Alert. It is thus important that a SSDS preserves both
+        the data which led to the creation of the alert as well as human
+        understandable information on why the data led to the raising of an
+        alert.<a href="#section-3.8-1" class="pilcrow">¶</a></p>
+<p id="section-3.8-2">In early stages of operations or when experimenting with a SDDS, it
+        is common that the parameters used for SDD are to be fined tuned. This
+        process is facilitated by designing the SDDS architecture in a way
+        that allows to rerun the SDD algorithms on the same input.<a href="#section-3.8-2" class="pilcrow">¶</a></p>
+<p id="section-3.8-3">Data retention, as well as its level, need to be defined in order
+        not to sacrifice the ability of replaying SDD execution for the sake
+        of improving its accuracy.<a href="#section-3.8-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="Implementation">
+<section id="section-4">
+      <h2 id="name-implementation-status">
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-implementation-status" class="section-name selfRef">Implementation Status</a>
+      </h2>
+<p id="section-4-1">Note to the RFC-Editor: Please remove this section before
+      publishing.<a href="#section-4-1" class="pilcrow">¶</a></p>
+<p id="section-4-2">This section records the status of known implementations.<a href="#section-4-2" class="pilcrow">¶</a></p>
+<div id="Cosmos_Bright_Lights">
+<section id="section-4.1">
+        <h3 id="name-cosmos-bright-lights">
+<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-cosmos-bright-lights" class="section-name selfRef">Cosmos Bright Lights</a>
+        </h3>
+<p id="section-4.1-1">This architecture have been developed as part of a proof of concept
+        started in September 2022 first in a dedicated network lab environment
+        and later in December 2022 in Swisscom production to monitor a limited
+        amount of 16 L3 VPN connectivity services.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.1-2">At the Applied Networking Research Workshop at IRTF 117 the
+        architecture was the first time published in the following academic
+        paper: <span>[<a href="#Ahf23" class="cite xref">Ahf23</a>]</span>.<a href="#section-4.1-2" class="pilcrow">¶</a></p>
+<p id="section-4.1-3">Since December 2022, 20 connectivity service disruptions have been
+        monitored and 52 false positives due to time series database
+        temporarily not being real-time and missing traffic profiling,
+        comparing to previous week was not applicable, occurred. Out of 20
+        connectivity service disruptions 6 parameters where monitored and 3
+        times 1, 8 times 2, 6 times 3, 2 times 4 parameters recognized the
+        service disruption.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
+<p id="section-4.1-4">A real-time streaming based version has been deployed in Swisscom
+        production as a proof of concept in June 2024 monitoring approximate
+        &gt;12'000 L3 VPN's concurrently. Improved profiling capabilities are
+        currently under development.<a href="#section-4.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="Security">
+<section id="section-5">
+      <h2 id="name-security-considerations">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+      </h2>
+<p id="section-5-1">TBD<a href="#section-5-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="Contributors">
+<section id="section-6">
+      <h2 id="name-contributors">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-contributors" class="section-name selfRef">Contributors</a>
+      </h2>
+<p id="section-6-1">The authors would like to thank Alex Huang Feng and Vincenzo
+      Riccobene for their valuable contribution.<a href="#section-6-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="Acknowledgements">
+<section id="section-7">
+      <h2 id="name-acknowledgements">
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-acknowledgements" class="section-name selfRef">Acknowledgements</a>
+      </h2>
+<p id="section-7-1">The authors would like to thank TBD for their review and valuable
+      comments. TBD for review and contributing code.<a href="#section-7-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<section id="section-8">
+      <h2 id="name-references">
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-references" class="section-name selfRef">References</a>
+      </h2>
+<section id="section-8.1">
+        <h3 id="name-normative-references">
+<a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+        </h3>
+<dl class="references">
+<dt id="I-D.havel-nmop-digital-map">[I-D.havel-nmop-digital-map]</dt>
+        <dd>
+<span class="refAuthor">Havel, O.</span>, <span class="refAuthor">Claise, B.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Elhassany, A.</span>, and <span class="refAuthor">T. Graf</span>, <span class="refTitle">"Modeling the Digital Map based on RFC 8345: Sharing Experience and Perspectives"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-havel-nmop-digital-map-01</span>, <time datetime="2024-07-05" class="refDate">5 July 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-havel-nmop-digital-map-01">https://datatracker.ietf.org/doc/html/draft-havel-nmop-digital-map-01</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.havel-nmop-digital-map-concept">[I-D.havel-nmop-digital-map-concept]</dt>
+        <dd>
+<span class="refAuthor">Havel, O.</span>, <span class="refAuthor">Claise, B.</span>, <span class="refAuthor">de Dios, O. G.</span>, and <span class="refAuthor">T. Graf</span>, <span class="refTitle">"Digital Map: Concept, Requirements, and Use Cases"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-havel-nmop-digital-map-concept-00</span>, <time datetime="2024-07-04" class="refDate">4 July 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-havel-nmop-digital-map-concept-00">https://datatracker.ietf.org/doc/html/draft-havel-nmop-digital-map-concept-00</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-nmop-terminology">[I-D.ietf-nmop-terminology]</dt>
+        <dd>
+<span class="refAuthor">Davis, N.</span>, <span class="refAuthor">Farrel, A.</span>, <span class="refAuthor">Graf, T.</span>, <span class="refAuthor">Wu, Q.</span>, and <span class="refAuthor">C. Yu</span>, <span class="refTitle">"Some Key Terms for Network Fault and Problem Management"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-nmop-terminology-05</span>, <time datetime="2024-09-12" class="refDate">12 September 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-nmop-terminology-05">https://datatracker.ietf.org/doc/html/draft-ietf-nmop-terminology-05</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.netana-nmop-network-anomaly-lifecycle">[I-D.netana-nmop-network-anomaly-lifecycle]</dt>
+        <dd>
+<span class="refAuthor">Riccobene, V.</span>, <span class="refAuthor">Roberto, A.</span>, <span class="refAuthor">Graf, T.</span>, <span class="refAuthor">Du, W.</span>, and <span class="refAuthor">A. H. Feng</span>, <span class="refTitle">"Experiment: Network Anomaly Lifecycle"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-netana-nmop-network-anomaly-lifecycle-03</span>, <time datetime="2024-07-08" class="refDate">8 July 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-netana-nmop-network-anomaly-lifecycle-03">https://datatracker.ietf.org/doc/html/draft-netana-nmop-network-anomaly-lifecycle-03</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.netana-nmop-network-anomaly-semantics">[I-D.netana-nmop-network-anomaly-semantics]</dt>
+        <dd>
+<span class="refAuthor">Graf, T.</span>, <span class="refAuthor">Du, W.</span>, <span class="refAuthor">Feng, A. H.</span>, <span class="refAuthor">Riccobene, V.</span>, and <span class="refAuthor">A. Roberto</span>, <span class="refTitle">"Semantic Metadata Annotation for Network Anomaly Detection"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-netana-nmop-network-anomaly-semantics-02</span>, <time datetime="2024-07-08" class="refDate">8 July 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-netana-nmop-network-anomaly-semantics-02">https://datatracker.ietf.org/doc/html/draft-netana-nmop-network-anomaly-semantics-02</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC2119">[RFC2119]</dt>
+        <dd>
+<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8174">[RFC8174]</dt>
+        <dd>
+<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8174">https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9232">[RFC9232]</dt>
+      <dd>
+<span class="refAuthor">Song, H.</span>, <span class="refAuthor">Qin, F.</span>, <span class="refAuthor">Martinez-Julia, P.</span>, <span class="refAuthor">Ciavaglia, L.</span>, and <span class="refAuthor">A. Wang</span>, <span class="refTitle">"Network Telemetry Framework"</span>, <span class="seriesInfo">RFC 9232</span>, <span class="seriesInfo">DOI 10.17487/RFC9232</span>, <time datetime="2022-05" class="refDate">May 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9232">https://www.rfc-editor.org/info/rfc9232</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+<section id="section-8.2">
+        <h3 id="name-informative-references">
+<a href="#section-8.2" class="section-number selfRef">8.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+        </h3>
+<dl class="references">
+<dt id="Ahf23">[Ahf23]</dt>
+        <dd>
+<span class="refAuthor">Huang Feng, A.</span>, <span class="refTitle">"Daisy: Practical Anomaly Detection in large BGP/MPLS and BGP/SRv6 VPN Networks"</span>, <span class="refContent">IETF 117, Applied Networking Research
+        Workshop</span>, <span class="seriesInfo">DOI 10.1145/3606464.3606470</span>, <time datetime="2023-07" class="refDate">July 2023</time>, <span>&lt;<a href="https://hal.science/hal-04307611">https://hal.science/hal-04307611</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="Deh22">[Deh22]</dt>
+        <dd>
+<span class="refAuthor">Dehghani, Z.</span>, <span class="refTitle">"Data Mesh"</span>, <span class="refContent">O'Reilly Media</span>, <span class="seriesInfo">ISBN 9781492092391</span>, <time datetime="2022-03" class="refDate">March 2022</time>, <span>&lt;<a href="https://www.oreilly.com/library/view/data-mesh/9781492092384/">https://www.oreilly.com/library/view/data-mesh/9781492092384/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC4364">[RFC4364]</dt>
+        <dd>
+<span class="refAuthor">Rosen, E.</span> and <span class="refAuthor">Y. Rekhter</span>, <span class="refTitle">"BGP/MPLS IP Virtual Private Networks (VPNs)"</span>, <span class="seriesInfo">RFC 4364</span>, <span class="seriesInfo">DOI 10.17487/RFC4364</span>, <time datetime="2006-02" class="refDate">February 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc4364">https://www.rfc-editor.org/info/rfc4364</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC5102">[RFC5102]</dt>
+        <dd>
+<span class="refAuthor">Quittek, J.</span>, <span class="refAuthor">Bryant, S.</span>, <span class="refAuthor">Claise, B.</span>, <span class="refAuthor">Aitken, P.</span>, and <span class="refAuthor">J. Meyer</span>, <span class="refTitle">"Information Model for IP Flow Information Export"</span>, <span class="seriesInfo">RFC 5102</span>, <span class="seriesInfo">DOI 10.17487/RFC5102</span>, <time datetime="2008-01" class="refDate">January 2008</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc5102">https://www.rfc-editor.org/info/rfc5102</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7011">[RFC7011]</dt>
+        <dd>
+<span class="refAuthor">Claise, B., Ed.</span>, <span class="refAuthor">Trammell, B., Ed.</span>, and <span class="refAuthor">P. Aitken</span>, <span class="refTitle">"Specification of the IP Flow Information Export (IPFIX) Protocol for the Exchange of Flow Information"</span>, <span class="seriesInfo">STD 77</span>, <span class="seriesInfo">RFC 7011</span>, <span class="seriesInfo">DOI 10.17487/RFC7011</span>, <time datetime="2013-09" class="refDate">September 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7011">https://www.rfc-editor.org/info/rfc7011</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7270">[RFC7270]</dt>
+        <dd>
+<span class="refAuthor">Yourtchenko, A.</span>, <span class="refAuthor">Aitken, P.</span>, and <span class="refAuthor">B. Claise</span>, <span class="refTitle">"Cisco-Specific Information Elements Reused in IP Flow Information Export (IPFIX)"</span>, <span class="seriesInfo">RFC 7270</span>, <span class="seriesInfo">DOI 10.17487/RFC7270</span>, <time datetime="2014-06" class="refDate">June 2014</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7270">https://www.rfc-editor.org/info/rfc7270</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7854">[RFC7854]</dt>
+        <dd>
+<span class="refAuthor">Scudder, J., Ed.</span>, <span class="refAuthor">Fernando, R.</span>, and <span class="refAuthor">S. Stuart</span>, <span class="refTitle">"BGP Monitoring Protocol (BMP)"</span>, <span class="seriesInfo">RFC 7854</span>, <span class="seriesInfo">DOI 10.17487/RFC7854</span>, <time datetime="2016-06" class="refDate">June 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7854">https://www.rfc-editor.org/info/rfc7854</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8343">[RFC8343]</dt>
+        <dd>
+<span class="refAuthor">Bjorklund, M.</span>, <span class="refTitle">"A YANG Data Model for Interface Management"</span>, <span class="seriesInfo">RFC 8343</span>, <span class="seriesInfo">DOI 10.17487/RFC8343</span>, <time datetime="2018-03" class="refDate">March 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8343">https://www.rfc-editor.org/info/rfc8343</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="VAP09">[VAP09]</dt>
+      <dd>
+<span class="refAuthor">Chandola, V.</span>, <span class="refAuthor">Banerjee, A.</span>, and <span class="refAuthor">V. Kumar</span>, <span class="refTitle">"Anomaly detection: A survey"</span>, <span class="refContent">IETF 117, Applied Networking Research
+        Workshop</span>, <span class="seriesInfo">DOI 10.1145/1541880.1541882</span>, <time datetime="2009-07" class="refDate">July 2009</time>, <span>&lt;<a href="https://www.researchgate.net/publication/220565847_Anomaly_Detection_A_Survey">https://www.researchgate.net/publication/220565847_Anomaly_Detection_A_Survey</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+</section>
+<div id="authors-addresses">
+<section id="appendix-A">
+      <h2 id="name-authors-addresses">
+<a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
+      </h2>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Thomas Graf</span></div>
+<div dir="auto" class="left"><span class="org">Swisscom</span></div>
+<div dir="auto" class="left"><span class="street-address">Binzring 17</span></div>
+<div dir="auto" class="left">CH-<span class="postal-code">8045</span> <span class="locality">Zurich</span>
+</div>
+<div dir="auto" class="left"><span class="country-name">Switzerland</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:thomas.graf@swisscom.com" class="email">thomas.graf@swisscom.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Wanting Du</span></div>
+<div dir="auto" class="left"><span class="org">Swisscom</span></div>
+<div dir="auto" class="left"><span class="street-address">Binzring 17</span></div>
+<div dir="auto" class="left">CH-<span class="postal-code">8045</span> <span class="locality">Zurich</span>
+</div>
+<div dir="auto" class="left"><span class="country-name">Switzerland</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:wanting.du@swisscom.com" class="email">wanting.du@swisscom.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Pierre Francois</span></div>
+<div dir="auto" class="left"><span class="org">INSA-Lyon</span></div>
+<div dir="auto" class="left"><span class="locality">Lyon</span></div>
+<div dir="auto" class="left"><span class="country-name">France</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:pierre.francois@insa-lyon.fr" class="email">pierre.francois@insa-lyon.fr</a>
+</div>
+</address>
+</section>
+</div>
+<script>const toc = document.getElementById("toc");
+toc.querySelector("h2").addEventListener("click", e => {
+  toc.classList.toggle("active");
+});
+toc.querySelector("nav").addEventListener("click", e => {
+  toc.classList.remove("active");
+});
+</script>
+</body>
+</html>
