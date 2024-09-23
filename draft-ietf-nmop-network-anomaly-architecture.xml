@@ -1,0 +1,847 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd">
+<?rfc toc="yes"?>
+<?rfc tocompact="yes"?>
+<?rfc tocdepth="2"?>
+<?rfc tocindent="yes"?>
+<?rfc symrefs="yes"?>
+<?rfc sortrefs="yes"?>
+<?rfc comments="yes"?>
+<?rfc inline="yes"?>
+<?rfc compact="yes"?>
+<?rfc subcompact="no"?>
+<rfc category="info" docName="draft-ietf-nmop-network-anomaly-architecture-latest"
+     ipr="trust200902">
+  <front>
+    <title abbrev="Network Anomaly Detection Framework">An Architecture for a
+    Network Anomaly Detection Framework</title>
+
+    <author fullname="Thomas Graf" initials="T" surname="Graf">
+      <organization>Swisscom</organization>
+
+      <address>
+        <postal>
+          <street>Binzring 17</street>
+
+          <city>Zurich</city>
+
+          <code>8045</code>
+
+          <country>Switzerland</country>
+        </postal>
+
+        <email>thomas.graf@swisscom.com</email>
+      </address>
+    </author>
+
+    <author fullname="Wanting Du" initials="W" surname="Du">
+      <organization>Swisscom</organization>
+
+      <address>
+        <postal>
+          <street>Binzring 17</street>
+
+          <city>Zurich</city>
+
+          <code>8045</code>
+
+          <country>Switzerland</country>
+        </postal>
+
+        <email>wanting.du@swisscom.com</email>
+      </address>
+    </author>
+
+    <author fullname="Pierre Francois" initials="P." surname="Francois">
+      <organization>INSA-Lyon</organization>
+
+      <address>
+        <postal>
+          <street/>
+
+          <city>Lyon</city>
+
+          <region/>
+
+          <code/>
+
+          <country>France</country>
+        </postal>
+
+        <phone/>
+
+        <facsimile/>
+
+        <email>pierre.francois@insa-lyon.fr</email>
+
+        <uri/>
+      </address>
+    </author>
+
+    <date day="09" month="September" year="2024"/>
+
+    <area>Operations and Management</area>
+
+    <workgroup>NMOP</workgroup>
+
+    <abstract>
+      <t>This document describes the motivation and architecture of a Network
+      Anomaly Detection Framework and the relationship to other documents
+      describing network symptom semantics and network incident lifecycle.</t>
+
+      <t>The described architecture for detecting IP network service
+      interruption is generic applicable and extensible. Different
+      applications are being described and exampled with open-source running
+      code.</t>
+    </abstract>
+
+    <note removeInRFC="true">
+      <name>Discussion Venues</name>
+
+      <t>Discussion of this document takes place on the Operations and
+      Management Area Working Group Working Group mailing list
+      (nmop@ietf.org), which is archived at <eref
+      target="https://mailarchive.ietf.org/arch/browse/nmop/"/> .</t>
+
+      <t>Source for this draft and an issue tracker can be found at <eref
+      target="https://github.com/network-analytics/draft-netana-nmop-network-anomaly-architecture/"/>
+      .</t>
+    </note>
+  </front>
+
+  <middle>
+    <section anchor="Introduction" title="Introduction">
+      <t>Today's highly virtualized large scale IP networks are a challenge
+      for network operation to monitor due to its vast number of dependencies.
+      Humans are no longer capable to verify manually all dependencies end to
+      end in an appropriate time.</t>
+
+      <t>IP networks are the backbone of today's society. We individually
+      depend on networks fulfilling the purpose of forwarding our IP packets
+      from A to B at any time of the day in a timely fashion. A loss of
+      connectivity for a short period of time has manyfold implications. From
+      unable to browse the web, watch a soccer game, access the company
+      intranet or even in life threatening situations being no longer able to
+      reach emergency services. Where increased packet forwarding delay due to
+      congestion, depending on the real-time character of the network
+      application, have none to severe impact on the performance of the
+      application.</t>
+
+      <t>Networks are in general deterministic. However, the usage of networks
+      only somewhat. Humans, as in a large group of people, are somehow
+      predictable. There are time of the day patterns in terms of when we are
+      eating, sleeping, working or leisure. And these patterns are potentially
+      changing depending on age, profession and cultural background.</t>
+
+      <section anchor="Motivation" title="Motivation">
+        <t>When operational or configurational changes in connectivity
+        services are happening, the objective therefore is to detect
+        interruption at network operation faster than the users using those
+        connectivity services.</t>
+
+        <t>In order to achieve this objective, automation in network
+        monitoring is required since the amount or people operating the
+        network are simply outnumbered by the amount of people using
+        connectivity services.</t>
+
+        <t>This automation needs to monitor network changes holistically by
+        monitoring all 3 network planes simultaneously for a given
+        connectivity service and detect whether that change is service
+        disruptive, received packets are no longer forwarded to the desired
+        destination, or not. A change in control and management plane indicate
+        a network topology change. Where a change in the forwarding plane
+        describe how the packets are being forwarded. Or in other words,
+        control and management plane changes can be attributed to network
+        state changes where forwarding plane to the outcome of these network
+        state changes.</t>
+
+        <t>Since changes in networks are happening all the time due to the
+        vast number of dependencies, a scoring system is needed to indicate
+        whether the change is disruptive, the amount of transport sessions,
+        flows, are affected and whether such interruptions are usual or
+        exceptional.</t>
+      </section>
+
+      <section anchor="Scope" title="Scope">
+        <t>Such objectives can be achieved by applying checks on network
+        modelled time series data containing semantics describing their
+        dependencies across network planes. These checks can be based on
+        domain knowledge, in essence, how networks should work, or on outlier
+        detection techniques that identify measurements deviating
+        significantly from the norm due to human factors.</t>
+
+        <t>The described scope does not take the connectivity service intend
+        into account nor does it verify whether the intend is being achieved
+        all the time. Changes to the service intend causing service
+        disruptions are therefore considered service disruptions where on
+        monitoring systems taking the intend into account this is considered
+        as intended.</t>
+      </section>
+    </section>
+
+    <section anchor="Conventions_and_Definitions"
+             title="Conventions and Definitions">
+      <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+      "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+      "OPTIONAL" in this document are to be interpreted as described in BCP 14
+      <xref target="RFC2119"/> <xref target="RFC8174"/> when, and only when,
+      they appear in all capitals, as shown here.</t>
+
+      <section anchor="Terminology" title="Terminology">
+        <t>This document defines the following terms:</t>
+
+        <t>Outlier Detection: Is a systematic approach to identify rare data
+        points deviating significantly from the majority.</t>
+
+        <t>Service Disruption Detection (SDD): The process of detecting a
+        service degradation by discovering anomalies in network monitoring
+        data.</t>
+
+        <t>Service Disruption Detection System (SDDS): A system allowing to
+        perform SDD.</t>
+
+        <t>Additionally it makes use of the terms defined in <xref
+        target="I-D.ietf-nmop-terminology"/> and <xref
+        target="I-D.netana-nmop-network-anomaly-lifecycle"/>.</t>
+
+        <t>The following terms are used as defined in <xref
+        target="I-D.ietf-nmop-terminology"/> :</t>
+
+        <t><list style="symbols">
+            <t>System</t>
+
+            <t>Resource</t>
+
+            <t>Characteristic</t>
+
+            <t>Condition</t>
+
+            <t>Change</t>
+
+            <t>Detect</t>
+
+            <t>Event</t>
+
+            <t>State</t>
+
+            <t>Relevance</t>
+
+            <t>Occurrence</t>
+
+            <t>Incident</t>
+
+            <t>Problem</t>
+
+            <t>Symptom</t>
+
+            <t>Cause</t>
+
+            <t>Root Cause</t>
+
+            <t>Consolidation</t>
+
+            <t>Alert</t>
+
+            <t>Transient</t>
+
+            <t>Intermittent</t>
+          </list></t>
+
+        <t>Figure 2 in <xref section="3" sectionFormat="of"
+        target="I-D.ietf-nmop-terminology"/> shows characteristics of observed
+        operational network telemetry metrics.</t>
+
+        <t>Figure 4 in <xref section="3" sectionFormat="of"
+        target="I-D.ietf-nmop-terminology"/> shows relationships between,
+        state, relevant state, problem, symptom, cause and alert.</t>
+
+        <t>Figure 5 in <xref section="3" sectionFormat="of"
+        target="I-D.ietf-nmop-terminology"/> shows relationships between
+        problem, symptom, cause and root cause.</t>
+
+        <t>The following terms are used as defined in <xref
+        target="I-D.netana-nmop-network-anomaly-lifecycle"/> :</t>
+
+        <t><list style="symbols">
+            <t>False Positive</t>
+
+            <t>False Negative</t>
+          </list></t>
+      </section>
+
+      <section anchor="Outlier_Detection" title="Outlier Detection">
+        <t>Outlier Detection, also known as anomaly detection, describes a
+        systematic approach to identify rare data points deviating
+        significantly from the majority. Outliers can manifest as single data
+        point or as a sequence of data points. There are multiple ways in
+        general to classify anomalies, but for the context of this draft, the
+        following three classes are taken into account:</t>
+
+        <dl>
+          <dt>Global outliers:</dt>
+
+          <dd>An outlier is considered "global" if its behavior is outside the
+          entirety of the considered data set. For example, if the average
+          dropped packet count is between 0 and 10 per minute and a small
+          time-window gets the value 1000, this is considered a global
+          anomaly.</dd>
+        </dl>
+
+        <dl>
+          <dt>Contextual outliers:</dt>
+
+          <dd>An outlier is considered "contextual" if its behavior is within
+          a normal (expected) range, but it would not be expected based on
+          some context. Context can be defined as a function of multiple
+          parameters, such as time, location, etc. For example, the forwarded
+          packet volume overnight reaches levels which might be totally normal
+          for the daytime, but anomalous and unexpected for the
+          nighttime.</dd>
+        </dl>
+
+        <dl>
+          <dt>Collective outliers:</dt>
+
+          <dd>An outlier is considered "collective" if the behavior of each
+          single data point that are part of the anomaly are within expected
+          ranges (so they are not anomalous it either a contextual or a global
+          sense), but the group, taking all the data points together, is. Note
+          that the group can be made within a single time series (a sequence
+          of data points is anomalous) or across multiple metrics (e.g. if
+          looking at two metrics together, the combined behavior turns out to
+          be anomalous). In Network Telemetry time series, one way this can
+          manifest is that the amount of network paths and interface state
+          changes matches the time range when the forwarded packet volume
+          decreases as a group.</dd>
+        </dl>
+
+        <t>For each outlier a score between 0 and 1 is being calculated. The
+        higher the value, the higher the probability that the observed data
+        point is an outlier. <xref target="VAP09">Anomaly detection: A
+        survey</xref> gives additional details on anomaly detection and its
+        types.</t>
+      </section>
+
+      <section anchor="Knowledge_Based_Detection"
+               title="Knowledge Based Detection">
+        <t>Knowledge-based anomaly detection, also known as rule-based anomaly
+        detection, is a technique used to identify anomalies or outliers by
+        comparing them against predefined rules or patterns. This approach
+        relies on the use of domain-specific knowledge to set standards,
+        thresholds, or rules for what is considered "normal" behavior.
+        Traditionally, these rules are established manually by a knowledgeable
+        network engineer.</t>
+
+        <t>Additionally, in the context of network anomaly detection, the
+        knowledge-based approach works hand in hand with the deterministic
+        understanding of the network, which is reflected in network modeling.
+        Components are organized into three network planes: the Management
+        Plane, the Control Plane, and the Forwarding Plane. A component can
+        relate to a physical, virtual, or configurational entity, or to a sum
+        of packets belonging to a flow being forwarded in a network.</t>
+
+        <t>Such relationships can also be modelled in a Digital Map to
+        automate that process. <xref
+        target="I-D.havel-nmop-digital-map-concept"/> examples a a concept and
+        <xref target="I-D.havel-nmop-digital-map"/> an implementation for such
+        network modelled relationships.</t>
+      </section>
+
+      <section anchor="Data_Mesh" title="Data Mesh">
+        <t>The <xref target="Deh22">Data Mesh</xref> Architecture
+        distinguishes between operational and analytical data. Operational
+        data refers to collected data from operational systems. While
+        analytical data refers to insights gained from operational data.</t>
+
+        <section anchor="Operational_Network_Data"
+                 title="Operational Network Data">
+          <t>In terms of network observability, semantics of operational
+          network metrics are defined by IETF and are categorized as described
+          in the Network Telemetry Framework <xref target="RFC9232"/> in the
+          following three different network planes:</t>
+
+          <dl>
+            <dt>Management Plane:</dt>
+
+            <dd>Time series data describing the state changes and statistics
+            of a network node and its components. For example, Interface state
+            and statistics modelled in ietf-interfaces.yang <xref
+            target="RFC8343"/></dd>
+          </dl>
+
+          <dl>
+            <dt>Control Plane:</dt>
+
+            <dd>Time series data describing the state and state changes of
+            network reachability. For example, BGP VPNv6 unicast updates and
+            withdrawals exported in BGP Monitoring Protocol (BMP) <xref
+            target="RFC7854"/> and modeled in BGP <xref
+            target="RFC4364"/></dd>
+          </dl>
+
+          <dl>
+            <dt>Forwarding Plane:</dt>
+
+            <dd>Time series data describing the forwarding behavior of packets
+            and its data-plane context. For example, dropped packet count
+            modelled in IPFIX entity forwardingStatus(IE89) <xref
+            target="RFC7270"/> and packetDeltaCount(IE2) <xref
+            target="RFC5102"/> and exportet with IPFIX <xref
+            target="RFC7011"/> .</dd>
+          </dl>
+        </section>
+
+        <section anchor="Analyticsl_Observed_Symptoms"
+                 title="Analytical Observed Symptoms">
+          <t>The Service Disruption Detection process generates analytical
+          metrics describing symptom and outlier pattern of the connectivity
+          service disruption.</t>
+
+          <t>The obeserved symptoms are categorized into: action, reason,
+          cause. Where action decribe the change in the network. The reason
+          explains why this changed occured and cause the trigger of that
+          change.</t>
+
+          <t>Symptom definitions are described in <xref section="3"
+          sectionFormat="of"
+          target="I-D.netana-nmop-network-anomaly-semantics"/> and symptom
+          outlier pattern semantics in <xref section="4" sectionFormat="of"
+          target="I-D.netana-nmop-network-anomaly-semantics"/> .</t>
+        </section>
+      </section>
+    </section>
+
+    <section anchor="Elements_of_the_Architecture"
+             title="Elements of the Architecture">
+      <t>A system architecture aimed at detecting service disruptions is
+      typically built upon multiple components, for which design choices need
+      to be made. In this section, we describe the main components of the
+      architecture, and delve into considerations to be made when designing
+      such componenents in an implementation.</t>
+
+      <t>The system architecture is illustrated in <xref target="fig_arch"/>
+      and its main components are described in the following subsections.</t>
+
+      <figure align="center" anchor="fig_arch"
+              title="Service Disruption Detection Architecture">
+        <artwork align="center"><![CDATA[
+
+         +---------+                     +-------------------+
+         |Service  |                     |     Alert and     |
+    |--- |Inventory|                     | Problem Management|
+    |    |         |                     |      System       |
+    |    +---------+                     +-------------------+
+    |      |                                      ^     Stream
+    |      |                                      |
+    |      |       +---------+           +-------------------+
+    |      |       | Post-   | Stream    |   Message Broker  |
+    |      |       | mortem  | <-------- |  with Analytical  |
+    |      |       | System  |           |    Network Data   |
+    |      |       +---------+           +-------------------+
+    |      |            |                         ^     Stream
+    |      |            |                         |
+    |      |            |                +-------------------+
+    |      | Profile    | Fine           | Alert Aggregation | Store Label
+    |      | and        | Tune           | for Anomaly       | ------------|
+    |      | Generate   | SDD            | Detection         |             |
+    |      | SDD Config | Config         +-------------------+             |
+    |      |            |                       ^  ^  ^ Stream             |
+    |      v            v                       |  |  |                    ?
+    |   +-------------------+            +-------------------+        +---------+
+    |   | Service Disruption| Schedule   | Service Disruption| Replay |  Data   |
+    |   |     Detection     | ---------> |     Detection     |<------ | Storage |
+    |   |   Configuration   | Detection  |                   |        |         |
+    |   +-------------------+            +-------------------+        +---------+
+    |                                       ^ ^ Stream ^ ^ ^               ^
+    |                                       | |        | | |               |
+    |                                    +---------+---------+             |
+    |                                    | Network |  Data   | Store       |
+    |----------------------------------> |  Model  |  Aggr.  | ------------|
+                                         |         | Process | Operational Data
+                                         +---------+---------+
+                                                ^  ^  ^ Stream
+                                                |  |  |
+                                         +-------------------+
+                                         |   Message Broker  |
+                                         |  with Operational |
+                                         |    Network Data   |
+                                         +-------------------+
+                                                ^  ^  ^ Stream
+ Subscribe                       Publish        |  |  |
+           +-------------------+         +-------------------+
+           | Network Node with | ------> | Network Telemetry |
+ --------> | Network Telemetry | ------> |  Data Collection  |
+           |   Subscription    | ------> |                   |
+           +-------------------+         +-------------------+
+
+      ]]></artwork>
+      </figure>
+
+      <section anchor="Arch_Inventory" title="Service Inventory">
+        <t>A service inventory is used to obtain a list of the connectivity
+        services for which Anomaly Detection is to be performed. A service
+        profiling process may be executed on the service in order to define a
+        configuration of the service disruption detection approach and
+        parameters to be used.</t>
+      </section>
+
+      <section anchor="Arch_Configuration" title="SDD Configuration">
+        <t>Based on this service list and potential preliminary service
+        profiling, a configuration of the Service Disruption Detection is
+        produced. It defines the set of approaches that need to be applied to
+        perform SDD, as well as parameters that are to be set when executing
+        the algorithms performing SDD per se.</t>
+
+        <t>As the service lives on, the configuration may be adapted as a
+        result of an evolution of the profiling being performed, as the result
+        of a postmortem analysis being produced as a result of an event
+        impacting the service, or the occurrence of false positives being
+        raised by the alerting system.</t>
+      </section>
+
+      <section anchor="Arch_Collection" title="Operational Data Collection">
+        <t>Collection of network monitoring data involves the management of
+        the subscriptions to network telemetry on nodes of the network, and
+        the configuration of the collection infrastructure to receive the
+        monitoring data produced by the network.</t>
+
+        <t>The monitoring data produced by the collection infrastructure is
+        then streamed through a message broker system. for further
+        processing.</t>
+
+        <t>Networks tend to produce extremely large amounts of monitoring
+        data. To preserve scaling and reduce costs, decisions need to be made
+        on the duration of retention of such data in storage, and at which
+        level of storage they need to be kept. A retention time need to be set
+        on the raw data produced by the collection system, in accordance to
+        their utility for further used. This aspect will be elaborated in
+        further sections.</t>
+      </section>
+
+      <section anchor="Arch_Aggregation" title="Operational Data Aggregation">
+        <t>Aggregation is the process of producing data upon which detection
+        of a service disruption can be performed, based on collected network
+        monitoring data.</t>
+
+        <t>Pre-processing of collected network monitoring data is usually
+        performed so as to produce input for the Service Disruption Detection
+        component. This can be achieved in multiple ways, depending on the
+        architecture of the SDD component. As an example, the granularity at
+        which forwarding data is produced by the network may be too high for
+        the SDD algorithms, and instead be aggregated into a coarser dimension
+        for SDD execution.</t>
+
+        <t>A retention time also needs to be decided upon for Aggregated data.
+        Note that the retention time must be set carefully, in accordance with
+        the replay ability requirement discussed in <xref
+        target="Arch_Replaying"/>.</t>
+      </section>
+
+      <section anchor="Arch_SDD" title="Service Disruption Detection">
+        <t>Service Disruption Detection processes the aggregated network data
+        in order to decide whether a service is degraded to the point where
+        network operation needs to be alerted of an ongoing problem within the
+        network.</t>
+
+        <t>Two key aspects need to be considered when designing the SDD
+        component. First, the way the data is being processed needs to be
+        carefully designed, as networks typically produce extremely large
+        amounts of data which may hinder the scalability of the architecture.
+        Second, the algorithms used to make a decision to alert the operator
+        need to be designed in such a way that the operator can trust that a
+        targeted Service Disruption will be detected (no false negatives),
+        while not spamming the operator with alerts that do not reflect an
+        actual issue within the network (false positives) leading to alert
+        fatigue.</t>
+
+        <t>Two approaches are typically followed to present the data to the
+        SDD system. Classically, the aggregated data can be stored in a
+        database that is polled at regular intervals by the SDD component for
+        decision making. Alternatively, a streaming approach can be followed
+        so as to process the data while they are being consumed from the
+        collection component.</t>
+
+        <t>For SDD per-se, two families of algorithms can be decided upon.
+        First, knowledge based detection approaches can be used, mimicking the
+        process that human operators follow when looking at the data. Machine
+        Learning based outlier detection based approaches to detect deviations
+        from the norm.</t>
+
+        <section anchor="Modeling" title="Network Modeling">
+          <t>Some input to SDD is made of established knowledge of the network
+          that is unrelated to the dimensions according to which outlier
+          detection is performed. For example, the knowledge of the network
+          infrastructure may be required to perform some service disruption
+          detection. Such data need to be rendered accessible and updatable
+          for use by SDD. They may come from inventories, or automated
+          gathering of data from the network itself.</t>
+        </section>
+
+        <section anchor="Profiling" title="Data Profiling">
+          <t>As rules cannot be crafted specifically for each customer, they
+          need to be defined according to pre-established service profiles.
+          Processing of monitoring data can be performed in order to associate
+          each service with a profile. External knowledge on the customer can
+          also help in associating a service with a profile.</t>
+        </section>
+
+        <section anchor="Strategies" title="Detection Strategies">
+          <t>For a profile, a set of strategies is defined. Each strategy
+          captures one approach to look at the data (as a human operator does)
+          to observe if an abnormal situation is arising. Strategies are
+          defined as a function of observed outliers as defined in <xref
+          target="Outlier_Detection"/> .</t>
+
+          <t>When one of the strategies applied for a profile detects a
+          concerning outlier or combined outlier, an alert needs to be
+          raised.</t>
+
+          <t>Depending on the implementation of the architecture, a scheduler
+          may be needed in order to orchestrate the evaluation of the alert
+          levels for each strategy applied for a profile, for all service
+          instances associated with such profile.</t>
+        </section>
+
+        <section anchor="RB_vs_ML" title="Machine Learning">
+          <t>Machine learning-based anomaly detection can also be seamlessly
+          integrated into such SDDS. Machine learning is commonly used for
+          detecting outliers or anomalies. Typically, unsupervised learning is
+          widely recognized for its applicability, given the inherent
+          characteristics of network data. Although machine learning requires
+          a sizeable amount of high-quality data and considerable advanced
+          training, the advantages it offers make these requirements
+          worthwhile. The power of this approach lies in its generalizability,
+          robustness, ability to simplify the fine-tuning process, and most
+          importantly, its capability to identify anomaly patterns that might
+          go unnoticed to the human observer.</t>
+        </section>
+
+        <section anchor="Storage" title="Storage">
+          <t>Storage may be required to execute SDD, as some algorithms may be
+          relying on historical (aggregated) monitoring data in order to
+          detect anomalies. Careful considerations need to be made on the
+          level at which such data is stored, as slow access to such data may
+          be detrimental to the reactivity of the system.</t>
+        </section>
+      </section>
+
+      <section anchor="Arch_Alerting" title="Alerting">
+        <t>When the SDD component decides that a service is undergoing a
+        disruption, a alert notification needs to be sent to the alert and
+        problem management system. Multiple practical aspects need to be taken
+        into account in this component.</t>
+
+        <t>When the issue lasts longer than the interval at which the SDD
+        component runs, the alerting mechanism should not create multiple
+        tickets to the operator, so as to not overwhelm the management of the
+        issue. However, the information provided along with the alert should
+        be kept up to date during the full duration of the issue.</t>
+      </section>
+
+      <section anchor="Arch_Postmortem" title="Postmortem">
+        <figure anchor="simplified_lifecycle"
+                title="Anomaly Detection Refinement Lifecycle">
+          <artwork align="center"><![CDATA[
+
+
+   Network Anomaly
+     Detection          Detected Symptoms
++-------------------+           &
+|   +-----------+   |   Network Anomalies
+|   | Detection |---|-------------+
+|   |   Stage   |   |             |
+|   +-----------+   |             v
++---------^---------+        +-------------------+      Labels     +------------+
+          |                  | Anomaly Detection |---------------->| Validation |
+          |                  |   Label Store     |<----------------|   Stage    |
+          |                  +-------------------+     Revised     +------------+
+   +------------+                 |                    Labels
+   | Refinement |                 |
+   |   Stage    |<----------------+
+   +------------+        Historical Symptoms
+                                  &
+                          Network Anomalies
+
+
+          ]]></artwork>
+        </figure>
+
+        <t>Validation and refinement are performed during Postmortem.</t>
+
+        <t>From an Anomaly Detection Lifecycle point of view as described in
+        <xref target="I-D.netana-nmop-network-anomaly-lifecycle"/>, the
+        Service Disruption Detection Configuration evolves over time,
+        iteratively, looping over three main phases: detection, validation and
+        refinement.</t>
+
+        <t>The Detection phase produces the alerts that are sent to the Alert
+        and Problem Management System and at the same time it stores the
+        network anomaly and symptom labels into the Label Store. This enables
+        network engineers to review the labels to validate and edit them as
+        needed.</t>
+
+        <t>The Validation stage is typically performed by network engineers
+        reviewing the results of the detection and indicating which symptoms
+        and network anomalies have been useful for the identification of
+        problems in the network. The original labels from the Service
+        Disruption Detection are analyzed and an updated set of more accurate
+        labels is provided back to the label store.</t>
+
+        <t>The resulting labels will be then provided back into the Network
+        Anomaly Detection via its refinement capabilities: the refinement is
+        about the update of the Service Disruption Detection configuration in
+        order to improve the results of the detection (e.g. false positives,
+        false negatives, accuracy of the boundaries, etc.).</t>
+      </section>
+
+      <section anchor="Arch_Replaying" title="Replaying">
+        <t>When a service disruption has been detected, it is essential for
+        the human operator to be able to analyze the data which led to the
+        raising of an Alert. It is thus important that a SSDS preserves both
+        the data which led to the creation of the alert as well as human
+        understandable information on why the data led to the raising of an
+        alert.</t>
+
+        <t>In early stages of operations or when experimenting with a SDDS, it
+        is common that the parameters used for SDD are to be fined tuned. This
+        process is facilitated by designing the SDDS architecture in a way
+        that allows to rerun the SDD algorithms on the same input.</t>
+
+        <t>Data retention, as well as its level, need to be defined in order
+        not to sacrifice the ability of replaying SDD execution for the sake
+        of improving its accuracy.</t>
+      </section>
+    </section>
+
+    <section anchor="Implementation" title="Implementation Status">
+      <t>Note to the RFC-Editor: Please remove this section before
+      publishing.</t>
+
+      <t>This section records the status of known implementations.</t>
+
+      <section anchor="Cosmos_Bright_Lights" title="Cosmos Bright Lights">
+        <t>This architecture have been developed as part of a proof of concept
+        started in September 2022 first in a dedicated network lab environment
+        and later in December 2022 in Swisscom production to monitor a limited
+        amount of 16 L3 VPN connectivity services.</t>
+
+        <t>At the Applied Networking Research Workshop at IRTF 117 the
+        architecture was the first time published in the following academic
+        paper: <xref target="Ahf23"/>.</t>
+
+        <t>Since December 2022, 20 connectivity service disruptions have been
+        monitored and 52 false positives due to time series database
+        temporarily not being real-time and missing traffic profiling,
+        comparing to previous week was not applicable, occurred. Out of 20
+        connectivity service disruptions 6 parameters where monitored and 3
+        times 1, 8 times 2, 6 times 3, 2 times 4 parameters recognized the
+        service disruption.</t>
+
+        <t>A real-time streaming based version has been deployed in Swisscom
+        production as a proof of concept in June 2024 monitoring approximate
+        &gt;12'000 L3 VPN's concurrently. Improved profiling capabilities are
+        currently under development.</t>
+      </section>
+    </section>
+
+    <section anchor="Security" title="Security Considerations">
+      <t>TBD</t>
+    </section>
+
+    <section anchor="Contributors" title="Contributors">
+      <t>The authors would like to thank Alex Huang Feng and Vincenzo
+      Riccobene for their valuable contribution.</t>
+    </section>
+
+    <section anchor="Acknowledgements" title="Acknowledgements">
+      <t>The authors would like to thank TBD for their review and valuable
+      comments. TBD for review and contributing code.</t>
+    </section>
+  </middle>
+
+  <back>
+    <references title="Normative References">
+      <?rfc include='reference.RFC.2119'?>
+
+      <?rfc include='reference.RFC.8174'?>
+
+      <?rfc include='reference.RFC.9232'?>
+
+      <?rfc include='reference.I-D.ietf-nmop-terminology'?>
+
+      <?rfc include='reference.I-D.netana-nmop-network-anomaly-semantics'?>
+
+      <?rfc include='reference.I-D.netana-nmop-network-anomaly-lifecycle'?>
+
+      <?rfc include='reference.I-D.havel-nmop-digital-map-concept'?>
+
+      <?rfc include='reference.I-D.havel-nmop-digital-map'?>
+    </references>
+
+    <references title="Informative References">
+      <?rfc include='reference.RFC.4364'?>
+
+      <?rfc include='reference.RFC.5102'?>
+
+      <?rfc include='reference.RFC.7011'?>
+
+      <?rfc include='reference.RFC.7270'?>
+
+      <?rfc include='reference.RFC.7854'?>
+
+      <?rfc include='reference.RFC.8343'?>
+
+      <reference anchor="Ahf23" target="https://hal.science/hal-04307611">
+        <front>
+          <title>Daisy: Practical Anomaly Detection in large BGP/MPLS and
+          BGP/SRv6 VPN Networks</title>
+
+          <author fullname="Alex Huang Feng" initials="A."
+                  surname="Huang Feng"/>
+
+          <date month="July" year="2023"/>
+        </front>
+
+        <seriesInfo name="DOI" value="10.1145/3606464.3606470"/>
+
+        <refcontent>IETF 117, Applied Networking Research
+        Workshop</refcontent>
+      </reference>
+
+      <reference anchor="VAP09"
+                 target="https://www.researchgate.net/publication/220565847_Anomaly_Detection_A_Survey">
+        <front>
+          <title>Anomaly detection: A survey</title>
+
+          <author fullname="Varun Chandola" initials="V." surname="Chandola"/>
+
+          <author fullname="Arindam Banerjee" initials="A." surname="Banerjee"/>
+
+          <author fullname="Vipin Kumar" initials="V." surname="Kumar"/>
+
+          <date month="July" year="2009"/>
+        </front>
+
+        <seriesInfo name="DOI" value="10.1145/1541880.1541882"/>
+
+        <refcontent>IETF 117, Applied Networking Research
+        Workshop</refcontent>
+      </reference>
+
+      <reference anchor="Deh22"
+                 target="https://www.oreilly.com/library/view/data-mesh/9781492092384/">
+        <front>
+          <title>Data Mesh</title>
+
+          <author fullname="Zhamak Dehghani" initials="Z." surname="Dehghani"/>
+
+          <date month="March" year="2022"/>
+        </front>
+
+        <seriesInfo name="ISBN" value="9781492092391"/>
+
+        <refcontent>O'Reilly Media</refcontent>
+      </reference>
+    </references>
+  </back>
+</rfc>
