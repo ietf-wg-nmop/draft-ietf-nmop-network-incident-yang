@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-09-22T00:38:31.748282+00:00",
+  "timestamp": "2024-09-24T00:35:34.862047+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
   "labels": [
     {
@@ -272,7 +272,7 @@
       "labels": [],
       "body": "Per: https://mailarchive.ietf.org/arch/msg/nmop/LVZmlNOjDFjx3PqRLrjvTSnWnWg/\r\n\r\n> @authors of draft-ietf-nmop-network-incident-yang: Parts of the LS are relevant to the scope of the incident mgt draft. Sharing your thoughts and candidate actions would be appreciated. Thanks.",
       "createdAt": "2024-07-24T08:24:32Z",
-      "updatedAt": "2024-09-03T12:02:57Z",
+      "updatedAt": "2024-09-23T13:50:20Z",
       "closedAt": null,
       "comments": [
         {
@@ -281,6 +281,13 @@
           "body": "@Med\r\nFirst, it looks the current draft has already aligned with what TMF incident management API profile is doing, see annex A of LS, I agree the mapping between IETF Incident management and TMF API management is correct. It is not clear what else we need to do to make further alignment.\r\nFor the terminology, we referenced to both TMF incident terminology and IETF incident terminology work. Do we need to only reference IETF incident terminology work, it could be.\r\n\r\nSecondly, I think IETF incident management work focuses on network level incident management, will not be tied with OSS or under the control of OSS, We have made change to reflect in the latest version which hasn't been submitted yet, e.g., single domain close loop, multi-domain close loop scenarios.",
           "createdAt": "2024-09-03T12:02:55Z",
           "updatedAt": "2024-09-03T12:02:55Z"
+        },
+        {
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "(as induvial) may be it is worth to echo this in the draft?",
+          "createdAt": "2024-09-23T13:50:18Z",
+          "updatedAt": "2024-09-23T13:50:18Z"
         }
       ]
     },
@@ -565,6 +572,32 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 18,
+      "id": "PR_kwDOL4Sz0s58UgQL",
+      "title": "xml version",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/pull/18",
+      "state": "CLOSED",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-09-23T06:49:19Z",
+      "updatedAt": "2024-09-23T06:50:02Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
+      "baseRefName": "main",
+      "baseRefOid": "6f7e76bb60771c72e91569b9aed4f0548000a9ea",
+      "headRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
+      "headRefName": "boucadair-patch-5",
+      "headRefOid": "728bcf056f6bd57633877451e7c0481cc73996ea",
+      "closedAt": "2024-09-23T06:50:02Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
