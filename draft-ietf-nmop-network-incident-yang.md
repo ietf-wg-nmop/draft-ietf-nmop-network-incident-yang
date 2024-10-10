@@ -1175,7 +1175,7 @@ A.1 Network Incident management with specific network topology and the network s
 # Changes between Revisions
 
    v01 - v-2
-   
+
    * Clarify the relation between fault, incident and problem
 
    * Clarify the relation between fault management and incident management
