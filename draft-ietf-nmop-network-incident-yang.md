@@ -124,7 +124,7 @@ A network incident refers to an unexpected interruption of a network
 service, degradation of a network service quality, or sub-health of a
 network service.  Different data sources including alarms, metrics,
 and other anomaly information can be aggregated into a few amount of
-network incidents by data correlation analysis and the service impact
+network incidents through data correlation analysis and the service impact
 analysis.
 
 This document defines a YANG Module for the network incident lifecycle
@@ -150,13 +150,13 @@ multiple distributed systems.
 
 However, these YANG data models for network maintenance are based on
 specific data source information and manage alarms and performance
-metrics data separately by different layers in various different
+metrics data separately at different layers in various different
 management systems.  In addition, the frequency and quantity of
 alarms and performance metrics data reported to Operating Support
 System (OSS) are increased dramatically (in many cases multiple
 orders of magnitude) with the growth of service types and complexity
 and greatly overwhelm OSS platforms; with existing known dependency
-relation between fault, alarm and events at each layer (e.g., packet
+relation between metric, alarm and events at each layer (e.g., packet
 layer or optical layer), it is possible to compress series of
 alarms into fewer network incidents and there are many solutions in the
 market today that essentially do this to some degree. However,
@@ -178,11 +178,11 @@ A network incident refers to an undesired occurrence such as an unexpected
 interruption of a network service,degradation of a network service quality,
 or sub-health of a network service {{?I-D.ietf-nmop-terminology}}{{TMF724A}}.
 Different data sources including alarms, metrics, and other anomaly information
-can be aggregated into one or a few amount of network incidents irrespective layer by
-correlation analysis and the service impact analysis.  For example, if the
+can be aggregated into one or a few amount of network incidents irrespective layer
+through correlation analysis and the service impact analysis.  For example, if the
 protocol-related interface fails to work properly, large amount of alarms may
 be reported to upper layer management system since a lot of network services
-may be affected by the interface, but only one aggregated network incident regarding
+may be affected by the interface, but only one aggregated network incident pertaining to
 the abnormal interface will be reported. A network incident may also be raised through
 the analysis of some network performance metrics, for example, as
 described in SAIN {{?RFC9417}}, network services can be decomposed to
@@ -195,7 +195,7 @@ In addition, Artificial Intelligence (AI) and Machine Learning (ML)
 are key technologies in the processing of large amounts of data with
 complex data correlations. For example, Neural Network Algorithm or
 Hierarchy Aggregation Algorithm can be used to replace manual alarm
-data correlation. Through online and offline learning, these
+data correlation. Through online and offline self-learning, these
 algorithms can be continuously optimized to improve the efficiency of
 fault diagnosis.
 
@@ -225,15 +225,20 @@ Network incident:
    a network service,degradation of a network service quality, or
    sub-health of a network service {{TMF724A}}.  A network incident
    is a single unplanned event that causes network service interruption.
-   A problem is one cause or potential cause of one or more network incidents.
+   A problem is one cause or potential cause of one or more network
+   incidents. The repeated network incidents can be raised as the problem.
+
 
 Incident management:
 :  Lifecycle management of network incidents, including
    network incident identification, reporting, acknowledgement, diagnosis, and
    resolution. Different from fault management, it take various different data sources
    including alarms, metrics, and other anomaly information and aggregate them into one
-   or a few amount of network incidents irrespective layer by correlation analysis and
-   the service impact analysis.
+   or a few amount of network incidents irrespective layer through correlation analysis and
+   the service impact analysis. One fault on the network device can be raised by one network
+   incident, one fault on the network device can cause multiple network incidents, e.g., multiple
+   service offerings that are dependent on that device will go down and others may suffer
+   increased latency as redundant routes become more congested.
 
 Incident management system:
 :  An entity which implements network incident
