@@ -485,10 +485,10 @@ controller or analytics and then reported to the upper layer system
 these network incidents and provide the information for fault analysis (e.g.,
 deeper analysis based on network incident).
 
-Different from alarm management, incident process within the controller
-provides not only network incident reporting but also diagnosis and resolution
-functions, it's possible to support self-healing and may be helpful
-for single-domain closed-loop control.
+Different from alarm management, incident process within the controller comprising
+both incident client and incident sever functionalities provides not only network
+incident reporting but also diagnosis and resolution functions, it's possible to support
+self-healing and may be helpful for single-domain closed-loop control.
 
 Incident management is not a substitute for alarm management.
 Instead, they can work together to implement fault management.
@@ -528,7 +528,8 @@ metrics can be monitored for sub-services.  For example, a tunnel
 service can be decomposed into some peer tunnel interface sub-
 services and IP connectivity sub-service.  If some metrics are
 evaluated to indicate unhealthy for specific sub-service, some
-symptoms will be present.  Incident process may identify the network incident
+symptoms will be present.  Incident process comprising both incident client and
+incident server functionalities may identify the network incident
 based on symptoms, and then report it to incident handler within the
 Operation Support System (OSS).  So, SAIN can be one way to identify
 network incident, services, sub-services and metrics can be preconfigured via
@@ -1172,6 +1173,17 @@ A.1 Network Incident management with specific network topology and the network s
 ~~~~
 
 # Changes between Revisions
+
+   v01 - v-2
+   
+   * Clarify the relation between fault, incident and problem
+
+   * Clarify the relation between fault management and incident management
+
+   * Add clarification text to make draft focus on network level incident management,
+     not be tied with OSS or under the control of OSS
+
+   * Other Editorial changes.
 
    v00 - v01
 
