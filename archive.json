@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-10T00:35:31.141444+00:00",
+  "timestamp": "2024-10-13T00:38:51.668359+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
   "labels": [
     {
@@ -265,15 +265,15 @@
       "id": "I_kwDOL4Sz0s6Qp7ke",
       "title": "Sync with TMF (See LS received 16/07/2024)",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/issues/16",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Per: https://mailarchive.ietf.org/arch/msg/nmop/LVZmlNOjDFjx3PqRLrjvTSnWnWg/\r\n\r\n> @authors of draft-ietf-nmop-network-incident-yang: Parts of the LS are relevant to the scope of the incident mgt draft. Sharing your thoughts and candidate actions would be appreciated. Thanks.",
       "createdAt": "2024-07-24T08:24:32Z",
-      "updatedAt": "2024-09-23T13:50:20Z",
-      "closedAt": null,
+      "updatedAt": "2024-10-12T00:31:06Z",
+      "closedAt": "2024-10-12T00:31:06Z",
       "comments": [
         {
           "author": "billwuqin",
@@ -288,6 +288,13 @@
           "body": "(as induvial) may be it is worth to echo this in the draft?",
           "createdAt": "2024-09-23T13:50:18Z",
           "updatedAt": "2024-09-23T13:50:18Z"
+        },
+        {
+          "author": "billwuqin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "fixed in https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/commit/97b268523d5cc5c91836968378b1e7cc6f48be3d.",
+          "createdAt": "2024-10-10T03:59:52Z",
+          "updatedAt": "2024-10-10T03:59:52Z"
         }
       ]
     },
