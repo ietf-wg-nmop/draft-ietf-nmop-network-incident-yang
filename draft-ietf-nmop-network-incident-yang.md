@@ -10,7 +10,10 @@ date:
 consensus: true
 v: 3
 area: "Operations and Management"
-workgroup: "NMOP Working Group"
+workgroup: "NMOP Working Group"![image](https://github.com/user-attachments/assets/d13bec35-cd77-46ef-832a-596ec6ab35f3)
+![image](https://github.com/user-attachments/assets/da3bd02a-89d5-430b-95b9-b999be99ce66)
+![image](https://github.com/user-attachments/assets/2c5a1505-c408-4b97-a346-0db9d5d8da8c)
+
 keyword:
  - network incident management
  - yang data model
@@ -534,7 +537,8 @@ based on symptoms, and then report it to incident handler within the
 Operation Support System (OSS).  So, SAIN can be one way to identify
 network incident, services, sub-services and metrics can be preconfigured via
 APIs defined by service assurance YANG model {{?RFC9418}} and the networkincident
-will be reported if symptoms match the condition of the network incident.
+will be reported if symptoms match certain condition or characteristic considered as
+an indication of a problem or potential problem.
 
 ## Relationship with RFC8969
 
