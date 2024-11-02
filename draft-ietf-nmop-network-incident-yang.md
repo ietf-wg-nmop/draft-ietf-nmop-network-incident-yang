@@ -458,18 +458,18 @@ A typical workflow of network incident management is as follows:
 
 A YANG model for the alarm management {{?RFC8632}} defines a standard
 interface to manage the lifecycle of alarms.  Alarms represent the
-undesirable state of network resources {{?I-D.ietf-nmop-terminology}}, alarm data model also defines
-the root causes and impacted services fields, but there may lack
+undesirable state of network resources {{?I-D.ietf-nmop-terminology}},
+alarm data model also defines the root causes and impacted services fields, but there may lack
 sufficient information to determine them in lower layer system
 (mainly in devices level), so alarms do not always tell the status of
-services or the root causes.  As described in {{?RFC8632}}, alarm
-management act as a starting point for high-level fault management.
-While network incident management often works at the network level, so it is
-possible to have enough information to perform correlation and
-service impact analysis.  Alarms can work as one of data sources of
-network incident management and may be aggregated into few amount of
-network incidents by correlation analysis, network service impact and root
-causes may be determined during incident process.
+network services or necessarily point to the root causes of problems.
+As described in {{?RFC8632}}, alarm management act as a starting point
+for high-level fault management. While network incident management often
+works at the network level, so it is possible to have enough information
+to perform correlation and service impact analysis.  Alarms can work as
+one of data sources of network incident management and may be aggregated
+into few amount of network incidents by correlation analysis, network service
+impact and root causes may be determined during incident process.
 
 Network Incident also contains some related alarms,if needed users can query
 the information of alarms by alarm management interface {{?RFC8632}}.
