@@ -457,7 +457,7 @@ A typical workflow of network incident management is as follows:
 
 A YANG model for the alarm management {{?RFC8632}} defines a standard
 interface to manage the lifecycle of alarms.  Alarms represent the
-undesirable state of network resources, alarm data model also defines
+undesirable state of network resources {{?I-D.ietf-nmop-terminology}}, alarm data model also defines
 the root causes and impacted services fields, but there may lack
 sufficient information to determine them in lower layer system
 (mainly in devices level), so alarms do not always tell the status of
@@ -1051,10 +1051,10 @@ operations and their sensitivity/vulnerability:
 "incident-diagnose": This RPC operation performs network incident
 diagnosis and root cause locating. If a malicious or buggy client
 performs an unexpectedly large number of this operation, the result
-might be an excessive use of system resources on the server side as
-well as network resources.  Servers MUST ensure they have sufficient
-resources to fulfill this request; otherwise, they MUST reject the
-request.
+might be an excessive use of system resources  {{?I-D.ietf-nmop-terminology}} 
+on the server side as well as network resources.  Servers MUST
+ensure they have sufficient resources to fulfill this request; otherwise,
+they MUST reject the request.
 
 "incident-resolve": This RPC operation is used to resolve the network
 incident. If a malicious or buggy client performs an unexpectedly large
