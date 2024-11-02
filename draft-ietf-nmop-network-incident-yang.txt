@@ -517,7 +517,8 @@ Table of Contents
    to identify network incident, services, sub-services and metrics can
    be preconfigured via APIs defined by service assurance YANG model
    [RFC9418] and the networkincident will be reported if symptoms match
-   the condition of the network incident.
+   certain condition or characteristic considered as an indication of a
+   problem or potential problem.
 
 4.3.  Relationship with RFC8969
 
