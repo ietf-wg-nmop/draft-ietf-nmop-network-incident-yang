@@ -1042,7 +1042,7 @@ nodes and their sensitivity/vulnerability:
 Unauthorized read access of this list can allow intruders to access
 network incident information and potentially get a picture of the broken state
 of the network. Intruders may exploit the vulnerabilities of the network
-to cause further negative impact on the network. Care must be taken to
+to lead to further negative impact on the network. Care must be taken to
 ensure that this list are accessed only by authorized users.
 
 Some of the RPC operations in this YANG module may be considered
