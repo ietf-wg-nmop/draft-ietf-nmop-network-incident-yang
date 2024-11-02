@@ -1051,7 +1051,7 @@ operations and their sensitivity/vulnerability:
 "incident-diagnose": This RPC operation performs network incident
 diagnosis and root cause locating. If a malicious or buggy client
 performs an unexpectedly large number of this operation, the result
-might be an excessive use of system resources  {{?I-D.ietf-nmop-terminology}} 
+might be an excessive use of system resources {{?I-D.ietf-nmop-terminology}}
 on the server side as well as network resources.  Servers MUST
 ensure they have sufficient resources to fulfill this request; otherwise,
 they MUST reject the request.
