@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-03T00:39:33.036183+00:00",
+  "timestamp": "2024-11-05T00:35:57.163644+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
   "labels": [
     {
@@ -321,6 +321,38 @@
           "updatedAt": "2024-09-19T14:21:52Z"
         }
       ]
+    },
+    {
+      "number": 19,
+      "id": "I_kwDOL4Sz0s6dAeMu",
+      "title": "Cross-checking terminology across NMOP drafts",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/issues/19",
+      "state": "OPEN",
+      "author": "billwuqin",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "https://mailarchive.ietf.org/arch/msg/nmop/anioloycwW4j5botgGC20s6zcjg/",
+      "createdAt": "2024-11-05T00:22:15Z",
+      "updatedAt": "2024-11-05T00:22:15Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 20,
+      "id": "I_kwDOL4Sz0s6dAep7",
+      "title": "draft-ietf-nmop-network-incident-yang-02 review from Thomas",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/issues/20",
+      "state": "OPEN",
+      "author": "billwuqin",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "https://mailarchive.ietf.org/arch/msg/nmop/ZwFTpPnET9JTVEdxsAwjuxodulg/",
+      "createdAt": "2024-11-05T00:23:40Z",
+      "updatedAt": "2024-11-05T00:23:41Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
