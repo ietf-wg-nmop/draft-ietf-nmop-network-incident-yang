@@ -4,14 +4,14 @@
 
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
-Intended status: Standards Track                        L. M. C. Murillo
-Expires: 13 April 2025                                    Telefonica I+D
+Intended status: Standards Track                         L. M. Contreras
+Expires: 14 May 2025                                          Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                         10 October 2024
+                                                        10 November 2024
 
 
            A YANG Data Model for Network Incident Management
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 April 2025.
+   This Internet-Draft will expire on 14 May 2025.
 
 Copyright Notice
 
@@ -439,11 +439,12 @@ Table of Contents
 
    A YANG model for the alarm management [RFC8632] defines a standard
    interface to manage the lifecycle of alarms.  Alarms represent the
-   undesirable state of network resources, alarm data model also defines
-   the root causes and impacted services fields, but there may lack
-   sufficient information to determine them in lower layer system
-   (mainly in devices level), so alarms do not always tell the status of
-   services or the root causes.  As described in [RFC8632], alarm
+   undesirable state of network resources [I-D.ietf-nmop-terminology],
+   alarm data model also defines the root causes and impacted services
+   fields, but there may lack sufficient information to determine them
+   in lower layer system (mainly in devices level), so alarms do not
+   always tell the status of network services or necessarily point to
+   the root causes of problems.  As described in [RFC8632], alarm
    management act as a starting point for high-level fault management.
    While network incident management often works at the network level,
    so it is possible to have enough information to perform correlation
@@ -516,7 +517,8 @@ Table of Contents
    to identify network incident, services, sub-services and metrics can
    be preconfigured via APIs defined by service assurance YANG model
    [RFC9418] and the networkincident will be reported if symptoms match
-   the condition of the network incident.
+   certain condition or characteristic considered as an indication of a
+   problem or potential problem.
 
 4.3.  Relationship with RFC8969
 
@@ -1853,7 +1855,7 @@ Table of Contents
    entries.  Unauthorized read access of this list can allow intruders
    to access network incident information and potentially get a picture
    of the broken state of the network.  Intruders may exploit the
-   vulnerabilities of the network to cause further negative impact on
+   vulnerabilities of the network to lead to further negative impact on
    the network.  Care must be taken to ensure that this list are
    accessed only by authorized users.
 
@@ -1865,10 +1867,10 @@ Table of Contents
    "incident-diagnose": This RPC operation performs network incident
    diagnosis and root cause locating.  If a malicious or buggy client
    performs an unexpectedly large number of this operation, the result
-   might be an excessive use of system resources on the server side as
-   well as network resources.  Servers MUST ensure they have sufficient
-   resources to fulfill this request; otherwise, they MUST reject the
-   request.
+   might be an excessive use of system resources
+   [I-D.ietf-nmop-terminology] on the server side as well as network
+   resources.  Servers MUST ensure they have sufficient resources to
+   fulfill this request; otherwise, they MUST reject the request.
 
    "incident-resolve": This RPC operation is used to resolve the network
    incident.  If a malicious or buggy client performs an unexpectedly
@@ -1984,9 +1986,9 @@ Informative References
               Davis, N., Farrel, A., Graf, T., Wu, Q., and C. Yu, "Some
               Key Terms for Network Fault and Problem Management", Work
               in Progress, Internet-Draft, draft-ietf-nmop-terminology-
-              05, 12 September 2024,
+              07, 3 November 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
-              terminology-05>.
+              terminology-07>.
 
    [I-D.quilbeuf-opsawg-configuration-tracing]
               Quilbeuf, J., Claise, B., Graf, T., Lopez, D., and S.
@@ -2311,8 +2313,8 @@ Authors' Addresses
    Email: hutong@cmhi.chinamobile.com
 
 
-   Luis Miguel Contreras Murillo
-   Telefonica I+D
+   Luis M. Contreras
+   Telefonica
    Madrid
    Spain
    Email: luismiguel.contrerasmurillo@telefonica.com
