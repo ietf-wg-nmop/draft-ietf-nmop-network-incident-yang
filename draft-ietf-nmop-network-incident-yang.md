@@ -26,8 +26,8 @@ author:
      country: China
      email: hutong@cmhi.chinamobile.com
 -
-    fullname: Luis Miguel Contreras Murillo
-    organization: Telefonica I+D
+    fullname: Luis M. Contreras
+    organization: Telefonica
     city: Madrid
     country: Spain
     email: luismiguel.contrerasmurillo@telefonica.com
