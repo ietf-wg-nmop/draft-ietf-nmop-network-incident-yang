@@ -4,14 +4,14 @@
 
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
-Intended status: Standards Track                        L. M. C. Murillo
-Expires: 6 May 2025                                       Telefonica I+D
+Intended status: Standards Track                         L. M. Contreras
+Expires: 26 June 2025                                         Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                         2 November 2024
+                                                        23 December 2024
 
 
            A YANG Data Model for Network Incident Management
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 May 2025.
+   This Internet-Draft will expire on 26 June 2025.
 
 Copyright Notice
 
@@ -1986,9 +1986,9 @@ Informative References
               Davis, N., Farrel, A., Graf, T., Wu, Q., and C. Yu, "Some
               Key Terms for Network Fault and Problem Management", Work
               in Progress, Internet-Draft, draft-ietf-nmop-terminology-
-              06, 17 October 2024,
+              09, 26 November 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
-              terminology-06>.
+              terminology-09>.
 
    [I-D.quilbeuf-opsawg-configuration-tracing]
               Quilbeuf, J., Claise, B., Graf, T., Lopez, D., and S.
@@ -2313,8 +2313,8 @@ Authors' Addresses
    Email: hutong@cmhi.chinamobile.com
 
 
-   Luis Miguel Contreras Murillo
-   Telefonica I+D
+   Luis M. Contreras
+   Telefonica
    Madrid
    Spain
    Email: luismiguel.contrerasmurillo@telefonica.com
