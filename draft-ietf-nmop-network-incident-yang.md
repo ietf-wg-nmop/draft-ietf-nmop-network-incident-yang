@@ -201,8 +201,8 @@ algorithms can be continuously optimized to improve the efficiency of
 fault diagnosis.
 
 This document defines a YANG data model for network incident lifecycle
-management, which improves troubleshooting efficiency, ensures network
-service quality, and improves network automation {{?RFC8969}}.
+management, which improves troubleshooting efficiency, and improves
+network automation {{?RFC8969}} with RPC operations in this YANG module.
 
 # Conventions and Definitions
 
@@ -412,9 +412,11 @@ A typical workflow of network incident management is as follows:
 * Some alarms or abnormal operations, network performance metrics
    are reported from the network.  Incident server
    receives these alarms/abnormal operations/metrics and try to
-   analyze the correlation of them, if the network incidents are identified,
-   it will be reported to the incident client.  The impact of network services
-   will be also analyzed and will update the network incident.
+   analyze the correlation of them, e.g., generate a symptom if some metrics are
+   evaluated as unhealthy, detect a cause based on correlation analysis.
+   If the network incidents are identified, it will be reported to the incident
+   client.  The impact of network services will be also analyzed and will update
+   the network incident.
 
 * Incident client receives the network incident raised by incident server,
   and acknowledge it.  Client may invoke the "network incident diagnose" rpc
@@ -459,9 +461,9 @@ A typical workflow of network incident management is as follows:
 A YANG model for the alarm management {{?RFC8632}} defines a standard
 interface to manage the lifecycle of alarms.  Alarms represent the
 undesirable state of network resources {{?I-D.ietf-nmop-terminology}},
-alarm data model also defines the root causes and impacted services fields, but there may lack
-sufficient information to determine them in lower layer system
-(mainly in devices level), so alarms do not always tell the status of
+alarm data model also defines the root causes and impacted services fields,
+but there may lack sufficient information to determine them in lower layer
+system (mainly in devices level), so alarms do not always tell the status of
 network services or necessarily point to the root causes of problems.
 As described in {{?RFC8632}}, alarm management act as a starting point
 for high-level fault management. While network incident management often
@@ -608,7 +610,8 @@ The network incident management server MUST be capable of identifying
 network incidents.  Multiple alarms, metrics and other information are
 reported to incident server, and the server must analyze it and find
 out the correlations of them, if the correlation match the network incident
-rules, network incident will be identified and reported to the client.
+rules, network incident will be identified, and reported to the client.
+If the network incident is repeated for many times, the problem can be raised.
 Service impact analysis will be performed if an indent is identified,
 and the content of network incident will be updated if impacted network
 services are detected.
@@ -660,7 +663,8 @@ interface down, igp down, and igp peer abnormal from P2.
 
 These alarms are aggregated and analyzed by the controller/incident
 management server, and then the network incident 'vpn unavailable' is triggered
-by the controller/incident management server.
+by the controller/incident management server. If the network incident 'vpn unavailable'
+is repeated, the problem can be raised.
 
 Note that incident management server can rely on data correlation technology such as
 service impact analysis and data analytic component to evaluate the real effect
