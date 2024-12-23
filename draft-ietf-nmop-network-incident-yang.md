@@ -261,7 +261,7 @@ Incident handler:
   network incidents for data analysis.
 
 Root cause: A factor is considered the root cause of a problem if removing it prevents the problem from recurring.
-Conversely, a causal factor is a contributing action that affects an incident/event's outcome but is not the 
+Conversely, a causal factor is a contributing action that affects an incident/event's outcome but is not the
 root cause.
 
 # Sample Use Cases
