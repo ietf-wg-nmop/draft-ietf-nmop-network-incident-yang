@@ -753,8 +753,10 @@ The incident ID MUST be unique in the whole system.
 
 The incident model clearly separately network incident instance lifecycle
 from operator incident lifecycle.
+
 o Network incident instance lifecycle: The network incident instrumentation that
   control network incident raised, updated and cleared.
+
 o Operator incident lifecycle: Operators acting upon the network incident with rpcs
   like acknowledged, diagnosed and resolved.
 
