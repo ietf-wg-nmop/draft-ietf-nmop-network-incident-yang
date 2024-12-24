@@ -246,7 +246,7 @@ Incident management system:
    and incident client.
 
 Incident server:
-:  An entity which provides which is responsible for detecting and reporting
+:  An entity which is responsible for detecting and reporting
    one network incident, performing network incident diagnosis, resolution and prediction, etc.
 
 Incident client:
@@ -257,7 +257,7 @@ Incident client:
 
 Incident handler:
 : An entity which can receive network incident notification, store and query the information of
-  network incidents for data analysis.
+  network incidents for data analysis. It has no control on incident server.
 
 Root cause: A factor is considered the root cause of a problem if removing it prevents the problem from recurring.
 Conversely, a causal factor is a contributing action that affects an incident/event's outcome but is not the
@@ -280,8 +280,8 @@ network maintenance are increased accordingly.
 Some operators preconfigure accept-lists and adopt some coarse
 granularity data correlation rules for the alarm management. This approach
 seems to improve fault management automation.  However, some trouble
-tickets might be missed if the filtering conditions are too strict.
-If the filtering conditions are not strict, it might end up with
+tickets might be missed if the filtering conditions are too restrictive.
+If the filtering conditions are not restrictive, it might end up with
 multiple trouble tickets being dispatched to the same network fault.
 It is hard to achieve a perfect balance between the network
 management automation and duplicated trouble tickets under the
@@ -326,12 +326,12 @@ When a fault occurs in a network that contains both packet-layer
 devices and optical-layer devices, it may cause correlative faults in
 both layers, i.e., packet layer and optical layer.  Specifically,
 fault propagation could be classified into three typical types.
-First, fault occurs at a packet-layer device will further cause fault
+First, fault occurs at a packet-layer device might further cause fault
 (e.g., Wavelength Division Multiplexing (WDM) client fault) at an
 optical-layer device.  Second, fault occurs at an optical-layer
-device will further cause fault (e.g., Layer 3 link down) at a packet-
+device might further cause fault (e.g., Layer 3 link down) at a packet-
 layer device.  Third, fault occurs at the inter-layer link between a
-packet-layer device and an optical-layer device will further cause
+packet-layer device and an optical-layer device might further cause
 faults at both devices.  Multiple operation teams are usually
 needed to first analyze huge amount of alarms (triggered by the above
 mentioned faults) from single network layer (either packet layer or
@@ -352,7 +352,7 @@ cooperating with the integrated Optical time-domain reflectometer
 exchange station before site visits.  Therefore, the overall fault
 demarcation process is simplified and automated, the analyze result
 could be reported and visualized in time.  In this case, operation
-teams only have to confirm the analyze result and dispatch site
+teams only have to confirm the analyzing result and dispatch site
 engineers to perform relative maintenance actions (e.g., splice
 fiber) based on the root cause.
 
@@ -403,7 +403,7 @@ resolution, or querying for network incident lifecycle management.
 
 Incident client can be deployed either in the same network
 platform, controller as the incident management server within a single
-domain, or in the upper layer network analytics platform or controller,
+domain, or at the upper layer network analytics platform or controller,
 e.g., multi-domain controller, invokes the functionalities provided by
 incident management server to meet the business requirements of fault
 management. The entire network incident lifecycle management can be independent
@@ -417,7 +417,7 @@ A typical workflow of network incident management is as follows:
    receives these alarms/abnormal operations/metrics and try to
    analyze the correlation of them, e.g., generate a symptom if some metrics are
    evaluated as unhealthy, detect a cause based on correlation analysis.
-   If the network incidents are identified, it will be reported to the incident
+   If a network incident is identified, it will be reported to the incident
    client.  The impact of network services will be also analyzed and will update
    the network incident.
 
@@ -485,7 +485,7 @@ Alarm management may keep the original process, alarms are reported
 from network to network controller or analytics and then reported to
 upper layer system (e.g., the alarm handler within the OSS).
 
-Similarly, the network incident are reported from the network to the network
+Similarly, the network incident is reported from the network to the network
 controller or analytics and then reported to the upper layer system
 (e.g., incident handler within the OSS). Upper layer system may store
 these network incidents and provide the information for fault analysis (e.g.,
