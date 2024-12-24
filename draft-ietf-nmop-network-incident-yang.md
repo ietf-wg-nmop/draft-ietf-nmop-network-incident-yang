@@ -189,7 +189,7 @@ the analysis of some network performance metrics, for example, as
 described in SAIN {{?RFC9417}}, network services can be decomposed to
 several sub-services, specific metrics are monitored for each sub-
 service, symptoms will occur if services/sub-services are unhealthy
-(after analyzing metrics), these symptoms may raise one network incident when
+(after analyzing metrics), these symptoms may give rise to a network incident when
 it causes degradation of the network services.
 
 In addition, Artificial Intelligence (AI) and Machine Learning (ML)
@@ -213,22 +213,19 @@ and are not redefined here:
 
 *  alarm
 
+*  resource
+
 *  event
 
 *  problem
 
 *  incident
 
+*  anomaly
+
+*  cause
+
 The following terms are defined in this document:
-
-Network incident:
-:  An undesired occurrence such as an unexpected interruption of
-   a network service,degradation of a network service quality, or
-   sub-health of a network service {{TMF724A}}.  A network incident
-   is a single unplanned event that causes network service interruption.
-   A problem is one cause or potential cause of one or more network
-   incidents. The repeated network incidents can be raised as the problem.
-
 
 Incident management:
 :  Lifecycle management of network incidents, including
@@ -239,7 +236,10 @@ Incident management:
    the service impact analysis. One fault on the network device can be raised by one network
    incident, one fault on the network device can cause multiple network incidents, e.g., multiple
    service offerings that are dependent on that device will go down and others may suffer
-   increased latency as redundant routes become more congested.
+   increased latency as redundant routes become more congested. A network incident
+   is a single unplanned event that causes network service interruption.
+   A problem is one cause or potential cause of one or more network
+   incidents. The repeated network incidents can be raised as the problem.
 
 Incident management system:
 :  An entity which implements network incident
@@ -259,6 +259,10 @@ Incident client:
 Incident handler:
 : An entity which can receive network incident notification, store and query the information of
   network incidents for data analysis.
+
+Root cause: A factor is considered the root cause of a problem if removing it prevents the problem from recurring.
+Conversely, a causal factor is a contributing action that affects an incident/event's outcome but is not the
+root cause.
 
 # Sample Use Cases
 
@@ -534,7 +538,7 @@ incident server functionalities may identify the network incident
 based on symptoms, and then report it to incident handler within the
 Operation Support System (OSS).  So, SAIN can be one way to identify
 network incident, services, sub-services and metrics can be preconfigured via
-APIs defined by service assurance YANG model {{?RFC9418}} and the networkincident
+APIs defined by service assurance YANG model {{?RFC9418}} and the network incident
 will be reported if symptoms match certain condition or characteristic considered as
 an indication of a problem or potential problem.
 
