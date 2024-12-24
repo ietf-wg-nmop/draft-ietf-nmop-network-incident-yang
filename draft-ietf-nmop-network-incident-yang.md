@@ -236,8 +236,7 @@ Incident management:
    the service impact analysis. One fault on the network device can be raised by one network
    incident, one fault on the network device can cause multiple network incidents, e.g., multiple
    service offerings that are dependent on that device will go down and others may suffer
-   increased latency as redundant routes become more congested. A network incident
-   is a single unplanned event that causes network service interruption.
+   increased latency as redundant routes become more congested.
    A problem is one cause or potential cause of one or more network
    incidents. The repeated network incidents can be raised as the problem.
 
@@ -1116,6 +1115,9 @@ Ziyang Xing for their valuable comments and great input to this work.
 
 A.1 Network Incident management with specific network topology and the network service
 
+In this example, we show an incident that an incident that are associated with the node
+‘D1’, the network topology ‘L2-Topo’ and the domain ‘FAN’. The root cause is
+also analysed.
 ~~~~
 {
   "incident-no": 56433218,
