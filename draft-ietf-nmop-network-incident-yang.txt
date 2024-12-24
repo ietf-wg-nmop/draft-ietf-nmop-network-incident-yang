@@ -176,9 +176,9 @@ Table of Contents
    fault diagnosis.
 
    This document defines a YANG data model for network incident
-   lifecycle management, which improves troubleshooting efficiency,
-   ensures network service quality, and improves network automation
-   [RFC8969].
+   lifecycle management, which improves troubleshooting efficiency, and
+   improves network automation [RFC8969] with RPC operations in this
+   YANG module.
 
 2.  Conventions and Definitions
 
@@ -400,10 +400,11 @@ Table of Contents
    *  Some alarms or abnormal operations, network performance metrics
       are reported from the network.  Incident server receives these
       alarms/abnormal operations/metrics and try to analyze the
-      correlation of them, if the network incidents are identified, it
-      will be reported to the incident client.  The impact of network
-      services will be also analyzed and will update the network
-      incident.
+      correlation of them, e.g., generate a symptom if some metrics are
+      evaluated as unhealthy, detect a cause based on correlation
+      analysis.  If the network incidents are identified, it will be
+      reported to the incident client.  The impact of network services
+      will be also analyzed and will update the network incident.
 
    *  Incident client receives the network incident raised by incident
       server, and acknowledge it.  Client may invoke the "network
@@ -598,10 +599,11 @@ Table of Contents
    network incidents.  Multiple alarms, metrics and other information
    are reported to incident server, and the server must analyze it and
    find out the correlations of them, if the correlation match the
-   network incident rules, network incident will be identified and
-   reported to the client.  Service impact analysis will be performed if
-   an indent is identified, and the content of network incident will be
-   updated if impacted network services are detected.
+   network incident rules, network incident will be identified, and
+   reported to the client.  If the network incident is repeated for many
+   times, the problem can be raised.  Service impact analysis will be
+   performed if an indent is identified, and the content of network
+   incident will be updated if impacted network services are detected.
 
    AI/ML may be used to identify the network incident.  Expert system
    and online learning can help AI to identify the correlation of
@@ -649,7 +651,9 @@ Table of Contents
 
    These alarms are aggregated and analyzed by the controller/incident
    management server, and then the network incident 'vpn unavailable' is
-   triggered by the controller/incident management server.
+   triggered by the controller/incident management server.  If the
+   network incident 'vpn unavailable' is repeated, the problem can be
+   raised.
 
    Note that incident management server can rely on data correlation
    technology such as service impact analysis and data analytic
