@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-12-22T00:40:03.763942+00:00",
+  "timestamp": "2024-12-24T00:36:34.460033+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
   "labels": [
     {
@@ -643,24 +643,90 @@
       "id": "PR_kwDOL4Sz0s6BbPpl",
       "title": "Update draft-ietf-nmop-network-incident-yang.md",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/pull/21",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "luismcontreras",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Fixing Luis name and affiliation (to be aligned with other drafts)",
       "createdAt": "2024-11-10T11:00:15Z",
-      "updatedAt": "2024-11-10T11:00:16Z",
+      "updatedAt": "2024-12-23T00:00:24Z",
       "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
       "baseRefName": "main",
       "baseRefOid": "e711c5f175aa91d29caf90ee257ebc64921012a3",
       "headRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
       "headRefName": "luismcontreras-patch-1",
       "headRefOid": "5f9dcb1f5afc1ea5afb98fad29143b6434999b6b",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-12-23T00:00:24Z",
+      "mergedAt": "2024-12-23T00:00:24Z",
+      "mergedBy": "billwuqin",
+      "mergeCommit": {
+        "oid": "5148d81f5d89f2ad2b9a80291f62831ca191299e"
+      },
+      "comments": [
+        {
+          "author": "billwuqin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Thanks Luis",
+          "createdAt": "2024-12-23T00:00:20Z",
+          "updatedAt": "2024-12-23T00:00:20Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 22,
+      "id": "PR_kwDOL4Sz0s6GBuOR",
+      "title": "Cross-checking terminology across NMOP drafts based on Adrian's comme\u2026",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/pull/22",
+      "state": "MERGED",
+      "author": "billwuqin",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "\u2026nts on the list",
+      "createdAt": "2024-12-23T00:40:44Z",
+      "updatedAt": "2024-12-24T00:29:23Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
+      "baseRefName": "main",
+      "baseRefOid": "5148d81f5d89f2ad2b9a80291f62831ca191299e",
+      "headRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
+      "headRefName": "billwuqin-patch-1",
+      "headRefOid": "c38f57fd9a39107d3ad0553e89106f0b2109fbb1",
+      "closedAt": "2024-12-24T00:29:23Z",
+      "mergedAt": "2024-12-24T00:29:23Z",
+      "mergedBy": "billwuqin",
+      "mergeCommit": {
+        "oid": "f7952b2b3bd4d55d90920d83e582c2d73946bf7a"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 23,
+      "id": "PR_kwDOL4Sz0s6GB3vK",
+      "title": "Address draft-ietf-nmop-network-incident-yang-02 review from Thomas",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/pull/23",
+      "state": "MERGED",
+      "author": "billwuqin",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-12-23T01:39:07Z",
+      "updatedAt": "2024-12-24T00:29:41Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
+      "baseRefName": "main",
+      "baseRefOid": "5148d81f5d89f2ad2b9a80291f62831ca191299e",
+      "headRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
+      "headRefName": "billwuqin-patch-2",
+      "headRefOid": "64cfcefba5774451af63b880787defb4687766f1",
+      "closedAt": "2024-12-24T00:29:41Z",
+      "mergedAt": "2024-12-24T00:29:41Z",
+      "mergedBy": "billwuqin",
+      "mergeCommit": {
+        "oid": "74556338f609774f5e711af1f8d6170c064a056c"
+      },
       "comments": [],
       "reviews": []
     }
