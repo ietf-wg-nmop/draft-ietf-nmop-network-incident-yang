@@ -171,8 +171,8 @@ the network topology data or the relation with other network topology data.
 
 To address these challenges, a network wide incident-centric solution
 is specified to establish the dependency relation with both network
-service and network topology at different layers, which not only can
-be used at a specific layer in a domain but also can be used to
+service and network topology at various different layers, which not only can
+be used at a specific layer in one domain but also can be used to
 span across layers for multi-layer network troubleshooting.
 
 A network incident refers to an undesired occurrence such as an unexpected
