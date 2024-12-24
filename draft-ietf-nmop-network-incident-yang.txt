@@ -738,11 +738,14 @@ Table of Contents
 6.2.  The Incident Lifecycle
 
    The incident model clearly separately network incident instance
-   lifecycle from operator incident lifecycle. o Network incident
-   instance lifecycle: The network incident instrumentation that control
-   network incident raised, updated and cleared. o Operator incident
-   lifecycle: Operators acting upon the network incident with rpcs like
-   acknowledged, diagnosed and resolved.
+   lifecycle from operator incident lifecycle.
+
+   o Network incident instance lifecycle: The network incident
+   instrumentation that control network incident raised, updated and
+   cleared.
+
+   o Operator incident lifecycle: Operators acting upon the network
+   incident with rpcs like acknowledged, diagnosed and resolved.
 
 6.2.1.  Incident Instance Lifecycle
 
