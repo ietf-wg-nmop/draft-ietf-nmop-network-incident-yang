@@ -1184,7 +1184,13 @@ A.1 Network Incident management with specific network topology and the network s
 
 # Changes between Revisions
 
-   v01 - v-2
+   v02 - v03
+   
+   * Cross checking the terminologies based on Adrian's comments
+
+   * Align with the Terminology draft based on Thomas's comments.
+
+   v01 - v02
 
    * Clarify the relation between fault, incident and problem
 
