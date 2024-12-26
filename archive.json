@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-12-24T00:36:34.460033+00:00",
+  "timestamp": "2024-12-26T00:36:07.571968+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
   "labels": [
     {
@@ -334,9 +334,17 @@
       "labels": [],
       "body": "https://mailarchive.ietf.org/arch/msg/nmop/anioloycwW4j5botgGC20s6zcjg/",
       "createdAt": "2024-11-05T00:22:15Z",
-      "updatedAt": "2024-11-05T00:22:15Z",
+      "updatedAt": "2024-12-24T00:36:36Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "billwuqin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Fixed in https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/pull/22",
+          "createdAt": "2024-12-24T00:36:35Z",
+          "updatedAt": "2024-12-24T00:36:35Z"
+        }
+      ]
     },
     {
       "number": 20,
@@ -350,9 +358,17 @@
       "labels": [],
       "body": "https://mailarchive.ietf.org/arch/msg/nmop/ZwFTpPnET9JTVEdxsAwjuxodulg/",
       "createdAt": "2024-11-05T00:23:40Z",
-      "updatedAt": "2024-11-05T00:23:41Z",
+      "updatedAt": "2024-12-24T00:37:12Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "billwuqin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Addressed in https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/pull/23",
+          "createdAt": "2024-12-24T00:37:11Z",
+          "updatedAt": "2024-12-24T00:37:11Z"
+        }
+      ]
     }
   ],
   "pulls": [
