@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-21T00:35:33.592651+00:00",
+  "timestamp": "2025-01-23T00:36:01.548277+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
   "labels": [
     {
@@ -327,15 +327,15 @@
       "id": "I_kwDOL4Sz0s6dAeMu",
       "title": "Cross-checking terminology across NMOP drafts",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/issues/19",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "billwuqin",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "https://mailarchive.ietf.org/arch/msg/nmop/anioloycwW4j5botgGC20s6zcjg/",
       "createdAt": "2024-11-05T00:22:15Z",
-      "updatedAt": "2024-12-24T00:36:36Z",
-      "closedAt": null,
+      "updatedAt": "2025-01-22T08:07:37Z",
+      "closedAt": "2025-01-22T08:07:37Z",
       "comments": [
         {
           "author": "billwuqin",
