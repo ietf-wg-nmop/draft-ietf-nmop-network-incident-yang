@@ -236,9 +236,8 @@ Incident management:
    the service impact analysis. One fault on the network device can be raised by one network
    incident, one fault on the network device can cause multiple network incidents, e.g., multiple
    service offerings that are dependent on that device will go down and others may suffer
-   increased latency as redundant routes become more congested.
-   A problem is one cause or potential cause of one or more network
-   incidents. The repeated network incidents can be raised as the problem.
+   increased latency as redundant routes become more congested. An Incident results from one or more Problems,
+   and a Problem may give rise to or contribute to one or more Incidents.
 
 Incident management system:
 :  An entity which implements network incident
