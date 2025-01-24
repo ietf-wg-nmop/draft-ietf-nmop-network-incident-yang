@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 26 June 2025                                         Telefonica
+Expires: 28 July 2025                                         Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                        23 December 2024
+                                                         24 January 2025
 
 
            A YANG Data Model for Network Incident Management
@@ -46,11 +46,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 26 June 2025.
+   This Internet-Draft will expire on 28 July 2025.
 
 Copyright Notice
 
-   Copyright (c) 2024 IETF Trust and the persons identified as the
+   Copyright (c) 2025 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -143,9 +143,9 @@ Table of Contents
 
    To address these challenges, a network wide incident-centric solution
    is specified to establish the dependency relation with both network
-   service and network topology at different layers, which not only can
-   be used at a specific layer in a domain but also can be used to span
-   across layers for multi-layer network troubleshooting.
+   service and network topology at various different layers, which not
+   only can be used at a specific layer in one domain but also can be
+   used to span across layers for multi-layer network troubleshooting.
 
    A network incident refers to an undesired occurrence such as an
    unexpected interruption of a network service,degradation of a network
@@ -163,8 +163,9 @@ Table of Contents
    for example, as described in SAIN [RFC9417], network services can be
    decomposed to several sub-services, specific metrics are monitored
    for each sub- service, symptoms will occur if services/sub-services
-   are unhealthy (after analyzing metrics), these symptoms may raise one
-   network incident when it causes degradation of the network services.
+   are unhealthy (after analyzing metrics), these symptoms may give rise
+   to a network incident when it causes degradation of the network
+   services.
 
    In addition, Artificial Intelligence (AI) and Machine Learning (ML)
    are key technologies in the processing of large amounts of data with
@@ -192,21 +193,19 @@ Table of Contents
 
    *  alarm
 
+   *  resource
+
    *  event
 
    *  problem
 
    *  incident
 
-   The following terms are defined in this document:
+   *  anomaly
 
-   Network incident:  An undesired occurrence such as an unexpected
-      interruption of a network service,degradation of a network service
-      quality, or sub-health of a network service [TMF724A].  A network
-      incident is a single unplanned event that causes network service
-      interruption.  A problem is one cause or potential cause of one or
-      more network incidents.  The repeated network incidents can be
-      raised as the problem.
+   *  cause
+
+   The following terms are defined in this document:
 
    Incident management:  Lifecycle management of network incidents,
       including network incident identification, reporting,
@@ -219,15 +218,17 @@ Table of Contents
       one fault on the network device can cause multiple network
       incidents, e.g., multiple service offerings that are dependent on
       that device will go down and others may suffer increased latency
-      as redundant routes become more congested.
+      as redundant routes become more congested.  An Incident results
+      from one or more Problems, and a Problem may give rise to or
+      contribute to one or more Incidents.
 
    Incident management system:  An entity which implements network
       incident management.  It includes (but not limited to) incident
       server and incident client.
 
-   Incident server:  An entity which provides which is responsible for
-      detecting and reporting one network incident, performing network
-      incident diagnosis, resolution and prediction, etc.
+   Incident server:  An entity which is responsible for detecting and
+      reporting one network incident, performing network incident
+      diagnosis, resolution and prediction, etc.
 
    Incident client:  An entity which can manage network incidents.  For
       example, it can receive network incident notifications, query the
@@ -236,7 +237,12 @@ Table of Contents
 
    Incident handler:  An entity which can receive network incident
       notification, store and query the information of network incidents
-      for data analysis.
+      for data analysis.  It has no control on incident server.
+
+   Root cause: A factor is considered the root cause of a problem if
+   removing it prevents the problem from recurring.  Conversely, a
+   causal factor is a contributing action that affects an incident/
+   event's outcome but is not the root cause.
 
 3.  Sample Use Cases
 
@@ -257,11 +263,11 @@ Table of Contents
    granularity data correlation rules for the alarm management.  This
    approach seems to improve fault management automation.  However, some
    trouble tickets might be missed if the filtering conditions are too
-   strict.  If the filtering conditions are not strict, it might end up
-   with multiple trouble tickets being dispatched to the same network
-   fault.  It is hard to achieve a perfect balance between the network
-   management automation and duplicated trouble tickets under the
-   conventional working situations.
+   restrictive.  If the filtering conditions are not restrictive, it
+   might end up with multiple trouble tickets being dispatched to the
+   same network fault.  It is hard to achieve a perfect balance between
+   the network management automation and duplicated trouble tickets
+   under the conventional working situations.
 
    With the help of the network incident management, massive alarms can
    be aggregated into a few network incidents based on service impact
@@ -304,12 +310,12 @@ Table of Contents
    devices and optical-layer devices, it may cause correlative faults in
    both layers, i.e., packet layer and optical layer.  Specifically,
    fault propagation could be classified into three typical types.
-   First, fault occurs at a packet-layer device will further cause fault
-   (e.g., Wavelength Division Multiplexing (WDM) client fault) at an
-   optical-layer device.  Second, fault occurs at an optical-layer
-   device will further cause fault (e.g., Layer 3 link down) at a
+   First, fault occurs at a packet-layer device might further cause
+   fault (e.g., Wavelength Division Multiplexing (WDM) client fault) at
+   an optical-layer device.  Second, fault occurs at an optical-layer
+   device might further cause fault (e.g., Layer 3 link down) at a
    packet- layer device.  Third, fault occurs at the inter-layer link
-   between a packet-layer device and an optical-layer device will
+   between a packet-layer device and an optical-layer device might
    further cause faults at both devices.  Multiple operation teams are
    usually needed to first analyze huge amount of alarms (triggered by
    the above mentioned faults) from single network layer (either packet
@@ -331,7 +337,7 @@ Table of Contents
    before site visits.  Therefore, the overall fault demarcation process
    is simplified and automated, the analyze result could be reported and
    visualized in time.  In this case, operation teams only have to
-   confirm the analyze result and dispatch site engineers to perform
+   confirm the analyzing result and dispatch site engineers to perform
    relative maintenance actions (e.g., splice fiber) based on the root
    cause.
 
@@ -380,7 +386,7 @@ Table of Contents
 
    Incident client can be deployed either in the same network platform,
    controller as the incident management server within a single domain,
-   or in the upper layer network analytics platform or controller, e.g.,
+   or at the upper layer network analytics platform or controller, e.g.,
    multi-domain controller, invokes the functionalities provided by
    incident management server to meet the business requirements of fault
    management.  The entire network incident lifecycle management can be
@@ -394,7 +400,7 @@ Table of Contents
       alarms/abnormal operations/metrics and try to analyze the
       correlation of them, e.g., generate a symptom if some metrics are
       evaluated as unhealthy, detect a cause based on correlation
-      analysis.  If the network incidents are identified, it will be
+      analysis.  If a network incident is identified, it will be
       reported to the incident client.  The impact of network services
       will be also analyzed and will update the network incident.
 
@@ -463,7 +469,7 @@ Table of Contents
    from network to network controller or analytics and then reported to
    upper layer system (e.g., the alarm handler within the OSS).
 
-   Similarly, the network incident are reported from the network to the
+   Similarly, the network incident is reported from the network to the
    network controller or analytics and then reported to the upper layer
    system (e.g., incident handler within the OSS).  Upper layer system
    may store these network incidents and provide the information for
@@ -517,7 +523,7 @@ Table of Contents
    within the Operation Support System (OSS).  So, SAIN can be one way
    to identify network incident, services, sub-services and metrics can
    be preconfigured via APIs defined by service assurance YANG model
-   [RFC9418] and the networkincident will be reported if symptoms match
+   [RFC9418] and the network incident will be reported if symptoms match
    certain condition or characteristic considered as an indication of a
    problem or potential problem.
 
@@ -732,11 +738,14 @@ Table of Contents
 6.2.  The Incident Lifecycle
 
    The incident model clearly separately network incident instance
-   lifecycle from operator incident lifecycle. o Network incident
-   instance lifecycle: The network incident instrumentation that control
-   network incident raised, updated and cleared. o Operator incident
-   lifecycle: Operators acting upon the network incident with rpcs like
-   acknowledged, diagnosed and resolved.
+   lifecycle from operator incident lifecycle.
+
+   o Network incident instance lifecycle: The network incident
+   instrumentation that control network incident raised, updated and
+   cleared.
+
+   o Operator incident lifecycle: Operators acting upon the network
+   incident with rpcs like acknowledged, diagnosed and resolved.
 
 6.2.1.  Incident Instance Lifecycle
 
@@ -1990,9 +1999,9 @@ Informative References
               Davis, N., Farrel, A., Graf, T., Wu, Q., and C. Yu, "Some
               Key Terms for Network Fault and Problem Management", Work
               in Progress, Internet-Draft, draft-ietf-nmop-terminology-
-              09, 26 November 2024,
+              10, 21 January 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
-              terminology-09>.
+              terminology-10>.
 
    [I-D.quilbeuf-opsawg-configuration-tracing]
               Quilbeuf, J., Claise, B., Graf, T., Lopez, D., and S.
@@ -2054,73 +2063,37 @@ Appendix A.  Appendix Examples
    A.1 Network Incident management with specific network topology and
    the network service
 
-   {
-     "incident-no": 56433218,
-     "incident-id": "line fault",
-     "service-instance": ["optical-svc-A"],
-     "domain": "FAN",
-     "priority": "critical",
-     "occur-time": "2026-03-10T04:01:12Z",
-     "clear-time": "2026-03-10T06:01:12Z",
-     "ack-time": "2026-03-10T05:01:12Z",
-     "last-updated": "2026-03-10T05:31:12Z",
-     "status": "unacknowledged-and-uncleared",
-     "category": "Line",
-     "source": [
-       {
-         "node-ref": "example:D1",
-         "network-ref": "example:L2-topo",
-         "resource": [
-           {
-             "name": "7985e01a-5aad-11ea-b214-286ed488cf99"
-           }
-         ]
-       }
-     ],
-     "root-causes": [
-       {
-         "name": "Feeder fiber great loss change",
-         "detail-information": "The connector of the optical fiber
-          is contaminated, Or the optical fiber is bent too much.",
-         "root-cause": {
-           "network-ref": "example:L2-topo",
-           "node-ref": "example:D1",
-           "resource": [
-             {
-               "name": "7985e01a-5aad-11ea-b214-286ed488cf99",
-               "cause-name": "ltp",
-               "detail": "Frame=0, Slot=6, Subslot=65535, Port=7,
-               ODF= ODF001,  Level1Splitter= splitter0025"
-             }
-           ]
-         }
-       }
-     ],
-     "root-event": [
-       {
-         "event-id": "8921834",
-         "type": "alarm"
-       }
-     ],
-     "events": [
-       {
-         "even-id": "8921832",
-         "type": "alarm"
-       },
-       {
-         "even-id": "8921833",
-         "type": "alarm"
-       },
-       {
-         "even-id": "8921834",
-         "type": "alarm"
-       }
-     ]
-   }
+   In this example, we show an incident that an incident that are
+   associated with the node ‘D1’, the network topology ‘L2-Topo’ and the
+   domain ‘FAN’. The root cause is also analysed. ~~~~ { "incident-no":
+   56433218, "incident-id": "line fault", "service-instance": ["optical-
+   svc-A"], "domain": "FAN", "priority": "critical", "occur-time":
+   "2026-03-10T04:01:12Z", "clear-time": "2026-03-10T06:01:12Z", "ack-
+   time": "2026-03-10T05:01:12Z", "last-updated":
+   "2026-03-10T05:31:12Z", "status": "unacknowledged-and-uncleared",
+   "category": "Line", "source": [ { "node-ref": "example:D1", "network-
+   ref": "example:L2-topo", "resource": [ { "name": "7985e01a-5aad-11ea-
+   b214-286ed488cf99" } ] } ], "root-causes": [ { "name": "Feeder fiber
+   great loss change", "detail-information": "The connector of the
+   optical fiber is contaminated, Or the optical fiber is bent too
+   much.", "root-cause": { "network-ref": "example:L2-topo", "node-ref":
+   "example:D1", "resource": [ { "name": "7985e01a-5aad-11ea-
+   b214-286ed488cf99", "cause-name": "ltp", "detail": "Frame=0, Slot=6,
+   Subslot=65535, Port=7, ODF= ODF001, Level1Splitter= splitter0025" } ]
+   } } ], "root-event": [ { "event-id": "8921834", "type": "alarm" } ],
+   "events": [ { "even-id": "8921832", "type": "alarm" }, { "even-id":
+   "8921833", "type": "alarm" }, { "even-id": "8921834", "type": "alarm"
+   } ] } ~~~~
 
 Appendix B.  Changes between Revisions
 
-   v01 - v-2
+   v02 - v03
+
+   *  Cross checking the terminologies based on Adrian's comments
+
+   *  Align with the Terminology draft based on Thomas's comments.
+
+   v01 - v02
 
    *  Clarify the relation between fault, incident and problem
 

@@ -32,7 +32,7 @@ network service health and root cause analysis.
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.1.0
-    Jinja2 3.1.4
+    Jinja2 3.1.5
     lxml 5.3.0
     platformdirs 4.3.6
     pycountry 24.6.1
@@ -1058,11 +1058,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">Network Incident Management</td>
-<td class="right">December 2024</td>
+<td class="right">January 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Hu, et al.</td>
-<td class="center">Expires 26 June 2025</td>
+<td class="center">Expires 28 July 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1075,12 +1075,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-nmop-network-incident-yang-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-12-23" class="published">23 December 2024</time>
+<time datetime="2025-01-24" class="published">24 January 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-06-26">26 June 2025</time></dd>
+<dd class="expires"><time datetime="2025-07-28">28 July 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1138,7 +1138,7 @@ network service health and root cause analysis.<a href="#section-abstract-2" cla
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 26 June 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 28 July 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1147,7 +1147,7 @@ network service health and root cause analysis.<a href="#section-abstract-2" cla
 <a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
         </h2>
 <p id="section-boilerplate.2-1">
-            Copyright (c) 2024 IETF Trust and the persons identified as the
+            Copyright (c) 2025 IETF Trust and the persons identified as the
             document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.2-2">
             This document is subject to BCP 78 and the IETF Trust's Legal
@@ -1344,8 +1344,8 @@ anomaly data on network services without known relation across layers of
 the network topology data or the relation with other network topology data.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <p id="section-1-3">To address these challenges, a network wide incident-centric solution
 is specified to establish the dependency relation with both network
-service and network topology at different layers, which not only can
-be used at a specific layer in a domain but also can be used to
+service and network topology at various different layers, which not only can
+be used at a specific layer in one domain but also can be used to
 span across layers for multi-layer network troubleshooting.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <p id="section-1-4">A network incident refers to an undesired occurrence such as an unexpected
 interruption of a network service,degradation of a network service quality,
@@ -1371,8 +1371,8 @@ data correlation. Through online and offline self-learning, these
 algorithms can be continuously optimized to improve the efficiency of
 fault diagnosis.<a href="#section-1-5" class="pilcrow">¶</a></p>
 <p id="section-1-6">This document defines a YANG data model for network incident lifecycle
-management, which improves troubleshooting efficiency, ensures network
-service quality, and improves network automation <span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</span>.<a href="#section-1-6" class="pilcrow">¶</a></p>
+management, which improves troubleshooting efficiency, and improves
+network automation <span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</span> with RPC operations in this YANG module.<a href="#section-1-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conventions-and-definitions">
@@ -1421,10 +1421,8 @@ or a few amount of network incidents irrespective layer through correlation anal
 the service impact analysis. One fault on the network device can be raised by one network
 incident, one fault on the network device can cause multiple network incidents, e.g., multiple
 service offerings that are dependent on that device will go down and others may suffer
-increased latency as redundant routes become more congested. A network incident
-is a single unplanned event that causes network service interruption.
-A problem is one cause or potential cause of one or more network
-incidents. The repeated network incidents can be raised as the problem.<a href="#section-2-5.2.1" class="pilcrow">¶</a></p>
+increased latency as redundant routes become more congested. An Incident results from one or more Problems,
+and a Problem may give rise to or contribute to one or more Incidents.<a href="#section-2-5.2.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-5.3">Incident management system:</dt>
@@ -1436,7 +1434,7 @@ and incident client.<a href="#section-2-5.4.1" class="pilcrow">¶</a></p>
         <dd class="break"></dd>
 <dt id="section-2-5.5">Incident server:</dt>
         <dd style="margin-left: 1.5em" id="section-2-5.6">
-          <p id="section-2-5.6.1">An entity which provides which is responsible for detecting and reporting
+          <p id="section-2-5.6.1">An entity which is responsible for detecting and reporting
 one network incident, performing network incident diagnosis, resolution and prediction, etc.<a href="#section-2-5.6.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
@@ -1451,7 +1449,7 @@ to diagnose, help resolve, etc.<a href="#section-2-5.8.1" class="pilcrow">¶</a>
 <dt id="section-2-5.9">Incident handler:</dt>
         <dd style="margin-left: 1.5em" id="section-2-5.10">
           <p id="section-2-5.10.1">An entity which can receive network incident notification, store and query the information of
-network incidents for data analysis.<a href="#section-2-5.10.1" class="pilcrow">¶</a></p>
+network incidents for data analysis. It has no control on incident server.<a href="#section-2-5.10.1" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
@@ -1482,8 +1480,8 @@ network maintenance are increased accordingly.<a href="#section-3.1-1" class="pi
 <p id="section-3.1-2">Some operators preconfigure accept-lists and adopt some coarse
 granularity data correlation rules for the alarm management. This approach
 seems to improve fault management automation.  However, some trouble
-tickets might be missed if the filtering conditions are too strict.
-If the filtering conditions are not strict, it might end up with
+tickets might be missed if the filtering conditions are too restrictive.
+If the filtering conditions are not restrictive, it might end up with
 multiple trouble tickets being dispatched to the same network fault.
 It is hard to achieve a perfect balance between the network
 management automation and duplicated trouble tickets under the
@@ -1538,12 +1536,12 @@ associated with, let's say L3VPN service will be derived.<a href="#section-3.2-4
 devices and optical-layer devices, it may cause correlative faults in
 both layers, i.e., packet layer and optical layer.  Specifically,
 fault propagation could be classified into three typical types.
-First, fault occurs at a packet-layer device will further cause fault
+First, fault occurs at a packet-layer device might further cause fault
 (e.g., Wavelength Division Multiplexing (WDM) client fault) at an
 optical-layer device.  Second, fault occurs at an optical-layer
-device will further cause fault (e.g., Layer 3 link down) at a packet-
+device might further cause fault (e.g., Layer 3 link down) at a packet-
 layer device.  Third, fault occurs at the inter-layer link between a
-packet-layer device and an optical-layer device will further cause
+packet-layer device and an optical-layer device might further cause
 faults at both devices.  Multiple operation teams are usually
 needed to first analyze huge amount of alarms (triggered by the above
 mentioned faults) from single network layer (either packet layer or
@@ -1563,7 +1561,7 @@ cooperating with the integrated Optical time-domain reflectometer
 exchange station before site visits.  Therefore, the overall fault
 demarcation process is simplified and automated, the analyze result
 could be reported and visualized in time.  In this case, operation
-teams only have to confirm the analyze result and dispatch site
+teams only have to confirm the analyzing result and dispatch site
 engineers to perform relative maintenance actions (e.g., splice
 fiber) based on the root cause.<a href="#section-3.3-2" class="pilcrow">¶</a></p>
 </section>
@@ -1623,7 +1621,7 @@ and provides functionalities such as network incident identification, report, di
 resolution, or querying for network incident lifecycle management.<a href="#section-4-3" class="pilcrow">¶</a></p>
 <p id="section-4-4">Incident client can be deployed either in the same network
 platform, controller as the incident management server within a single
-domain, or in the upper layer network analytics platform or controller,
+domain, or at the upper layer network analytics platform or controller,
 e.g., multi-domain controller, invokes the functionalities provided by
 incident management server to meet the business requirements of fault
 management. The entire network incident lifecycle management can be independent
@@ -1635,9 +1633,11 @@ of operators.<a href="#section-4-4" class="pilcrow">¶</a></p>
           <p id="section-4-6.1.1">Some alarms or abnormal operations, network performance metrics
  are reported from the network.  Incident server
  receives these alarms/abnormal operations/metrics and try to
- analyze the correlation of them, if the network incidents are identified,
- it will be reported to the incident client.  The impact of network services
- will be also analyzed and will update the network incident.<a href="#section-4-6.1.1" class="pilcrow">¶</a></p>
+ analyze the correlation of them, e.g., generate a symptom if some metrics are
+ evaluated as unhealthy, detect a cause based on correlation analysis.
+ If a network incident is identified, it will be reported to the incident
+ client.  The impact of network services will be also analyzed and will update
+ the network incident.<a href="#section-4-6.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-4-6.2">
           <p id="section-4-6.2.1">Incident client receives the network incident raised by incident server,
@@ -1694,9 +1694,9 @@ calculation, configuration, etc.)<a href="#section-4-6.3.1" class="pilcrow">¶</
 <p id="section-4.1-2">A YANG model for the alarm management <span>[<a href="#RFC8632" class="cite xref">RFC8632</a>]</span> defines a standard
 interface to manage the lifecycle of alarms.  Alarms represent the
 undesirable state of network resources <span>[<a href="#I-D.ietf-nmop-terminology" class="cite xref">I-D.ietf-nmop-terminology</a>]</span>,
-alarm data model also defines the root causes and impacted services fields, but there may lack
-sufficient information to determine them in lower layer system
-(mainly in devices level), so alarms do not always tell the status of
+alarm data model also defines the root causes and impacted services fields,
+but there may lack sufficient information to determine them in lower layer
+system (mainly in devices level), so alarms do not always tell the status of
 network services or necessarily point to the root causes of problems.
 As described in <span>[<a href="#RFC8632" class="cite xref">RFC8632</a>]</span>, alarm management act as a starting point
 for high-level fault management. While network incident management often
@@ -1712,7 +1712,7 @@ management interface <span>[<a href="#RFC8632" class="cite xref">RFC8632</a>]</s
 <p id="section-4.1-4">Alarm management may keep the original process, alarms are reported
 from network to network controller or analytics and then reported to
 upper layer system (e.g., the alarm handler within the OSS).<a href="#section-4.1-4" class="pilcrow">¶</a></p>
-<p id="section-4.1-5">Similarly, the network incident are reported from the network to the network
+<p id="section-4.1-5">Similarly, the network incident is reported from the network to the network
 controller or analytics and then reported to the upper layer system
 (e.g., incident handler within the OSS). Upper layer system may store
 these network incidents and provide the information for fault analysis (e.g.,
@@ -1869,7 +1869,8 @@ aggregated into a network incident after analysis.<a href="#section-5.1-1" class
 network incidents.  Multiple alarms, metrics and other information are
 reported to incident server, and the server must analyze it and find
 out the correlations of them, if the correlation match the network incident
-rules, network incident will be identified and reported to the client.
+rules, network incident will be identified, and reported to the client.
+If the network incident is repeated for many times, the problem can be raised.
 Service impact analysis will be performed if an indent is identified,
 and the content of network incident will be updated if impacted network
 services are detected.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
@@ -1923,7 +1924,8 @@ interface of P1 is going down, many alarms are triggered, such as
 interface down, igp down, and igp peer abnormal from P2.<a href="#section-5.1-7" class="pilcrow">¶</a></p>
 <p id="section-5.1-8">These alarms are aggregated and analyzed by the controller/incident
 management server, and then the network incident 'vpn unavailable' is triggered
-by the controller/incident management server.<a href="#section-5.1-8" class="pilcrow">¶</a></p>
+by the controller/incident management server. If the network incident 'vpn unavailable'
+is repeated, the problem can be raised.<a href="#section-5.1-8" class="pilcrow">¶</a></p>
 <p id="section-5.1-9">Note that incident management server can rely on data correlation technology such as
 service impact analysis and data analytic component to evaluate the real effect
 on the relevant service and understand whether lower level or device level network
@@ -2030,11 +2032,11 @@ The incident ID <span class="bcp14">MUST</span> be unique in the whole system.<a
 <a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-the-incident-lifecycle" class="section-name selfRef">The Incident Lifecycle</a>
         </h3>
 <p id="section-6.2-1">The incident model clearly separately network incident instance lifecycle
-from operator incident lifecycle.
-o Network incident instance lifecycle: The network incident instrumentation that
-  control network incident raised, updated and cleared.
-o Operator incident lifecycle: Operators acting upon the network incident with rpcs
-  like acknowledged, diagnosed and resolved.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
+from operator incident lifecycle.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
+<p id="section-6.2-2">o Network incident instance lifecycle: The network incident instrumentation that
+  control network incident raised, updated and cleared.<a href="#section-6.2-2" class="pilcrow">¶</a></p>
+<p id="section-6.2-3">o Operator incident lifecycle: Operators acting upon the network incident with rpcs
+  like acknowledged, diagnosed and resolved.<a href="#section-6.2-3" class="pilcrow">¶</a></p>
 <div id="incident-instance-lifecycle">
 <section id="section-6.2.1">
           <h4 id="name-incident-instance-lifecycle">
@@ -3363,7 +3365,7 @@ Ziyang Xing for their valuable comments and great input to this work.<a href="#s
 <dd class="break"></dd>
 <dt id="I-D.ietf-nmop-terminology">[I-D.ietf-nmop-terminology]</dt>
         <dd>
-<span class="refAuthor">Davis, N.</span>, <span class="refAuthor">Farrel, A.</span>, <span class="refAuthor">Graf, T.</span>, <span class="refAuthor">Wu, Q.</span>, and <span class="refAuthor">C. Yu</span>, <span class="refTitle">"Some Key Terms for Network Fault and Problem Management"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-nmop-terminology-09</span>, <time datetime="2024-11-26" class="refDate">26 November 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-nmop-terminology-09">https://datatracker.ietf.org/doc/html/draft-ietf-nmop-terminology-09</a>&gt;</span>. </dd>
+<span class="refAuthor">Davis, N.</span>, <span class="refAuthor">Farrel, A.</span>, <span class="refAuthor">Graf, T.</span>, <span class="refAuthor">Wu, Q.</span>, and <span class="refAuthor">C. Yu</span>, <span class="refTitle">"Some Key Terms for Network Fault and Problem Management"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-nmop-terminology-10</span>, <time datetime="2025-01-21" class="refDate">21 January 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-nmop-terminology-10">https://datatracker.ietf.org/doc/html/draft-ietf-nmop-terminology-10</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.quilbeuf-opsawg-configuration-tracing">[I-D.quilbeuf-opsawg-configuration-tracing]</dt>
         <dd>
@@ -3416,8 +3418,10 @@ Ziyang Xing for their valuable comments and great input to this work.<a href="#s
 <a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-appendix-examples" class="section-name selfRef">Appendix Examples</a>
       </h2>
 <p id="appendix-A-1">A.1 Network Incident management with specific network topology and the network service<a href="#appendix-A-1" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="appendix-A-2">
-<pre>
+<p id="appendix-A-2">In this example, we show an incident that an incident that are associated with the node
+‘D1’, the network topology ‘L2-Topo’ and the domain ‘FAN’. The root cause is
+also analysed.
+~~~~
 {
   "incident-no": 56433218,
   "incident-id": "line fault",
@@ -3481,8 +3485,7 @@ Ziyang Xing for their valuable comments and great input to this work.<a href="#s
     }
   ]
 }
-</pre><a href="#appendix-A-2" class="pilcrow">¶</a>
-</div>
+~~~~<a href="#appendix-A-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="changes-between-revisions">
@@ -3490,172 +3493,181 @@ Ziyang Xing for their valuable comments and great input to this work.<a href="#s
       <h2 id="name-changes-between-revisions">
 <a href="#appendix-B" class="section-number selfRef">Appendix B. </a><a href="#name-changes-between-revisions" class="section-name selfRef">Changes between Revisions</a>
       </h2>
-<p id="appendix-B-1">v01 - v-2<a href="#appendix-B-1" class="pilcrow">¶</a></p>
+<p id="appendix-B-1">v02 - v03<a href="#appendix-B-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-B-2.1">
-          <p id="appendix-B-2.1.1">Clarify the relation between fault, incident and problem<a href="#appendix-B-2.1.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-2.1.1">Cross checking the terminologies based on Adrian's comments<a href="#appendix-B-2.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-2.2">
-          <p id="appendix-B-2.2.1">Clarify the relation between fault management and incident management<a href="#appendix-B-2.2.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-2.3">
-          <p id="appendix-B-2.3.1">Add clarification text to make draft focus on network level incident management,
-not be tied with OSS or under the control of OSS<a href="#appendix-B-2.3.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-2.4">
-          <p id="appendix-B-2.4.1">Other Editorial changes.<a href="#appendix-B-2.4.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-2.2.1">Align with the Terminology draft based on Thomas's comments.<a href="#appendix-B-2.2.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="appendix-B-3">v00 - v01<a href="#appendix-B-3" class="pilcrow">¶</a></p>
+<p id="appendix-B-3">v01 - v02<a href="#appendix-B-3" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-B-4.1">
-          <p id="appendix-B-4.1.1">Clarify the relationship between incident-no and incident-id.<a href="#appendix-B-4.1.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-4.1.1">Clarify the relation between fault, incident and problem<a href="#appendix-B-4.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-4.2">
-          <p id="appendix-B-4.2.1">Fix Tree Diagram to align with YANG module code change.<a href="#appendix-B-4.2.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-4.2.1">Clarify the relation between fault management and incident management<a href="#appendix-B-4.2.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-4.3">
-          <p id="appendix-B-4.3.1">Add json example in the appendix.<a href="#appendix-B-4.3.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-4.3.1">Add clarification text to make draft focus on network level incident management,
+not be tied with OSS or under the control of OSS<a href="#appendix-B-4.3.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-4.4">
-          <p id="appendix-B-4.4.1">Add failure handling process for rpc error.<a href="#appendix-B-4.4.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-4.5">
-          <p id="appendix-B-4.5.1">Clarify the relationship between root events and root cause.<a href="#appendix-B-4.5.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-4.6">
-          <p id="appendix-B-4.6.1">Clarify synchronous nature of these RPCs.<a href="#appendix-B-4.6.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-4.7">
-          <p id="appendix-B-4.7.1">Clarify the relationship between inter-layer and inter-domain.<a href="#appendix-B-4.7.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-4.8">
-          <p id="appendix-B-4.8.1">Refer to terminology draft for terminology alignment.<a href="#appendix-B-4.8.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-4.9">
-          <p id="appendix-B-4.9.1">Fix pyang compilation issue and yang lint issue.<a href="#appendix-B-4.9.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-4.10">
-          <p id="appendix-B-4.10.1">Fix Broken ref by using node-ref defined in RFC8345.<a href="#appendix-B-4.10.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-4.11">
-          <p id="appendix-B-4.11.1">Update YANG data model based on issues raised in issue tracker of the github.<a href="#appendix-B-4.11.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-4.12">
-          <p id="appendix-B-4.12.1">Shorten the list of authors to 5 based on chairs' comment and move additional authors
-to top 3 contributors.<a href="#appendix-B-4.12.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-4.13">
-          <p id="appendix-B-4.13.1">Merge ietf-incident-type.yang into ietf-incident.yang<a href="#appendix-B-4.13.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-4.14">
-          <p id="appendix-B-4.14.1">Fix enumeration on leaf type<a href="#appendix-B-4.14.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-4.15">
-          <p id="appendix-B-4.15.1">Clarify the scope in the abstract and introduction and make
-the scope focus on YANG data model<a href="#appendix-B-4.15.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-4.16">
-          <p id="appendix-B-4.16.1">Provide text around figure 5 to clarify how the incident
-server know the real effect on the relevant services.<a href="#appendix-B-4.16.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-4.17">
-          <p id="appendix-B-4.17.1">Other editorial changes.<a href="#appendix-B-4.17.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-4.4.1">Other Editorial changes.<a href="#appendix-B-4.4.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="appendix-B-5">v00 (draft-ietf-nmop-network-incident-yang)<a href="#appendix-B-5" class="pilcrow">¶</a></p>
+<p id="appendix-B-5">v00 - v01<a href="#appendix-B-5" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-B-6.1">
-          <p id="appendix-B-6.1.1">Change draft name from draft-feng-opsawg-incident-management
-into draft-feng-nmop-netwrok-incident-yang<a href="#appendix-B-6.1.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-6.1.1">Clarify the relationship between incident-no and incident-id.<a href="#appendix-B-6.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-6.2">
-          <p id="appendix-B-6.2.1">Change title into A YANG Data Model for Network Incident Management<a href="#appendix-B-6.2.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-6.2.1">Fix Tree Diagram to align with YANG module code change.<a href="#appendix-B-6.2.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-6.3">
-          <p id="appendix-B-6.3.1">open issues is tracked in https://github.com/billwuqin/network-incident/issues<a href="#appendix-B-6.3.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-6.3.1">Add json example in the appendix.<a href="#appendix-B-6.3.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-6.4">
+          <p id="appendix-B-6.4.1">Add failure handling process for rpc error.<a href="#appendix-B-6.4.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-6.5">
+          <p id="appendix-B-6.5.1">Clarify the relationship between root events and root cause.<a href="#appendix-B-6.5.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-6.6">
+          <p id="appendix-B-6.6.1">Clarify synchronous nature of these RPCs.<a href="#appendix-B-6.6.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-6.7">
+          <p id="appendix-B-6.7.1">Clarify the relationship between inter-layer and inter-domain.<a href="#appendix-B-6.7.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-6.8">
+          <p id="appendix-B-6.8.1">Refer to terminology draft for terminology alignment.<a href="#appendix-B-6.8.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-6.9">
+          <p id="appendix-B-6.9.1">Fix pyang compilation issue and yang lint issue.<a href="#appendix-B-6.9.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-6.10">
+          <p id="appendix-B-6.10.1">Fix Broken ref by using node-ref defined in RFC8345.<a href="#appendix-B-6.10.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-6.11">
+          <p id="appendix-B-6.11.1">Update YANG data model based on issues raised in issue tracker of the github.<a href="#appendix-B-6.11.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-6.12">
+          <p id="appendix-B-6.12.1">Shorten the list of authors to 5 based on chairs' comment and move additional authors
+to top 3 contributors.<a href="#appendix-B-6.12.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-6.13">
+          <p id="appendix-B-6.13.1">Merge ietf-incident-type.yang into ietf-incident.yang<a href="#appendix-B-6.13.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-6.14">
+          <p id="appendix-B-6.14.1">Fix enumeration on leaf type<a href="#appendix-B-6.14.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-6.15">
+          <p id="appendix-B-6.15.1">Clarify the scope in the abstract and introduction and make
+the scope focus on YANG data model<a href="#appendix-B-6.15.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-6.16">
+          <p id="appendix-B-6.16.1">Provide text around figure 5 to clarify how the incident
+server know the real effect on the relevant services.<a href="#appendix-B-6.16.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-6.17">
+          <p id="appendix-B-6.17.1">Other editorial changes.<a href="#appendix-B-6.17.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="appendix-B-7">v03 - v04 (draft-feng-opsawg-incident-management)<a href="#appendix-B-7" class="pilcrow">¶</a></p>
+<p id="appendix-B-7">v00 (draft-ietf-nmop-network-incident-yang)<a href="#appendix-B-7" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-B-8.1">
-          <p id="appendix-B-8.1.1">Update incident defintion based on TMF incident API profile
-specification.<a href="#appendix-B-8.1.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-8.1.1">Change draft name from draft-feng-opsawg-incident-management
+into draft-feng-nmop-netwrok-incident-yang<a href="#appendix-B-8.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-8.2">
-          <p id="appendix-B-8.2.1">Update use case on Multi-layer Fault Demarcation based on side
-meeting discussion and IETF 119 session discussion.<a href="#appendix-B-8.2.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-8.2.1">Change title into A YANG Data Model for Network Incident Management<a href="#appendix-B-8.2.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-8.3">
-          <p id="appendix-B-8.3.1">Update section 5.1 to explain how network incident is generated
-based on other factors.<a href="#appendix-B-8.3.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-8.4">
-          <p id="appendix-B-8.4.1">Add one new use cases on Security Events noise reduction based on
-Situation Awareness.<a href="#appendix-B-8.4.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-8.5">
-          <p id="appendix-B-8.5.1">Other Editorial changes.<a href="#appendix-B-8.5.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-8.3.1">open issues is tracked in https://github.com/billwuqin/network-incident/issues<a href="#appendix-B-8.3.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="appendix-B-9">v02 - v03  (draft-feng-opsawg-incident-management)<a href="#appendix-B-9" class="pilcrow">¶</a></p>
+<p id="appendix-B-9">v03 - v04 (draft-feng-opsawg-incident-management)<a href="#appendix-B-9" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-B-10.1">
-          <p id="appendix-B-10.1.1">Add one new use cases on Incident Generation.<a href="#appendix-B-10.1.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-10.1.1">Update incident defintion based on TMF incident API profile
+specification.<a href="#appendix-B-10.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-10.2">
-          <p id="appendix-B-10.2.1">Add reference to Precision Availability Metric defined in IPPM PAM
-WG document.<a href="#appendix-B-10.2.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-10.2.1">Update use case on Multi-layer Fault Demarcation based on side
+meeting discussion and IETF 119 session discussion.<a href="#appendix-B-10.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-10.3">
+          <p id="appendix-B-10.3.1">Update section 5.1 to explain how network incident is generated
+based on other factors.<a href="#appendix-B-10.3.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-10.4">
+          <p id="appendix-B-10.4.1">Add one new use cases on Security Events noise reduction based on
+Situation Awareness.<a href="#appendix-B-10.4.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-10.5">
+          <p id="appendix-B-10.5.1">Other Editorial changes.<a href="#appendix-B-10.5.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="appendix-B-11">v01 - v02<a href="#appendix-B-11" class="pilcrow">¶</a></p>
+<p id="appendix-B-11">v02 - v03  (draft-feng-opsawg-incident-management)<a href="#appendix-B-11" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-B-12.1">
-          <p id="appendix-B-12.1.1">A few Editorial change to YANG data models in section 8.<a href="#appendix-B-12.1.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-12.1.1">Add one new use cases on Incident Generation.<a href="#appendix-B-12.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-12.2">
-          <p id="appendix-B-12.2.1">Add some text to the model design overview.<a href="#appendix-B-12.2.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-12.3">
-          <p id="appendix-B-12.3.1">Revise sample use cases section to focus on two key use cases.<a href="#appendix-B-12.3.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-12.4">
-          <p id="appendix-B-12.4.1">Motivation and goal clarification in the introduction section.<a href="#appendix-B-12.4.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-12.2.1">Add reference to Precision Availability Metric defined in IPPM PAM
+WG document.<a href="#appendix-B-12.2.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="appendix-B-13">v00 - v01  (draft-feng-opsawg-incident-management)<a href="#appendix-B-13" class="pilcrow">¶</a></p>
+<p id="appendix-B-13">v01 - v02<a href="#appendix-B-13" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-B-14.1">
-          <p id="appendix-B-14.1.1">Modify the introduction.<a href="#appendix-B-14.1.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-14.1.1">A few Editorial change to YANG data models in section 8.<a href="#appendix-B-14.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-14.2">
-          <p id="appendix-B-14.2.1">Rename incident agent to incident server.<a href="#appendix-B-14.2.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-14.2.1">Add some text to the model design overview.<a href="#appendix-B-14.2.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-14.3">
-          <p id="appendix-B-14.3.1">Add the interworking with alarm management.<a href="#appendix-B-14.3.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-14.3.1">Revise sample use cases section to focus on two key use cases.<a href="#appendix-B-14.3.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-14.4">
-          <p id="appendix-B-14.4.1">Add the interworking with SAIN.<a href="#appendix-B-14.4.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-14.4.1">Motivation and goal clarification in the introduction section.<a href="#appendix-B-14.4.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-B-14.5">
-          <p id="appendix-B-14.5.1">Add the relationship with RFC8969.<a href="#appendix-B-14.5.1" class="pilcrow">¶</a></p>
+      </ul>
+<p id="appendix-B-15">v00 - v01  (draft-feng-opsawg-incident-management)<a href="#appendix-B-15" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-B-16.1">
+          <p id="appendix-B-16.1.1">Modify the introduction.<a href="#appendix-B-16.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-B-14.6">
-          <p id="appendix-B-14.6.1">Add the relationship with observation timestamp and trace context.<a href="#appendix-B-14.6.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-16.2">
+          <p id="appendix-B-16.2.1">Rename incident agent to incident server.<a href="#appendix-B-16.2.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-B-14.7">
-          <p id="appendix-B-14.7.1">Clarify the incident identification process.<a href="#appendix-B-14.7.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-16.3">
+          <p id="appendix-B-16.3.1">Add the interworking with alarm management.<a href="#appendix-B-16.3.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-B-14.8">
-          <p id="appendix-B-14.8.1">Modify the work flow of incident diagnosis and resolution.<a href="#appendix-B-14.8.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-16.4">
+          <p id="appendix-B-16.4.1">Add the interworking with SAIN.<a href="#appendix-B-16.4.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-B-14.9">
-          <p id="appendix-B-14.9.1">Remove identities and typedefs from ietf-incident YANG module, and
-create a new YANG module called ietf-incident-types.<a href="#appendix-B-14.9.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-16.5">
+          <p id="appendix-B-16.5.1">Add the relationship with RFC8969.<a href="#appendix-B-16.5.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-B-14.10">
-          <p id="appendix-B-14.10.1">Modify ietf-incident YANG module, for example, modify incident-
-diagnose rpc and incident-resolve rpc.<a href="#appendix-B-14.10.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-16.6">
+          <p id="appendix-B-16.6.1">Add the relationship with observation timestamp and trace context.<a href="#appendix-B-16.6.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-16.7">
+          <p id="appendix-B-16.7.1">Clarify the incident identification process.<a href="#appendix-B-16.7.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-16.8">
+          <p id="appendix-B-16.8.1">Modify the work flow of incident diagnosis and resolution.<a href="#appendix-B-16.8.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-16.9">
+          <p id="appendix-B-16.9.1">Remove identities and typedefs from ietf-incident YANG module, and
+create a new YANG module called ietf-incident-types.<a href="#appendix-B-16.9.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-16.10">
+          <p id="appendix-B-16.10.1">Modify ietf-incident YANG module, for example, modify incident-
+diagnose rpc and incident-resolve rpc.<a href="#appendix-B-16.10.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 </section>
