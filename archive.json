@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-23T00:36:01.548277+00:00",
+  "timestamp": "2025-01-26T00:36:42.088785+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
   "labels": [
     {
@@ -351,15 +351,15 @@
       "id": "I_kwDOL4Sz0s6dAep7",
       "title": "draft-ietf-nmop-network-incident-yang-02 review from Thomas",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/issues/20",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "billwuqin",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "https://mailarchive.ietf.org/arch/msg/nmop/ZwFTpPnET9JTVEdxsAwjuxodulg/",
       "createdAt": "2024-11-05T00:23:40Z",
-      "updatedAt": "2024-12-24T00:37:12Z",
-      "closedAt": null,
+      "updatedAt": "2025-01-24T12:15:34Z",
+      "closedAt": "2025-01-24T12:15:34Z",
       "comments": [
         {
           "author": "billwuqin",
@@ -367,6 +367,68 @@
           "body": "Addressed in https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/pull/23",
           "createdAt": "2024-12-24T00:37:11Z",
           "updatedAt": "2024-12-24T00:37:11Z"
+        },
+        {
+          "author": "billwuqin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "See Thomas's follow up comments on relation between problem and incident in #25 ",
+          "createdAt": "2025-01-24T12:15:30Z",
+          "updatedAt": "2025-01-24T12:15:30Z"
+        }
+      ]
+    },
+    {
+      "number": 24,
+      "id": "I_kwDOL4Sz0s6ncoW5",
+      "title": "The need to clarify the interaction between the Network Incident, and Customer Incident",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/issues/24",
+      "state": "OPEN",
+      "author": "billwuqin",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "https://mailarchive.ietf.org/arch/msg/nmop/cVhXJkO7yagUwJ_av2ILz1ZeKqc/",
+      "createdAt": "2025-01-24T12:13:36Z",
+      "updatedAt": "2025-01-24T14:15:56Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "billwuqin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Network Fault -> Network Problem -> Network Incident->Network Service  <-> Customer Incident <- Customer Notification\nThere is a good discussion on the relation among network incident, network service and customer incident, however I still believe we should only focus on the relation between network incident and network service since we have tools like service impact analysis.\nRelation between network incident and customer incident seems more fall into the scope of TMF domain.",
+          "createdAt": "2025-01-24T13:54:47Z",
+          "updatedAt": "2025-01-24T13:54:47Z"
+        },
+        {
+          "author": "billwuqin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "See #26 ",
+          "createdAt": "2025-01-24T14:15:55Z",
+          "updatedAt": "2025-01-24T14:15:55Z"
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "id": "I_kwDOL4Sz0s6ncoqB",
+      "title": "Make relationship between problem and incident correct",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/issues/25",
+      "state": "OPEN",
+      "author": "billwuqin",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "https://mailarchive.ietf.org/arch/msg/nmop/sJb7oHrBIZgx9KhrMT8wGV5u0vQ/",
+      "createdAt": "2025-01-24T12:14:18Z",
+      "updatedAt": "2025-01-24T14:15:40Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "billwuqin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "See #26 ",
+          "createdAt": "2025-01-24T14:15:39Z",
+          "updatedAt": "2025-01-24T14:15:39Z"
         }
       ]
     }
@@ -743,6 +805,32 @@
       "mergeCommit": {
         "oid": "74556338f609774f5e711af1f8d6170c064a056c"
       },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 26,
+      "id": "PR_kwDOL4Sz0s6I53Mx",
+      "title": "clarify the relationship between the problem and network incident",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/pull/26",
+      "state": "OPEN",
+      "author": "billwuqin",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-01-24T14:07:28Z",
+      "updatedAt": "2025-01-24T14:15:01Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
+      "baseRefName": "main",
+      "baseRefOid": "cc7cee919c301e10d9941f0a017c88523c8f2b7d",
+      "headRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
+      "headRefName": "billwuqin-patch-3",
+      "headRefOid": "4816da6f5942c8b1e0135c4ae56864805dd676dc",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
       "comments": [],
       "reviews": []
     }
