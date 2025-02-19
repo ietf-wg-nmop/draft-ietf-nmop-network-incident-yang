@@ -1228,7 +1228,7 @@ network service health and root cause analysis.<a href="#section-abstract-2" cla
                 <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="auto internal xref">6.2</a>.  <a href="#name-the-incident-lifecycle" class="internal xref">The Incident Lifecycle</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.1">
-                    <p id="section-toc.1-1.6.2.2.2.1.1"><a href="#section-6.2.1" class="auto internal xref">6.2.1</a>.  <a href="#name-incident-instance-lifecycle" class="internal xref">Incident Instance Lifecycle</a></p>
+                    <p id="section-toc.1-1.6.2.2.2.1.1"><a href="#section-6.2.1" class="auto internal xref">6.2.1</a>.  <a href="#name-network-incident-instance-l" class="internal xref">Network Incident Instance Lifecycle</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.2">
                     <p id="section-toc.1-1.6.2.2.2.2.1"><a href="#section-6.2.2" class="auto internal xref">6.2.2</a>.  <a href="#name-operator-incident-lifecycle" class="internal xref">Operator Incident Lifecycle</a></p>
@@ -1882,24 +1882,21 @@ network incidents.  Multiple alarms, metrics and other information are
 reported to incident server, and the server must analyze it and find
 out the correlations of them, if the correlation match the network incident
 rules, network incident will be identified, and reported to the client.
-If the network incident is repeated for many times, the problem can be raised.
-Service impact analysis will be performed if an indent is identified,
+If the network incident is repeated for many times, the problem needs to be raised.
+Service impact analysis will be performed if a network incident is identified,
 and the content of network incident will be updated if impacted network
 services are detected.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
 <p id="section-5.1-4">AI/ML may be used to identify the network incident.  Expert system and online
 learning can help AI to identify the correlation of alarms, metrics
-and other information by time-base correlation algorithm, topo-based
-correlation algorithm, etc.  For example, if interface is down, then
+and other information by time-base correlation algorithm, topology-based
+correlation algorithm, etc.  For example, if the interface is down, then
 many protocol alarms will be reported, AI will think these alarms
 have some correlations.  These correlations will be put into
 knowledge base, and the network incident will be identified faster according
 to knowledge base next time.<a href="#section-5.1-4" class="pilcrow">¶</a></p>
-<p id="section-5.1-5">As mentioned above, SAIN is another way to implement network incident
-identification.  Trace context defined in <span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span>
-may be helpful for network incident identification.<a href="#section-5.1-5" class="pilcrow">¶</a></p>
 <span id="name-example-1-of-network-incide"></span><div id="exam1">
 <figure id="figure-5">
-          <div class="alignCenter art-text artwork" id="section-5.1-6.1">
+          <div class="alignCenter art-text artwork" id="section-5.1-5.1">
 <pre>
          +----------------------+
          |                      |
@@ -1931,20 +1928,20 @@ VPN A       | |            |
 <a href="#name-example-1-of-network-incide" class="selfRef">Example 1 of Network Incident Identification</a>
           </figcaption></figure>
 </div>
-<p id="section-5.1-7">As described in <a href="#exam1" class="auto internal xref">Figure 5</a>, vpn a is deployed from PE1 to PE2, if a
+<p id="section-5.1-6">As described in <a href="#exam1" class="auto internal xref">Figure 5</a>, vpn a is deployed from PE1 to PE2, if a
 interface of P1 is going down, many alarms are triggered, such as
-interface down, igp down, and igp peer abnormal from P2.<a href="#section-5.1-7" class="pilcrow">¶</a></p>
-<p id="section-5.1-8">These alarms are aggregated and analyzed by the controller/incident
-management server, and then the network incident 'vpn unavailable' is triggered
-by the controller/incident management server. If the network incident 'vpn unavailable'
-is repeated, the problem can be raised.<a href="#section-5.1-8" class="pilcrow">¶</a></p>
-<p id="section-5.1-9">Note that incident management server can rely on data correlation technology such as
+interface down, igp down, and igp peer abnormal from P2.<a href="#section-5.1-6" class="pilcrow">¶</a></p>
+<p id="section-5.1-7">These alarms are aggregated and analyzed by the controller/incident
+server, and then the network incident 'vpn unavailable' is triggered
+by the controller/incident server. If the network incident 'vpn unavailable'
+is repeated, the problem can be raised.<a href="#section-5.1-7" class="pilcrow">¶</a></p>
+<p id="section-5.1-8">Note that incident server within the controller can rely on data correlation technology such as
 service impact analysis and data analytic component to evaluate the real effect
 on the relevant service and understand whether lower level or device level network
-anomaly, e.g., igp down, has impact on the service.<a href="#section-5.1-9" class="pilcrow">¶</a></p>
+anomaly, e.g., igp down, has impact on the service.<a href="#section-5.1-8" class="pilcrow">¶</a></p>
 <span id="name-example-2-of-network-incide"></span><div id="exam2">
 <figure id="figure-6">
-          <div class="alignCenter art-text artwork" id="section-5.1-10.1">
+          <div class="alignCenter art-text artwork" id="section-5.1-9.1">
 <pre>
                 +----------------------+
                 |                      |
@@ -1976,10 +1973,10 @@ VPN A               |            |
 <a href="#name-example-2-of-network-incide" class="selfRef">Example 2 of Network Incident Identification</a>
           </figcaption></figure>
 </div>
-<p id="section-5.1-11">As described in <a href="#exam2" class="auto internal xref">Figure 6</a>, controller collect the network metrics from
+<p id="section-5.1-10">As described in <a href="#exam2" class="auto internal xref">Figure 6</a>, controller collect the network metrics from
 network elements, it finds the packet loss of P1 and the path delay
 of P2 exceed the thresholds, a network incident 'VPN A degradation' may be
-triggered after service impact analysis.<a href="#section-5.1-11" class="pilcrow">¶</a></p>
+triggered after the service impact analysis.<a href="#section-5.1-10" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="incident-diagnosis">
@@ -1987,16 +1984,15 @@ triggered after service impact analysis.<a href="#section-5.1-11" class="pilcrow
         <h3 id="name-incident-diagnosis">
 <a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-incident-diagnosis" class="section-name selfRef">Incident Diagnosis</a>
         </h3>
-<p id="section-5.2-1">After a network incident is reported to the network incident management client, the
-incident management client <span class="bcp14">MAY</span> diagnose the incident to determine the root cause.
+<p id="section-5.2-1">After a network incident is reported to the network incident client, the
+incident client <span class="bcp14">MAY</span> diagnose the incident to determine the root cause.
 Some diagnosis operations may affect the running network services.  The
-client can choose not to perform that diagnosis operation after
-determining the impact is not trivial.  The network incident management
-server can also perform self-diagnosis.  However, the self-diagnosis
-<span class="bcp14">MUST</span> not affect the running network services.  Possible diagnosis
-methods include link reachability detection, link quality detection,
-alarm/log analysis, and short-term fine-grained monitoring of network
-quality metrics, etc.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
+incident client can choose not to perform that diagnosis operation after
+determining the impact is not trivial.  The incident server can also perform
+self-diagnosis.  However, the self-diagnosis <span class="bcp14">MUST</span> not affect the running
+network services.  Possible diagnosis methods include link reachability
+detection, link quality detection, alarm/log analysis, and short-term
+fine-grained monitoring of network quality metrics, etc.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="incident-resolution">
@@ -2004,17 +2000,17 @@ quality metrics, etc.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
         <h3 id="name-incident-resolution">
 <a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-incident-resolution" class="section-name selfRef">Incident Resolution</a>
         </h3>
-<p id="section-5.3-1">After the root cause is diagnosed, the client <span class="bcp14">MAY</span> resolve the
-network incident.  The client <span class="bcp14">MAY</span> choose resolve the network incident by invoking
-other functions, such as routing calculation function, configuration
-function, dispatching a ticket or asking the server to resolve it.
-Generally, the client would attempt to directly resolve the root
+<p id="section-5.3-1">After the root cause is diagnosed, the incident client <span class="bcp14">MAY</span> resolve the
+network incident.  The incident client <span class="bcp14">MAY</span> choose resolve the network
+incident by invoking other functions, such as routing calculation function,
+configuration function, dispatching a ticket or asking the server to resolve it.
+Generally, the incident client would attempt to directly resolve the root
 cause.  If the root cause cannot be resolved, an alternative solution
 <span class="bcp14">SHOULD</span> be required.  For example, if a network incident caused by a physical
 component failure, it cannot be automatically resolved, the standby
 link can be used to bypass the faulty component.<a href="#section-5.3-1" class="pilcrow">¶</a></p>
 <p id="section-5.3-2">Incident server will monitor the status of the network incident, if the faults
-are fixed, the server will update the status of network incident to
+are fixed, the incident server will update the status of network incident to
 'cleared', and report the updated network incident to the client.<a href="#section-5.3-2" class="pilcrow">¶</a></p>
 <p id="section-5.3-3">Network incident resolution may affect the running network services.  The
 client can choose not to perform those operations after determining
@@ -2033,9 +2029,9 @@ the impact is not trivial.<a href="#section-5.3-3" class="pilcrow">¶</a></p>
         <h3 id="name-identifying-the-incident-in">
 <a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-identifying-the-incident-in" class="section-name selfRef">Identifying the Incident Instance</a>
         </h3>
-<p id="section-6.1-1">An incident ID is used as an identifier of an incident instance, if
+<p id="section-6.1-1">An incident id is used as an identifier of an incident instance, if
 an incident instance is identified, a new incident ID is created.
-The incident ID <span class="bcp14">MUST</span> be unique in the whole system.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
+The incident id <span class="bcp14">MUST</span> be unique in the whole system.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="the-incident-lifecycle">
@@ -2043,16 +2039,16 @@ The incident ID <span class="bcp14">MUST</span> be unique in the whole system.<a
         <h3 id="name-the-incident-lifecycle">
 <a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-the-incident-lifecycle" class="section-name selfRef">The Incident Lifecycle</a>
         </h3>
-<p id="section-6.2-1">The incident model clearly separately network incident instance lifecycle
+<p id="section-6.2-1">The network incident model clearly separates network incident instance lifecycle
 from operator incident lifecycle.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
 <p id="section-6.2-2">o Network incident instance lifecycle: The network incident instrumentation that
   control network incident raised, updated and cleared.<a href="#section-6.2-2" class="pilcrow">¶</a></p>
 <p id="section-6.2-3">o Operator incident lifecycle: Operators acting upon the network incident with rpcs
   like acknowledged, diagnosed and resolved.<a href="#section-6.2-3" class="pilcrow">¶</a></p>
-<div id="incident-instance-lifecycle">
+<div id="network-incident-instance-lifecycle">
 <section id="section-6.2.1">
-          <h4 id="name-incident-instance-lifecycle">
-<a href="#section-6.2.1" class="section-number selfRef">6.2.1. </a><a href="#name-incident-instance-lifecycle" class="section-name selfRef">Incident Instance Lifecycle</a>
+          <h4 id="name-network-incident-instance-l">
+<a href="#section-6.2.1" class="section-number selfRef">6.2.1. </a><a href="#name-network-incident-instance-l" class="section-name selfRef">Network Incident Instance Lifecycle</a>
           </h4>
 <p id="section-6.2.1-1">From a network incident instance perspective, a network incident can have the
 following lifecycle: 'raised', 'updated', 'cleared'.  When a network
@@ -2095,17 +2091,17 @@ rpc.<a href="#section-6.2.2-2" class="pilcrow">¶</a></p>
         <h3 id="name-overview">
 <a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-overview" class="section-name selfRef">Overview</a>
         </h3>
-<p id="section-7.1-1">There is one YANG module in the model, "ietf-incident", which defines
+<p id="section-7.1-1">There is one YANG module in the "ietf-incident" model, which defines
 technology independent abstraction of network incident construct for
 alarm, log, performance metrics, etc.  The information reported in
 the network incident include Root cause, priority,impact, suggestion, etc.<a href="#section-7.1-1" class="pilcrow">¶</a></p>
 <p id="section-7.1-2">At the top of "ietf-incident" module is the Network Incident.
 Network incident is represented as a list and indexed by "incident-id".
-Each Network Incident is associated with a service instance, domain and
+Each Network Incident is associated with a network service instance, domain and
 sources.  Under sources, there is one or more sources.  Each source
 corresponds to node defined in the network topology model and network
-resource in the network device,e.g., interface.  In addition, "ietf-incident"
-support one general notification to report network incident state changes and
+resource in the network device, e.g., interface.  In addition, "ietf-incident"
+supports one general notification to report network incident state changes and
 three rpcs to manage the network incidents.<a href="#section-7.1-2" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-7.1-3">
 <pre>
@@ -2215,9 +2211,9 @@ notifications:
 </div>
 <p id="section-7.2-2">A general notification, incident-notification, is provided here.
 When a network incident instance is identified, the notification will be
-sent.  After a notification is generated, if the network incident management
-server performs self diagnosis or the client uses the interfaces
-provided by the network incident management server to deliver diagnosis and
+sent.  After a notification is generated, if the incident
+server performs self diagnosis or the incident client uses the interfaces
+provided by the incident server to deliver diagnosis and
 resolution actions, the notification update behavior is triggered,
 for example, the root cause objects and affected objects are updated.
 When a network incident is successfully resolved, the status of the network incident
