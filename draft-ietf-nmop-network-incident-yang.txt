@@ -207,19 +207,30 @@ Table of Contents
 
    The following terms are defined in this document:
 
+   Service impact analysis:  A process that uses machine learning to
+      evaluate whether the network service has been impacted by the
+      network incident and map network incident to one or a set of
+      network service, which can reduce massive fault/alarms reporting,
+      speed up troubleshooting, and assure network service performance
+      and availability.
+
    Incident management:  Lifecycle management of network incidents,
       including network incident identification, reporting,
-      acknowledgement, diagnosis, and resolution.  Different from fault
-      management, it take various different data sources including
-      alarms, metrics, and other anomaly information and aggregate them
-      into one or a few amount of network incidents irrespective of
-      layer through correlation analysis and the service impact
-      analysis.  One fault on the network device can be raised by one
-      network incident, one fault on the network device can cause
+      acknowledgement, diagnosis, and resolution.  Different from the
+      traditional fault management, it take various different data
+      sources including alarms, metrics, and other anomaly information
+      and aggregate them into one or a few amount of network incidents
+      irrespective of layer through correlation analysis and the service
+      impact analysis.  One fault on the network device can cause
       multiple network incidents, e.g., multiple service offerings that
       are dependent on that device will go down and others may suffer
       increased latency as redundant routes become more congested.  A
-      network incient might impact one or a set of network services.
+      network incident might impact one or a set of network services.
+      The network incident can also been seen as customer incident
+      [TMF724A] when service SLA associated with one specific network
+      service and network incident has been affected.  How customer
+      incident is translated from the network incident is beyond scope
+      of this document.
 
    Incident management system:  An entity which implements network
       incident management.  It includes (but not limited to) incident
@@ -300,8 +311,8 @@ Table of Contents
    interfaces to commit the delivery of a service on specific point-to-
    point service topology or point to multi-point topology.  When
    specific levels of a threshold of an SLO is violated, a specific
-   network incident, associated with, let's say L3VPN service will be
-   derived.
+   network incident or customer incident [TMF724A], associated with,
+   let's say L3VPN service will be derived.
 
 3.3.  Multi-layer Fault Demarcation
 
@@ -378,19 +389,19 @@ Table of Contents
    Two key components for the incident management are incident client
    and incident server.
 
-   Incident server can be deployed in network analytics platform,
+   Incident server can be deployed in network analytic platforms,
    controllers and provides functionalities such as network incident
    identification, report, diagnosis, resolution, or querying for
    network incident lifecycle management.
 
-   Incident client can be deployed either in the same network platform,
-   controller as the incident management server within a single domain,
-   or at the upper layer network analytics platform or controller, e.g.,
-   multi-domain controller, invokes the functionalities provided by
-   incident management server to meet the business requirements of fault
-   management.  The entire network incident lifecycle management can be
-   independent from or not under control of the network OSS or other
-   business system of operators.
+   Incident client can be deployed either in the same network analytic
+   platforms, controllers as the incident server within a single domain,
+   or at the upper layer network analytic platforms or
+   controllers(i.e.,multi-domain controllers) , invoke the
+   functionalities provided by incident server to meet the business
+   requirements of fault management.  The entire network incident
+   lifecycle management can be independent from or not under control of
+   the network OSS or other business system of operators.
 
    A typical workflow of network incident management is as follows:
 
@@ -398,10 +409,11 @@ Table of Contents
       are reported from the network.  Incident server receives these
       alarms/abnormal operations/metrics and try to analyze the
       correlation of them, e.g., generate a symptom if some metrics are
-      evaluated as unhealthy, detect a cause based on correlation
-      analysis.  If a network incident is identified, it will be
-      reported to the incident client.  The impact of network services
-      will be also analyzed and will update the network incident.
+      evaluated as unhealthy, the probable cause can be detected based
+      on correlation analysis.  If a network incident is identified, it
+      will be reported to the incident client.  The impact of network
+      services will be further analyzed and will update the network
+      incident if the network service is impacted.
 
    *  Incident client receives the network incident raised by incident
       server, and acknowledge it.  Client may invoke the "network
@@ -411,7 +423,7 @@ Table of Contents
    *  If the root causes have been found, the incident client can
       resolve this network incident by invoking the 'network incident
       resolve' rpc operation, dispatching a ticket or using other
-      functions (routing calculation, configuration, etc.)
+      network functions (routing calculation, configuration, etc.)
 
 4.1.  Interworking with Alarm Management
 
@@ -465,14 +477,16 @@ Table of Contents
    may use alarm management interface [RFC8632] to shelve some alarms.
 
    Alarm management may keep the original process, alarms are reported
-   from network to network controller or analytics and then reported to
-   upper layer system (e.g., the alarm handler within the OSS).
+   from network to network controller or network analytic platform and
+   then reported to upper layer system (e.g., the alarm handler within
+   the OSS).
 
    Similarly, the network incident is reported from the network to the
-   network controller or analytics and then reported to the upper layer
-   system (e.g., incident handler within the OSS).  Upper layer system
-   may store these network incidents and provide the information for
-   fault analysis (e.g., deeper analysis based on network incident).
+   network controller or network analytic platform and then reported to
+   the upper layer system (e.g., incident handler within the OSS).
+   Upper layer system may store these network incidents and provide the
+   information for fault analysis (e.g., deeper customer incident
+   analysis based on network incident).
 
    Different from alarm management, incident process within the
    controller comprising both incident client and incident sever
