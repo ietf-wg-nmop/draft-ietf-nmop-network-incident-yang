@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 8 August 2025                                        Telefonica
+Expires: 23 August 2025                                       Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                         4 February 2025
+                                                        19 February 2025
 
 
            A YANG Data Model for Network Incident Management
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 August 2025.
+   This Internet-Draft will expire on 23 August 2025.
 
 Copyright Notice
 
@@ -218,9 +218,10 @@ Table of Contents
       one fault on the network device can cause multiple network
       incidents, e.g., multiple service offerings that are dependent on
       that device will go down and others may suffer increased latency
-      as redundant routes become more congested.  A problem is one cause
-      or potential cause of one or more network incidents.  The repeated
-      network incidents can be raised as the problem.
+      as redundant routes become more congested.  A network incident
+      results from one or more Problems, and a Problem may give rise to
+      or contribute to one or more Network Incidents.  A network incient
+      might impact a set of network services.
 
    Incident management system:  An entity which implements network
       incident management.  It includes (but not limited to) incident
@@ -1999,9 +2000,9 @@ Informative References
               Davis, N., Farrel, A., Graf, T., Wu, Q., and C. Yu, "Some
               Key Terms for Network Fault and Problem Management", Work
               in Progress, Internet-Draft, draft-ietf-nmop-terminology-
-              10, 21 January 2025,
+              11, 16 February 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
-              terminology-10>.
+              terminology-11>.
 
    [I-D.quilbeuf-opsawg-configuration-tracing]
               Quilbeuf, J., Claise, B., Graf, T., Lopez, D., and S.
