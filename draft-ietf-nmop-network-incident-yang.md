@@ -599,23 +599,19 @@ network incidents.  Multiple alarms, metrics and other information are
 reported to incident server, and the server must analyze it and find
 out the correlations of them, if the correlation match the network incident
 rules, network incident will be identified, and reported to the client.
-If the network incident is repeated for many times, the problem can be raised.
-Service impact analysis will be performed if an indent is identified,
+If the network incident is repeated for many times, the problem needs to be raised.
+Service impact analysis will be performed if a network incident is identified,
 and the content of network incident will be updated if impacted network
 services are detected.
 
 AI/ML may be used to identify the network incident.  Expert system and online
 learning can help AI to identify the correlation of alarms, metrics
-and other information by time-base correlation algorithm, topo-based
-correlation algorithm, etc.  For example, if interface is down, then
+and other information by time-base correlation algorithm, topology-based
+correlation algorithm, etc.  For example, if the interface is down, then
 many protocol alarms will be reported, AI will think these alarms
 have some correlations.  These correlations will be put into
 knowledge base, and the network incident will be identified faster according
 to knowledge base next time.
-
-As mentioned above, SAIN is another way to implement network incident
-identification.  Trace context defined in {{W3C-Trace-Context}}
-may be helpful for network incident identification.
 
 ~~~~
 	 +----------------------+
@@ -650,11 +646,11 @@ interface of P1 is going down, many alarms are triggered, such as
 interface down, igp down, and igp peer abnormal from P2.
 
 These alarms are aggregated and analyzed by the controller/incident
-management server, and then the network incident 'vpn unavailable' is triggered
-by the controller/incident management server. If the network incident 'vpn unavailable'
+server, and then the network incident 'vpn unavailable' is triggered
+by the controller/incident server. If the network incident 'vpn unavailable'
 is repeated, the problem can be raised.
 
-Note that incident management server can rely on data correlation technology such as
+Note that incident server within the controller can rely on data correlation technology such as
 service impact analysis and data analytic component to evaluate the real effect
 on the relevant service and understand whether lower level or device level network
 anomaly, e.g., igp down, has impact on the service.
@@ -691,35 +687,34 @@ VPN A               |            |
 As described in {{exam2}}, controller collect the network metrics from
 network elements, it finds the packet loss of P1 and the path delay
 of P2 exceed the thresholds, a network incident 'VPN A degradation' may be
-triggered after service impact analysis.
+triggered after the service impact analysis.
 
 ## Incident Diagnosis
 
-After a network incident is reported to the network incident management client, the
-incident management client MAY diagnose the incident to determine the root cause.
+After a network incident is reported to the network incident client, the
+incident client MAY diagnose the incident to determine the root cause.
 Some diagnosis operations may affect the running network services.  The
-client can choose not to perform that diagnosis operation after
-determining the impact is not trivial.  The network incident management
-server can also perform self-diagnosis.  However, the self-diagnosis
-MUST not affect the running network services.  Possible diagnosis
-methods include link reachability detection, link quality detection,
-alarm/log analysis, and short-term fine-grained monitoring of network
-quality metrics, etc.
+incident client can choose not to perform that diagnosis operation after
+determining the impact is not trivial.  The incident server can also perform
+self-diagnosis.  However, the self-diagnosis MUST not affect the running
+network services.  Possible diagnosis methods include link reachability
+detection, link quality detection, alarm/log analysis, and short-term
+fine-grained monitoring of network quality metrics, etc.
 
 ## Incident Resolution
 
-After the root cause is diagnosed, the client MAY resolve the
-network incident.  The client MAY choose resolve the network incident by invoking
-other functions, such as routing calculation function, configuration
-function, dispatching a ticket or asking the server to resolve it.
-Generally, the client would attempt to directly resolve the root
+After the root cause is diagnosed, the incident client MAY resolve the
+network incident.  The incident client MAY choose resolve the network
+incident by invoking other functions, such as routing calculation function,
+configuration function, dispatching a ticket or asking the server to resolve it.
+Generally, the incident client would attempt to directly resolve the root
 cause.  If the root cause cannot be resolved, an alternative solution
 SHOULD be required.  For example, if a network incident caused by a physical
 component failure, it cannot be automatically resolved, the standby
 link can be used to bypass the faulty component.
 
 Incident server will monitor the status of the network incident, if the faults
-are fixed, the server will update the status of network incident to
+are fixed, the incident server will update the status of network incident to
 'cleared', and report the updated network incident to the client.
 
 Network incident resolution may affect the running network services.  The
@@ -730,13 +725,13 @@ the impact is not trivial.
 
 ## Identifying the Incident Instance
 
-An incident ID is used as an identifier of an incident instance, if
+An incident id is used as an identifier of an incident instance, if
 an incident instance is identified, a new incident ID is created.
-The incident ID MUST be unique in the whole system.
+The incident id MUST be unique in the whole system.
 
 ## The Incident Lifecycle
 
-The incident model clearly separately network incident instance lifecycle
+The network incident model clearly separates network incident instance lifecycle
 from operator incident lifecycle.
 
 o Network incident instance lifecycle: The network incident instrumentation that
@@ -745,7 +740,7 @@ o Network incident instance lifecycle: The network incident instrumentation that
 o Operator incident lifecycle: Operators acting upon the network incident with rpcs
   like acknowledged, diagnosed and resolved.
 
-### Incident Instance Lifecycle
+### Network Incident Instance Lifecycle
 
 From a network incident instance perspective, a network incident can have the
 following lifecycle: 'raised', 'updated', 'cleared'.  When a network
@@ -774,18 +769,18 @@ rpc.
 
 ## Overview
 
-There is one YANG module in the model, "ietf-incident", which defines
+There is one YANG module in the "ietf-incident" model, which defines
 technology independent abstraction of network incident construct for
 alarm, log, performance metrics, etc.  The information reported in
 the network incident include Root cause, priority,impact, suggestion, etc.
 
 At the top of "ietf-incident" module is the Network Incident.
 Network incident is represented as a list and indexed by "incident-id".
-Each Network Incident is associated with a service instance, domain and
+Each Network Incident is associated with a network service instance, domain and
 sources.  Under sources, there is one or more sources.  Each source
 corresponds to node defined in the network topology model and network
-resource in the network device,e.g., interface.  In addition, "ietf-incident"
-support one general notification to report network incident state changes and
+resource in the network device, e.g., interface.  In addition, "ietf-incident"
+supports one general notification to report network incident state changes and
 three rpcs to manage the network incidents.
 
 ~~~~
@@ -889,9 +884,9 @@ notifications:
 
 A general notification, incident-notification, is provided here.
 When a network incident instance is identified, the notification will be
-sent.  After a notification is generated, if the network incident management
-server performs self diagnosis or the client uses the interfaces
-provided by the network incident management server to deliver diagnosis and
+sent.  After a notification is generated, if the incident
+server performs self diagnosis or the incident client uses the interfaces
+provided by the incident server to deliver diagnosis and
 resolution actions, the notification update behavior is triggered,
 for example, the root cause objects and affected objects are updated.
 When a network incident is successfully resolved, the status of the network incident
