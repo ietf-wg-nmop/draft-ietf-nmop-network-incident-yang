@@ -75,30 +75,6 @@ contributor:
     fullname: Chaode Yu
     organization: Huawei
     email: yuchaode@huawei.com
--
-    name: MingShuang Jin
-    org: Huawei Technologies
-    email: jinmingshuang@huawei.com
--
-    name: Chunchi Liu
-    org: Huawei Technologies
-    email: liuchunchi@huawei.com
--
-    name: Aihua Guo
-    org: Futurewei Technologies
-    email: aihuaguo.ietf@gmail.com
--
-    name: Zhidong Yin
-    org: Huawei
-    email: yinzhidong@huawei.com
--
-    name: Guoxiang Liu
-    org: Huawei
-    email: liuguoxiang@huawei.com
--
-    name: Kaichun Wu
-    org: Huawei
-    email: wukaichun@huawei.com
 
 normative:
 
@@ -1119,6 +1095,31 @@ Jethanandani, Balazs Lengyel, Dhruv Dhody,Bo Wu, Qiufang Ma, Haomian Zheng,
 YuanYao，Wei Wang, Peng Liu, Zongpeng Du, Zhengqiang Li, Andrew Liu
 , Joe Clark, Roland Scott, Alex Huang Feng, Kai Gao,  Jensen Zhang,
 Ziyang Xing for their valuable comments and great input to this work.
+Speical thanks to the following participants:
+
+    name: MingShuang Jin
+    org: Huawei Technologies
+    email: jinmingshuang@huawei.com
+
+    name: Chunchi Liu
+    org: Huawei Technologies
+    email: liuchunchi@huawei.com
+
+    name: Aihua Guo
+    org: Futurewei Technologies
+    email: aihuaguo.ietf@gmail.com
+
+    name: Zhidong Yin
+    org: Huawei
+    email: yinzhidong@huawei.com
+
+    name: Guoxiang Liu
+    org: Huawei
+    email: liuguoxiang@huawei.com
+
+    name: Kaichun Wu
+    org: Huawei
+    email: wukaichun@huawei.com
 
 --- back
 
