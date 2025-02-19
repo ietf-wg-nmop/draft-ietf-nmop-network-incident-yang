@@ -1198,9 +1198,11 @@ also analysed.
 
 # Changes between Revisions
 
-   v03 - v04
+   v02 - v03
 
-   * Cross-checking terminology across NMOP drafts.
+   * Cross-checking terminology across NMOP drafts based on Adrian's comments.
+
+   * Align with the Terminology draft based on Thomas's comments.
 
    * Clarify the relation between the Network Incident, and Customer Incident.
 
@@ -1208,11 +1210,7 @@ also analysed.
 
    * Clarify the relation between fault, problem, incident, service.
 
-   v02 - v03
-
-   * Cross checking the terminologies based on Adrian's comments.
-
-   * Align with the Terminology draft based on Thomas's comments.
+   * Other Editorial changes.
 
    v01 - v02
 
