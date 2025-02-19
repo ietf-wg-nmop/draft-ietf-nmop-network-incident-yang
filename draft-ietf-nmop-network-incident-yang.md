@@ -1198,20 +1198,30 @@ also analysed.
 
 # Changes between Revisions
 
+   v03 - v04
+
+   * Cross-checking terminology across NMOP drafts.
+
+   * Clarify the relation between the Network Incident, and Customer Incident.
+
+   * Add service impact analysis term and its definition.
+
+   * Clarify the relation between fault, problem, incident, service.
+
    v02 - v03
 
-   * Cross checking the terminologies based on Adrian's comments
+   * Cross checking the terminologies based on Adrian's comments.
 
    * Align with the Terminology draft based on Thomas's comments.
 
    v01 - v02
 
-   * Clarify the relation between fault, incident and problem
+   * Clarify the relation between fault, incident and problem.
 
-   * Clarify the relation between fault management and incident management
+   * Clarify the relation between fault management and incident management.
 
    * Add clarification text to make draft focus on network level incident management,
-     not be tied with OSS or under the control of OSS
+     not be tied with OSS or under the control of OSS.
 
    * Other Editorial changes.
 
