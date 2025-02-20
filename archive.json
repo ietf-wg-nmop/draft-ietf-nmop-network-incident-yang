@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-18T00:36:21.676615+00:00",
+  "timestamp": "2025-02-20T00:37:05.317702+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
   "labels": [
     {
@@ -382,15 +382,15 @@
       "id": "I_kwDOL4Sz0s6ncoW5",
       "title": "The need to clarify the interaction between the Network Incident, and Customer Incident",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/issues/24",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "billwuqin",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "https://mailarchive.ietf.org/arch/msg/nmop/cVhXJkO7yagUwJ_av2ILz1ZeKqc/",
       "createdAt": "2025-01-24T12:13:36Z",
-      "updatedAt": "2025-01-24T14:15:56Z",
-      "closedAt": null,
+      "updatedAt": "2025-02-19T12:52:52Z",
+      "closedAt": "2025-02-19T12:52:52Z",
       "comments": [
         {
           "author": "billwuqin",
@@ -405,6 +405,13 @@
           "body": "See #26 ",
           "createdAt": "2025-01-24T14:15:55Z",
           "updatedAt": "2025-01-24T14:15:55Z"
+        },
+        {
+          "author": "billwuqin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Fix in https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/commit/72ff1f5e399ba93445a31281688a535fd2ff117c",
+          "createdAt": "2025-02-19T12:52:46Z",
+          "updatedAt": "2025-02-19T12:52:46Z"
         }
       ]
     },
@@ -413,15 +420,15 @@
       "id": "I_kwDOL4Sz0s6ncoqB",
       "title": "Make relationship between problem and incident correct",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/issues/25",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "billwuqin",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "https://mailarchive.ietf.org/arch/msg/nmop/sJb7oHrBIZgx9KhrMT8wGV5u0vQ/",
       "createdAt": "2025-01-24T12:14:18Z",
-      "updatedAt": "2025-01-24T14:15:40Z",
-      "closedAt": null,
+      "updatedAt": "2025-02-19T08:07:56Z",
+      "closedAt": "2025-02-19T08:07:56Z",
       "comments": [
         {
           "author": "billwuqin",
@@ -429,6 +436,13 @@
           "body": "See #26 ",
           "createdAt": "2025-01-24T14:15:39Z",
           "updatedAt": "2025-01-24T14:15:39Z"
+        },
+        {
+          "author": "billwuqin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Looks like incident definition has already clarified the relation between problem and incident, therefore I have proposed to remove such duplicated text and just reuse incident definition in the terminology draft.",
+          "createdAt": "2025-02-19T08:07:50Z",
+          "updatedAt": "2025-02-19T08:07:50Z"
         }
       ]
     }
@@ -813,24 +827,26 @@
       "id": "PR_kwDOL4Sz0s6I53Mx",
       "title": "clarify the relationship between the problem and network incident",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/pull/26",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "billwuqin",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2025-01-24T14:07:28Z",
-      "updatedAt": "2025-01-24T14:15:01Z",
+      "updatedAt": "2025-02-19T07:02:53Z",
       "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
       "baseRefName": "main",
       "baseRefOid": "cc7cee919c301e10d9941f0a017c88523c8f2b7d",
       "headRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
       "headRefName": "billwuqin-patch-3",
       "headRefOid": "4816da6f5942c8b1e0135c4ae56864805dd676dc",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-02-19T07:02:53Z",
+      "mergedAt": "2025-02-19T07:02:52Z",
+      "mergedBy": "billwuqin",
+      "mergeCommit": {
+        "oid": "6854d38f27dc7ad6f5592602e7d6ab7d32b0f303"
+      },
       "comments": [],
       "reviews": []
     }
