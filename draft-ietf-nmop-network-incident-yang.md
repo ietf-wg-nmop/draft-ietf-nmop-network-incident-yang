@@ -249,9 +249,16 @@ Incident handler:
 : An entity which can receive network incident notification, store and query the information of
   network incidents for data analysis. It has no control on incident server.
 
-Root cause: A factor is considered the root cause of a problem if removing it prevents the problem from recurring.
-Conversely, a causal factor is a contributing action that affects an incident/event's outcome but is not the
-root cause.
+Root cause:
+:  A factor is considered the root cause of a problem if removing it fully resolves
+   an ongoing incident -- specifically regarding network or service impairments
+   and their related consequential symptoms -- and prevents the problem from recurring.
+   Conversely, a causal factor is a contributing action that influences the outcome
+   of an incident or event but is not the root cause.
+
+  ### Root Cause
+
+      A factor is considered the root cause of a problem if removing it fully resolves an ongoing incidentand prevents the problem from recurring. Conversely, a causal factor is a contributing action that influences the outcome of an incident or event but is not the root cause.
 
 # Sample Use Cases
 
