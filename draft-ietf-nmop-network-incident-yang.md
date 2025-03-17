@@ -99,6 +99,15 @@ informative:
    target: https://www.w3.org/TR/2021/REC-trace-context-1-20211123/
    date: 2021
 
+  ITU-T-G-7710:
+    title: ITU-T G.7710/Y.1701 - Common equipment management function requirements
+    target: https://www.itu.int/rec/T-REC-G.7710
+    date: 2020
+
+  ITU-T-X-733:
+    title: ITU-T X.733 - Information technology - Open Systems Interconnection - Systems Management - Alarm reporting function
+    target: https://www.itu.int/rec/T-REC-X.733/fr
+    date: 1999
 
 --- abstract
 
@@ -255,12 +264,12 @@ Root cause:
    an ongoing incident -- specifically regarding network or service impairments
    and their related consequential failures and symptoms -- and prevents the problem
    from recurring. Causality is defined as the implementation of an inductive process
-   at the network or processing element level {{ITU-T-G.7710}} and as a doubt removal
-   process at the Incident management system level {{ITU-T X.733}}. The inductive
+   at the network or processing element level {{ITU-T-G-7710}} and as a doubt removal
+   process at the Incident management system level {{ITU-T-X-733}}. The inductive
    process is based on the distinction made between _primary failures_ (i.e., a failure
    that directly indicates the fault location and initiate a repair action, such as
    a broken cable or a misconnection) and _secondary failures_ (i.e., a consequential
-   failure, such as an upper level service that has gone down) {{ITU-T-G.7710}}.
+   failure, such as an upper level service that has gone down) {{ITU-T-G-7710}}.
 
    Conversely, a causal factor is a contributing action that influences the outcome
    of an incident or event but is not the root cause.
