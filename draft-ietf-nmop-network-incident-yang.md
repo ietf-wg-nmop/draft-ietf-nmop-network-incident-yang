@@ -99,6 +99,7 @@ informative:
    target: https://www.w3.org/TR/2021/REC-trace-context-1-20211123/
    date: 2021
 
+
 --- abstract
 
 A network incident refers to an unexpected interruption of a network
@@ -252,13 +253,17 @@ Incident handler:
 Root cause:
 :  A factor is considered the root cause of a problem if removing it fully resolves
    an ongoing incident -- specifically regarding network or service impairments
-   and their related consequential symptoms -- and prevents the problem from recurring.
+   and their related consequential failures and symptoms -- and prevents the problem
+   from recurring. Causality is defined as the implementation of an inductive process
+   at the network/processing element level {{ITU-T-G.7710}} and as a doubt removal
+   process at the Incident management system level {{ITU-T X.733}}. The inductive
+   process is based on the distinction made between _primary failures_ (i.e. a failure
+   that directly indicates the fault location and initiate a repair action, e.g.
+   a broken cable or a misconnection) and _secondary failures_ (i.e. a consequential
+   failure, e.g. an upper level service that is gone down) {{ITU-T-G.7710}}.
    Conversely, a causal factor is a contributing action that influences the outcome
    of an incident or event but is not the root cause.
 
-  ### Root Cause
-
-      A factor is considered the root cause of a problem if removing it fully resolves an ongoing incidentand prevents the problem from recurring. Conversely, a causal factor is a contributing action that influences the outcome of an incident or event but is not the root cause.
 
 # Sample Use Cases
 
