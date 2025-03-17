@@ -255,14 +255,26 @@ Root cause:
    an ongoing incident -- specifically regarding network or service impairments
    and their related consequential failures and symptoms -- and prevents the problem
    from recurring. Causality is defined as the implementation of an inductive process
-   at the network/processing element level {{ITU-T-G.7710}} and as a doubt removal
+   at the network or processing element level {{ITU-T-G.7710}} and as a doubt removal
    process at the Incident management system level {{ITU-T X.733}}. The inductive
-   process is based on the distinction made between _primary failures_ (i.e. a failure
-   that directly indicates the fault location and initiate a repair action, e.g.
-   a broken cable or a misconnection) and _secondary failures_ (i.e. a consequential
-   failure, e.g. an upper level service that is gone down) {{ITU-T-G.7710}}.
+   process is based on the distinction made between _primary failures_ (i.e., a failure
+   that directly indicates the fault location and initiate a repair action, such as
+   a broken cable or a misconnection) and _secondary failures_ (i.e., a consequential
+   failure, such as an upper level service that has gone down) {{ITU-T-G.7710}}.
+
    Conversely, a causal factor is a contributing action that influences the outcome
    of an incident or event but is not the root cause.
+
+   If further details about the root cause are required (e.g., incident diagnosis
+   based on similar posterior cases, large-scale correction of the network design
+   using a failure and defect mode analysis), root cause data can be further refined using
+   additional qualifier, such as _Proven cause_ (i.e. one that has been established
+   through tangible evidence and objective data) and _Assumed cause_ (i.e. hypothesis
+   or theory regarding the origin of the malfunction, based on observations, past experiences,
+   or general knowledge, but which has not yet been conclusively proven) to provide
+   a confidence level. Additionally, categories such as _Exogenous cause_, _Human cause_,
+   _Random cause_, and _External systemic cause_ can be used for guidance on the
+   attribution of the incident.
 
 
 # Sample Use Cases
