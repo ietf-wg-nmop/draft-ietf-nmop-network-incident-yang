@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-16T00:41:58.649119+00:00",
+  "timestamp": "2025-03-18T00:38:38.056734+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
   "labels": [
     {
@@ -847,6 +847,32 @@
       "mergeCommit": {
         "oid": "6854d38f27dc7ad6f5592602e7d6ab7d32b0f303"
       },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 27,
+      "id": "PR_kwDOL4Sz0s6O9CVV",
+      "title": "Boundaries to the 'Root cause' definition.",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/pull/27",
+      "state": "OPEN",
+      "author": "GenEars",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Based on the [IETF 122 Session 1](https://datatracker.ietf.org/meeting/122/materials/agenda-122-nmop-06) discussions, I provide additional details to the \"root cause\" definition to help common sens understanding, and provide bounds for root cause analysis and network design quality improvement using confidence and attribution categories.\r\n\r\nI also propose to use the \"algorithmic techniques\" term instead of the specific \"machine learning\" term to open up impact/effect analysis implementation to any AI technique.",
+      "createdAt": "2025-03-17T15:58:19Z",
+      "updatedAt": "2025-03-17T15:58:19Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
+      "baseRefName": "main",
+      "baseRefOid": "9cb579730572069ce8438a8d93201b7acb69d65e",
+      "headRepository": "GenEars/draft-ietf-nmop-network-incident-yang",
+      "headRefName": "lta-2025-03-17",
+      "headRefOid": "6d2b08775fde720f569dbff77a757c4746d35115",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
       "comments": [],
       "reviews": []
     }
