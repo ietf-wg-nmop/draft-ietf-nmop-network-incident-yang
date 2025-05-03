@@ -1119,7 +1119,7 @@ Speical thanks to the following participants:
 
 --- back
 
-# Appendix Examples
+# Examples
 
 A.1 Network Incident management with specific network topology and the network service
 
@@ -1191,7 +1191,15 @@ also analysed.
   ]
 }
 ~~~~
+A.2  Correlation with trouble tickets
+The objective of the incident management is to identify probable causes and reduce duplicated ticket amounts.
+In order to manage the correlation between network incidents and trouble tickets in the YANG data
+mode, three rpcs to manage the network incidents and "ietf-incident" notification to support report on network incident
+state changescan defined in "ietf-incident" module be further extended to include "ticket-no" attribute so that such
+correlation can be used by "incident handler" in the upper layer OSS system for further fault demarcation, i.e., Identify
+whether the fault is on the user side or on the network side.
 
+A.3  Intent based Networking with incident diagnosis task list
 # Changes between Revisions
 
    v02 - v03
