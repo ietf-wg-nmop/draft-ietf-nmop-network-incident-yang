@@ -1295,10 +1295,13 @@ network service health and probable cause analysis.<a href="#section-abstract-2"
             <p id="section-toc.1-1.13.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-examples" class="internal xref">Examples</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.14">
-            <p id="section-toc.1-1.14.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-contributors" class="internal xref">Contributors</a></p>
+            <p id="section-toc.1-1.14.1"><a href="#appendix-B" class="auto internal xref">Appendix B</a>.  <a href="#name-changes-between-revisions" class="internal xref">Changes between Revisions</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15">
-            <p id="section-toc.1-1.15.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+            <p id="section-toc.1-1.15.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-contributors" class="internal xref">Contributors</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.16">
+            <p id="section-toc.1-1.16.1"><a href="#appendix-D" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -3457,8 +3460,9 @@ email: wukaichun@huawei.com
 <p id="appendix-A-1">A.1 Network Incident management with specific network topology and the network service<a href="#appendix-A-1" class="pilcrow">¶</a></p>
 <p id="appendix-A-2">In this example, we show an incident that an incident that are associated with the node
 ‘D1’, the network topology ‘L2-Topo’ and the domain ‘FAN’. The probable cause is
-also analysed.
-~~~~
+also analysed.<a href="#appendix-A-2" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="appendix-A-3">
+<pre>
 {
   "incident-no": 56433218,
   "incident-id": "line fault",
@@ -3522,209 +3526,276 @@ also analysed.
     }
   ]
 }
-~~~~
-A.2  Correlation with trouble tickets
-The objective of the incident management is to identify probable causes and reduce duplicated ticket amounts.
-In order to manage the correlation between network incidents and trouble tickets in the YANG data
-mode, three rpcs to manage the network incidents and "ietf-incident" notification to support report on network incident
-state changescan defined in "ietf-incident" module be further extended to include "ticket-no" attribute so that such
-correlation can be used by "incident handler" in the upper layer OSS system for further fault demarcation, i.e., Identify
-whether the fault is on the user side or on the network side.<a href="#appendix-A-2" class="pilcrow">¶</a></p>
-<p id="appendix-A-3">A.3  Intent based Networking with incident diagnosis task list
-# Changes between Revisions<a href="#appendix-A-3" class="pilcrow">¶</a></p>
-<p id="appendix-A-4">v02 - v03<a href="#appendix-A-4" class="pilcrow">¶</a></p>
+</pre><a href="#appendix-A-3" class="pilcrow">¶</a>
+</div>
+<p id="appendix-A-4">A.2  Correlation with trouble tickets
+The objective of the incident management is to identify probable causes and reduce
+duplicated ticket amounts.
+In order to manage the correlation between network incidents and trouble tickets in
+the YANG data model, three rpcs to manage the network incidents and one notification
+to report on network incident state changescan defined in "ietf-incident" module can
+be further extended to include "ticket-no" attribute so that such correlation can be
+used by the incident handler in the upper layer OSS system for further fault
+demarcation, i.e., Identify whether the fault is on the user side or on the network
+side.<a href="#appendix-A-4" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="appendix-A-5">
+<pre>
+rpcs:
+ +---x incident-acknowledge
+ | +---w input
+ | +---w incident-no* incident-ref
+ | +---w ticket-no? string
+ +---x incident-diagnose
+ | +---w input
+ | | +---w incident-no* incident-ref
+ | | +---w ticket-no? string
+ | +--ro output
+ | +--ro task-id? string
+ +---x incident-resolve
+ +---w input
+ +---w incident-no* incident-ref
+ +---w ticket-no? string
+
+ notifications:
+ +---n incident-notification
+ +--ro incident-no? incident-ref
+ +--ro ticket-no? string
+ +--…
+ ~~~~
+
+A.3  Intent based Networking with incident diagnosis task list
+In this document, incident-diagnosis RPC defined in in "ietf-incident"
+module can be used to identify probable causes; and an incident update
+notification can be triggered to report the diagnosis status if successful.
+To support intent based networking and provide more detailed network
+dignosis information, the "incident-diagnosis" RPC can be further
+extended to support "diagnosis-id" attribute.  "ietf-incident" module can
+be further extended to include "incident-diagnosis-task" list with the following
+diagnosis information:
+• The current status (e.g., created, diagnosing, diagnosed, finished) of each
+  diagnosis task
+• Task start time, end time, diagnosis result (succeeded, failed), failure
+  description, etc.
+• root causes, root events, repair recommendations, etc.
+
+</pre><a href="#appendix-A-5" class="pilcrow">¶</a>
+</div>
+<p id="appendix-A-6">+--ro incident-diagnosis-tasks
+ +--ro incident-diagnosis-task* [task-id]
+ +--ro task-id? String
++--ro incident-no* incident-ref
++--ro ticket-no? string
+ +--ro start-time? yang:date-and-time
+ +--ro end-time? yang:date-and-time
+ +--ro task-state? enumeration
+ +--ro diagnosis-result? enumeration
+ +--ro diagnosis-result-description? String
++--ro root-causes
+…
++--ro root-events
+…
++-- ro repair-advices
+~~~~<a href="#appendix-A-6" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="changes-between-revisions">
+<section id="appendix-B">
+      <h2 id="name-changes-between-revisions">
+<a href="#appendix-B" class="section-number selfRef">Appendix B. </a><a href="#name-changes-between-revisions" class="section-name selfRef">Changes between Revisions</a>
+      </h2>
+<p id="appendix-B-1">v02 - v03<a href="#appendix-B-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A-5.1">
-          <p id="appendix-A-5.1.1">Cross-checking terminology across NMOP drafts based on Adrian's comments.<a href="#appendix-A-5.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B-2.1">
+          <p id="appendix-B-2.1.1">Cross-checking terminology across NMOP drafts based on Adrian's comments.<a href="#appendix-B-2.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-5.2">
-          <p id="appendix-A-5.2.1">Align with the Terminology draft based on Thomas's comments.<a href="#appendix-A-5.2.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-2.2">
+          <p id="appendix-B-2.2.1">Align with the Terminology draft based on Thomas's comments.<a href="#appendix-B-2.2.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-5.3">
-          <p id="appendix-A-5.3.1">Clarify the relation between the Network Incident, and Customer Incident.<a href="#appendix-A-5.3.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-2.3">
+          <p id="appendix-B-2.3.1">Clarify the relation between the Network Incident, and Customer Incident.<a href="#appendix-B-2.3.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-5.4">
-          <p id="appendix-A-5.4.1">Add service impact analysis term and its definition.<a href="#appendix-A-5.4.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-2.4">
+          <p id="appendix-B-2.4.1">Add service impact analysis term and its definition.<a href="#appendix-B-2.4.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-5.5">
-          <p id="appendix-A-5.5.1">Clarify the relation between fault, problem, incident, service.<a href="#appendix-A-5.5.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-2.5">
+          <p id="appendix-B-2.5.1">Clarify the relation between fault, problem, incident, service.<a href="#appendix-B-2.5.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-5.6">
-          <p id="appendix-A-5.6.1">Other Editorial changes.<a href="#appendix-A-5.6.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-2.6">
+          <p id="appendix-B-2.6.1">Other Editorial changes.<a href="#appendix-B-2.6.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="appendix-A-6">v01 - v02<a href="#appendix-A-6" class="pilcrow">¶</a></p>
+<p id="appendix-B-3">v01 - v02<a href="#appendix-B-3" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A-7.1">
-          <p id="appendix-A-7.1.1">Clarify the relation between fault, incident and problem.<a href="#appendix-A-7.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B-4.1">
+          <p id="appendix-B-4.1.1">Clarify the relation between fault, incident and problem.<a href="#appendix-B-4.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-7.2">
-          <p id="appendix-A-7.2.1">Clarify the relation between fault management and incident management.<a href="#appendix-A-7.2.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-4.2">
+          <p id="appendix-B-4.2.1">Clarify the relation between fault management and incident management.<a href="#appendix-B-4.2.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-7.3">
-          <p id="appendix-A-7.3.1">Add clarification text to make draft focus on network level incident management,
-not be tied with OSS or under the control of OSS.<a href="#appendix-A-7.3.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-4.3">
+          <p id="appendix-B-4.3.1">Add clarification text to make draft focus on network level incident management,
+not be tied with OSS or under the control of OSS.<a href="#appendix-B-4.3.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-7.4">
-          <p id="appendix-A-7.4.1">Other Editorial changes.<a href="#appendix-A-7.4.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-4.4">
+          <p id="appendix-B-4.4.1">Other Editorial changes.<a href="#appendix-B-4.4.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="appendix-A-8">v00 - v01<a href="#appendix-A-8" class="pilcrow">¶</a></p>
+<p id="appendix-B-5">v00 - v01<a href="#appendix-B-5" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A-9.1">
-          <p id="appendix-A-9.1.1">Clarify the relationship between incident-no and incident-id.<a href="#appendix-A-9.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B-6.1">
+          <p id="appendix-B-6.1.1">Clarify the relationship between incident-no and incident-id.<a href="#appendix-B-6.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-9.2">
-          <p id="appendix-A-9.2.1">Fix Tree Diagram to align with YANG module code change.<a href="#appendix-A-9.2.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-6.2">
+          <p id="appendix-B-6.2.1">Fix Tree Diagram to align with YANG module code change.<a href="#appendix-B-6.2.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-9.3">
-          <p id="appendix-A-9.3.1">Add json example in the appendix.<a href="#appendix-A-9.3.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-6.3">
+          <p id="appendix-B-6.3.1">Add json example in the appendix.<a href="#appendix-B-6.3.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-9.4">
-          <p id="appendix-A-9.4.1">Add failure handling process for rpc error.<a href="#appendix-A-9.4.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-6.4">
+          <p id="appendix-B-6.4.1">Add failure handling process for rpc error.<a href="#appendix-B-6.4.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-9.5">
-          <p id="appendix-A-9.5.1">Clarify the relationship between events and cause.<a href="#appendix-A-9.5.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-6.5">
+          <p id="appendix-B-6.5.1">Clarify the relationship between events and cause.<a href="#appendix-B-6.5.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-9.6">
-          <p id="appendix-A-9.6.1">Clarify synchronous nature of these RPCs.<a href="#appendix-A-9.6.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-6.6">
+          <p id="appendix-B-6.6.1">Clarify synchronous nature of these RPCs.<a href="#appendix-B-6.6.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-9.7">
-          <p id="appendix-A-9.7.1">Clarify the relationship between inter-layer and inter-domain.<a href="#appendix-A-9.7.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-6.7">
+          <p id="appendix-B-6.7.1">Clarify the relationship between inter-layer and inter-domain.<a href="#appendix-B-6.7.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-9.8">
-          <p id="appendix-A-9.8.1">Refer to terminology draft for terminology alignment.<a href="#appendix-A-9.8.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-6.8">
+          <p id="appendix-B-6.8.1">Refer to terminology draft for terminology alignment.<a href="#appendix-B-6.8.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-9.9">
-          <p id="appendix-A-9.9.1">Fix pyang compilation issue and yang lint issue.<a href="#appendix-A-9.9.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-6.9">
+          <p id="appendix-B-6.9.1">Fix pyang compilation issue and yang lint issue.<a href="#appendix-B-6.9.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-9.10">
-          <p id="appendix-A-9.10.1">Fix Broken ref by using node-ref defined in RFC8345.<a href="#appendix-A-9.10.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-6.10">
+          <p id="appendix-B-6.10.1">Fix Broken ref by using node-ref defined in RFC8345.<a href="#appendix-B-6.10.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-9.11">
-          <p id="appendix-A-9.11.1">Update YANG data model based on issues raised in issue tracker of the github.<a href="#appendix-A-9.11.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-6.11">
+          <p id="appendix-B-6.11.1">Update YANG data model based on issues raised in issue tracker of the github.<a href="#appendix-B-6.11.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-9.12">
-          <p id="appendix-A-9.12.1">Shorten the list of authors to 5 based on chairs' comment and move additional authors
-to top 3 contributors.<a href="#appendix-A-9.12.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-6.12">
+          <p id="appendix-B-6.12.1">Shorten the list of authors to 5 based on chairs' comment and move additional authors
+to top 3 contributors.<a href="#appendix-B-6.12.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-9.13">
-          <p id="appendix-A-9.13.1">Merge ietf-incident-type.yang into ietf-incident.yang<a href="#appendix-A-9.13.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-6.13">
+          <p id="appendix-B-6.13.1">Merge ietf-incident-type.yang into ietf-incident.yang<a href="#appendix-B-6.13.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-9.14">
-          <p id="appendix-A-9.14.1">Fix enumeration on leaf type<a href="#appendix-A-9.14.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-6.14">
+          <p id="appendix-B-6.14.1">Fix enumeration on leaf type<a href="#appendix-B-6.14.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-9.15">
-          <p id="appendix-A-9.15.1">Clarify the scope in the abstract and introduction and make
-the scope focus on YANG data model<a href="#appendix-A-9.15.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-6.15">
+          <p id="appendix-B-6.15.1">Clarify the scope in the abstract and introduction and make
+the scope focus on YANG data model<a href="#appendix-B-6.15.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-9.16">
-          <p id="appendix-A-9.16.1">Provide text around figure 5 to clarify how the incident
-server know the real effect on the relevant services.<a href="#appendix-A-9.16.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-6.16">
+          <p id="appendix-B-6.16.1">Provide text around figure 5 to clarify how the incident
+server know the real effect on the relevant services.<a href="#appendix-B-6.16.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-9.17">
-          <p id="appendix-A-9.17.1">Other editorial changes.<a href="#appendix-A-9.17.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-6.17">
+          <p id="appendix-B-6.17.1">Other editorial changes.<a href="#appendix-B-6.17.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="appendix-A-10">v00 (draft-ietf-nmop-network-incident-yang)<a href="#appendix-A-10" class="pilcrow">¶</a></p>
+<p id="appendix-B-7">v00 (draft-ietf-nmop-network-incident-yang)<a href="#appendix-B-7" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A-11.1">
-          <p id="appendix-A-11.1.1">Change draft name from draft-feng-opsawg-incident-management
-into draft-feng-nmop-netwrok-incident-yang<a href="#appendix-A-11.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B-8.1">
+          <p id="appendix-B-8.1.1">Change draft name from draft-feng-opsawg-incident-management
+into draft-feng-nmop-netwrok-incident-yang<a href="#appendix-B-8.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-11.2">
-          <p id="appendix-A-11.2.1">Change title into A YANG Data Model for Network Incident Management<a href="#appendix-A-11.2.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-8.2">
+          <p id="appendix-B-8.2.1">Change title into A YANG Data Model for Network Incident Management<a href="#appendix-B-8.2.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-11.3">
-          <p id="appendix-A-11.3.1">open issues is tracked in https://github.com/billwuqin/network-incident/issues<a href="#appendix-A-11.3.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-8.3">
+          <p id="appendix-B-8.3.1">open issues is tracked in https://github.com/billwuqin/network-incident/issues<a href="#appendix-B-8.3.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="appendix-A-12">v03 - v04 (draft-feng-opsawg-incident-management)<a href="#appendix-A-12" class="pilcrow">¶</a></p>
+<p id="appendix-B-9">v03 - v04 (draft-feng-opsawg-incident-management)<a href="#appendix-B-9" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A-13.1">
-          <p id="appendix-A-13.1.1">Update incident defintion based on TMF incident API profile
-specification.<a href="#appendix-A-13.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B-10.1">
+          <p id="appendix-B-10.1.1">Update incident defintion based on TMF incident API profile
+specification.<a href="#appendix-B-10.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-13.2">
-          <p id="appendix-A-13.2.1">Update use case on Multi-layer Fault Demarcation based on side
-meeting discussion and IETF 119 session discussion.<a href="#appendix-A-13.2.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-10.2">
+          <p id="appendix-B-10.2.1">Update use case on Multi-layer Fault Demarcation based on side
+meeting discussion and IETF 119 session discussion.<a href="#appendix-B-10.2.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-13.3">
-          <p id="appendix-A-13.3.1">Update section 5.1 to explain how network incident is generated
-based on other factors.<a href="#appendix-A-13.3.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-10.3">
+          <p id="appendix-B-10.3.1">Update section 5.1 to explain how network incident is generated
+based on other factors.<a href="#appendix-B-10.3.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-13.4">
-          <p id="appendix-A-13.4.1">Add one new use cases on Security Events noise reduction based on
-Situation Awareness.<a href="#appendix-A-13.4.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-10.4">
+          <p id="appendix-B-10.4.1">Add one new use cases on Security Events noise reduction based on
+Situation Awareness.<a href="#appendix-B-10.4.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-13.5">
-          <p id="appendix-A-13.5.1">Other Editorial changes.<a href="#appendix-A-13.5.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-10.5">
+          <p id="appendix-B-10.5.1">Other Editorial changes.<a href="#appendix-B-10.5.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="appendix-A-14">v02 - v03  (draft-feng-opsawg-incident-management)<a href="#appendix-A-14" class="pilcrow">¶</a></p>
+<p id="appendix-B-11">v02 - v03  (draft-feng-opsawg-incident-management)<a href="#appendix-B-11" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A-15.1">
-          <p id="appendix-A-15.1.1">Add one new use cases on Incident Generation.<a href="#appendix-A-15.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B-12.1">
+          <p id="appendix-B-12.1.1">Add one new use cases on Incident Generation.<a href="#appendix-B-12.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-15.2">
-          <p id="appendix-A-15.2.1">Add reference to Precision Availability Metric defined in IPPM PAM
-WG document.<a href="#appendix-A-15.2.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-12.2">
+          <p id="appendix-B-12.2.1">Add reference to Precision Availability Metric defined in IPPM PAM
+WG document.<a href="#appendix-B-12.2.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="appendix-A-16">v01 - v02<a href="#appendix-A-16" class="pilcrow">¶</a></p>
+<p id="appendix-B-13">v01 - v02<a href="#appendix-B-13" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A-17.1">
-          <p id="appendix-A-17.1.1">A few Editorial change to YANG data models in section 8.<a href="#appendix-A-17.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B-14.1">
+          <p id="appendix-B-14.1.1">A few Editorial change to YANG data models in section 8.<a href="#appendix-B-14.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-17.2">
-          <p id="appendix-A-17.2.1">Add some text to the model design overview.<a href="#appendix-A-17.2.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-14.2">
+          <p id="appendix-B-14.2.1">Add some text to the model design overview.<a href="#appendix-B-14.2.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-17.3">
-          <p id="appendix-A-17.3.1">Revise sample use cases section to focus on two key use cases.<a href="#appendix-A-17.3.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-14.3">
+          <p id="appendix-B-14.3.1">Revise sample use cases section to focus on two key use cases.<a href="#appendix-B-14.3.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-17.4">
-          <p id="appendix-A-17.4.1">Motivation and goal clarification in the introduction section.<a href="#appendix-A-17.4.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-14.4">
+          <p id="appendix-B-14.4.1">Motivation and goal clarification in the introduction section.<a href="#appendix-B-14.4.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="appendix-A-18">v00 - v01  (draft-feng-opsawg-incident-management)<a href="#appendix-A-18" class="pilcrow">¶</a></p>
+<p id="appendix-B-15">v00 - v01  (draft-feng-opsawg-incident-management)<a href="#appendix-B-15" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A-19.1">
-          <p id="appendix-A-19.1.1">Modify the introduction.<a href="#appendix-A-19.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B-16.1">
+          <p id="appendix-B-16.1.1">Modify the introduction.<a href="#appendix-B-16.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-19.2">
-          <p id="appendix-A-19.2.1">Rename incident agent to incident server.<a href="#appendix-A-19.2.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-16.2">
+          <p id="appendix-B-16.2.1">Rename incident agent to incident server.<a href="#appendix-B-16.2.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-19.3">
-          <p id="appendix-A-19.3.1">Add the interworking with alarm management.<a href="#appendix-A-19.3.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-16.3">
+          <p id="appendix-B-16.3.1">Add the interworking with alarm management.<a href="#appendix-B-16.3.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-19.4">
-          <p id="appendix-A-19.4.1">Add the interworking with SAIN.<a href="#appendix-A-19.4.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-16.4">
+          <p id="appendix-B-16.4.1">Add the interworking with SAIN.<a href="#appendix-B-16.4.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-19.5">
-          <p id="appendix-A-19.5.1">Add the relationship with RFC8969.<a href="#appendix-A-19.5.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-16.5">
+          <p id="appendix-B-16.5.1">Add the relationship with RFC8969.<a href="#appendix-B-16.5.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-19.6">
-          <p id="appendix-A-19.6.1">Add the relationship with observation timestamp and trace context.<a href="#appendix-A-19.6.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-16.6">
+          <p id="appendix-B-16.6.1">Add the relationship with observation timestamp and trace context.<a href="#appendix-B-16.6.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-19.7">
-          <p id="appendix-A-19.7.1">Clarify the incident identification process.<a href="#appendix-A-19.7.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-16.7">
+          <p id="appendix-B-16.7.1">Clarify the incident identification process.<a href="#appendix-B-16.7.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-19.8">
-          <p id="appendix-A-19.8.1">Modify the work flow of incident diagnosis and resolution.<a href="#appendix-A-19.8.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-16.8">
+          <p id="appendix-B-16.8.1">Modify the work flow of incident diagnosis and resolution.<a href="#appendix-B-16.8.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-19.9">
-          <p id="appendix-A-19.9.1">Remove identities and typedefs from ietf-incident YANG module, and
-create a new YANG module called ietf-incident-types.<a href="#appendix-A-19.9.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-16.9">
+          <p id="appendix-B-16.9.1">Remove identities and typedefs from ietf-incident YANG module, and
+create a new YANG module called ietf-incident-types.<a href="#appendix-B-16.9.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-19.10">
-          <p id="appendix-A-19.10.1">Modify ietf-incident YANG module, for example, modify incident-
-diagnose rpc and incident-resolve rpc.<a href="#appendix-A-19.10.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-16.10">
+          <p id="appendix-B-16.10.1">Modify ietf-incident YANG module, for example, modify incident-
+diagnose rpc and incident-resolve rpc.<a href="#appendix-B-16.10.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 </section>
 </div>
 <div id="contributors">
-<section id="appendix-B">
+<section id="appendix-C">
       <h2 id="name-contributors">
 <a href="#name-contributors" class="section-name selfRef">Contributors</a>
       </h2>
@@ -3783,7 +3854,7 @@ diagnose rpc and incident-resolve rpc.<a href="#appendix-A-19.10.1" class="pilcr
 </section>
 </div>
 <div id="authors-addresses">
-<section id="appendix-C">
+<section id="appendix-D">
       <h2 id="name-authors-addresses">
 <a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
       </h2>
