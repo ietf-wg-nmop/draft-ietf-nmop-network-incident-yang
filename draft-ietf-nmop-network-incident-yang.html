@@ -1413,7 +1413,8 @@ and are not redefined here:<a href="#section-2-2" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-2-5">
         <dt id="section-2-5.1">Service impact analysis:</dt>
         <dd style="margin-left: 1.5em" id="section-2-5.2">
-          <p id="section-2-5.2.1">A process that uses Algorithmic techniques such as machine learning to evaluate
+          <p id="section-2-5.2.1">A process that uses algorithmic techniques (e.g., machine learning, automated
+reasoning, conformance checking, graph traversal, among others) to evaluate
 whether the network service has been impacted by the network incident and map
 network incident to one or a set of network service, which can reduce massive
 fault/alarms reporting, speed up troubleshooting, and assure network service
@@ -1464,10 +1465,30 @@ to diagnose, help resolve, etc.<a href="#section-2-5.10.1" class="pilcrow">¶</a
 network incidents for data analysis. It has no control on incident server.<a href="#section-2-5.12.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-5.13">Probable cause: A factor is considered the probable cause of a problem if removing it prevents the</dt>
+<dt id="section-2-5.13">Probable cause:</dt>
         <dd style="margin-left: 1.5em" id="section-2-5.14">
-          <p id="section-2-5.14.1">problem from recurring. Conversely, a causal factor is a contributing action that affects an
-incident/event's outcome but is not the probable cause.<a href="#section-2-5.14.1" class="pilcrow">¶</a></p>
+          <p id="section-2-5.14.1">A factor is considered the probable cause of a problem if removing it fully resolves
+an ongoing incident -- specifically regarding network or service impairments
+and their related consequential failures and symptoms -- and prevents the problem
+from recurring. Causality is defined as the implementation of an inductive process
+at the network or processing element level <span>[<a href="#ITU-T-G-7710" class="cite xref">ITU-T-G-7710</a>]</span> and as a doubt removal
+process at the Incident management system level <span>[<a href="#ITU-T-X-733" class="cite xref">ITU-T-X-733</a>]</span>. The inductive
+process is based on the distinction made between <em>primary failures</em> (i.e., a failure
+that directly indicates the fault location and initiate a repair action, such as
+a broken cable or a misconnection) and <em>secondary failures</em> (i.e., a consequential
+failure, such as an upper level service that has gone down) <span>[<a href="#ITU-T-G-7710" class="cite xref">ITU-T-G-7710</a>]</span>.<a href="#section-2-5.14.1" class="pilcrow">¶</a></p>
+<p id="section-2-5.14.2">Conversely, a causal factor is a contributing action that influences the outcome
+of an incident or event but is not the probably cause.<a href="#section-2-5.14.2" class="pilcrow">¶</a></p>
+<p id="section-2-5.14.3">If further details about the probable cause are required (e.g., incident diagnosis
+based on similar posterior cases, large-scale correction of the network design
+using a failure and defect mode analysis), probable cause data can be further refined using
+additional qualifier, such as <em>Proven cause</em> (i.e. one that has been established
+through tangible evidence and objective data) and <em>Assumed cause</em> (i.e. hypothesis
+or theory regarding the origin of the malfunction, based on observations, past experiences,
+or general knowledge, but which has not yet been conclusively proven) to provide
+a confidence level. Additionally, categories such as <em>Exogenous cause</em>, <em>Human cause</em>,
+<em>Random cause</em>, and <em>External systemic cause</em> can be used for guidance on the
+attribution of the incident.<a href="#section-2-5.14.3" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
@@ -3415,6 +3436,14 @@ email: wukaichun@huawei.com
         <dd>
 <span class="refAuthor">Gagliano, R.</span>, <span class="refAuthor">Larsson, K.</span>, and <span class="refAuthor">J. Lindblad</span>, <span class="refTitle">"NETCONF Extension to support Trace Context propagation"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-rogaglia-netconf-trace-ctx-extension-03</span>, <time datetime="2023-07-06" class="refDate">6 July 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-rogaglia-netconf-trace-ctx-extension-03">https://datatracker.ietf.org/doc/html/draft-rogaglia-netconf-trace-ctx-extension-03</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="ITU-T-G-7710">[ITU-T-G-7710]</dt>
+        <dd>
+<span class="refTitle">"ITU-T G.7710/Y.1701 - Common equipment management function requirements"</span>, <time datetime="2020" class="refDate">2020</time>, <span>&lt;<a href="https://www.itu.int/rec/T-REC-G.7710">https://www.itu.int/rec/T-REC-G.7710</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="ITU-T-X-733">[ITU-T-X-733]</dt>
+        <dd>
+<span class="refTitle">"ITU-T X.733 - Information technology - Open Systems Interconnection - Systems Management - Alarm reporting function"</span>, <time datetime="1999" class="refDate">1999</time>, <span>&lt;<a href="https://www.itu.int/rec/T-REC-X.733/fr">https://www.itu.int/rec/T-REC-X.733/fr</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC7950">[RFC7950]</dt>
         <dd>
 <span class="refAuthor">Bjorklund, M., Ed.</span>, <span class="refTitle">"The YANG 1.1 Data Modeling Language"</span>, <span class="seriesInfo">RFC 7950</span>, <span class="seriesInfo">DOI 10.17487/RFC7950</span>, <time datetime="2016-08" class="refDate">August 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7950">https://www.rfc-editor.org/rfc/rfc7950</a>&gt;</span>. </dd>
@@ -3849,6 +3878,14 @@ diagnose rpc and incident-resolve rpc.<a href="#appendix-B-16.10.1" class="pilcr
 <div class="email">
 <span>Email:</span>
 <a href="mailto:yuchaode@huawei.com" class="email">yuchaode@huawei.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Lionel Tailhardat</span></div>
+<div dir="auto" class="left"><span class="org">Orange</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:lionel.tailhardat@orange.com" class="email">lionel.tailhardat@orange.com</a>
 </div>
 </address>
 </section>
