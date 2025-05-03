@@ -2261,6 +2261,19 @@ diagnosis information:
 
 Appendix B.  Changes between Revisions
 
+   v03 - v04
+
+   *  Remove constraint of using machine learning for service impact
+      analysis and replace machine learning with algorithmic techniques.
+
+   *  Replace root cause with probable cause based on IETF 122 NMOP
+      Session Discussion.
+
+   *  Add two ITU-T reference for probable cause.
+
+   *  Add Lionel Tailhardat from Orange as new contributors based on his
+      input.
+
    v02 - v03
 
    *  Cross-checking terminology across NMOP drafts based on Adrian's
