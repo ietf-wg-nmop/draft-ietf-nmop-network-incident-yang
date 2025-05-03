@@ -76,9 +76,9 @@ contributor:
     organization: Huawei
     email: yuchaode@huawei.com
 -
-    fullname: Lionel Tailhardat
-    organization: Orange
-    email: lionel.tailhardat@orange.com
+   fullname: Lionel Tailhardat
+   organization: Orange
+   email: lionel.tailhardat@orange.com
 
 normative:
 
@@ -95,14 +95,14 @@ informative:
    title: W3C Recommendation on Trace Context
    target: https://www.w3.org/TR/2021/REC-trace-context-1-20211123/
    date: 2021
-  ITU-T-G-7710:
-    title: ITU-T G.7710/Y.1701 - Common equipment management function requirements
-    target: https://www.itu.int/rec/T-REC-G.7710
-    date: 2020
-  ITU-T-X-733:
-    title: ITU-T X.733 - Information technology - Open Systems Interconnection - Systems Management - Alarm reporting function
-    target: https://www.itu.int/rec/T-REC-X.733/fr
-    date: 1999
+ ITU-T-G-7710:
+   title: ITU-T G.7710/Y.1701 - Common equipment management function requirements
+   target: https://www.itu.int/rec/T-REC-G.7710
+   date: 2020
+ ITU-T-X-733:
+   title: ITU-T X.733 - Information technology - Open Systems Interconnection - Systems Management - Alarm reporting function
+   target: https://www.itu.int/rec/T-REC-X.733/fr
+   date: 1999
 
 --- abstract
 
