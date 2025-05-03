@@ -244,9 +244,9 @@ Incident handler:
 : An entity which can receive network incident notification, store and query the information of
   network incidents for data analysis. It has no control on incident server.
 
-probable cause: A factor is considered the probable cause of a problem if removing it prevents the problem from recurring.
-Conversely, a causal factor is a contributing action that affects an incident/event's outcome but is not the
-probable cause.
+Probable cause: A factor is considered the probable cause of a problem if removing it prevents the
+: problem from recurring. Conversely, a causal factor is a contributing action that affects an
+  incident/event's outcome but is not the probable cause.
 
 # Sample Use Cases
 
