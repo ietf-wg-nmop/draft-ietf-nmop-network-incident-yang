@@ -218,7 +218,6 @@ and are not redefined here:
 The following terms are defined in this document:
 
 Service impact analysis:
-
 :  A process that uses algorithmic techniques (e.g., machine learning, automated
    reasoning, conformance checking, graph traversal, among others) to evaluate
    whether the network service has been impacted by the network incident and map
