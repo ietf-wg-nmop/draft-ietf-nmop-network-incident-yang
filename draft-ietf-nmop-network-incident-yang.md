@@ -1126,6 +1126,7 @@ A.1 Network Incident management with specific network topology and the network s
 In this example, we show an incident that an incident that are associated with the node
 ‘D1’, the network topology ‘L2-Topo’ and the domain ‘FAN’. The probable cause is
 also analysed.
+
 ~~~~
 {
   "incident-no": 56433218,
@@ -1191,6 +1192,7 @@ also analysed.
   ]
 }
 ~~~~
+
 A.2  Correlation with trouble tickets
 The objective of the incident management is to identify probable causes and reduce
 duplicated ticket amounts.
@@ -1201,6 +1203,7 @@ be further extended to include "ticket-no" attribute so that such correlation ca
 used by the incident handler in the upper layer OSS system for further fault
 demarcation, i.e., Identify whether the fault is on the user side or on the network
 side.
+
 ~~~~
 rpcs:
  +---x incident-acknowledge
@@ -1222,8 +1225,9 @@ rpcs:
  +---n incident-notification
  +--ro incident-no? incident-ref
  +--ro ticket-no? string
- +--… 
+ +--…
  ~~~~
+
 A.3  Intent based Networking with incident diagnosis task list
 In this document, incident-diagnosis RPC defined in in "ietf-incident"
 module can be used to identify probable causes; and an incident update
@@ -1238,6 +1242,7 @@ diagnosis information:
 • Task start time, end time, diagnosis result (succeeded, failed), failure
   description, etc.
 • root causes, root events, repair recommendations, etc.
+
 ~~~~
 +--ro incident-diagnosis-tasks
  +--ro incident-diagnosis-task* [task-id]
