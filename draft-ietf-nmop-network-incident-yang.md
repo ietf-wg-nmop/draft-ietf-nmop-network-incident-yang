@@ -1297,7 +1297,7 @@ diagnosis information:
 # Changes between Revisions
 
    v03 - v04
-   
+
    * Remove constraint of using machine learning for service impact analysis
      and replace machine learning with algorithmic techniques.
 
