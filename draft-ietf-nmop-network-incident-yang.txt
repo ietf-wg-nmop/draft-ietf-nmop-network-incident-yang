@@ -101,8 +101,7 @@ Table of Contents
    References
      Normative References
      Informative References
-   Appendix A.  Appendix Examples
-   Appendix B.  Changes between Revisions
+   Appendix A.  Examples
    Contributors
    Authors' Addresses
 
@@ -2090,7 +2089,7 @@ Informative References
               <https://www.w3.org/TR/2021/REC-trace-context-
               1-20211123/>.
 
-Appendix A.  Appendix Examples
+Appendix A.  Examples
 
    A.1 Network Incident management with specific network topology and
    the network service
@@ -2115,9 +2114,20 @@ Appendix A.  Appendix Examples
    } } ], "root-event": [ { "event-id": "8921834", "type": "alarm" } ],
    "events": [ { "even-id": "8921832", "type": "alarm" }, { "even-id":
    "8921833", "type": "alarm" }, { "even-id": "8921834", "type": "alarm"
-   } ] } ~~~~
+   } ] } ~~~~ A.2 Correlation with trouble tickets The objective of the
+   incident management is to identify probable causes and reduce
+   duplicated ticket amounts.  In order to manage the correlation
+   between network incidents and trouble tickets in the YANG data mode,
+   three rpcs to manage the network incidents and "ietf-incident"
+   notification to support report on network incident state changescan
+   defined in "ietf-incident" module be further extended to include
+   "ticket-no" attribute so that such correlation can be used by
+   "incident handler" in the upper layer OSS system for further fault
+   demarcation, i.e., Identify whether the fault is on the user side or
+   on the network side.
 
-Appendix B.  Changes between Revisions
+   A.3 Intent based Networking with incident diagnosis task list #
+   Changes between Revisions
 
    v02 - v03
 
