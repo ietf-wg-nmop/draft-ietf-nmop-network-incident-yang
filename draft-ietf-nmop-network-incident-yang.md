@@ -204,9 +204,9 @@ and are not redefined here:
 The following terms are defined in this document:
 
 Service impact analysis:
-:  A process that uses Algorithmic techniques such as machine learning to evaluate 
-   whether the network service has been impacted by the network incident and map 
-   network incident to one or a set of network service, which can reduce massive 
+:  A process that uses Algorithmic techniques such as machine learning to evaluate
+   whether the network service has been impacted by the network incident and map
+   network incident to one or a set of network service, which can reduce massive
    fault/alarms reporting, speed up troubleshooting, and assure network service
    performance and availability.
 
