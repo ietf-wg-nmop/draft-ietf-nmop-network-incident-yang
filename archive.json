@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-01T00:45:15.854970+00:00",
+  "timestamp": "2025-05-04T00:46:29.838213+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
   "labels": [
     {
@@ -445,6 +445,22 @@
           "updatedAt": "2025-02-19T08:07:50Z"
         }
       ]
+    },
+    {
+      "number": 28,
+      "id": "I_kwDOL4Sz0s61Bzhq",
+      "title": "Root Cause vs Probable Cause",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/issues/28",
+      "state": "OPEN",
+      "author": "billwuqin",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Comment came from IETF 122 NMOP Session discussion.",
+      "createdAt": "2025-05-03T04:08:41Z",
+      "updatedAt": "2025-05-03T04:08:41Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -855,24 +871,69 @@
       "id": "PR_kwDOL4Sz0s6O9CVV",
       "title": "Boundaries to the 'Root cause' definition.",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/pull/27",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "GenEars",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Based on the [IETF 122 Session 1](https://datatracker.ietf.org/meeting/122/materials/agenda-122-nmop-06) discussions, I provide additional details to the \"root cause\" definition to help common sens understanding, and provide bounds for root cause analysis and network design quality improvement using confidence and attribution categories.\r\n\r\nI also propose to use the \"algorithmic techniques\" term instead of the specific \"machine learning\" term to open up impact/effect analysis implementation to any AI technique.",
       "createdAt": "2025-03-17T15:58:19Z",
-      "updatedAt": "2025-03-17T15:58:19Z",
+      "updatedAt": "2025-05-03T10:48:15Z",
       "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
       "baseRefName": "main",
-      "baseRefOid": "9cb579730572069ce8438a8d93201b7acb69d65e",
+      "baseRefOid": "5d909556a44780504696e0eaacc7613274a4843f",
       "headRepository": "GenEars/draft-ietf-nmop-network-incident-yang",
       "headRefName": "lta-2025-03-17",
-      "headRefOid": "6d2b08775fde720f569dbff77a757c4746d35115",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "5ac739f32067b3bd3de3845495409ccac04dc083",
+      "closedAt": "2025-05-03T10:48:15Z",
+      "mergedAt": "2025-05-03T10:48:15Z",
+      "mergedBy": "billwuqin",
+      "mergeCommit": {
+        "oid": "43a74119a9388f35cbfbc3aecc38b5655d4c72c9"
+      },
+      "comments": [
+        {
+          "author": "billwuqin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I agree to use algorithmic techniques instead of algorithmic solutions you proposed in the meeting, yes, I come up with exact the same term when I think it over and do some search.",
+          "createdAt": "2025-05-03T03:25:38Z",
+          "updatedAt": "2025-05-03T03:25:38Z"
+        },
+        {
+          "author": "billwuqin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "We see lots of debate on root cause definition, if you measure the sense of the room , people more favor using probable cause instead of root cause. Let me check your proposal first, sorry for late follow up.",
+          "createdAt": "2025-05-03T03:30:45Z",
+          "updatedAt": "2025-05-03T03:30:45Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 29,
+      "id": "PR_kwDOL4Sz0s6U0p79",
+      "title": "fix errors",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/pull/29",
+      "state": "MERGED",
+      "author": "QiufangMa",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-05-03T12:06:48Z",
+      "updatedAt": "2025-05-03T12:18:33Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
+      "baseRefName": "main",
+      "baseRefOid": "21ce8b2d2a51f4045d7c1f9910a2a82ea89f1988",
+      "headRepository": "QiufangMa/draft-ietf-nmop-network-incident-yang",
+      "headRefName": "main",
+      "headRefOid": "d2f70adb4e37e7d55025901331941f74927475f4",
+      "closedAt": "2025-05-03T12:18:33Z",
+      "mergedAt": "2025-05-03T12:18:33Z",
+      "mergedBy": "billwuqin",
+      "mergeCommit": {
+        "oid": "e92c2ba910d62a62b8c4edb7d6e21eccfc22c4b6"
+      },
       "comments": [],
       "reviews": []
     }
