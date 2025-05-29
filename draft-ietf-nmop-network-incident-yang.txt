@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 4 November 2025                                      Telefonica
+Expires: 30 November 2025                                     Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                              3 May 2025
+                                                             29 May 2025
 
 
            A YANG Data Model for Network Incident Management
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 November 2025.
+   This Internet-Draft will expire on 30 November 2025.
 
 Copyright Notice
 
@@ -2061,8 +2061,8 @@ Informative References
               Davis, N., Farrel, A., Graf, T., Wu, Q., and C. Yu, "Some
               Key Terms for Network Fault and Problem Management", Work
               in Progress, Internet-Draft, draft-ietf-nmop-terminology-
-              16, 15 April 2025, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-nmop-terminology-16>.
+              17, 18 May 2025, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-nmop-terminology-17>.
 
    [I-D.quilbeuf-opsawg-configuration-tracing]
               Quilbeuf, J., Claise, B., Graf, T., Lopez, D., and S.
@@ -2237,6 +2237,7 @@ rpcs:
  ~~~~
 
 A.3  Intent based Networking with incident diagnosis task list
+
 In this document, incident-diagnosis RPC defined in in "ietf-incident"
 module can be used to identify probable causes; and an incident update
 notification can be triggered to report the diagnosis status if successful.
@@ -2245,19 +2246,20 @@ dignosis information, the "incident-diagnosis" RPC can be further
 extended to support "diagnosis-id" attribute.  "ietf-incident" module can
 be further extended to include "incident-diagnosis-task" list with the following
 diagnosis information:
+
 • The current status (e.g., created, diagnosing, diagnosed, finished) of each
   diagnosis task
 • Task start time, end time, diagnosis result (succeeded, failed), failure
   description, etc.
 • root causes, root events, repair recommendations, etc.
 
-   +--ro incident-diagnosis-tasks +--ro incident-diagnosis-task* [task-
-   id] +--ro task-id?  String +--ro incident-no* incident-ref +--ro
-   ticket-no? string +--ro start-time? yang:date-and-time +--ro end-
-   time? yang:date-and-time +--ro task-state? enumeration +--ro
-   diagnosis-result? enumeration +--ro diagnosis-result-description?
-   String +--ro root-causes … +--ro root-events … +-- ro repair-advices
-   ~~~~
+   +--ro incident-diagnosis-tasks | +--ro incident-diagnosis-task*
+   [task-id] | +--ro task-id?  String +--ro incident-no* incident-ref
+   +--ro ticket-no? string | +--ro start-time? yang:date-and-time |
+   +--ro end-time? yang:date-and-time | +--ro task-state? enumeration |
+   +--ro diagnosis-result? enumeration | +--ro diagnosis-result-
+   description?  String +--ro root-causes … +--ro root-events … +-- ro
+   repair-advices … ~~~~
 
 Appendix B.  Changes between Revisions
 
