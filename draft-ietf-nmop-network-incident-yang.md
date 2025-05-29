@@ -1228,8 +1228,9 @@ also analysed.
 
 A.2  Correlation with trouble tickets
 
-The objective of the incident management is to identify probable causes and reduce
-duplicated ticket amounts.
+In this document, the objective of the incident management is to identify probable
+causes and reduce duplicated ticket amounts.
+
 In order to manage the correlation between network incidents and trouble tickets in
 the YANG data model, three rpcs to manage the network incidents and one notification
 to report on network incident state changescan defined in "ietf-incident" module can
