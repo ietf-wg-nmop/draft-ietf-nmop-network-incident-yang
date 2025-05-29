@@ -2204,16 +2204,17 @@ Appendix A.  Examples
 
    A.2 Correlation with trouble tickets
 
-   The objective of the incident management is to identify probable
-   causes and reduce duplicated ticket amounts.  In order to manage the
-   correlation between network incidents and trouble tickets in the YANG
-   data model, three rpcs to manage the network incidents and one
-   notification to report on network incident state changescan defined
-   in "ietf-incident" module can be further extended to include "ticket-
-   no" attribute so that such correlation can be used by the incident
-   handler in the upper layer OSS system for further fault demarcation,
-   i.e., Identify whether the fault is on the user side or on the
-   network side.
+   In this document, the objective of the incident management is to
+   identify probable causes and reduce duplicated ticket amounts.
+
+   In order to manage the correlation between network incidents and
+   trouble tickets in the YANG data model, three rpcs to manage the
+   network incidents and one notification to report on network incident
+   state changescan defined in "ietf-incident" module can be further
+   extended to include "ticket-no" attribute so that such correlation
+   can be used by the incident handler in the upper layer OSS system for
+   further fault demarcation, i.e., Identify whether the fault is on the
+   user side or on the network side.
 
    rpcs:
     +---x incident-acknowledge

@@ -3558,16 +3558,16 @@ also analysed.<a href="#appendix-A-2" class="pilcrow">¶</a></p>
 </pre><a href="#appendix-A-3" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A-4">A.2  Correlation with trouble tickets<a href="#appendix-A-4" class="pilcrow">¶</a></p>
-<p id="appendix-A-5">The objective of the incident management is to identify probable causes and reduce
-duplicated ticket amounts.
-In order to manage the correlation between network incidents and trouble tickets in
+<p id="appendix-A-5">In this document, the objective of the incident management is to identify probable
+causes and reduce duplicated ticket amounts.<a href="#appendix-A-5" class="pilcrow">¶</a></p>
+<p id="appendix-A-6">In order to manage the correlation between network incidents and trouble tickets in
 the YANG data model, three rpcs to manage the network incidents and one notification
 to report on network incident state changescan defined in "ietf-incident" module can
 be further extended to include "ticket-no" attribute so that such correlation can be
 used by the incident handler in the upper layer OSS system for further fault
 demarcation, i.e., Identify whether the fault is on the user side or on the network
-side.<a href="#appendix-A-5" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="appendix-A-6">
+side.<a href="#appendix-A-6" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="appendix-A-7">
 <pre>
 rpcs:
  +---x incident-acknowledge
@@ -3591,23 +3591,23 @@ rpcs:
  +--ro ticket-no? string
  +--
 …
-</pre><a href="#appendix-A-6" class="pilcrow">¶</a>
+</pre><a href="#appendix-A-7" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A-7">A.3  Intent based Networking with incident diagnosis task list<a href="#appendix-A-7" class="pilcrow">¶</a></p>
-<p id="appendix-A-8">In this document, incident-diagnosis RPC defined in in "ietf-incident"
+<p id="appendix-A-8">A.3  Intent based Networking with incident diagnosis task list<a href="#appendix-A-8" class="pilcrow">¶</a></p>
+<p id="appendix-A-9">In this document, incident-diagnosis RPC defined in in "ietf-incident"
 module can be used to identify probable causes; and an incident update
 notification can be triggered to report the diagnosis status if successful.
 To support intent based networking and provide more detailed network
 dignosis information, the "incident-diagnosis" RPC can be further
 extended to support "diagnosis-id" attribute.  "ietf-incident" module can
 be further extended to include "incident-diagnosis-task" list with the following
-diagnosis information:<a href="#appendix-A-8" class="pilcrow">¶</a></p>
-<p id="appendix-A-9">• The current status (e.g., created, diagnosing, diagnosed, finished) of each
+diagnosis information:<a href="#appendix-A-9" class="pilcrow">¶</a></p>
+<p id="appendix-A-10">• The current status (e.g., created, diagnosing, diagnosed, finished) of each
   diagnosis task
 • Task start time, end time, diagnosis result (succeeded, failed), failure
   description, etc.
-• root causes, root events, repair recommendations, etc.<a href="#appendix-A-9" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="appendix-A-10">
+• root causes, root events, repair recommendations, etc.<a href="#appendix-A-10" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="appendix-A-11">
 <pre>
 +--ro incident-diagnosis-tasks
 |   +--ro incident-diagnosis-task* [task-id]
@@ -3625,7 +3625,7 @@ diagnosis information:<a href="#appendix-A-8" class="pilcrow">¶</a></p>
 …
 +-- ro repair-advices
 …
-</pre><a href="#appendix-A-10" class="pilcrow">¶</a>
+</pre><a href="#appendix-A-11" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
