@@ -3589,29 +3589,27 @@ rpcs:
  +---n incident-notification
  +--ro incident-no? incident-ref
  +--ro ticket-no? string
- +--…
- ~~~~
-
-A.3  Intent based Networking with incident diagnosis task list
-
-In this document, incident-diagnosis RPC defined in in "ietf-incident"
+ +--
+…
+</pre><a href="#appendix-A-5" class="pilcrow">¶</a>
+</div>
+<p id="appendix-A-6">A.3  Intent based Networking with incident diagnosis task list<a href="#appendix-A-6" class="pilcrow">¶</a></p>
+<p id="appendix-A-7">In this document, incident-diagnosis RPC defined in in "ietf-incident"
 module can be used to identify probable causes; and an incident update
 notification can be triggered to report the diagnosis status if successful.
 To support intent based networking and provide more detailed network
 dignosis information, the "incident-diagnosis" RPC can be further
 extended to support "diagnosis-id" attribute.  "ietf-incident" module can
 be further extended to include "incident-diagnosis-task" list with the following
-diagnosis information:
-
-• The current status (e.g., created, diagnosing, diagnosed, finished) of each
+diagnosis information:<a href="#appendix-A-7" class="pilcrow">¶</a></p>
+<p id="appendix-A-8">• The current status (e.g., created, diagnosing, diagnosed, finished) of each
   diagnosis task
 • Task start time, end time, diagnosis result (succeeded, failed), failure
   description, etc.
-• root causes, root events, repair recommendations, etc.
-
-</pre><a href="#appendix-A-5" class="pilcrow">¶</a>
-</div>
-<p id="appendix-A-6">+--ro incident-diagnosis-tasks
+• root causes, root events, repair recommendations, etc.<a href="#appendix-A-8" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="appendix-A-9">
+<pre>
++--ro incident-diagnosis-tasks
 |   +--ro incident-diagnosis-task* [task-id]
 |   +--ro task-id? String
 +--ro incident-no* incident-ref
@@ -3627,7 +3625,8 @@ diagnosis information:
 …
 +-- ro repair-advices
 …
-~~~~<a href="#appendix-A-6" class="pilcrow">¶</a></p>
+</pre><a href="#appendix-A-9" class="pilcrow">¶</a>
+</div>
 </section>
 </div>
 <div id="changes-between-revisions">
