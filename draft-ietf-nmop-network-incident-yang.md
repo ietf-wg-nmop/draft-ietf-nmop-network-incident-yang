@@ -1262,6 +1262,7 @@ rpcs:
  ~~~~
 
 A.3  Intent based Networking with incident diagnosis task list
+
 In this document, incident-diagnosis RPC defined in in "ietf-incident"
 module can be used to identify probable causes; and an incident update
 notification can be triggered to report the diagnosis status if successful.
@@ -1270,6 +1271,7 @@ dignosis information, the "incident-diagnosis" RPC can be further
 extended to support "diagnosis-id" attribute.  "ietf-incident" module can
 be further extended to include "incident-diagnosis-task" list with the following
 diagnosis information:
+
 • The current status (e.g., created, diagnosing, diagnosed, finished) of each
   diagnosis task
 • Task start time, end time, diagnosis result (succeeded, failed), failure
@@ -1278,20 +1280,21 @@ diagnosis information:
 
 ~~~~
 +--ro incident-diagnosis-tasks
- +--ro incident-diagnosis-task* [task-id]
- +--ro task-id? String
+|   +--ro incident-diagnosis-task* [task-id]
+|   +--ro task-id? String
 +--ro incident-no* incident-ref
 +--ro ticket-no? string
- +--ro start-time? yang:date-and-time
- +--ro end-time? yang:date-and-time
- +--ro task-state? enumeration
- +--ro diagnosis-result? enumeration
- +--ro diagnosis-result-description? String
+|   +--ro start-time? yang:date-and-time
+|   +--ro end-time? yang:date-and-time
+|   +--ro task-state? enumeration
+|   +--ro diagnosis-result? enumeration
+|   +--ro diagnosis-result-description? String
 +--ro root-causes
 …
 +--ro root-events
 …
 +-- ro repair-advices
+…
 ~~~~
 
 # Changes between Revisions
