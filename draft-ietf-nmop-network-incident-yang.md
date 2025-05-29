@@ -1227,6 +1227,7 @@ also analysed.
 ~~~~
 
 A.2  Correlation with trouble tickets
+
 The objective of the incident management is to identify probable causes and reduce
 duplicated ticket amounts.
 In order to manage the correlation between network incidents and trouble tickets in
