@@ -1258,8 +1258,9 @@ rpcs:
  +---n incident-notification
  +--ro incident-no? incident-ref
  +--ro ticket-no? string
- +--…
- ~~~~
+ +--
+…
+~~~~
 
 A.3  Intent based Networking with incident diagnosis task list
 
