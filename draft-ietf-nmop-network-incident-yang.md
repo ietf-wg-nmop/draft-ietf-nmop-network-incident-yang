@@ -1276,9 +1276,11 @@ be further extended to include "incident-diagnosis-task" list with the following
 diagnosis information:
 
 • The current status (e.g., created, diagnosing, diagnosed, finished) of each
-  diagnosis task
+  diagnosis task.
+
 • Task start time, end time, diagnosis result (succeeded, failed), failure
   description, etc.
+
 • root causes, root events, repair recommendations, etc.
 
 ~~~~
