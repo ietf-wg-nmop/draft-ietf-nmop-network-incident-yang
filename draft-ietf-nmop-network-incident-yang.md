@@ -1233,7 +1233,7 @@ causes and reduce duplicated ticket amounts.
 
 In order to manage the correlation between network incidents and trouble tickets in
 the YANG data model, three rpcs to manage the network incidents and one notification
-to report on network incident state changescan defined in "ietf-incident" module can
+to report on network incident state changes defined in "ietf-incident" module can
 be further extended to include "ticket-no" attribute so that such correlation can be
 used by the incident handler in the upper layer OSS system for further fault
 demarcation, i.e., Identify whether the fault is on the user side or on the network
@@ -1270,7 +1270,7 @@ In this document, incident-diagnosis RPC defined in in "ietf-incident"
 module can be used to identify probable causes; and an incident update
 notification can be triggered to report the diagnosis status if successful.
 To support intent based networking and provide more detailed network
-dignosis information, the "incident-diagnosis" RPC can be further
+diagnosis information, the "incident-diagnosis" RPC can be further
 extended to support "diagnosis-id" attribute.  "ietf-incident" module can
 be further extended to include "incident-diagnosis-task" list with the following
 diagnosis information:
