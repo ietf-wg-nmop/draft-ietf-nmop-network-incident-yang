@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 30 November 2025                                     Telefonica
+Expires: 7 December 2025                                      Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                             29 May 2025
+                                                             5 June 2025
 
 
            A YANG Data Model for Network Incident Management
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 30 November 2025.
+   This Internet-Draft will expire on 7 December 2025.
 
 Copyright Notice
 
@@ -97,7 +97,7 @@ Table of Contents
    10. IANA Considerations
      10.1.  The "IETF XML" Registry
      10.2.  The "YANG Module Names" Registry
-   Acknowledgments
+   Acknowledgements
    References
      Normative References
      Informative References
@@ -458,10 +458,10 @@ Table of Contents
 
                         +-----------------------------+
                         |         OSS                 |
-                        |+-------+      +-----------+ |
-                        ||Alarm  |      | Incident  | |
-                        ||handler|      |  handler   | |
-                        |+-------+      +-----------+ |
+                        | +--------+    +-----------+ |
+                        | |Alarm   |    | Incident  | |
+                        | |handler |    |  handler  | |
+                        | +--------+    +-----------+ |
                         +---^---------------^---------+
                             |               |
                             |alarm          |incident
@@ -1953,7 +1953,7 @@ Table of Contents
    Reference:  RFC XXXX
    // RFC Ed.: replace XXXX and remove this comment
 
-Acknowledgments
+Acknowledgements
 
    The authors would like to thank Mohamed Boucadair, Robert Wilton,
    Benoit Claise, Oscar Gonzalez de Dios, Adrian Farrel, Mahesh
