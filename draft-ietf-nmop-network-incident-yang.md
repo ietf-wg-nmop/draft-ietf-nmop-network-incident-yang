@@ -453,10 +453,10 @@ A typical workflow of network incident management is as follows:
 ~~~~
             +-----------------------------+
             |         OSS                 |
-            |+-------+      +-----------+ |
-            ||Alarm  |      | Incident  | |
-            ||handler|      |  handler   | |
-            |+-------+      +-----------+ |
+            | +--------+    +-----------+ |
+            | |Alarm   |    | Incident  | |
+            | |handler |    |  handler  | |
+            | +--------+    +-----------+ |
             +---^---------------^---------+
                 |               |
                 |alarm          |incident
@@ -1115,7 +1115,7 @@ Reference:  RFC XXXX
 // RFC Ed.: replace XXXX and remove this comment
 ~~~~
 
-# Acknowledgments
+# Acknowledgements
 {:numbered="false"}
 
 The authors would like to thank Mohamed Boucadair, Robert Wilton,
