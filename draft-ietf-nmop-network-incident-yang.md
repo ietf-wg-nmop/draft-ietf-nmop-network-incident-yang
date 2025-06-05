@@ -1346,11 +1346,11 @@ information:
 
 Take multi-domain fault demarcation as an example, when both base station incident
 in the RAN network and Network Link incident in the IP network are received and base station
-incident from user side results from network incident in other domain, the OSS system 
+incident from user side results from network incident in other domain, the OSS system
 is unable to find network side problem simply based on base station incident. Therefore
-incident diagnosis RPC will be invoked with IP address of Base station 
-and incident start time as input and sent to the network controller. 
-The network controller can use network diagnosis related intent based interface find the 
+incident diagnosis RPC will be invoked with IP address of Base station
+and incident start time as input and sent to the network controller.
+The network controller can use network diagnosis related intent based interface find the
 corresponding network side port  according to the
 base station IP address, and then further associated with transmission path (current path,
 historical path) to the base station and current and historical performance, resources, and
@@ -1364,11 +1364,11 @@ suggestions.
 		 |    |           Incident Handler               ||
 		 |    +----^------------------------^------+-----+|
 		 +---------+------------------------|------|------+
-			  Incident                      |      |
-			   Update                  Incident   Incident
-			  Notification              Update    Diagnosis
-				   |                  Notification |
-				   |                        |      |
+			  Incident                  |      |
+			   Update                Incident  Incident
+			  Notification           Update    Diagnosis
+                           |                  Notification |
+                           |                        |      |
 		 +---------------+                  |      |
 		 | +-----------+ |            +-----|------+--+
 		 | | Incident  | |            | +---+------V+ |
@@ -1378,7 +1378,7 @@ suggestions.
 		 +---------------+            | IP Controller |
 					      +---------------+
 ~~~~
-   
+
 Similarly, in case of service degradation for lease line service,  the network controller can
 use network diagnosis related intent based interface to find the
 corresponding network side port based on the dedicated line service, and then further associate
