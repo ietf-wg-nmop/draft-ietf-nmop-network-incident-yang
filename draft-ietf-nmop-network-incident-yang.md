@@ -1263,8 +1263,9 @@ becomes necessary.
 	 |   |           Incident Process             |   |
 	 |   +----------------------------------------+   |
 	 +------------------------------------------------+
-	Figure 7. Correlation with troubleshooting tickets
+
 ~~~~
+{:#exam3 title="Correlation with troubleshooting tickets" artwork-align="center"}
 
 In order to manage the correlation between network incidents and
 trouble tickets in the YANG data model, three rpcs to manage the
@@ -1359,26 +1360,26 @@ suggestions.
 
 ~~~~
 
-		 +------------------------------------------------+
-		 |OSS +------------------------------------------+|
-		 |    |           Incident Handler               ||
-		 |    +----^------------------------^------+-----+|
-		 +---------+------------------------|------|------+
-			  Incident                  |      |
-			   Update                Incident  Incident
-			  Notification           Update    Diagnosis
-                           |                  Notification |
-                           |                        |      |
-		 +---------------+                  |      |
-		 | +-----------+ |            +-----|------+--+
-		 | | Incident  | |            | +---+------V+ |
-		 | | Process   | |            | | Incident  | |
-		 | +-----------+ |            | | Process   | |
-		 | RAN Controller|            | +-----------+ |
-		 +---------------+            | IP Controller |
-					      +---------------+
+	 +------------------------------------------------+
+	 |OSS +------------------------------------------+|
+	 |    |           Incident Handler               ||
+	 |    +----^------------------------^------+-----+|
+	 +---------+------------------------|------|------+
+		  Incident                  |      |
+		   Update                Incident  Incident
+		  Notification           Update    Diagnosis
+		   |                  Notification |
+		   |                        |      |
+	 +---------------+                  |      |
+	 | +-----------+ |            +-----|------+--+
+	 | | Incident  | |            | +---+------V+ |
+	 | | Process   | |            | | Incident  | |
+	 | +-----------+ |            | | Process   | |
+	 | RAN Controller|            | +-----------+ |
+	 +---------------+            | IP Controller |
+				      +---------------+
 ~~~~
-
+{:#exam4 title="Multi-Domain Fault Demarcation" artwork-align="center"}
 Similarly, in case of service degradation for lease line service,  the network controller can
 use network diagnosis related intent based interface to find the
 corresponding network side port based on the dedicated line service, and then further associate
