@@ -2218,27 +2218,28 @@ Appendix A.  Examples
    therefore correlation between troubleshooting ticket and network
    incident becomes necessary.
 
-            +------------------------------------------------+
-            |OSS +---------------------------------------+   |
-            |    |           Ticket System               |   |
-            |    +----------------+----------------------+   |
-            |                     |1.Ticket                  |
-            |                     |  Creation                |
-            |    +----------------V----------------------+   |
-            |    |           Incident Handler            |   |
-            |    +------+-------+------------+---------^-+   |
-            +-----------+-------+------------+---------+-----+
-                 2.Incident   3.Incident   4. Incident |5.Incident
-                   Ack with   Diagnosis    Resolve     |Update
-                   Ticket-no  with         with        |Notification
-                        |     Ticket-no    Ticket-no   |with Ticket-no
-            +-----------+-------+------------+---------+-----+
-            |Controller |       |            |         |     |
-            |   +-------V-------V------------V---------+-+   |
-            |   |           Incident Process             |   |
-            |   +----------------------------------------+   |
-            +------------------------------------------------+
-           Figure 7. Correlation with troubleshooting tickets
+             +------------------------------------------------+
+             |OSS +---------------------------------------+   |
+             |    |           Ticket System               |   |
+             |    +----------------+----------------------+   |
+             |                     |1.Ticket                  |
+             |                     |  Creation                |
+             |    +----------------V----------------------+   |
+             |    |           Incident Handler            |   |
+             |    +------+-------+------------+---------^-+   |
+             +-----------+-------+------------+---------+-----+
+                  2.Incident   3.Incident   4. Incident |5.Incident
+                    Ack with   Diagnosis    Resolve     |Update
+                    Ticket-no  with         with        |Notification
+                         |     Ticket-no    Ticket-no   |with Ticket-no
+             +-----------+-------+------------+---------+-----+
+             |Controller |       |            |         |     |
+             |   +-------V-------V------------V---------+-+   |
+             |   |           Incident Process             |   |
+             |   +----------------------------------------+   |
+             +------------------------------------------------+
+
+             Figure 7: Correlation with troubleshooting tickets
 
    In order to manage the correlation between network incidents and
    trouble tickets in the YANG data model, three rpcs to manage the
@@ -2330,24 +2331,26 @@ Appendix A.  Examples
    resources, and alarm status data, to diagnose the probable cause of
    the network incident and provide repair suggestions.
 
-                    +------------------------------------------------+
-                    |OSS +------------------------------------------+|
-                    |    |           Incident Handler               ||
-                    |    +----^------------------------^------+-----+|
-                    +---------+------------------------|------|------+
-                             Incident                  |      |
-                              Update                Incident  Incident
-                             Notification           Update    Diagnosis
-                              |                  Notification |
-                              |                        |      |
-                    +---------------+                  |      |
-                    | +-----------+ |            +-----|------+--+
-                    | | Incident  | |            | +---+------V+ |
-                    | | Process   | |            | | Incident  | |
-                    | +-----------+ |            | | Process   | |
-                    | RAN Controller|            | +-----------+ |
-                    +---------------+            | IP Controller |
-                                                 +---------------+
+                +------------------------------------------------+
+                |OSS +------------------------------------------+|
+                |    |           Incident Handler               ||
+                |    +----^------------------------^------+-----+|
+                +---------+------------------------|------|------+
+                         Incident                  |      |
+                          Update                Incident  Incident
+                         Notification           Update    Diagnosis
+                          |                  Notification |
+                          |                        |      |
+                +---------------+                  |      |
+                | +-----------+ |            +-----|------+--+
+                | | Incident  | |            | +---+------V+ |
+                | | Process   | |            | | Incident  | |
+                | +-----------+ |            | | Process   | |
+                | RAN Controller|            | +-----------+ |
+                +---------------+            | IP Controller |
+                                             +---------------+
+
+                  Figure 8: Multi-Domain Fault Demarcation
 
    Similarly, in case of service degradation for lease line service, the
    network controller can use network diagnosis related intent based

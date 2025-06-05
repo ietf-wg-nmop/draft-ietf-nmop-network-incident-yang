@@ -3570,7 +3570,9 @@ Network troubleshooting is sometimes complicated and requires data
 gathering and analysis from many different tools from the controllers,
 therefore correlation between troubleshooting ticket and network incident
 becomes necessary.<a href="#appendix-A-6" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="appendix-A-7">
+<span id="name-correlation-with-troublesho"></span><div id="exam3">
+<figure id="figure-7">
+        <div class="alignCenter art-text artwork" id="appendix-A-7.1">
 <pre>
          +------------------------------------------------+
          |OSS +---------------------------------------+   |
@@ -3592,8 +3594,12 @@ becomes necessary.<a href="#appendix-A-6" class="pilcrow">¶</a></p>
          |   |           Incident Process             |   |
          |   +----------------------------------------+   |
          +------------------------------------------------+
-        Figure 7. Correlation with troubleshooting tickets
-</pre><a href="#appendix-A-7" class="pilcrow">¶</a>
+
+</pre>
+</div>
+<figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
+<a href="#name-correlation-with-troublesho" class="selfRef">Correlation with troubleshooting tickets</a>
+        </figcaption></figure>
 </div>
 <p id="appendix-A-8">In order to manage the correlation between network incidents and
 trouble tickets in the YANG data model, three rpcs to manage the
@@ -3680,27 +3686,33 @@ base station IP address, and then further associated with transmission path (cur
 historical path) to the base station and current and historical performance, resources, and
 alarm status data, to diagnose the probable cause of the network incident and provide repair
 suggestions.<a href="#appendix-A-17" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="appendix-A-18">
+<span id="name-multi-domain-fault-demarcat"></span><div id="exam4">
+<figure id="figure-8">
+        <div class="alignCenter art-text artwork" id="appendix-A-18.1">
 <pre>
-                 +------------------------------------------------+
-                 |OSS +------------------------------------------+|
-                 |    |           Incident Handler               ||
-                 |    +----^------------------------^------+-----+|
-                 +---------+------------------------|------|------+
-                          Incident                  |      |
-                           Update                Incident  Incident
-                          Notification           Update    Diagnosis
-                           |                  Notification |
-                           |                        |      |
-                 +---------------+                  |      |
-                 | +-----------+ |            +-----|------+--+
-                 | | Incident  | |            | +---+------V+ |
-                 | | Process   | |            | | Incident  | |
-                 | +-----------+ |            | | Process   | |
-                 | RAN Controller|            | +-----------+ |
-                 +---------------+            | IP Controller |
-                                              +---------------+
-</pre><a href="#appendix-A-18" class="pilcrow">¶</a>
+         +------------------------------------------------+
+         |OSS +------------------------------------------+|
+         |    |           Incident Handler               ||
+         |    +----^------------------------^------+-----+|
+         +---------+------------------------|------|------+
+                  Incident                  |      |
+                   Update                Incident  Incident
+                  Notification           Update    Diagnosis
+                   |                  Notification |
+                   |                        |      |
+         +---------------+                  |      |
+         | +-----------+ |            +-----|------+--+
+         | | Incident  | |            | +---+------V+ |
+         | | Process   | |            | | Incident  | |
+         | +-----------+ |            | | Process   | |
+         | RAN Controller|            | +-----------+ |
+         +---------------+            | IP Controller |
+                                      +---------------+
+</pre>
+</div>
+<figcaption><a href="#figure-8" class="selfRef">Figure 8</a>:
+<a href="#name-multi-domain-fault-demarcat" class="selfRef">Multi-Domain Fault Demarcation</a>
+        </figcaption></figure>
 </div>
 <p id="appendix-A-19">Similarly, in case of service degradation for lease line service,  the network controller can
 use network diagnosis related intent based interface to find the
