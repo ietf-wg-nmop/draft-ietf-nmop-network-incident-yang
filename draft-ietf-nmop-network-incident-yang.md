@@ -1231,13 +1231,51 @@ A.2  Correlation with trouble tickets
 In this document, the objective of the incident management is to identify probable
 causes and reduce duplicated ticket amounts.
 
-In order to manage the correlation between network incidents and trouble tickets in
-the YANG data model, three rpcs to manage the network incidents and one notification
-to report on network incident state changes defined in "ietf-incident" module can
-be further extended to include "ticket-no" attribute so that such correlation can be
-used by the incident handler in the upper layer OSS system for further fault
-demarcation, i.e., Identify whether the fault is on the user side or on the network
-side.
+Traditionally, troubleshooting ticket is created upon critical
+alert is received,e.g., due to excessive BGP flaps on a particular
+device by the OSS system. Such troubleshooting ticket will trigger
+network incident management in the network controller. Therefore
+normally trouble shooting tickets and network incident are managed
+by the OSS and the network controller respectively. However
+Network troubleshooting is sometimes complicated and requires data
+gathering and analysis from many different tools from the controllers,
+therefore correlation between troubleshooting ticket and network incident
+becomes necessary.
+
+~~~~
+	 +------------------------------------------------+
+	 |OSS +---------------------------------------+   |
+	 |    |           Ticket System               |   |
+	 |    +----------------+----------------------+   |
+	 |                     |1.Ticket                  |
+	 |                     |  Creation                |
+	 |    +----------------V----------------------+   |
+	 |    |           Incident Handler            |   |
+	 |    +------+-------+------------+---------^-+   |
+	 +-----------+-------+------------+---------+-----+
+	      2.Incident   3.Incident   4. Incident |5.Incident
+		Ack with   Diagnosis    Resolve     |Update
+		Ticket-no  with         with        |Notification
+		     |     Ticket-no    Ticket-no   |with Ticket-no
+	 +-----------+-------+------------+---------+-----+
+	 |Controller |       |            |         |     |
+	 |   +-------V-------V------------V---------+-+   |
+	 |   |           Incident Process             |   |
+	 |   +----------------------------------------+   |
+	 +------------------------------------------------+
+	Figure 7. Correlation with troubleshooting tickets
+~~~~
+
+In order to manage the correlation between network incidents and
+trouble tickets in the YANG data model, three rpcs to manage the
+network incidents and one notification to report on network incident
+state changes defined in "ietf-incident" module can be further
+extended to include "ticket-no" attribute so that such correlation
+can be carried in the incident update notification and report the
+upper layer OSS system. Such correlation can be used by the incident
+handler in the upper layer OSS system for
+further fault demarcation, e.g., identify whether the fault is on the
+user side or on the network side.
 
 ~~~~
 rpcs:
@@ -1266,14 +1304,18 @@ rpcs:
 
 A.3  Intent based Networking with incident diagnosis task list
 
-In this document, incident-diagnosis RPC defined in in "ietf-incident"
-module can be used to identify probable causes; and an incident update
-notification can be triggered to report the diagnosis status if successful.
-To support intent based networking and provide more detailed network
-diagnosis information, the "incident-diagnosis" RPC can be further
-extended to support "diagnosis-id" attribute.  "ietf-incident" module can
-be further extended to include "incident-diagnosis-task" list with the following
-diagnosis information:
+In this document, incident-diagnosis RPC defined in in "ietf-
+incident" module can be used to identify probable causes; and an
+incident update notification can be triggered to report the diagnosis
+status if successful.
+
+In some case, workflows may span a long duration or involve multiple step
+task. In such case, intent based networking can be used to support such
+multiple step task and provide more detailed network diagnosis information,
+the "incident-diagnosis" RPC can be further extended to support "task-id"
+attribute and other auxiliary attributes. "ietf-incident" module can be further
+extended to include "incident-diagnosis-task" list with the following diagnosis
+information:
 
 • The current status (e.g., created, diagnosing, diagnosed, finished) of each
   diagnosis task.
@@ -1301,6 +1343,48 @@ diagnosis information:
 +-- ro repair-advices
 …
 ~~~~
+
+Take multi-domain fault demarcation as an example, when both base station incident
+in the RAN network and Network Link incident in the IP network are received and base station
+incident from user side results from network incident in other domain, the OSS system
+is unable to find network side problem simply based on base station incident. Therefore
+incident diagnosis RPC will be invoked with IP address of Base station
+and incident start time as input and sent to the network controller.
+The network controller can use network diagnosis related intent based interface find the
+corresponding network side port  according to the
+base station IP address, and then further associated with transmission path (current path,
+historical path) to the base station and current and historical performance, resources, and
+alarm status data, to diagnose the probable cause of the network incident and provide repair
+suggestions.
+
+~~~~
+
+		 +------------------------------------------------+
+		 |OSS +------------------------------------------+|
+		 |    |           Incident Handler               ||
+		 |    +----^------------------------^------+-----+|
+		 +---------+------------------------|------|------+
+			  Incident                  |      |
+			   Update                Incident  Incident
+			  Notification           Update    Diagnosis
+                           |                  Notification |
+                           |                        |      |
+		 +---------------+                  |      |
+		 | +-----------+ |            +-----|------+--+
+		 | | Incident  | |            | +---+------V+ |
+		 | | Process   | |            | | Incident  | |
+		 | +-----------+ |            | | Process   | |
+		 | RAN Controller|            | +-----------+ |
+		 +---------------+            | IP Controller |
+					      +---------------+
+~~~~
+
+Similarly, in case of service degradation for lease line service,  the network controller can
+use network diagnosis related intent based interface to find the
+corresponding network side port based on the dedicated line service, and then further associate
+the transmission path (current path, historical path) and current and historical performance,
+resources, and alarm status data to diagnose the root cause of the fault and provide repair
+suggestions.
 
 # Changes between Revisions
 
