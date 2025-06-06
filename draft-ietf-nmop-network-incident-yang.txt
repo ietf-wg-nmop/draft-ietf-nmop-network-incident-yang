@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 7 December 2025                                      Telefonica
+Expires: 8 December 2025                                      Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                             5 June 2025
+                                                             6 June 2025
 
 
            A YANG Data Model for Network Incident Management
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 December 2025.
+   This Internet-Draft will expire on 8 December 2025.
 
 Copyright Notice
 
@@ -2324,40 +2324,64 @@ Appendix A.  Examples
    incident.  Therefore incident diagnosis RPC will be invoked with IP
    address of Base station and incident start time as input and sent to
    the network controller.  The network controller can use network
-   diagnosis related intent based interface find the corresponding
+   diagnosis related intent based interface to find the corresponding
    network side port according to the base station IP address, and then
    further associated with transmission path (current path, historical
    path) to the base station and current and historical performance,
-   resources, and alarm status data, to diagnose the probable cause of
-   the network incident and provide repair suggestions.
+   resources, and incident status data, to diagnose the probable cause
+   of the network incident and provide repair suggestions.
 
-                +------------------------------------------------+
-                |OSS +------------------------------------------+|
-                |    |           Incident Handler               ||
-                |    +----^------------------------^------+-----+|
-                +---------+------------------------|------|------+
-                         Incident                  |      |
-                          Update                Incident  Incident
-                         Notification           Update    Diagnosis
-                          |                  Notification |
-                          |                        |      |
-                +---------------+                  |      |
-                | +-----------+ |            +-----|------+--+
-                | | Incident  | |            | +---+------V+ |
-                | | Process   | |            | | Incident  | |
-                | +-----------+ |            | | Process   | |
-                | RAN Controller|            | +-----------+ |
-                +---------------+            | IP Controller |
-                                             +---------------+
+             +------------------------------------------------+
+             |OSS +------------------------------------------+|
+             |    |           Incident Handler               ||
+             |    +----^------------------------^------+-----+|
+             +---------+------------------------|------|------+
+                  Incident                      |      |
+                   Update           |      Incident   Incident
+                  Notification      |       Update    Diganosis
+                       |            |     Notification |
+                       |                        |      |
+             +---------------+      |           |      |
+             | +-----------+ |      |     +-----|------+--+
+             | | Incident  | |      |     | +---+------V+ |
+             | | Process   | |      |     | | Incident  | |
+             | +-----------+ |            | | Process   | |
+             | RAN Controller|      |     | +-----------+ |
+             +---------------+      |     | IP Controller |
+                                    |     +---------------+
+
+                 RAN Domain         |       IP Domain
+                                    |
 
                   Figure 8: Multi-Domain Fault Demarcation
 
-   Similarly, in case of service degradation for lease line service, the
-   network controller can use network diagnosis related intent based
+                        +-----------------------------------------+
+          Customer      |OSS +-----------------------------------+|
+           ------------->    |          Incident Handler         ||
+          Complaint     |    +------------^------^---------------+|
+          on Service    +-----------------+------+----------------+
+          Degradation            Incident |      |Incident Update
+                                 Diganosis|      | Notification
+                                    +-----|------+--+
+                                    | +---V------|+ |
+                                    | | Incident  | |
+                                    | | Process   | |
+                                    | +-----------+ |
+                                    | IP Controller |
+                                    +---------------+
+
+                                      IP Domain
+
+          Figure 9: Service Complaint triggered Network Diagnosis
+
+   Similarly, in case of service degradation for lease line service
+   recieving from the customer, the OSS system can request network
+   diagnosis at the network side conducted by the network controller.
+   The network controller can use network diagnosis related intent based
    interface to find the corresponding network side port based on the
    dedicated line service, and then further associate the transmission
    path (current path, historical path) and current and historical
-   performance, resources, and alarm status data to diagnose the root
+   performance, resources, and incident status data to diagnose the root
    cause of the fault and provide repair suggestions.
 
 Appendix B.  Changes between Revisions
