@@ -408,7 +408,7 @@ Table of Contents
                     |       |                 V
          +----------+-------+------------------------------------+
          |                                                       |
-         |            Network in each Autonomous Domain          |
+         |            Network in the Autonomous Domain          |
          |                                                       |
          +-------------------------------------------------------+
 
@@ -479,11 +479,11 @@ Table of Contents
                         +---|--------------|----------+
                             |alarm         | metrics/trace/etc.
                             |              |
-                        +---+--------------+----------+
-                        |                             |
-                        |Network in Autonomous Domain |
-                        |                             |
-                        +-----------------------------+
+                    +--------+--------------+--------------+
+                    |                                      |
+                    |   Network in the Autonomous Domain   |
+                    |                                      |
+                    +--------------------------------------+
 
                 Figure 2: Interworking with Alarm Management
 
@@ -534,27 +534,27 @@ Table of Contents
 
    SAIN [RFC9417] defines an architecture of network service assurance.
 
-                               +----------------+
-                               |Incident handler|
-                               +----------------+
-                                       ^
-                                       |incident
-                               +-------+--------+
-                               |Incident process|
-                               +----------------+
-                                       ^
-                                       |symptoms
-                               +-------+--------+
-                               |     SAIN       |
-                               |                |
-                               +----------------+
-                                       ^
-                                       |metrics
-                         +-------------+-------------+
-                         |                           |
-                         |Network in Automous Domain |
-                         |                           |
-                         +---------------------------+
+                            +----------------+
+                            |Incident handler|
+                            +----------------+
+                                    ^
+                                    |incident
+                            +-------+--------+
+                            |Incident process|
+                            +----------------+
+                                    ^
+                                    |symptoms
+                            +-------+--------+
+                            |     SAIN       |
+                            |                |
+                            +----------------+
+                                    ^
+                                    |metrics
+                      +-------------+-------------------+
+                      |                                 |
+                      |Network in the Autonomous Domain |
+                      |                                 |
+                      +---------------------------------+
 
                       Figure 3: Interworking with SAIN
 
