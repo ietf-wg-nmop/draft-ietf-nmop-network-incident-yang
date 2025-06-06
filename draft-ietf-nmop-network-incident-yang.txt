@@ -2343,8 +2343,8 @@ Appendix A.  Examples
              | RAN Controller|      |     | +-----------+ |
              +---------------+      |     | IP Controller |
                                     |     +---------------+
-
-                 RAN Domain         |       IP Domain
+                                    |
+           RAN Autonomous Domain    |       IP Autonmous Domain
                                     |
 
                   Figure 8: Multi-Domain Fault Demarcation
@@ -2364,7 +2364,7 @@ Appendix A.  Examples
                                     | IP Controller |
                                     +---------------+
 
-                                      IP Domain
+                                   IP Autnomous Domain
 
           Figure 9: Service Complaint triggered Network Diagnosis
 
