@@ -408,7 +408,7 @@ Table of Contents
                     |       |                 V
          +----------+-------+------------------------------------+
          |                                                       |
-         |                     Network                           |
+         |            Network in each Autonomous Domain          |
          |                                                       |
          +-------------------------------------------------------+
 
@@ -418,19 +418,21 @@ Table of Contents
    Two key components for the incident management are incident client
    and incident server.
 
-   Incident server can be deployed in network analytic platforms,
-   controllers and provides functionalities such as network incident
-   identification, report, diagnosis, resolution, or querying for
-   network incident lifecycle management.
+   Incident server can be deployed in network operation
+   platforms,network analytic platforms, controllers [RFC8969] and
+   provides functionalities such as network incident identification,
+   report, diagnosis, resolution, or querying for network incident
+   lifecycle management.
 
-   Incident client can be deployed either in the same network analytic
-   platforms, controllers as the incident server within a single domain,
-   or at the upper layer network analytic platforms or
-   controllers(i.e.,multi-domain controllers) , invoke the
-   functionalities provided by incident server to meet the business
-   requirements of fault management.  The entire network incident
-   lifecycle management can be independent from or not under control of
-   the network OSS or other business system of operators.
+   Incident client can be deployed either in the same network operation
+   platforms, network analytic platforms, controllers as the incident
+   server within a single domain, or at the upper layer network
+   operation platforms, network analytic platforms or controllers
+   (i.e.,multi-domain controllers) , invoke the functionalities provided
+   by incident server to meet the business requirements of fault
+   management.  The entire network incident lifecycle management can be
+   independent from or not under control of the network OSS or other
+   business system of operators.
 
    A typical workflow of network incident management is as follows:
 
@@ -478,7 +480,8 @@ Table of Contents
                             |alarm         | metrics/trace/etc.
                             |              |
                         +---+--------------+----------+
-                        |         Network             |
+                        |                             |
+                        |Network in Autonomous Domain |
                         |                             |
                         +-----------------------------+
 
@@ -549,7 +552,7 @@ Table of Contents
                                        |metrics
                          +-------------+-------------+
                          |                           |
-                         |         Network           |
+                         |Network in Automous Domain |
                          |                           |
                          +---------------------------+
 
@@ -2043,6 +2046,11 @@ Normative References
               Management", RFC 8632, DOI 10.17487/RFC8632, September
               2019, <https://www.rfc-editor.org/rfc/rfc8632>.
 
+   [RFC8969]  Wu, Q., Ed., Boucadair, M., Ed., Lopez, D., Xie, C., and
+              L. Geng, "A Framework for Automating Service and Network
+              Management with YANG", RFC 8969, DOI 10.17487/RFC8969,
+              January 2021, <https://www.rfc-editor.org/rfc/rfc8969>.
+
 Informative References
 
    [BERT]     "BERT (language model)", n.d.,
@@ -2087,11 +2095,6 @@ Informative References
    [RFC7950]  Bjorklund, M., Ed., "The YANG 1.1 Data Modeling Language",
               RFC 7950, DOI 10.17487/RFC7950, August 2016,
               <https://www.rfc-editor.org/rfc/rfc7950>.
-
-   [RFC8969]  Wu, Q., Ed., Boucadair, M., Ed., Lopez, D., Xie, C., and
-              L. Geng, "A Framework for Automating Service and Network
-              Management with YANG", RFC 8969, DOI 10.17487/RFC8969,
-              January 2021, <https://www.rfc-editor.org/rfc/rfc8969>.
 
    [RFC9375]  Wu, B., Ed., Wu, Q., Ed., Boucadair, M., Ed., Gonzalez de
               Dios, O., and B. Wen, "A YANG Data Model for Network and
