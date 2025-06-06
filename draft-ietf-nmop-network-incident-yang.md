@@ -405,7 +405,7 @@ fiber) based on the probable cause.
 	   |       |                 V
 +----------+-------+------------------------------------+
 |                                                       |
-|            Network in each Autonomous Domain          |
+|            Network in the Autonomous Domain          |
 |                                                       |
 +-------------------------------------------------------+
 
@@ -473,11 +473,11 @@ A typical workflow of network incident management is as follows:
             +---|--------------|----------+
                 |alarm         | metrics/trace/etc.
                 |              |
-            +---+--------------+----------+
-            |                             |
-            |Network in Autonomous Domain |
-            |                             |
-            +-----------------------------+
+        +--------+--------------+--------------+
+        |                                      |
+        |   Network in the Autonomous Domain   |
+        |                                      |
+        +--------------------------------------+
 ~~~~
 {:#alarm title="Interworking with Alarm Management" artwork-align="center"}
 
@@ -541,11 +541,11 @@ SAIN {{?RFC9417}} defines an architecture of network service assurance.
 	   +----------------+
 		   ^
 		   |metrics
-     +-------------+-------------+
-     |                           |
-     |Network in Automous Domain |
-     |                           |
-     +---------------------------+
+     +-------------+-------------------+
+     |                                 |
+     |Network in the Autonomous Domain |
+     |                                 |
+     +---------------------------------+
 
 ~~~~
 {:#sain title="Interworking with SAIN" artwork-align="center"}
