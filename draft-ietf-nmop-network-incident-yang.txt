@@ -408,7 +408,7 @@ Table of Contents
                     |       |                 V
          +----------+-------+------------------------------------+
          |                                                       |
-         |            Network in the Autonomous Domain          |
+         |            Network in the Autonomous Domain           |
          |                                                       |
          +-------------------------------------------------------+
 
