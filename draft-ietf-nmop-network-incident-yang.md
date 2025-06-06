@@ -405,7 +405,7 @@ fiber) based on the probable cause.
 	   |       |                 V
 +----------+-------+------------------------------------+
 |                                                       |
-|                     Network                           |
+|            Network in each Autonomous Domain          |
 |                                                       |
 +-------------------------------------------------------+
 
@@ -416,17 +416,18 @@ fiber) based on the probable cause.
 components for the incident management are incident client
 and incident server.
 
-Incident server can be deployed in network analytic platforms, controllers
-and provides functionalities such as network incident identification, report,
-diagnosis, resolution, or querying for network incident lifecycle management.
+Incident server can be deployed in network operation platforms,network analytic
+platforms, controllers {{!RFC8969}} and provides functionalities such as network
+incident identification, report, diagnosis, resolution, or querying for network
+incident lifecycle management.
 
-Incident client can be deployed either in the same network analytic platforms,
-controllers as the incident server within a single domain, or at the upper layer
-network analytic platforms or controllers(i.e.,multi-domain controllers) , invoke
-the functionalities provided by incident server to meet the business requirements
-of fault management. The entire network incident lifecycle management can be
-independent from or not under control of the network OSS or other business
-system of operators.
+Incident client can be deployed either in the same network operation platforms,
+network analytic platforms, controllers as the incident server within a single
+domain, or at the upper layer network operation platforms, network analytic platforms
+or controllers (i.e.,multi-domain controllers) , invoke the functionalities provided
+by incident server to meet the business requirements of fault management. The entire
+network incident lifecycle management can be independent from or not under control
+of the network OSS or other business system of operators.
 
 A typical workflow of network incident management is as follows:
 
@@ -473,7 +474,8 @@ A typical workflow of network incident management is as follows:
                 |alarm         | metrics/trace/etc.
                 |              |
             +---+--------------+----------+
-            |         Network             |
+            |                             |
+            |Network in Autonomous Domain |
             |                             |
             +-----------------------------+
 ~~~~
@@ -541,7 +543,7 @@ SAIN {{?RFC9417}} defines an architecture of network service assurance.
 		   |metrics
      +-------------+-------------+
      |                           |
-     |         Network           |
+     |Network in Automous Domain |
      |                           |
      +---------------------------+
 
