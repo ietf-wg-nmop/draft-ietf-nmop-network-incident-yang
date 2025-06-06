@@ -743,7 +743,7 @@ After the probable cause is diagnosed, the incident client MAY resolve the
 network incident.  The incident client MAY choose resolve the network
 incident by invoking other functions, such as routing calculation function,
 configuration function, dispatching a ticket or asking the server to resolve it.
-Generally, the incident client would attempt to directly resolve the root
+Generally, the incident client would attempt to directly resolve the probable
 cause.  If the probable cause cannot be resolved, an alternative solution
 SHOULD be required.  For example, if a network incident caused by a physical
 component failure, it cannot be automatically resolved, the standby
@@ -837,9 +837,9 @@ module: ietf-incident
         +--ro resolve-advice?     String
            +--ro sources
 	  ...
-	  +--ro root-causes
+	  +--ro probable-causes
 	  ...
-	  +--ro root-events
+	  +--ro probable-events
 	  ...
 	  +--ro events
 	  ...
@@ -887,8 +887,8 @@ notifications:
          |     +--ro network-ref?  -> /nw:networks/network/network-id
 	 |     +--ro resource* [name]
 	 |        +--ro name al:resource
-	 +--ro root-causes
-	 |  +--ro root-cause* [node-ref]
+	 +--ro probable-causes
+	 |  +--ro probable-cause* [node-ref]
          |     +--ro node-ref  leafref
          |     +--ro network-ref?  -> /nw:networks/network/network-id
 	 |     +--ro resource* [name]
@@ -897,8 +897,8 @@ notifications:
 	 |     |  +--ro detail? string
 	 |     +--ro cause-name? string
 	 |     +--ro detail? string
-	 +--ro root-events
-	 |  +--ro root-event* [type event-id]
+	 +--ro probable-events
+	 |  +--ro probable-event* [type event-id]
 	 |     +--ro type -> ../../../events/event/type
 	 |     +--ro event-id leafref
 	 +--ro events
@@ -1018,14 +1018,14 @@ repeated-acknowledge
 
 incident-diagnose-error-info
 -----------------------------------
-root-cause-unlocated
+probable-cause-unlocated
 permission-denied
 operation-timeout
 resource-unavailable
 
 incident-resolve-error-info
 -----------------------------------
-root-cause-unresolved
+probable-cause-unresolved
 permission-denied
 operation-timeout
 resource-unavailable
@@ -1186,12 +1186,12 @@ also analysed.
       ]
     }
   ],
-  "root-causes": [
+  "probable-causes": [
     {
       "name": "Feeder fiber great loss change",
       "detail-information": "The connector of the optical fiber
        is contaminated, Or the optical fiber is bent too much.",
-      "root-cause": {
+      "probable-cause": {
         "network-ref": "example:L2-topo",
         "node-ref": "example:D1",
         "resource": [
@@ -1205,7 +1205,7 @@ also analysed.
       }
     }
   ],
-  "root-event": [
+  "probable-event": [
     {
       "event-id": "8921834",
       "type": "alarm"
@@ -1326,7 +1326,7 @@ information:
 • Task start time, end time, diagnosis result (succeeded, failed), failure
   description, etc.
 
-• root causes, root events, repair recommendations, etc.
+• probable causes, probable events, repair recommendations, etc.
 
 ~~~~
 +--ro incident-diagnosis-tasks
@@ -1339,9 +1339,9 @@ information:
 |   +--ro task-state? enumeration
 |   +--ro diagnosis-result? enumeration
 |   +--ro diagnosis-result-description? String
-+--ro root-causes
++--ro probable-causes
 …
-+--ro root-events
++--ro probable-events
 …
 +-- ro repair-advices
 …
@@ -1411,7 +1411,7 @@ the OSS system can request network diagnosis at the network side conducted by th
 The network controller can use network diagnosis related intent based interface to find the
 corresponding network side port based on the dedicated line service, and then further associate
 the transmission path (current path, historical path) and current and historical performance,
-resources, and incident status data to diagnose the root cause of the fault and provide repair
+resources, and incident status data to diagnose the probable cause of the fault and provide repair
 suggestions.
 
 # Changes between Revisions
