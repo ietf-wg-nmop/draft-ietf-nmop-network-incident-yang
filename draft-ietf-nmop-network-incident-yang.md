@@ -1425,6 +1425,8 @@ suggestions.
 
    * Add Lionel Tailhardat from Orange as new contributors based on his input.
 
+   * Add two new examples in the Appendix
+
    v02 - v03
 
    * Cross-checking terminology across NMOP drafts based on Adrian's comments.
