@@ -405,7 +405,7 @@ fiber) based on the probable cause.
 	   |       |                 V
 +----------+-------+------------------------------------+
 |                                                       |
-|            Network in the Autonomous Domain          |
+|            Network in the Autonomous Domain           |
 |                                                       |
 +-------------------------------------------------------+
 
