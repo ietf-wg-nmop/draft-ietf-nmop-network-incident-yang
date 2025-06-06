@@ -1380,7 +1380,7 @@ cause of the network incident and provide repair suggestions.
   +---------------+      |     | IP Controller |
                          |     +---------------+
                          |
-RAN Autonomous Domain    |       IP Autonmous Domain
+RAN Autonomous Domain    |       IP Autonomous Domain
                          |
 ~~~~
 {:#exam4 title="Multi-Domain Fault Demarcation" artwork-align="center"}
@@ -1402,7 +1402,7 @@ RAN Autonomous Domain    |       IP Autonmous Domain
                             | IP Controller |
                             +---------------+
 
-                           IP Autnomous Domain
+                           IP Autonomous Domain
 ~~~~
 {:#exam5 title="Service Complaint triggered Network Diagnosis " artwork-align="center"}
 
