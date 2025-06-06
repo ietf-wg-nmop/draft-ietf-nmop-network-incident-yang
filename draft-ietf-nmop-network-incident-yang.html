@@ -2031,7 +2031,7 @@ fine-grained monitoring of network quality metrics, etc.<a href="#section-5.2-1"
 network incident.  The incident client <span class="bcp14">MAY</span> choose resolve the network
 incident by invoking other functions, such as routing calculation function,
 configuration function, dispatching a ticket or asking the server to resolve it.
-Generally, the incident client would attempt to directly resolve the root
+Generally, the incident client would attempt to directly resolve the probable
 cause.  If the probable cause cannot be resolved, an alternative solution
 <span class="bcp14">SHOULD</span> be required.  For example, if a network incident caused by a physical
 component failure, it cannot be automatically resolved, the standby
@@ -2149,9 +2149,9 @@ module: ietf-incident
         +--ro resolve-advice?     String
            +--ro sources
           ...
-          +--ro root-causes
+          +--ro probable-causes
           ...
-          +--ro root-events
+          +--ro probable-events
           ...
           +--ro events
           ...
@@ -2205,8 +2205,8 @@ notifications:
          |     +--ro network-ref?  -&gt; /nw:networks/network/network-id
          |     +--ro resource* [name]
          |        +--ro name al:resource
-         +--ro root-causes
-         |  +--ro root-cause* [node-ref]
+         +--ro probable-causes
+         |  +--ro probable-cause* [node-ref]
          |     +--ro node-ref  leafref
          |     +--ro network-ref?  -&gt; /nw:networks/network/network-id
          |     +--ro resource* [name]
@@ -2215,8 +2215,8 @@ notifications:
          |     |  +--ro detail? string
          |     +--ro cause-name? string
          |     +--ro detail? string
-         +--ro root-events
-         |  +--ro root-event* [type event-id]
+         +--ro probable-events
+         |  +--ro probable-event* [type event-id]
          |     +--ro type -&gt; ../../../events/event/type
          |     +--ro event-id leafref
          +--ro events
@@ -2353,14 +2353,14 @@ repeated-acknowledge
 
 incident-diagnose-error-info
 -----------------------------------
-root-cause-unlocated
+probable-cause-unlocated
 permission-denied
 operation-timeout
 resource-unavailable
 
 incident-resolve-error-info
 -----------------------------------
-root-cause-unresolved
+probable-cause-unresolved
 permission-denied
 operation-timeout
 resource-unavailable
@@ -3517,12 +3517,12 @@ also analysed.<a href="#appendix-A-2" class="pilcrow">¶</a></p>
       ]
     }
   ],
-  "root-causes": [
+  "probable-causes": [
     {
       "name": "Feeder fiber great loss change",
       "detail-information": "The connector of the optical fiber
        is contaminated, Or the optical fiber is bent too much.",
-      "root-cause": {
+      "probable-cause": {
         "network-ref": "example:L2-topo",
         "node-ref": "example:D1",
         "resource": [
@@ -3536,7 +3536,7 @@ also analysed.<a href="#appendix-A-2" class="pilcrow">¶</a></p>
       }
     }
   ],
-  "root-event": [
+  "probable-event": [
     {
       "event-id": "8921834",
       "type": "alarm"
@@ -3655,7 +3655,7 @@ information:<a href="#appendix-A-12" class="pilcrow">¶</a></p>
   diagnosis task.<a href="#appendix-A-13" class="pilcrow">¶</a></p>
 <p id="appendix-A-14">• Task start time, end time, diagnosis result (succeeded, failed), failure
   description, etc.<a href="#appendix-A-14" class="pilcrow">¶</a></p>
-<p id="appendix-A-15">• root causes, root events, repair recommendations, etc.<a href="#appendix-A-15" class="pilcrow">¶</a></p>
+<p id="appendix-A-15">• probable causes, probable events, repair recommendations, etc.<a href="#appendix-A-15" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A-16">
 <pre>
 +--ro incident-diagnosis-tasks
@@ -3668,9 +3668,9 @@ information:<a href="#appendix-A-12" class="pilcrow">¶</a></p>
 |   +--ro task-state? enumeration
 |   +--ro diagnosis-result? enumeration
 |   +--ro diagnosis-result-description? String
-+--ro root-causes
++--ro probable-causes
 …
-+--ro root-events
++--ro probable-events
 …
 +-- ro repair-advices
 …
@@ -3749,7 +3749,7 @@ the OSS system can request network diagnosis at the network side conducted by th
 The network controller can use network diagnosis related intent based interface to find the
 corresponding network side port based on the dedicated line service, and then further associate
 the transmission path (current path, historical path) and current and historical performance,
-resources, and incident status data to diagnose the root cause of the fault and provide repair
+resources, and incident status data to diagnose the probable cause of the fault and provide repair
 suggestions.<a href="#appendix-A-20" class="pilcrow">¶</a></p>
 </section>
 </div>
