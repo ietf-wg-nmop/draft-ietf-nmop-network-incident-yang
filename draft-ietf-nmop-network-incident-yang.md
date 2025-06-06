@@ -1351,40 +1351,65 @@ incident from user side results from network incident in other domain, the OSS s
 is unable to find network side problem simply based on base station incident. Therefore
 incident diagnosis RPC will be invoked with IP address of Base station
 and incident start time as input and sent to the network controller.
-The network controller can use network diagnosis related intent based interface find the
-corresponding network side port  according to the
-base station IP address, and then further associated with transmission path (current path,
-historical path) to the base station and current and historical performance, resources, and
-alarm status data, to diagnose the probable cause of the network incident and provide repair
-suggestions.
+The network controller can use network diagnosis related intent based interface to find the
+corresponding network side port  according to the base station IP address, and then further
+associated with transmission path (current path, historical path) to the base station and
+current and historical performance, resources, and incident status data, to diagnose the probable
+cause of the network incident and provide repair suggestions.
 
 ~~~~
 
-	 +------------------------------------------------+
-	 |OSS +------------------------------------------+|
-	 |    |           Incident Handler               ||
-	 |    +----^------------------------^------+-----+|
-	 +---------+------------------------|------|------+
-		  Incident                  |      |
-		   Update                Incident  Incident
-		  Notification           Update    Diagnosis
-		   |                  Notification |
-		   |                        |      |
-	 +---------------+                  |      |
-	 | +-----------+ |            +-----|------+--+
-	 | | Incident  | |            | +---+------V+ |
-	 | | Process   | |            | | Incident  | |
-	 | +-----------+ |            | | Process   | |
-	 | RAN Controller|            | +-----------+ |
-	 +---------------+            | IP Controller |
-				      +---------------+
+  +------------------------------------------------+
+  |OSS +------------------------------------------+|
+  |    |           Incident Handler               ||
+  |    +----^------------------------^------+-----+|
+  +---------+------------------------|------|------+
+       Incident                      |      |
+        Update           |      Incident   Incident
+       Notification      |       Update    Diganosis
+            |            |     Notification |
+            |                        |      |
+  +---------------+      |           |      |
+  | +-----------+ |      |     +-----|------+--+
+  | | Incident  | |      |     | +---+------V+ |
+  | | Process   | |      |     | | Incident  | |
+  | +-----------+ |            | | Process   | |
+  | RAN Controller|      |     | +-----------+ |
+  +---------------+      |     | IP Controller |
+                         |     +---------------+
+
+      RAN Domain         |       IP Domain
+                         |
 ~~~~
 {:#exam4 title="Multi-Domain Fault Demarcation" artwork-align="center"}
-Similarly, in case of service degradation for lease line service,  the network controller can
-use network diagnosis related intent based interface to find the
+
+~~~~
+
+                +-----------------------------------------+
+  Customer      |OSS +-----------------------------------+|
+   ------------->    |          Incident Handler         ||
+  Complaint     |    +------------^------^---------------+|
+  on Service    +-----------------+------+----------------+
+  Degradation            Incident |      |Incident Update
+                         Diganosis|      | Notification
+                            +-----|------+--+
+                            | +---V------|+ |
+                            | | Incident  | |
+                            | | Process   | |
+                            | +-----------+ |
+                            | IP Controller |
+                            +---------------+
+
+                              IP Domain
+~~~~
+{:#exam5 title="Service Complaint triggered Network Diagnosis " artwork-align="center"}
+
+Similarly, in case of service degradation for lease line service recieving from the customer,
+the OSS system can request network diagnosis at the network side conducted by the network controller.
+The network controller can use network diagnosis related intent based interface to find the
 corresponding network side port based on the dedicated line service, and then further associate
 the transmission path (current path, historical path) and current and historical performance,
-resources, and alarm status data to diagnose the root cause of the fault and provide repair
+resources, and incident status data to diagnose the root cause of the fault and provide repair
 suggestions.
 
 # Changes between Revisions
