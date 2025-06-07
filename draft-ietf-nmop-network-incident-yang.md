@@ -1332,18 +1332,18 @@ information:
 +--ro incident-diagnosis-tasks
 |   +--ro incident-diagnosis-task* [task-id]
 |   +--ro task-id? String
-+--ro incident-no* incident-ref
-+--ro ticket-no? string
+|   +--ro incident-no* incident-ref
+|   +--ro ticket-no? string
 |   +--ro start-time? yang:date-and-time
 |   +--ro end-time? yang:date-and-time
 |   +--ro task-state? enumeration
 |   +--ro diagnosis-result? enumeration
 |   +--ro diagnosis-result-description? String
-+--ro probable-causes
+|   +--ro probable-causes
 …
-+--ro probable-events
+|   +--ro probable-events
 …
-+-- ro repair-advices
+|   +-- ro repair-advices
 …
 ~~~~
 
@@ -1361,46 +1361,52 @@ cause of the network incident and provide repair suggestions.
 
 ~~~~
 
-  +------------------------------------------------+
-  |OSS +------------------------------------------+|
-  |    |           Incident Handler               ||
-  |    +----^------------------------^------+-----+|
-  +---------+------------------------|------|------+
-       Incident                      |      |
-        Update           |      Incident   Incident
-       Notification      |       Update    Diganosis
-            |            |     Notification |
-            |                        |      |
-  +---------------+      |           |      |
-  | +-----------+ |      |     +-----|------+--+
-  | | Incident  | |      |     | +---+------V+ |
-  | | Process   | |      |     | | Incident  | |
-  | +-----------+ |            | | Process   | |
-  | RAN Controller|      |     | +-----------+ |
-  +---------------+      |     | IP Controller |
-                         |     +---------------+
-                         |
-RAN Autonomous Domain    |       IP Autonomous Domain
-                         |
+ +------------------------------------------------+
+ |OSS +------------------------------------------+| Diagnosis
+ |    |           Incident Handler               || Key
+ |    +----^------------------------^------+-----+| Parameters
+ +---------+------------------------|------|------+ {
+      Incident                      |      |         BS IP add,
+       Update           |      Incident   Incident   Start time
+      Notification      |       Update    Diganosis }
+           |            |     Notification |
+           |                        |      |
+ +---------------+      |           |      |
+ | +-----------+ |      |     +-----|------+--+
+ | | Incident  | |      |     | +---+------V+ |
+ | | Process   | |      |     | | Incident  | |
+ | +-----------+ |            | | Process   | |
+ | RAN Controller|      |     | +-----------+ |
+ +---------------+      |     | IP Controller |
+                        |     +---------------+
+                        |
+RAN Autonomous Domain   |       IP Autonomous Domain
+                        |
+
 ~~~~
 {:#exam4 title="Multi-Domain Fault Demarcation" artwork-align="center"}
 
 ~~~~
 
-                +-----------------------------------------+
-  Customer      |OSS +-----------------------------------+|
-   ------------->    |          Incident Handler         ||
-  Complaint     |    +------------^------^---------------+|
-  on Service    +-----------------+------+----------------+
-  Degradation            Incident |      |Incident Update
-                         Diganosis|      | Notification
-                            +-----|------+--+
-                            | +---V------|+ |
-                            | | Incident  | |
-                            | | Process   | |
-                            | +-----------+ |
-                            | IP Controller |
-                            +---------------+
+                                   Customer
+                                   Complaint
+                                 | on Service
+                                 | Degradation
+               +-----------------V-----------------------+
+               |OSS +-----------------------------------+|
+               |    |          Incident Handler         ||
+               |    +------------^------^---------------+|
+               +-----------------+------+----------------+
+   Diagnosis            Incident |      |Incident Update
+   Key Parameters:      Diganosis|      | Notification
+   {                       +-----|------+--+
+   incident-no,            | +---V------|+ |
+   ticket-no,              | | Incident  | |
+   start-time,             | | Process   | |
+   Diagnosis-result        | +-----------+ |
+   ..                      | IP Controller |
+   }                       +---------------+
+
 
                            IP Autonomous Domain
 ~~~~
