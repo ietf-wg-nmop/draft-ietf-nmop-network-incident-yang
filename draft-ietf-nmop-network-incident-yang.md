@@ -49,36 +49,34 @@ author:
 
 contributor:
 -
-    name: Thomas Graf
-    org: Swisscom
-    street: Binzring 17CH-8045
-    city: Zurich
-    country: Switzerland
-    email: thomas.graf@swisscom.com
--
-    name: Zhenqiang Li
-    org: CMCC
-    email: li_zhenqiang@hotmail.com
--
-    name: Yanlei Zheng
-    org: China Unicom
-    email: zhengyanlei@chinaunicom.cn
--
-    name: Yunbin Xu
-    org: CAICT
-    email: xuyunbin@caict.ac.cn
--
-    name: Xing Zhao
-    org: CAICT
-    email: zhaoxing@caict.ac.cn
--
-    fullname: Chaode Yu
-    organization: Huawei
-    email: yuchaode@huawei.com
--
    fullname: Lionel Tailhardat
    organization: Orange
    email: lionel.tailhardat@orange.com
+-
+   fullname: Thomas Graf
+   organization: Swisscom
+   country: Switzerland
+   email: thomas.graf@swisscom.com
+-
+   fullname: Zhenqiang Li
+   organization: CMCC
+   email: li_zhenqiang@hotmail.com
+-
+   fullname: Yanlei Zheng
+   organization: China Unicom
+   email: zhengyanlei@chinaunicom.cn
+-
+   fullname: Yunbin Xu
+   organization: CAICT
+   email: xuyunbin@caict.ac.cn
+-
+   fullname: Xing Zhao
+   organization: CAICT
+   email: zhaoxing@caict.ac.cn
+-
+   fullname: Chaode Yu
+   organization: Huawei
+   email: yuchaode@huawei.com
 
 normative:
 
