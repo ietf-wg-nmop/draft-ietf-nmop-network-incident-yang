@@ -267,17 +267,6 @@ Probable cause:
    Conversely, a causal factor is a contributing action that influences the outcome
    of an incident or event but is not the probably cause.
 
-   If further details about the probable cause are required (e.g., incident diagnosis
-   based on similar posterior cases, large-scale correction of the network design
-   using a failure and defect mode analysis), probable cause data can be further refined using
-   additional qualifier, such as _Proven cause_ (i.e. one that has been established
-   through tangible evidence and objective data) and _Assumed cause_ (i.e. hypothesis
-   or theory regarding the origin of the malfunction, based on observations, past experiences,
-   or general knowledge, but which has not yet been conclusively proven) to provide
-   a confidence level. Additionally, categories such as _Exogenous cause_, _Human cause_,
-   _Random cause_, and _External systemic cause_ can be used for guidance on the
-   attribution of the incident.
-
 
 # Sample Use Cases
 
