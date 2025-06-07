@@ -2524,10 +2524,13 @@ Appendix B.  Changes between Revisions
 
 Contributors
 
+   Lionel Tailhardat
+   Orange
+   Email: lionel.tailhardat@orange.com
+
+
    Thomas Graf
    Swisscom
-   Binzring 17CH-8045
-   CH- Zurich
    Switzerland
    Email: thomas.graf@swisscom.com
 
@@ -2555,11 +2558,6 @@ Contributors
    Chaode Yu
    Huawei
    Email: yuchaode@huawei.com
-
-
-   Lionel Tailhardat
-   Orange
-   Email: lionel.tailhardat@orange.com
 
 
 Authors' Addresses
