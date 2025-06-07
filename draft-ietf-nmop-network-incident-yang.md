@@ -580,7 +580,7 @@ diagnosis.
 W3C defines a common trace context {{W3C-Trace-Context}} for distributed
 system tracing, {{?I-D.ietf-netconf-trace-ctx-extension}} defines a
 netconf extension for {{W3C-Trace-Context}} and
-{{?I-D.ietf-opsawg-configuration-tracing}} defines a mechanism for
+{{?I-D.ietf-netconf-configuration-tracing}} defines a mechanism for
 configuration tracing.  If some errors occur when services are
 deploying, it's very easy to identify these errors by distributed
 system tracing, and a network incident should be reported.
