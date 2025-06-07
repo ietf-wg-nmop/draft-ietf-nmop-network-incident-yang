@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 8 December 2025                                      Telefonica
+Expires: 9 December 2025                                      Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                             6 June 2025
+                                                             7 June 2025
 
 
            A YANG Data Model for Network Incident Management
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 December 2025.
+   This Internet-Draft will expire on 9 December 2025.
 
 Copyright Notice
 
@@ -2299,18 +2299,18 @@ Appendix A.  Examples
    +--ro incident-diagnosis-tasks
    |   +--ro incident-diagnosis-task* [task-id]
    |   +--ro task-id? String
-   +--ro incident-no* incident-ref
-   +--ro ticket-no? string
+   |   +--ro incident-no* incident-ref
+   |   +--ro ticket-no? string
    |   +--ro start-time? yang:date-and-time
    |   +--ro end-time? yang:date-and-time
    |   +--ro task-state? enumeration
    |   +--ro diagnosis-result? enumeration
    |   +--ro diagnosis-result-description? String
-   +--ro probable-causes
+   |   +--ro probable-causes
    …
-   +--ro probable-events
+   |   +--ro probable-events
    …
-   +-- ro repair-advices
+   |   +-- ro repair-advices
    …
 
    Take multi-domain fault demarcation as an example, when both base
@@ -2328,44 +2328,49 @@ Appendix A.  Examples
    resources, and incident status data, to diagnose the probable cause
    of the network incident and provide repair suggestions.
 
-             +------------------------------------------------+
-             |OSS +------------------------------------------+|
-             |    |           Incident Handler               ||
-             |    +----^------------------------^------+-----+|
-             +---------+------------------------|------|------+
-                  Incident                      |      |
-                   Update           |      Incident   Incident
-                  Notification      |       Update    Diganosis
-                       |            |     Notification |
-                       |                        |      |
-             +---------------+      |           |      |
-             | +-----------+ |      |     +-----|------+--+
-             | | Incident  | |      |     | +---+------V+ |
-             | | Process   | |      |     | | Incident  | |
-             | +-----------+ |            | | Process   | |
-             | RAN Controller|      |     | +-----------+ |
-             +---------------+      |     | IP Controller |
-                                    |     +---------------+
-                                    |
-           RAN Autonomous Domain    |       IP Autonomous Domain
-                                    |
+       +------------------------------------------------+
+       |OSS +------------------------------------------+| Diagnosis
+       |    |           Incident Handler               || Key
+       |    +----^------------------------^------+-----+| Parameters
+       +---------+------------------------|------|------+ {
+            Incident                      |      |         BS IP add,
+             Update           |      Incident   Incident   Start time
+            Notification      |       Update    Diganosis }
+                 |            |     Notification |
+                 |                        |      |
+       +---------------+      |           |      |
+       | +-----------+ |      |     +-----|------+--+
+       | | Incident  | |      |     | +---+------V+ |
+       | | Process   | |      |     | | Incident  | |
+       | +-----------+ |            | | Process   | |
+       | RAN Controller|      |     | +-----------+ |
+       +---------------+      |     | IP Controller |
+                              |     +---------------+
+                              |
+      RAN Autonomous Domain   |       IP Autonomous Domain
+                              |
 
                   Figure 8: Multi-Domain Fault Demarcation
 
-                        +-----------------------------------------+
-          Customer      |OSS +-----------------------------------+|
-           ------------->    |          Incident Handler         ||
-          Complaint     |    +------------^------^---------------+|
-          on Service    +-----------------+------+----------------+
-          Degradation            Incident |      |Incident Update
-                                 Diganosis|      | Notification
-                                    +-----|------+--+
-                                    | +---V------|+ |
-                                    | | Incident  | |
-                                    | | Process   | |
-                                    | +-----------+ |
-                                    | IP Controller |
-                                    +---------------+
+                                           Customer
+                                           Complaint
+                                         | on Service
+                                         | Degradation
+                       +-----------------V-----------------------+
+                       |OSS +-----------------------------------+|
+                       |    |          Incident Handler         ||
+                       |    +------------^------^---------------+|
+                       +-----------------+------+----------------+
+           Diagnosis            Incident |      |Incident Update
+           Key Parameters:      Diganosis|      | Notification
+           {                       +-----|------+--+
+           incident-no,            | +---V------|+ |
+           ticket-no,              | | Incident  | |
+           start-time,             | | Process   | |
+           Diagnosis-result        | +-----------+ |
+           ..                      | IP Controller |
+           }                       +---------------+
+
 
                                    IP Autonomous Domain
 
