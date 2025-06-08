@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-05-04T00:46:29.838213+00:00",
+  "timestamp": "2025-06-08T00:48:53.416527+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
   "labels": [
     {
@@ -458,9 +458,41 @@
       "labels": [],
       "body": "Comment came from IETF 122 NMOP Session discussion.",
       "createdAt": "2025-05-03T04:08:41Z",
-      "updatedAt": "2025-05-03T04:08:41Z",
+      "updatedAt": "2025-06-07T05:34:47Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "billwuqin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Fixed in https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/commit/0429784f2e8d4c51b0d64ea082e331ad72388583",
+          "createdAt": "2025-06-07T05:34:46Z",
+          "updatedAt": "2025-06-07T05:34:46Z"
+        }
+      ]
+    },
+    {
+      "number": 36,
+      "id": "I_kwDOL4Sz0s66YfRR",
+      "title": "Probable cause defintion",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/issues/36",
+      "state": "OPEN",
+      "author": "billwuqin",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Do we need to add more details about the probable cause, such as\n\"\nIf further details about the probable cause are required (e.g., incident diagnosis based on similar posterior cases, large-scale correction of the network design using a failure and defect mode analysis), probable cause data can be further refined using additional qualifier, such as Proven cause (i.e. one that has been established through tangible evidence and objective data) and Assumed cause (i.e. hypothesis or theory regarding the origin of the malfunction, based on observations, past experiences, or general knowledge, but which has not yet been conclusively proven) to provide a confidence level. Additionally, categories such as Exogenous cause, Human cause, Random cause, and External systemic cause can be used for guidance on the attribution of the incident.\n\"\nI feel if go down into details, we also need to define Exogenous cause, Human cause, Random cause, and External systemic cause, which is not \nthe focus of the current document and add lots of complexity for model design.",
+      "createdAt": "2025-06-07T12:49:46Z",
+      "updatedAt": "2025-06-07T12:50:17Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "billwuqin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "#35 ",
+          "createdAt": "2025-06-07T12:50:16Z",
+          "updatedAt": "2025-06-07T12:50:16Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -934,6 +966,172 @@
       "mergeCommit": {
         "oid": "e92c2ba910d62a62b8c4edb7d6e21eccfc22c4b6"
       },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 30,
+      "id": "PR_kwDOL4Sz0s6ZNOls",
+      "title": "Update Appendix A.2 and A.3 with more details on work flow",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/pull/30",
+      "state": "MERGED",
+      "author": "billwuqin",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-06-05T13:45:58Z",
+      "updatedAt": "2025-06-05T13:49:49Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
+      "baseRefName": "main",
+      "baseRefOid": "d88d858cbe58b18f2688065620d5cea3af1d6614",
+      "headRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
+      "headRefName": "billwuqin-patch-4",
+      "headRefOid": "fdf8c5ff7be155a688b911608645d1823de12079",
+      "closedAt": "2025-06-05T13:49:49Z",
+      "mergedAt": "2025-06-05T13:49:49Z",
+      "mergedBy": "billwuqin",
+      "mergeCommit": {
+        "oid": "053180171040ac24756302cd2833142571a17a23"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 31,
+      "id": "PR_kwDOL4Sz0s6ZYhxW",
+      "title": "A.3 update with some figure and clarification text",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/pull/31",
+      "state": "MERGED",
+      "author": "billwuqin",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-06-06T12:19:32Z",
+      "updatedAt": "2025-06-06T12:20:40Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
+      "baseRefName": "main",
+      "baseRefOid": "ac20f02595e2f02dcc57831d277b001e661417f7",
+      "headRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
+      "headRefName": "billwuqin-patch-5",
+      "headRefOid": "59eb2eb446d1515603412a4d30ac4c693b928a55",
+      "closedAt": "2025-06-06T12:20:40Z",
+      "mergedAt": "2025-06-06T12:20:40Z",
+      "mergedBy": "billwuqin",
+      "mergeCommit": {
+        "oid": "f9198ba830f60d7c852cb16a570f475b2c460823"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 32,
+      "id": "PR_kwDOL4Sz0s6ZY5uX",
+      "title": "Change root cause into probable cause  for consistency",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/pull/32",
+      "state": "MERGED",
+      "author": "billwuqin",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-06-06T13:04:12Z",
+      "updatedAt": "2025-06-06T13:04:53Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
+      "baseRefName": "main",
+      "baseRefOid": "8b7eb8319f35dd0b5da355821b3f63b72922ad81",
+      "headRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
+      "headRefName": "billwuqin-patch-6",
+      "headRefOid": "2d896f9431e7afd5ebefa503eb4e42aeae24c53d",
+      "closedAt": "2025-06-06T13:04:53Z",
+      "mergedAt": "2025-06-06T13:04:53Z",
+      "mergedBy": "billwuqin",
+      "mergeCommit": {
+        "oid": "22cddeced1b39ba0c97ba7547b167c8dee75adfb"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 33,
+      "id": "PR_kwDOL4Sz0s6ZY7MU",
+      "title": "Replace root cause with probable cause for consistency",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/pull/33",
+      "state": "MERGED",
+      "author": "billwuqin",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-06-06T13:07:03Z",
+      "updatedAt": "2025-06-06T13:07:43Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
+      "baseRefName": "main",
+      "baseRefOid": "22cddeced1b39ba0c97ba7547b167c8dee75adfb",
+      "headRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
+      "headRefName": "billwuqin-patch-7",
+      "headRefOid": "0429784f2e8d4c51b0d64ea082e331ad72388583",
+      "closedAt": "2025-06-06T13:07:43Z",
+      "mergedAt": "2025-06-06T13:07:42Z",
+      "mergedBy": "billwuqin",
+      "mergeCommit": {
+        "oid": "43b4c525267bb414219c24717bd907790b89ea6d"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 34,
+      "id": "PR_kwDOL4Sz0s6Ze62X",
+      "title": "Update A.3 for the use case details",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/pull/34",
+      "state": "MERGED",
+      "author": "billwuqin",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-06-07T05:19:29Z",
+      "updatedAt": "2025-06-07T05:20:08Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
+      "baseRefName": "main",
+      "baseRefOid": "70cc08ee1d4f47a272df2d4ac58cf201e7d9a810",
+      "headRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
+      "headRefName": "billwuqin-patch-8",
+      "headRefOid": "d083941ecffe2102a7b000b389ab2d4e73585ff6",
+      "closedAt": "2025-06-07T05:20:08Z",
+      "mergedAt": "2025-06-07T05:20:08Z",
+      "mergedBy": "billwuqin",
+      "mergeCommit": {
+        "oid": "4d216c69add5ef00281d7a7b1f9dd260ea7d33bf"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 35,
+      "id": "PR_kwDOL4Sz0s6ZgmX3",
+      "title": "Remove details about the probable cause",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/pull/35",
+      "state": "OPEN",
+      "author": "billwuqin",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-06-07T12:46:47Z",
+      "updatedAt": "2025-06-07T12:46:47Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
+      "baseRefName": "main",
+      "baseRefOid": "c27caadfed0592d60e771ae157bcbd1020e57827",
+      "headRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
+      "headRefName": "billwuqin-patch-9",
+      "headRefOid": "d66017c0ff0fba0a57963a6ab4c498a2ae8238a2",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
       "comments": [],
       "reviews": []
     }
