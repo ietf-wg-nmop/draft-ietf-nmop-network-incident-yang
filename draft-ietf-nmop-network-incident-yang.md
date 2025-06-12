@@ -1302,11 +1302,12 @@ information:
 |   +--ro task-state? enumeration
 |   +--ro diagnosis-result? enumeration
 |   +--ro diagnosis-result-description? String
-|   +--ro probable-causes
+|   +--ro probable-causes leafref //List <RootCause>
 …
-|   +--ro probable-events
+|   +--ro probable-events leafref //List <Event>
 …
 |   +-- ro repair-advices
+|   +-- ro state enumeration // Incident states such as Creation, Update, Clear
 …
 ~~~~
 
@@ -1329,13 +1330,14 @@ cause of the network incident and provide repair suggestions.
  |    |           Incident Handler               || Key
  |    +----^------------------------^------+-----+| Parameters
  +---------+------------------------|------|------+ {
-      Incident                      |      |         BS IP add,
-       Update           |      Incident   Incident   Start time
-      Notification      |       Update    Diganosis }
-           |            |     Notification |
-           |                        |      |
- +---------------+      |           |      |
- | +-----------+ |      |     +-----|------+--+
+      Incident                      |      |          ticket-no, String
+           |                        |      |          incident-no, String
+       Update           |      Incident   Incident    occur-time, yang:date-and-time
+      Notification      |       Update    Diganosis   context? String
+           |            |     Notification |          related-events?  leafref //List <Event>
+           |                        |      |          related-objects? leafref //List <ResourceObject>
+ +---------------+      |           |      |          ....
+ | +-----------+ |      |     +-----|------+--+     }
  | | Incident  | |      |     | +---+------V+ |
  | | Process   | |      |     | | Incident  | |
  | +-----------+ |            | | Process   | |
@@ -1365,9 +1367,12 @@ RAN Autonomous Domain   |       IP Autonomous Domain
    {                       +-----|------+--+
    incident-no,            | +---V------|+ |
    ticket-no,              | | Incident  | |
-   start-time,             | | Process   | |
-   Diagnosis-result        | +-----------+ |
-   ..                      | IP Controller |
+   occur-time,             | | Process   | |
+   context?,               | |           | |
+   related-events?,        | |           | |
+   related-objects?,       | |           | |
+   ...                     | +-----------+ |
+                           | IP Controller |
    }                       +---------------+
 
 
