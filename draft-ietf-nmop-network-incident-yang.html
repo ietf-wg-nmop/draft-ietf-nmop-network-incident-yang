@@ -3631,11 +3631,12 @@ information:<a href="#appendix-A-12" class="pilcrow">¶</a></p>
 |   +--ro task-state? enumeration
 |   +--ro diagnosis-result? enumeration
 |   +--ro diagnosis-result-description? String
-|   +--ro probable-causes
+|   +--ro probable-causes leafref //List &lt;RootCause&gt;
 …
-|   +--ro probable-events
+|   +--ro probable-events leafref //List &lt;Event&gt;
 …
 |   +-- ro repair-advices
+|   +-- ro state enumeration // Incident states such as Creation, Update, Clear
 …
 </pre><a href="#appendix-A-16" class="pilcrow">¶</a>
 </div>
@@ -3659,13 +3660,14 @@ cause of the network incident and provide repair suggestions.<a href="#appendix-
  |    |           Incident Handler               || Key
  |    +----^------------------------^------+-----+| Parameters
  +---------+------------------------|------|------+ {
-      Incident                      |      |         BS IP add,
-       Update           |      Incident   Incident   Start time
-      Notification      |       Update    Diganosis }
-           |            |     Notification |
-           |                        |      |
- +---------------+      |           |      |
- | +-----------+ |      |     +-----|------+--+
+      Incident                      |      |          ticket-no, String
+           |                        |      |          incident-no, String
+       Update           |      Incident   Incident    occur-time, yang:date-and-time
+      Notification      |       Update    Diganosis   context? String
+           |            |     Notification |          related-events?  leafref //List &lt;Event&gt;
+           |                        |      |          related-objects? leafref //List &lt;ResourceObject&gt;
+ +---------------+      |           |      |          ....
+ | +-----------+ |      |     +-----|------+--+     }
  | | Incident  | |      |     | +---+------V+ |
  | | Process   | |      |     | | Incident  | |
  | +-----------+ |            | | Process   | |
@@ -3700,9 +3702,12 @@ RAN Autonomous Domain   |       IP Autonomous Domain
    {                       +-----|------+--+
    incident-no,            | +---V------|+ |
    ticket-no,              | | Incident  | |
-   start-time,             | | Process   | |
-   Diagnosis-result        | +-----------+ |
-   ..                      | IP Controller |
+   occur-time,             | | Process   | |
+   context?,               | |           | |
+   related-events?,        | |           | |
+   related-objects?,       | |           | |
+   ...                     | +-----------+ |
+                           | IP Controller |
    }                       +---------------+
 
 

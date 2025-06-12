@@ -2264,22 +2264,23 @@ Appendix A.  Examples
 
    • probable causes, probable events, repair recommendations, etc.
 
-   +--ro incident-diagnosis-tasks
-   |   +--ro incident-diagnosis-task* [task-id]
-   |   +--ro task-id? String
-   |   +--ro incident-no* incident-ref
-   |   +--ro ticket-no? string
-   |   +--ro start-time? yang:date-and-time
-   |   +--ro end-time? yang:date-and-time
-   |   +--ro task-state? enumeration
-   |   +--ro diagnosis-result? enumeration
-   |   +--ro diagnosis-result-description? String
-   |   +--ro probable-causes
-   …
-   |   +--ro probable-events
-   …
-   |   +-- ro repair-advices
-   …
++--ro incident-diagnosis-tasks
+|   +--ro incident-diagnosis-task* [task-id]
+|   +--ro task-id? String
+|   +--ro incident-no* incident-ref
+|   +--ro ticket-no? string
+|   +--ro start-time? yang:date-and-time
+|   +--ro end-time? yang:date-and-time
+|   +--ro task-state? enumeration
+|   +--ro diagnosis-result? enumeration
+|   +--ro diagnosis-result-description? String
+|   +--ro probable-causes leafref //List <RootCause>
+…
+|   +--ro probable-events leafref //List <Event>
+…
+|   +-- ro repair-advices
+|   +-- ro state enumeration // Incident states such as Creation, Update, Clear
+…
 
    Take multi-domain fault demarcation as an example, when both base
    station incident in the RAN network and Network Link incident in the
@@ -2296,29 +2297,30 @@ Appendix A.  Examples
    resources, and incident status data, to diagnose the probable cause
    of the network incident and provide repair suggestions.
 
-       +------------------------------------------------+
-       |OSS +------------------------------------------+| Diagnosis
-       |    |           Incident Handler               || Key
-       |    +----^------------------------^------+-----+| Parameters
-       +---------+------------------------|------|------+ {
-            Incident                      |      |         BS IP add,
-             Update           |      Incident   Incident   Start time
-            Notification      |       Update    Diganosis }
-                 |            |     Notification |
-                 |                        |      |
-       +---------------+      |           |      |
-       | +-----------+ |      |     +-----|------+--+
-       | | Incident  | |      |     | +---+------V+ |
-       | | Process   | |      |     | | Incident  | |
-       | +-----------+ |            | | Process   | |
-       | RAN Controller|      |     | +-----------+ |
-       +---------------+      |     | IP Controller |
-                              |     +---------------+
-                              |
-      RAN Autonomous Domain   |       IP Autonomous Domain
-                              |
+ +------------------------------------------------+
+ |OSS +------------------------------------------+| Diagnosis
+ |    |           Incident Handler               || Key
+ |    +----^------------------------^------+-----+| Parameters
+ +---------+------------------------|------|------+ {
+      Incident                      |      |          ticket-no, String
+           |                        |      |          incident-no, String
+       Update           |      Incident   Incident    occur-time, yang:date-and-time
+      Notification      |       Update    Diganosis   context? String
+           |            |     Notification |          related-events?  leafref //List <Event>
+           |                        |      |          related-objects? leafref //List <ResourceObject>
+ +---------------+      |           |      |          ....
+ | +-----------+ |      |     +-----|------+--+     }
+ | | Incident  | |      |     | +---+------V+ |
+ | | Process   | |      |     | | Incident  | |
+ | +-----------+ |            | | Process   | |
+ | RAN Controller|      |     | +-----------+ |
+ +---------------+      |     | IP Controller |
+                        |     +---------------+
+                        |
+RAN Autonomous Domain   |       IP Autonomous Domain
+                        |
 
-                  Figure 8: Multi-Domain Fault Demarcation
+               Figure 8: Multi-Domain Fault Demarcation
 
                                            Customer
                                            Complaint
@@ -2334,9 +2336,12 @@ Appendix A.  Examples
            {                       +-----|------+--+
            incident-no,            | +---V------|+ |
            ticket-no,              | | Incident  | |
-           start-time,             | | Process   | |
-           Diagnosis-result        | +-----------+ |
-           ..                      | IP Controller |
+           occur-time,             | | Process   | |
+           context?,               | |           | |
+           related-events?,        | |           | |
+           related-objects?,       | |           | |
+           ...                     | +-----------+ |
+                                   | IP Controller |
            }                       +---------------+
 
 
