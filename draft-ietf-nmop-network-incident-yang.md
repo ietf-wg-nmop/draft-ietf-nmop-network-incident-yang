@@ -1342,10 +1342,10 @@ cause of the network incident and provide repair suggestions.
  |    +----^------------------------^------+-----+| Parameters
  +---------+------------------------|------|------+ {
       Incident                      |      |          ticket-no, String
-           |                        |      |          incident-no, String   
+           |                        |      |          incident-no, String
        Update           |      Incident   Incident    occur-time, yang:date-and-time
       Notification      |       Update    Diganosis   context? String
-           |            |     Notification |          related-events?  leafref //List <Event> 
+           |            |     Notification |          related-events?  leafref //List <Event>
            |                        |      |          related-objects? leafref //List <ResourceObject>
  +---------------+      |           |      |          ....
  | +-----------+ |      |     +-----|------+--+     }
