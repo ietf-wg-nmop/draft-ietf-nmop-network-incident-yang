@@ -1062,7 +1062,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Hu, et al.</td>
-<td class="center">Expires 14 December 2025</td>
+<td class="center">Expires 17 December 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1075,12 +1075,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-nmop-network-incident-yang-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-06-12" class="published">12 June 2025</time>
+<time datetime="2025-06-15" class="published">15 June 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-12-14">14 December 2025</time></dd>
+<dd class="expires"><time datetime="2025-12-17">17 December 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1138,7 +1138,7 @@ network service health and probable cause analysis.<a href="#section-abstract-2"
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 14 December 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 17 December 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -3452,7 +3452,7 @@ for their valuable comments and great input to this work.<a href="#section-11-1"
 <a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-examples" class="section-name selfRef">Examples</a>
       </h2>
 <p id="appendix-A-1">A.1 Network Incident management with specific network topology and the network service<a href="#appendix-A-1" class="pilcrow">¶</a></p>
-<p id="appendix-A-2">In this example, we show an incident that an incident that are associated with the node
+<p id="appendix-A-2">In this example, we show a nework incident that are associated with the node
 ‘D1’, the network topology ‘L2-Topo’ and the domain ‘FAN’. The probable cause is
 also analysed.<a href="#appendix-A-2" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A-3">
@@ -3642,15 +3642,15 @@ information:<a href="#appendix-A-12" class="pilcrow">¶</a></p>
 </div>
 <p id="appendix-A-17">Take multi-domain fault demarcation as an example, when both base station incident
 in the RAN network and Network Link incident in the IP network are received and base station
-incident from user side results from network incident in other domain, the OSS system
+incident from user side results from network incident in other domains, the OSS system
 is unable to find network side problem simply based on base station incident. Therefore
 incident diagnosis RPC will be invoked with IP address of Base station
 and incident start time as input and sent to the network controller.
 The network controller can use network diagnosis related intent based interface to find the
 corresponding network side port  according to the base station IP address, and then further
 associated with transmission path (current path, historical path) to the base station and
-current and historical performance, resources, and incident status data, to diagnose the probable
-cause of the network incident and provide repair suggestions.<a href="#appendix-A-17" class="pilcrow">¶</a></p>
+current and historical network performance, netowrk resources, and incident status data, to
+diagnose the probable cause of the network incident and provide repair suggestions.<a href="#appendix-A-17" class="pilcrow">¶</a></p>
 <span id="name-multi-domain-fault-demarcat"></span><div id="exam4">
 <figure id="figure-8">
         <div class="alignCenter art-text artwork" id="appendix-A-18.1">
@@ -3718,13 +3718,13 @@ RAN Autonomous Domain   |       IP Autonomous Domain
 <a href="#name-service-complaint-triggered" class="selfRef">Service Complaint triggered Network Diagnosis</a>
         </figcaption></figure>
 </div>
-<p id="appendix-A-20">Similarly, in case of service degradation for lease line service recieving from the customer,
+<p id="appendix-A-20">Similarly, in case of service degradation for a lease line service recieving from the customer,
 the OSS system can request network diagnosis at the network side conducted by the network controller.
 The network controller can use network diagnosis related intent based interface to find the
 corresponding network side port based on the dedicated line service, and then further associate
-the transmission path (current path, historical path) and current and historical performance,
-resources, and incident status data to diagnose the probable cause of the fault and provide repair
-suggestions.<a href="#appendix-A-20" class="pilcrow">¶</a></p>
+the transmission path (current path, historical path) and current and historical network performance,
+network resources, and incident status data to diagnose the probable cause of the fault and provide
+repair suggestions.<a href="#appendix-A-20" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="changes-between-revisions">
