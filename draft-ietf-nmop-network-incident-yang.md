@@ -1121,7 +1121,7 @@ for their valuable comments and great input to this work.
 
 A.1 Network Incident management with specific network topology and the network service
 
-In this example, we show an incident that an incident that are associated with the node
+In this example, we show a nework incident that are associated with the node
 ‘D1’, the network topology ‘L2-Topo’ and the domain ‘FAN’. The probable cause is
 also analysed.
 
@@ -1313,15 +1313,15 @@ information:
 
 Take multi-domain fault demarcation as an example, when both base station incident
 in the RAN network and Network Link incident in the IP network are received and base station
-incident from user side results from network incident in other domain, the OSS system
+incident from user side results from network incident in other domains, the OSS system
 is unable to find network side problem simply based on base station incident. Therefore
 incident diagnosis RPC will be invoked with IP address of Base station
 and incident start time as input and sent to the network controller.
 The network controller can use network diagnosis related intent based interface to find the
 corresponding network side port  according to the base station IP address, and then further
 associated with transmission path (current path, historical path) to the base station and
-current and historical performance, resources, and incident status data, to diagnose the probable
-cause of the network incident and provide repair suggestions.
+current and historical network performance, netowrk resources, and incident status data, to
+diagnose the probable cause of the network incident and provide repair suggestions.
 
 ~~~~
 
@@ -1380,13 +1380,13 @@ RAN Autonomous Domain   |       IP Autonomous Domain
 ~~~~
 {:#exam5 title="Service Complaint triggered Network Diagnosis " artwork-align="center"}
 
-Similarly, in case of service degradation for lease line service recieving from the customer,
+Similarly, in case of service degradation for a lease line service recieving from the customer,
 the OSS system can request network diagnosis at the network side conducted by the network controller.
 The network controller can use network diagnosis related intent based interface to find the
 corresponding network side port based on the dedicated line service, and then further associate
-the transmission path (current path, historical path) and current and historical performance,
-resources, and incident status data to diagnose the probable cause of the fault and provide repair
-suggestions.
+the transmission path (current path, historical path) and current and historical network performance,
+network resources, and incident status data to diagnose the probable cause of the fault and provide
+repair suggestions.
 
 # Changes between Revisions
 
