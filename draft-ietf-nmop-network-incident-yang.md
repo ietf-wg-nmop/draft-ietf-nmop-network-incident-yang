@@ -898,10 +898,6 @@ notifications:
 	 |        |     +--ro resource? leafref
 	 |        |     +--ro alarm-type-id? leafref
 	 |        |     +--ro alarm-type-qualifier? leafref
-	 |        +--:(notification)
-	 |        +--:(log)
-	 |        +--:(KPI)
-	 |        +--:(unknown)
 	 +--ro time? yang:date-and-time
 ~~~~
 
