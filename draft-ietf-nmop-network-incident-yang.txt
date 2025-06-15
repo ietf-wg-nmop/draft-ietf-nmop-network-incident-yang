@@ -1688,18 +1688,6 @@ Table of Contents
                  }
                }
              }
-             case notification {
-               //TODO
-             }
-             case log {
-               //TODO
-             }
-             case KPI {
-               //TODO
-             }
-             case unknown {
-               //TODO
-             }
            }
          }
        }
