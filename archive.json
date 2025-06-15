@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-06-08T00:48:53.416527+00:00",
+  "timestamp": "2025-06-15T00:49:45.429312+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
   "labels": [
     {
@@ -1114,24 +1114,54 @@
       "id": "PR_kwDOL4Sz0s6ZgmX3",
       "title": "Remove details about the probable cause",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/pull/35",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "billwuqin",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2025-06-07T12:46:47Z",
-      "updatedAt": "2025-06-07T12:46:47Z",
+      "updatedAt": "2025-06-12T03:45:14Z",
       "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
       "baseRefName": "main",
       "baseRefOid": "c27caadfed0592d60e771ae157bcbd1020e57827",
       "headRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
       "headRefName": "billwuqin-patch-9",
       "headRefOid": "d66017c0ff0fba0a57963a6ab4c498a2ae8238a2",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-06-12T03:45:14Z",
+      "mergedAt": "2025-06-12T03:45:14Z",
+      "mergedBy": "billwuqin",
+      "mergeCommit": {
+        "oid": "851a734dc99797b934cb4ec2f9a10a0d949b8c44"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 37,
+      "id": "PR_kwDOL4Sz0s6aIohl",
+      "title": "Update Appendix A.2 for additional details",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-network-incident-yang/pull/37",
+      "state": "MERGED",
+      "author": "billwuqin",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-06-12T03:41:55Z",
+      "updatedAt": "2025-06-12T03:45:27Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
+      "baseRefName": "main",
+      "baseRefOid": "c27caadfed0592d60e771ae157bcbd1020e57827",
+      "headRepository": "ietf-wg-nmop/draft-ietf-nmop-network-incident-yang",
+      "headRefName": "billwuqin-patch-10",
+      "headRefOid": "dfc353ed9b4404e17b24d3657b072b6565e2f7b4",
+      "closedAt": "2025-06-12T03:45:27Z",
+      "mergedAt": "2025-06-12T03:45:27Z",
+      "mergedBy": "billwuqin",
+      "mergeCommit": {
+        "oid": "6ceed18d808f55b7fb5543a8dc9e944b36183c64"
+      },
       "comments": [],
       "reviews": []
     }
