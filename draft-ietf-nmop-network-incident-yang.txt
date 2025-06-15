@@ -911,10 +911,6 @@ Table of Contents
           |        |     +--ro resource? leafref
           |        |     +--ro alarm-type-id? leafref
           |        |     +--ro alarm-type-qualifier? leafref
-          |        +--:(notification)
-          |        +--:(log)
-          |        +--:(KPI)
-          |        +--:(unknown)
           +--ro time? yang:date-and-time
 
    A general notification, incident-notification, is provided here.
