@@ -252,8 +252,8 @@ Incident handler:
 : An entity which can receive network incident notification, store and query the information of
   network incidents for data analysis. It has no control on incident server.
 
-Probable cause:
-:  A factor is considered the probable cause of a problem if removing it fully resolves
+Probable root cause:
+:  A factor is considered the probable root cause of a problem if removing it fully resolves
    an ongoing incident -- specifically regarding network or service impairments
    and their related consequential failures and symptoms -- and prevents the problem
    from recurring. Causality is defined as the implementation of an inductive process
@@ -262,7 +262,10 @@ Probable cause:
    process is based on the distinction made between _primary failures_ (i.e., a failure
    that directly indicates the fault location and initiate a repair action, such as
    a broken cable or a misconnection) and _secondary failures_ (i.e., a consequential
-   failure, such as an upper level service that has gone down) {{ITU-T-G-7710}}.
+   failure, such as an upper level service that has gone down) {{ITU-T-G-7710}} Since 
+   one Fault may give rise to another Fault or Problem, a probable root cause is commonly
+   meant to describe the original event or combination of circumstances that is the foundation
+   of all related Faults.
 
    Conversely, a causal factor is a contributing action that influences the outcome
    of an incident or event but is not the probably cause.
@@ -341,18 +344,18 @@ packet-layer device and an optical-layer device might further cause
 faults at both devices.  Multiple operation teams are usually
 needed to first analyze huge amount of alarms (triggered by the above
 mentioned faults) from single network layer (either packet layer or
-optical layer)independently, then cooperate to locate the probable cause
+optical layer)independently, then cooperate to locate the probable root cause
 through manually analyzing multi-layer topology data and service data,
 thus fault demarcation becomes more complex and time-consuming in
 multi-layer scenario than in single-layer scenario.
 
 With the help of network incident management, the management systems first
-automatically analyze probable cause of the alarms at each single network
+automatically analyze probable root cause of the alarms at each single network
 layer and report corresponding network incidents to the multi-layer,multi-domain
 management system, then such management system comprehensively analyzes the
-topology relationship and service relationship between the probable causes of
+topology relationship and service relationship between the probable root causes of
 both layers.  The inner relationship among the alarms will be identified
-and finally the probable cause will be located among multiple layers.  By
+and finally the probable root cause will be located among multiple layers.  By
 cooperating with the integrated Optical time-domain reflectometer
 (OTDR) within the network device, we can determine the target optical
 exchange station before site visits.  Therefore, the overall fault
@@ -360,7 +363,7 @@ demarcation process is simplified and automated, the analyze result
 could be reported and visualized in time.  In this case, operation
 teams only have to confirm the analyzing result and dispatch site
 engineers to perform relative maintenance actions (e.g., splice
-fiber) based on the probable cause.
+fiber) based on the probable root cause.
 
 
 # Network Incident Management Architecture
@@ -421,7 +424,7 @@ A typical workflow of network incident management is as follows:
 * Some alarms or abnormal operations, network performance metrics
   are reported from the network. Incident server receives these alarms/abnormal
   operations/metrics and try to analyze the correlation of them, e.g., generate
-  a symptom if some metrics are evaluated as unhealthy, the probable cause can
+  a symptom if some metrics are evaluated as unhealthy, the probable root cause can
   be detected based on correlation analysis. If a network incident is identified,
   it will be reported to the incident client. The impact of network services will
   be further analyzed and will update the network incident if the network service
@@ -429,9 +432,9 @@ A typical workflow of network incident management is as follows:
 
 * Incident client receives the network incident raised by incident server,
   and acknowledge it.  Client may invoke the "network incident diagnose" rpc
-  to diagnose this network incident to find the probable causes.
+  to diagnose this network incident to find the probable root causes.
 
-* If the probable causes have been found, the incident client can resolve this
+* If the probable root causes have been found, the incident client can resolve this
   network incident by invoking the 'network incident resolve' rpc operation,
   dispatching a ticket or using other network functions (routing calculation,
   configuration, etc.)
@@ -471,17 +474,17 @@ A typical workflow of network incident management is as follows:
 A YANG model for the alarm management {{?RFC8632}} defines a standard
 interface to manage the lifecycle of alarms.  Alarms represent the
 undesirable state of network resources {{?I-D.ietf-nmop-terminology}},
-alarm data model also defines the probable causes and impacted services fields,
+alarm data model also defines the probable root causes and impacted services fields,
 but there may lack sufficient information to determine them in lower layer
 system (mainly in devices level), so alarms do not always tell the status of
-network services or necessarily point to the probable causes of problems.
+network services or necessarily point to the probable root causes of problems.
 As described in {{?RFC8632}}, alarm management act as a starting point
 for high-level fault management. While network incident management often
 works at the network level, so it is possible to have enough information
 to perform correlation and service impact analysis.  Alarms can work as
 one of data sources of network incident management and may be aggregated
 into few amount of network incidents by correlation analysis, network service
-impact and probable causes may be determined during incident process.
+impact and probable root causes may be determined during incident process.
 
 Network Incident also contains some related alarms,if needed users can query
 the information of alarms by alarm management interface {{?RFC8632}}.
@@ -715,7 +718,7 @@ triggered after the service impact analysis.
 ## Incident Diagnosis
 
 After a network incident is reported to the network incident client, the
-incident client MAY diagnose the incident to determine the probable cause.
+incident client MAY diagnose the incident to determine the probable root cause.
 Some diagnosis operations may affect the running network services.  The
 incident client can choose not to perform that diagnosis operation after
 determining the impact is not trivial.  The incident server can also perform
@@ -726,12 +729,12 @@ fine-grained monitoring of network quality metrics, etc.
 
 ## Incident Resolution
 
-After the probable cause is diagnosed, the incident client MAY resolve the
+After the probable root cause is diagnosed, the incident client MAY resolve the
 network incident.  The incident client MAY choose resolve the network
 incident by invoking other functions, such as routing calculation function,
 configuration function, dispatching a ticket or asking the server to resolve it.
 Generally, the incident client would attempt to directly resolve the probable
-cause.  If the probable cause cannot be resolved, an alternative solution
+cause.  If the probable root cause cannot be resolved, an alternative solution
 SHOULD be required.  For example, if a network incident caused by a physical
 component failure, it cannot be automatically resolved, the standby
 link can be used to bypass the faulty component.
@@ -782,9 +785,9 @@ the lifecycle of a network incident instance includes 'acknowledged', 'diagnosed
 
 When a network incident instance is generated, the operator SHOULD acknowledge the network incident
 with 'incident-acknowledge' rpc. And then the operator attempts to diagnose the network incident
-with 'incident-diagnose' rpc (for example, find out the probable cause and affected components).
-Diagnosis is not mandatory. If the probable cause and affected components are known when the
-network incident is generated, diagnosis is not required.  After locating the probable cause and
+with 'incident-diagnose' rpc (for example, find out the probable root cause and affected components).
+Diagnosis is not mandatory. If the probable root cause and affected components are known when the
+network incident is generated, diagnosis is not required.  After locating the probable root cause and
 affected components, operator can try to resolve the network incident by invoking 'incident-resolve'
 rpc.
 
@@ -795,7 +798,7 @@ rpc.
 There is one YANG module in the "ietf-incident" model, which defines
 technology independent abstraction of network incident construct for
 alarm, log, performance metrics, etc.  The information reported in
-the network incident include probable cause, priority,impact, suggestion, etc.
+the network incident include probable root cause, priority,impact, suggestion, etc.
 
 At the top of "ietf-incident" module is the Network Incident.
 Network incident is represented as a list and indexed by "incident-id".
@@ -907,7 +910,7 @@ sent.  After a notification is generated, if the incident
 server performs self diagnosis or the incident client uses the interfaces
 provided by the incident server to deliver diagnosis and
 resolution actions, the notification update behavior is triggered,
-for example, the probable cause objects and affected objects are updated.
+for example, the probable root cause objects and affected objects are updated.
 When a network incident is successfully resolved, the status of the network incident
 would be set to 'cleared'.
 
@@ -936,7 +939,7 @@ The incident-acknowledge rpc can confirm multiple incidents at a time
 |  |          -> /inc:incidents/inc:incident/inc:incident-no
 ~~~~
 After a network incident is generated, network incident diagnose rpc can be used to
-diagnose the network incident and locate the probable causes.  On demand Diagnosis
+diagnose the network incident and locate the probable root causes.  On demand Diagnosis
 can be performed on some detection tasks, such as BFD detection, flow
 detection, telemetry collection, short-term threshold alarm,
 configuration error check, or test packet injection.
@@ -954,7 +957,7 @@ asynchronously.
  |          -> /inc:incidents/inc:incident/inc:incident-no
 ~~~~
 
-After the probable causes and impacts are determined, incident-resolve
+After the probable root causes and impacts are determined, incident-resolve
 rpc can be used to resolve the incident (if the server can resolve
 it).  How to resolve an incident instance is out of the scope of this
 document.
@@ -1059,7 +1062,7 @@ important to control access to these operations.  These are the
 operations and their sensitivity/vulnerability:
 
 "incident-diagnose": This RPC operation performs network incident
-diagnosis and probable cause locating. If a malicious or buggy client
+diagnosis and probable root cause locating. If a malicious or buggy client
 performs an unexpectedly large number of this operation, the result
 might be an excessive use of system resources {{?I-D.ietf-nmop-terminology}}
 on the server side as well as network resources.  Servers MUST
@@ -1118,7 +1121,7 @@ for their valuable comments and great input to this work.
 A.1 Network Incident management with specific network topology and the network service
 
 In this example, we show a nework incident that are associated with the node
-‘D1’, the network topology ‘L2-Topo’ and the domain ‘FAN’. The probable cause is
+‘D1’, the network topology ‘L2-Topo’ and the domain ‘FAN’. The probable root cause is
 also analysed.
 
 ~~~~
@@ -1267,7 +1270,7 @@ rpcs:
 A.3  Intent based Networking with incident diagnosis task list
 
 In this document, incident-diagnosis RPC defined in in "ietf-
-incident" module can be used to identify probable causes; and an
+incident" module can be used to identify probable root causes; and an
 incident update notification can be triggered to report the diagnosis
 status if successful.
 
@@ -1285,7 +1288,7 @@ information:
 • Task start time, end time, diagnosis result (succeeded, failed), failure
   description, etc.
 
-• probable causes, probable events, repair recommendations, etc.
+• probable root causes, probable events, repair recommendations, etc.
 
 ~~~~
 +--ro incident-diagnosis-tasks
@@ -1317,7 +1320,7 @@ The network controller can use network diagnosis related intent based interface 
 corresponding network side port  according to the base station IP address, and then further
 associated with transmission path (current path, historical path) to the base station and
 current and historical network performance, netowrk resources, and incident status data, to
-diagnose the probable cause of the network incident and provide repair suggestions.
+diagnose the probable root cause of the network incident and provide repair suggestions.
 
 ~~~~
 
@@ -1381,10 +1384,14 @@ the OSS system can request network diagnosis at the network side conducted by th
 The network controller can use network diagnosis related intent based interface to find the
 corresponding network side port based on the dedicated line service, and then further associate
 the transmission path (current path, historical path) and current and historical network performance,
-network resources, and incident status data to diagnose the probable cause of the fault and provide
+network resources, and incident status data to diagnose the probable root cause of the fault and provide
 repair suggestions.
 
 # Changes between Revisions
+
+   v04 - v05
+
+   * Replace probable cause with probable root cause based on Adrian and Benoit's suggestion.
 
    v03 - v04
 
