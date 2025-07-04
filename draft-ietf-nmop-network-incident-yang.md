@@ -262,7 +262,7 @@ Probable root cause:
    process is based on the distinction made between _primary failures_ (i.e., a failure
    that directly indicates the fault location and initiate a repair action, such as
    a broken cable or a misconnection) and _secondary failures_ (i.e., a consequential
-   failure, such as an upper level service that has gone down) {{ITU-T-G-7710}} Since 
+   failure, such as an upper level service that has gone down) {{ITU-T-G-7710}} Since
    one Fault may give rise to another Fault or Problem, a probable root cause is commonly
    meant to describe the original event or combination of circumstances that is the foundation
    of all related Faults.
