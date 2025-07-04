@@ -107,7 +107,7 @@ informative:
 A network incident refers to an unexpected interruption of a network
 service, degradation of a network service quality, or sub-health of a
 network service.  Different data sources including alarms, metrics,
-and other anomaly information can be aggregated into a few amount of
+and other anomaly information can be aggregated into a few of
 network incidents through data correlation analysis and the service impact
 analysis.
 
