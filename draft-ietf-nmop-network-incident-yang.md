@@ -159,10 +159,10 @@ be used at a specific layer in one domain but also can be used to
 span across layers for multi-layer network troubleshooting.
 
 A network incident refers to an undesired occurrence such as an unexpected
-interruption of a network service,degradation of a network service quality,
+interruption of a network service, degradation of a network service quality,
 or sub-health of a network service {{?I-D.ietf-nmop-terminology}}{{TMF724A}}.
 Different data sources including alarms, metrics, and other anomaly information
-can be aggregated into one or a few amount of network incidents irrespective layer
+can be aggregated into one or a few of network incidents irrespective of the layer
 through correlation analysis and the service impact analysis.  For example, if the
 protocol-related interface fails to work properly, large amount of alarms may
 be reported to upper layer management system since a lot of network services
