@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 5 January 2026                                       Telefonica
+Expires: 7 January 2026                                       Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                             4 July 2025
+                                                             6 July 2025
 
 
            A YANG Data Model for Network Incident Management
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 5 January 2026.
+   This Internet-Draft will expire on 7 January 2026.
 
 Copyright Notice
 
@@ -156,16 +156,16 @@ Table of Contents
    layer through correlation analysis and the service impact analysis.
    For example, if the protocol-related interface fails to work
    properly, large amount of alarms may be reported to upper layer
-   management system since a lot of network services may be affected by
-   the interface, but only one aggregated network incident pertaining to
-   the abnormal interface will be reported.  A network incident may also
-   be raised through the analysis of some network performance metrics,
-   for example, as described in SAIN [RFC9417], network services can be
-   decomposed to several sub-services, specific metrics are monitored
-   for each sub- service, symptoms will occur if services/sub-services
-   are unhealthy (after analyzing metrics), these symptoms may give rise
-   to a network incident when it causes degradation of the network
-   services.
+   management system.  Although a lot of network services may be
+   affected by the interface, only one aggregated network incident
+   pertaining to the abnormal interface will be reported.  A network
+   incident may also be raised through the analysis of some network
+   performance metrics, for example, as described in SAIN [RFC9417],
+   network services can be decomposed to several sub-services, specific
+   metrics are monitored for each sub- service.  Therefore symptoms will
+   occur if services/sub-services are unhealthy (after analyzing
+   metrics), in addition, these symptoms may give rise to a network
+   incident when it causes degradation of the network services.
 
    In addition, Artificial Intelligence (AI) and Machine Learning (ML)
    are key technologies in the processing of large amounts of data with
@@ -189,7 +189,7 @@ Table of Contents
    capitals, as shown here.
 
    The following terms are defined in [RFC8632],
-   [I-D.ietf-nmop-terminology] and are not redefined here:
+   [RFC9543],[I-D.ietf-nmop-terminology] and are not redefined here:
 
    *  alarm
 
@@ -204,6 +204,8 @@ Table of Contents
    *  anomaly
 
    *  cause
+
+   *  SLA (Service Level Agreement)
 
    The following terms are defined in this document:
 
@@ -220,7 +222,7 @@ Table of Contents
       acknowledgement, diagnosis, and resolution.  Different from the
       traditional fault management, it take various different data
       sources including alarms, metrics, and other anomaly information
-      and aggregate them into one or a few amount of network incidents
+      and aggregate them into one or a few network incidents
       irrespective of layer through correlation analysis and the service
       impact analysis.  One fault on the network device can cause
       multiple network incidents, e.g., multiple service offerings that
@@ -228,10 +230,10 @@ Table of Contents
       increased latency as redundant routes become more congested.  A
       network incident might impact one or a set of network services.
       The network incident can also been seen as customer incident
-      [TMF724A] when service SLA associated with one specific network
-      service and network incident has been affected.  How customer
-      incident is translated from the network incident is beyond scope
-      of this document.
+      [TMF724A] when service SLA [RFC9543] associated with one specific
+      network service and network incident has been affected.  How
+      customer incident is translated from the network incident is
+      beyond scope of this document.
 
    Incident management system:  An entity which implements network
       incident management.  It includes (but not limited to) incident
@@ -2073,6 +2075,12 @@ Informative References
               Arumugam, "A YANG Data Model for Service Assurance",
               RFC 9418, DOI 10.17487/RFC9418, July 2023,
               <https://www.rfc-editor.org/rfc/rfc9418>.
+
+   [RFC9543]  Farrel, A., Ed., Drake, J., Ed., Rokui, R., Homma, S.,
+              Makhijani, K., Contreras, L., and J. Tantsura, "A
+              Framework for Network Slices in Networks Built from IETF
+              Technologies", RFC 9543, DOI 10.17487/RFC9543, March 2024,
+              <https://www.rfc-editor.org/rfc/rfc9543>.
 
    [TMF724A]  "Incident Management API Profile v1.0.0", 2023,
               <https://www.tmforum.org/resources/standard/tmf724a-
