@@ -803,7 +803,8 @@ rpc.
 There is one YANG module in the "ietf-incident" model, which defines
 technology independent abstraction of network incident construct for
 alarm, log, performance metrics, etc.  The information reported in
-the network incident include probable root cause, priority,impact, suggestion, etc.
+the network incident include probable root cause, priority, impact,
+suggestion, etc.
 
 At the top of "ietf-incident" module is the Network Incident.
 Network incident is represented as a list and indexed by "incident-id".
@@ -830,19 +831,19 @@ module: ietf-incident
         +--ro category            identityref
         +--ro detail?             string
         +--ro resolve-advice?     String
-           +--ro sources
-	  ...
-	  +--ro probable-causes
-	  ...
-	  +--ro probable-events
-	  ...
-	  +--ro events
-	  ...
-	  +--ro raise-time? yang:date-and-time
-	  +--ro occur-time? yang:date-and-time
-	  +--ro clear-time? yang:date-and-time
-	  +--ro ack-time? yang:date-and-time
-	  +--ro last-updated? yang:date-and-time
+        +--ro sources
+        ...
+        +--ro probable-causes
+        ...
+        +--ro probable-events
+        ...
+        +--ro events
+        ...
+        +--ro raise-time? yang:date-and-time
+        +--ro occur-time? yang:date-and-time
+        +--ro clear-time? yang:date-and-time
+        +--ro ack-time? yang:date-and-time
+        +--ro last-updated? yang:date-and-time
 rpcs:
   +---x incident-acknowledge
   ...
@@ -927,13 +928,13 @@ would be set to 'cleared'.
 |  |  +---w incident-no*
 |  |          -> /inc:incidents/inc:incident/inc:incident-no
 ~~~~
-After an incident is generated, updated, or cleared, (In some
-scenarios where automatic diagnosis and resolution are supported, the
-status of an incident may be updated multiple times or even
-automatically resolved.)  The operator needs to confirm the incident
-to ensure that the client knows the incident.
+After an incident is generated, updated, or cleared, the operator
+needs to confirm the incident to ensure that the client knows the incident.
 
-The incident-acknowledge rpc can confirm multiple incidents at a time
+In some scenarios where automatic diagnosis and resolution are supported, the
+status of an incident may be updated multiple times or even automatically
+resolved. Therefore the incident-acknowledge rpc can confirm multiple incidents
+at a time. 
 
 ## Incident Diagnose
 
