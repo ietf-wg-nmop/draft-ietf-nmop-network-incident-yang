@@ -2280,7 +2280,7 @@ at a time.<a href="#section-7.3-3" class="pilcrow">¶</a></p>
 </div>
 <p id="section-7.4-2">After a network incident is generated, network incident diagnose rpc can be used to
 diagnose the network incident and locate the probable root causes.  On demand Diagnosis
-can be performed on some detection tasks, such as BFD detection, flow
+can be performed on some detection tasks, such as bfd detection, flow
 detection, telemetry collection, short-term threshold alarm,
 configuration error check, or test packet injection.<a href="#section-7.4-2" class="pilcrow">¶</a></p>
 <p id="section-7.4-3">After the on demand diagnosis is performed sucessfully, a separate network incident
@@ -3243,7 +3243,7 @@ performs an unexpectedly large number of this operation, the result
 might be an excessive use of system resources <span>[<a href="#I-D.ietf-nmop-terminology" class="cite xref">I-D.ietf-nmop-terminology</a>]</span>
 on the server side as well as network resources.  Servers <span class="bcp14">MUST</span>
 ensure they have sufficient resources to fulfill this request; otherwise,
-they <span class="bcp14">MUST</span> reject the request.<a href="#section-9-6" class="pilcrow">¶</a></p>
+they <span class="bcp14">MUST</span> reject the request using RPC errors defined in section 7.6.<a href="#section-9-6" class="pilcrow">¶</a></p>
 <p id="section-9-7">"incident-resolve": This RPC operation is used to resolve the network
 incident. If a malicious or buggy client performs an unexpectedly large
 number of this operation, the result might be an excessive use of system
@@ -3285,7 +3285,7 @@ registry, defined in <span>[<a href="#RFC6020" class="cite xref">RFC6020</a>]</s
 Name: ietf-incident
 Maintained by IANA?  N
 Namespace: urn:ietf:params:xml:ns:yang:ietf-incident
-Prefix: inc
+Prefix: incident
 Reference:  RFC XXXX
 // RFC Ed.: replace XXXX and remove this comment
 </pre><a href="#section-10.2-2" class="pilcrow">¶</a>
@@ -3304,7 +3304,7 @@ Benoit Claise, Oscar Gonzalez de Dios, Adrian Farrel, Mahesh
 Jethanandani, Balazs Lengyel, Dhruv Dhody,Bo Wu, Qiufang Ma, Haomian Zheng,
 YuanYao，Wei Wang, Peng Liu, Zongpeng Du, Zhengqiang Li, Andrew Liu
 , Joe Clark, Roland Scott, Alex Huang Feng, Kai Gao,  Jensen Zhang,
-Ziyang Xing, Mingshuang Jin, Aihua Guo, Zhidong Yin, Guoxiang Liu,Kaichun Wu
+Ziyang Xing, Mingshuang Jin, Aihua Guo, Zhidong Yin, Guoxiang Liu, Kaichun Wu
 for their valuable comments and great input to this work.<a href="#section-11-1" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -3580,23 +3580,23 @@ user side or on the network side.<a href="#appendix-A-8" class="pilcrow">¶</a><
 rpcs:
  +---x incident-acknowledge
  | +---w input
- | +---w incident-no* incident-ref
- | +---w ticket-no? string
+ |     +---w incident-no* incident-ref
+ |     +---w ticket-no? string
  +---x incident-diagnose
  | +---w input
- | | +---w incident-no* incident-ref
- | | +---w ticket-no? string
+ | |   +---w incident-no* incident-ref
+ | |   +---w ticket-no? string
  | +--ro output
- | +--ro task-id? string
+ | |   +--ro task-id? string
  +---x incident-resolve
- +---w input
- +---w incident-no* incident-ref
- +---w ticket-no? string
+ | +---w input
+ |     +---w incident-no* incident-ref
+ |     +---w ticket-no? string
 
  notifications:
  +---n incident-notification
- +--ro incident-no? incident-ref
- +--ro ticket-no? string
+ |   +--ro incident-no? incident-ref
+ |   +--ro ticket-no? string
  +--
 …
 </pre><a href="#appendix-A-9" class="pilcrow">¶</a>
