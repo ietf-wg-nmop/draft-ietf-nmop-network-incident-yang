@@ -2121,7 +2121,8 @@ rpc.<a href="#section-6.2.2-2" class="pilcrow">¶</a></p>
 <p id="section-7.1-1">There is one YANG module in the "ietf-incident" model, which defines
 technology independent abstraction of network incident construct for
 alarm, log, performance metrics, etc.  The information reported in
-the network incident include probable root cause, priority,impact, suggestion, etc.<a href="#section-7.1-1" class="pilcrow">¶</a></p>
+the network incident include probable root cause, priority, impact,
+suggestion, etc.<a href="#section-7.1-1" class="pilcrow">¶</a></p>
 <p id="section-7.1-2">At the top of "ietf-incident" module is the Network Incident.
 Network incident is represented as a list and indexed by "incident-id".
 Each Network Incident is associated with a network service instance, domain and
@@ -2147,19 +2148,19 @@ module: ietf-incident
         +--ro category            identityref
         +--ro detail?             string
         +--ro resolve-advice?     String
-           +--ro sources
-          ...
-          +--ro probable-causes
-          ...
-          +--ro probable-events
-          ...
-          +--ro events
-          ...
-          +--ro raise-time? yang:date-and-time
-          +--ro occur-time? yang:date-and-time
-          +--ro clear-time? yang:date-and-time
-          +--ro ack-time? yang:date-and-time
-          +--ro last-updated? yang:date-and-time
+        +--ro sources
+        ...
+        +--ro probable-causes
+        ...
+        +--ro probable-events
+        ...
+        +--ro events
+        ...
+        +--ro raise-time? yang:date-and-time
+        +--ro occur-time? yang:date-and-time
+        +--ro clear-time? yang:date-and-time
+        +--ro ack-time? yang:date-and-time
+        +--ro last-updated? yang:date-and-time
 rpcs:
   +---x incident-acknowledge
   ...
@@ -2256,12 +2257,12 @@ would be set to 'cleared'.<a href="#section-7.2-2" class="pilcrow">¶</a></p>
 |  |          -&gt; /inc:incidents/inc:incident/inc:incident-no
 </pre><a href="#section-7.3-1" class="pilcrow">¶</a>
 </div>
-<p id="section-7.3-2">After an incident is generated, updated, or cleared, (In some
-scenarios where automatic diagnosis and resolution are supported, the
-status of an incident may be updated multiple times or even
-automatically resolved.)  The operator needs to confirm the incident
-to ensure that the client knows the incident.<a href="#section-7.3-2" class="pilcrow">¶</a></p>
-<p id="section-7.3-3">The incident-acknowledge rpc can confirm multiple incidents at a time<a href="#section-7.3-3" class="pilcrow">¶</a></p>
+<p id="section-7.3-2">After an incident is generated, updated, or cleared, the operator
+needs to confirm the incident to ensure that the client knows the incident.<a href="#section-7.3-2" class="pilcrow">¶</a></p>
+<p id="section-7.3-3">In some scenarios where automatic diagnosis and resolution are supported, the
+status of an incident may be updated multiple times or even automatically
+resolved. Therefore the incident-acknowledge rpc can confirm multiple incidents
+at a time.<a href="#section-7.3-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="incident-diagnose">
