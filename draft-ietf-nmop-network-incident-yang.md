@@ -165,15 +165,15 @@ Different data sources including alarms, metrics, and other anomaly information
 can be aggregated into one or a few of network incidents irrespective of the layer
 through correlation analysis and the service impact analysis.  For example, if the
 protocol-related interface fails to work properly, large amount of alarms may
-be reported to upper layer management system since a lot of network services
-may be affected by the interface, but only one aggregated network incident pertaining to
+be reported to upper layer management system. Although a lot of network services
+may be affected by the interface, only one aggregated network incident pertaining to
 the abnormal interface will be reported. A network incident may also be raised through
 the analysis of some network performance metrics, for example, as
 described in SAIN {{?RFC9417}}, network services can be decomposed to
 several sub-services, specific metrics are monitored for each sub-
-service, symptoms will occur if services/sub-services are unhealthy
-(after analyzing metrics), these symptoms may give rise to a network incident when
-it causes degradation of the network services.
+service. Therefore symptoms will occur if services/sub-services are unhealthy
+(after analyzing metrics), in addition, these symptoms may give rise to a network
+incident when it causes degradation of the network services.
 
 In addition, Artificial Intelligence (AI) and Machine Learning (ML)
 are key technologies in the processing of large amounts of data with
@@ -191,7 +191,7 @@ network automation {{?RFC8969}} with RPC operations in this YANG module.
 
 {::boilerplate bcp14-tagged}
 
-The following terms are defined in {{?RFC8632}}, {{?I-D.ietf-nmop-terminology}}
+The following terms are defined in {{?RFC8632}}, {{?RFC9543}},{{?I-D.ietf-nmop-terminology}}
 and are not redefined here:
 
 *  alarm
@@ -208,6 +208,8 @@ and are not redefined here:
 
 *  cause
 
+*  SLA (Service Level Agreement)
+
 The following terms are defined in this document:
 
 Service impact analysis:
@@ -223,13 +225,13 @@ Incident management:
    identification, reporting, acknowledgement, diagnosis, and resolution.
    Different from the traditional fault management, it take various different
    data sources including alarms, metrics, and other anomaly information and aggregate
-   them into one or a few amount of network incidents irrespective of layer
+   them into one or a few network incidents irrespective of layer
    through correlation analysis and the service impact analysis. One fault
    on the network device can cause multiple network incidents, e.g., multiple service
    offerings that are dependent on that device will go down and others may suffer
    increased latency as redundant routes become more congested. A network incident
    might impact one or a set of network services. The network incident can also been
-   seen as customer incident {{TMF724A}} when service SLA associated with one specific
+   seen as customer incident {{TMF724A}} when service SLA {{?RFC9543}} associated with one specific
    network service and network incident has been affected. How customer incident is
    translated from the network incident is beyond scope of this document.
 
