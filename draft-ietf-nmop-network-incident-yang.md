@@ -934,7 +934,7 @@ needs to confirm the incident to ensure that the client knows the incident.
 In some scenarios where automatic diagnosis and resolution are supported, the
 status of an incident may be updated multiple times or even automatically
 resolved. Therefore the incident-acknowledge rpc can confirm multiple incidents
-at a time. 
+at a time.
 
 ## Incident Diagnose
 
