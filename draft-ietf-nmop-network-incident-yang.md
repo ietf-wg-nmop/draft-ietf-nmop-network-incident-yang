@@ -210,6 +210,8 @@ and are not redefined here:
 
 *  SLA (Service Level Agreement)
 
+*  SLO (Service Level Objective)
+
 The following terms are defined in this document:
 
 Service impact analysis:
@@ -299,9 +301,9 @@ conventional working situations.
 
 With the help of the network incident management, massive alarms can
 be aggregated into a few network incidents based on service impact
-analysis, the number of trouble tickets will be reduced.
+analysis, so the number of trouble tickets will be reduced.
 At the same time, the efficiency of network troubleshooting can be
-largely improved. which address the pain point of traditional trouble
+largely improved, which address the pain point of traditional trouble
 ticket dispatching.
 
 ## Incident Derivation from L3VPN Services Unavailability
@@ -310,7 +312,7 @@ The Service Attachment Points (SAPs) defined in {{?RFC9408}} represent the
 network reference points where network services can be delivered or are being delivered to
 customers.
 
-SLOs can be used to characterize the ability of a particular set of
+SLOs {{?RFC9543}} can be used to characterize the ability of a particular set of
 nodes to communicate according to certain measurable expectations
 {{?I-D.ietf-ippm-pam}}.  For example, an SLA might state that any given
 SLO applies to at least a certain percentage of packets, allowing for
@@ -324,7 +326,7 @@ of end-to-end latency as follows:
 
 *  Not to exceed 20 ms for 99% of packets.
 
-This SLA information can be bound with two or multiple SAPs defined in {{?RFC9408}},
+This SLA information can be bound with one or more SAPs defined in {{?RFC9408}},
 so that the service orchestration layer can use these interfaces to commit the
 delivery of a service on specific point-to-point service topology or point to
 multi-point topology. When specific levels of a threshold of an SLO is violated,
@@ -336,29 +338,29 @@ let's say L3VPN service will be derived.
 When a fault occurs in a network that contains both packet-layer
 devices and optical-layer devices, it may cause correlative faults in
 both layers, i.e., packet layer and optical layer.  Specifically,
-fault propagation could be classified into three typical types.
-First, fault occurs at a packet-layer device might further cause fault
+faults propagation could be classified into three typical types.
+First, faults occuring at a packet-layer device might further cause fault
 (e.g., Wavelength Division Multiplexing (WDM) client fault) at an
-optical-layer device.  Second, fault occurs at an optical-layer
+optical-layer device.  Second, faults occuring at an optical-layer
 device might further cause fault (e.g., Layer 3 link down) at a packet-
-layer device.  Third, fault occurs at the inter-layer link between a
+layer device.  Third, faults occuring at the inter-layer link between a
 packet-layer device and an optical-layer device might further cause
 faults at both devices.  Multiple operation teams are usually
 needed to first analyze huge amount of alarms (triggered by the above
 mentioned faults) from single network layer (either packet layer or
-optical layer)independently, then cooperate to locate the probable root cause
+optical layer) independently, then cooperate to locate the probable root cause
 through manually analyzing multi-layer topology data and service data,
 thus fault demarcation becomes more complex and time-consuming in
 multi-layer scenario than in single-layer scenario.
 
 With the help of network incident management, the management systems first
-automatically analyze probable root cause of the alarms at each single network
-layer and report corresponding network incidents to the multi-layer,multi-domain
+automatically analyze probable root cause of the alarms at each layer
+and report corresponding network incidents to the multi-layer, multi-domain
 management system, then such management system comprehensively analyzes the
 topology relationship and service relationship between the probable root causes of
 both layers.  The inner relationship among the alarms will be identified
-and finally the probable root cause will be located among multiple layers.  By
-cooperating with the integrated Optical time-domain reflectometer
+and finally the probable root cause will be located among multiple layers.
+By cooperating with the integrated Optical time-domain reflectometer
 (OTDR) within the network device, we can determine the target optical
 exchange station before site visits.  Therefore, the overall fault
 demarcation process is simplified and automated, the analyze result
@@ -391,7 +393,7 @@ fiber) based on the probable root cause.
      |                                           |
      |                                           |
      +-------------------------------+-----------+
-	   ^       ^Abnormal         ^
+	   ^       ^Abnormal         ^Network Performance
 	   |Alarm  |Operations       |Metrics
 	   |Report |Report           |/Telemetry
 	   |       |                 V
@@ -408,7 +410,7 @@ fiber) based on the probable root cause.
 components for the incident management are incident client
 and incident server.
 
-Incident server can be deployed in network operation platforms,network analytic
+Incident server can be deployed in network operation platforms, network analytic
 platforms, controllers {{!RFC8969}} and provides functionalities such as network
 incident identification, report, diagnosis, resolution, or querying for network
 incident lifecycle management.
@@ -416,28 +418,29 @@ incident lifecycle management.
 Incident client can be deployed either in the same network operation platforms,
 network analytic platforms, controllers as the incident server within a single
 domain, or at the upper layer network operation platforms, network analytic platforms
-or controllers (i.e.,multi-domain controllers) , invoke the functionalities provided
+or controllers (i.e.,multi-domain controllers) , to invoke the functionalities provided
 by incident server to meet the business requirements of fault management. The entire
 network incident lifecycle management can be independent from or not under control
 of the network OSS or other business system of operators.
 
 A typical workflow of network incident management is as follows:
 
-* Some alarms or abnormal operations, network performance metrics
+* Some alarm report or abnormal operations, network performance metrics
   are reported from the network. Incident server receives these alarms/abnormal
   operations/metrics and try to analyze the correlation of them, e.g., generate
   a symptom if some metrics are evaluated as unhealthy, the probable root cause can
-  be detected based on correlation analysis. If a network incident is identified,
-  it will be reported to the incident client. The impact of network services will
-  be further analyzed and will update the network incident if the network service
-  is impacted.
+  be detected based on the correlation analysis. If a network incident is identified,
+  the "incident report" notification will be reported to the incident client. The impact
+  of network services will be further analyzed and will update the network incident if
+  the network service is impacted.
 
-* Incident client receives the network incident raised by incident server,
-  and acknowledge it.  Client may invoke the "network incident diagnose" rpc
-  to diagnose this network incident to find the probable root causes.
+* Incident client receives the network incident from "incident report" notification
+  raised by incident server, and acknowledge it with "incident ack" rpc operation.
+  Client may further invoke the "incident diagnose" rpc to diagnose this network
+   incident to find the probable root causes.
 
 * If the probable root causes have been found, the incident client can resolve this
-  network incident by invoking the 'network incident resolve' rpc operation,
+  network incident by invoking the 'incident resolve' rpc operation,
   dispatching a ticket or using other network functions (routing calculation,
   configuration, etc.)
 
@@ -465,7 +468,7 @@ A typical workflow of network incident management is as follows:
             +---|--------------|----------+
                 |alarm         | metrics/trace/etc.
                 |              |
-        +--------+--------------+--------------+
+        +-------+--------------+---------------+
         |                                      |
         |   Network in the Autonomous Domain   |
         |                                      |
@@ -485,10 +488,10 @@ for high-level fault management. While network incident management often
 works at the network level, so it is possible to have enough information
 to perform correlation and service impact analysis.  Alarms can work as
 one of data sources of network incident management and may be aggregated
-into few amount of network incidents by correlation analysis, network service
+into few network incidents by correlation analysis, network service
 impact and probable root causes may be determined during incident process.
 
-Network Incident also contains some related alarms,if needed users can query
+Network Incident also contains some related alarms, if needed users can query
 the information of alarms by alarm management interface {{?RFC8632}}.
 In some cases, e.g., cutover scenario, incident server may use alarm
 management interface {{?RFC8632}} to shelve some alarms.
@@ -627,9 +630,9 @@ network incidents.  Multiple alarms, metrics and other information are
 reported to incident server, and the server must analyze it and find
 out the correlations of them, if the correlation match the network incident
 rules, network incident will be identified, and reported to the client.
-If the network incident is repeated for many times, the problem needs to be raised.
-Service impact analysis will be performed if a network incident is identified,
-and the content of network incident will be updated if impacted network
+If the network incident is repeated many times, the problem needs to be raised.
+Service impact analysis SHOULD be performed if a network incident is identified,
+and the content of network incident SHOULD be updated if impacted network
 services are detected.
 
 AI/ML may be used to identify the network incident.  Expert system and online
@@ -637,7 +640,7 @@ learning can help AI to identify the correlation of alarms, metrics
 and other information by time-base correlation algorithm, topology-based
 correlation algorithm, etc.  For example, if the interface is down, then
 many protocol alarms will be reported, AI will think these alarms
-have some correlations.  These correlations will be put into
+have some correlations.  These new correlations will be put into the
 knowledge base, and the network incident will be identified faster according
 to knowledge base next time.
 
@@ -772,7 +775,7 @@ o Operator incident lifecycle: Operators acting upon the network incident with r
 
 From a network incident instance perspective, a network incident can have the
 following lifecycle: 'raised', 'updated', 'cleared'.  When a network
-incident instance is firstly generated, the status is 'raised'.  If the
+incident instance is first generated, the status is 'raised'.  If the
 status changes after the network incident instance is generated, (for example,
 self-diagnosis, diagnosis command issued by the client, or any other
 condition causes the status to change but does not reach the 'cleared'
