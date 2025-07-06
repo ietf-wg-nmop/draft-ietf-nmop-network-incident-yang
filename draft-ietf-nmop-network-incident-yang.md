@@ -946,7 +946,7 @@ at a time.
 ~~~~
 After a network incident is generated, network incident diagnose rpc can be used to
 diagnose the network incident and locate the probable root causes.  On demand Diagnosis
-can be performed on some detection tasks, such as BFD detection, flow
+can be performed on some detection tasks, such as bfd detection, flow
 detection, telemetry collection, short-term threshold alarm,
 configuration error check, or test packet injection.
 
@@ -1073,7 +1073,7 @@ performs an unexpectedly large number of this operation, the result
 might be an excessive use of system resources {{?I-D.ietf-nmop-terminology}}
 on the server side as well as network resources.  Servers MUST
 ensure they have sufficient resources to fulfill this request; otherwise,
-they MUST reject the request.
+they MUST reject the request using RPC errors defined in section 7.6.
 
 "incident-resolve": This RPC operation is used to resolve the network
 incident. If a malicious or buggy client performs an unexpectedly large
@@ -1104,7 +1104,7 @@ registry, defined in {{!RFC6020}}.
 Name: ietf-incident
 Maintained by IANA?  N
 Namespace: urn:ietf:params:xml:ns:yang:ietf-incident
-Prefix: inc
+Prefix: incident
 Reference:  RFC XXXX
 // RFC Ed.: replace XXXX and remove this comment
 ~~~~
@@ -1117,7 +1117,7 @@ Benoit Claise, Oscar Gonzalez de Dios, Adrian Farrel, Mahesh
 Jethanandani, Balazs Lengyel, Dhruv Dhody,Bo Wu, Qiufang Ma, Haomian Zheng,
 YuanYao，Wei Wang, Peng Liu, Zongpeng Du, Zhengqiang Li, Andrew Liu
 , Joe Clark, Roland Scott, Alex Huang Feng, Kai Gao,  Jensen Zhang,
-Ziyang Xing, Mingshuang Jin, Aihua Guo, Zhidong Yin, Guoxiang Liu,Kaichun Wu
+Ziyang Xing, Mingshuang Jin, Aihua Guo, Zhidong Yin, Guoxiang Liu, Kaichun Wu
 for their valuable comments and great input to this work.
 
 --- back
@@ -1252,23 +1252,23 @@ user side or on the network side.
 rpcs:
  +---x incident-acknowledge
  | +---w input
- | +---w incident-no* incident-ref
- | +---w ticket-no? string
+ |     +---w incident-no* incident-ref
+ |     +---w ticket-no? string
  +---x incident-diagnose
  | +---w input
- | | +---w incident-no* incident-ref
- | | +---w ticket-no? string
+ | |   +---w incident-no* incident-ref
+ | |   +---w ticket-no? string
  | +--ro output
- | +--ro task-id? string
+ | |   +--ro task-id? string
  +---x incident-resolve
- +---w input
- +---w incident-no* incident-ref
- +---w ticket-no? string
+ | +---w input
+ |     +---w incident-no* incident-ref
+ |     +---w ticket-no? string
 
  notifications:
  +---n incident-notification
- +--ro incident-no? incident-ref
- +--ro ticket-no? string
+ |   +--ro incident-no? incident-ref
+ |   +--ro ticket-no? string
  +--
 …
 ~~~~
