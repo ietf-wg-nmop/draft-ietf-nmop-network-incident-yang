@@ -142,7 +142,7 @@ orders of magnitude) with the growth of service types and complexity
 and greatly overwhelm OSS platforms {{TMF724A}}; with existing known dependency
 relation between metric, alarm and events at each layer (e.g., packet
 layer or optical layer), it is possible to compress series of
-alarms {{section 3.5.3 of ?RFC8632}} into fewer network incidents and there are many solutions in the
+alarms {{Section 3.5.3 of ?RFC8632}} into fewer network incidents and there are many solutions in the
 market today that essentially do this to some degree. However,
 conventional solutions such as data compression are time-consuming
 and labor-intensive, usually rely on maintenance engineers' experience
