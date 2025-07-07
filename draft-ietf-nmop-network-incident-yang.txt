@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 5 January 2026                                       Telefonica
+Expires: 8 January 2026                                       Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                             4 July 2025
+                                                             7 July 2025
 
 
            A YANG Data Model for Network Incident Management
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 5 January 2026.
+   This Internet-Draft will expire on 8 January 2026.
 
 Copyright Notice
 
@@ -1034,7 +1034,7 @@ Table of Contents
    module ietf-incident {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-incident";
-     prefix inc;
+     prefix incident;
 
      import ietf-yang-types {
        prefix yang;
@@ -1112,7 +1112,7 @@ Table of Contents
          "RFC XXX: YANG module for network incident management.";
      }
 
-     //identities
+     // Identities
 
      identity incident-domain {
        description
@@ -1285,8 +1285,8 @@ Table of Contents
        base incident-class;
        description
          "It indicates the class of the incident is a sla
-                violation, for example high CPU rate may cause
-                a fault in the future.";
+          violation, for example high CPU rate may cause
+          a fault in the future.";
      }
 
      identity acknowledge-error {
@@ -1333,7 +1333,7 @@ Table of Contents
        base diagnose-error;
        base resolve-error;
        description
-         " The permission required for performing specific
+         "The permission required for performing specific
           detection/resolution task is not granted.";
      }
 
@@ -1341,15 +1341,15 @@ Table of Contents
        base diagnose-error;
        base resolve-error;
        description
-         " The diagnosis/resolution time exceeds the preset time.";
+         "The diagnosis/resolution time exceeds the preset time.";
      }
 
      identity resource-unavailable {
        base diagnose-error;
        base resolve-error;
        description
-         " The resource is unavailable to perform
-           the diagnosis/resolution operation.";
+         "The resource is unavailable to perform
+          the diagnosis/resolution operation.";
      }
 
      identity cause-name {
@@ -1357,7 +1357,7 @@ Table of Contents
          "Base identity for the cause name.";
      }
 
-     //typedefs
+     // Typedefs
 
      typedef incident-priority {
        type enumeration {
@@ -1395,13 +1395,13 @@ Table of Contents
          "reference a network incident.";
      }
 
-     //groupings
+     // Groupings
 
      grouping probable-cause-info {
        description
          "The information of probable cause.";
        leaf cause-name {
-         type identityref{
+         type identityref {
            base cause-name;
          }
          description
@@ -1484,13 +1484,13 @@ Table of Contents
          description
            "The type of an incident.";
        }
-           leaf incident-id {
-           type string;
-           description
-             "The unique qualifier of an incident instance type.
-              This leaf is used when the 'type' leaf cannot
-              uniquely identify the incident instance type.  Normally,
-              this is not the case, and this leaf is the empty string.";
+       leaf incident-id {
+         type string;
+         description
+           "The unique qualifier of an incident instance type.
+           This leaf is used when the 'type' leaf cannot
+           uniquely identify the incident instance type.  Normally,
+           this is not the case, and this leaf is the empty string.";
        }
        leaf-list service-instance {
          type string;
@@ -1694,7 +1694,7 @@ Table of Contents
        }
      }
 
-     // rpcs
+     // RPCs
 
      rpc incident-acknowledge {
        description
@@ -1816,7 +1816,7 @@ Table of Contents
        }
      }
 
-     // notifications
+     // Notifications
 
      notification incident-notification {
        description
@@ -1835,7 +1835,7 @@ Table of Contents
        }
      }
 
-     //data definitions
+     // Data definitions
 
      container incidents {
        config false;
@@ -1845,12 +1845,12 @@ Table of Contents
          key "name type incident-id";
          description
            "the information of incident.";
-             leaf incident-no {
-         type uint64;
-         mandatory true;
-         description
+         leaf incident-no {
+           type uint64;
+           mandatory true;
+           description
            "The unique sequence number of the incident instance.";
-       }
+         }
          uses incident-info;
          uses incident-time-info;
        }

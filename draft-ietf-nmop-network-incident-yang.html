@@ -1062,7 +1062,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Hu, et al.</td>
-<td class="center">Expires 5 January 2026</td>
+<td class="center">Expires 8 January 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1075,12 +1075,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-nmop-network-incident-yang-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-07-04" class="published">4 July 2025</time>
+<time datetime="2025-07-07" class="published">7 July 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-01-05">5 January 2026</time></dd>
+<dd class="expires"><time datetime="2026-01-08">8 January 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1138,7 +1138,7 @@ network service health and probable cause analysis.<a href="#section-abstract-2"
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 5 January 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 8 January 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -2371,7 +2371,7 @@ resource-unavailable
 module ietf-incident {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-incident";
-  prefix inc;
+  prefix incident;
 
   import ietf-yang-types {
     prefix yang;
@@ -2449,7 +2449,7 @@ module ietf-incident {
       "RFC XXX: YANG module for network incident management.";
   }
 
-  //identities
+  // Identities
 
   identity incident-domain {
     description
@@ -2622,8 +2622,8 @@ module ietf-incident {
     base incident-class;
     description
       "It indicates the class of the incident is a sla
-             violation, for example high CPU rate may cause
-             a fault in the future.";
+       violation, for example high CPU rate may cause
+       a fault in the future.";
   }
 
   identity acknowledge-error {
@@ -2670,7 +2670,7 @@ module ietf-incident {
     base diagnose-error;
     base resolve-error;
     description
-      " The permission required for performing specific
+      "The permission required for performing specific
        detection/resolution task is not granted.";
   }
 
@@ -2678,15 +2678,15 @@ module ietf-incident {
     base diagnose-error;
     base resolve-error;
     description
-      " The diagnosis/resolution time exceeds the preset time.";
+      "The diagnosis/resolution time exceeds the preset time.";
   }
 
   identity resource-unavailable {
     base diagnose-error;
     base resolve-error;
     description
-      " The resource is unavailable to perform
-        the diagnosis/resolution operation.";
+      "The resource is unavailable to perform
+       the diagnosis/resolution operation.";
   }
 
   identity cause-name {
@@ -2694,7 +2694,7 @@ module ietf-incident {
       "Base identity for the cause name.";
   }
 
-  //typedefs
+  // Typedefs
 
   typedef incident-priority {
     type enumeration {
@@ -2732,13 +2732,13 @@ module ietf-incident {
       "reference a network incident.";
   }
 
-  //groupings
+  // Groupings
 
   grouping probable-cause-info {
     description
       "The information of probable cause.";
     leaf cause-name {
-      type identityref{
+      type identityref {
         base cause-name;
       }
       description
@@ -2821,13 +2821,13 @@ module ietf-incident {
       description
         "The type of an incident.";
     }
-        leaf incident-id {
-        type string;
-        description
-          "The unique qualifier of an incident instance type.
-           This leaf is used when the 'type' leaf cannot
-           uniquely identify the incident instance type.  Normally,
-           this is not the case, and this leaf is the empty string.";
+    leaf incident-id {
+      type string;
+      description
+        "The unique qualifier of an incident instance type.
+        This leaf is used when the 'type' leaf cannot
+        uniquely identify the incident instance type.  Normally,
+        this is not the case, and this leaf is the empty string.";
     }
     leaf-list service-instance {
       type string;
@@ -3031,7 +3031,7 @@ module ietf-incident {
     }
   }
 
-  // rpcs
+  // RPCs
 
   rpc incident-acknowledge {
     description
@@ -3153,7 +3153,7 @@ module ietf-incident {
     }
   }
 
-  // notifications
+  // Notifications
 
   notification incident-notification {
     description
@@ -3172,7 +3172,7 @@ module ietf-incident {
     }
   }
 
-  //data definitions
+  // Data definitions
 
   container incidents {
     config false;
@@ -3182,12 +3182,12 @@ module ietf-incident {
       key "name type incident-id";
       description
         "the information of incident.";
-          leaf incident-no {
-      type uint64;
-      mandatory true;
-      description
+      leaf incident-no {
+        type uint64;
+        mandatory true;
+        description
         "The unique sequence number of the incident instance.";
-    }
+      }
       uses incident-info;
       uses incident-time-info;
     }
