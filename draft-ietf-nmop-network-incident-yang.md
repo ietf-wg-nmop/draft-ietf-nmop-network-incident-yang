@@ -142,8 +142,8 @@ orders of magnitude) with the growth of service types and complexity
 and greatly overwhelm OSS platforms {{TMF724A}}; with existing known dependency
 relation between metric, alarm and events at each layer (e.g., packet
 layer or optical layer), it is possible to compress series of
-alarms {{Section 3.5.3 of ?RFC8632}} into fewer network incidents and there are many solutions in the
-market today that essentially do this to some degree. However,
+alarms {{Section 3.5.3 of ?RFC8632}} into fewer network incidents and there are
+many solutions in the market today that essentially do this to some degree. However,
 conventional solutions such as data compression are time-consuming
 and labor-intensive, usually rely on maintenance engineers' experience
 for data analysis, which, in many cases, result in low processing efficiency,
@@ -177,10 +177,10 @@ incident when it causes degradation of the network services.
 
 In addition, Artificial Intelligence (AI) and Machine Learning (ML)
 are key technologies in the processing of large amounts of data with
-complex data correlations. For example, Neural Network Algorithm or
-Hierarchy Aggregation Algorithm can be used to replace manual alarm
-data correlation. Through online and offline self-learning, these
-algorithms can be continuously optimized to improve the efficiency of
+complex data correlations {{Section 6.1 of ?I-D.irtf-nmrg-ai-challenges}}.
+For example, Neural Network Algorithm or Hierarchy Aggregation Algorithm can be used
+to replace manual alarm data correlation. Through online and offline self-learning,
+these algorithms can be continuously optimized to improve the efficiency of
 fault diagnosis.
 
 This document defines a YANG data model for network incident lifecycle
