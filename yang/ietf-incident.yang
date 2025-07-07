@@ -1,7 +1,7 @@
 module ietf-incident {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-incident";
-  prefix incident;
+  prefix inc;
 
   import ietf-yang-types {
     prefix yang;
