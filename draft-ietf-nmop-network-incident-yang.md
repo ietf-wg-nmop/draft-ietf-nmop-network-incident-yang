@@ -1080,7 +1080,8 @@ incident. If a malicious or buggy client performs an unexpectedly large
 number of this operation, the result might be an excessive use of system
 resources on the server side as well as network resources.  Servers MUST
 ensure they have sufficient resources to fulfill this request;
-otherwise, they MUST reject the request.
+otherwise, they MUST reject the request without compromise on security of
+data-at-rest in the server.
 
 # IANA Considerations
 
