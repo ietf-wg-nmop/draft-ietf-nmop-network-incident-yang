@@ -1105,7 +1105,7 @@ registry, defined in {{!RFC6020}}.
 Name: ietf-incident
 Maintained by IANA?  N
 Namespace: urn:ietf:params:xml:ns:yang:ietf-incident
-Prefix: incident
+Prefix: inc
 Reference:  RFC XXXX
 // RFC Ed.: replace XXXX and remove this comment
 ~~~~
