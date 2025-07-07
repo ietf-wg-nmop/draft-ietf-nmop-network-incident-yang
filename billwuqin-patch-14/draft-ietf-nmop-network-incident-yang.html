@@ -3249,7 +3249,8 @@ incident. If a malicious or buggy client performs an unexpectedly large
 number of this operation, the result might be an excessive use of system
 resources on the server side as well as network resources.  Servers <span class="bcp14">MUST</span>
 ensure they have sufficient resources to fulfill this request;
-otherwise, they <span class="bcp14">MUST</span> reject the request.<a href="#section-9-7" class="pilcrow">¶</a></p>
+otherwise, they <span class="bcp14">MUST</span> reject the request without compromise on security of
+data-at-rest in the server.<a href="#section-9-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
