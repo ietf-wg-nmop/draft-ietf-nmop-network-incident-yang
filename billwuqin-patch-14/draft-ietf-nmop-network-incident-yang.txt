@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 7 January 2026                                       Telefonica
+Expires: 8 January 2026                                       Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                             6 July 2025
+                                                             7 July 2025
 
 
            A YANG Data Model for Network Incident Management
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 January 2026.
+   This Internet-Draft will expire on 8 January 2026.
 
 Copyright Notice
 
@@ -170,11 +170,12 @@ Table of Contents
 
    In addition, Artificial Intelligence (AI) and Machine Learning (ML)
    are key technologies in the processing of large amounts of data with
-   complex data correlations.  For example, Neural Network Algorithm or
-   Hierarchy Aggregation Algorithm can be used to replace manual alarm
-   data correlation.  Through online and offline self-learning, these
-   algorithms can be continuously optimized to improve the efficiency of
-   fault diagnosis.
+   complex data correlations Section 6.1 of
+   [I-D.irtf-nmrg-ai-challenges].  For example, Neural Network Algorithm
+   or Hierarchy Aggregation Algorithm can be used to replace manual
+   alarm data correlation.  Through online and offline self-learning,
+   these algorithms can be continuously optimized to improve the
+   efficiency of fault diagnosis.
 
    This document defines a YANG data model for network incident
    lifecycle management, which improves troubleshooting efficiency, and
@@ -2048,6 +2049,14 @@ Informative References
               in Progress, Internet-Draft, draft-ietf-nmop-terminology-
               19, 18 June 2025, <https://datatracker.ietf.org/doc/html/
               draft-ietf-nmop-terminology-19>.
+
+   [I-D.irtf-nmrg-ai-challenges]
+              François, J., Clemm, A., Papadimitriou, D., Fernandes, S.,
+              and S. Schneider, "Research Challenges in Coupling
+              Artificial Intelligence and Network Management", Work in
+              Progress, Internet-Draft, draft-irtf-nmrg-ai-challenges-
+              05, 18 March 2025, <https://datatracker.ietf.org/doc/html/
+              draft-irtf-nmrg-ai-challenges-05>.
 
    [ITU-T-G-7710]
               "ITU-T G.7710/Y.1701 - Common equipment management
