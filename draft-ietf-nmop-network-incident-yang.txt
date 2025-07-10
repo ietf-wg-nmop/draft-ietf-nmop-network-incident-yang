@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 8 January 2026                                       Telefonica
+Expires: 11 January 2026                                      Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                             7 July 2025
+                                                            10 July 2025
 
 
            A YANG Data Model for Network Incident Management
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 January 2026.
+   This Internet-Draft will expire on 11 January 2026.
 
 Copyright Notice
 
@@ -2297,6 +2297,8 @@ Appendix A.  Examples
 |   +-- ro state enumeration // Incident states such as Creation, Update, Clear
 …
 
+   A.4 Multi-Domain Fault Demarcation
+
    Take multi-domain fault demarcation as an example, when both base
    station incident in the RAN network and Network Link incident in the
    IP network are received and base station incident from user side
@@ -2338,6 +2340,8 @@ RAN Autonomous Domain   |       IP Autonomous Domain
 
                Figure 8: Multi-Domain Fault Demarcation
 
+   A.5 Service Complaint triggered Network Diagnosis
+
                                            Customer
                                            Complaint
                                          | on Service
@@ -2377,6 +2381,10 @@ RAN Autonomous Domain   |       IP Autonomous Domain
    suggestions.
 
 Appendix B.  Changes between Revisions
+
+   v05 - v06
+
+   *  Break down A.3 into 3 sections covering 3 examples.
 
    v04 - v05
 
