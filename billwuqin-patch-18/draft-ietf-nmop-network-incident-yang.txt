@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 9 December 2025                                      Telefonica
+Expires: 11 January 2026                                      Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                             7 June 2025
+                                                            10 July 2025
 
 
            A YANG Data Model for Network Incident Management
@@ -22,9 +22,9 @@ Abstract
    A network incident refers to an unexpected interruption of a network
    service, degradation of a network service quality, or sub-health of a
    network service.  Different data sources including alarms, metrics,
-   and other anomaly information can be aggregated into a few amount of
-   network incidents through data correlation analysis and the service
-   impact analysis.
+   and other anomaly information can be aggregated into a few of network
+   incidents through data correlation analysis and the service impact
+   analysis.
 
    This document defines a YANG Module for the network incident
    lifecycle management.  This YANG module is meant to provide a
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 December 2025.
+   This Internet-Draft will expire on 11 January 2026.
 
 Copyright Notice
 
@@ -127,19 +127,20 @@ Table of Contents
    alarms and performance metrics data reported to Operating Support
    System (OSS) are increased dramatically (in many cases multiple
    orders of magnitude) with the growth of service types and complexity
-   and greatly overwhelm OSS platforms; with existing known dependency
-   relation between metric, alarm and events at each layer (e.g., packet
-   layer or optical layer), it is possible to compress series of alarms
-   into fewer network incidents and there are many solutions in the
-   market today that essentially do this to some degree.  However,
-   conventional solutions such as data compression are time-consuming
-   and labor-intensive, usually rely on maintenance engineers'
-   experience for data analysis, which, in many cases, result in low
-   processing efficiency, inaccurate probable cause identification and
-   duplicated tickets.  It is also difficult to assess the impact of
-   alarms, performance metrics and other anomaly data on network
-   services without known relation across layers of the network topology
-   data or the relation with other network topology data.
+   and greatly overwhelm OSS platforms [TMF724A]; with existing known
+   dependency relation between metric, alarm and events at each layer
+   (e.g., packet layer or optical layer), it is possible to compress
+   series of alarms (see Section 3.5.3 of [RFC8632] ) into fewer network
+   incidents and there are many solutions in the market today that
+   essentially do this to some degree.  However, conventional solutions
+   such as data compression are time-consuming and labor-intensive,
+   usually rely on maintenance engineers' experience for data analysis,
+   which, in many cases, result in low processing efficiency, inaccurate
+   probable cause identification and duplicated tickets.  It is also
+   difficult to assess the impact of alarms, performance metrics and
+   other anomaly data on network services without known relation across
+   layers of the network topology data or the relation with other
+   network topology data.
 
    To address these challenges, a network wide incident-centric solution
    is specified to establish the dependency relation with both network
@@ -148,32 +149,33 @@ Table of Contents
    used to span across layers for multi-layer network troubleshooting.
 
    A network incident refers to an undesired occurrence such as an
-   unexpected interruption of a network service,degradation of a network
-   service quality, or sub-health of a network service
+   unexpected interruption of a network service, degradation of a
+   network service quality, or sub-health of a network service
    [I-D.ietf-nmop-terminology][TMF724A].  Different data sources
    including alarms, metrics, and other anomaly information can be
-   aggregated into one or a few amount of network incidents irrespective
+   aggregated into one or a few of network incidents irrespective of the
    layer through correlation analysis and the service impact analysis.
    For example, if the protocol-related interface fails to work
    properly, large amount of alarms may be reported to upper layer
-   management system since a lot of network services may be affected by
-   the interface, but only one aggregated network incident pertaining to
-   the abnormal interface will be reported.  A network incident may also
-   be raised through the analysis of some network performance metrics,
-   for example, as described in SAIN [RFC9417], network services can be
-   decomposed to several sub-services, specific metrics are monitored
-   for each sub- service, symptoms will occur if services/sub-services
-   are unhealthy (after analyzing metrics), these symptoms may give rise
-   to a network incident when it causes degradation of the network
-   services.
+   management system.  Although a lot of network services may be
+   affected by the interface, only one aggregated network incident
+   pertaining to the abnormal interface will be reported.  A network
+   incident may also be raised through the analysis of some network
+   performance metrics, for example, as described in SAIN [RFC9417],
+   network services can be decomposed to several sub-services, specific
+   metrics are monitored for each sub- service.  Therefore symptoms will
+   occur if services/sub-services are unhealthy (after analyzing
+   metrics), in addition, these symptoms may give rise to a network
+   incident when it causes degradation of the network services.
 
    In addition, Artificial Intelligence (AI) and Machine Learning (ML)
    are key technologies in the processing of large amounts of data with
-   complex data correlations.  For example, Neural Network Algorithm or
-   Hierarchy Aggregation Algorithm can be used to replace manual alarm
-   data correlation.  Through online and offline self-learning, these
-   algorithms can be continuously optimized to improve the efficiency of
-   fault diagnosis.
+   complex data correlations (see Section 6.1 of
+   [I-D.irtf-nmrg-ai-challenges] ).  For example, Neural Network
+   Algorithm or Hierarchy Aggregation Algorithm can be used to replace
+   manual alarm data correlation.  Through online and offline self-
+   learning, these algorithms can be continuously optimized to improve
+   the efficiency of fault diagnosis.
 
    This document defines a YANG data model for network incident
    lifecycle management, which improves troubleshooting efficiency, and
@@ -189,7 +191,7 @@ Table of Contents
    capitals, as shown here.
 
    The following terms are defined in [RFC8632],
-   [I-D.ietf-nmop-terminology] and are not redefined here:
+   [RFC9543],[I-D.ietf-nmop-terminology] and are not redefined here:
 
    *  alarm
 
@@ -204,6 +206,10 @@ Table of Contents
    *  anomaly
 
    *  cause
+
+   *  SLA (Service Level Agreement)
+
+   *  SLO (Service Level Objective)
 
    The following terms are defined in this document:
 
@@ -220,7 +226,7 @@ Table of Contents
       acknowledgement, diagnosis, and resolution.  Different from the
       traditional fault management, it take various different data
       sources including alarms, metrics, and other anomaly information
-      and aggregate them into one or a few amount of network incidents
+      and aggregate them into one or a few network incidents
       irrespective of layer through correlation analysis and the service
       impact analysis.  One fault on the network device can cause
       multiple network incidents, e.g., multiple service offerings that
@@ -228,10 +234,10 @@ Table of Contents
       increased latency as redundant routes become more congested.  A
       network incident might impact one or a set of network services.
       The network incident can also been seen as customer incident
-      [TMF724A] when service SLA associated with one specific network
-      service and network incident has been affected.  How customer
-      incident is translated from the network incident is beyond scope
-      of this document.
+      [TMF724A] when service SLA [RFC9543] associated with one specific
+      network service and network incident has been affected.  How
+      customer incident is translated from the network incident is
+      beyond scope of this document.
 
    Incident management system:  An entity which implements network
       incident management.  It includes (but not limited to) incident
@@ -250,8 +256,8 @@ Table of Contents
       notification, store and query the information of network incidents
       for data analysis.  It has no control on incident server.
 
-   Probable cause:  A factor is considered the probable cause of a
-      problem if removing it fully resolves an ongoing incident --
+   Probable root cause:  A factor is considered the probable root cause
+      of a problem if removing it fully resolves an ongoing incident --
       specifically regarding network or service impairments and their
       related consequential failures and symptoms -- and prevents the
       problem from recurring.  Causality is defined as the
@@ -263,25 +269,14 @@ Table of Contents
       fault location and initiate a repair action, such as a broken
       cable or a misconnection) and _secondary failures_ (i.e., a
       consequential failure, such as an upper level service that has
-      gone down) [ITU-T-G-7710].
+      gone down) [ITU-T-G-7710] Since one Fault may give rise to another
+      Fault or Problem, a probable root cause is commonly meant to
+      describe the original event or combination of circumstances that
+      is the foundation of all related Faults.
 
       Conversely, a causal factor is a contributing action that
       influences the outcome of an incident or event but is not the
       probably cause.
-
-      If further details about the probable cause are required (e.g.,
-      incident diagnosis based on similar posterior cases, large-scale
-      correction of the network design using a failure and defect mode
-      analysis), probable cause data can be further refined using
-      additional qualifier, such as _Proven cause_ (i.e. one that has
-      been established through tangible evidence and objective data) and
-      _Assumed cause_ (i.e. hypothesis or theory regarding the origin of
-      the malfunction, based on observations, past experiences, or
-      general knowledge, but which has not yet been conclusively proven)
-      to provide a confidence level.  Additionally, categories such as
-      _Exogenous cause_, _Human cause_, _Random cause_, and _External
-      systemic cause_ can be used for guidance on the attribution of the
-      incident.
 
 3.  Sample Use Cases
 
@@ -310,9 +305,9 @@ Table of Contents
 
    With the help of the network incident management, massive alarms can
    be aggregated into a few network incidents based on service impact
-   analysis, the number of trouble tickets will be reduced.  At the same
-   time, the efficiency of network troubleshooting can be largely
-   improved. which address the pain point of traditional trouble ticket
+   analysis, so the number of trouble tickets will be reduced.  At the
+   same time, the efficiency of network troubleshooting can be largely
+   improved, which address the pain point of traditional trouble ticket
    dispatching.
 
 3.2.  Incident Derivation from L3VPN Services Unavailability
@@ -321,13 +316,14 @@ Table of Contents
    the network reference points where network services can be delivered
    or are being delivered to customers.
 
-   SLOs can be used to characterize the ability of a particular set of
-   nodes to communicate according to certain measurable expectations
-   [I-D.ietf-ippm-pam].  For example, an SLA might state that any given
-   SLO applies to at least a certain percentage of packets, allowing for
-   a certain level of packet loss and exceeding packet delay threshold
-   to take place.  For example, an SLA might establish a multi-tiered
-   SLO of end-to-end latency as follows:
+   SLOs [RFC9543] can be used to characterize the ability of a
+   particular set of nodes to communicate according to certain
+   measurable expectations [I-D.ietf-ippm-pam].  For example, an SLA
+   might state that any given SLO applies to at least a certain
+   percentage of packets, allowing for a certain level of packet loss
+   and exceeding packet delay threshold to take place.  For example, an
+   SLA might establish a multi-tiered SLO of end-to-end latency as
+   follows:
 
    *  Not to exceed 30 ms for any packet.
 
@@ -335,8 +331,8 @@ Table of Contents
 
    *  Not to exceed 20 ms for 99% of packets.
 
-   This SLA information can be bound with two or multiple SAPs defined
-   in [RFC9408], so that the service orchestration layer can use these
+   This SLA information can be bound with one or more SAPs defined in
+   [RFC9408], so that the service orchestration layer can use these
    interfaces to commit the delivery of a service on specific point-to-
    point service topology or point to multi-point topology.  When
    specific levels of a threshold of an SLO is violated, a specific
@@ -348,37 +344,38 @@ Table of Contents
    When a fault occurs in a network that contains both packet-layer
    devices and optical-layer devices, it may cause correlative faults in
    both layers, i.e., packet layer and optical layer.  Specifically,
-   fault propagation could be classified into three typical types.
-   First, fault occurs at a packet-layer device might further cause
+   faults propagation could be classified into three typical types.
+   First, faults occuring at a packet-layer device might further cause
    fault (e.g., Wavelength Division Multiplexing (WDM) client fault) at
-   an optical-layer device.  Second, fault occurs at an optical-layer
+   an optical-layer device.  Second, faults occuring at an optical-layer
    device might further cause fault (e.g., Layer 3 link down) at a
-   packet- layer device.  Third, fault occurs at the inter-layer link
+   packet- layer device.  Third, faults occuring at the inter-layer link
    between a packet-layer device and an optical-layer device might
    further cause faults at both devices.  Multiple operation teams are
    usually needed to first analyze huge amount of alarms (triggered by
    the above mentioned faults) from single network layer (either packet
-   layer or optical layer)independently, then cooperate to locate the
-   probable cause through manually analyzing multi-layer topology data
-   and service data, thus fault demarcation becomes more complex and
-   time-consuming in multi-layer scenario than in single-layer scenario.
+   layer or optical layer) independently, then cooperate to locate the
+   probable root cause through manually analyzing multi-layer topology
+   data and service data, thus fault demarcation becomes more complex
+   and time-consuming in multi-layer scenario than in single-layer
+   scenario.
 
    With the help of network incident management, the management systems
-   first automatically analyze probable cause of the alarms at each
-   single network layer and report corresponding network incidents to
-   the multi-layer,multi-domain management system, then such management
-   system comprehensively analyzes the topology relationship and service
-   relationship between the probable causes of both layers.  The inner
-   relationship among the alarms will be identified and finally the
-   probable cause will be located among multiple layers.  By cooperating
-   with the integrated Optical time-domain reflectometer (OTDR) within
-   the network device, we can determine the target optical exchange
-   station before site visits.  Therefore, the overall fault demarcation
-   process is simplified and automated, the analyze result could be
-   reported and visualized in time.  In this case, operation teams only
-   have to confirm the analyzing result and dispatch site engineers to
-   perform relative maintenance actions (e.g., splice fiber) based on
-   the probable cause.
+   first automatically analyze probable root cause of the alarms at each
+   layer and report corresponding network incidents to the multi-layer,
+   multi-domain management system, then such management system
+   comprehensively analyzes the topology relationship and service
+   relationship between the probable root causes of both layers.  The
+   inner relationship among the alarms will be identified and finally
+   the probable root cause will be located among multiple layers.  By
+   cooperating with the integrated Optical time-domain reflectometer
+   (OTDR) within the network device, we can determine the target optical
+   exchange station before site visits.  Therefore, the overall fault
+   demarcation process is simplified and automated, the analyze result
+   could be reported and visualized in time.  In this case, operation
+   teams only have to confirm the analyzing result and dispatch site
+   engineers to perform relative maintenance actions (e.g., splice
+   fiber) based on the probable root cause.
 
 4.  Network Incident Management Architecture
 
@@ -402,7 +399,7 @@ Table of Contents
               |                                           |
               |                                           |
               +-------------------------------+-----------+
-                    ^       ^Abnormal         ^
+                    ^       ^Abnormal         ^Network Performance
                     |Alarm  |Operations       |Metrics
                     |Report |Report           |/Telemetry
                     |       |                 V
@@ -418,41 +415,43 @@ Table of Contents
    Two key components for the incident management are incident client
    and incident server.
 
-   Incident server can be deployed in network operation
-   platforms,network analytic platforms, controllers [RFC8969] and
-   provides functionalities such as network incident identification,
-   report, diagnosis, resolution, or querying for network incident
-   lifecycle management.
+   Incident server can be deployed in network operation platforms,
+   network analytic platforms, controllers [RFC8969] and provides
+   functionalities such as network incident identification, report,
+   diagnosis, resolution, or querying for network incident lifecycle
+   management.
 
    Incident client can be deployed either in the same network operation
    platforms, network analytic platforms, controllers as the incident
    server within a single domain, or at the upper layer network
    operation platforms, network analytic platforms or controllers
-   (i.e.,multi-domain controllers) , invoke the functionalities provided
-   by incident server to meet the business requirements of fault
-   management.  The entire network incident lifecycle management can be
-   independent from or not under control of the network OSS or other
-   business system of operators.
+   (i.e.,multi-domain controllers) , to invoke the functionalities
+   provided by incident server to meet the business requirements of
+   fault management.  The entire network incident lifecycle management
+   can be independent from or not under control of the network OSS or
+   other business system of operators.
 
    A typical workflow of network incident management is as follows:
 
-   *  Some alarms or abnormal operations, network performance metrics
-      are reported from the network.  Incident server receives these
-      alarms/abnormal operations/metrics and try to analyze the
+   *  Some alarm report or abnormal operations, network performance
+      metrics are reported from the network.  Incident server receives
+      these alarms/abnormal operations/metrics and try to analyze the
       correlation of them, e.g., generate a symptom if some metrics are
-      evaluated as unhealthy, the probable cause can be detected based
-      on correlation analysis.  If a network incident is identified, it
-      will be reported to the incident client.  The impact of network
-      services will be further analyzed and will update the network
-      incident if the network service is impacted.
+      evaluated as unhealthy, the probable root cause can be detected
+      based on the correlation analysis.  If a network incident is
+      identified, the "incident report" notification will be reported to
+      the incident client.  The impact of network services will be
+      further analyzed and will update the network incident if the
+      network service is impacted.
 
-   *  Incident client receives the network incident raised by incident
-      server, and acknowledge it.  Client may invoke the "network
-      incident diagnose" rpc to diagnose this network incident to find
-      the probable causes.
+   *  Incident client receives the network incident from "incident
+      report" notification raised by incident server, and acknowledge it
+      with "incident ack" rpc operation.  Client may further invoke the
+      "incident diagnose" rpc to diagnose this network incident to find
+      the probable root causes.
 
-   *  If the probable causes have been found, the incident client can
-      resolve this network incident by invoking the 'network incident
+   *  If the probable root causes have been found, the incident client
+      can resolve this network incident by invoking the 'incident
       resolve' rpc operation, dispatching a ticket or using other
       network functions (routing calculation, configuration, etc.)
 
@@ -479,7 +478,7 @@ Table of Contents
                         +---|--------------|----------+
                             |alarm         | metrics/trace/etc.
                             |              |
-                    +--------+--------------+--------------+
+                    +-------+--------------+---------------+
                     |                                      |
                     |   Network in the Autonomous Domain   |
                     |                                      |
@@ -490,21 +489,21 @@ Table of Contents
    A YANG model for the alarm management [RFC8632] defines a standard
    interface to manage the lifecycle of alarms.  Alarms represent the
    undesirable state of network resources [I-D.ietf-nmop-terminology],
-   alarm data model also defines the probable causes and impacted
+   alarm data model also defines the probable root causes and impacted
    services fields, but there may lack sufficient information to
    determine them in lower layer system (mainly in devices level), so
    alarms do not always tell the status of network services or
-   necessarily point to the probable causes of problems.  As described
-   in [RFC8632], alarm management act as a starting point for high-level
-   fault management.  While network incident management often works at
-   the network level, so it is possible to have enough information to
-   perform correlation and service impact analysis.  Alarms can work as
-   one of data sources of network incident management and may be
-   aggregated into few amount of network incidents by correlation
-   analysis, network service impact and probable causes may be
+   necessarily point to the probable root causes of problems.  As
+   described in [RFC8632], alarm management act as a starting point for
+   high-level fault management.  While network incident management often
+   works at the network level, so it is possible to have enough
+   information to perform correlation and service impact analysis.
+   Alarms can work as one of data sources of network incident management
+   and may be aggregated into few network incidents by correlation
+   analysis, network service impact and probable root causes may be
    determined during incident process.
 
-   Network Incident also contains some related alarms,if needed users
+   Network Incident also contains some related alarms, if needed users
    can query the information of alarms by alarm management interface
    [RFC8632].  In some cases, e.g., cutover scenario, incident server
    may use alarm management interface [RFC8632] to shelve some alarms.
@@ -589,7 +588,7 @@ Table of Contents
    W3C defines a common trace context [W3C-Trace-Context] for
    distributed system tracing, [I-D.ietf-netconf-trace-ctx-extension]
    defines a netconf extension for [W3C-Trace-Context] and
-   [I-D.ietf-opsawg-configuration-tracing] defines a mechanism for
+   [I-D.ietf-netconf-configuration-tracing] defines a mechanism for
    configuration tracing.  If some errors occur when services are
    deploying, it's very easy to identify these errors by distributed
    system tracing, and a network incident should be reported.
@@ -643,19 +642,19 @@ Table of Contents
    are reported to incident server, and the server must analyze it and
    find out the correlations of them, if the correlation match the
    network incident rules, network incident will be identified, and
-   reported to the client.  If the network incident is repeated for many
-   times, the problem needs to be raised.  Service impact analysis will
-   be performed if a network incident is identified, and the content of
-   network incident will be updated if impacted network services are
-   detected.
+   reported to the client.  If the network incident is repeated many
+   times, the problem needs to be raised.  Service impact analysis
+   SHOULD be performed if a network incident is identified, and the
+   content of network incident SHOULD be updated if impacted network
+   services are detected.
 
    AI/ML may be used to identify the network incident.  Expert system
    and online learning can help AI to identify the correlation of
    alarms, metrics and other information by time-base correlation
    algorithm, topology-based correlation algorithm, etc.  For example,
    if the interface is down, then many protocol alarms will be reported,
-   AI will think these alarms have some correlations.  These
-   correlations will be put into knowledge base, and the network
+   AI will think these alarms have some correlations.  These new
+   correlations will be put into the knowledge base, and the network
    incident will be identified faster according to knowledge base next
    time.
 
@@ -737,27 +736,27 @@ Table of Contents
 
    After a network incident is reported to the network incident client,
    the incident client MAY diagnose the incident to determine the
-   probable cause.  Some diagnosis operations may affect the running
-   network services.  The incident client can choose not to perform that
-   diagnosis operation after determining the impact is not trivial.  The
-   incident server can also perform self-diagnosis.  However, the self-
-   diagnosis MUST not affect the running network services.  Possible
-   diagnosis methods include link reachability detection, link quality
-   detection, alarm/log analysis, and short-term fine-grained monitoring
-   of network quality metrics, etc.
+   probable root cause.  Some diagnosis operations may affect the
+   running network services.  The incident client can choose not to
+   perform that diagnosis operation after determining the impact is not
+   trivial.  The incident server can also perform self-diagnosis.
+   However, the self-diagnosis MUST not affect the running network
+   services.  Possible diagnosis methods include link reachability
+   detection, link quality detection, alarm/log analysis, and short-term
+   fine-grained monitoring of network quality metrics, etc.
 
 5.3.  Incident Resolution
 
-   After the probable cause is diagnosed, the incident client MAY
+   After the probable root cause is diagnosed, the incident client MAY
    resolve the network incident.  The incident client MAY choose resolve
    the network incident by invoking other functions, such as routing
    calculation function, configuration function, dispatching a ticket or
    asking the server to resolve it.  Generally, the incident client
    would attempt to directly resolve the probable cause.  If the
-   probable cause cannot be resolved, an alternative solution SHOULD be
-   required.  For example, if a network incident caused by a physical
-   component failure, it cannot be automatically resolved, the standby
-   link can be used to bypass the faulty component.
+   probable root cause cannot be resolved, an alternative solution
+   SHOULD be required.  For example, if a network incident caused by a
+   physical component failure, it cannot be automatically resolved, the
+   standby link can be used to bypass the faulty component.
 
    Incident server will monitor the status of the network incident, if
    the faults are fixed, the incident server will update the status of
@@ -792,10 +791,10 @@ Table of Contents
 
    From a network incident instance perspective, a network incident can
    have the following lifecycle: 'raised', 'updated', 'cleared'.  When a
-   network incident instance is firstly generated, the status is
-   'raised'.  If the status changes after the network incident instance
-   is generated, (for example, self-diagnosis, diagnosis command issued
-   by the client, or any other condition causes the status to change but
+   network incident instance is first generated, the status is 'raised'.
+   If the status changes after the network incident instance is
+   generated, (for example, self-diagnosis, diagnosis command issued by
+   the client, or any other condition causes the status to change but
    does not reach the 'cleared' level.) , the status changes to
    'updated'.  When a network incident is successfully resolved, the
    status changes to 'cleared'.
@@ -809,12 +808,13 @@ Table of Contents
    When a network incident instance is generated, the operator SHOULD
    acknowledge the network incident with 'incident-acknowledge' rpc.
    And then the operator attempts to diagnose the network incident with
-   'incident-diagnose' rpc (for example, find out the probable cause and
-   affected components).  Diagnosis is not mandatory.  If the probable
-   cause and affected components are known when the network incident is
-   generated, diagnosis is not required.  After locating the probable
-   cause and affected components, operator can try to resolve the
-   network incident by invoking 'incident-resolve' rpc.
+   'incident-diagnose' rpc (for example, find out the probable root
+   cause and affected components).  Diagnosis is not mandatory.  If the
+   probable root cause and affected components are known when the
+   network incident is generated, diagnosis is not required.  After
+   locating the probable root cause and affected components, operator
+   can try to resolve the network incident by invoking 'incident-
+   resolve' rpc.
 
 7.  Incident Data Model Design
 
@@ -823,7 +823,7 @@ Table of Contents
    There is one YANG module in the "ietf-incident" model, which defines
    technology independent abstraction of network incident construct for
    alarm, log, performance metrics, etc.  The information reported in
-   the network incident include probable cause, priority,impact,
+   the network incident include probable root cause, priority, impact,
    suggestion, etc.
 
    At the top of "ietf-incident" module is the Network Incident.
@@ -851,19 +851,19 @@ Table of Contents
          +--ro category            identityref
          +--ro detail?             string
          +--ro resolve-advice?     String
-            +--ro sources
-           ...
-           +--ro probable-causes
-           ...
-           +--ro probable-events
-           ...
-           +--ro events
-           ...
-           +--ro raise-time? yang:date-and-time
-           +--ro occur-time? yang:date-and-time
-           +--ro clear-time? yang:date-and-time
-           +--ro ack-time? yang:date-and-time
-           +--ro last-updated? yang:date-and-time
+         +--ro sources
+         ...
+         +--ro probable-causes
+         ...
+         +--ro probable-events
+         ...
+         +--ro events
+         ...
+         +--ro raise-time? yang:date-and-time
+         +--ro occur-time? yang:date-and-time
+         +--ro clear-time? yang:date-and-time
+         +--ro ack-time? yang:date-and-time
+         +--ro last-updated? yang:date-and-time
  rpcs:
    +---x incident-acknowledge
    ...
@@ -925,10 +925,6 @@ Table of Contents
           |        |     +--ro resource? leafref
           |        |     +--ro alarm-type-id? leafref
           |        |     +--ro alarm-type-qualifier? leafref
-          |        +--:(notification)
-          |        +--:(log)
-          |        +--:(KPI)
-          |        +--:(unknown)
           +--ro time? yang:date-and-time
 
    A general notification, incident-notification, is provided here.
@@ -937,9 +933,9 @@ Table of Contents
    performs self diagnosis or the incident client uses the interfaces
    provided by the incident server to deliver diagnosis and resolution
    actions, the notification update behavior is triggered, for example,
-   the probable cause objects and affected objects are updated.  When a
-   network incident is successfully resolved, the status of the network
-   incident would be set to 'cleared'.
+   the probable root cause objects and affected objects are updated.
+   When a network incident is successfully resolved, the status of the
+   network incident would be set to 'cleared'.
 
 7.3.  Incident Acknowledge
 
@@ -948,13 +944,14 @@ Table of Contents
    |  |  +---w incident-no*
    |  |          -> /inc:incidents/inc:incident/inc:incident-no
 
-   After an incident is generated, updated, or cleared, (In some
-   scenarios where automatic diagnosis and resolution are supported, the
-   status of an incident may be updated multiple times or even
-   automatically resolved.)  The operator needs to confirm the incident
-   to ensure that the client knows the incident.
+   After an incident is generated, updated, or cleared, the operator
+   needs to confirm the incident to ensure that the client knows the
+   incident.
 
-   The incident-acknowledge rpc can confirm multiple incidents at a time
+   In some scenarios where automatic diagnosis and resolution are
+   supported, the status of an incident may be updated multiple times or
+   even automatically resolved.  Therefore the incident-acknowledge rpc
+   can confirm multiple incidents at a time.
 
 7.4.  Incident Diagnose
 
@@ -965,8 +962,8 @@ Table of Contents
 
    After a network incident is generated, network incident diagnose rpc
    can be used to diagnose the network incident and locate the probable
-   causes.  On demand Diagnosis can be performed on some detection
-   tasks, such as BFD detection, flow detection, telemetry collection,
+   root causes.  On demand Diagnosis can be performed on some detection
+   tasks, such as bfd detection, flow detection, telemetry collection,
    short-term threshold alarm, configuration error check, or test packet
    injection.
 
@@ -981,7 +978,7 @@ Table of Contents
     |  +---w incident-no*
     |          -> /inc:incidents/inc:incident/inc:incident-no
 
-   After the probable causes and impacts are determined, incident-
+   After the probable root causes and impacts are determined, incident-
    resolve rpc can be used to resolve the incident (if the server can
    resolve it).  How to resolve an incident instance is out of the scope
    of this document.
@@ -1125,7 +1122,7 @@ Table of Contents
          "RFC XXX: YANG module for network incident management.";
      }
 
-     //identities
+     // Identities
 
      identity incident-domain {
        description
@@ -1298,8 +1295,8 @@ Table of Contents
        base incident-class;
        description
          "It indicates the class of the incident is a sla
-                violation, for example high CPU rate may cause
-                a fault in the future.";
+          violation, for example high CPU rate may cause
+          a fault in the future.";
      }
 
      identity acknowledge-error {
@@ -1346,7 +1343,7 @@ Table of Contents
        base diagnose-error;
        base resolve-error;
        description
-         " The permission required for performing specific
+         "The permission required for performing specific
           detection/resolution task is not granted.";
      }
 
@@ -1354,15 +1351,15 @@ Table of Contents
        base diagnose-error;
        base resolve-error;
        description
-         " The diagnosis/resolution time exceeds the preset time.";
+         "The diagnosis/resolution time exceeds the preset time.";
      }
 
      identity resource-unavailable {
        base diagnose-error;
        base resolve-error;
        description
-         " The resource is unavailable to perform
-           the diagnosis/resolution operation.";
+         "The resource is unavailable to perform
+          the diagnosis/resolution operation.";
      }
 
      identity cause-name {
@@ -1370,7 +1367,7 @@ Table of Contents
          "Base identity for the cause name.";
      }
 
-     //typedefs
+     // Typedefs
 
      typedef incident-priority {
        type enumeration {
@@ -1408,13 +1405,13 @@ Table of Contents
          "reference a network incident.";
      }
 
-     //groupings
+     // Groupings
 
      grouping probable-cause-info {
        description
          "The information of probable cause.";
        leaf cause-name {
-         type identityref{
+         type identityref {
            base cause-name;
          }
          description
@@ -1497,13 +1494,13 @@ Table of Contents
          description
            "The type of an incident.";
        }
-           leaf incident-id {
-           type string;
-           description
-             "The unique qualifier of an incident instance type.
-              This leaf is used when the 'type' leaf cannot
-              uniquely identify the incident instance type.  Normally,
-              this is not the case, and this leaf is the empty string.";
+       leaf incident-id {
+         type string;
+         description
+           "The unique qualifier of an incident instance type.
+           This leaf is used when the 'type' leaf cannot
+           uniquely identify the incident instance type.  Normally,
+           this is not the case, and this leaf is the empty string.";
        }
        leaf-list service-instance {
          type string;
@@ -1702,24 +1699,12 @@ Table of Contents
                  }
                }
              }
-             case notification {
-               //TODO
-             }
-             case log {
-               //TODO
-             }
-             case KPI {
-               //TODO
-             }
-             case unknown {
-               //TODO
-             }
            }
          }
        }
      }
 
-     // rpcs
+     // RPCs
 
      rpc incident-acknowledge {
        description
@@ -1841,7 +1826,7 @@ Table of Contents
        }
      }
 
-     // notifications
+     // Notifications
 
      notification incident-notification {
        description
@@ -1860,7 +1845,7 @@ Table of Contents
        }
      }
 
-     //data definitions
+     // Data definitions
 
      container incidents {
        config false;
@@ -1870,12 +1855,12 @@ Table of Contents
          key "name type incident-id";
          description
            "the information of incident.";
-             leaf incident-no {
-         type uint64;
-         mandatory true;
-         description
+         leaf incident-no {
+           type uint64;
+           mandatory true;
+           description
            "The unique sequence number of the incident instance.";
-       }
+         }
          uses incident-info;
          uses incident-time-info;
        }
@@ -1918,19 +1903,21 @@ Table of Contents
    operations and their sensitivity/vulnerability:
 
    "incident-diagnose": This RPC operation performs network incident
-   diagnosis and probable cause locating.  If a malicious or buggy
+   diagnosis and probable root cause locating.  If a malicious or buggy
    client performs an unexpectedly large number of this operation, the
    result might be an excessive use of system resources
    [I-D.ietf-nmop-terminology] on the server side as well as network
    resources.  Servers MUST ensure they have sufficient resources to
-   fulfill this request; otherwise, they MUST reject the request.
+   fulfill this request; otherwise, they MUST reject the request using
+   RPC errors defined in section 7.6.
 
    "incident-resolve": This RPC operation is used to resolve the network
    incident.  If a malicious or buggy client performs an unexpectedly
    large number of this operation, the result might be an excessive use
    of system resources on the server side as well as network resources.
    Servers MUST ensure they have sufficient resources to fulfill this
-   request; otherwise, they MUST reject the request.
+   request; otherwise, they MUST reject the request without compromise
+   on security of data-at-rest in the server.
 
 10.  IANA Considerations
 
@@ -1962,32 +1949,9 @@ Acknowledgements
    Jethanandani, Balazs Lengyel, Dhruv Dhody,Bo Wu, Qiufang Ma, Haomian
    Zheng, YuanYao，Wei Wang, Peng Liu, Zongpeng Du, Zhengqiang Li, Andrew
    Liu , Joe Clark, Roland Scott, Alex Huang Feng, Kai Gao, Jensen
-   Zhang, Ziyang Xing for their valuable comments and great input to
-   this work.  Speical thanks to the following participants:
-
-   name: MingShuang Jin
-   org: Huawei Technologies
-   email: jinmingshuang@huawei.com
-
-   name: Chunchi Liu
-   org: Huawei Technologies
-   email: liuchunchi@huawei.com
-
-   name: Aihua Guo
-   org: Futurewei Technologies
-   email: aihuaguo.ietf@gmail.com
-
-   name: Zhidong Yin
-   org: Huawei
-   email: yinzhidong@huawei.com
-
-   name: Guoxiang Liu
-   org: Huawei
-   email: liuguoxiang@huawei.com
-
-   name: Kaichun Wu
-   org: Huawei
-   email: wukaichun@huawei.com
+   Zhang, Ziyang Xing, Mingshuang Jin, Aihua Guo, Zhidong Yin, Guoxiang
+   Liu, Kaichun Wu for their valuable comments and great input to this
+   work.
 
 References
 
@@ -2064,6 +2028,14 @@ Informative References
               1 December 2023, <https://datatracker.ietf.org/doc/html/
               draft-ietf-ippm-pam-09>.
 
+   [I-D.ietf-netconf-configuration-tracing]
+              Quilbeuf, J., Claise, B., Graf, T., Lopez, D., and S.
+              Qiong, "External Trace ID for Configuration Tracing", Work
+              in Progress, Internet-Draft, draft-ietf-netconf-
+              configuration-tracing-05, 18 March 2025,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-netconf-
+              configuration-tracing-05>.
+
    [I-D.ietf-netconf-trace-ctx-extension]
               Gagliano, R., Larsson, K., and J. Lindblad, "NETCONF
               Extension to support Trace Context propagation", Work in
@@ -2076,11 +2048,16 @@ Informative References
               Davis, N., Farrel, A., Graf, T., Wu, Q., and C. Yu, "Some
               Key Terms for Network Fault and Problem Management", Work
               in Progress, Internet-Draft, draft-ietf-nmop-terminology-
-              17, 18 May 2025, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-nmop-terminology-17>.
+              19, 18 June 2025, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-nmop-terminology-19>.
 
-   [I-D.ietf-opsawg-configuration-tracing]
-              "*** BROKEN REFERENCE ***".
+   [I-D.irtf-nmrg-ai-challenges]
+              François, J., Clemm, A., Papadimitriou, D., Fernandes, S.,
+              and S. Schneider, "Research Challenges in Coupling
+              Artificial Intelligence and Network Management", Work in
+              Progress, Internet-Draft, draft-irtf-nmrg-ai-challenges-
+              05, 18 March 2025, <https://datatracker.ietf.org/doc/html/
+              draft-irtf-nmrg-ai-challenges-05>.
 
    [ITU-T-G-7710]
               "ITU-T G.7710/Y.1701 - Common equipment management
@@ -2117,6 +2094,12 @@ Informative References
               RFC 9418, DOI 10.17487/RFC9418, July 2023,
               <https://www.rfc-editor.org/rfc/rfc9418>.
 
+   [RFC9543]  Farrel, A., Ed., Drake, J., Ed., Rokui, R., Homma, S.,
+              Makhijani, K., Contreras, L., and J. Tantsura, "A
+              Framework for Network Slices in Networks Built from IETF
+              Technologies", RFC 9543, DOI 10.17487/RFC9543, March 2024,
+              <https://www.rfc-editor.org/rfc/rfc9543>.
+
    [TMF724A]  "Incident Management API Profile v1.0.0", 2023,
               <https://www.tmforum.org/resources/standard/tmf724a-
               incident-management-api-profile-v1-0-0/>.
@@ -2131,9 +2114,9 @@ Appendix A.  Examples
    A.1 Network Incident management with specific network topology and
    the network service
 
-   In this example, we show an incident that an incident that are
-   associated with the node ‘D1’, the network topology ‘L2-Topo’ and the
-   domain ‘FAN’. The probable cause is also analysed.
+   In this example, we show a nework incident that are associated with
+   the node ‘D1’, the network topology ‘L2-Topo’ and the domain ‘FAN’.
+   The probable root cause is also analysed.
 
    {
      "incident-no": 56433218,
@@ -2252,30 +2235,30 @@ Appendix A.  Examples
    rpcs:
     +---x incident-acknowledge
     | +---w input
-    | +---w incident-no* incident-ref
-    | +---w ticket-no? string
+    |     +---w incident-no* incident-ref
+    |     +---w ticket-no? string
     +---x incident-diagnose
     | +---w input
-    | | +---w incident-no* incident-ref
-    | | +---w ticket-no? string
+    | |   +---w incident-no* incident-ref
+    | |   +---w ticket-no? string
     | +--ro output
-    | +--ro task-id? string
+    | |   +--ro task-id? string
     +---x incident-resolve
-    +---w input
-    +---w incident-no* incident-ref
-    +---w ticket-no? string
+    | +---w input
+    |     +---w incident-no* incident-ref
+    |     +---w ticket-no? string
 
     notifications:
     +---n incident-notification
-    +--ro incident-no? incident-ref
-    +--ro ticket-no? string
+    |   +--ro incident-no? incident-ref
+    |   +--ro ticket-no? string
     +--
    …
 
    A.3 Intent based Networking with incident diagnosis task list
 
    In this document, incident-diagnosis RPC defined in in "ietf-
-   incident" module can be used to identify probable causes; and an
+   incident" module can be used to identify probable root causes; and an
    incident update notification can be triggered to report the diagnosis
    status if successful.
 
@@ -2294,29 +2277,32 @@ Appendix A.  Examples
    • Task start time, end time, diagnosis result (succeeded, failed),
    failure description, etc.
 
-   • probable causes, probable events, repair recommendations, etc.
+   • probable root causes, probable events, repair recommendations, etc.
 
-   +--ro incident-diagnosis-tasks
-   |   +--ro incident-diagnosis-task* [task-id]
-   |   +--ro task-id? String
-   |   +--ro incident-no* incident-ref
-   |   +--ro ticket-no? string
-   |   +--ro start-time? yang:date-and-time
-   |   +--ro end-time? yang:date-and-time
-   |   +--ro task-state? enumeration
-   |   +--ro diagnosis-result? enumeration
-   |   +--ro diagnosis-result-description? String
-   |   +--ro probable-causes
-   …
-   |   +--ro probable-events
-   …
-   |   +-- ro repair-advices
-   …
++--ro incident-diagnosis-tasks
+|   +--ro incident-diagnosis-task* [task-id]
+|   +--ro task-id? String
+|   +--ro incident-no* incident-ref
+|   +--ro ticket-no? string
+|   +--ro start-time? yang:date-and-time
+|   +--ro end-time? yang:date-and-time
+|   +--ro task-state? enumeration
+|   +--ro diagnosis-result? enumeration
+|   +--ro diagnosis-result-description? String
+|   +--ro probable-causes leafref //List <RootCause>
+…
+|   +--ro probable-events leafref //List <Event>
+…
+|   +-- ro repair-advices
+|   +-- ro state enumeration // Incident states such as Creation, Update, Clear
+…
+
+   A.4 Multi-Domain Fault Demarcation
 
    Take multi-domain fault demarcation as an example, when both base
    station incident in the RAN network and Network Link incident in the
    IP network are received and base station incident from user side
-   results from network incident in other domain, the OSS system is
+   results from network incident in other domains, the OSS system is
    unable to find network side problem simply based on base station
    incident.  Therefore incident diagnosis RPC will be invoked with IP
    address of Base station and incident start time as input and sent to
@@ -2324,33 +2310,37 @@ Appendix A.  Examples
    diagnosis related intent based interface to find the corresponding
    network side port according to the base station IP address, and then
    further associated with transmission path (current path, historical
-   path) to the base station and current and historical performance,
-   resources, and incident status data, to diagnose the probable cause
-   of the network incident and provide repair suggestions.
+   path) to the base station and current and historical network
+   performance, netowrk resources, and incident status data, to diagnose
+   the probable root cause of the network incident and provide repair
+   suggestions.
 
-       +------------------------------------------------+
-       |OSS +------------------------------------------+| Diagnosis
-       |    |           Incident Handler               || Key
-       |    +----^------------------------^------+-----+| Parameters
-       +---------+------------------------|------|------+ {
-            Incident                      |      |         BS IP add,
-             Update           |      Incident   Incident   Start time
-            Notification      |       Update    Diganosis }
-                 |            |     Notification |
-                 |                        |      |
-       +---------------+      |           |      |
-       | +-----------+ |      |     +-----|------+--+
-       | | Incident  | |      |     | +---+------V+ |
-       | | Process   | |      |     | | Incident  | |
-       | +-----------+ |            | | Process   | |
-       | RAN Controller|      |     | +-----------+ |
-       +---------------+      |     | IP Controller |
-                              |     +---------------+
-                              |
-      RAN Autonomous Domain   |       IP Autonomous Domain
-                              |
+ +------------------------------------------------+
+ |OSS +------------------------------------------+| Diagnosis
+ |    |           Incident Handler               || Key
+ |    +----^------------------------^------+-----+| Parameters
+ +---------+------------------------|------|------+ {
+      Incident                      |      |          ticket-no, String
+           |                        |      |          incident-no, String
+       Update           |      Incident   Incident    occur-time, yang:date-and-time
+      Notification      |       Update    Diganosis   context? String
+           |            |     Notification |          related-events?  leafref //List <Event>
+           |                        |      |          related-objects? leafref //List <ResourceObject>
+ +---------------+      |           |      |          ....
+ | +-----------+ |      |     +-----|------+--+     }
+ | | Incident  | |      |     | +---+------V+ |
+ | | Process   | |      |     | | Incident  | |
+ | +-----------+ |            | | Process   | |
+ | RAN Controller|      |     | +-----------+ |
+ +---------------+      |     | IP Controller |
+                        |     +---------------+
+                        |
+RAN Autonomous Domain   |       IP Autonomous Domain
+                        |
 
-                  Figure 8: Multi-Domain Fault Demarcation
+               Figure 8: Multi-Domain Fault Demarcation
+
+   A.5 Service Complaint triggered Network Diagnosis
 
                                            Customer
                                            Complaint
@@ -2366,9 +2356,12 @@ Appendix A.  Examples
            {                       +-----|------+--+
            incident-no,            | +---V------|+ |
            ticket-no,              | | Incident  | |
-           start-time,             | | Process   | |
-           Diagnosis-result        | +-----------+ |
-           ..                      | IP Controller |
+           occur-time,             | | Process   | |
+           context?,               | |           | |
+           related-events?,        | |           | |
+           related-objects?,       | |           | |
+           ...                     | +-----------+ |
+                                   | IP Controller |
            }                       +---------------+
 
 
@@ -2376,17 +2369,31 @@ Appendix A.  Examples
 
           Figure 9: Service Complaint triggered Network Diagnosis
 
-   Similarly, in case of service degradation for lease line service
+   Similarly, in case of service degradation for a lease line service
    recieving from the customer, the OSS system can request network
    diagnosis at the network side conducted by the network controller.
    The network controller can use network diagnosis related intent based
    interface to find the corresponding network side port based on the
    dedicated line service, and then further associate the transmission
    path (current path, historical path) and current and historical
-   performance, resources, and incident status data to diagnose the
-   probable cause of the fault and provide repair suggestions.
+   network performance, network resources, and incident status data to
+   diagnose the probable root cause of the fault and provide repair
+   suggestions.
 
 Appendix B.  Changes between Revisions
+
+   v05 - v06
+
+   *  Break down A.3 into 3 sections covering 3 examples.
+
+   v04 - v05
+
+   *  Replace probable cause with probable root cause based on Adrian
+      and Benoit's suggestion.
+
+   *  Address editorial comments raised by Aitken Paul.
+
+   *  YANG Model editorial changes based on Aitken Paul's comments.
 
    v03 - v04
 
@@ -2396,12 +2403,15 @@ Appendix B.  Changes between Revisions
    *  Replace root cause with probable cause based on IETF 122 NMOP
       Session Discussion.
 
-   *  Add two ITU-T reference for probable cause.
+   *  Add two ITU-T references for probable cause definition in the
+      terminologies section.
 
    *  Add Lionel Tailhardat from Orange as new contributors based on his
       input.
 
-   *  Add two new examples in the Appendix
+   *  Add two new examples in the Appendix to explore correlation
+      between troubleshooting ticket and incident management and intent
+      based network diagonisis interaction.
 
    v02 - v03
 
@@ -2542,10 +2552,13 @@ Appendix B.  Changes between Revisions
 
 Contributors
 
+   Lionel Tailhardat
+   Orange
+   Email: lionel.tailhardat@orange.com
+
+
    Thomas Graf
    Swisscom
-   Binzring 17CH-8045
-   CH- Zurich
    Switzerland
    Email: thomas.graf@swisscom.com
 
@@ -2573,11 +2586,6 @@ Contributors
    Chaode Yu
    Huawei
    Email: yuchaode@huawei.com
-
-
-   Lionel Tailhardat
-   Orange
-   Email: lionel.tailhardat@orange.com
 
 
 Authors' Addresses
