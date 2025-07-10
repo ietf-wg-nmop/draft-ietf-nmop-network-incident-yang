@@ -1317,6 +1317,8 @@ information:
 …
 ~~~~
 
+A.4 Multi-Domain Fault Demarcation
+
 Take multi-domain fault demarcation as an example, when both base station incident
 in the RAN network and Network Link incident in the IP network are received and base station
 incident from user side results from network incident in other domains, the OSS system
@@ -1357,6 +1359,8 @@ RAN Autonomous Domain   |       IP Autonomous Domain
 ~~~~
 {:#exam4 title="Multi-Domain Fault Demarcation" artwork-align="center"}
 
+A.5 Service Complaint triggered Network Diagnosis
+
 ~~~~
 
                                    Customer
@@ -1395,6 +1399,10 @@ network resources, and incident status data to diagnose the probable root cause 
 repair suggestions.
 
 # Changes between Revisions
+
+  v05 - v06
+
+   * Break down A.3 into 3 sections covering 3 examples.
 
    v04 - v05
 
