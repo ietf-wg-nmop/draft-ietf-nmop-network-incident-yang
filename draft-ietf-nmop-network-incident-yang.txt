@@ -2387,6 +2387,14 @@ Appendix B.  Changes between Revisions
 
    *  Fix Yanglint issue in the YANG data model.
 
+   *  Align with RFC8407bis section 3.8.3.1 IANA template.
+
+   *  Align with YANG Module Security Considerations template.
+
+   *  Probable Root Cause Definition Polishing.
+
+   *  Tree diagram update for RPC error construct
+
    v05 - v06
 
    *  Break down A.3 into 3 sections covering 3 examples.
