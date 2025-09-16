@@ -1752,7 +1752,7 @@ Table of Contents
             response to indicate the reason for the
             incident acknowledge failure.";
          leaf incident-no {
-           type incident-ref;
+           type uint64;
            description
              "Indicates the incident identifier that
               fails the operation.";
@@ -1778,7 +1778,7 @@ Table of Contents
             response to indicate the reason for the
             incident diagnose failure.";
          leaf incident-no {
-           type incident-ref;
+           type uint64;
            description
              "Indicates the incident identifier that
               fails the operation.";
@@ -1804,7 +1804,7 @@ Table of Contents
             response to indicate the reason for the
             incident resolution failure.";
          leaf incident-no {
-           type incident-ref;
+           type uint64;
            description
              "Indicates the incident identifier that
               fails the operation.";

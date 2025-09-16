@@ -3087,7 +3087,7 @@ module ietf-incident {
          response to indicate the reason for the
          incident acknowledge failure.";
       leaf incident-no {
-        type incident-ref;
+        type uint64;
         description
           "Indicates the incident identifier that
            fails the operation.";
@@ -3113,7 +3113,7 @@ module ietf-incident {
          response to indicate the reason for the
          incident diagnose failure.";
       leaf incident-no {
-        type incident-ref;
+        type uint64;
         description
           "Indicates the incident identifier that
            fails the operation.";
@@ -3139,7 +3139,7 @@ module ietf-incident {
          response to indicate the reason for the
          incident resolution failure.";
       leaf incident-no {
-        type incident-ref;
+        type uint64;
         description
           "Indicates the incident identifier that
            fails the operation.";
@@ -3199,6 +3199,7 @@ module ietf-incident {
     }
   }
 }
+
 
 
 &lt;CODE ENDS&gt;</pre><a href="#section-8-2" class="pilcrow">¶</a>
