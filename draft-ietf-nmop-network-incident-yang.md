@@ -1400,6 +1400,10 @@ repair suggestions.
 
 # Changes between Revisions
 
+  v06 - v07
+
+   * Fix Yanglint issue in the YANG data model.
+
   v05 - v06
 
    * Break down A.3 into 3 sections covering 3 examples.
