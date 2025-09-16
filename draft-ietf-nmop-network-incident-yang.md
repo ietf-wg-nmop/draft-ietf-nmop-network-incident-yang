@@ -1028,7 +1028,7 @@ resource-unavailable
 This module imports types defined in {{!RFC6991}}, {{!RFC8345}}, {{!RFC8632}}.
 
 ~~~~
-<CODE BEGINS> file "ietf-incident@2024-06-06.yang"
+<CODE BEGINS> file "ietf-incident@2025-09-16.yang"
 {::include-fold ./yang/ietf-incident.yang}
 <CODE ENDS>
 ~~~~
@@ -1087,8 +1087,8 @@ data-at-rest in the server.
 
 ## The "IETF XML" Registry
 
-This document requests IANA to register one XML namespace URN in the "ns"
-subregistry within the "IETF XML Registry" {{!RFC3688}}:
+IANA is requested to register the following URI in the "ns"
+registry within the "IETF XML Registry" group {{!RFC3688}}:
 
 ~~~~
 URI: urn:ietf:params:xml:ns:yang:ietf-incident
@@ -1098,8 +1098,9 @@ XML: N/A, the requested URIs are XML namespaces.
 
 ## The "YANG Module Names" Registry
 
-This document requests IANA to register one module name in the 'YANG Module Names'
-registry, defined in {{!RFC6020}}.
+IANA is requested to register the following YANG module in the "YANG
+Module Names" registry {{!RFC6020}} within the "YANG Parameters"
+registry group.
 
 ~~~~
 Name: ietf-incident
@@ -1107,8 +1108,8 @@ Maintained by IANA?  N
 Namespace: urn:ietf:params:xml:ns:yang:ietf-incident
 Prefix: inc
 Reference:  RFC XXXX
-// RFC Ed.: replace XXXX and remove this comment
 ~~~~
+// RFC Ed.: replace XXXX and remove this comment
 
 # Acknowledgements
 {:numbered="false"}
