@@ -257,22 +257,16 @@ Incident handler:
   network incidents for data analysis. It has no control on incident server.
 
 Probable root cause:
-:  A factor is considered the probable root cause of a problem if removing it fully resolves
-   an ongoing incident -- specifically regarding network or service impairments
-   and their related consequential failures and symptoms -- and prevents the problem
-   from recurring. Causality is defined as the implementation of an inductive process
-   at the network or processing element level {{ITU-T-G-7710}} and as a doubt removal
-   process at the Incident management system level {{ITU-T-X-733}}. The inductive
-   process is based on the distinction made between _primary failures_ (i.e., a failure
-   that directly indicates the fault location and initiate a repair action, such as
-   a broken cable or a misconnection) and _secondary failures_ (i.e., a consequential
-   failure, such as an upper level service that has gone down) {{ITU-T-G-7710}} Since
-   one Fault may give rise to another Fault or Problem, a probable root cause is commonly
-   meant to describe the original event or combination of circumstances that is the foundation
-   of all related Faults.
+: If removing a factor completely resolves the ongoing incident (specifically, regarding network
+  outage or service impairments and their associated subsequent failures and symptoms) and prevents
+  the problem from recurring, then such factor is considered as a probable root cause of a problem.
 
-   Conversely, a causal factor is a contributing action that influences the outcome
-   of an incident or event but is not the probably cause.
+: Since one Fault may give rise to another Fault or Problem, a probable root cause is commonly meant
+  to describe the original event or combination of circumstances that is the foundation of all
+  related Faults.
+
+: Conversely, a causal factor is a contributing action that influences the outcome of the incident or
+  event but is not the probable cause.
 
 
 # Sample Use Cases
