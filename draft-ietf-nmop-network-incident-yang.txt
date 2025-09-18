@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 20 March 2026                                        Telefonica
+Expires: 22 March 2026                                        Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                       16 September 2025
+                                                       18 September 2025
 
 
            A YANG Data Model for Network Incident Management
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 March 2026.
+   This Internet-Draft will expire on 22 March 2026.
 
 Copyright Notice
 
@@ -331,11 +331,11 @@ Table of Contents
 
    *  Not to exceed 20 ms for 99% of packets.
 
-   This SLA information can be bound with one or more SAPs defined in
-   [RFC9408], so that the service orchestration layer can use these
-   interfaces to commit the delivery of a service on specific point-to-
-   point service topology or point to multi-point topology.  When
-   specific levels of a threshold of an SLO is violated, a specific
+   This SLA information can be bound with two SAPs or multiple SAPs
+   defined in [RFC9408], so that the service orchestration layer can use
+   these interfaces to commit the delivery of a service on specific
+   point-to-point service topology or point to multi-point topology.
+   When specific levels of a threshold of an SLO is violated, a specific
    network incident or customer incident [TMF724A], associated with,
    let's say L3VPN service will be derived.
 
