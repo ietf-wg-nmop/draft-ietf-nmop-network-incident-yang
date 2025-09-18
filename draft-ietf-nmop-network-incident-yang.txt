@@ -1072,15 +1072,13 @@ Table of Contents
         WG List:  <mailto:nmop@ietf.org>
 
         Author:   Chong Feng
-                  <mailto:frank.fengchong@huawei.com>
+                  <mailto:fengchongllly@gmail.com>
         Author:   Tong Hu
                   <mailto:hutong@cmhi.chinamobile.com>
         Author:   Luis Miguel Contreras Murillo
                   <mailto:luismiguel.contrerasmurillo@telefonica.com>
         Author :  Qin Wu
                   <mailto:bill.wu@huawei.com>
-        Author:   Chaode Yu
-                  <mailto:yuchaode@huawei.com>
         Author:   Nigel Davis
                   <mailto:ndavis@ciena.com>";
      description
@@ -1115,7 +1113,7 @@ Table of Contents
         described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
         they appear in all capitals, as shown here. ";
 
-     revision 2024-06-06 {
+     revision 2025-09-16 {
        description
          "Merge incident yang with incident type yang
           and fix broken ref.";
@@ -1267,7 +1265,7 @@ Table of Contents
          "Log event type.";
      }
 
-     identity KPI {
+     identity kpi {
        base event-type;
        description
          "KPI event type.";
@@ -1755,7 +1753,7 @@ Table of Contents
             response to indicate the reason for the
             incident acknowledge failure.";
          leaf incident-no {
-           type incident-ref;
+           type uint64;
            description
              "Indicates the incident identifier that
               fails the operation.";
@@ -1781,7 +1779,7 @@ Table of Contents
             response to indicate the reason for the
             incident diagnose failure.";
          leaf incident-no {
-           type incident-ref;
+           type uint64;
            description
              "Indicates the incident identifier that
               fails the operation.";
@@ -1807,7 +1805,7 @@ Table of Contents
             response to indicate the reason for the
             incident resolution failure.";
          leaf incident-no {
-           type incident-ref;
+           type uint64;
            description
              "Indicates the incident identifier that
               fails the operation.";

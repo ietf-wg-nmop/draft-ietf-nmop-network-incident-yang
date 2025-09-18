@@ -2406,15 +2406,13 @@ module ietf-incident {
      WG List:  &lt;mailto:nmop@ietf.org&gt;
 
      Author:   Chong Feng
-               &lt;mailto:frank.fengchong@huawei.com&gt;
+               &lt;mailto:fengchongllly@gmail.com&gt;
      Author:   Tong Hu
                &lt;mailto:hutong@cmhi.chinamobile.com&gt;
      Author:   Luis Miguel Contreras Murillo
                &lt;mailto:luismiguel.contrerasmurillo@telefonica.com&gt;
      Author :  Qin Wu
                &lt;mailto:bill.wu@huawei.com&gt;
-     Author:   Chaode Yu
-               &lt;mailto:yuchaode@huawei.com&gt;
      Author:   Nigel Davis
                &lt;mailto:ndavis@ciena.com&gt;";
   description
@@ -2449,7 +2447,7 @@ module ietf-incident {
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
      they appear in all capitals, as shown here. ";
 
-  revision 2024-06-06 {
+  revision 2025-09-16 {
     description
       "Merge incident yang with incident type yang
        and fix broken ref.";
@@ -2601,7 +2599,7 @@ module ietf-incident {
       "Log event type.";
   }
 
-  identity KPI {
+  identity kpi {
     base event-type;
     description
       "KPI event type.";
@@ -3089,7 +3087,7 @@ module ietf-incident {
          response to indicate the reason for the
          incident acknowledge failure.";
       leaf incident-no {
-        type incident-ref;
+        type uint64;
         description
           "Indicates the incident identifier that
            fails the operation.";
@@ -3115,7 +3113,7 @@ module ietf-incident {
          response to indicate the reason for the
          incident diagnose failure.";
       leaf incident-no {
-        type incident-ref;
+        type uint64;
         description
           "Indicates the incident identifier that
            fails the operation.";
@@ -3141,7 +3139,7 @@ module ietf-incident {
          response to indicate the reason for the
          incident resolution failure.";
       leaf incident-no {
-        type incident-ref;
+        type uint64;
         description
           "Indicates the incident identifier that
            fails the operation.";
@@ -3201,6 +3199,8 @@ module ietf-incident {
     }
   }
 }
+
+
 
 &lt;CODE ENDS&gt;</pre><a href="#section-8-2" class="pilcrow">¶</a>
 </div>
