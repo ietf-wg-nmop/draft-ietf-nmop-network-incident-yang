@@ -3211,13 +3211,12 @@ module ietf-incident {
       <h2 id="name-security-considerations">
 <a href="#section-9" class="section-number selfRef">9. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-9-1">The YANG modules specified in this document define a schema for data
-that is designed to be accessed via network management protocol such
-as NETCONF <span>[<a href="#RFC6241" class="cite xref">RFC6241</a>]</span> or RESTCONF <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span>.  The lowest NETCONF layer
-is the secure transport layer, and the mandatory-to-implement secure
-transport is Secure Shell (SSH) <span>[<a href="#RFC6242" class="cite xref">RFC6242</a>]</span>.  The lowest RESTCONF layer
-is HTTPS, and the mandatory-to-implement secure transport is TLS
-<span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span>.<a href="#section-9-1" class="pilcrow">¶</a></p>
+<p id="section-9-1">The YANG modules specified in this document defines a data model that is
+designed to be accessed via YANG-based management protocols, such as
+NETCONF <span>[<a href="#RFC6241" class="cite xref">RFC6241</a>]</span> and RESTCONF <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span>. These YANG-based management
+protocols (1) have to use a secure transport layer
+(e.g., SSH <span>[<a href="#RFC4252" class="cite xref">RFC4252</a>]</span>, TLS <span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span>, and QUIC <span>[<a href="#RFC9000" class="cite xref">RFC9000</a>]</span>) and (2) have
+to use mutual authentication.<a href="#section-9-1" class="pilcrow">¶</a></p>
 <p id="section-9-2">The Network Configuration Access Control Model (NACM) <span>[<a href="#RFC8341" class="cite xref">RFC8341</a>]</span>
 provides the means to restrict access for particular NETCONF or
 RESTCONF users to a preconfigured subset of all available NETCONF or
@@ -3329,6 +3328,10 @@ for their valuable comments and great input to this work.<a href="#section-11-1"
         <dd>
 <span class="refAuthor">Mealling, M.</span>, <span class="refTitle">"The IETF XML Registry"</span>, <span class="seriesInfo">BCP 81</span>, <span class="seriesInfo">RFC 3688</span>, <span class="seriesInfo">DOI 10.17487/RFC3688</span>, <time datetime="2004-01" class="refDate">January 2004</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc3688">https://www.rfc-editor.org/rfc/rfc3688</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC4252">[RFC4252]</dt>
+        <dd>
+<span class="refAuthor">Ylonen, T.</span> and <span class="refAuthor">C. Lonvick, Ed.</span>, <span class="refTitle">"The Secure Shell (SSH) Authentication Protocol"</span>, <span class="seriesInfo">RFC 4252</span>, <span class="seriesInfo">DOI 10.17487/RFC4252</span>, <time datetime="2006-01" class="refDate">January 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4252">https://www.rfc-editor.org/rfc/rfc4252</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC6020">[RFC6020]</dt>
         <dd>
 <span class="refAuthor">Bjorklund, M., Ed.</span>, <span class="refTitle">"YANG - A Data Modeling Language for the Network Configuration Protocol (NETCONF)"</span>, <span class="seriesInfo">RFC 6020</span>, <span class="seriesInfo">DOI 10.17487/RFC6020</span>, <time datetime="2010-10" class="refDate">October 2010</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6020">https://www.rfc-editor.org/rfc/rfc6020</a>&gt;</span>. </dd>
@@ -3336,10 +3339,6 @@ for their valuable comments and great input to this work.<a href="#section-11-1"
 <dt id="RFC6241">[RFC6241]</dt>
         <dd>
 <span class="refAuthor">Enns, R., Ed.</span>, <span class="refAuthor">Bjorklund, M., Ed.</span>, <span class="refAuthor">Schoenwaelder, J., Ed.</span>, and <span class="refAuthor">A. Bierman, Ed.</span>, <span class="refTitle">"Network Configuration Protocol (NETCONF)"</span>, <span class="seriesInfo">RFC 6241</span>, <span class="seriesInfo">DOI 10.17487/RFC6241</span>, <time datetime="2011-06" class="refDate">June 2011</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6241">https://www.rfc-editor.org/rfc/rfc6241</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC6242">[RFC6242]</dt>
-        <dd>
-<span class="refAuthor">Wasserman, M.</span>, <span class="refTitle">"Using the NETCONF Protocol over Secure Shell (SSH)"</span>, <span class="seriesInfo">RFC 6242</span>, <span class="seriesInfo">DOI 10.17487/RFC6242</span>, <time datetime="2011-06" class="refDate">June 2011</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6242">https://www.rfc-editor.org/rfc/rfc6242</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC6991">[RFC6991]</dt>
         <dd>
@@ -3374,8 +3373,12 @@ for their valuable comments and great input to this work.<a href="#section-11-1"
 <span class="refAuthor">Bierman, A.</span>, <span class="refAuthor">Björklund, M.</span>, and <span class="refAuthor">K. Watsen</span>, <span class="refTitle">"YANG Data Structure Extensions"</span>, <span class="seriesInfo">RFC 8791</span>, <span class="seriesInfo">DOI 10.17487/RFC8791</span>, <time datetime="2020-06" class="refDate">June 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8791">https://www.rfc-editor.org/rfc/rfc8791</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8969">[RFC8969]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Wu, Q., Ed.</span>, <span class="refAuthor">Boucadair, M., Ed.</span>, <span class="refAuthor">Lopez, D.</span>, <span class="refAuthor">Xie, C.</span>, and <span class="refAuthor">L. Geng</span>, <span class="refTitle">"A Framework for Automating Service and Network Management with YANG"</span>, <span class="seriesInfo">RFC 8969</span>, <span class="seriesInfo">DOI 10.17487/RFC8969</span>, <time datetime="2021-01" class="refDate">January 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8969">https://www.rfc-editor.org/rfc/rfc8969</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9000">[RFC9000]</dt>
+      <dd>
+<span class="refAuthor">Iyengar, J., Ed.</span> and <span class="refAuthor">M. Thomson, Ed.</span>, <span class="refTitle">"QUIC: A UDP-Based Multiplexed and Secure Transport"</span>, <span class="seriesInfo">RFC 9000</span>, <span class="seriesInfo">DOI 10.17487/RFC9000</span>, <time datetime="2021-05" class="refDate">May 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9000">https://www.rfc-editor.org/rfc/rfc9000</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
