@@ -985,17 +985,17 @@ The tree diagram [RFC8340] for structures are defined as follows:
 ~~~
   structure incident-acknowledge-error-info:
     +-- incident-acknowledge-error-info
-       +-- incident-no?   incident-ref
+       +-- incident-no?   uint64
        +-- reason?        identityref
        +-- description?   string
   structure incident-diagnose-error-info:
     +-- incident-diagnose-error-info
-       +-- incident-no?   incident-ref
+       +-- incident-no?   uint64
        +-- reason?        identityref
        +-- description?   string
   structure incident-resolve-error-info:
     +-- incident-resolve-error-info
-       +-- incident-no?   incident-ref
+       +-- incident-no?   uint64
        +-- reason?        identityref
        +-- description?   string
 ~~~
