@@ -2325,17 +2325,17 @@ and be inserted in the error response to indicate the reason for the failure.<a 
 <pre>
   structure incident-acknowledge-error-info:
     +-- incident-acknowledge-error-info
-       +-- incident-no?   incident-ref
+       +-- incident-no?   uint64
        +-- reason?        identityref
        +-- description?   string
   structure incident-diagnose-error-info:
     +-- incident-diagnose-error-info
-       +-- incident-no?   incident-ref
+       +-- incident-no?   uint64
        +-- reason?        identityref
        +-- description?   string
   structure incident-resolve-error-info:
     +-- incident-resolve-error-info
-       +-- incident-no?   incident-ref
+       +-- incident-no?   uint64
        +-- reason?        identityref
        +-- description?   string
 </pre><a href="#section-7.6-3" class="pilcrow">¶</a>
