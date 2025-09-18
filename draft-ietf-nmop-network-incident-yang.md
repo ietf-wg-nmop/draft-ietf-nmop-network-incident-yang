@@ -326,7 +326,7 @@ of end-to-end latency as follows:
 
 *  Not to exceed 20 ms for 99% of packets.
 
-This SLA information can be bound with one or more SAPs defined in {{?RFC9408}},
+This SLA information can be bound with two SAPs or multiple SAPs defined in {{?RFC9408}},
 so that the service orchestration layer can use these interfaces to commit the
 delivery of a service on specific point-to-point service topology or point to
 multi-point topology. When specific levels of a threshold of an SLO is violated,
