@@ -1025,7 +1025,7 @@ resource-unavailable
 
 # Network Incident Management YANG Module
 
-This module imports types defined in {{!RFC6991}}, {{!RFC8345}}, {{!RFC8632}}.
+This module imports types defined in {{!RFC6991}}, {{!RFC8345}}, {{!RFC8632}},{{!RFC 8791}}.
 
 ~~~~
 <CODE BEGINS> file "ietf-incident@2024-06-06.yang"
