@@ -20,6 +20,9 @@ module ietf-incident {
   }
   import ietf-yang-structure-ext {
     prefix sx;
+    reference
+	  "RFC 8791: YANG Data Structure Extensions";
+
   }
   organization
     "IETF NMOP Working Group";
@@ -90,7 +93,7 @@ module ietf-incident {
   identity single-domain {
     base incident-domain;
     description
-      "single domain.";
+      "Single domain.";
   }
 
   identity access {
@@ -102,37 +105,43 @@ module ietf-incident {
   identity ran {
     base access;
     description
-      "radio access network domain.";
+      "Radio access network domain.";
   }
 
   identity transport {
     base single-domain;
     description
-      "transport domain.";
+      "Transport domain.";
   }
 
   identity otn {
     base transport;
     description
-      "optical transport network domain.";
+      "Optical transport network domain.";
+    reference
+      “RFC9376: Applicability of GMPLS for beyond 100 Gbit/s Optical Transport Network”;
+
   }
 
   identity ip {
     base single-domain;
     description
-      "ip domain.";
+      "Ip domain.";
   }
 
   identity ptn {
     base ip;
     description
-      "packet transport network domain.";
+      "Packet transport network domain.";
+      reference
+       “RFC6373: MPLS Transport Profile (MPLS-TP) Control Plane Framework”;
+
   }
 
   identity cross-domain {
     base incident-domain;
     description
-      "cross domain.";
+      "Cross domain.";
   }
 
   identity incident-category {
@@ -143,72 +152,93 @@ module ietf-incident {
   identity device {
     base incident-category;
     description
-      "device category.";
+      "Device category.";
+      reference
+      “RFC8348: A YANG Data Model for Hardware Management”;
+
   }
 
   identity power-environment {
     base device;
     description
-      "power environment category.";
+      "Power environment category.";
+      reference
+      “RFC8348: A YANG Data Model for Hardware Management”;
+
   }
 
   identity device-hardware {
     base device;
     description
-      "hardware of device category.";
+      "Device hardware category.";
+      reference
+      “RFC8348: A YANG Data Model for Hardware Management”;
+
   }
 
   identity device-software {
     base device;
     description
-      "software of device category";
+      "Device software category";
+      reference
+      “RFC8348: A YANG Data Model for Hardware Management”;
+
   }
 
-  identity line {
+  identity line-card {
     base device-hardware;
     description
-      "line card category.";
+      "Line card category.";
+      reference
+      “RFC8348: A YANG Data Model for Hardware Management”;
+
   }
 
   identity maintenance {
     base incident-category;
     description
-      "maintenance category.";
+      "Maintenance category.";
   }
 
   identity network {
     base incident-category;
     description
-      "network category.";
+      "Network category.";
   }
 
   identity protocol {
     base incident-category;
     description
-      "protocol category.";
+      "Protocol category.";
   }
 
   identity overlay {
     base incident-category;
     description
-      "overlay category";
+      "Overlay category";
   }
 
   identity vm {
     base incident-category;
     description
-      "vm category.";
+      "VM category.";
   }
 
   identity event-type {
     description
       "The abstract identity for Event type";
+    reference
+      “RFCXXXX: Some Key Terms for Network Fault and Problem Management”;
+
   }
 
   identity alarm {
     base event-type;
     description
-      "alarm event type.";
+      "Alarm event type.";
+    reference
+      “RFC8632: A YANG Data Model for Alarm Management”;
+
   }
 
   identity notif {
@@ -244,8 +274,11 @@ module ietf-incident {
     base incident-class;
     description
       "It indicates the class of the incident is a problem
-             (i.e.,cause of the incident) for example an interface
-             fails to work.";
+      (i.e.,cause of the incident) for example an interface
+      fails to work.";
+    reference
+      “RFCXXXX: Some Key Terms for Network Fault and Problem Management”;
+
   }
 
   identity sla-violation {
@@ -283,7 +316,7 @@ module ietf-incident {
   identity probable-cause-unlocated {
     base diagnose-error;
     description
-      "Fails to locate the probable causes when performing the
+      "Fail to locate the probable causes when performing the
        diagnosis operation. The detailed reason MUST be included
        in the 'description'.";
   }
@@ -291,7 +324,7 @@ module ietf-incident {
   identity probable-cause-unresolved {
     base resolve-error;
     description
-      "Fails to resolve the probable causes when performing the
+      "Fail to resolve the probable causes when performing the
        resolution operation. The detailed reason MUST be included
        in the 'description'";
   }
@@ -330,28 +363,28 @@ module ietf-incident {
     type enumeration {
       enum critical {
         description
-          "the incident MUST be handled immediately.";
+          "The incident MUST be handled immediately.";
       }
       enum high {
         description
-          "the incident should be handled as soon as
+          "The incident should be handled as soon as
            possible.";
       }
       enum medium {
         description
-          "network services are not affected, or the
+          "Network services are not affected, or the
            services are slightly affected,but corrective
            measures need to be taken.";
       }
       enum low {
         description
-          "potential or imminent service-affecting
+          "Potential or imminent service-affecting
            incidents are detected,but services are
            not affected currently.";
       }
     }
     description
-      "define the priority of incident.";
+      "Define the priority of incident.";
   }
 
   typedef incident-ref {
@@ -359,7 +392,7 @@ module ietf-incident {
       path "/inc:incidents/inc:incident/inc:incident-no";
     }
     description
-      "reference a network incident.";
+      "Reference a network incident.";
   }
 
   // Groupings
@@ -372,76 +405,76 @@ module ietf-incident {
         base cause-name;
       }
       description
-        "the name of cause.";
+        "The name of cause.";
     }
     leaf detail {
       type string;
       description
-        "the detail information of the cause.";
+        "The detail information of the cause.";
     }
   }
 
   grouping resources-info {
     description
-      "the grouping which defines the network
+      "The grouping which defines the network
        resources of a node.";
     uses nw:node-ref;
     list resource {
       key "name";
       description
-        "the resources of a network node.";
+        "The resources of a network node.";
       leaf name {
         type al:resource;
         description
-          "network resource name.";
+          "Network resource name.";
       }
     }
   }
 
   grouping incident-time-info {
     description
-      "the grouping defines incident time information.";
+      "The grouping defines incident time information.";
     leaf raise-time {
       type yang:date-and-time;
       description
-        "the time when an incident instance is raised.";
+        "The time when an incident instance is raised.";
     }
     leaf occur-time {
       type yang:date-and-time;
       description
-        "the time when an incident instance occurs.
+        "The time when an incident instance occurs.
          It's the occur time of the first event during
          incident detection.";
     }
     leaf clear-time {
       type yang:date-and-time;
       description
-        "the time when an incident instance is
+        "The time when an incident instance is
          resolved.";
     }
     leaf ack-time {
       type yang:date-and-time;
       description
-        "the time when an incident instance is
+        "The time when an incident instance is
          acknowledged.";
     }
     leaf last-updated {
       type yang:date-and-time;
       description
-        "the latest time when an incident instance is
+        "The latest time when an incident instance is
          updated";
     }
   }
 
   grouping incident-info {
     description
-      "the grouping defines the information of an
+      "The grouping defines the information of an
        incident.";
     leaf name {
       type string;
       mandatory true;
       description
-        "the name of an incident.";
+        "The name of an incident.";
     }
     leaf type {
       type identityref {
@@ -462,7 +495,7 @@ module ietf-incident {
     leaf-list service-instance {
       type string;
       description
-        "the related network service instances of
+        "The related network service instances of
          the incident instance.";
     }
     leaf domain {
@@ -471,28 +504,28 @@ module ietf-incident {
       }
       mandatory true;
       description
-        "the domain of an incident.";
+        "The domain of an incident.";
     }
     leaf priority {
       type incident-priority;
       mandatory true;
       description
-        "the priority of an incident instance.";
+        "The priority of an incident instance.";
     }
     leaf status {
       type enumeration {
         enum raised {
           description
-            "an incident instance is raised.";
+            "An incident instance is raised.";
         }
         enum updated {
           description
-            "the information of an incident instance
+            "The information of an incident instance
              is updated.";
         }
         enum cleared {
           description
-            "an incident is cleared.";
+            "An incident is cleared.";
         }
       }
       default "raised";
@@ -512,7 +545,7 @@ module ietf-incident {
       }
       default "unacknowledged";
       description
-        "the acknowledge status of an incident.";
+        "The acknowledge status of an incident.";
     }
     leaf category {
       type identityref {
@@ -525,7 +558,7 @@ module ietf-incident {
     leaf detail {
       type string;
       description
-        "detail information of this incident.";
+        "Detailed information of this incident.";
     }
     leaf resolve-advice {
       type string;
@@ -549,11 +582,11 @@ module ietf-incident {
       list probable-cause {
         key "node-ref";
         description
-          "the probable causes of incident.";
+          "The probable causes of incident.";
         uses resources-info {
           augment "resource" {
             description
-              "augment probable cause information.";
+              "Augment probable cause information.";
             //if probable cause object is a resource of a node
             uses probable-cause-info;
           }
@@ -564,17 +597,17 @@ module ietf-incident {
     }
     container probable-events {
       description
-        "the probable cause related events of the incident.";
+        "The probable cause related events of the incident.";
       list probable-event {
         key "type event-id";
         description
-          "the probable cause related event of the incident.";
+          "The probable cause related event of the incident.";
         leaf type {
           type leafref {
             path "../../../events/event/type";
           }
           description
-            "the event type.";
+            "The event type.";
         }
         leaf event-id {
           type leafref {
@@ -582,34 +615,34 @@ module ietf-incident {
                + "/event-id";
           }
           description
-            "the event identifier, such as uuid,
+            "The event identifier, such as uuid,
              sequence number, etc.";
         }
       }
     }
     container events {
       description
-        "related events.";
+        "Related events.";
       list event {
         key "type event-id";
         description
-          "related events.";
+          "Related events.";
         leaf type {
           type identityref {
             base event-type;
           }
           description
-            "event type.";
+            "Event type.";
         }
         leaf event-id {
           type string;
           description
-            "the event identifier, such as uuid,
+            "The event identifier, such as uuid,
              sequence number, etc.";
         }
         choice event-type-info {
           description
-            "event type information.";
+            "Event type information.";
           case alarm {
             when "derived-from-or-self(type, 'alarm')" {
               description
@@ -617,14 +650,14 @@ module ietf-incident {
             }
             container alarm {
               description
-                "alarm type event.";
+                "Alarm type event.";
               leaf resource {
                 type leafref {
                   path "/al:alarms/al:alarm-list/al:alarm"
                      + "/al:resource";
                 }
                 description
-                  "network resource.";
+                  "Network resource.";
                 reference
                   "RFC 8632: A YANG Data Model for Alarm
                    Management";
@@ -636,7 +669,7 @@ module ietf-incident {
                      + "/al:alarm-type-id";
                 }
                 description
-                  "alarm type id";
+                  "Alarm type id";
                 reference
                   "RFC 8632: A YANG Data Model for Alarm
                     Management";
@@ -649,7 +682,7 @@ module ietf-incident {
                      + "/alarm-type-id]/al:alarm-type-qualifier";
                 }
                 description
-                  "alarm type qualitifier";
+                  "Alarm type qualifier";
                 reference
                   "RFC 8632: A YANG Data Model for Alarm
                    Management";
@@ -671,7 +704,7 @@ module ietf-incident {
       leaf-list incident-no {
         type incident-ref;
         description
-          "the identifier of an incident instance.";
+          "The identifier of an incident instance.";
       }
     }
   }
@@ -685,7 +718,7 @@ module ietf-incident {
       leaf-list incident-no {
         type incident-ref;
         description
-          "the identifier of an incident instance.";
+          "The identifier of an incident instance.";
       }
     }
   }
@@ -699,7 +732,7 @@ module ietf-incident {
       leaf-list incident-no {
         type incident-ref;
         description
-          "the identifier of an incident instance.";
+          "The identifier of an incident instance.";
       }
     }
   }
@@ -787,18 +820,18 @@ module ietf-incident {
 
   notification incident-notification {
     description
-      "incident notification. It will be triggered when
+      "Incident notification. It will be triggered when
        the incident is raised, updated or cleared.";
     leaf incident-no {
       type incident-ref;
       description
-        "the identifier of an incident instance.";
+        "The identifier of an incident instance.";
     }
     uses incident-info;
     leaf time {
       type yang:date-and-time;
       description
-        "occur time of an incident instance.";
+        "Occuring time of an incident instance.";
     }
   }
 
@@ -807,11 +840,11 @@ module ietf-incident {
   container incidents {
     config false;
     description
-      "the information of incidents.";
+      "The information of incidents.";
     list incident {
       key "name type incident-id";
       description
-        "the information of incident.";
+        "The information of incident.";
       leaf incident-no {
         type uint64;
         mandatory true;
@@ -823,3 +856,4 @@ module ietf-incident {
     }
   }
 }
+
