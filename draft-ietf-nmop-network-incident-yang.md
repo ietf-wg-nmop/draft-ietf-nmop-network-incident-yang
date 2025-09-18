@@ -985,17 +985,17 @@ The tree diagram [RFC8340] for structures are defined as follows:
 ~~~
   structure incident-acknowledge-error-info:
     +-- incident-acknowledge-error-info
-       +-- incident-no?   incident-ref
+       +-- incident-no?   uint64
        +-- reason?        identityref
        +-- description?   string
   structure incident-diagnose-error-info:
     +-- incident-diagnose-error-info
-       +-- incident-no?   incident-ref
+       +-- incident-no?   uint64
        +-- reason?        identityref
        +-- description?   string
   structure incident-resolve-error-info:
     +-- incident-resolve-error-info
-       +-- incident-no?   incident-ref
+       +-- incident-no?   uint64
        +-- reason?        identityref
        +-- description?   string
 ~~~
@@ -1028,7 +1028,7 @@ resource-unavailable
 This module imports types defined in {{!RFC6991}}, {{!RFC8345}}, {{!RFC8632}},{{!RFC8791}}.
 
 ~~~~
-<CODE BEGINS> file "ietf-incident@2024-06-06.yang"
+<CODE BEGINS> file "ietf-incident@2025-09-16.yang"
 {::include-fold ./yang/ietf-incident.yang}
 <CODE ENDS>
 ~~~~
@@ -1036,13 +1036,12 @@ This module imports types defined in {{!RFC6991}}, {{!RFC8345}}, {{!RFC8632}},{{
 
 # Security Considerations
 
-The YANG modules specified in this document define a schema for data
-that is designed to be accessed via network management protocol such
-as NETCONF {{!RFC6241}} or RESTCONF {{!RFC8040}}.  The lowest NETCONF layer
-is the secure transport layer, and the mandatory-to-implement secure
-transport is Secure Shell (SSH) {{!RFC6242}}.  The lowest RESTCONF layer
-is HTTPS, and the mandatory-to-implement secure transport is TLS
-{{!RFC8446}}.
+The YANG modules specified in this document defines a data model that is
+designed to be accessed via YANG-based management protocols, such as
+NETCONF {{!RFC6241}} and RESTCONF {{!RFC8040}}. These YANG-based management
+protocols (1) have to use a secure transport layer
+(e.g., SSH {{!RFC4252}}, TLS {{!RFC8446}}, and QUIC {{!RFC9000}}) and (2) have
+to use mutual authentication.
 
 The Network Configuration Access Control Model (NACM) {{!RFC8341}}
 provides the means to restrict access for particular NETCONF or
@@ -1087,8 +1086,8 @@ data-at-rest in the server.
 
 ## The "IETF XML" Registry
 
-This document requests IANA to register one XML namespace URN in the "ns"
-subregistry within the "IETF XML Registry" {{!RFC3688}}:
+IANA is requested to register the following URI in the "ns"
+registry within the "IETF XML Registry" group {{!RFC3688}}:
 
 ~~~~
 URI: urn:ietf:params:xml:ns:yang:ietf-incident
@@ -1098,8 +1097,9 @@ XML: N/A, the requested URIs are XML namespaces.
 
 ## The "YANG Module Names" Registry
 
-This document requests IANA to register one module name in the 'YANG Module Names'
-registry, defined in {{!RFC6020}}.
+IANA is requested to register the following YANG module in the "YANG
+Module Names" registry {{!RFC6020}} within the "YANG Parameters"
+registry group.
 
 ~~~~
 Name: ietf-incident
@@ -1107,8 +1107,8 @@ Maintained by IANA?  N
 Namespace: urn:ietf:params:xml:ns:yang:ietf-incident
 Prefix: inc
 Reference:  RFC XXXX
-// RFC Ed.: replace XXXX and remove this comment
 ~~~~
+// RFC Ed.: replace XXXX and remove this comment
 
 # Acknowledgements
 {:numbered="false"}
