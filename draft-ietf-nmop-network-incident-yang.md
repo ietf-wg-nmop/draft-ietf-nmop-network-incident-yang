@@ -1359,7 +1359,7 @@ RAN Autonomous Domain   |       IP Autonomous Domain
 ~~~~
 {:#exam4 title="Multi-Domain Fault Demarcation" artwork-align="center"}
 
-A.5 Service Complaint triggered Network Diagnosis
+## Service Complaint triggered Network Diagnosis
 
 ~~~~
 
