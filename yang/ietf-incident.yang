@@ -125,6 +125,8 @@ module ietf-incident {
     base single-domain;
     description
       "Ip domain.";
+	reference
+	  "RFC1136: Administrative Domains and Routing Domains A Model for Routing in the Internet";
   }
 
   identity ptn {
@@ -854,3 +856,4 @@ module ietf-incident {
     }
   }
 }
+
