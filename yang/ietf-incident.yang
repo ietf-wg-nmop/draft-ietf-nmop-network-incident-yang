@@ -245,18 +245,23 @@ module ietf-incident {
     base event-type;
     description
       "Notification event type.";
+	reference
+	  "RFC5277:NETCONF Event Notifications";
   }
 
   identity log {
     base event-type;
     description
       "Log event type.";
-  }
+	reference
+	  "RFC5424: The Syslog Protocol";
 
   identity kpi {
     base event-type;
     description
       "KPI event type.";
+    reference
+      "RFC2330: Framework for IP Performance Metrics";
   }
 
   identity unknown {
@@ -856,4 +861,5 @@ module ietf-incident {
     }
   }
 }
+
 
