@@ -108,6 +108,7 @@ Table of Contents
      A.3.  Intent Based Networking with Incident Diagnosis Task List
      A.4.  Multi-Domain Fault Demarcation with Network Incident
            Management
+     A.5.  Service Complaint triggered Network Diagnosis
    Appendix B.  Changes between Revisions
    Contributors
    Authors' Addresses
@@ -2397,7 +2398,7 @@ RAN Autonomous Domain   |       IP Autonomous Domain
 
                Figure 8: Multi-Domain Fault Demarcation
 
-   A.5 Service Complaint triggered Network Diagnosis
+A.5.  Service Complaint triggered Network Diagnosis
 
                                            Customer
                                            Complaint
