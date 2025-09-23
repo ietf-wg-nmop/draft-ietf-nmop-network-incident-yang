@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 22 March 2026                                        Telefonica
+Expires: 27 March 2026                                        Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                       18 September 2025
+                                                       23 September 2025
 
 
            A YANG Data Model for Network Incident Management
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 22 March 2026.
+   This Internet-Draft will expire on 27 March 2026.
 
 Copyright Notice
 
@@ -1169,6 +1169,8 @@ Table of Contents
        base single-domain;
        description
          "Ip domain.";
+           reference
+             "RFC1136: Administrative Domains and Routing Domains A Model for Routing in the Internet";
      }
 
      identity ptn {
