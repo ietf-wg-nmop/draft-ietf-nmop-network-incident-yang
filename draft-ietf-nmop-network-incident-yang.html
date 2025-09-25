@@ -3629,9 +3629,9 @@ becomes necessary.<a href="#appendix-A.2-2" class="pilcrow">¶</a></p>
          |    +------+-------+------------+---------^-+   |
          +-----------+-------+------------+---------+-----+
               2.Incident   3.Incident   4. Incident |5.Incident
-                Ack with   Diagnosis    Resolve     |Update
-                Ticket-no  with         with        |Notification
-                     |     Ticket-no    Ticket-no   |with Ticket-no
+                    Ack with   Diagnosis    Resolve     |Update
+                    Ticket-no  with         with        |Notification
+                         |     Ticket-no    Ticket-no   |with Ticket-no
          +-----------+-------+------------+---------+-----+
          |Controller |       |            |         |     |
          |   +-------V-------V------------V---------+-+   |
@@ -3748,14 +3748,14 @@ diagnose the probable root cause of the network incident and provide repair sugg
           <div class="alignCenter art-text artwork" id="appendix-A.4-2.1">
 <pre>
  +------------------------------------------------+
- |OSS +------------------------------------------+| Diagnosis
- |    |           Incident Handler               || Key
- |    +----^------------------------^------+-----+| Parameters
+ |OSS +------------------------------------------+|
+ |    |           Incident Handler               || Diagnosis
+ |    +----^------------------------^------+-----+| Key Parameters
  +---------+------------------------|------|------+ {
       Incident                      |      |          ticket-no, String
            |                        |      |          incident-no, String
        Update           |      Incident   Incident    occur-time, yang:date-and-time
-      Notification      |       Update    Diganosis   context? String
+      Notification      |       Update    Diagnosis   context? String
            |            |     Notification |          related-events?  leafref //List &lt;Event&gt;
            |                        |      |          related-objects? leafref //List &lt;ResourceObject&gt;
  +---------------+      |           |      |          ....
