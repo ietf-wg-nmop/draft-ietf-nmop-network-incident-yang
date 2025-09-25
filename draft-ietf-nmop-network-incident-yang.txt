@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 27 March 2026                                        Telefonica
+Expires: 29 March 2026                                        Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                       23 September 2025
+                                                       25 September 2025
 
 
            A YANG Data Model for Network Incident Management
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 27 March 2026.
+   This Internet-Draft will expire on 29 March 2026.
 
 Copyright Notice
 
@@ -379,35 +379,35 @@ Table of Contents
 
 4.  Network Incident Management Architecture
 
-              +------------------------------------------+
-              |                                          |
-              |            Incident  Client              |
-              |                                          |
-              |                                          |
-              +------------+---------+---------+---------+
-                 ^         |         |         |
-                 |Incident |Incident |Incident |Incident
-                 |Report   |Ack      |Diagnose |Resolve
-                 |         |         |         |
-                 |         V         V         V
-              +--+----------------------------------------+
-              |                                           |
-              |                                           |
-              |             Incident  Server              |
-              |                                           |
-              |                                           |
-              |                                           |
-              |                                           |
-              +-------------------------------+-----------+
-                    ^       ^Abnormal         ^Network Performance
-                    |Alarm  |Operations       |Metrics
-                    |Report |Report           |/Telemetry
-                    |       |                 V
-         +----------+-------+------------------------------------+
-         |                                                       |
-         |            Network in the Autonomous Domain           |
-         |                                                       |
-         +-------------------------------------------------------+
+            +------------------------------------------+
+            |                                          |
+            |            Incident  Client              |
+            |                                          |
+            |                                          |
+            +------------+---------+---------+---------+
+                   ^         |         |         |
+                   |Incident |Incident |Incident |Incident
+                   |Report   |Ack      |Diagnose |Resolve
+                   |         |         |         |
+                   |         V         V         V
+            +--+----------------------------------------+
+            |                                           |
+            |                                           |
+            |             Incident  Server              |
+            |                                           |
+            |                                           |
+            |                                           |
+            |                                           |
+            +-------------------------------+-----------+
+                      ^       ^Abnormal         ^Network Performance
+                      |Alarm  |Operations       |Metrics
+                      |Report |Report           |/Telemetry
+                      |       |                 V
+       +----------+-------+------------------------------------+
+       |                                                       |
+       |            Network in the Autonomous Domain           |
+       |                                                       |
+       +-------------------------------------------------------+
 
              Figure 1: Network Incident Management Architecture
 
