@@ -1225,9 +1225,9 @@ becomes necessary.
 	 |    +------+-------+------------+---------^-+   |
 	 +-----------+-------+------------+---------+-----+
 	      2.Incident   3.Incident   4. Incident |5.Incident
-		Ack with   Diagnosis    Resolve     |Update
-		Ticket-no  with         with        |Notification
-		     |     Ticket-no    Ticket-no   |with Ticket-no
+		    Ack with   Diagnosis    Resolve     |Update
+		    Ticket-no  with         with        |Notification
+		         |     Ticket-no    Ticket-no   |with Ticket-no
 	 +-----------+-------+------------+---------+-----+
 	 |Controller |       |            |         |     |
 	 |   +-------V-------V------------V---------+-+   |
@@ -1334,14 +1334,14 @@ diagnose the probable root cause of the network incident and provide repair sugg
 ~~~~
 
  +------------------------------------------------+
- |OSS +------------------------------------------+| Diagnosis
- |    |           Incident Handler               || Key
- |    +----^------------------------^------+-----+| Parameters
+ |OSS +------------------------------------------+|
+ |    |           Incident Handler               || Diagnosis
+ |    +----^------------------------^------+-----+| Key Parameters
  +---------+------------------------|------|------+ {
       Incident                      |      |          ticket-no, String
            |                        |      |          incident-no, String
        Update           |      Incident   Incident    occur-time, yang:date-and-time
-      Notification      |       Update    Diganosis   context? String
+      Notification      |       Update    Diagnosis   context? String
            |            |     Notification |          related-events?  leafref //List <Event>
            |                        |      |          related-objects? leafref //List <ResourceObject>
  +---------------+      |           |      |          ....
