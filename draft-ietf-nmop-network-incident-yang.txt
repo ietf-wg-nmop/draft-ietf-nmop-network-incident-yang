@@ -101,7 +101,14 @@ Table of Contents
    References
      Normative References
      Informative References
-   Appendix A.  Examples
+   Appendix A.  Examples of Network Incident Format Representation
+     A.1.  Network Incident Correlated with Specific Network Topology
+           and the Network Service
+     A.2.  Network Incident Correlated with Trouble Tickets
+     A.3.  Intent Based Networking with Incident Diagnosis Task List
+     A.4.  Multi-Domain Fault Demarcation with Network Incident
+           Management
+     A.5.  Service Complaint triggered Network Diagnosis
    Appendix B.  Changes between Revisions
    Contributors
    Authors' Addresses
@@ -2159,14 +2166,15 @@ Informative References
               <https://www.w3.org/TR/2021/REC-trace-context-
               1-20211123/>.
 
-Appendix A.  Examples
+Appendix A.  Examples of Network Incident Format Representation
 
-   A.1 Network Incident management with specific network topology and
-   the network service
+A.1.  Network Incident Correlated with Specific Network Topology and the
+      Network Service
 
    In this example, we show a nework incident that are associated with
-   the node ‘D1’, the network topology ‘L2-Topo’ and the domain ‘FAN’.
-   The probable root cause is also analysed.
+   the service-instance "optical-svc-A", the node ‘D1’, the network
+   topology ‘L2-Topo’ and the domain ‘FAN’. The probable root cause is
+   also analysed.
 
    {
      "incident-no": 56433218,
@@ -2232,7 +2240,7 @@ Appendix A.  Examples
      ]
    }
 
-   A.2 Correlation with trouble tickets
+A.2.  Network Incident Correlated with Trouble Tickets
 
    In this document, the objective of the incident management is to
    identify probable causes and reduce duplicated ticket amounts.
@@ -2305,7 +2313,7 @@ Appendix A.  Examples
     +--
    …
 
-   A.3 Intent based Networking with incident diagnosis task list
+A.3.  Intent Based Networking with Incident Diagnosis Task List
 
    In this document, incident-diagnosis RPC defined in in "ietf-
    incident" module can be used to identify probable root causes; and an
@@ -2347,7 +2355,7 @@ Appendix A.  Examples
 |   +-- ro state enumeration // Incident states such as Creation, Update, Clear
 …
 
-   A.4 Multi-Domain Fault Demarcation
+A.4.  Multi-Domain Fault Demarcation with Network Incident Management
 
    Take multi-domain fault demarcation as an example, when both base
    station incident in the RAN network and Network Link incident in the
@@ -2390,7 +2398,7 @@ RAN Autonomous Domain   |       IP Autonomous Domain
 
                Figure 8: Multi-Domain Fault Demarcation
 
-   A.5 Service Complaint triggered Network Diagnosis
+A.5.  Service Complaint triggered Network Diagnosis
 
                                            Customer
                                            Complaint
