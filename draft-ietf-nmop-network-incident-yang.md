@@ -379,11 +379,11 @@ fiber) based on the probable root cause.
      |                                          |
      |                                          |
      +------------+---------+---------+---------+
-	^         |         |         |
-	|Incident |Incident |Incident |Incident
-	|Report   |Ack      |Diagnose |Resolve
-	|         |         |         |
-	|         V         V         V
+	    ^         |         |         |
+	    |Incident |Incident |Incident |Incident
+	    |Report   |Ack      |Diagnose |Resolve
+	    |         |         |         |
+	    |         V         V         V
      +--+----------------------------------------+
      |                                           |
      |                                           |
@@ -393,10 +393,10 @@ fiber) based on the probable root cause.
      |                                           |
      |                                           |
      +-------------------------------+-----------+
-	   ^       ^Abnormal         ^Network Performance
-	   |Alarm  |Operations       |Metrics
-	   |Report |Report           |/Telemetry
-	   |       |                 V
+	       ^       ^Abnormal         ^Network Performance
+	       |Alarm  |Operations       |Metrics
+	       |Report |Report           |/Telemetry
+	       |       |                 V
 +----------+-------+------------------------------------+
 |                                                       |
 |            Network in the Autonomous Domain           |
