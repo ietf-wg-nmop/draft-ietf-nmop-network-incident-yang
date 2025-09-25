@@ -1281,11 +1281,55 @@ incident" module can be used to identify probable root causes; and an
 incident update notification can be triggered to report the diagnosis
 status if successful.
 
-In some case, workflows may span a long duration or involve multiple step
-task. In such case, intent based networking can be used to support such
-multiple step task and provide more detailed network diagnosis information,
-the "incident-diagnosis" RPC can be further extended to support "task-id"
-attribute and other auxiliary attributes. "ietf-incident" module can be further
+In some case, workflows may span a long duration or involve multiple steps
+task. In such case, intent based networking concept can be used to support
+such multiple step task and provide more detailed network diagnosis information.
+
+~~~~
+	 +------------------------------------------------+
+	 | OSS                                            |
+	 |    +---------------------------------------+   |
+	 |    |           Incident Handler            |   |
+	 |    +------+-----------^-----------+--------+   |
+	 +-----------+-----------+-----------+------------+
+               Diagnosis   Diagnosis   NETCONF
+		    Task Creation    Task    <get-config>
+			    RPC      Notification    |
+	 +-----------+-----------+-----------+------------+
+	 |Controller |           |           |            |
+	 |   +-------V-----------------------V--------+   |
+	 |   |           Incident Process             |   |
+	 |   +----------------------------------------+   |
+	 +------------------------------------------------+
+~~~~
+
+To do so, the new "diagnosis task creation" RPC can be further defined to support "task-id"
+attribute in the output parameters and other auxiliary attributes in the input parameters.
+such RPC can be used to return task-id from the controller. The controller is responsbile
+for task-id allocation and maintaining task-id list.
+
+~~~~
+    +---x diagnose-task-creation
+    |  +---w input
+    |  |  +---w incident-no?       string
+    |  |  +---w ticket-no?         string
+    |  |  +---w occur-time?        yang:date-and-time
+    |  |  +---w context?           string
+    |  |  +---w related-events
+    |  |  |  +---w probable-event* []
+    |  |  |     +---w type?       -> ../../../events/event/type
+    |  |  |     +---w event-id?   -> ../../../events/event[type = current()/../type]/event-id
+    |  |  +---w related-objects
+    |  |     +---w source* [node-ref]
+    |  |        +---w node-ref       -> /nw:networks/network[nw:network-id=current()/../network-ref]/node/node-id
+    |  |        +---w network-ref?   -> /nw:networks/network/network-id
+    |  |        +---w resource* [name]
+    |  |           +---w name    al:resource
+    |  +--ro output
+    |     +--ro task-id?   string
+~~~~
+
+"ietf-incident" module can be further
 extended to include "incident-diagnosis-task" list with the following diagnosis
 information:
 
@@ -1297,7 +1341,11 @@ information:
 
 • probable root causes, probable events, repair recommendations, etc.
 
+so that OSS system can use NETCONF &lt;get-config&gt; operation to look up
+the diagnosis task detailed information based on such module extension.
+
 ~~~~
+augment /inc:incidents/inc:incident:
 +--ro incident-diagnosis-tasks
 |   +--ro incident-diagnosis-task* [task-id]
 |   +--ro task-id? String
@@ -1316,6 +1364,40 @@ information:
 |   +-- ro state enumeration // Incident states such as Creation, Update, Clear
 …
 ~~~~
+
+In addition, the new Diagnosis Task Notification can be defined to support
+Diagnosis Task related attributes reporting.
+
+~~~~
+    +---n task-notification
+    |  +--ro task-id?                        string
+    |  +--ro incident-no?                    string
+    |  +--ro ticket-no?                      string
+    |  +--ro start-time?                     yang:date-and-time
+    |  +--ro end-time?                       yang:date-and-time
+    |  +--ro task-state?                     task-state
+    |  +--ro diagnosis-result?               diagnosis-result
+    |  +--ro diagnosis-result-description?   string
+    |  +--ro probable-causes
+    |  |  +--ro probable-cause* []
+    |  |     +--ro node-ref?      -> /nw:networks/network[nw:network-id=current()/../network-ref]/node/node-id
+    |  |     +--ro network-ref?   -> /nw:networks/network/network-id
+    |  |     +--ro resource* [name]
+    |  |     |  +--ro name          al:resource
+    |  |     |  +--ro cause-name?   identityref
+    |  |     |  +--ro detail?       string
+    |  |     +--ro cause-name?    identityref
+    |  |     +--ro detail?        string
+    |  +--ro probable-events
+    |  |  +--ro probable-event* []
+    |  |     +--ro type?       -> ../../../events/event/type
+    |  |     +--ro event-id?   -> ../../../events/event[type = current()/../type]/event-id
+    |  +--ro repair-advices?                 string
+    |  +--ro incident-status?                incident-status-value
+~~~~
+
+So that the controller can send diagnosis task notification to the OSS system upon diagnosis task
+completes and outputs repair suggestion.
 
 ## Multi-Domain Fault Demarcation with Network Incident Management
 
@@ -1373,7 +1455,7 @@ RAN Autonomous Domain   |       IP Autonomous Domain
                |    +------------^------^---------------+|
                +-----------------+------+----------------+
    Diagnosis            Incident |      |Incident Update
-   Key Parameters:      Diganosis|      | Notification
+   Key Parameters:      Diagnosis|      | Notification
    {                       +-----|------+--+
    incident-no,            | +---V------|+ |
    ticket-no,              | | Incident  | |
