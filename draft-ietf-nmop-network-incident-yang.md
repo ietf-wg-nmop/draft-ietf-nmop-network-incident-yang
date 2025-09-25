@@ -1292,12 +1292,12 @@ such multiple step task and provide more detailed network diagnosis information.
 	 |    |           Incident Handler            |   |
 	 |    +------+-----------^-----------+--------+   |
 	 +-----------+-----------+-----------+------------+
-               Diagnosis   Diagnosis   NETCONF     
+               Diagnosis   Diagnosis   NETCONF
 		    Task Creation    Task    <get-config>
 			    RPC      Notification    |
 	 +-----------+-----------+-----------+------------+
 	 |Controller |           |           |            |
-	 |   +-------V-----------------------V--------+   |   
+	 |   +-------V-----------------------V--------+   |
 	 |   |           Incident Process             |   |
 	 |   +----------------------------------------+   |
 	 +------------------------------------------------+
@@ -1365,7 +1365,7 @@ augment /inc:incidents/inc:incident:
 …
 ~~~~
 
-In addition, the new Diagnosis Task Notification can be defined to support 
+In addition, the new Diagnosis Task Notification can be defined to support
 Diagnosis Task related attributes reporting.
 
 ~~~~
@@ -1398,7 +1398,7 @@ Diagnosis Task related attributes reporting.
 
 So that the controller can send diagnosis task notification to the OSS system upon diagnosis task
 completes and outputs repair suggestion.
-	   
+
 ## Multi-Domain Fault Demarcation with Network Incident Management
 
 Take multi-domain fault demarcation as an example, when both base station incident
