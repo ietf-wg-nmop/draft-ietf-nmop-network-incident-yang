@@ -1413,17 +1413,17 @@ diagnose the probable root cause of the network incident and provide repair sugg
 
  +------------------------------------------------+
  |OSS +------------------------------------------+|
- |    |           Incident Handler               || Diagnosis
- |    +----^------------------------^------+-----+| Key Parameters
- +---------+------------------------|------|------+ {
-      Incident                      |      |          ticket-no, String
-           |                        |      |          incident-no, String
-       Update           |      Incident   Incident    occur-time, yang:date-and-time
-      Notification      |       Update    Diagnosis   context? String
-           |            |     Notification |          related-events?  leafref //List <Event>
-           |                        |      |          related-objects? leafref //List <ResourceObject>
- +---------------+      |           |      |          ....
- | +-----------+ |      |     +-----|------+--+     }
+ |    |           Incident Handler               ||
+ |    +----^------------------------^------+-----+|
+ +---------+------------------------|------|------+
+      Incident                      |      |
+           |                        |      |
+       Update           |      Incident   Incident
+      Notification      |       Update    Diagnosis
+           |            |     Notification |
+           |                        |      |
+ +---------------+      |           |      |
+ | +-----------+ |      |     +-----|------+--+
  | | Incident  | |      |     | +---+------V+ |
  | | Process   | |      |     | | Incident  | |
  | +-----------+ |            | | Process   | |
