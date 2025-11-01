@@ -1404,7 +1404,7 @@ received and base station incident from user side results from network incident
 in other domains, the OSS system is unable to find network side problem simply
 based on base station incident. Therefore incident diagnosis RPC will be invoked
 with IP address of Base station and incident start time as input and sent to the
-network controller. 
+network controller.
 
 The network controller can use network diagnosis related intent based interface
 to find the corresponding network side port  according to the base station IP
