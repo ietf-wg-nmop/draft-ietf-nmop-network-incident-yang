@@ -2444,40 +2444,40 @@ A.4.  Multi-Domain Fault Demarcation with Network Incident Management
    the probable root cause of the network incident and provide repair
    suggestions.
 
- +------------------------------------------------+
- |OSS +------------------------------------------+|
- |    |           Incident Handler               || Diagnosis
- |    +----^------------------------^------+-----+| Key Parameters
- +---------+------------------------|------|------+ {
-      Incident                      |      |          ticket-no, String
-           |                        |      |          incident-no, String
-       Update           |      Incident   Incident    occur-time, yang:date-and-time
-      Notification      |       Update    Diagnosis   context? String
-           |            |     Notification |          related-events?  leafref //List <Event>
-           |                        |      |          related-objects? leafref //List <ResourceObject>
- +---------------+      |           |      |          ....
- | +-----------+ |      |     +-----|------+--+     }
- | | Incident  | |      |     | +---+------V+ |
- | | Process   | |      |     | | Incident  | |
- | +-----------+ |            | | Process   | |
- | RAN Controller|      |     | +-----------+ |
- +---------------+      |     | IP Controller |
-                        |     +---------------+
-                        |
-RAN Autonomous Domain   |       IP Autonomous Domain
-                        |
-Diagnosis Key Parameters:
-{
-ticket-no, String
-incident-no, String
-occur-time, yang:date-and-time
-context? String
-related-events?  leafref //List <Event>
-related-objects? leafref //List <ResourceObject>
- ....
-}
+            +------------------------------------------------+
+            |OSS +------------------------------------------+|
+            |    |           Incident Handler               ||
+            |    +----^------------------------^------+-----+|
+            +---------+------------------------|------|------+
+                 Incident                      |      |
+                      |                        |      |
+                  Update           |      Incident   Incident
+                 Notification      |       Update    Diagnosis
+                      |            |     Notification |
+                      |                        |      |
+            +---------------+      |           |      |
+            | +-----------+ |      |     +-----|------+--+
+            | | Incident  | |      |     | +---+------V+ |
+            | | Process   | |      |     | | Incident  | |
+            | +-----------+ |            | | Process   | |
+            | RAN Controller|      |     | +-----------+ |
+            +---------------+      |     | IP Controller |
+                                   |     +---------------+
+                                   |
+           RAN Autonomous Domain   |       IP Autonomous Domain
+                                   |
+           Diagnosis Key Parameters:
+           {
+           ticket-no, String
+           incident-no, String
+           occur-time, yang:date-and-time
+           context? String
+           related-events?  leafref //List <Event>
+           related-objects? leafref //List <ResourceObject>
+            ....
+           }
 
-               Figure 8: Multi-Domain Fault Demarcation
+                  Figure 8: Multi-Domain Fault Demarcation
 
 A.5.  Service Complaint triggered Network Diagnosis
 
