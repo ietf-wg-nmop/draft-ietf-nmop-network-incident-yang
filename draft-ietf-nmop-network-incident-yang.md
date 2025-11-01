@@ -582,7 +582,7 @@ As depicted in {{ident}}, multiple alarms, metrics, or hybrid can be
 aggregated into a network incident after analysis.
 
 ~~~~
-            +--------------+
+        +--------------+
 	 +--|  Incident1   |
 	 |  +--+-----------+
 	 |     |  +-----------+
@@ -615,7 +615,7 @@ aggregated into a network incident after analysis.
 	       |
 	       |  +-----------+
 	       +--| metric1   |
-                  +-----------+
+              +-----------+
 ~~~~
 {:#ident title="Incident Identification" artwork-align="center"}
 
@@ -639,17 +639,17 @@ knowledge base, and the network incident will be identified faster according
 to knowledge base next time.
 
 ~~~~
-	 +----------------------+
-	 |                      |
-	 |     Orchestrator     |
-	 |                      |
-	 +----+-----------------+
-	      ^VPN A Unavailable
-	      |
-	  +---+----------------+
-	  |                    |
-	  |     Controller     |
-	  |                    |
+	     +----------------------+
+	     |                      |
+	     |     Orchestrator     |
+	     |                      |
+	     +----+-----------------+
+	          ^VPN A Unavailable
+	          |
+	      +---+----------------+
+	      |                    |
+	      |     Controller     |
+	      |                    |
           |                    |
           +-+-+------------+---+
 	    ^ ^            ^
@@ -699,8 +699,8 @@ anomaly, e.g., igp down, has impact on the service.
 		    |Packet      |Path Delay
 		    |Loss        |
 		    |            |
-VPN A               |            |
-+-------------------+------------+-------------------+
+VPN A       |            |
++-----------+------------+---------------------------+
 | \  +---+       ++-++         +-+-+        +---+  / |
 |  \ |   |       |   |         |   |        |   | /  |
 |   \|PE1+-------|P1 +---------|P2 +--------|PE2|/   |
@@ -874,13 +874,13 @@ notifications:
 	 +--ro sources
 	 |  +--ro source* [node-ref]
          |     +--ro node-ref  leafref
-         |     +--ro network-ref?  -> /nw:networks/network/network-id
+         |     +--ro network-ref?  leafref
 	 |     +--ro resource* [name]
 	 |        +--ro name al:resource
 	 +--ro probable-causes
 	 |  +--ro probable-cause* [node-ref]
          |     +--ro node-ref  leafref
-         |     +--ro network-ref?  -> /nw:networks/network/network-id
+         |     +--ro network-ref?  leafref
 	 |     +--ro resource* [name]
 	 |     |  +--ro name al:resource
 	 |     |  +--ro cause-name? string
@@ -1019,7 +1019,8 @@ resource-unavailable
 
 # Network Incident Management YANG Module
 
-This module imports types defined in {{!RFC6991}}, {{!RFC8345}}, {{!RFC8632}},{{!RFC8791}}.
+This module imports types defined in {{!RFC6991}}, {{!RFC8345}},
+{{!RFC8632}},{{!RFC8791}}.
 
 ~~~~
 <CODE BEGINS> file "ietf-incident@2025-09-16.yang"
@@ -1297,10 +1298,11 @@ such multiple step task and provide more detailed network diagnosis information.
 	 +------------------------------------------------+
 ~~~~
 
-To do so, the new "diagnosis task creation" RPC can be further defined to support "task-id"
-attribute in the output parameters and other auxiliary attributes in the input parameters.
-such RPC can be used to return task-id from the controller. The controller is responsbile
-for task-id allocation and maintaining task-id list.
+To do so, the new "diagnosis task creation" RPC can be further defined to
+support "task-id" attribute in the output parameters and other auxiliary
+attributes in the input parameters. such RPC can be used to return task-id
+from the controller. The controller is responsbile for task-id allocation
+and maintaining task-id list.
 
 ~~~~
     +---x diagnose-task-creation
@@ -1311,12 +1313,12 @@ for task-id allocation and maintaining task-id list.
     |  |  +---w context?           string
     |  |  +---w related-events
     |  |  |  +---w probable-event* []
-    |  |  |     +---w type?       -> ../../../events/event/type
-    |  |  |     +---w event-id?   -> ../../../events/event[type = current()/../type]/event-id
+    |  |  |     +---w type?       leafref
+    |  |  |     +---w event-id?   leafref
     |  |  +---w related-objects
     |  |     +---w source* [node-ref]
-    |  |        +---w node-ref       -> /nw:networks/network[nw:network-id=current()/../network-ref]/node/node-id
-    |  |        +---w network-ref?   -> /nw:networks/network/network-id
+    |  |        +---w node-ref       leafref
+    |  |        +---w network-ref?   leafref
     |  |        +---w resource* [name]
     |  |           +---w name    al:resource
     |  +--ro output
@@ -1374,8 +1376,8 @@ Diagnosis Task related attributes reporting.
     |  +--ro diagnosis-result-description?   string
     |  +--ro probable-causes
     |  |  +--ro probable-cause* []
-    |  |     +--ro node-ref?      -> /nw:networks/network[nw:network-id=current()/../network-ref]/node/node-id
-    |  |     +--ro network-ref?   -> /nw:networks/network/network-id
+    |  |     +--ro node-ref?      leafref
+    |  |     +--ro network-ref?   leafref
     |  |     +--ro resource* [name]
     |  |     |  +--ro name          al:resource
     |  |     |  +--ro cause-name?   identityref
@@ -1384,10 +1386,10 @@ Diagnosis Task related attributes reporting.
     |  |     +--ro detail?        string
     |  +--ro probable-events
     |  |  +--ro probable-event* []
-    |  |     +--ro type?       -> ../../../events/event/type
-    |  |     +--ro event-id?   -> ../../../events/event[type = current()/../type]/event-id
-    |  +--ro repair-advices?                 string
-    |  +--ro incident-status?                incident-status-value
+    |  |     +--ro type?       leafref
+    |  |     +--ro event-id?   leafref
+    |  +--ro repair-advices?   string
+    |  +--ro incident-status?  incident-status-value
 ~~~~
 
 So that the controller can send diagnosis task notification to the OSS system upon diagnosis task
