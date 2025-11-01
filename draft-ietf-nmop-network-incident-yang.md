@@ -583,7 +583,7 @@ As depicted in {{ident}}, multiple alarms, metrics, or hybrid can be
 aggregated into a network incident after analysis.
 
 ~~~~
-            +--------------+
+        +--------------+
 	 +--|  Incident1   |
 	 |  +--+-----------+
 	 |     |  +-----------+
@@ -616,7 +616,7 @@ aggregated into a network incident after analysis.
 	       |
 	       |  +-----------+
 	       +--| metric1   |
-                  +-----------+
+              +-----------+
 ~~~~
 {:#ident title="Incident Identification" artwork-align="center"}
 
@@ -640,23 +640,23 @@ knowledge base, and the network incident will be identified faster according
 to knowledge base next time.
 
 ~~~~
-	 +----------------------+
-	 |                      |
-	 |     Orchestrator     |
-	 |                      |
-	 +----+-----------------+
-	      ^VPN A Unavailable
-	      |
-	  +---+----------------+
-	  |                    |
-	  |     Controller     |
-	  |                    |
+	     +----------------------+
+	     |                      |
+	     |     Orchestrator     |
+	     |                      |
+	     +----+-----------------+
+	          ^VPN A Unavailable
+	          |
+	      +---+----------------+
+	      |                    |
+	      |     Controller     |
+	      |                    |
           |                    |
           +-+-+------------+---+
-	    ^ ^            ^
+	        ^ ^            ^
         IGP | |Interface   |IGP Peer
        Down | |Down        | Abnormal
-	    | |            |
+	        | |            |
 VPN A       | |            |
 +-----------+-+------------+------------------------+
 | \  +---+       ++-++         +-+-+        +---+  /|
@@ -683,23 +683,23 @@ anomaly, e.g., igp down, has impact on the service.
 
 ~~~~
 
-		+----------------------+
-		|                      |
-		|     Orchestrator     |
-		|                      |
-		+----+-----------------+
-			 ^VPN A Degradation
-			 |
-		 +-------+------------+
-		 |                    |
-		 |     controller     |
-		 |                    |
-		 |                    |
-		 +--+------------+----+
-		    ^            ^
-		    |Packet      |Path Delay
-		    |Loss        |
-		    |            |
+		           +----------------------+
+		           |                      |
+		           |     Orchestrator     |
+		           |                      |
+		           +----+-----------------+
+			            ^VPN A Degradation
+                        |
+		        +-------+------------+
+		        |                    |
+		        |     controller     |
+		        |                    |
+		        |                    |
+		         +--+------------+----+
+		            ^            ^
+		            |Packet      |Path Delay
+		            |Loss        |
+                    |            |
 VPN A               |            |
 +-------------------+------------+-------------------+
 | \  +---+       ++-++         +-+-+        +---+  / |
@@ -875,14 +875,14 @@ notifications:
 	 +--ro resolve-advice? string
 	 +--ro sources
 	 |  +--ro source* [node-ref]
-         |     +--ro node-ref  leafref
-         |     +--ro network-ref?  -> /nw:networks/network/network-id
+     |     +--ro node-ref  leafref
+     |     +--ro network-ref?  leafref
 	 |     +--ro resource* [name]
 	 |        +--ro name al:resource
 	 +--ro probable-causes
 	 |  +--ro probable-cause* [node-ref]
          |     +--ro node-ref  leafref
-         |     +--ro network-ref?  -> /nw:networks/network/network-id
+         |     +--ro network-ref?  leafref
 	 |     +--ro resource* [name]
 	 |     |  +--ro name al:resource
 	 |     |  +--ro cause-name? string
