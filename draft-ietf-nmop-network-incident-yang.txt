@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 16 April 2026                                        Telefonica
+Expires: 5 May 2026                                           Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                         13 October 2025
+                                                         1 November 2025
 
 
            A YANG Data Model for Network Incident Management
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 16 April 2026.
+   This Internet-Draft will expire on 5 May 2026.
 
 Copyright Notice
 
@@ -600,7 +600,7 @@ Table of Contents
    As depicted in Figure 4, multiple alarms, metrics, or hybrid can be
    aggregated into a network incident after analysis.
 
-                                  +--------------+
+                              +--------------+
                                +--|  Incident1   |
                                |  +--+-----------+
                                |     |  +-----------+
@@ -633,7 +633,7 @@ Table of Contents
                                      |
                                      |  +-----------+
                                      +--| metric1   |
-                                        +-----------+
+                                    +-----------+
 
                      Figure 4: Incident Identification
 
@@ -658,17 +658,17 @@ Table of Contents
    incident will be identified faster according to knowledge base next
    time.
 
-                    +----------------------+
-                    |                      |
-                    |     Orchestrator     |
-                    |                      |
-                    +----+-----------------+
-                         ^VPN A Unavailable
-                         |
-                     +---+----------------+
-                     |                    |
-                     |     Controller     |
-                     |                    |
+                        +----------------------+
+                        |                      |
+                        |     Orchestrator     |
+                        |                      |
+                        +----+-----------------+
+                             ^VPN A Unavailable
+                             |
+                         +---+----------------+
+                         |                    |
+                         |     Controller     |
+                         |                    |
                      |                    |
                      +-+-+------------+---+
                        ^ ^            ^
@@ -717,8 +717,8 @@ Table of Contents
                               |Packet      |Path Delay
                               |Loss        |
                               |            |
-          VPN A               |            |
-          +-------------------+------------+-------------------+
+          VPN A       |            |
+          +-----------+------------+---------------------------+
           | \  +---+       ++-++         +-+-+        +---+  / |
           |  \ |   |       |   |         |   |        |   | /  |
           |   \|PE1+-------|P1 +---------|P2 +--------|PE2|/   |
@@ -898,13 +898,13 @@ Table of Contents
           +--ro sources
           |  +--ro source* [node-ref]
           |     +--ro node-ref  leafref
-          |     +--ro network-ref?  -> /nw:networks/network/network-id
+          |     +--ro network-ref?  leafref
           |     +--ro resource* [name]
           |        +--ro name al:resource
           +--ro probable-causes
           |  +--ro probable-cause* [node-ref]
           |     +--ro node-ref  leafref
-          |     +--ro network-ref?  -> /nw:networks/network/network-id
+          |     +--ro network-ref?  leafref
           |     +--ro resource* [name]
           |     |  +--ro name al:resource
           |     |  +--ro cause-name? string
@@ -2089,9 +2089,9 @@ Informative References
               Gagliano, R., Larsson, K., and J. Lindblad, "NETCONF
               Extension to support Trace Context propagation", Work in
               Progress, Internet-Draft, draft-ietf-netconf-trace-ctx-
-              extension-04, 3 March 2025,
+              extension-05, 19 October 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-netconf-
-              trace-ctx-extension-04>.
+              trace-ctx-extension-05>.
 
    [I-D.ietf-nmop-terminology]
               Davis, N., Farrel, A., Graf, T., Wu, Q., and C. Yu, "Some
@@ -2340,24 +2340,24 @@ A.3.  Intent Based Networking with Incident Diagnosis Task List
    used to return task-id from the controller.  The controller is
    responsbile for task-id allocation and maintaining task-id list.
 
-    +---x diagnose-task-creation
-    |  +---w input
-    |  |  +---w incident-no?       string
-    |  |  +---w ticket-no?         string
-    |  |  +---w occur-time?        yang:date-and-time
-    |  |  +---w context?           string
-    |  |  +---w related-events
-    |  |  |  +---w probable-event* []
-    |  |  |     +---w type?       -> ../../../events/event/type
-    |  |  |     +---w event-id?   -> ../../../events/event[type = current()/../type]/event-id
-    |  |  +---w related-objects
-    |  |     +---w source* [node-ref]
-    |  |        +---w node-ref       -> /nw:networks/network[nw:network-id=current()/../network-ref]/node/node-id
-    |  |        +---w network-ref?   -> /nw:networks/network/network-id
-    |  |        +---w resource* [name]
-    |  |           +---w name    al:resource
-    |  +--ro output
-    |     +--ro task-id?   string
+       +---x diagnose-task-creation
+       |  +---w input
+       |  |  +---w incident-no?       string
+       |  |  +---w ticket-no?         string
+       |  |  +---w occur-time?        yang:date-and-time
+       |  |  +---w context?           string
+       |  |  +---w related-events
+       |  |  |  +---w probable-event* []
+       |  |  |     +---w type?       leafref
+       |  |  |     +---w event-id?   leafref
+       |  |  +---w related-objects
+       |  |     +---w source* [node-ref]
+       |  |        +---w node-ref       leafref
+       |  |        +---w network-ref?   leafref
+       |  |        +---w resource* [name]
+       |  |           +---w name    al:resource
+       |  +--ro output
+       |     +--ro task-id?   string
 
    "ietf-incident" module can be further extended to include "incident-
    diagnosis-task" list with the following diagnosis information:
@@ -2396,31 +2396,31 @@ augment /inc:incidents/inc:incident:
    In addition, the new Diagnosis Task Notification can be defined to
    support Diagnosis Task related attributes reporting.
 
-    +---n task-notification
-    |  +--ro task-id?                        string
-    |  +--ro incident-no?                    string
-    |  +--ro ticket-no?                      string
-    |  +--ro start-time?                     yang:date-and-time
-    |  +--ro end-time?                       yang:date-and-time
-    |  +--ro task-state?                     task-state
-    |  +--ro diagnosis-result?               diagnosis-result
-    |  +--ro diagnosis-result-description?   string
-    |  +--ro probable-causes
-    |  |  +--ro probable-cause* []
-    |  |     +--ro node-ref?      -> /nw:networks/network[nw:network-id=current()/../network-ref]/node/node-id
-    |  |     +--ro network-ref?   -> /nw:networks/network/network-id
-    |  |     +--ro resource* [name]
-    |  |     |  +--ro name          al:resource
-    |  |     |  +--ro cause-name?   identityref
-    |  |     |  +--ro detail?       string
-    |  |     +--ro cause-name?    identityref
-    |  |     +--ro detail?        string
-    |  +--ro probable-events
-    |  |  +--ro probable-event* []
-    |  |     +--ro type?       -> ../../../events/event/type
-    |  |     +--ro event-id?   -> ../../../events/event[type = current()/../type]/event-id
-    |  +--ro repair-advices?                 string
-    |  +--ro incident-status?                incident-status-value
+       +---n task-notification
+       |  +--ro task-id?                        string
+       |  +--ro incident-no?                    string
+       |  +--ro ticket-no?                      string
+       |  +--ro start-time?                     yang:date-and-time
+       |  +--ro end-time?                       yang:date-and-time
+       |  +--ro task-state?                     task-state
+       |  +--ro diagnosis-result?               diagnosis-result
+       |  +--ro diagnosis-result-description?   string
+       |  +--ro probable-causes
+       |  |  +--ro probable-cause* []
+       |  |     +--ro node-ref?      leafref
+       |  |     +--ro network-ref?   leafref
+       |  |     +--ro resource* [name]
+       |  |     |  +--ro name          al:resource
+       |  |     |  +--ro cause-name?   identityref
+       |  |     |  +--ro detail?       string
+       |  |     +--ro cause-name?    identityref
+       |  |     +--ro detail?        string
+       |  +--ro probable-events
+       |  |  +--ro probable-event* []
+       |  |     +--ro type?       leafref
+       |  |     +--ro event-id?   leafref
+       |  +--ro repair-advices?   string
+       |  +--ro incident-status?  incident-status-value
 
    So that the controller can send diagnosis task notification to the
    OSS system upon diagnosis task completes and outputs repair
