@@ -1437,7 +1437,7 @@ network incident and provide repair suggestions.
                         |
 RAN Autonomous Domain   |       IP Autonomous Domain
                         |
-Diagnosis Key Parameters
+Diagnosis Key Parameters:
 {
 ticket-no, String
 incident-no, String
@@ -1447,6 +1447,7 @@ related-events?  leafref //List <Event>
 related-objects? leafref //List <ResourceObject>
 ....
 }
+
 ~~~~
 {:#exam4 title="Multi-Domain Fault Demarcation" artwork-align="center"}
 
