@@ -98,7 +98,8 @@ informative:
    target: https://www.itu.int/rec/T-REC-G.7710
    date: 2020
  ITU-T-X-733:
-   title: ITU-T X.733 - Information technology - Open Systems Interconnection - Systems Management - Alarm reporting function
+   title: ITU-T X.733 - Information technology - Open Systems Interconnection -
+   Systems Management - Alarm reporting function
    target: https://www.itu.int/rec/T-REC-X.733/fr
    date: 1999
 
@@ -191,8 +192,8 @@ network automation {{?RFC8969}} with RPC operations in this YANG module.
 
 {::boilerplate bcp14-tagged}
 
-The following terms are defined in {{?RFC8632}}, {{?RFC9543}},{{?I-D.ietf-nmop-terminology}}
-and are not redefined here:
+The following terms are defined in {{?RFC8632}}, {{?RFC9543}},
+{{?I-D.ietf-nmop-terminology}} and are not redefined here:
 
 *  alarm
 
@@ -405,7 +406,7 @@ components for the incident management are incident client
 and incident server.
 
 Incident server can be deployed in network operation platforms, network analytic
-platforms, controllers {{!RFC8969}} and provides functionalities such as network
+platforms, controllers {{?RFC8969}} and provides functionalities such as network
 incident identification, report, diagnosis, resolution, or querying for network
 incident lifecycle management.
 
@@ -778,17 +779,18 @@ resolved, the status changes to 'cleared'.
 
 ### Operator Incident Lifecycle
 
-Operators can act upon network incident with network incident rpcs. From an operator perspective,
-the lifecycle of a network incident instance includes 'acknowledged', 'diagnosed', and
-'resolved'.
+Operators can act upon network incident with network incident rpcs. From an operator
+perspective, the lifecycle of a network incident instance includes 'acknowledged',
+'diagnosed', and 'resolved'.
 
-When a network incident instance is generated, the operator SHOULD acknowledge the network incident
-with 'incident-acknowledge' rpc. And then the operator attempts to diagnose the network incident
-with 'incident-diagnose' rpc (for example, find out the probable root cause and affected components).
-Diagnosis is not mandatory. If the probable root cause and affected components are known when the
-network incident is generated, diagnosis is not required.  After locating the probable root cause and
-affected components, operator can try to resolve the network incident by invoking 'incident-resolve'
-rpc.
+When a network incident instance is generated, the operator SHOULD acknowledge the
+network incident with 'incident-acknowledge' rpc. And then the operator attempts to
+diagnose the network incident with 'incident-diagnose' rpc (for example, find out
+the probable root cause and affected components).
+Diagnosis is not mandatory. If the probable root cause and affected components are
+known when the network incident is generated, diagnosis is not required.  After locating
+the probable root cause and affected components, operator can try to resolve the network
+incident by invoking 'incident-resolve' rpc.
 
 # Incident Data Model Design
 
@@ -1297,10 +1299,11 @@ such multiple step task and provide more detailed network diagnosis information.
 	 +------------------------------------------------+
 ~~~~
 
-To do so, the new "diagnosis task creation" RPC can be further defined to support "task-id"
-attribute in the output parameters and other auxiliary attributes in the input parameters.
-such RPC can be used to return task-id from the controller. The controller is responsbile
-for task-id allocation and maintaining task-id list.
+To do so, the new "diagnosis task creation" RPC can be further defined to
+support "task-id" attribute in the output parameters and other auxiliary
+attributes in the input parameters. such RPC can be used to return task-id
+from the controller. The controller is responsbile for task-id allocation
+and maintaining task-id list.
 
 ~~~~
     +---x diagnose-task-creation
@@ -1311,12 +1314,12 @@ for task-id allocation and maintaining task-id list.
     |  |  +---w context?           string
     |  |  +---w related-events
     |  |  |  +---w probable-event* []
-    |  |  |     +---w type?       -> ../../../events/event/type
-    |  |  |     +---w event-id?   -> ../../../events/event[type = current()/../type]/event-id
+    |  |  |     +---w type?       leafref
+    |  |  |     +---w event-id?   leafref
     |  |  +---w related-objects
     |  |     +---w source* [node-ref]
-    |  |        +---w node-ref       -> /nw:networks/network[nw:network-id=current()/../network-ref]/node/node-id
-    |  |        +---w network-ref?   -> /nw:networks/network/network-id
+    |  |        +---w node-ref       leafref
+    |  |        +---w network-ref?   leafref
     |  |        +---w resource* [name]
     |  |           +---w name    al:resource
     |  +--ro output
@@ -1374,8 +1377,8 @@ Diagnosis Task related attributes reporting.
     |  +--ro diagnosis-result-description?   string
     |  +--ro probable-causes
     |  |  +--ro probable-cause* []
-    |  |     +--ro node-ref?      -> /nw:networks/network[nw:network-id=current()/../network-ref]/node/node-id
-    |  |     +--ro network-ref?   -> /nw:networks/network/network-id
+    |  |     +--ro node-ref?      leafref
+    |  |     +--ro network-ref?   leafref
     |  |     +--ro resource* [name]
     |  |     |  +--ro name          al:resource
     |  |     |  +--ro cause-name?   identityref
@@ -1384,44 +1387,47 @@ Diagnosis Task related attributes reporting.
     |  |     +--ro detail?        string
     |  +--ro probable-events
     |  |  +--ro probable-event* []
-    |  |     +--ro type?       -> ../../../events/event/type
-    |  |     +--ro event-id?   -> ../../../events/event[type = current()/../type]/event-id
+    |  |     +--ro type?                     leafref
+    |  |     +--ro event-id?                 leafref
     |  +--ro repair-advices?                 string
     |  +--ro incident-status?                incident-status-value
 ~~~~
 
-So that the controller can send diagnosis task notification to the OSS system upon diagnosis task
-completes and outputs repair suggestion.
+So that the controller can send diagnosis task notification to the OSS system
+upon diagnosis task completes and outputs repair suggestion.
 
 ## Multi-Domain Fault Demarcation with Network Incident Management
 
-Take multi-domain fault demarcation as an example, when both base station incident
-in the RAN network and Network Link incident in the IP network are received and base station
-incident from user side results from network incident in other domains, the OSS system
-is unable to find network side problem simply based on base station incident. Therefore
-incident diagnosis RPC will be invoked with IP address of Base station
-and incident start time as input and sent to the network controller.
-The network controller can use network diagnosis related intent based interface to find the
-corresponding network side port  according to the base station IP address, and then further
-associated with transmission path (current path, historical path) to the base station and
-current and historical network performance, netowrk resources, and incident status data, to
-diagnose the probable root cause of the network incident and provide repair suggestions.
+Take multi-domain fault demarcation as an example, when both base station
+incident in the RAN network and Network Link incident in the IP network are
+received and base station incident from user side results from network incident
+in other domains, the OSS system is unable to find network side problem simply
+based on base station incident. Therefore incident diagnosis RPC will be invoked
+with IP address of Base station and incident start time as input and sent to the
+network controller. 
+
+The network controller can use network diagnosis related intent based interface
+to find the corresponding network side port  according to the base station IP
+address, and then further associated with transmission path (current path, historical
+path) to the base station and current and historical network performance, netowrk
+resources, and incident status data, to diagnose the probable root cause of the
+network incident and provide repair suggestions.
 
 ~~~~
 
  +------------------------------------------------+
  |OSS +------------------------------------------+|
- |    |           Incident Handler               || Diagnosis
- |    +----^------------------------^------+-----+| Key Parameters
- +---------+------------------------|------|------+ {
-      Incident                      |      |          ticket-no, String
-           |                        |      |          incident-no, String
-       Update           |      Incident   Incident    occur-time, yang:date-and-time
-      Notification      |       Update    Diagnosis   context? String
-           |            |     Notification |          related-events?  leafref //List <Event>
-           |                        |      |          related-objects? leafref //List <ResourceObject>
- +---------------+      |           |      |          ....
- | +-----------+ |      |     +-----|------+--+     }
+ |    |           Incident Handler               ||
+ |    +----^------------------------^------+-----+|
+ +---------+------------------------|------|------+
+      Incident                      |      |
+           |                        |      |
+       Update           |      Incident   Incident
+      Notification      |       Update    Diagnosis
+           |            |     Notification |
+           |                        |      |
+ +---------------+      |           |      |
+ | +-----------+ |      |     +-----|------+--+
  | | Incident  | |      |     | +---+------V+ |
  | | Process   | |      |     | | Incident  | |
  | +-----------+ |            | | Process   | |
@@ -1431,7 +1437,16 @@ diagnose the probable root cause of the network incident and provide repair sugg
                         |
 RAN Autonomous Domain   |       IP Autonomous Domain
                         |
-
+Diagnosis Key Parameters
+{
+ticket-no, String
+incident-no, String
+occur-time, yang:date-and-time
+context? String
+related-events?  leafref //List <Event>
+related-objects? leafref //List <ResourceObject>
+....
+}
 ~~~~
 {:#exam4 title="Multi-Domain Fault Demarcation" artwork-align="center"}
 
@@ -1466,13 +1481,14 @@ RAN Autonomous Domain   |       IP Autonomous Domain
 ~~~~
 {:#exam5 title="Service Complaint triggered Network Diagnosis " artwork-align="center"}
 
-Similarly, in case of service degradation for a lease line service recieving from the customer,
-the OSS system can request network diagnosis at the network side conducted by the network controller.
-The network controller can use network diagnosis related intent based interface to find the
-corresponding network side port based on the dedicated line service, and then further associate
-the transmission path (current path, historical path) and current and historical network performance,
-network resources, and incident status data to diagnose the probable root cause of the fault and provide
-repair suggestions.
+Similarly, in case of service degradation for a lease line service recieving
+from the customer, the OSS system can request network diagnosis at the network
+side conducted by the network controller. The network controller can use network
+diagnosis related intent based interface to find the corresponding network side port
+based on the dedicated line service, and then further associate the transmission path
+(current path, historical path) and current and historical network performance,
+network resources, and incident status data to diagnose the probable root cause of the
+fault and provide repair suggestions.
 
 # Changes between Revisions
 
