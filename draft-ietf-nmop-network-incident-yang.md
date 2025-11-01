@@ -1433,6 +1433,16 @@ diagnose the probable root cause of the network incident and provide repair sugg
                         |
 RAN Autonomous Domain   |       IP Autonomous Domain
                         |
+Diagnosis Key Parameters:
+{
+ticket-no, String
+incident-no, String
+occur-time, yang:date-and-time
+context? String
+related-events?  leafref //List <Event>
+related-objects? leafref //List <ResourceObject>
+ ....
+}
 
 ~~~~
 {:#exam4 title="Multi-Domain Fault Demarcation" artwork-align="center"}
