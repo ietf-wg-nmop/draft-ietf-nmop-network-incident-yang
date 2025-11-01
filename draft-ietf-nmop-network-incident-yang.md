@@ -405,7 +405,7 @@ components for the incident management are incident client
 and incident server.
 
 Incident server can be deployed in network operation platforms, network analytic
-platforms, controllers {{!RFC8969}} and provides functionalities such as network
+platforms, controllers {{?RFC8969}} and provides functionalities such as network
 incident identification, report, diagnosis, resolution, or querying for network
 incident lifecycle management.
 
