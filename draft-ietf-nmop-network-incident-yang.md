@@ -721,7 +721,7 @@ incident client MAY diagnose the incident to determine the probable root cause.
 Some diagnosis operations may affect the running network services.  The
 incident client can choose not to perform that diagnosis operation after
 determining the impact is not trivial.  The incident server can also perform
-self-diagnosis.  However, the self-diagnosis MUST not affect the running
+self-diagnosis.  However, the self-diagnosis MUST NOT affect the running
 network services.  Possible diagnosis methods include link reachability
 detection, link quality detection, alarm/log analysis, and short-term
 fine-grained monitoring of network quality metrics, etc.
@@ -1413,17 +1413,17 @@ diagnose the probable root cause of the network incident and provide repair sugg
 
  +------------------------------------------------+
  |OSS +------------------------------------------+|
- |    |           Incident Handler               || Diagnosis
- |    +----^------------------------^------+-----+| Key Parameters
- +---------+------------------------|------|------+ {
-      Incident                      |      |          ticket-no, String
-           |                        |      |          incident-no, String
-       Update           |      Incident   Incident    occur-time, yang:date-and-time
-      Notification      |       Update    Diagnosis   context? String
-           |            |     Notification |          related-events?  leafref //List <Event>
-           |                        |      |          related-objects? leafref //List <ResourceObject>
- +---------------+      |           |      |          ....
- | +-----------+ |      |     +-----|------+--+     }
+ |    |           Incident Handler               ||
+ |    +----^------------------------^------+-----+|
+ +---------+------------------------|------|------+
+      Incident                      |      |
+           |                        |      |
+       Update           |      Incident   Incident
+      Notification      |       Update    Diagnosis
+           |            |     Notification |
+           |                        |      |
+ +---------------+      |           |      |
+ | +-----------+ |      |     +-----|------+--+
  | | Incident  | |      |     | +---+------V+ |
  | | Process   | |      |     | | Incident  | |
  | +-----------+ |            | | Process   | |
@@ -1433,6 +1433,16 @@ diagnose the probable root cause of the network incident and provide repair sugg
                         |
 RAN Autonomous Domain   |       IP Autonomous Domain
                         |
+Diagnosis Key Parameters:
+{
+ticket-no, String
+incident-no, String
+occur-time, yang:date-and-time
+context? String
+related-events?  leafref //List <Event>
+related-objects? leafref //List <ResourceObject>
+ ....
+}
 
 ~~~~
 {:#exam4 title="Multi-Domain Fault Demarcation" artwork-align="center"}
