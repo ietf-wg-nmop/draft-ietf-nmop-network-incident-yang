@@ -721,7 +721,7 @@ incident client MAY diagnose the incident to determine the probable root cause.
 Some diagnosis operations may affect the running network services.  The
 incident client can choose not to perform that diagnosis operation after
 determining the impact is not trivial.  The incident server can also perform
-self-diagnosis.  However, the self-diagnosis MUST not affect the running
+self-diagnosis.  However, the self-diagnosis MUST NOT affect the running
 network services.  Possible diagnosis methods include link reachability
 detection, link quality detection, alarm/log analysis, and short-term
 fine-grained monitoring of network quality metrics, etc.
