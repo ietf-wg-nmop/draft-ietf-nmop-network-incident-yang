@@ -117,7 +117,7 @@ module ietf-incident {
     description
       "Optical transport network domain.";
     reference
-      “RFC9376: Applicability of GMPLS for beyond 100 Gbit/s Optical Transport Network”;
+      "RFC9376: Applicability of GMPLS for beyond 100 Gbit/s Optical Transport Network";
 
   }
 
@@ -134,7 +134,7 @@ module ietf-incident {
     description
       "Packet transport network domain.";
       reference
-       “RFC6373: MPLS Transport Profile (MPLS-TP) Control Plane Framework”;
+       "RFC6373: MPLS Transport Profile (MPLS-TP) Control Plane Framework";
 
   }
 
@@ -154,7 +154,7 @@ module ietf-incident {
     description
       "Device category.";
       reference
-      “RFC8348: A YANG Data Model for Hardware Management”;
+      "RFC8348: A YANG Data Model for Hardware Management";
 
   }
 
@@ -163,7 +163,7 @@ module ietf-incident {
     description
       "Power environment category.";
       reference
-      “RFC8348: A YANG Data Model for Hardware Management”;
+      "RFC8348: A YANG Data Model for Hardware Management";
 
   }
 
@@ -172,7 +172,7 @@ module ietf-incident {
     description
       "Device hardware category.";
       reference
-      “RFC8348: A YANG Data Model for Hardware Management”;
+      "RFC8348: A YANG Data Model for Hardware Management";
 
   }
 
@@ -181,7 +181,7 @@ module ietf-incident {
     description
       "Device software category";
       reference
-      “RFC8348: A YANG Data Model for Hardware Management”;
+      "RFC8348: A YANG Data Model for Hardware Management";
 
   }
 
@@ -190,7 +190,7 @@ module ietf-incident {
     description
       "Line card category.";
       reference
-      “RFC8348: A YANG Data Model for Hardware Management”;
+      "RFC8348: A YANG Data Model for Hardware Management";
 
   }
 
@@ -228,7 +228,7 @@ module ietf-incident {
     description
       "The abstract identity for Event type";
     reference
-      “RFCXXXX: Some Key Terms for Network Fault and Problem Management”;
+      "RFCXXXX: Some Key Terms for Network Fault and Problem Management";
 
   }
 
@@ -237,7 +237,7 @@ module ietf-incident {
     description
       "Alarm event type.";
     reference
-      “RFC8632: A YANG Data Model for Alarm Management”;
+      "RFC8632: A YANG Data Model for Alarm Management";
 
   }
 
@@ -255,6 +255,7 @@ module ietf-incident {
       "Log event type.";
 	reference
 	  "RFC5424: The Syslog Protocol";
+  }
 
   identity kpi {
     base event-type;
@@ -861,5 +862,6 @@ module ietf-incident {
     }
   }
 }
+
 
 
