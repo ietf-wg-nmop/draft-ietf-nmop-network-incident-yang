@@ -740,7 +740,7 @@ Table of Contents
    running network services.  The incident client can choose not to
    perform that diagnosis operation after determining the impact is not
    trivial.  The incident server can also perform self-diagnosis.
-   However, the self-diagnosis MUST not affect the running network
+   However, the self-diagnosis MUST NOT affect the running network
    services.  Possible diagnosis methods include link reachability
    detection, link quality detection, alarm/log analysis, and short-term
    fine-grained monitoring of network quality metrics, etc.
@@ -2445,30 +2445,40 @@ A.4.  Multi-Domain Fault Demarcation with Network Incident Management
    the probable root cause of the network incident and provide repair
    suggestions.
 
- +------------------------------------------------+
- |OSS +------------------------------------------+|
- |    |           Incident Handler               || Diagnosis
- |    +----^------------------------^------+-----+| Key Parameters
- +---------+------------------------|------|------+ {
-      Incident                      |      |          ticket-no, String
-           |                        |      |          incident-no, String
-       Update           |      Incident   Incident    occur-time, yang:date-and-time
-      Notification      |       Update    Diagnosis   context? String
-           |            |     Notification |          related-events?  leafref //List <Event>
-           |                        |      |          related-objects? leafref //List <ResourceObject>
- +---------------+      |           |      |          ....
- | +-----------+ |      |     +-----|------+--+     }
- | | Incident  | |      |     | +---+------V+ |
- | | Process   | |      |     | | Incident  | |
- | +-----------+ |            | | Process   | |
- | RAN Controller|      |     | +-----------+ |
- +---------------+      |     | IP Controller |
-                        |     +---------------+
-                        |
-RAN Autonomous Domain   |       IP Autonomous Domain
-                        |
+            +------------------------------------------------+
+            |OSS +------------------------------------------+|
+            |    |           Incident Handler               ||
+            |    +----^------------------------^------+-----+|
+            +---------+------------------------|------|------+
+                 Incident                      |      |
+                      |                        |      |
+                  Update           |      Incident   Incident
+                 Notification      |       Update    Diagnosis
+                      |            |     Notification |
+                      |                        |      |
+            +---------------+      |           |      |
+            | +-----------+ |      |     +-----|------+--+
+            | | Incident  | |      |     | +---+------V+ |
+            | | Process   | |      |     | | Incident  | |
+            | +-----------+ |            | | Process   | |
+            | RAN Controller|      |     | +-----------+ |
+            +---------------+      |     | IP Controller |
+                                   |     +---------------+
+                                   |
+           RAN Autonomous Domain   |       IP Autonomous Domain
+                                   |
+           Diagnosis Key Parameters:
+           {
+           ticket-no, String
+           incident-no, String
+           occur-time, yang:date-and-time
+           context? String
+           related-events?  leafref //List <Event>
+           related-objects? leafref //List <ResourceObject>
+            ....
+           }
 
-               Figure 8: Multi-Domain Fault Demarcation
+                  Figure 8: Multi-Domain Fault Demarcation
 
 A.5.  Service Complaint triggered Network Diagnosis
 
