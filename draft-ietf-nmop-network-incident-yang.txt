@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 5 May 2026                                           Telefonica
+Expires: 29 June 2026                                         Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                         1 November 2025
+                                                        26 December 2025
 
 
            A YANG Data Model for Network Incident Management
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 5 May 2026.
+   This Internet-Draft will expire on 29 June 2026.
 
 Copyright Notice
 
@@ -1161,7 +1161,7 @@ Table of Contents
        description
          "Optical transport network domain.";
        reference
-         “RFC9376: Applicability of GMPLS for beyond 100 Gbit/s Optical Transport Network”;
+         "RFC9376: Applicability of GMPLS for beyond 100 Gbit/s Optical Transport Network";
 
      }
 
@@ -1178,7 +1178,7 @@ Table of Contents
        description
          "Packet transport network domain.";
          reference
-          “RFC6373: MPLS Transport Profile (MPLS-TP) Control Plane Framework”;
+          "RFC6373: MPLS Transport Profile (MPLS-TP) Control Plane Framework";
 
      }
 
@@ -1198,7 +1198,7 @@ Table of Contents
        description
          "Device category.";
          reference
-         “RFC8348: A YANG Data Model for Hardware Management”;
+         "RFC8348: A YANG Data Model for Hardware Management";
 
      }
 
@@ -1207,7 +1207,7 @@ Table of Contents
        description
          "Power environment category.";
          reference
-         “RFC8348: A YANG Data Model for Hardware Management”;
+         "RFC8348: A YANG Data Model for Hardware Management";
 
      }
 
@@ -1216,7 +1216,7 @@ Table of Contents
        description
          "Device hardware category.";
          reference
-         “RFC8348: A YANG Data Model for Hardware Management”;
+         "RFC8348: A YANG Data Model for Hardware Management";
 
      }
 
@@ -1225,7 +1225,7 @@ Table of Contents
        description
          "Device software category";
          reference
-         “RFC8348: A YANG Data Model for Hardware Management”;
+         "RFC8348: A YANG Data Model for Hardware Management";
 
      }
 
@@ -1234,7 +1234,7 @@ Table of Contents
        description
          "Line card category.";
          reference
-         “RFC8348: A YANG Data Model for Hardware Management”;
+         "RFC8348: A YANG Data Model for Hardware Management";
 
      }
 
@@ -1272,7 +1272,7 @@ Table of Contents
        description
          "The abstract identity for Event type";
        reference
-         “RFCXXXX: Some Key Terms for Network Fault and Problem Management”;
+         "RFCXXXX: Some Key Terms for Network Fault and Problem Management";
 
      }
 
@@ -1281,7 +1281,7 @@ Table of Contents
        description
          "Alarm event type.";
        reference
-         “RFC8632: A YANG Data Model for Alarm Management”;
+         "RFC8632: A YANG Data Model for Alarm Management";
 
      }
 
@@ -1299,6 +1299,7 @@ Table of Contents
          "Log event type.";
            reference
              "RFC5424: The Syslog Protocol";
+     }
 
      identity kpi {
        base event-type;
@@ -2081,9 +2082,9 @@ Informative References
               Quilbeuf, J., Claise, B., Graf, T., Lopez, D., and S.
               Qiong, "External Trace ID for Configuration Tracing", Work
               in Progress, Internet-Draft, draft-ietf-netconf-
-              configuration-tracing-05, 18 March 2025,
+              configuration-tracing-06, 3 November 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-netconf-
-              configuration-tracing-05>.
+              configuration-tracing-06>.
 
    [I-D.ietf-netconf-trace-ctx-extension]
               Gagliano, R., Larsson, K., and J. Lindblad, "NETCONF
