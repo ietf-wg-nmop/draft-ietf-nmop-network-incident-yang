@@ -150,10 +150,10 @@ experience for data analysis, which, in many cases, result in low processing
 efficiency, inaccurate probable cause identification and duplicated tickets.
 It is also difficult to assess the impact of alarms, performance metrics and other
 anomaly data on network services without known relation across layers of
-the network topology data or the relation with other network topology data.
+the entire network topology data or the relation with other network topology data.
 
 To address these challenges, a network wide incident-centric solution
-is specified to establish the dependency relation with both network
+is specified to establish the global view on dependency relation with both network
 service and network topology at various different layers, which not only can
 be used at a specific layer in one domain but also can be used to
 span across layers for multi-layer network troubleshooting.
@@ -165,7 +165,7 @@ Different data sources including alarms, metrics, and other anomaly information
 can be aggregated into one or a few of network incidents irrespective of the layer
 through correlation analysis and the service impact analysis.  For example, if the
 protocol-related interface fails to work properly, large amount of alarms may
-be reported to upper layer management system. Although a lot of network services
+be reported to the upper layer management system. Although a lot of network services
 may be affected by the interface, only one aggregated network incident pertaining to
 the abnormal interface will be reported. A network incident may also be raised through
 the analysis of some network performance metrics, for example, as
@@ -244,17 +244,18 @@ Incident management system:
 
 Incident server:
 :  An entity which is responsible for detecting and reporting
-   one network incident, performing network incident diagnosis, resolution and prediction, etc.
+   one network incident, performing network incident diagnosis, resolution and prediction in specific domain, etc.
 
 Incident client:
-:  An entity which can manage network incidents.
+:  An entity which can manage network incidents based on global view on network topology data correlation.
    For example, it can receive network incident notifications, query the
-   information of network incidents, instruct an incident management server
-   to diagnose, help resolve, etc.
+   information of network incidents, instruct an incident server
+   to diagnose, help resolve, etc. In addition, it can trigger issue tickets and involve repair crew to fix the problem.
 
 Incident handler:
 : An entity which can receive network incident notification, store and query the information of
-  network incidents for data analysis. It has no control on incident server.
+  network incidents for data analysis. Different from Incident client, it has no control on incident server
+  or instruct an incident server to peform network incident diagnosis, resolution.
 
 Probable root cause:
 : If removing a factor completely resolves the ongoing incident (specifically, regarding network
@@ -352,10 +353,10 @@ automatically analyze probable root cause of the alarms at each layer
 and report corresponding network incidents to the multi-layer, multi-domain
 management system, then such management system comprehensively analyzes the
 topology relationship and service relationship between the probable root causes of
-both layers.  The inner relationship among the alarms will be identified
+both layers. The inner relationship among the alarms will be identified
 and finally the probable root cause will be located among multiple layers.
 By cooperating with the integrated Optical time-domain reflectometer
-(OTDR) within the network device, we can determine the target optical
+(OTDR) embedded within the network device, we can determine the target optical
 exchange station before site visits.  Therefore, the overall fault
 demarcation process is simplified and automated, the analyze result
 could be reported and visualized in time.  In this case, operation
@@ -401,42 +402,45 @@ fiber) based on the probable root cause.
  {:#arch title="Network Incident Management Architecture" artwork-align="center"}
 
 {{arch}} illustrates the network incident management architecture.  Two key
-components for the incident management are incident client
-and incident server.
+components for the incident management are the incident client
+and the incident server.
 
-Incident server can be deployed in network operation platforms, network analytic
-platforms, controllers {{?RFC8969}} and provides functionalities such as network
-incident identification, report, diagnosis, resolution, or querying for network
+The incident server can be deployed in network operation platforms, network analytic
+platforms, controllers {{?RFC8969}} in each domain and provides functionalities such as network
+incident identification, report, diagnosis, resolution, or querying for the network
 incident lifecycle management.
 
-Incident client can be deployed either in the same network operation platforms,
-network analytic platforms, controllers as the incident server within a single
-domain, or at the upper layer network operation platforms, network analytic platforms
-or controllers (i.e.,multi-domain controllers) , to invoke the functionalities provided
-by incident server to meet the business requirements of fault management. The entire
-network incident lifecycle management can be independent from or not under control
-of the network OSS or other business system of operators.
+The incident client can be deployed within a single domain as the incident server or across domains
+with the global view of network data. It can be deployed either in the same network operation
+platforms, network analytic platforms, controllers as the incident server within a single domain, or
+at the upper layer network operation platforms, network analytic platforms or controllers (i.e.,multi-domain
+controllers), to invoke the functionalities provided by the incident server in each domain to meet business
+requirements of the fault management.
 
-A typical workflow of network incident management is as follows:
+A typical workflow of network incident lifecycle management is as follows:
 
 * Some alarm report or abnormal operations, network performance metrics
-  are reported from the network. Incident server receives these alarms/abnormal
+  are reported from the network to the incident server. The incident server receives these alarms/abnormal
   operations/metrics and try to analyze the correlation of them, e.g., generate
   a symptom if some metrics are evaluated as unhealthy, the probable root cause can
-  be detected based on the correlation analysis. If a network incident is identified,
+  be detected based on the data correlation analysis. If a network incident is identified,
   the "incident report" notification will be reported to the incident client. The impact
   of network services will be further analyzed and will update the network incident if
   the network service is impacted.
 
-* Incident client receives the network incident from "incident report" notification
-  raised by incident server, and acknowledge it with "incident ack" rpc operation.
-  Client may further invoke the "incident diagnose" rpc to diagnose this network
-   incident to find the probable root causes.
+* Incident client receives the network incident from the "incident report" notification
+  reported by incident server, and acknowledge it with the subsequent "incident ack" rpc operation.
+  The incident client may further invoke the "incident diagnose" rpc to diagnose this network
+  incident to find the probable root causes.
 
 * If the probable root causes have been found, the incident client can resolve this
-  network incident by invoking the 'incident resolve' rpc operation,
-  dispatching a ticket or using other network functions (routing calculation,
-  configuration, etc.)
+  network incident by invoking the 'incident resolve' rpc operation to ask the incident server to resolve it,
+ or dispatching a troubleshooting ticket or using other network functions (routing calculation,
+  configuration, etc.) without known by the incident server.
+
+* In case of the 'incident resolve' rpc operation invoked by the incident client, the incident server
+  will monitor the status of the network incident update the status of network incident to 'cleared'
+  if the incident can be fixed. For more detailed workflow, please refer to section 5.3.
 
 ## Interworking with Alarm Management
 
@@ -474,20 +478,20 @@ A YANG model for the alarm management {{?RFC8632}} defines a standard
 interface to manage the lifecycle of alarms.  Alarms represent the
 undesirable state of network resources {{?I-D.ietf-nmop-terminology}},
 alarm data model also defines the probable root causes and impacted services fields,
-but there may lack sufficient information to determine them in lower layer
+but there may lack sufficient information to determine them at lower layer
 system (mainly in devices level), so alarms do not always tell the status of
 network services or necessarily point to the probable root causes of problems.
 As described in {{?RFC8632}}, alarm management act as a starting point
 for high-level fault management. While network incident management often
 works at the network level, so it is possible to have enough information
-to perform correlation and service impact analysis.  Alarms can work as
+to perform data correlation and service impact analysis.  Alarms can work as
 one of data sources of network incident management and may be aggregated
-into few network incidents by correlation analysis, network service
-impact and probable root causes may be determined during incident process.
+into few network incidents by the correlation analysis, network service
+impact and probable root causes may be determined during the incident process.
 
 Network Incident also contains some related alarms, if needed users can query
 the information of alarms by alarm management interface {{?RFC8632}}.
-In some cases, e.g., cutover scenario, incident server may use alarm
+In some cases, e.g., cutover scenario, the incident server may use alarm
 management interface {{?RFC8632}} to shelve some alarms.
 
 Alarm management may keep the original process, alarms are reported
@@ -517,20 +521,20 @@ SAIN {{?RFC9417}} defines an architecture of network service assurance.
 	   +----------------+
 	   |Incident handler|
 	   +----------------+
-		   ^
-		   |incident
+		       ^
+		       |incident
 	   +-------+--------+
 	   |Incident process|
 	   +----------------+
-		   ^
-		   |symptoms
+		       ^
+		       |symptoms
 	   +-------+--------+
 	   |     SAIN       |
 	   |                |
 	   +----------------+
-		   ^
-		   |metrics
-     +-------------+-------------------+
+		      ^
+              |metrics
+     +--------+------------------------+
      |                                 |
      |Network in the Autonomous Domain |
      |                                 |
@@ -655,7 +659,7 @@ to knowledge base next time.
 	    ^ ^            ^
         IGP | |Interface   |IGP Peer
        Down | |Down        | Abnormal
-	    | |            |
+	        | |            |
 VPN A       | |            |
 +-----------+-+------------+------------------------+
 | \  +---+       ++-++         +-+-+        +---+  /|
