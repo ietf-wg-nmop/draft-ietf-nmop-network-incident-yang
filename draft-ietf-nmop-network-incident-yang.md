@@ -150,10 +150,10 @@ experience for data analysis, which, in many cases, result in low processing
 efficiency, inaccurate probable cause identification and duplicated tickets.
 It is also difficult to assess the impact of alarms, performance metrics and other
 anomaly data on network services without known relation across layers of
-the network topology data or the relation with other network topology data.
+the entire network topology data or the relation with other network topology data.
 
 To address these challenges, a network wide incident-centric solution
-is specified to establish the dependency relation with both network
+is specified to establish the global view on dependency relation with both network
 service and network topology at various different layers, which not only can
 be used at a specific layer in one domain but also can be used to
 span across layers for multi-layer network troubleshooting.
@@ -165,7 +165,7 @@ Different data sources including alarms, metrics, and other anomaly information
 can be aggregated into one or a few of network incidents irrespective of the layer
 through correlation analysis and the service impact analysis.  For example, if the
 protocol-related interface fails to work properly, large amount of alarms may
-be reported to upper layer management system. Although a lot of network services
+be reported to the upper layer management system. Although a lot of network services
 may be affected by the interface, only one aggregated network incident pertaining to
 the abnormal interface will be reported. A network incident may also be raised through
 the analysis of some network performance metrics, for example, as
@@ -247,10 +247,10 @@ Incident server:
    one network incident, performing network incident diagnosis, resolution and prediction, etc.
 
 Incident client:
-:  An entity which can manage network incidents.
+:  An entity which can manage network incidents based on global view on network topology data correlation.
    For example, it can receive network incident notifications, query the
    information of network incidents, instruct an incident management server
-   to diagnose, help resolve, etc.
+   to diagnose, help resolve, etc. In addition, it can trigger issue tickets and involve repair crew to fix the problem.
 
 Incident handler:
 : An entity which can receive network incident notification, store and query the information of
@@ -517,20 +517,20 @@ SAIN {{?RFC9417}} defines an architecture of network service assurance.
 	   +----------------+
 	   |Incident handler|
 	   +----------------+
-		   ^
-		   |incident
+		       ^
+		       |incident
 	   +-------+--------+
 	   |Incident process|
 	   +----------------+
-		   ^
-		   |symptoms
+		       ^
+		       |symptoms
 	   +-------+--------+
 	   |     SAIN       |
 	   |                |
 	   +----------------+
-		   ^
-		   |metrics
-     +-------------+-------------------+
+		      ^
+              |metrics
+     +--------+------------------------+
      |                                 |
      |Network in the Autonomous Domain |
      |                                 |
@@ -655,7 +655,7 @@ to knowledge base next time.
 	    ^ ^            ^
         IGP | |Interface   |IGP Peer
        Down | |Down        | Abnormal
-	    | |            |
+	        | |            |
 VPN A       | |            |
 +-----------+-+------------+------------------------+
 | \  +---+       ++-++         +-+-+        +---+  /|
