@@ -225,9 +225,10 @@ Table of Contents
       (e.g., machine learning, automated reasoning, conformance
       checking, graph traversal, among others) to evaluate whether the
       network service has been impacted by the network incident and map
-      network incident to one or a set of network service, which can
-      reduce massive fault/alarms reporting, speed up troubleshooting,
-      and assure network service performance and availability.
+      the network incident to one or a set of network service, which can
+      reduce large amount of fault/alarms reporting, facilitate
+      troubleshooting, and assure network service performance and
+      availability.
 
    Incident management:  Lifecycle management of network incidents,
       including network incident identification, reporting,
@@ -235,17 +236,17 @@ Table of Contents
       traditional fault management, it take various different data
       sources including alarms, metrics, and other anomaly information
       and aggregate them into one or a few network incidents
-      irrespective of layer through correlation analysis and the service
-      impact analysis.  One fault on the network device can cause
-      multiple network incidents, e.g., multiple service offerings that
-      are dependent on that device will go down and others may suffer
-      increased latency as redundant routes become more congested.  A
-      network incident might impact one or a set of network services.
-      The network incident can also been seen as customer incident
-      [TMF724A] when service SLA [RFC9543] associated with one specific
-      network service and network incident has been affected.  How
-      customer incident is translated from the network incident is
-      beyond scope of this document.
+      irrespective of layer through data correlation analysis and the
+      service impact analysis.  One fault on the network device can
+      cause multiple network incidents, e.g., multiple service offerings
+      that are dependent on that device and take different route will go
+      down, e.g., suffer increased latency as redundant routes become
+      more congested.  A network incident might impact one or a set of
+      network services.  The network incident can also been seen as
+      customer incident [TMF724A] when service SLA [RFC9543] associated
+      with one specific network service and network incident has been
+      affected.  How customer incident is translated from the network
+      incident is beyond scope of this document.
 
    Incident management system:  An entity which implements network
       incident management.  It includes (but not limited to) incident
