@@ -372,13 +372,13 @@ Table of Contents
    inner relationship among the alarms will be identified and finally
    the probable root cause will be located among multiple layers.  By
    cooperating with the integrated Optical time-domain reflectometer
-   (OTDR) within the network device, we can determine the target optical
-   exchange station before site visits.  Therefore, the overall fault
-   demarcation process is simplified and automated, the analyze result
-   could be reported and visualized in time.  In this case, operation
-   teams only have to confirm the analyzing result and dispatch site
-   engineers to perform relative maintenance actions (e.g., splice
-   fiber) based on the probable root cause.
+   (OTDR) embedded within the network device, we can determine the
+   target optical exchange station before site visits.  Therefore, the
+   overall fault demarcation process is simplified and automated, the
+   analyze result could be reported and visualized in time.  In this
+   case, operation teams only have to confirm the analyzing result and
+   dispatch site engineers to perform relative maintenance actions
+   (e.g., splice fiber) based on the probable root cause.
 
 4.  Network Incident Management Architecture
 
@@ -415,26 +415,26 @@ Table of Contents
              Figure 1: Network Incident Management Architecture
 
    Figure 1 illustrates the network incident management architecture.
-   Two key components for the incident management are incident client
-   and incident server.
+   Two key components for the incident management are the incident
+   client and the incident server.
 
-   Incident server can be deployed in network operation platforms,
-   network analytic platforms, controllers [RFC8969] and provides
-   functionalities such as network incident identification, report,
-   diagnosis, resolution, or querying for network incident lifecycle
-   management.
+   The incident server can be deployed in network operation platforms,
+   network analytic platforms, controllers [RFC8969] in each domain and
+   provides functionalities such as network incident identification,
+   report, diagnosis, resolution, or querying for the network incident
+   lifecycle management.
 
-   Incident client can be deployed either in the same network operation
-   platforms, network analytic platforms, controllers as the incident
-   server within a single domain, or at the upper layer network
-   operation platforms, network analytic platforms or controllers
-   (i.e.,multi-domain controllers) , to invoke the functionalities
-   provided by incident server to meet the business requirements of
-   fault management.  The entire network incident lifecycle management
-   can be independent from or not under control of the network OSS or
-   other business system of operators.
+   The incident client can be deployed within a single domain or across
+   domain with the global view of network data.  It can be deployed
+   either in the same network operation platforms, network analytic
+   platforms, controllers as the incident server within a single domain,
+   or at the upper layer network operation platforms, network analytic
+   platforms or controllers (i.e.,multi-domain controllers), to invoke
+   the functionalities provided by the incident server in each domain to
+   meet business requirements of the fault management.
 
-   A typical workflow of network incident management is as follows:
+   A typical workflow of network incident lifecycle management is as
+   follows:
 
    *  Some alarm report or abnormal operations, network performance
       metrics are reported from the network.  Incident server receives
@@ -494,22 +494,23 @@ Table of Contents
    undesirable state of network resources [I-D.ietf-nmop-terminology],
    alarm data model also defines the probable root causes and impacted
    services fields, but there may lack sufficient information to
-   determine them in lower layer system (mainly in devices level), so
+   determine them at lower layer system (mainly in devices level), so
    alarms do not always tell the status of network services or
    necessarily point to the probable root causes of problems.  As
    described in [RFC8632], alarm management act as a starting point for
    high-level fault management.  While network incident management often
    works at the network level, so it is possible to have enough
-   information to perform correlation and service impact analysis.
+   information to perform data correlation and service impact analysis.
    Alarms can work as one of data sources of network incident management
-   and may be aggregated into few network incidents by correlation
+   and may be aggregated into few network incidents by the correlation
    analysis, network service impact and probable root causes may be
-   determined during incident process.
+   determined during the incident process.
 
    Network Incident also contains some related alarms, if needed users
    can query the information of alarms by alarm management interface
-   [RFC8632].  In some cases, e.g., cutover scenario, incident server
-   may use alarm management interface [RFC8632] to shelve some alarms.
+   [RFC8632].  In some cases, e.g., cutover scenario, the incident
+   server may use alarm management interface [RFC8632] to shelve some
+   alarms.
 
    Alarm management may keep the original process, alarms are reported
    from network to network controller or network analytic platform and
