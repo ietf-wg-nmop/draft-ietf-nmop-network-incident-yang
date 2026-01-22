@@ -1343,7 +1343,7 @@ Table of Contents
          (i.e.,cause of the incident) for example an interface
          fails to work.";
        reference
-         “RFCXXXX: Some Key Terms for Network Fault and Problem Management”;
+         "RFCXXXX: Some Key Terms for Network Fault and Problem Management";
 
      }
 
