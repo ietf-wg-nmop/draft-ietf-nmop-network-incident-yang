@@ -1140,7 +1140,7 @@ The probable root cause is also analysed.
   "clear-time": "2026-03-10T06:01:12Z",
   "ack-time": "2026-03-10T05:01:12Z",
   "last-updated": "2026-03-10T05:31:12Z",
-  "status": "unacknowledged-and-uncleared",
+  "ack-status": "unacknowledged",
   "category": "Line",
   "source": [
     {
