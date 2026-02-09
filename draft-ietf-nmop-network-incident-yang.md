@@ -104,17 +104,11 @@ informative:
 
 --- abstract
 
-A network incident refers to an unexpected interruption of a network
-service, degradation of a network service quality, or sub-health of a
-network service. Different data sources, including alarms, metrics, and
-other anomaly indicators, can be correlated and combined into a smaller
-set of network incidents, informed by correlation analysis and service
-impact assessment.
-
 This document defines a YANG Module for the network incident lifecycle
 management.  This YANG module is meant to provide a standard way to
-report, diagnose, and help resolve network incidents for the sake of
-network service health and probable cause analysis.
+report, diagnose, and help reduce troubleshooting tickets and resolve
+network incidents for the sake of network service health and probable
+cause analysis.
 
 --- middle
 
@@ -191,7 +185,7 @@ network automation {{?RFC8969}} with RPC operations in this YANG module.
 
 {::boilerplate bcp14-tagged}
 
-The following terms are defined in {{?RFC8632}}, {{?RFC9543}},{{?I-D.ietf-nmop-terminology}}
+The following terms are defined in {{?RFC8632}}, {{?RFC9543}},{{I-D.ietf-nmop-terminology}}
 and are not redefined here:
 
 *  alarm
@@ -207,6 +201,8 @@ and are not redefined here:
 *  anomaly
 
 *  cause
+
+*  characteristic
 
 *  SLA (Service Level Agreement)
 
@@ -576,6 +572,17 @@ netconf extension for {{W3C-Trace-Context}} and
 configuration tracing.  If some errors occur when services are
 deploying, it's very easy to identify these errors by distributed
 system tracing, and a network incident should be reported.
+
+## Relationship with network anomaly architecture
+
+Network anomaly architecture {{?I-D.ietf-nmop-network-anomaly-architecture}}
+focuses on improving supervised and semi-supervised machine learning systems
+and evaluating anomaly detection algorithms and technologies. It also can be
+used to monitor network changes holistically by monitoring all 3 network planes
+simultaneously and detect whether that change is service disruptive. In case of
+disruptive changes, the anomaly can be upgraded into the network incident
+which trigger troubleshooting tickets generation.
+
 
 # Functional Interface Requirements between the Client and the Server
 
@@ -1067,7 +1074,7 @@ operations and their sensitivity/vulnerability:
 "incident-diagnose": This RPC operation performs network incident
 diagnosis and probable root cause locating. If a malicious or buggy client
 performs an unexpectedly large number of this operation, the result
-might be an excessive use of system resources {{?I-D.ietf-nmop-terminology}}
+might be an excessive use of system resources {{I-D.ietf-nmop-terminology}}
 on the server side as well as network resources.  Servers MUST
 ensure they have sufficient resources to fulfill this request; otherwise,
 they MUST reject the request using RPC errors defined in section 7.6.
