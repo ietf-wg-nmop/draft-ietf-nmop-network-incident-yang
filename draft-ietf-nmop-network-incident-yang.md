@@ -104,17 +104,11 @@ informative:
 
 --- abstract
 
-A network incident refers to an unexpected interruption of a network
-service, degradation of a network service quality, or sub-health of a
-network service.  Different data sources including alarms, metrics,
-and other anomaly information can be aggregated into a few of
-network incidents through data correlation analysis and the service impact
-analysis.
-
 This document defines a YANG Module for the network incident lifecycle
 management.  This YANG module is meant to provide a standard way to
-report, diagnose, and help resolve network incidents for the sake of
-network service health and probable cause analysis.
+report, diagnose, and help reduce troubleshooting tickets and resolve
+network incidents for the sake of network service health and probable
+cause analysis.
 
 --- middle
 
@@ -158,10 +152,11 @@ service and network topology at various different layers, which not only can
 be used at a specific layer in one domain but also can be used to
 span across layers for multi-layer network troubleshooting.
 
-A network incident refers to an undesired occurrence such as an unexpected
+A Network Incident refers to an undesired occurrence such as an unexpected
 interruption of a network service, degradation of a network service quality,
-or sub-health of a network service {{?I-D.ietf-nmop-terminology}}{{TMF724A}}.
-Different data sources including alarms, metrics, and other anomaly information
+or sub-health of a network service {{I-D.ietf-nmop-terminology}}{{TMF724A}}.
+Different data sources including alarms, metrics (i.e.,measurable characteristic
+described in {{I-D.ietf-nmop-terminology}}), and other anomaly information
 can be aggregated into one or a few of network incidents irrespective of the layer
 through correlation analysis and the service impact analysis.  For example, if the
 protocol-related interface fails to work properly, large amount of alarms may
@@ -191,7 +186,7 @@ network automation {{?RFC8969}} with RPC operations in this YANG module.
 
 {::boilerplate bcp14-tagged}
 
-The following terms are defined in {{?RFC8632}}, {{?RFC9543}},{{?I-D.ietf-nmop-terminology}}
+The following terms are defined in {{?RFC8632}}, {{?RFC9543}},{{I-D.ietf-nmop-terminology}}
 and are not redefined here:
 
 *  alarm
@@ -207,6 +202,8 @@ and are not redefined here:
 *  anomaly
 
 *  cause
+
+*  characteristic
 
 *  SLA (Service Level Agreement)
 
@@ -476,7 +473,7 @@ A typical workflow of network incident lifecycle management is as follows:
 
 A YANG model for the alarm management {{?RFC8632}} defines a standard
 interface to manage the lifecycle of alarms.  Alarms represent the
-undesirable state of network resources {{?I-D.ietf-nmop-terminology}},
+undesirable state of network resources {{I-D.ietf-nmop-terminology}},
 alarm data model also defines the probable root causes and impacted services fields,
 but there may lack sufficient information to determine them at lower layer
 system (mainly in devices level), so alarms do not always tell the status of
@@ -577,6 +574,17 @@ netconf extension for {{W3C-Trace-Context}} and
 configuration tracing.  If some errors occur when services are
 deploying, it's very easy to identify these errors by distributed
 system tracing, and a network incident should be reported.
+
+## Relationship with network anomaly architecture
+
+Network anomaly architecture {{?I-D.ietf-nmop-network-anomaly-architecture}}
+focuses on improving supervised and semi-supervised machine learning systems
+and evaluating anomaly detection algorithms and technologies. It also can be
+used to monitor network changes holistically by monitoring all 3 network planes
+simultaneously and detect whether that change is service disruptive. In case of
+disruptive changes, the anomaly can be upgraded into the network incident
+which trigger troubleshooting tickets generation.
+
 
 # Functional Interface Requirements between the Client and the Server
 
@@ -1068,7 +1076,7 @@ operations and their sensitivity/vulnerability:
 "incident-diagnose": This RPC operation performs network incident
 diagnosis and probable root cause locating. If a malicious or buggy client
 performs an unexpectedly large number of this operation, the result
-might be an excessive use of system resources {{?I-D.ietf-nmop-terminology}}
+might be an excessive use of system resources {{I-D.ietf-nmop-terminology}}
 on the server side as well as network resources.  Servers MUST
 ensure they have sufficient resources to fulfill this request; otherwise,
 they MUST reject the request using RPC errors defined in section 7.6.
