@@ -154,7 +154,7 @@ span across layers for multi-layer network troubleshooting.
 
 A network incident refers to an undesired occurrence, such as an unexpected
 interruption of a network service, degradation of a network service quality,
-or sub-health of a network service {{?I-D.ietf-nmop-terminology}}{{TMF724A}}.
+or sub-health of a network service {{!I-D.ietf-nmop-terminology}}{{TMF724A}}.
 Different data sources, including alarms, metrics, and other anomaly
 information, can be correlated and combined into one or a few network
 incidents, regardless of layer, informed by correlation analysis and service
@@ -185,7 +185,7 @@ network automation {{?RFC8969}} with RPC operations in this YANG module.
 
 {::boilerplate bcp14-tagged}
 
-The following terms are defined in {{?RFC8632}}, {{?RFC9543}},{{I-D.ietf-nmop-terminology}}
+The following terms are defined in {{?RFC8632}}, {{?RFC9543}},{{!I-D.ietf-nmop-terminology}}
 and are not redefined here:
 
 *  alarm
@@ -471,7 +471,7 @@ A typical workflow of network incident lifecycle management is as follows:
 
 A YANG model for the alarm management {{?RFC8632}} defines a standard
 interface to manage the lifecycle of alarms.  Alarms represent the
-undesirable state of network resources {{?I-D.ietf-nmop-terminology}},
+undesirable state of network resources {{!I-D.ietf-nmop-terminology}},
 The alarm data model also defines the probable root causes and impacted services fields,
 but there may be insufficient information to determine them at lower layer
 system (mainly in devices level), so alarms do not always tell the status of
@@ -582,7 +582,6 @@ used to monitor network changes holistically by monitoring all 3 network planes
 simultaneously and detect whether that change is service disruptive. In case of
 disruptive changes, the anomaly can be upgraded into the network incident
 which trigger troubleshooting tickets generation.
-
 
 # Functional Interface Requirements between the Client and the Server
 
@@ -1074,7 +1073,7 @@ operations and their sensitivity/vulnerability:
 "incident-diagnose": This RPC operation performs network incident
 diagnosis and probable root cause locating. If a malicious or buggy client
 performs an unexpectedly large number of this operation, the result
-might be an excessive use of system resources {{I-D.ietf-nmop-terminology}}
+might be an excessive use of system resources {{!I-D.ietf-nmop-terminology}}
 on the server side as well as network resources.  Servers MUST
 ensure they have sufficient resources to fulfill this request; otherwise,
 they MUST reject the request using RPC errors defined in section 7.6.
