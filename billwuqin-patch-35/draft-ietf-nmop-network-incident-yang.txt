@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 8 August 2026                                        Telefonica
+Expires: 13 August 2026                                       Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                         4 February 2026
+                                                         9 February 2026
 
 
            A YANG Data Model for Network Incident Management
@@ -19,17 +19,11 @@ Expires: 8 August 2026                                        Telefonica
 
 Abstract
 
-   A network incident refers to an unexpected interruption of a network
-   service, degradation of a network service quality, or sub-health of a
-   network service.  Different data sources, including alarms, metrics,
-   and other anomaly indicators, can be correlated and combined into a
-   smaller set of network incidents, informed by correlation analysis
-   and service impact assessment.
-
    This document defines a YANG Module for the network incident
    lifecycle management.  This YANG module is meant to provide a
-   standard way to report, diagnose, and help resolve network incidents
-   for the sake of network service health and probable cause analysis.
+   standard way to report, diagnose, and help reduce troubleshooting
+   tickets and resolve network incidents for the sake of network service
+   health and probable cause analysis.
 
 Status of This Memo
 
@@ -46,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 August 2026.
+   This Internet-Draft will expire on 13 August 2026.
 
 Copyright Notice
 
@@ -75,6 +69,7 @@ Table of Contents
      4.2.  Interworking with SAIN
      4.3.  Relationship with RFC8969
      4.4.  Relationship with Trace Context
+     4.5.  Relationship with network anomaly architecture
    5.  Functional Interface Requirements between the Client and the
            Server
      5.1.  Incident Identification
@@ -215,6 +210,8 @@ Table of Contents
    *  anomaly
 
    *  cause
+
+   *  characteristic
 
    *  SLA (Service Level Agreement)
 
@@ -609,6 +606,18 @@ Table of Contents
    configuration tracing.  If some errors occur when services are
    deploying, it's very easy to identify these errors by distributed
    system tracing, and a network incident should be reported.
+
+4.5.  Relationship with network anomaly architecture
+
+   Network anomaly architecture
+   [I-D.ietf-nmop-network-anomaly-architecture] focuses on improving
+   supervised and semi-supervised machine learning systems and
+   evaluating anomaly detection algorithms and technologies.  It also
+   can be used to monitor network changes holistically by monitoring all
+   3 network planes simultaneously and detect whether that change is
+   service disruptive.  In case of disruptive changes, the anomaly can
+   be upgraded into the network incident which trigger troubleshooting
+   tickets generation.
 
 5.  Functional Interface Requirements between the Client and the Server
 
@@ -2105,6 +2114,14 @@ Informative References
               extension-05, 19 October 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-netconf-
               trace-ctx-extension-05>.
+
+   [I-D.ietf-nmop-network-anomaly-architecture]
+              Graf, T., Du, W., Francois, P., and A. H. Feng, "A
+              Framework for a Network Anomaly Detection Architecture",
+              Work in Progress, Internet-Draft, draft-ietf-nmop-network-
+              anomaly-architecture-07, 18 January 2026,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
+              network-anomaly-architecture-07>.
 
    [I-D.ietf-nmop-terminology]
               Davis, N., Farrel, A., Graf, T., Wu, Q., and C. Yu, "Some
