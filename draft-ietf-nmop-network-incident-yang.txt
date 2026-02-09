@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 26 July 2026                                         Telefonica
+Expires: 13 August 2026                                       Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                         22 January 2026
+                                                         9 February 2026
 
 
            A YANG Data Model for Network Incident Management
@@ -19,17 +19,11 @@ Expires: 26 July 2026                                         Telefonica
 
 Abstract
 
-   A network incident refers to an unexpected interruption of a network
-   service, degradation of a network service quality, or sub-health of a
-   network service.  Different data sources including alarms, metrics,
-   and other anomaly information can be aggregated into a few of network
-   incidents through data correlation analysis and the service impact
-   analysis.
-
    This document defines a YANG Module for the network incident
    lifecycle management.  This YANG module is meant to provide a
-   standard way to report, diagnose, and help resolve network incidents
-   for the sake of network service health and probable cause analysis.
+   standard way to report, diagnose, and help reduce troubleshooting
+   tickets and resolve network incidents for the sake of network service
+   health and probable cause analysis.
 
 Status of This Memo
 
@@ -46,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 26 July 2026.
+   This Internet-Draft will expire on 13 August 2026.
 
 Copyright Notice
 
@@ -68,13 +62,14 @@ Table of Contents
    2.  Conventions and Definitions
    3.  Sample Use Cases
      3.1.  Incident-Based Trouble Tickets Dispatching
-     3.2.  Incident Derivation from L3VPN Services Unavailability
+     3.2.  Incident Derivation from L3VPN Service Unavailability
      3.3.  Multi-layer Fault Demarcation
    4.  Network Incident Management Architecture
      4.1.  Interworking with Alarm Management
      4.2.  Interworking with SAIN
      4.3.  Relationship with RFC8969
      4.4.  Relationship with Trace Context
+     4.5.  Relationship with network anomaly architecture
    5.  Functional Interface Requirements between the Client and the
            Server
      5.1.  Incident Identification
@@ -129,52 +124,53 @@ Table of Contents
 
    However, these YANG data models for network maintenance are based on
    specific data source information and manage alarms and performance
-   metrics data separately at different layers in various different
+   metrics data separately at different layers in various separate
    management systems.  In addition, the frequency and quantity of
    alarms and performance metrics data reported to Operating Support
-   System (OSS) are increased dramatically (in many cases multiple
+   System (OSS) have increased dramatically (in many cases multiple
    orders of magnitude) with the growth of service types and complexity
    and greatly overwhelm OSS platforms [TMF724A]; with existing known
-   dependency relation between metric, alarm and events at each layer
-   (e.g., packet layer or optical layer), it is possible to compress
-   series of alarms (see Section 3.5.3 of [RFC8632] ) into fewer network
-   incidents and there are many solutions in the market today that
-   essentially do this to some degree.  However, conventional solutions
-   such as data compression are time-consuming and labor-intensive,
-   usually rely on maintenance engineers' experience for data analysis,
-   which, in many cases, result in low processing efficiency, inaccurate
-   probable cause identification and duplicated tickets.  It is also
-   difficult to assess the impact of alarms, performance metrics and
-   other anomaly data on network services without known relation across
-   layers of the entire network topology data or the relation with other
-   network topology data.
+   dependency relationships between metric, alarm, and events at each
+   layer (e.g., packet layer or optical layer), it is possible to
+   compress series of alarms (see Section 3.5.3 of [RFC8632] ) into
+   fewer network incidents and there are many solutions in the market
+   today that essentially do this to some degree.  However, conventional
+   solutions such as data compression are time-consuming and labor-
+   intensive, usually rely on maintenance engineers' experience for data
+   analysis, which, in many cases, result in low processing efficiency,
+   inaccurate probable cause identification and duplicated tickets.  It
+   is also difficult to assess the impact of alarms, performance metrics
+   and other anomaly data on network services without known relation
+   across layers of the entire network topology data or the relation
+   with other network topology data.
 
-   To address these challenges, a network wide incident-centric solution
-   is specified to establish the global view on dependency relation with
-   both network service and network topology at various different
+   To address these challenges, a network-wide incident-centric solution
+   is specified to establish the global view on dependency relationships
+   with both network service and network topology at various different
    layers, which not only can be used at a specific layer in one domain
    but also can be used to span across layers for multi-layer network
    troubleshooting.
 
-   A network incident refers to an undesired occurrence such as an
+   A network incident refers to an undesired occurrence, such as an
    unexpected interruption of a network service, degradation of a
    network service quality, or sub-health of a network service
-   [I-D.ietf-nmop-terminology][TMF724A].  Different data sources
-   including alarms, metrics, and other anomaly information can be
-   aggregated into one or a few of network incidents irrespective of the
-   layer through correlation analysis and the service impact analysis.
-   For example, if the protocol-related interface fails to work
-   properly, large amount of alarms may be reported to the upper layer
-   management system.  Although a lot of network services may be
-   affected by the interface, only one aggregated network incident
-   pertaining to the abnormal interface will be reported.  A network
-   incident may also be raised through the analysis of some network
-   performance metrics, for example, as described in SAIN [RFC9417],
-   network services can be decomposed to several sub-services, specific
-   metrics are monitored for each sub- service.  Therefore symptoms will
-   occur if services/sub-services are unhealthy (after analyzing
-   metrics), in addition, these symptoms may give rise to a network
-   incident when it causes degradation of the network services.
+   [I-D.ietf-nmop-terminology][TMF724A].  Different data sources,
+   including alarms, metrics, and other anomaly information, can be
+   correlated and combined into one or a few network incidents,
+   regardless of layer, informed by correlation analysis and service
+   impact assessment.  For example, if the protocol-related interface
+   fails to work properly, a large amount of alarms may be reported to
+   the upper-layer management system.  Although a lot of network
+   services may be affected by the interface, only one aggregated
+   network incident pertaining to the abnormal interface will be
+   reported.  A network incident may also be raised through the analysis
+   of some network performance metrics, for example, as described in
+   SAIN [RFC9417], network services can be decomposed to several sub-
+   services, specific metrics can be monitored for each sub-service.
+   Therefore symptoms will occur if services/sub-services are unhealthy
+   (after analyzing metrics), in addition, these symptoms may give rise
+   to a network incident when it causes degradation of the network
+   services.
 
    In addition, Artificial Intelligence (AI) and Machine Learning (ML)
    are key technologies in the processing of large amounts of data with
@@ -215,29 +211,31 @@ Table of Contents
 
    *  cause
 
+   *  characteristic
+
    *  SLA (Service Level Agreement)
 
    *  SLO (Service Level Objective)
 
    The following terms are defined in this document:
 
-   Service impact analysis:  A process that uses algorithmic techniques
-      (e.g., machine learning, automated reasoning, conformance
-      checking, graph traversal, among others) to evaluate whether the
-      network service has been impacted by the network incident and map
-      the network incident to one or a set of network service, which can
-      reduce large amount of fault/alarms reporting, facilitate
-      troubleshooting, and assure network service performance and
-      availability.
+   Service impact assessment:  A process that uses algorithmic
+      techniques (e.g., machine learning, automated reasoning,
+      conformance checking, graph traversal, among others) to evaluate
+      whether the network service has been impacted by the network
+      incident and map the network incident to one or a set of network
+      service, which can reduce the volume of fault/alarms reporting,
+      facilitate troubleshooting, and assure network service performance
+      and availability.
 
    Incident management:  Lifecycle management of network incidents,
       including network incident identification, reporting,
       acknowledgement, diagnosis, and resolution.  Different from the
-      traditional fault management, it take various different data
+      traditional fault management, it takes various different data
       sources including alarms, metrics, and other anomaly information
-      and aggregate them into one or a few network incidents
+      and aggregates them into one or a few network incidents
       irrespective of layer through data correlation analysis and the
-      service impact analysis.  One fault on the network device can
+      service impact assessment.  One fault on the network device can
       cause multiple network incidents, e.g., multiple service offerings
       that are dependent on that device and take different route will go
       down, e.g., suffer increased latency as redundant routes become
@@ -246,28 +244,28 @@ Table of Contents
       customer incident [TMF724A] when service SLA [RFC9543] associated
       with one specific network service and network incident has been
       affected.  How customer incident is translated from the network
-      incident is beyond scope of this document.
+      incident is beyond the scope of this document.
 
-   Incident management system:  An entity which implements network
+   Incident management system:  An entity that implements network
       incident management.  It includes (but not limited to) incident
       server and incident client.
 
-   Incident server:  An entity which is responsible for detecting and
+   Incident server:  An entity that is responsible for detecting and
       reporting one network incident, performing network incident
       diagnosis, resolution and prediction in specific domain, etc.
 
-   Incident client:  An entity which can manage network incidents based
+   Incident client:  An entity that can manage network incidents based
       on global view on network topology data correlation.  For example,
       it can receive network incident notifications, query the
       information of network incidents, instruct an incident server to
       diagnose, help resolve, etc.  In addition, it can trigger issue
       tickets and involve repair crew to fix the problem.
 
-   Incident handler:  An entity which can receive network incident
+   Incident handler:  An entity that can receive network incident
       notification, store and query the information of network incidents
-      for data analysis.  Different from Incident client, it has no
-      control on incident server or instruct an incident server to
-      peform network incident diagnosis, resolution.
+      for data analysis.  Unlike the incident client, it does not
+      control the incident server and cannot instruct it to perform
+      network incident diagnosis or resolution.
 
    Probable root cause:  If removing a factor completely resolves the
       ongoing incident (specifically, regarding network outage or
@@ -289,15 +287,15 @@ Table of Contents
 3.1.  Incident-Based Trouble Tickets Dispatching
 
    Usually, the dispatching of trouble tickets in a network is mostly
-   based on alarms data analysis and needs to involve operators'
+   based on alarms data analysis and often requires operators'
    maintenance engineers.  These operators' maintenance engineers are
-   responsible to monitor and detect and correlate some alarms, e.g.,
-   that alarms at both endpoints of a specific tunnel or at both optical
-   and IP layers which are associated with the same network fault.
-   Therefore, they can correlate these alarms to the same trouble
-   ticket, which is in the low automation.  If there are more alarms,
-   then the human costs for network maintenance are increased
-   accordingly.
+   responsible for monitoring and detecting and correlating alarms,
+   e.g., that alarms at both endpoints of a specific tunnel or at both
+   optical and IP layers which are associated with the same network
+   fault.  Therefore, they can correlate these alarms to the same
+   trouble ticket, which offers a low level of automation.  If there are
+   more alarms, then the human costs for network maintenance are
+   increased accordingly.
 
    Some operators preconfigure accept-lists and adopt some coarse
    granularity data correlation rules for the alarm management.  This
@@ -311,12 +309,12 @@ Table of Contents
 
    With the help of the network incident management, massive alarms can
    be aggregated into a few network incidents based on service impact
-   analysis, so the number of trouble tickets will be reduced.  At the
+   asessment, so the number of trouble tickets will be reduced.  At the
    same time, the efficiency of network troubleshooting can be largely
-   improved, which address the pain point of traditional trouble ticket
-   dispatching.
+   improved, which addresses the pain point of traditional trouble
+   ticket dispatching.
 
-3.2.  Incident Derivation from L3VPN Services Unavailability
+3.2.  Incident Derivation from L3VPN Service Unavailability
 
    The Service Attachment Points (SAPs) defined in [RFC9408] represent
    the network reference points where network services can be delivered
@@ -341,30 +339,30 @@ Table of Contents
    defined in [RFC9408], so that the service orchestration layer can use
    these interfaces to commit the delivery of a service on specific
    point-to-point service topology or point to multi-point topology.
-   When specific levels of a threshold of an SLO is violated, a specific
-   network incident or customer incident [TMF724A], associated with,
-   let's say L3VPN service will be derived.
+   When a given SLO threshold is violated, a network incident (or
+   customer incident [TMF724A] associated with an L3VPN service may be
+   derived.
 
 3.3.  Multi-layer Fault Demarcation
 
    When a fault occurs in a network that contains both packet-layer
    devices and optical-layer devices, it may cause correlative faults in
    both layers, i.e., packet layer and optical layer.  Specifically,
-   faults propagation could be classified into three typical types.
-   First, faults occuring at a packet-layer device might further cause
+   fault propagation could be classified into three typical types.
+   First, faults occurring at a packet-layer device might further cause
    fault (e.g., Wavelength Division Multiplexing (WDM) client fault) at
-   an optical-layer device.  Second, faults occuring at an optical-layer
-   device might further cause fault (e.g., Layer 3 link down) at a
-   packet- layer device.  Third, faults occuring at the inter-layer link
-   between a packet-layer device and an optical-layer device might
+   an optical-layer device.  Second, faults occurring at an optical-
+   layer device might further cause fault (e.g., Layer 3 link down) at a
+   packet- layer device.  Third, faults occurring at the inter-layer
+   link between a packet-layer device and an optical-layer device might
    further cause faults at both devices.  Multiple operation teams are
-   usually needed to first analyze huge amount of alarms (triggered by
-   the above mentioned faults) from single network layer (either packet
-   layer or optical layer) independently, then cooperate to locate the
-   probable root cause through manually analyzing multi-layer topology
-   data and service data, thus fault demarcation becomes more complex
-   and time-consuming in multi-layer scenario than in single-layer
-   scenario.
+   usually needed to first analyse a large amount of alarms (triggered
+   by the above-mentioned faults) from single network layer (either
+   packet layer or optical layer) independently, then cooperate to
+   locate the probable root cause through manually analyzing multi-layer
+   topology data and service data, thus fault demarcation becomes more
+   complex and time-consuming in multi-layer scenario than in single-
+   layer scenario.
 
    With the help of network incident management, the management systems
    first automatically analyze probable root cause of the alarms at each
@@ -378,9 +376,9 @@ Table of Contents
    (OTDR) embedded within the network device, we can determine the
    target optical exchange station before site visits.  Therefore, the
    overall fault demarcation process is simplified and automated, the
-   analyze result could be reported and visualized in time.  In this
+   analysis result could be reported and visualized in time.  In this
    case, operation teams only have to confirm the analyzing result and
-   dispatch site engineers to perform relative maintenance actions
+   dispatch site engineers to perform relevant maintenance actions
    (e.g., splice fiber) based on the probable root cause.
 
 4.  Network Incident Management Architecture
@@ -423,7 +421,7 @@ Table of Contents
 
    The incident server can be deployed in network operation platforms,
    network analytic platforms, controllers [RFC8969] in each domain and
-   provides functionalities such as network incident identification,
+   provides functionality such as network incident identification,
    report, diagnosis, resolution, or querying for the network incident
    lifecycle management.
 
@@ -431,7 +429,7 @@ Table of Contents
    incident server or across domains with the global view of network
    data.  It can be deployed either in the same network operation
    platforms, network analytic platforms, controllers as the incident
-   server within a single domain, or at the upper layer network
+   server within a single domain, or at the upper-layer network
    operation platforms, network analytic platforms or controllers
    (i.e.,multi-domain controllers), to invoke the functionalities
    provided by the incident server in each domain to meet business
@@ -440,19 +438,19 @@ Table of Contents
    A typical workflow of network incident lifecycle management is as
    follows:
 
-   *  Some alarm report or abnormal operations, network performance
-      metrics are reported from the network to the incident server.  The
-      incident server receives these alarms/abnormal operations/metrics
-      and try to analyze the correlation of them, e.g., generate a
-      symptom if some metrics are evaluated as unhealthy, the probable
-      root cause can be detected based on the data correlation analysis.
-      If a network incident is identified, the "incident report"
-      notification will be reported to the incident client.  The impact
-      of network services will be further analyzed and will update the
-      network incident if the network service is impacted.
+   *  Some alarm or abnormal operations, network performance metrics are
+      reported from the network to the incident server.  The incident
+      server receives these alarms/abnormal operations/metrics and try
+      to analyze the correlation of them, e.g., generate a symptom if
+      some metrics are evaluated as unhealthy, the probable root cause
+      can be detected based on the data correlation analysis.  If a
+      network incident is identified, the "incident report" notification
+      will be reported to the incident client.  The impact of network
+      services will be further analyzed and will update the network
+      incident if the network service is impacted.
 
    *  Incident client receives the network incident from the "incident
-      report" notification reported by incident server, and acknowledge
+      report" notification reported by incident server, and acknowledges
       it with the subsequent "incident ack" rpc operation.  The incident
       client may further invoke the "incident diagnose" rpc to diagnose
       this network incident to find the probable root causes.
@@ -461,12 +459,12 @@ Table of Contents
       can resolve this network incident by invoking the 'incident
       resolve' rpc operation to ask the incident server to resolve it,
       or dispatching a troubleshooting ticket or using other network
-      functions (routing calculation, configuration, etc.) without known
-      by the incident server.
+      functions (routing calculation, configuration, etc.) without being
+      known by the incident server.
 
    *  In case of the 'incident resolve' rpc operation invoked by the
       incident client, the incident server will monitor the status of
-      the network incident update the status of network incident to
+      the network incident and update the status of network incident to
       'cleared' if the incident can be fixed.  For more detailed
       workflow, please refer to section 5.3.
 
@@ -504,19 +502,19 @@ Table of Contents
    A YANG model for the alarm management [RFC8632] defines a standard
    interface to manage the lifecycle of alarms.  Alarms represent the
    undesirable state of network resources [I-D.ietf-nmop-terminology],
-   alarm data model also defines the probable root causes and impacted
-   services fields, but there may lack sufficient information to
-   determine them at lower layer system (mainly in devices level), so
+   The alarm data model also defines the probable root causes and
+   impacted services fields, but there may be insufficient information
+   to determine them at lower layer system (mainly in devices level), so
    alarms do not always tell the status of network services or
    necessarily point to the probable root causes of problems.  As
-   described in [RFC8632], alarm management act as a starting point for
-   high-level fault management.  While network incident management often
-   works at the network level, so it is possible to have enough
-   information to perform data correlation and service impact analysis.
-   Alarms can work as one of data sources of network incident management
-   and may be aggregated into few network incidents by the correlation
-   analysis, network service impact and probable root causes may be
-   determined during the incident process.
+   described in [RFC8632], the alarm management acts as a starting point
+   for high-level fault management.  While network incident management
+   often works at the network level, so it is possible to have enough
+   information to perform data correlation and service impact
+   assessment.  Alarms can work as one of data sources of network
+   incident management and may be aggregated into a few network
+   incidents by the correlation analysis, network service impact and
+   probable root causes may be determined during the incident process.
 
    Network Incident also contains some related alarms, if needed users
    can query the information of alarms by alarm management interface
@@ -526,18 +524,18 @@ Table of Contents
 
    Alarm management may keep the original process, alarms are reported
    from network to network controller or network analytic platform and
-   then reported to upper layer system (e.g., the alarm handler within
+   then reported to upper-layer system (e.g., the alarm handler within
    the OSS).
 
    Similarly, the network incident is reported from the network to the
    network controller or network analytic platform and then reported to
-   the upper layer system (e.g., incident handler within the OSS).
-   Upper layer system may store these network incidents and provide the
+   the upper-layer system (e.g., incident handler within the OSS).
+   Upper-layer system may store these network incidents and provide the
    information for fault analysis (e.g., deeper customer incident
    analysis based on network incident).
 
    Different from alarm management, incident process within the
-   controller comprising both incident client and incident sever
+   controller comprising both incident client and incident server
    functionalities provides not only network incident reporting but also
    diagnosis and resolution functions, it's possible to support self-
    healing and may be helpful for single-domain closed-loop control.
@@ -573,9 +571,9 @@ Table of Contents
 
                       Figure 3: Interworking with SAIN
 
-   A network service can be decomposed into some sub-services, and some
-   metrics can be monitored for sub-services.  For example, a tunnel
-   service can be decomposed into some peer tunnel interface sub-
+   A network service can be decomposed into some sub-services, and
+   specific metrics can be monitored for sub-services.  For example, a
+   tunnel service can be decomposed into some peer tunnel interface sub-
    services and IP connectivity sub-service.  If some metrics are
    evaluated to indicate unhealthy for specific sub-service, some
    symptoms will be present.  Incident process comprising both incident
@@ -608,6 +606,18 @@ Table of Contents
    configuration tracing.  If some errors occur when services are
    deploying, it's very easy to identify these errors by distributed
    system tracing, and a network incident should be reported.
+
+4.5.  Relationship with network anomaly architecture
+
+   Network anomaly architecture
+   [I-D.ietf-nmop-network-anomaly-architecture] focuses on improving
+   supervised and semi-supervised machine learning systems and
+   evaluating anomaly detection algorithms and technologies.  It also
+   can be used to monitor network changes holistically by monitoring all
+   3 network planes simultaneously and detect whether that change is
+   service disruptive.  In case of disruptive changes, the anomaly can
+   be upgraded into the network incident which trigger troubleshooting
+   tickets generation.
 
 5.  Functional Interface Requirements between the Client and the Server
 
@@ -659,7 +669,7 @@ Table of Contents
    find out the correlations of them, if the correlation match the
    network incident rules, network incident will be identified, and
    reported to the client.  If the network incident is repeated many
-   times, the problem needs to be raised.  Service impact analysis
+   times, the problem needs to be raised.  Service impact assessment
    SHOULD be performed if a network incident is identified, and the
    content of network incident SHOULD be updated if impacted network
    services are detected.
@@ -711,7 +721,7 @@ Table of Contents
    unavailable' is repeated, the problem can be raised.
 
    Note that incident server within the controller can rely on data
-   correlation technology such as service impact analysis and data
+   correlation technology such as service impact asessment and data
    analytic component to evaluate the real effect on the relevant
    service and understand whether lower level or device level network
    anomaly, e.g., igp down, has impact on the service.
@@ -746,7 +756,7 @@ Table of Contents
    As described in Figure 6, controller collect the network metrics from
    network elements, it finds the packet loss of P1 and the path delay
    of P2 exceed the thresholds, a network incident 'VPN A degradation'
-   may be triggered after the service impact analysis.
+   may be triggered after the service impact assessment.
 
 5.2.  Incident Diagnosis
 
@@ -797,8 +807,8 @@ Table of Contents
    instance lifecycle from operator incident lifecycle.
 
    o Network incident instance lifecycle: The network incident
-   instrumentation that control network incident raised, updated and
-   cleared.
+   instrumentation that controls whether a network incident is raised,
+   updated, or cleared.
 
    o Operator incident lifecycle: Operators acting upon the network
    incident with rpcs like acknowledged, diagnosed and resolved.
@@ -811,7 +821,7 @@ Table of Contents
    If the status changes after the network incident instance is
    generated, (for example, self-diagnosis, diagnosis command issued by
    the client, or any other condition causes the status to change but
-   does not reach the 'cleared' level.) , the status changes to
+   does not reach the 'cleared' level) , the status changes to
    'updated'.  When a network incident is successfully resolved, the
    status changes to 'cleared'.
 
@@ -978,12 +988,12 @@ Table of Contents
 
    After a network incident is generated, network incident diagnose rpc
    can be used to diagnose the network incident and locate the probable
-   root causes.  On demand Diagnosis can be performed on some detection
+   root causes.  On-demand Diagnosis can be performed on some detection
    tasks, such as bfd detection, flow detection, telemetry collection,
    short-term threshold alarm, configuration error check, or test packet
    injection.
 
-   After the on demand diagnosis is performed sucessfully, a separate
+   After the on-demand diagnosis is performed successfully, a separate
    network incident update notification will be triggered to report the
    latest status of the network incident asynchronously.
 
@@ -1013,7 +1023,7 @@ Table of Contents
    specific errors and be inserted in the error response to indicate the
    reason for the failure.
 
-   The tree diagram [RFC8340] for structures are defined as follows:
+   The tree diagram [RFC8340] for structures is defined as follows:
 
      structure incident-acknowledge-error-info:
        +-- incident-acknowledge-error-info
@@ -1032,7 +1042,7 @@ Table of Contents
           +-- description?   string
 
    Valid errors that can occur for each structure defined in this
-   doucment are described as follows:
+   document are described as follows:
 
    incident-acknowledge-error-info
    -----------------------------------
@@ -1926,7 +1936,7 @@ Table of Contents
 
 9.  Security Considerations
 
-   The YANG modules specified in this document defines a data model that
+   The YANG module specified in this document defines a data model that
    is designed to be accessed via YANG-based management protocols, such
    as NETCONF [RFC6241] and RESTCONF [RFC8040].  These YANG-based
    management protocols (1) have to use a secure transport layer (e.g.,
@@ -1949,8 +1959,8 @@ Table of Contents
    to access network incident information and potentially get a picture
    of the broken state of the network.  Intruders may exploit the
    vulnerabilities of the network to lead to further negative impact on
-   the network.  Care must be taken to ensure that this list are
-   accessed only by authorized users.
+   the network.  Care must be taken to ensure that this list is accessed
+   only by authorized users.
 
    Some of the RPC operations in this YANG module may be considered
    sensitive or vulnerable in some network environments.  It is thus
@@ -2105,6 +2115,14 @@ Informative References
               <https://datatracker.ietf.org/doc/html/draft-ietf-netconf-
               trace-ctx-extension-05>.
 
+   [I-D.ietf-nmop-network-anomaly-architecture]
+              Graf, T., Du, W., Francois, P., and A. H. Feng, "A
+              Framework for a Network Anomaly Detection Architecture",
+              Work in Progress, Internet-Draft, draft-ietf-nmop-network-
+              anomaly-architecture-07, 18 January 2026,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
+              network-anomaly-architecture-07>.
+
    [I-D.ietf-nmop-terminology]
               Davis, N., Farrel, A., Graf, T., Wu, Q., and C. Yu, "Some
               Key Terms for Network Fault and Problem Management", Work
@@ -2196,7 +2214,7 @@ A.1.  Network Incident Correlated with Specific Network Topology and the
      "clear-time": "2026-03-10T06:01:12Z",
      "ack-time": "2026-03-10T05:01:12Z",
      "last-updated": "2026-03-10T05:31:12Z",
-     "status": "unacknowledged-and-uncleared",
+     "ack-status": "unacknowledged",
      "category": "Line",
      "source": [
        {
@@ -2236,15 +2254,15 @@ A.1.  Network Incident Correlated with Specific Network Topology and the
      ],
      "events": [
        {
-         "even-id": "8921832",
+         "event-id": "8921832",
          "type": "alarm"
        },
        {
-         "even-id": "8921833",
+         "event-id": "8921833",
          "type": "alarm"
        },
        {
-         "even-id": "8921834",
+         "event-id": "8921834",
          "type": "alarm"
        }
      ]
@@ -2253,13 +2271,13 @@ A.1.  Network Incident Correlated with Specific Network Topology and the
 A.2.  Network Incident Correlated with Trouble Tickets
 
    In this document, the objective of the incident management is to
-   identify probable causes and reduce duplicated ticket amounts.
+   identify probable causes and reduce duplicated tickets.
 
    Traditionally, troubleshooting ticket is created upon critical alert
-   is received,e.g., due to excessive BGP flaps on a particular device
+   is received, e.g., due to excessive BGP flaps on a particular device
    by the OSS system.  Such troubleshooting ticket will trigger network
    incident management in the network controller.  Therefore normally
-   trouble shooting tickets and network incident are managed by the OSS
+   troubleshooting tickets and network incident are managed by the OSS
    and the network controller respectively.  However Network
    troubleshooting is sometimes complicated and requires data gathering
    and analysis from many different tools from the controllers,
@@ -2290,13 +2308,13 @@ A.2.  Network Incident Correlated with Trouble Tickets
            Figure 7: Correlation with troubleshooting tickets
 
    In order to manage the correlation between network incidents and
-   trouble tickets in the YANG data model, three rpcs to manage the
+   trouble tickets in the YANG data model, three RPCs to manage the
    network incidents and one notification to report on network incident
    state changes defined in "ietf-incident" module can be further
    extended to include "ticket-no" attribute so that such correlation
    can be carried in the incident update notification and report the
-   upper layer OSS system.  Such correlation can be used by the incident
-   handler in the upper layer OSS system for further fault demarcation,
+   upper-layer OSS system.  Such correlation can be used by the incident
+   handler in the upper-layer OSS system for further fault demarcation,
    e.g., identify whether the fault is on the user side or on the
    network side.
 
@@ -2325,12 +2343,12 @@ A.2.  Network Incident Correlated with Trouble Tickets
 
 A.3.  Intent Based Networking with Incident Diagnosis Task List
 
-   In this document, incident-diagnosis RPC defined in in "ietf-
+   In this document, the incident-diagnosis RPC defined in "ietf-
    incident" module can be used to identify probable root causes; and an
    incident update notification can be triggered to report the diagnosis
    status if successful.
 
-   In some case, workflows may span a long duration or involve multiple
+   In some cases, workflows may span a long duration or involve multiple
    steps task.  In such case, intent based networking concept can be
    used to support such multiple step task and provide more detailed
    network diagnosis information.
@@ -2566,7 +2584,8 @@ Appendix B.  Changes between Revisions
    v03 - v04
 
    *  Remove constraint of using machine learning for service impact
-      analysis and replace machine learning with algorithmic techniques.
+      assessment and replace machine learning with algorithmic
+      techniques.
 
    *  Replace root cause with probable cause based on IETF 122 NMOP
       Session Discussion.
@@ -2591,7 +2610,7 @@ Appendix B.  Changes between Revisions
    *  Clarify the relation between the Network Incident, and Customer
       Incident.
 
-   *  Add service impact analysis term and its definition.
+   *  Add service impact assessment term and its definition.
 
    *  Clarify the relation between fault, problem, incident, service.
 
