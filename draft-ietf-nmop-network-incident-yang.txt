@@ -696,8 +696,8 @@ Table of Contents
                          |     Controller     |
                          |                    |
                      |                    |
-                     +-+-+------------+---+
-                           ^ ^            ^
+                     +-^-^------------^---+
+                           | |            |
                    IGP | |Interface   |IGP Peer
                   Down | |Down        | Abnormal
                            | |            |
