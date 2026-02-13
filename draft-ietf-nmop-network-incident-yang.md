@@ -527,14 +527,13 @@ SAIN {{?RFC9417}} defines an architecture of network service assurance.
 	   |     SAIN       |
 	   |                |
 	   +----------------+
-		      ^
-              |metrics
-     +--------+------------------------+
+		       ^
+               |metrics
+     +---------+-----------------------+
      |                                 |
      |Network in the Autonomous Domain |
      |                                 |
      +---------------------------------+
-
 ~~~~
 {:#sain title="Interworking with SAIN" artwork-align="center"}
 
@@ -652,20 +651,20 @@ to knowledge base next time.
 	     |                      |
 	     |     Orchestrator     |
 	     |                      |
-	     +----+-----------------+
-	          ^VPN A Unavailable
-	          |
-	      +---+----------------+
+	     +--------^-------------+
+	              |VPN A Unavailable
+	              |
+	      +-------+------------+
 	      |                    |
 	      |     Controller     |
 	      |                    |
           |                    |
           +-+-+------------+---+
-	    ^ ^            ^
+	        ^ ^            ^
         IGP | |Interface   |IGP Peer
        Down | |Down        | Abnormal
 	        | |            |
-VPN A       | |            |
+ VPN A      | |            |
 +-----------+-+------------+------------------------+
 | \  +---+       ++-++         +-+-+        +---+  /|
 |  \ |   |       |   |         |   |        |   | / |
@@ -695,16 +694,16 @@ anomaly, e.g., igp down, has impact on the service.
 		|                      |
 		|     Orchestrator     |
 		|                      |
-		+----+-----------------+
-			 ^VPN A Degradation
-			 |
-		 +-------+------------+
+		+----------+-----------+
+			       |VPN A Degradation
+			       |
+		 +---------+----------+
 		 |                    |
 		 |     controller     |
 		 |                    |
 		 |                    |
-		 +--+------------+----+
-		    ^            ^
+		 +--^------------^----+
+		    |            |
 		    |Packet      |Path Delay
 		    |Loss        |
 		    |            |
