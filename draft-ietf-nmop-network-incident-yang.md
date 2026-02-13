@@ -659,8 +659,8 @@ to knowledge base next time.
 	      |     Controller     |
 	      |                    |
           |                    |
-          +-+-+------------+---+
-	        ^ ^            ^
+          +-^-^------------^---+
+	        | |            |
         IGP | |Interface   |IGP Peer
        Down | |Down        | Abnormal
 	        | |            |
