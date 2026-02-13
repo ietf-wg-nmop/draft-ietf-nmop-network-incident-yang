@@ -383,6 +383,7 @@ Table of Contents
 
 4.  Network Incident Management Architecture
 
+~~~~
             +------------------------------------------+
             |                                          |
             |            Incident  Client              |
@@ -412,8 +413,8 @@ Table of Contents
        |            Network in the Autonomous Domain           |
        |                                                       |
        +-------------------------------------------------------+
-
-             Figure 1: Network Incident Management Architecture
+~~~~
+{: #fig-incident-arch title="Network Incident Management Architecture" artwork-align="center"}
 
    Figure 1 illustrates the Network Incident Management architecture.
    Two key components for the Incident Management are the Incident
@@ -470,6 +471,7 @@ Table of Contents
 
 4.1.  Interworking with Alarm Management
 
+~~~~
                         +-----------------------------+
                         |         OSS                 |
                         | +--------+    +-----------+ |
@@ -496,8 +498,8 @@ Table of Contents
                     |   Network in the Autonomous Domain   |
                     |                                      |
                     +--------------------------------------+
-
-                Figure 2: Interworking with Alarm Management
+~~~~
+{: #fig-interworking-alarm title="Interworking with Alarm Management" artwork-align="center"}
 
    A YANG model for the alarm management [RFC8632] defines a standard
    interface to manage the lifecycle of alarms.  Alarms represent the
@@ -547,29 +549,30 @@ Table of Contents
 
    SAIN [RFC9417] defines an architecture of network service assurance.
 
+~~~~
                             +----------------+
                             |Incident Handler|
                             +----------------+
-                                        ^
-                                        |incident
+                                    ^
+                                    |incident
                             +-------+--------+
                             |Incident process|
                             +----------------+
-                                        ^
-                                        |symptoms
+                                    ^
+                                    |symptoms
                             +-------+--------+
                             |     SAIN       |
                             |                |
                             +----------------+
-                                       ^
-                               |metrics
-                      +--------+------------------------+
+                                    ^
+                                    |metrics
+                      +-------------+-------------------+
                       |                                 |
                       |Network in the Autonomous Domain |
                       |                                 |
                       +---------------------------------+
-
-                      Figure 3: Interworking with SAIN
+~~~~
+{: #fig-interworking-sain title="Interworking with SAIN" artwork-align="center"}
 
    A network service can be decomposed into some sub-services, and
    specific metrics can be monitored for sub-services.  For example, a
@@ -626,7 +629,8 @@ Table of Contents
    As depicted in Figure 4, multiple alarms, metrics, or hybrid can be
    aggregated into a network incident after analysis.
 
-                              +--------------+
+~~~~
+                                  +--------------+
                                +--|  Incident1   |
                                |  +--+-----------+
                                |     |  +-----------+
@@ -659,9 +663,9 @@ Table of Contents
                                      |
                                      |  +-----------+
                                      +--| metric1   |
-                                    +-----------+
-
-                     Figure 4: Incident Identification
+                                        +-----------+
+~~~~
+{: #fig-incident-identif title="Incident Identification" artwork-align="center"}
 
    The Network Incident Management server MUST be capable of identifying
    network incidents.  Multiple alarms, metrics and other information
@@ -684,6 +688,7 @@ Table of Contents
    incident will be identified faster according to knowledge base next
    time.
 
+~~~~
                         +----------------------+
                         |                      |
                         |     Orchestrator     |
@@ -695,21 +700,21 @@ Table of Contents
                          |                    |
                          |     Controller     |
                          |                    |
-                     |                    |
-                     +-+-+------------+---+
-                       ^ ^            ^
-                   IGP | |Interface   |IGP Peer
-                  Down | |Down        | Abnormal
+                         |                    |
+                         +-+-+------------+---+
+                           ^ ^            ^
+                       IGP | |Interface   |IGP Peer
+                      Down | |Down        | Abnormal
                            | |            |
-           VPN A       | |            |
-           +-----------+-+------------+------------------------+
+               VPN A       | |            |
+           +---------------+-+------------+--------------------+
            | \  +---+       ++-++         +-+-+        +---+  /|
            |  \ |   |       |   |         |   |        |   | / |
            |   \|PE1+-------| P1+X--------|P2 +--------|PE2|/  |
            |    +---+       +---+         +---+        +---+   |
            +---------------------------------------------------+
-
-           Figure 5: Example 1 of Network Incident Identification
+~~~~
+{: #fig-example-1 title="Example 1 of Network Incident Identification" artwork-align="center"}
 
    As described in Figure 5, vpn a is deployed from PE1 to PE2, if a
    interface of P1 is going down, many alarms are triggered, such as
@@ -726,11 +731,12 @@ Table of Contents
    service and understand whether lower level or device level network
    anomaly, e.g., igp down, has impact on the service.
 
+~~~~
                           +----------------------+
                           |                      |
                           |     Orchestrator     |
                           |                      |
-                          +----+-----------------+
+                          +--------+-------------+
                                    ^VPN A Degradation
                                    |
                            +-------+------------+
@@ -743,15 +749,15 @@ Table of Contents
                               |Packet      |Path Delay
                               |Loss        |
                               |            |
-          VPN A       |            |
+                  VPN A       |            |
           +-----------+------------+---------------------------+
           | \  +---+       ++-++         +-+-+        +---+  / |
           |  \ |   |       |   |         |   |        |   | /  |
           |   \|PE1+-------|P1 +---------|P2 +--------|PE2|/   |
           |    +---+       +---+         +---+        +---+    |
           +----------------------------------------------------+
-
-           Figure 6: Example 2 of Network Incident Identification
+~~~~
+{: #fig-example-2 title="Example 2 of Network Incident Identification" artwork-align="center"}
 
    As described in Figure 6, controller collect the network metrics from
    network elements, it finds the packet loss of P1 and the path delay
@@ -862,6 +868,7 @@ Table of Contents
    notification to report network incident state changes and three rpcs
    to manage the network incidents.
 
+~~~~
  module: ietf-incident
    +--ro incidents
       +--ro incident* [name type incident-id]
@@ -903,9 +910,11 @@ Table of Contents
                           -> /inc:incidents/inc:incident/inc:incident-no
           ...
           +--ro time? yang:date-and-time
+~~~~
 
 7.2.  Incident Notifications
 
+~~~~
  notifications:
    +---n incident-notification
           +--ro incident-no?
@@ -952,6 +961,7 @@ Table of Contents
           |        |     +--ro alarm-type-id? leafref
           |        |     +--ro alarm-type-qualifier? leafref
           +--ro time? yang:date-and-time
+~~~~
 
    A general notification, incident-notification, is provided here.
    When a network incident instance is identified, the notification will
@@ -965,10 +975,12 @@ Table of Contents
 
 7.3.  Incident Acknowledge
 
+~~~~
    +---x incident-acknowledge
    |  +---w input
    |  |  +---w incident-no*
    |  |          -> /inc:incidents/inc:incident/inc:incident-no
+~~~~
 
    After an incident is generated, updated, or cleared, the operator
    needs to confirm the incident to ensure that the client knows the
@@ -981,10 +993,12 @@ Table of Contents
 
 7.4.  Incident Diagnose
 
+~~~~
    +---x incident-diagnose
    |  +---w input
    |  |  +---w incident-no*
    |  |          -> /inc:incidents/inc:incident/inc:incident-no
+~~~~
 
    After a network incident is generated, network incident diagnose rpc
    can be used to diagnose the network incident and locate the Probable
@@ -999,10 +1013,12 @@ Table of Contents
 
 7.5.  Incident Resolution
 
+~~~~
    +---x incident-resolve
     +---w input
     |  +---w incident-no*
     |          -> /inc:incidents/inc:incident/inc:incident-no
+~~~~
 
    After the Probable Root Causes and impacts are determined, incident-
    resolve rpc can be used to resolve the incident (if the server can
@@ -1025,6 +1041,7 @@ Table of Contents
 
    The tree diagram [RFC8340] for structures is defined as follows:
 
+~~~~
      structure incident-acknowledge-error-info:
        +-- incident-acknowledge-error-info
           +-- incident-no?   uint64
@@ -1040,10 +1057,12 @@ Table of Contents
           +-- incident-no?   uint64
           +-- reason?        identityref
           +-- description?   string
+~~~~
 
    Valid errors that can occur for each structure defined in this
    document are described as follows:
 
+~~~~
    incident-acknowledge-error-info
    -----------------------------------
    repeated-acknowledge
@@ -1061,6 +1080,7 @@ Table of Contents
    permission-denied
    operation-timeout
    resource-unavailable
+~~~~
 
 8.  Network Incident Management YANG Module
 
@@ -2204,6 +2224,7 @@ A.1.  Network Incident Correlated with Specific Network Topology and the
    topology ‘L2-Topo’ and the domain ‘FAN’. The Probable Root Cause is
    also analysed.
 
+~~~~
    {
      "incident-no": 56433218,
      "incident-id": "line fault",
@@ -2267,6 +2288,7 @@ A.1.  Network Incident Correlated with Specific Network Topology and the
        }
      ]
    }
+~~~~
 
 A.2.  Network Incident Correlated with Trouble Tickets
 
@@ -2284,6 +2306,7 @@ A.2.  Network Incident Correlated with Trouble Tickets
    therefore correlation between troubleshooting ticket and network
    incident becomes necessary.
 
+~~~~
           +------------------------------------------------+
           |OSS +---------------------------------------+   |
           |    |           Ticket System               |   |
@@ -2304,8 +2327,8 @@ A.2.  Network Incident Correlated with Trouble Tickets
           |   |           Incident Process             |   |
           |   +----------------------------------------+   |
           +------------------------------------------------+
-
-           Figure 7: Correlation with troubleshooting tickets
+~~~~
+{: #fig-correlate-ticket title="Correlation with troubleshooting tickets" artwork-align="center"}
 
    In order to manage the correlation between network incidents and
    trouble tickets in the YANG data model, three RPCs to manage the
@@ -2318,6 +2341,7 @@ A.2.  Network Incident Correlated with Trouble Tickets
    e.g., identify whether the fault is on the user side or on the
    network side.
 
+~~~~
    rpcs:
     +---x incident-acknowledge
     | +---w input
@@ -2340,6 +2364,7 @@ A.2.  Network Incident Correlated with Trouble Tickets
     |   +--ro ticket-no? string
     +--
    …
+~~~~
 
 A.3.  Intent Based Networking with Incident Diagnosis Task List
 
@@ -2353,6 +2378,7 @@ A.3.  Intent Based Networking with Incident Diagnosis Task List
    used to support such multiple step task and provide more detailed
    network diagnosis information.
 
+~~~~
             +------------------------------------------------+
             | OSS                                            |
             |    +---------------------------------------+   |
@@ -2368,6 +2394,7 @@ A.3.  Intent Based Networking with Incident Diagnosis Task List
             |   |           Incident Process             |   |
             |   +----------------------------------------+   |
             +------------------------------------------------+
+~~~~
 
    To do so, the new "diagnosis task creation" RPC can be further
    defined to support "task-id" attribute in the output parameters and
@@ -2375,6 +2402,7 @@ A.3.  Intent Based Networking with Incident Diagnosis Task List
    used to return task-id from the controller.  The controller is
    responsbile for task-id allocation and maintaining task-id list.
 
+~~~~
        +---x diagnose-task-creation
        |  +---w input
        |  |  +---w incident-no?       string
@@ -2393,6 +2421,7 @@ A.3.  Intent Based Networking with Incident Diagnosis Task List
        |  |           +---w name    al:resource
        |  +--ro output
        |     +--ro task-id?   string
+~~~~
 
    "ietf-incident" module can be further extended to include "incident-
    diagnosis-task" list with the following diagnosis information:
@@ -2409,6 +2438,7 @@ A.3.  Intent Based Networking with Incident Diagnosis Task List
    the diagnosis task detailed information based on such module
    extension.
 
+~~~~
 augment /inc:incidents/inc:incident:
 +--ro incident-diagnosis-tasks
 |   +--ro incident-diagnosis-task* [task-id]
@@ -2427,10 +2457,12 @@ augment /inc:incidents/inc:incident:
 |   +-- ro repair-advices
 |   +-- ro state enumeration // Incident states such as Creation, Update, Clear
 …
+~~~~
 
    In addition, the new Diagnosis Task Notification can be defined to
    support Diagnosis Task related attributes reporting.
 
+~~~~
        +---n task-notification
        |  +--ro task-id?                        string
        |  +--ro incident-no?                    string
@@ -2456,6 +2488,7 @@ augment /inc:incidents/inc:incident:
        |  |     +--ro event-id?   leafref
        |  +--ro repair-advices?   string
        |  +--ro incident-status?  incident-status-value
+~~~~
 
    So that the controller can send diagnosis task notification to the
    OSS system upon diagnosis task completes and outputs repair
@@ -2479,6 +2512,7 @@ A.4.  Multi-Domain Fault Demarcation with Network Incident Management
    the Probable Root Cause of the network incident and provide repair
    suggestions.
 
+~~~~
             +------------------------------------------------+
             |OSS +------------------------------------------+|
             |    |           Incident Handler               ||
@@ -2511,11 +2545,12 @@ A.4.  Multi-Domain Fault Demarcation with Network Incident Management
            related-objects? leafref //List <ResourceObject>
             ....
            }
-
-                  Figure 8: Multi-Domain Fault Demarcation
+~~~~
+{: #fig-multi-domain title="Multi-Domain Fault Demarcation" artwork-align="center"}
 
 A.5.  Service Complaint triggered Network Diagnosis
 
+~~~~
                                            Customer
                                            Complaint
                                          | on Service
@@ -2540,8 +2575,8 @@ A.5.  Service Complaint triggered Network Diagnosis
 
 
                                    IP Autonomous Domain
-
-          Figure 9: Service Complaint triggered Network Diagnosis
+~~~~
+{: #fig-service-complaint title="Service Complaint triggered Network Diagnosis" artwork-align="center"}
 
    Similarly, in case of service degradation for a lease line service
    recieving from the customer, the OSS system can request network
