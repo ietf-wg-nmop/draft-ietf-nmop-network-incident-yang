@@ -3653,27 +3653,26 @@ becomes necessary.<a href="#appendix-A.2-2" class="pilcrow">¶</a></p>
 <figure id="figure-7">
           <div class="alignCenter art-text artwork" id="appendix-A.2-3.1">
 <pre>
-         +------------------------------------------------+
-         |OSS +---------------------------------------+   |
-         |    |           Ticket System               |   |
-         |    +----------------+----------------------+   |
-         |                     |1.Ticket                  |
-         |                     |  Creation                |
-         |    +----------------V----------------------+   |
-         |    |           Incident Handler            |   |
-         |    +------+-------+------------+---------^-+   |
-         +-----------+-------+------------+---------+-----+
-              2.Incident   3.Incident   4. Incident |5.Incident
-                    Ack with   Diagnosis    Resolve     |Update
-                    Ticket-no  with         with        |Notification
-                         |     Ticket-no    Ticket-no   |with Ticket-no
-         +-----------+-------+------------+---------+-----+
-         |Controller |       |            |         |     |
-         |   +-------V-------V------------V---------+-+   |
-         |   |           Incident Process             |   |
-         |   +----------------------------------------+   |
-         +------------------------------------------------+
-
++------------------------------------------------+
+|OSS +---------------------------------------+   |
+|    |           Ticket System               |   |
+|    +----------------+----------------------+   |
+|                     |1.Ticket                  |
+|                     |  Creation                |
+|    +----------------V----------------------+   |
+|    |           Incident Handler            |   |
+|    +------+-------+------------+---------^-+   |
++-----------+-------+------------+---------+-----+
+     2.Incident   3.Incident   4.|Incident |5.Incident
+     Ack with     Diagnosis      |Resolve  |Update
+     Ticket-no    with           |with     |Notification
+            |     ticket-no      |Ticket-no|with Ticket-no
++-----------+-------+------------+---------+-----+
+|Controller |       |            |         |     |
+|   +-------V-------V------------V---------+-+   |
+|   |           Incident Process             |   |
+|   +----------------------------------------+   |
++------------------------------------------------+
 </pre>
 </div>
 <figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
@@ -3732,21 +3731,21 @@ task. In such case, intent based networking concept can be used to support
 such multiple step task and provide more detailed network diagnosis information.<a href="#appendix-A.3-2" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A.3-3">
 <pre>
-         +------------------------------------------------+
-         | OSS                                            |
-         |    +---------------------------------------+   |
-         |    |           Incident Handler            |   |
-         |    +------+-----------^-----------+--------+   |
-         +-----------+-----------+-----------+------------+
-               Diagnosis   Diagnosis   NETCONF
-                    Task Creation    Task    &lt;get-config&gt;
-                            RPC      Notification    |
-         +-----------+-----------+-----------+------------+
-         |Controller |           |           |            |
-         |   +-------V-----------------------V--------+   |
-         |   |           Incident Process             |   |
-         |   +----------------------------------------+   |
-         +------------------------------------------------+
++------------------------------------------------+
+| OSS                                            |
+|    +---------------------------------------+   |
+|    |           Incident Handler            |   |
+|    +------+-----------^-----------+--------+   |
++-----------+-----------+-------------+----------+
+            |Diagnosis  |Diagnosis    |NETCONF
+            |Task       |Task         |&lt;get-config&gt;
+            |Creation   |Notification |
++-----------+-----------+-------------+----------+
+|Controller |           |           |            |
+|   +-------V-----------------------V--------+   |
+|   |           Incident Process             |   |
+|   +----------------------------------------+   |
++------------------------------------------------+
 </pre><a href="#appendix-A.3-3" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A.3-4">To do so, the new "diagnosis task creation" RPC can be further defined to
