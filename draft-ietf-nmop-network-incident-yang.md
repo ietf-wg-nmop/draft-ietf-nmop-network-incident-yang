@@ -1227,27 +1227,26 @@ therefore correlation between troubleshooting ticket and network incident
 becomes necessary.
 
 ~~~~
-	 +------------------------------------------------+
-	 |OSS +---------------------------------------+   |
-	 |    |           Ticket System               |   |
-	 |    +----------------+----------------------+   |
-	 |                     |1.Ticket                  |
-	 |                     |  Creation                |
-	 |    +----------------V----------------------+   |
-	 |    |           Incident Handler            |   |
-	 |    +------+-------+------------+---------^-+   |
-	 +-----------+-------+------------+---------+-----+
-	      2.Incident   3.Incident   4. Incident |5.Incident
-		    Ack with   Diagnosis    Resolve     |Update
-		    Ticket-no  with         with        |Notification
-		         |     Ticket-no    Ticket-no   |with Ticket-no
-	 +-----------+-------+------------+---------+-----+
-	 |Controller |       |            |         |     |
-	 |   +-------V-------V------------V---------+-+   |
-	 |   |           Incident Process             |   |
-	 |   +----------------------------------------+   |
-	 +------------------------------------------------+
-
++------------------------------------------------+
+|OSS +---------------------------------------+   |
+|    |           Ticket System               |   |
+|    +----------------+----------------------+   |
+|                     |1.Ticket                  |
+|                     |  Creation                |
+|    +----------------V----------------------+   |
+|    |           Incident Handler            |   |
+|    +------+-------+------------+---------^-+   |
++-----------+-------+------------+---------+-----+
+     2.Incident   3.Incident   4.|Incident |5.Incident
+     Ack with     Diagnosis      |Resolve  |Update
+     Ticket-no    with           |with     |Notification
+            |     ticket-no      |Ticket-no|with Ticket-no
++-----------+-------+------------+---------+-----+
+|Controller |       |            |         |     |
+|   +-------V-------V------------V---------+-+   |
+|   |           Incident Process             |   |
+|   +----------------------------------------+   |
++------------------------------------------------+
 ~~~~
 {:#exam3 title="Correlation with troubleshooting tickets" artwork-align="center"}
 
@@ -1299,21 +1298,21 @@ task. In such case, intent based networking concept can be used to support
 such multiple step task and provide more detailed network diagnosis information.
 
 ~~~~
-	 +------------------------------------------------+
-	 | OSS                                            |
-	 |    +---------------------------------------+   |
-	 |    |           Incident Handler            |   |
-	 |    +------+-----------^-----------+--------+   |
-	 +-----------+-----------+-----------+------------+
-               Diagnosis   Diagnosis   NETCONF
-		    Task Creation    Task    <get-config>
-			    RPC      Notification    |
-	 +-----------+-----------+-----------+------------+
-	 |Controller |           |           |            |
-	 |   +-------V-----------------------V--------+   |
-	 |   |           Incident Process             |   |
-	 |   +----------------------------------------+   |
-	 +------------------------------------------------+
++------------------------------------------------+
+| OSS                                            |
+|    +---------------------------------------+   |
+|    |           Incident Handler            |   |
+|    +------+-----------^-----------+--------+   |
++-----------+-----------+-------------+----------+
+            |Diagnosis  |Diagnosis    |NETCONF
+            |Task       |Task         |<get-config>
+            |Creation   |Notification |
++-----------+-----------+-------------+----------+
+|Controller |           |           |            |
+|   +-------V-----------------------V--------+   |
+|   |           Incident Process             |   |
+|   +----------------------------------------+   |
++------------------------------------------------+
 ~~~~
 
 To do so, the new "diagnosis task creation" RPC can be further defined to
