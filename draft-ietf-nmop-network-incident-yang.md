@@ -525,27 +525,27 @@ Instead, they can work together to implement fault management.
 SAIN {{?RFC9417}} defines an architecture of network service assurance.
 
 ~~~~
-	   +----------------+
-	   |Incident Handler|
-	   +----------------+
-		       ^
-		       |incident
-	   +-------+--------+
-	   |Incident process|
-	   +----------------+
-		       ^
-		       |symptoms
-	   +-------+--------+
-	   |     SAIN       |
-	   |                |
-	   +----------------+
-		       ^
-               |metrics
-     +---------+-----------------------+
-     |                                 |
-     |Network in the Autonomous Domain |
-     |                                 |
-     +---------------------------------+
+      +----------------+
+      |Incident Handler|
+      +----------------+
+              ^
+              |incident
+      +-------+--------+
+      |Incident process|
+       +----------------+
+               ^
+               |symptoms
+       +-------+--------+
+       |     SAIN       |
+       |                |
+       +----------------+
+                ^
+                |metrics
++---------------+-----------------+
+|                                 |
+|Network in the Autonomous Domain |
+|                                 |
++---------------------------------+
 ~~~~
 {:#sain title="Interworking with SAIN" artwork-align="center"}
 
@@ -602,40 +602,40 @@ As depicted in {{ident}}, multiple alarms, metrics, or hybrid can be
 aggregated into a network incident after analysis.
 
 ~~~~
-        +--------------+
-	 +--|  Incident1   |
-	 |  +--+-----------+
-	 |     |  +-----------+
-	 |     +--+  alarm1   |
-	 |     |  +-----------+
-	 |     |
-	 |     |  +-----------+
-	 |     +--+  alarm2   |
-	 |     |  +-----------+
-	 |     |
-	 |     |  +-----------+
-	 |     +--+  alarm3   |
-	 |        +-----------+
-	 |  +--------------+
-	 +--|  Incident2   |
-	 |  +--+-----------+
-	 |     |  +-----------+
-	 |     +--+  metric1  |
-	 |     |  +-----------+
-	 |     |  +-----------+
-	 |     +--+  metric2  |
-	 |        +-----------+
-	 |
-	 |  +--------------+
-	 +--|  Incident3   |
-	    +--+-----------+
-	       |  +-----------+
-	       +--+ alarm1    |
-	       |  +-----------+
-	       |
-	       |  +-----------+
-	       +--| metric1   |
-              +-----------+
+   +--------------+
++--|  Incident1   |
+|  +--+-----------+
+|     |  +-----------+
+|     +--+  alarm1   |
+|     |  +-----------+
+|     |
+|     |  +-----------+
+|     +--+  alarm2   |
+|     |  +-----------+
+|     |
+|     |  +-----------+
+|     +--+  alarm3   |
+|        +-----------+
+|  +--------------+
++--|  Incident2   |
+|  +--+-----------+
+|     |  +-----------+
+|     +--+  metric1  |
+|     |  +-----------+
+|     |  +-----------+
+|     +--+  metric2  |
+|        +-----------+
+|
+|  +--------------+
++--|  Incident3   |
++--+-----------+
+ |  +-----------+
+ +--+ alarm1    |
+ |  +-----------+
+ |
+ |  +-----------+
+ +--| metric1   |
+    +-----------+
 ~~~~
 {:#ident title="Incident Identification" artwork-align="center"}
 
@@ -659,24 +659,24 @@ knowledge base, and the network incident will be identified faster according
 to knowledge base next time.
 
 ~~~~
-	     +----------------------+
-	     |                      |
-	     |     Orchestrator     |
-	     |                      |
-	     +--------^-------------+
-	              |VPN A Unavailable
-	              |
-	      +-------+------------+
-	      |                    |
-	      |     Controller     |
-	      |                    |
-          |                    |
-          +-^-^------------^---+
-	        | |            |
-        IGP | |Interface   |IGP Peer
-       Down | |Down        | Abnormal
-	        | |            |
- VPN A      | |            |
+        +----------------------+
+        |                      |
+        |     Orchestrator     |
+        |                      |
+        +--------^-------------+
+                 |VPN A Unavailable
+                 |
+         +-------+------------+
+         |                    |
+         |     Controller     |
+         |                    |
+         |                    |
+         +-^-^------------^---+
+           | |            |
+       IGP | |Interface   |IGP Peer
+      Down | |Down        | Abnormal
+           | |            |
+VPN A      | |            |
 +-----------+-+------------+------------------------+
 | \  +---+       ++-++         +-+-+        +---+  /|
 |  \ |   |       |   |         |   |        |   | / |
@@ -701,24 +701,23 @@ on the relevant service and understand whether lower level or device level netwo
 anomaly, e.g., igp down, has impact on the service.
 
 ~~~~
-
-		+----------------------+
-		|                      |
-		|     Orchestrator     |
-		|                      |
-		+----------+-----------+
-			       |VPN A Degradation
-			       |
-		 +---------+----------+
-		 |                    |
-		 |     controller     |
-		 |                    |
-		 |                    |
-		 +--^------------^----+
-		    |            |
-		    |Packet      |Path Delay
-		    |Loss        |
-		    |            |
+         +----------------------+
+         |                      |
+         |     Orchestrator     |
+         |                      |
+        +----------+-----------+
+                   |VPN A Degradation
+                   |
+         +---------+----------+
+         |                    |
+         |     controller     |
+         |                    |
+         |                    |
+         +--^------------^----+
+            |            |
+            |Packet      |Path Delay
+            |Loss        |
+            |            |
 VPN A       |            |
 +-----------+------------+---------------------------+
 | \  +---+       ++-++         +-+-+        +---+  / |
@@ -893,14 +892,14 @@ notifications:
 	 +--ro resolve-advice? string
 	 +--ro sources
 	 |  +--ro source* [node-ref]
-     |     +--ro node-ref  leafref
-     |     +--ro network-ref?  leafref
+   |     +--ro node-ref  leafref
+   |     +--ro network-ref?  leafref
 	 |     +--ro resource* [name]
 	 |        +--ro name al:resource
 	 +--ro probable-causes
 	 |  +--ro probable-cause* [node-ref]
-     |     +--ro node-ref  leafref
-     |     +--ro network-ref?  leafref
+   |     +--ro node-ref  leafref
+   |     +--ro network-ref?  leafref
 	 |     +--ro resource* [name]
 	 |     |  +--ro name al:resource
 	 |     |  +--ro cause-name? string
