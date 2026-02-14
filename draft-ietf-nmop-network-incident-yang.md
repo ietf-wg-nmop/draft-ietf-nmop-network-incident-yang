@@ -892,14 +892,14 @@ notifications:
 	 +--ro resolve-advice? string
 	 +--ro sources
 	 |  +--ro source* [node-ref]
-   |     +--ro node-ref  leafref
-   |     +--ro network-ref?  leafref
+     |     +--ro node-ref  leafref
+     |     +--ro network-ref?  leafref
 	 |     +--ro resource* [name]
 	 |        +--ro name al:resource
 	 +--ro probable-causes
 	 |  +--ro probable-cause* [node-ref]
-   |     +--ro node-ref  leafref
-   |     +--ro network-ref?  leafref
+     |     +--ro node-ref  leafref
+     |     +--ro network-ref?  leafref
 	 |     +--ro resource* [name]
 	 |     |  +--ro name al:resource
 	 |     |  +--ro cause-name? string
