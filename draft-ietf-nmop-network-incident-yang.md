@@ -877,50 +877,49 @@ notifications:
 ~~~~
 notifications:
   +---n incident-notification
-	 +--ro incident-no?
-			 -> /inc:incidents/inc:incident/inc:incident-no
-	 +--ro name? string
-	 +--ro type? identityref
-	 +--ro incident-id? string
-	 +--ro service-instance* string
-	 +--ro domain? identityref
-	 +--ro priority? int:incident-priority
-	 +--ro status? enumeration
-	 +--ro ack-status? enumeration
-	 +--ro category? identityref
-	 +--ro detail? string
-	 +--ro resolve-advice? string
-	 +--ro sources
-	 |  +--ro source* [node-ref]
-     |     +--ro node-ref  leafref
-     |     +--ro network-ref?  leafref
-	 |     +--ro resource* [name]
-	 |        +--ro name al:resource
-	 +--ro probable-causes
-	 |  +--ro probable-cause* [node-ref]
-     |     +--ro node-ref  leafref
-     |     +--ro network-ref?  leafref
-	 |     +--ro resource* [name]
-	 |     |  +--ro name al:resource
-	 |     |  +--ro cause-name? string
-	 |     |  +--ro detail? string
-	 |     +--ro cause-name? string
-	 |     +--ro detail? string
-	 +--ro probable-events
-	 |  +--ro probable-event* [type event-id]
-	 |     +--ro type -> ../../../events/event/type
-	 |     +--ro event-id leafref
-	 +--ro events
-	 |  +--ro event* [type event-id]
-	 |     +--ro type enumeration
-	 |     +--ro event-id string
-	 |     +--ro (event-type-info)?
-	 |        +--:(alarm)
-	 |        |  +--ro alarm
-	 |        |     +--ro resource? leafref
-	 |        |     +--ro alarm-type-id? leafref
-	 |        |     +--ro alarm-type-qualifier? leafref
-	 +--ro time? yang:date-and-time
+     +--ro incident-no?        incident-ref
+     +--ro name                string
+     +--ro type                identityref
+     +--ro incident-id?        string
+     +--ro service-instance*   string
+     +--ro domain              identityref
+     +--ro priority            incident-priority
+     +--ro status?             enumeration
+     +--ro ack-status?         enumeration
+     +--ro category            identityref
+     +--ro detail?             string
+     +--ro resolve-advice?     string
+     +--ro sources
+     |  +--ro source* [node-ref]
+     |     +--ro node-ref       leafref
+     |     +--ro network-ref?   leafref
+     |     +--ro resource* [name]
+     |        +--ro name    al:resource
+     +--ro probable-causes
+     |  +--ro probable-cause* [node-ref]
+     |     +--ro node-ref       leafref
+     |     +--ro network-ref?   leafref
+     |     +--ro resource* [name]
+     |     |  +--ro name          al:resource
+     |     |  +--ro cause-name?   identityref
+     |     |  +--ro detail?       string
+     |     +--ro cause-name?    identityref
+     |     +--ro detail?        string
+     +--ro probable-events
+     |  +--ro probable-event* [type event-id]
+     |     +--ro type        leafref
+     |     +--ro event-id    leafref
+     +--ro events
+     |  +--ro event* [type event-id]
+     |     +--ro type           identityref
+     |     +--ro event-id       string
+     |     +--ro (event-type-info)?
+     |        +--:(alarm)
+     |           +--ro alarm
+     |              +--ro resource?               leafref
+     |              +--ro alarm-type-id?          leafref
+     |              +--ro alarm-type-qualifier?   leafref
+     +--ro time?               yang:date-and-time
 ~~~~
 
 A general notification, incident-notification, is provided here.
