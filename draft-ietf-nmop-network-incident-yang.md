@@ -363,36 +363,48 @@ fiber) based on the Probable Root Cause.
 # Network Incident Management Architecture
 
 ~~~~
-     +------------------------------------------+
-     |                                          |
-     |            Incident  Client              |
-     |                                          |
-     |                                          |
-     +------------+---------+---------+---------+
-	    ^         |         |         |
-	    |Incident |Incident |Incident |Incident
-	    |Report   |Ack      |Diagnose |Resolve
-	    |         |         |         |
-	    |         V         V         V
-     +--+----------------------------------------+
-     |                                           |
-     |                                           |
-     |             Incident  Server              |
-     |                                           |
-     |                                           |
-     |                                           |
-     |                                           |
-     +-------------------------------+-----------+
-	       ^       ^Abnormal         ^Network Performance
-	       |Alarm  |Operations       |Metrics
-	       |Report |Report           |/Telemetry
-	       |       |                 V
-+----------+-------+------------------------------------+
+    +------------------------------------------------+
+    |                                                |
+    |                                                |
+    |               Incident  Client                 |
+    |                                                |
+    |                                                |
+    +----^-----------+------------+------------+-----+
+         |           |            |            |
+         |Incident   |Incident    |Incident    |Incident
+         |Report     |  Ack       |Diagnose    |Resolve
+         |           |            |            |
+         |           |            |            |
+         |           |            |            |
+    +----+-----------V------------V------------V-----+
+    |                                                |
+    |                                                |
+    |                                                |
+    |                                                |
+    |                                                |
+    |                                                |
+    |                Incident Server                 |
+    |                                                |
+    |                                                |
+    |                                                |
+    |                                                |
+    |                                                |
+    |                                                |
+    +----^-----------^-------------^------------^----+
+         |           |             |            |
+         |           |             |            |
+         |Alarm      |Abnormal     |Network     |Network
+         |Report     |Operation    |Performance |Diagnosis
+         |           | Report      |Metrics/    |using
+         |           |             |Telemetry   |OAM Test
+         |           |             |            |
+         |           |             |            |
++--------+-----------+-------------V------------V-------+
 |                                                       |
-|            Network in the Autonomous Domain           |
+|                                                       |
+|          Network in the Autonomous Domain             |
 |                                                       |
 +-------------------------------------------------------+
-
 ~~~~
  {:#arch title="Network Incident Management Architecture" artwork-align="center"}
 
@@ -414,13 +426,13 @@ requirements of the fault management.
 
 A typical workflow of network incident lifecycle management is as follows:
 
-* Some alarm or abnormal operations, network performance metrics are reported from the
-  network to the Incident Server. The Incident Server receives these alarms/abnormal
-  operations/metrics and try to analyze the correlation of them, e.g., generate
-  a symptom if some metrics are evaluated as unhealthy, the Probable Root Cause can
-  be detected based on the data correlation analysis. If a network incident is identified,
-  the "incident report" notification will be reported to the Incident Client. The impact
-  of network services will be further analyzed and will update the network incident if
+* Some alarm or abnormal operations, network performance metrics, network diagnosis information
+  {{?I-D.ietf-opsawg-scheduling-oam-tests}} are reported from the network to the Incident Server.
+  The Incident Server receives these alarms/abnormal operations/metrics and try to analyze the
+  correlation of them, e.g., generate a symptom if some metrics are evaluated as unhealthy, the
+  Probable Root Cause can be detected based on the data correlation analysis. If a network incident
+  is identified, the "incident report" notification will be reported to the Incident Client. The
+  impact of network services will be further analyzed and will update the network incident if
   the network service is impacted.
 
 * Incident Client receives the network incident from the "incident report" notification
