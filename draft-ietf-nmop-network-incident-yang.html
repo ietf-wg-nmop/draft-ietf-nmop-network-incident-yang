@@ -1805,27 +1805,27 @@ Instead, they can work together to implement fault management.<a href="#section-
 <figure id="figure-3">
           <div class="alignCenter art-text artwork" id="section-4.2-2.1">
 <pre>
-           +----------------+
-           |Incident Handler|
-           +----------------+
-                       ^
-                       |incident
-           +-------+--------+
-           |Incident process|
-           +----------------+
-                       ^
-                       |symptoms
-           +-------+--------+
-           |     SAIN       |
-           |                |
-           +----------------+
-                       ^
-               |metrics
-     +---------+-----------------------+
-     |                                 |
-     |Network in the Autonomous Domain |
-     |                                 |
-     +---------------------------------+
+      +----------------+
+      |Incident Handler|
+      +----------------+
+              ^
+              |incident
+      +-------+--------+
+      |Incident process|
+       +----------------+
+               ^
+               |symptoms
+       +-------+--------+
+       |     SAIN       |
+       |                |
+       +----------------+
+                ^
+                |metrics
++---------------+-----------------+
+|                                 |
+|Network in the Autonomous Domain |
+|                                 |
++---------------------------------+
 </pre>
 </div>
 <figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
@@ -1908,40 +1908,40 @@ aggregated into a network incident after analysis.<a href="#section-5.1-1" class
 <figure id="figure-4">
           <div class="alignCenter art-text artwork" id="section-5.1-2.1">
 <pre>
-        +--------------+
-         +--|  Incident1   |
-         |  +--+-----------+
-         |     |  +-----------+
-         |     +--+  alarm1   |
-         |     |  +-----------+
-         |     |
-         |     |  +-----------+
-         |     +--+  alarm2   |
-         |     |  +-----------+
-         |     |
-         |     |  +-----------+
-         |     +--+  alarm3   |
-         |        +-----------+
-         |  +--------------+
-         +--|  Incident2   |
-         |  +--+-----------+
-         |     |  +-----------+
-         |     +--+  metric1  |
-         |     |  +-----------+
-         |     |  +-----------+
-         |     +--+  metric2  |
-         |        +-----------+
-         |
-         |  +--------------+
-         +--|  Incident3   |
-            +--+-----------+
-               |  +-----------+
-               +--+ alarm1    |
-               |  +-----------+
-               |
-               |  +-----------+
-               +--| metric1   |
-              +-----------+
+   +--------------+
++--|  Incident1   |
+|  +--+-----------+
+|     |  +-----------+
+|     +--+  alarm1   |
+|     |  +-----------+
+|     |
+|     |  +-----------+
+|     +--+  alarm2   |
+|     |  +-----------+
+|     |
+|     |  +-----------+
+|     +--+  alarm3   |
+|        +-----------+
+|  +--------------+
++--|  Incident2   |
+|  +--+-----------+
+|     |  +-----------+
+|     +--+  metric1  |
+|     |  +-----------+
+|     |  +-----------+
+|     +--+  metric2  |
+|        +-----------+
+|
+|  +--------------+
++--|  Incident3   |
++--+-----------+
+ |  +-----------+
+ +--+ alarm1    |
+ |  +-----------+
+ |
+ |  +-----------+
+ +--| metric1   |
+    +-----------+
 </pre>
 </div>
 <figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
@@ -1969,24 +1969,24 @@ to knowledge base next time.<a href="#section-5.1-4" class="pilcrow">¶</a></p>
 <figure id="figure-5">
           <div class="alignCenter art-text artwork" id="section-5.1-5.1">
 <pre>
-             +----------------------+
-             |                      |
-             |     Orchestrator     |
-             |                      |
-             +--------^-------------+
-                      |VPN A Unavailable
-                      |
-              +-------+------------+
-              |                    |
-              |     Controller     |
-              |                    |
-          |                    |
-          +-^-^------------^---+
-                | |            |
-        IGP | |Interface   |IGP Peer
-       Down | |Down        | Abnormal
-                | |            |
- VPN A      | |            |
+        +----------------------+
+        |                      |
+        |     Orchestrator     |
+        |                      |
+        +--------^-------------+
+                 |VPN A Unavailable
+                 |
+         +-------+------------+
+         |                    |
+         |     Controller     |
+         |                    |
+         |                    |
+         +-^-^------------^---+
+           | |            |
+       IGP | |Interface   |IGP Peer
+      Down | |Down        | Abnormal
+           | |            |
+VPN A      | |            |
 +-----------+-+------------+------------------------+
 | \  +---+       ++-++         +-+-+        +---+  /|
 |  \ |   |       |   |         |   |        |   | / |
@@ -2014,23 +2014,23 @@ anomaly, e.g., igp down, has impact on the service.<a href="#section-5.1-8" clas
 <figure id="figure-6">
           <div class="alignCenter art-text artwork" id="section-5.1-9.1">
 <pre>
-                +----------------------+
-                |                      |
-                |     Orchestrator     |
-                |                      |
-                +----------+-----------+
-                               |VPN A Degradation
-                               |
-                 +---------+----------+
-                 |                    |
-                 |     controller     |
-                 |                    |
-                 |                    |
-                 +--^------------^----+
-                    |            |
-                    |Packet      |Path Delay
-                    |Loss        |
-                    |            |
+         +----------------------+
+         |                      |
+         |     Orchestrator     |
+         |                      |
+        +----------+-----------+
+                   |VPN A Degradation
+                   |
+         +---------+----------+
+         |                    |
+         |     controller     |
+         |                    |
+         |                    |
+         +--^------------^----+
+            |            |
+            |Packet      |Path Delay
+            |Loss        |
+            |            |
 VPN A       |            |
 +-----------+------------+---------------------------+
 | \  +---+       ++-++         +-+-+        +---+  / |
@@ -2246,14 +2246,14 @@ notifications:
          +--ro resolve-advice? string
          +--ro sources
          |  +--ro source* [node-ref]
-     |     +--ro node-ref  leafref
-     |     +--ro network-ref?  leafref
+   |     +--ro node-ref  leafref
+   |     +--ro network-ref?  leafref
          |     +--ro resource* [name]
          |        +--ro name al:resource
          +--ro probable-causes
          |  +--ro probable-cause* [node-ref]
-     |     +--ro node-ref  leafref
-     |     +--ro network-ref?  leafref
+   |     +--ro node-ref  leafref
+   |     +--ro network-ref?  leafref
          |     +--ro resource* [name]
          |     |  +--ro name al:resource
          |     |  +--ro cause-name? string
