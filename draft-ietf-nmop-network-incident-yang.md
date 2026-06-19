@@ -1046,6 +1046,27 @@ This module imports types defined in {{!RFC6991}}, {{!RFC8345}},
 <CODE ENDS>
 ~~~~
 
+# Operational Consideration
+
+The "ietf-incident" YANG module introduces an incident-centric architecture
+designed to overcome the structural silo of traditional management systems
+that handle alarms and performance metrics separately at different network layers.
+Operators must ensure that the underlying management system feeding this model maintains
+continuous, real-time read access to diverse end to end network topology data spanning
+multiple layers.
+
+Because accurate multi-layer troubleshooting depends on establishing a global view
+of cross-layer dependency relationships, any disruption or stale state in the
+underlying network topology discovery mechanisms will directly degrade the accuracy
+of the incident process's probable cause identification and service impact analysis.
+
+In addition, the YANG module defined in this document is intended to automate and
+streamline incident dispatching at the network layer, but integration with
+trouble-ticketing management system at the OSS layer is also required. Operators should
+implement a deterministic translation layer between the "ietf-incident" model
+states and external ticket states (e.g., Open, Assigned, In-Progress, Resolved)
+to prevent split-brain visibility scenarios where an incident is closed in the
+network layer but remains active in the ticketing system, or vice versa.
 
 # Security Considerations
 
