@@ -843,7 +843,7 @@ module: ietf-incident
         +--ro ack-status?         enumeration
         +--ro category            identityref
         +--ro detail?             string
-        +--ro resolve-advice?     String
+        +--ro resolve-advice?     string
         +--ro sources
         ...
         +--ro probable-causes
@@ -1361,14 +1361,14 @@ the diagnosis task detailed information based on such module extension.
 augment /inc:incidents/inc:incident:
 +--ro incident-diagnosis-tasks
 |   +--ro incident-diagnosis-task* [task-id]
-|   +--ro task-id? String
+|   +--ro task-id? string
 |   +--ro incident-no* incident-ref
 |   +--ro ticket-no? string
 |   +--ro start-time? yang:date-and-time
 |   +--ro end-time? yang:date-and-time
 |   +--ro task-state? enumeration
 |   +--ro diagnosis-result? enumeration
-|   +--ro diagnosis-result-description? String
+|   +--ro diagnosis-result-description? string
 |   +--ro probable-causes leafref //List <RootCause>
 …
 |   +--ro probable-events leafref //List <Event>
@@ -1452,10 +1452,10 @@ RAN Autonomous Domain   |       IP Autonomous Domain
                         |
 Diagnosis Key Parameters:
 {
-ticket-no, String
-incident-no, String
+ticket-no, string
+incident-no, string
 occur-time, yang:date-and-time
-context? String
+context? string
 related-events?  leafref //List <Event>
 related-objects? leafref //List <ResourceObject>
  ....
