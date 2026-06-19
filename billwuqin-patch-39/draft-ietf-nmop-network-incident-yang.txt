@@ -2221,7 +2221,7 @@ Appendix A.  Examples of Network Incident Format Representation
 A.1.  Network Incident Correlated with Specific Network Topology and the
       Network Service
 
-   In this example, we show a nework incident that are associated with
+   In this example, we show a network incident that are associated with
    the service-instance "optical-svc-A", the node ‘D1’, the network
    topology ‘L2-Topo’ and the domain ‘FAN’. The Probable Root Cause is
    also analysed.
@@ -2395,7 +2395,7 @@ A.3.  Intent Based Networking with Incident Diagnosis Task List
    defined to support "task-id" attribute in the output parameters and
    other auxiliary attributes in the input parameters. such rpc can be
    used to return task-id from the controller.  The controller is
-   responsbile for task-id allocation and maintaining task-id list.
+   responsible for task-id allocation and maintaining task-id list.
 
        +---x diagnose-task-creation
        |  +---w input
@@ -2497,7 +2497,7 @@ A.4.  Multi-Domain Fault Demarcation with Network Incident Management
    network side port according to the base station IP address, and then
    further associated with transmission path (current path, historical
    path) to the base station and current and historical network
-   performance, netowrk resources, and incident status data, to diagnose
+   performance, network resources, and incident status data, to diagnose
    the Probable Root Cause of the network incident and provide repair
    suggestions.
 
@@ -2566,7 +2566,7 @@ A.5.  Service Complaint triggered Network Diagnosis
           Figure 9: Service Complaint triggered Network Diagnosis
 
    Similarly, in case of service degradation for a lease line service
-   recieving from the customer, the OSS system can request network
+   receiving from the customer, the OSS system can request network
    diagnosis at the network side conducted by the network controller.
    The network controller can use network diagnosis related intent based
    interface to find the corresponding network side port based on the
@@ -2577,6 +2577,19 @@ A.5.  Service Complaint triggered Network Diagnosis
    suggestions.
 
 Appendix B.  Changes between Revisions
+
+   v07 - v08
+
+   *  Add a new section to clarify Relationship with network anomaly
+      architecture;
+
+   *  Clarify the relation with OAM Schdule YANG in section 4;
+
+   *  Abstract update;
+
+   *  Terminology alignment with RFC9940;
+
+   *  Other Editorial changes;
 
    v06 - v07
 
@@ -2620,7 +2633,7 @@ Appendix B.  Changes between Revisions
 
    *  Add two new examples in the Appendix to explore correlation
       between troubleshooting ticket and incident management and intent
-      based network diagonisis interaction.
+      based network diagnoisis interaction.
 
    v02 - v03
 
@@ -2701,63 +2714,6 @@ Appendix B.  Changes between Revisions
 
    *  open issues is tracked in https://github.com/billwuqin/network-
       incident/issues
-
-   v03 - v04 (draft-feng-opsawg-incident-management)
-
-   *  Update incident defintion based on TMF incident API profile
-      specification.
-
-   *  Update use case on Multi-layer Fault Demarcation based on side
-      meeting discussion and IETF 119 session discussion.
-
-   *  Update section 5.1 to explain how network incident is generated
-      based on other factors.
-
-   *  Add one new use cases on Security Events noise reduction based on
-      Situation Awareness.
-
-   *  Other Editorial changes.
-
-   v02 - v03 (draft-feng-opsawg-incident-management)
-
-   *  Add one new use cases on Incident Generation.
-
-   *  Add reference to Precision Availability Metric defined in IPPM PAM
-      WG document.
-
-   v01 - v02
-
-   *  A few Editorial change to YANG data models in section 8.
-
-   *  Add some text to the model design overview.
-
-   *  Revise sample use cases section to focus on two key use cases.
-
-   *  Motivation and goal clarification in the introduction section.
-
-   v00 - v01 (draft-feng-opsawg-incident-management)
-
-   *  Modify the introduction.
-
-   *  Rename incident agent to Incident Server.
-
-   *  Add the interworking with alarm management.
-
-   *  Add the interworking with SAIN.
-
-   *  Add the relationship with RFC8969.
-
-   *  Add the relationship with observation timestamp and trace context.
-
-   *  Clarify the incident identification process.
-
-   *  Modify the work flow of incident diagnosis and resolution.
-
-   *  Remove identities and typedefs from ietf-incident YANG module, and
-      create a new YANG module called ietf-incident-types.
-
-   *  Modify ietf-incident YANG module, for example, modify incident-
-      diagnose rpc and incident-resolve rpc.
 
 Contributors
 
