@@ -1506,7 +1506,7 @@ repair suggestions.
 # Changes between Revisions
 
   v07 - v08
-  
+
    * Add a new section to clarify Relationship with network anomaly architecture;
 
    * Clarify the relation with OAM Schdule YANG in section 4;
