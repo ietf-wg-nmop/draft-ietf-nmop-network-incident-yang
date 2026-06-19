@@ -141,7 +141,7 @@ incidents and there are many solutions in the market today that essentially do
 this to some degree. However, conventional solutions such as data compression
 are time-consuming and labor-intensive, usually rely on maintenance engineers'
 experience for data analysis, which, in many cases, result in low processing
-efficiency, inaccurate probable cause identification and duplicated tickets.
+efficiency, inaccurate Probable Cause identification and duplicated tickets.
 It is also difficult to assess the impact of alarms, performance metrics and other
 anomaly data on network services without known relation across layers of
 the entire network topology data or the relation with other network topology data.
@@ -152,10 +152,10 @@ service and network topology at various different layers, which not only can
 be used at a specific layer in one domain but also can be used to
 span across layers for multi-layer network troubleshooting.
 
-A network incident refers to an undesired occurrence, such as an unexpected
-interruption of a network service, degradation of a network service quality,
-or sub-health of a network service {{!I-D.ietf-nmop-terminology}}{{TMF724A}}.
-Different data sources, including alarms, metrics, and other anomaly
+As described in {{!I-D.ietf-nmop-terminology}}{{TMF724A}}, a network incident refers
+to an undesired Occurrence such as an unexpected interruption of a network service,
+degradation of the quality of a network service, or the below-target performance of
+a network service. Different data sources, including alarms, metrics, and other anomaly
 information, can be correlated and combined into one or a few network
 incidents, regardless of layer, informed by correlation analysis and service
 impact assessment. For example, if the protocol-related interface fails to work
@@ -202,6 +202,8 @@ and are not redefined here:
 
 *  Cause
 
+*  Symptom
+
 *  Characteristic
 
 *  SLA (Service Level Agreement)
@@ -224,11 +226,8 @@ Incident Management:
    Different from the traditional fault management, it takes various different
    data sources including alarms, metrics, and other anomaly information and aggregates
    them into one or a few network incidents irrespective of layer
-   through data correlation analysis and the Service Impact Assessment. One fault
-   on the network device can cause multiple network incidents, e.g., multiple service
-   offerings that are dependent on that device and take different route will go down, e.g.,
-   suffer increased latency as redundant routes become more congested. A network incident
-   might impact one or a set of network services. The network incident can also been
+   through data correlation analysis and the Service Impact Assessment. A network
+   incident might impact one or a set of network services. The network incident can also been
    seen as customer incident {{TMF724A}} when service SLA {{?RFC9543}} associated with one specific
    network service and network incident has been affected. How customer incident is
    translated from the network incident is beyond the scope of this document.
@@ -256,14 +255,14 @@ Incident Handler:
 Probable Root Cause:
 : If removing a factor completely resolves the ongoing incident (specifically, regarding network
   outage or service impairments and their associated subsequent failures and symptoms) and prevents
-  the problem from recurring, then such factor is considered as a probable root cause of a problem.
+  the problem from recurring, then such factor is considered as a Probable Root Cause of a problem.
 
-: Since one Fault may give rise to another Fault or Problem, a probable root cause is commonly meant
+: Since one Fault may give rise to another Fault or Problem, a Probable Root Cause is commonly meant
   to describe the original event or combination of circumstances that is the foundation of all
   related Faults.
 
 : Conversely, a causal factor is a contributing action that influences the outcome of the incident or
-  event but is not the probable cause.
+  event but is not the Probable Cause.
 
 
 # Sample Use Cases
@@ -332,7 +331,7 @@ fault propagation could be classified into three typical types.
 First, faults occurring at a packet-layer device might further cause fault
 (e.g., Wavelength Division Multiplexing (WDM) client fault) at an
 optical-layer device.  Second, faults occurring at an optical-layer
-device might further cause fault (e.g., Layer 3 link down) at a packet-
+device might further cause faults (e.g., Layer 3 link down) at a packet-
 layer device.  Third, faults occurring at the inter-layer link between a
 packet-layer device and an optical-layer device might further cause
 faults at both devices.  Multiple operation teams are usually
@@ -751,8 +750,8 @@ After the Probable Root Cause is diagnosed, the Incident Client MAY resolve the
 network incident.  The Incident Client MAY choose resolve the network
 incident by invoking other functions, such as routing calculation function,
 configuration function, dispatching a ticket or asking the server to resolve it.
-Generally, the Incident Client would attempt to directly resolve the probable
-cause.  If the Probable Root Cause cannot be resolved, an alternative solution
+Generally, the Incident Client would attempt to directly resolve the Probable
+Cause.  If the Probable Root Cause cannot be resolved, an alternative solution
 SHOULD be required.  For example, if a network incident caused by a physical
 component failure, it cannot be automatically resolved, the standby
 link can be used to bypass the faulty component.
@@ -992,7 +991,7 @@ If the RPC fails, the RPC error response MUST indicate the reason for the
 failure. The structures defined in this document MUST encode specific errors
 and be inserted in the error response to indicate the reason for the failure.
 
-The tree diagram [RFC8340] for structures is defined as follows:
+The tree diagram {{!RFC8340}} for structures is defined as follows:
 
 ~~~
   structure incident-acknowledge-error-info:
@@ -1212,8 +1211,8 @@ The Probable Root Cause is also analysed.
 
 ##  Network Incident Correlated with Trouble Tickets
 
-In this document, the objective of the Incident Management is to identify probable
-causes and reduce duplicated tickets.
+In this document, the objective of the Incident Management is to identify Probable
+Causes and reduce duplicated tickets.
 
 Traditionally, troubleshooting ticket is created upon critical
 alert is received, e.g., due to excessive BGP flaps on a particular
