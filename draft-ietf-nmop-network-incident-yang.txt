@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 18 August 2026                                       Telefonica
+Expires: 21 December 2026                                     Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                        14 February 2026
+                                                            19 June 2026
 
 
            A YANG Data Model for Network Incident Management
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 18 August 2026.
+   This Internet-Draft will expire on 21 December 2026.
 
 Copyright Notice
 
@@ -891,7 +891,7 @@ Table of Contents
          +--ro ack-status?         enumeration
          +--ro category            identityref
          +--ro detail?             string
-         +--ro resolve-advice?     String
+         +--ro resolve-advice?     string
          +--ro sources
          ...
          +--ro probable-causes
@@ -2133,9 +2133,9 @@ Informative References
               Gagliano, R., Larsson, K., and J. Lindblad, "NETCONF
               Extension to support Trace Context propagation", Work in
               Progress, Internet-Draft, draft-ietf-netconf-trace-ctx-
-              extension-05, 19 October 2025,
+              extension-06, 17 March 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-netconf-
-              trace-ctx-extension-05>.
+              trace-ctx-extension-06>.
 
    [I-D.ietf-nmop-network-anomaly-architecture]
               Graf, T., Du, W., Francois, P., and A. H. Feng, "A
@@ -2149,9 +2149,9 @@ Informative References
               Contreras, L. M., Lopez, V., and Q. Wu, "A YANG Data Model
               for Network Diagnosis using Scheduled Sequences of OAM
               Tests", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-scheduling-oam-tests-03, 20 October 2025,
+              opsawg-scheduling-oam-tests-06, 7 May 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              scheduling-oam-tests-03>.
+              scheduling-oam-tests-06>.
 
    [I-D.irtf-nmrg-ai-challenges]
               François, J., Clemm, A., Papadimitriou, D., Fernandes, S.,
@@ -2434,14 +2434,14 @@ A.3.  Intent Based Networking with Incident Diagnosis Task List
 augment /inc:incidents/inc:incident:
 +--ro incident-diagnosis-tasks
 |   +--ro incident-diagnosis-task* [task-id]
-|   +--ro task-id? String
+|   +--ro task-id? string
 |   +--ro incident-no* incident-ref
 |   +--ro ticket-no? string
 |   +--ro start-time? yang:date-and-time
 |   +--ro end-time? yang:date-and-time
 |   +--ro task-state? enumeration
 |   +--ro diagnosis-result? enumeration
-|   +--ro diagnosis-result-description? String
+|   +--ro diagnosis-result-description? string
 |   +--ro probable-causes leafref //List <RootCause>
 …
 |   +--ro probable-events leafref //List <Event>
@@ -2525,10 +2525,10 @@ A.4.  Multi-Domain Fault Demarcation with Network Incident Management
                                    |
            Diagnosis Key Parameters:
            {
-           ticket-no, String
-           incident-no, String
+           ticket-no, string
+           incident-no, string
            occur-time, yang:date-and-time
-           context? String
+           context? string
            related-events?  leafref //List <Event>
            related-objects? leafref //List <ResourceObject>
             ....
