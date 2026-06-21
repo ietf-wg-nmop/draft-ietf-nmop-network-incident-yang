@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 21 December 2026                                     Telefonica
+Expires: 23 December 2026                                     Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                            19 June 2026
+                                                            21 June 2026
 
 
            A YANG Data Model for Network Incident Management
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 December 2026.
+   This Internet-Draft will expire on 23 December 2026.
 
 Copyright Notice
 
@@ -1795,7 +1795,8 @@ Table of Contents
          leaf-list incident-no {
            type incident-ref;
            description
-             "The identifier of an incident instance.";
+             "The unique sequence number of an incident instance
+              based on the name type incident-id keys.";
          }
        }
      }
@@ -1809,7 +1810,8 @@ Table of Contents
          leaf-list incident-no {
            type incident-ref;
            description
-             "The identifier of an incident instance.";
+             "The unique sequence number of an incident instance
+              based on the name type incident-id keys.";
          }
        }
      }
@@ -1823,7 +1825,8 @@ Table of Contents
          leaf-list incident-no {
            type incident-ref;
            description
-             "The identifier of an incident instance.";
+             "The unique sequence number of an incident instance
+              based on the name type incident-id keys.";
          }
        }
      }
@@ -1941,7 +1944,7 @@ Table of Contents
            type uint64;
            mandatory true;
            description
-           "The unique sequence number of the incident instance.";
+           "The unique sequence number of the incident instance based on the name type incident-id keys.";
          }
          uses incident-info;
          uses incident-time-info;
