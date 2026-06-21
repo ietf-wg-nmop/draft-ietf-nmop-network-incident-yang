@@ -835,7 +835,7 @@ module: ietf-incident
         +--ro incident-no         uint64
         +--ro name                string
         +--ro type                identityref
-        +--ro incident-id?        string
+        +--ro incident-id         string
         +--ro service-instance*   string
         +--ro domain              identityref
         +--ro priority            incident-priority
@@ -877,10 +877,10 @@ notifications:
 ~~~~
 notifications:
   +---n incident-notification
-     +--ro incident-no?        incident-ref
+     +--ro incident-no         incident-ref
      +--ro name                string
      +--ro type                identityref
-     +--ro incident-id?        string
+     +--ro incident-id         string
      +--ro service-instance*   string
      +--ro domain              identityref
      +--ro priority            incident-priority
