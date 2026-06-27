@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 23 December 2026                                     Telefonica
+Expires: 29 December 2026                                     Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                            21 June 2026
+                                                            27 June 2026
 
 
            A YANG Data Model for Network Incident Management
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 December 2026.
+   This Internet-Draft will expire on 29 December 2026.
 
 Copyright Notice
 
@@ -1562,7 +1562,6 @@ Table of Contents
           incident.";
        leaf name {
          type string;
-         mandatory true;
          description
            "The name of an incident.";
        }
@@ -1570,13 +1569,11 @@ Table of Contents
          type identityref {
            base incident-class;
          }
-         mandatory true;
          description
            "The type of an incident.";
        }
        leaf incident-id {
          type string;
-         mandatory true;
          description
            "The unique qualifier of an incident instance type.
            This leaf is used when the 'type' leaf cannot
