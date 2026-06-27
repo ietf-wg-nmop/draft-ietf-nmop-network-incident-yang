@@ -1108,7 +1108,7 @@ Namespace: urn:ietf:params:xml:ns:yang:ietf-incident
 Prefix: inc
 Reference:  RFC XXXX
 ~~~~
-// RFC Ed.: replace XXXX and remove this comment
+// RFC Ed.: Replace RFC xxxx with this RFC id, when published and remove this comment
 
 # Acknowledgements
 {:numbered="false"}
