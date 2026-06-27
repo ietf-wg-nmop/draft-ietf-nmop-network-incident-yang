@@ -953,7 +953,7 @@ If the RPC fails, the RPC error response MUST indicate the reason for the
 failure. The structures defined in this document MUST encode specific errors
 and be inserted in the error response to indicate the reason for the failure.
 
-The tree diagram [RFC8340] for structures is defined as follows:
+The tree diagram {{!RFC8340}} for structures is defined as follows:
 
 ~~~
   structure incident-acknowledge-error-info:
