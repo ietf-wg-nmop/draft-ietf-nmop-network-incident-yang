@@ -1348,7 +1348,7 @@ incidents and there are many solutions in the market today that essentially do
 this to some degree. However, conventional solutions such as data compression
 are time-consuming and labor-intensive, usually rely on maintenance engineers'
 experience for data analysis, which, in many cases, result in low processing
-efficiency, inaccurate probable cause identification and duplicated tickets.
+efficiency, inaccurate Probable Cause identification and duplicated tickets.
 It is also difficult to assess the impact of alarms, performance metrics and other
 anomaly data on network services without known relation across layers of
 the entire network topology data or the relation with other network topology data.<a href="#section-1-2" class="pilcrow">¶</a></p>
@@ -1357,10 +1357,10 @@ is specified to establish the global view on dependency relationships with both 
 service and network topology at various different layers, which not only can
 be used at a specific layer in one domain but also can be used to
 span across layers for multi-layer network troubleshooting.<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">A network incident refers to an undesired occurrence, such as an unexpected
-interruption of a network service, degradation of a network service quality,
-or sub-health of a network service <span>[<a href="#I-D.ietf-nmop-terminology" class="cite xref">I-D.ietf-nmop-terminology</a>]</span><span>[<a href="#TMF724A" class="cite xref">TMF724A</a>]</span>.
-Different data sources, including alarms, metrics, and other anomaly
+<p id="section-1-4">As described in <span>[<a href="#I-D.ietf-nmop-terminology" class="cite xref">I-D.ietf-nmop-terminology</a>]</span><span>[<a href="#TMF724A" class="cite xref">TMF724A</a>]</span>, a network incident refers
+to an undesired Occurrence such as an unexpected interruption of a network service,
+degradation of the quality of a network service, or the below-target performance of
+a network service. Different data sources, including alarms, metrics, and other anomaly
 information, can be correlated and combined into one or a few network
 incidents, regardless of layer, informed by correlation analysis and service
 impact assessment. For example, if the protocol-related interface fails to work
@@ -1419,13 +1419,16 @@ and are not redefined here:<a href="#section-2-2" class="pilcrow">¶</a></p>
           <p id="section-2-3.7.1">Cause<a href="#section-2-3.7.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.8">
-          <p id="section-2-3.8.1">Characteristic<a href="#section-2-3.8.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.8.1">Symptom<a href="#section-2-3.8.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.9">
-          <p id="section-2-3.9.1">SLA (Service Level Agreement)<a href="#section-2-3.9.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.9.1">Characteristic<a href="#section-2-3.9.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.10">
-          <p id="section-2-3.10.1">SLO (Service Level Objective)<a href="#section-2-3.10.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.10.1">SLA (Service Level Agreement)<a href="#section-2-3.10.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-2-3.11">
+          <p id="section-2-3.11.1">SLO (Service Level Objective)<a href="#section-2-3.11.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <p id="section-2-4">The following terms are defined in this document:<a href="#section-2-4" class="pilcrow">¶</a></p>
@@ -1447,11 +1450,8 @@ identification, reporting, acknowledgement, diagnosis, and resolution.
 Different from the traditional fault management, it takes various different
 data sources including alarms, metrics, and other anomaly information and aggregates
 them into one or a few network incidents irrespective of layer
-through data correlation analysis and the Service Impact Assessment. One fault
-on the network device can cause multiple network incidents, e.g., multiple service
-offerings that are dependent on that device and take different route will go down, e.g.,
-suffer increased latency as redundant routes become more congested. A network incident
-might impact one or a set of network services. The network incident can also been
+through data correlation analysis and the Service Impact Assessment. A network
+incident might impact one or a set of network services. The network incident can also been
 seen as customer incident <span>[<a href="#TMF724A" class="cite xref">TMF724A</a>]</span> when service SLA <span>[<a href="#RFC9543" class="cite xref">RFC9543</a>]</span> associated with one specific
 network service and network incident has been affected. How customer incident is
 translated from the network incident is beyond the scope of this document.<a href="#section-2-5.4.1" class="pilcrow">¶</a></p>
@@ -1489,12 +1489,12 @@ server and cannot instruct it to perform network incident diagnosis or resolutio
         <dd style="margin-left: 1.5em" id="section-2-5.14">
           <p id="section-2-5.14.1">If removing a factor completely resolves the ongoing incident (specifically, regarding network
 outage or service impairments and their associated subsequent failures and symptoms) and prevents
-the problem from recurring, then such factor is considered as a probable root cause of a problem.<a href="#section-2-5.14.1" class="pilcrow">¶</a></p>
+the problem from recurring, then such factor is considered as a Probable Root Cause of a problem.<a href="#section-2-5.14.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-5.15"></dt>
         <dd style="margin-left: 1.5em" id="section-2-5.16">
-          <p id="section-2-5.16.1">Since one Fault may give rise to another Fault or Problem, a probable root cause is commonly meant
+          <p id="section-2-5.16.1">Since one Fault may give rise to another Fault or Problem, a Probable Root Cause is commonly meant
 to describe the original event or combination of circumstances that is the foundation of all
 related Faults.<a href="#section-2-5.16.1" class="pilcrow">¶</a></p>
 </dd>
@@ -1502,7 +1502,7 @@ related Faults.<a href="#section-2-5.16.1" class="pilcrow">¶</a></p>
 <dt id="section-2-5.17"></dt>
         <dd style="margin-left: 1.5em" id="section-2-5.18">
           <p id="section-2-5.18.1">Conversely, a causal factor is a contributing action that influences the outcome of the incident or
-event but is not the probable cause.<a href="#section-2-5.18.1" class="pilcrow">¶</a></p>
+event but is not the Probable Cause.<a href="#section-2-5.18.1" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
@@ -1589,7 +1589,7 @@ fault propagation could be classified into three typical types.
 First, faults occurring at a packet-layer device might further cause fault
 (e.g., Wavelength Division Multiplexing (WDM) client fault) at an
 optical-layer device.  Second, faults occurring at an optical-layer
-device might further cause fault (e.g., Layer 3 link down) at a packet-
+device might further cause faults (e.g., Layer 3 link down) at a packet-
 layer device.  Third, faults occurring at the inter-layer link between a
 packet-layer device and an optical-layer device might further cause
 faults at both devices.  Multiple operation teams are usually
@@ -2074,8 +2074,8 @@ fine-grained monitoring of network quality metrics, etc.<a href="#section-5.2-1"
 network incident.  The Incident Client <span class="bcp14">MAY</span> choose resolve the network
 incident by invoking other functions, such as routing calculation function,
 configuration function, dispatching a ticket or asking the server to resolve it.
-Generally, the Incident Client would attempt to directly resolve the probable
-cause.  If the Probable Root Cause cannot be resolved, an alternative solution
+Generally, the Incident Client would attempt to directly resolve the Probable
+Cause.  If the Probable Root Cause cannot be resolved, an alternative solution
 <span class="bcp14">SHOULD</span> be required.  For example, if a network incident caused by a physical
 component failure, it cannot be automatically resolved, the standby
 link can be used to bypass the faulty component.<a href="#section-5.3-1" class="pilcrow">¶</a></p>
@@ -2362,7 +2362,7 @@ process, a notification update will be triggered.<a href="#section-7.5-3" class=
 <p id="section-7.6-1">If the rpc fails, the rpc error response <span class="bcp14">MUST</span> indicate the reason for the
 failure. The structures defined in this document <span class="bcp14">MUST</span> encode specific errors
 and be inserted in the error response to indicate the reason for the failure.<a href="#section-7.6-1" class="pilcrow">¶</a></p>
-<p id="section-7.6-2">The tree diagram [RFC8340] for structures is defined as follows:<a href="#section-7.6-2" class="pilcrow">¶</a></p>
+<p id="section-7.6-2">The tree diagram <span>[<a href="#RFC8340" class="cite xref">RFC8340</a>]</span> for structures is defined as follows:<a href="#section-7.6-2" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-7.6-3">
 <pre>
   structure incident-acknowledge-error-info:
@@ -3439,6 +3439,10 @@ for their valuable comments and great input to this work.<a href="#section-11-1"
         <dd>
 <span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC8340">[RFC8340]</dt>
+        <dd>
+<span class="refAuthor">Bjorklund, M.</span> and <span class="refAuthor">L. Berger, Ed.</span>, <span class="refTitle">"YANG Tree Diagrams"</span>, <span class="seriesInfo">BCP 215</span>, <span class="seriesInfo">RFC 8340</span>, <span class="seriesInfo">DOI 10.17487/RFC8340</span>, <time datetime="2018-03" class="refDate">March 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8340">https://www.rfc-editor.org/rfc/rfc8340</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC8341">[RFC8341]</dt>
         <dd>
 <span class="refAuthor">Bierman, A.</span> and <span class="refAuthor">M. Bjorklund</span>, <span class="refTitle">"Network Configuration Access Control Model"</span>, <span class="seriesInfo">STD 91</span>, <span class="seriesInfo">RFC 8341</span>, <span class="seriesInfo">DOI 10.17487/RFC8341</span>, <time datetime="2018-03" class="refDate">March 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8341">https://www.rfc-editor.org/rfc/rfc8341</a>&gt;</span>. </dd>
@@ -3636,8 +3640,8 @@ The Probable Root Cause is also analysed.<a href="#appendix-A.1-1" class="pilcro
         <h3 id="name-network-incident-correlated-">
 <a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-network-incident-correlated-" class="section-name selfRef">Network Incident Correlated with Trouble Tickets</a>
         </h3>
-<p id="appendix-A.2-1">In this document, the objective of the Incident Management is to identify probable
-causes and reduce duplicated tickets.<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-1">In this document, the objective of the Incident Management is to identify Probable
+Causes and reduce duplicated tickets.<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
 <p id="appendix-A.2-2">Traditionally, troubleshooting ticket is created upon critical
 alert is received, e.g., due to excessive BGP flaps on a particular
 device by the OSS system. Such troubleshooting ticket will trigger
