@@ -1144,8 +1144,8 @@ Table of Contents
         Relating to IETF Documents
         (https://trustee.ietf.org/license-info).
 
-        This version of this YANG module is part of RFC XXXX
-        (https://www.rfc-editor.org/info/rfcXXXX); ; see the RFC
+        This version of this YANG module is part of RFC 9940
+        (https://www.rfc-editor.org/info/rfc9940); ; see the RFC
         itself for full legal notices.
 
         The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL', 'SHALL
@@ -1159,7 +1159,7 @@ Table of Contents
          "Merge incident yang with incident type yang
           and fix broken ref.";
        reference
-         "RFC XXX: YANG module for network incident management.";
+         "RFC9940: YANG module for network incident management.";
      }
 
      // Identities
@@ -1310,7 +1310,7 @@ Table of Contents
        description
          "The abstract identity for Event type";
        reference
-         "RFCXXXX: Some Key Terms for Network Fault and Problem Management";
+         "RFC9940: Some Key Terms for Network Fault and Problem Management";
 
      }
 
@@ -1365,7 +1365,7 @@ Table of Contents
          (i.e.,cause of the incident) for example an interface
          fails to work.";
        reference
-         "RFCXXXX: Some Key Terms for Network Fault and Problem Management";
+         "RFC9940: Some Key Terms for Network Fault and Problem Management";
 
      }
 
