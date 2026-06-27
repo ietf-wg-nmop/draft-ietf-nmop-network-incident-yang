@@ -831,7 +831,7 @@ three rpcs to manage the network incidents.
 ~~~~
 {::include-fold ./yang/ietf-incident-tree.txt}
 ~~~~
-{: #ucl-tree title="Incident YANG Tree Diagram" artwork-align="center"}
+{: #incident-tree title="Incident YANG Tree Diagram" artwork-align="center"}
 
 ## Incident Notifications
 
