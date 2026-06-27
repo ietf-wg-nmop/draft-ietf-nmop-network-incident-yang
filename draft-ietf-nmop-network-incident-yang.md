@@ -185,7 +185,7 @@ network automation {{?RFC8969}} with rpc operations in this YANG module.
 
 {::boilerplate bcp14-tagged}
 
-The following terms are defined in {{?RFC8632}}, {{?RFC9543}},{{!I-D.ietf-nmop-terminology}}
+The following terms are defined in {{?RFC8632}}, {{?RFC9543}},{{!RFC9940}}
 and are not redefined here:
 
 *  Alarm
@@ -482,7 +482,7 @@ A typical workflow of network incident lifecycle management is as follows:
 
 A YANG model for the alarm management {{?RFC8632}} defines a standard
 interface to manage the lifecycle of alarms.  Alarms represent the
-undesirable state of network resources {{!I-D.ietf-nmop-terminology}},
+undesirable state of network resources {{!RFC9940}},
 The alarm data model also defines the Probable Root Causes and impacted services fields,
 but there may be insufficient information to determine them at lower layer
 system (mainly in devices level), so alarms do not always tell the status of
@@ -1081,7 +1081,7 @@ operations and their sensitivity/vulnerability:
 "incident-diagnose": This rpc operation performs network incident
 diagnosis and Probable Root Cause locating. If a malicious or buggy client
 performs an unexpectedly large number of this operation, the result
-might be an excessive use of system resources {{!I-D.ietf-nmop-terminology}}
+might be an excessive use of system resources {{!RFC9940}}
 on the server side as well as network resources.  Servers MUST
 ensure they have sufficient resources to fulfill this request; otherwise,
 they MUST reject the request using rpc errors defined in section 7.6.
