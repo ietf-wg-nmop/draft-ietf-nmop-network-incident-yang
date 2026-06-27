@@ -1658,7 +1658,7 @@ Table of Contents
            "The source components.";
          list source {
            key "node-ref";
-           min-elements 1;
+           min-elements 0;
            description
              "The source components of incident.";
            uses resources-info;
