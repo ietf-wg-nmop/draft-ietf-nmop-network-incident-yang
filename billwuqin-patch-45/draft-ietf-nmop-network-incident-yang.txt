@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 21 December 2026                                     Telefonica
+Expires: 29 December 2026                                     Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                            19 June 2026
+                                                            27 June 2026
 
 
            A YANG Data Model for Network Incident Management
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 December 2026.
+   This Internet-Draft will expire on 29 December 2026.
 
 Copyright Notice
 
@@ -1662,7 +1662,10 @@ Table of Contents
            key "node-ref";
            min-elements 0;
            description
-             "The source components of incident.";
+             "The source components of incident. An Incident might be created even if we don't know
+              yet the sources (hence we can not populate source list in the sources container).
+              Therefore the min-elements for the source list is set to 0. Once the Incident is
+              diagnosed, the source(s) will be populated.";
            uses resources-info;
          }
        }
