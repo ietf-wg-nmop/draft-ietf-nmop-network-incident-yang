@@ -1,0 +1,107 @@
+module: ietf-incident
+
+  +--ro incidents
+     +--ro incident* [name type incident-id]
+        +--ro incident-no         uint64
+        +--ro name                string
+        +--ro type                identityref
+        +--ro incident-id         string
+        +--ro service-instance*   string
+        +--ro domain              identityref
+        +--ro priority            incident-priority
+        +--ro status?             enumeration
+        +--ro ack-status?         enumeration
+        +--ro category            identityref
+        +--ro detail?             string
+        +--ro resolve-advice?     string
+        +--ro sources
+        |  +--ro source* [node-ref]
+        |     +--ro node-ref       -> /nw:networks/network[nw:network-id=current()/../network-ref]/node/node-id
+        |     +--ro network-ref?   -> /nw:networks/network/network-id
+        |     +--ro resource* [name]
+        |        +--ro name    al:resource
+        +--ro probable-causes
+        |  +--ro probable-cause* [node-ref]
+        |     +--ro node-ref       -> /nw:networks/network[nw:network-id=current()/../network-ref]/node/node-id
+        |     +--ro network-ref?   -> /nw:networks/network/network-id
+        |     +--ro resource* [name]
+        |     |  +--ro name          al:resource
+        |     |  +--ro cause-name?   identityref
+        |     |  +--ro detail?       string
+        |     +--ro cause-name?    identityref
+        |     +--ro detail?        string
+        +--ro probable-events
+        |  +--ro probable-event* [type event-id]
+        |     +--ro type        -> ../../../events/event/type
+        |     +--ro event-id    -> ../../../events/event[type = current()/../type]/event-id
+        +--ro events
+        |  +--ro event* [type event-id]
+        |     +--ro type           identityref
+        |     +--ro event-id       string
+        |     +--ro (event-type-info)?
+        |        +--:(alarm)
+        |           +--ro alarm
+        |              +--ro resource?               -> /al:alarms/alarm-list/alarm/resource
+        |              +--ro alarm-type-id?          -> /al:alarms/alarm-list/alarm[al:resource = current()/../resource]/alarm-type-id
+        |              +--ro alarm-type-qualifier?   -> /al:alarms/alarm-list/alarm[al:resource = current()/../resource][al:alarm-type-id = current()/../alarm-type-id]/al:alarm-type-qualifier
+        +--ro raise-time?         yang:date-and-time
+        +--ro occur-time?         yang:date-and-time
+        +--ro clear-time?         yang:date-and-time
+        +--ro ack-time?           yang:date-and-time
+        +--ro last-updated?       yang:date-and-time
+
+  rpcs:
+    +---x incident-acknowledge
+    |  +---w input
+    |     +---w incident-no*   incident-ref
+    +---x incident-diagnose
+    |  +---w input
+    |     +---w incident-no*   incident-ref
+    +---x incident-resolve
+       +---w input
+          +---w incident-no*   incident-ref
+
+  notifications:
+    +---n incident-notification
+       +--ro incident-no         incident-ref
+       +--ro name?               string
+       +--ro type?               identityref
+       +--ro incident-id?        string
+       +--ro service-instance*   string
+       +--ro domain              identityref
+       +--ro priority            incident-priority
+       +--ro status?             enumeration
+       +--ro ack-status?         enumeration
+       +--ro category            identityref
+       +--ro detail?             string
+       +--ro resolve-advice?     string
+       +--ro sources
+       |  +--ro source* [node-ref]
+       |     +--ro node-ref       -> /nw:networks/network[nw:network-id=current()/../network-ref]/node/node-id
+       |     +--ro network-ref?   -> /nw:networks/network/network-id
+       |     +--ro resource* [name]
+       |        +--ro name    al:resource
+       +--ro probable-causes
+       |  +--ro probable-cause* [node-ref]
+       |     +--ro node-ref       -> /nw:networks/network[nw:network-id=current()/../network-ref]/node/node-id
+       |     +--ro network-ref?   -> /nw:networks/network/network-id
+       |     +--ro resource* [name]
+       |     |  +--ro name          al:resource
+       |     |  +--ro cause-name?   identityref
+       |     |  +--ro detail?       string
+       |     +--ro cause-name?    identityref
+       |     +--ro detail?        string
+       +--ro probable-events
+       |  +--ro probable-event* [type event-id]
+       |     +--ro type        -> ../../../events/event/type
+       |     +--ro event-id    -> ../../../events/event[type = current()/../type]/event-id
+       +--ro events
+       |  +--ro event* [type event-id]
+       |     +--ro type           identityref
+       |     +--ro event-id       string
+       |     +--ro (event-type-info)?
+       |        +--:(alarm)
+       |           +--ro alarm
+       |              +--ro resource?               -> /al:alarms/alarm-list/alarm/resource
+       |              +--ro alarm-type-id?          -> /al:alarms/alarm-list/alarm[al:resource = current()/../resource]/alarm-type-id
+       |              +--ro alarm-type-qualifier?   -> /al:alarms/alarm-list/alarm[al:resource = current()/../resource][al:alarm-type-id = current()/../alarm-type-id]/al:alarm-type-qualifier
