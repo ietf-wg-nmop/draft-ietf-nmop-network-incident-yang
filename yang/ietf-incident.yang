@@ -478,7 +478,6 @@ module ietf-incident {
        incident.";
     leaf name {
       type string;
-      mandatory true;
       description
         "The name of an incident.";
     }
@@ -486,7 +485,6 @@ module ietf-incident {
       type identityref {
         base incident-class;
       }
-      mandatory true;
       description
         "The type of an incident.";
     }
@@ -710,7 +708,8 @@ module ietf-incident {
       leaf-list incident-no {
         type incident-ref;
         description
-          "The identifier of an incident instance.";
+          "The unique sequence number of an incident instance
+           based on the name type incident-id keys.";
       }
     }
   }
@@ -724,7 +723,8 @@ module ietf-incident {
       leaf-list incident-no {
         type incident-ref;
         description
-          "The identifier of an incident instance.";
+          "The unique sequence number of an incident instance
+           based on the name type incident-id keys.";
       }
     }
   }
@@ -738,7 +738,8 @@ module ietf-incident {
       leaf-list incident-no {
         type incident-ref;
         description
-          "The identifier of an incident instance.";
+          "The unique sequence number of an incident instance
+           based on the name type incident-id keys.";
       }
     }
   }
@@ -830,6 +831,7 @@ module ietf-incident {
        the incident is raised, updated or cleared.";
     leaf incident-no {
       type incident-ref;
+      mandatory true;
       description
         "The identifier of an incident instance.";
     }
@@ -855,7 +857,7 @@ module ietf-incident {
         type uint64;
         mandatory true;
         description
-        "The unique sequence number of the incident instance.";
+        "The unique sequence number of the incident instance based on the name type incident-id keys.";
       }
       uses incident-info;
       uses incident-time-info;
