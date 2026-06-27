@@ -478,7 +478,6 @@ module ietf-incident {
        incident.";
     leaf name {
       type string;
-      mandatory true;
       description
         "The name of an incident.";
     }
@@ -486,13 +485,11 @@ module ietf-incident {
       type identityref {
         base incident-class;
       }
-      mandatory true;
       description
         "The type of an incident.";
     }
     leaf incident-id {
       type string;
-      mandatory true;
       description
         "The unique qualifier of an incident instance type.
         This leaf is used when the 'type' leaf cannot
