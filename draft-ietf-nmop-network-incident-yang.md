@@ -829,7 +829,7 @@ supports one general notification to report network incident state changes and
 three rpcs to manage the network incidents.
 
 ~~~~
-{::include-fold ./yang/ietf-incident-tree.txt}
+{::include ./yang/ietf-incident-tree.txt}
 ~~~~
 {: #incident-tree title="Incident YANG Tree Diagram" artwork-align="center"}
 
