@@ -1068,6 +1068,22 @@ states and external ticket states (e.g., Open, Assigned, In-Progress, Resolved)
 to prevent split-brain visibility scenarios where an incident is closed in the
 network layer but remains active in the ticketing system, or vice versa.
 
+This incident data model states that the tuple (name, type and incident-id) corresponds to
+a single incident instance. This means that incident notifications for the
+same name and same type and incident-id are matched to update the same
+incident instance.  These three leafs are therefore used as the key in
+the incident list:
+
+     list incident {
+       key "name type incident-id";
+       ...
+     }
+
+In the meanwhile, in order to improve processing efficiency, this incident data model also
+allows using the unique sequence number 'incident-no' to identify each incident instance,
+this means that incident rpcs or notifications for the same incident-no are matched to update
+the same incident instance.
+
 # Security Considerations
 
 The YANG module specified in this document defines a data model that is
