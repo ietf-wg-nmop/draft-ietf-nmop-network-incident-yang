@@ -829,57 +829,18 @@ supports one general notification to report network incident state changes and
 three rpcs to manage the network incidents.
 
 ~~~~
-module: ietf-incident
-  +--ro incidents
-     +--ro incident* [name type incident-id]
-        +--ro incident-no         uint64
-        +--ro name                string
-        +--ro type                identityref
-        +--ro incident-id?        string
-        +--ro service-instance*   string
-        +--ro domain              identityref
-        +--ro priority            incident-priority
-        +--ro status?             enumeration
-        +--ro ack-status?         enumeration
-        +--ro category            identityref
-        +--ro detail?             string
-        +--ro resolve-advice?     string
-        +--ro sources
-        ...
-        +--ro probable-causes
-        ...
-        +--ro probable-events
-        ...
-        +--ro events
-        ...
-        +--ro raise-time? yang:date-and-time
-        +--ro occur-time? yang:date-and-time
-        +--ro clear-time? yang:date-and-time
-        +--ro ack-time? yang:date-and-time
-        +--ro last-updated? yang:date-and-time
-rpcs:
-  +---x incident-acknowledge
-  ...
-  +---x incident-diagnose
-  ...
-  +---x incident-resolve
-
-notifications:
-  +---n incident-notification
-	 +--ro incident-no?
-			 -> /inc:incidents/inc:incident/inc:incident-no
-	 ...
-	 +--ro time? yang:date-and-time
+{::include ./yang/ietf-incident-tree.txt}
 ~~~~
+{: #ucl-tree title="Incident YANG Tree Diagram" artwork-align="center"}
 
 ## Incident Notifications
 
 ~~~~
 notifications:
   +---n incident-notification
-     +--ro incident-no?        incident-ref
-     +--ro name                string
-     +--ro type                identityref
+     +--ro incident-no         incident-ref
+     +--ro name?               string
+     +--ro type?               identityref
      +--ro incident-id?        string
      +--ro service-instance*   string
      +--ro domain              identityref
