@@ -194,8 +194,8 @@ Table of Contents
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
-   The following terms are defined in [RFC8632],
-   [RFC9543],[I-D.ietf-nmop-terminology] and are not redefined here:
+   The following terms are defined in [RFC8632], [RFC9543],[RFC9940] and
+   are not redefined here:
 
    *  Alarm
 
@@ -514,20 +514,20 @@ Table of Contents
 
    A YANG model for the alarm management [RFC8632] defines a standard
    interface to manage the lifecycle of alarms.  Alarms represent the
-   undesirable state of network resources [I-D.ietf-nmop-terminology],
-   The alarm data model also defines the Probable Root Causes and
-   impacted services fields, but there may be insufficient information
-   to determine them at lower layer system (mainly in devices level), so
-   alarms do not always tell the status of network services or
-   necessarily point to the Probable Root Causes of problems.  As
-   described in [RFC8632], the alarm management acts as a starting point
-   for high-level fault management.  While Network Incident Management
-   often works at the network level, so it is possible to have enough
-   information to perform data correlation and Service Impact
-   Assessment.  Alarms can work as one of data sources of Network
-   Incident Management and may be aggregated into a few Network
-   Incidents by the correlation analysis, network service impact and
-   Probable Root Causes may be determined during the incident process.
+   undesirable state of network resources [RFC9940], The alarm data
+   model also defines the Probable Root Causes and impacted services
+   fields, but there may be insufficient information to determine them
+   at lower layer system (mainly in devices level), so alarms do not
+   always tell the status of network services or necessarily point to
+   the Probable Root Causes of problems.  As described in [RFC8632], the
+   alarm management acts as a starting point for high-level fault
+   management.  While Network Incident Management often works at the
+   network level, so it is possible to have enough information to
+   perform data correlation and Service Impact Assessment.  Alarms can
+   work as one of data sources of Network Incident Management and may be
+   aggregated into a few Network Incidents by the correlation analysis,
+   network service impact and Probable Root Causes may be determined
+   during the incident process.
 
    Network Incident also contains some related alarms, if needed users
    can query the information of alarms by alarm management interface
@@ -1982,11 +1982,10 @@ Table of Contents
    "incident-diagnose": This rpc operation performs network incident
    diagnosis and Probable Root Cause locating.  If a malicious or buggy
    client performs an unexpectedly large number of this operation, the
-   result might be an excessive use of system resources
-   [I-D.ietf-nmop-terminology] on the server side as well as network
-   resources.  Servers MUST ensure they have sufficient resources to
-   fulfill this request; otherwise, they MUST reject the request using
-   rpc errors defined in section 7.6.
+   result might be an excessive use of system resources [RFC9940] on the
+   server side as well as network resources.  Servers MUST ensure they
+   have sufficient resources to fulfill this request; otherwise, they
+   MUST reject the request using rpc errors defined in section 7.6.
 
    "incident-resolve": This rpc operation is used to resolve the network
    incident.  If a malicious or buggy client performs an unexpectedly
@@ -2109,6 +2108,11 @@ Normative References
               Multiplexed and Secure Transport", RFC 9000,
               DOI 10.17487/RFC9000, May 2021,
               <https://www.rfc-editor.org/rfc/rfc9000>.
+
+   [RFC9940]  Davis, N., Ed., Farrel, A., Ed., Graf, T., Wu, Q., and C.
+              Yu, "Some Key Terms for Network Fault and Problem
+              Management", RFC 9940, DOI 10.17487/RFC9940, April 2026,
+              <https://www.rfc-editor.org/rfc/rfc9940>.
 
 Informative References
 
