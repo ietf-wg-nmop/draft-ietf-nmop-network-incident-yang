@@ -881,7 +881,7 @@ Table of Contents
          +--ro incident-no         uint64
          +--ro name                string
          +--ro type                identityref
-         +--ro incident-id?        string
+         +--ro incident-id         string
          +--ro service-instance*   string
          +--ro domain              identityref
          +--ro priority            incident-priority
@@ -921,10 +921,10 @@ Table of Contents
 
    notifications:
      +---n incident-notification
-        +--ro incident-no?        incident-ref
+        +--ro incident-no         incident-ref
         +--ro name                string
         +--ro type                identityref
-        +--ro incident-id?        string
+        +--ro incident-id         string
         +--ro service-instance*   string
         +--ro domain              identityref
         +--ro priority            incident-priority
