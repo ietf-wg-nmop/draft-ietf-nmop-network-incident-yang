@@ -79,7 +79,34 @@ contributor:
    email: yuchaode@huawei.com
 
 normative:
-
+ RFC8348:
+   title: A YANG Data Model for Hardware Management
+   date: 2018-03
+   target: https://www.rfc-editor.org/info/rfc8348
+ RFC5277:
+   title: NETCONF Event Notifications
+   date: 2008-07
+   target: https://www.rfc-editor.org/info/rfc5277
+ RFC5424:
+   title: The Syslog Protocol
+   date: 2009-03
+   target: https://www.rfc-editor.org/info/rfc5424
+ RFC2330:
+   title: Framework for IP Performance Metrics
+   date: 1998-05
+   target: https://www.rfc-editor.org/info/rfc2330
+ RFC1136:
+   title: Administrative Domains and Routing Domains A Model for Routing in the Internet
+   date: 1989-12
+   target: https://www.rfc-editor.org/info/rfc1136
+ RFC6373:
+   title: MPLS Transport Profile (MPLS-TP) Control Plane Framework
+   date: 2011-09
+   target: https://www.rfc-editor.org/info/rfc6373
+ RFC9376:
+   title: Applicability of GMPLS for beyond 100 Gbit/s Optical Transport Network
+   date: 2023-03
+   target: https://www.rfc-editor.org/info/rfc9376
 
 informative:
  BERT:
@@ -115,7 +142,7 @@ cause analysis.
 # Introduction
 
 {{?RFC8969}} defines a framework for Automating Service and Network
-Management with YANG {{?RFC7950}} to full life cycle network management.
+Management with YANG {{!RFC7950}} to full life cycle network management.
 A set of YANG data models have already been developed in IETF for network
 performance monitoring and fault monitoring, e.g., a YANG
 data model for alarm management {{?RFC8632}} defines a standard
