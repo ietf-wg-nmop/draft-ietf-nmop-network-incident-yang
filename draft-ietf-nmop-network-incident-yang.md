@@ -449,151 +449,6 @@ A typical workflow of network incident lifecycle management is as follows:
   will monitor the status of the network incident and update the status of network incident to 'cleared'
   if the incident can be fixed. For more detailed workflow, please refer to section 5.3.
 
-## Interworking with Alarm Management
-
-~~~~
-            +-----------------------------+
-            |         OSS                 |
-            | +--------+    +-----------+ |
-            | |Alarm   |    | Incident  | |
-            | |handler |    |  handler  | |
-            | +--------+    +-----------+ |
-            +---^---------------^---------+
-                |               |
-                |alarm          |incident
-            +---|---------------|---------+
-            |   |  controller   |         |
-            |   |               |         |
-            |+--+----+      +-----------+ |
-            ||Alarm  |      |  Incident | |
-            ||process+----->|   Process | |
-            ||       |alarm |           | |
-            |+-------+      +-----------+ |
-            |   ^              ^          |
-            +---|--------------|----------+
-                |alarm         | metrics/trace/etc.
-                |              |
-        +-------+--------------+---------------+
-        |                                      |
-        |   Network in the Autonomous Domain   |
-        |                                      |
-        +--------------------------------------+
-~~~~
-{:#alarm title="Interworking with Alarm Management" artwork-align="center"}
-
-A YANG model for the alarm management {{?RFC8632}} defines a standard
-interface to manage the lifecycle of alarms.  Alarms represent the
-undesirable state of network resources {{!I-D.ietf-nmop-terminology}},
-The alarm data model also defines the Probable Root Causes and impacted services fields,
-but there may be insufficient information to determine them at lower layer
-system (mainly in devices level), so alarms do not always tell the status of
-network services or necessarily point to the Probable Root Causes of problems.
-As described in {{?RFC8632}}, the alarm management acts as a starting point
-for high-level fault management. While Network Incident Management often
-works at the network level, so it is possible to have enough information
-to perform data correlation and Service Impact Assessment.  Alarms can work as
-one of data sources of Network Incident Management and may be aggregated
-into a few network incidents by the correlation analysis, network service
-impact and Probable Root Causes may be determined during the incident process.
-
-Network Incident also contains some related alarms, if needed users can query
-the information of alarms by alarm management interface {{?RFC8632}}.
-In some cases, e.g., cutover scenario, the Incident Server may use alarm
-management interface {{?RFC8632}} to shelve some alarms.
-
-Alarm management may keep the original process, alarms are reported
-from network to network controller or network analytic platform and
-then reported to upper-layer system (e.g., the alarm handler within
-the OSS).
-
-Similarly, the network incident is reported from the network to the network
-controller or network analytic platform and then reported to the upper-layer
-system (e.g., Incident Handler within the OSS). Upper-layer system may store
-these network incidents and provide the information for fault analysis (e.g.,
-deeper customer incident analysis based on network incident).
-
-Different from alarm management, incident process within the controller comprising
-both Incident Client and Incident Server functionalities provides not only network
-incident reporting but also diagnosis and resolution functions, it's possible to
-support self-healing and may be helpful for single-domain closed-loop control.
-
-Incident Management is not a substitute for alarm management.
-Instead, they can work together to implement fault management.
-
-## Interworking with SAIN
-
-SAIN {{?RFC9417}} defines an architecture of network service assurance.
-
-~~~~
-      +----------------+
-      |Incident Handler|
-      +----------------+
-              ^
-              |incident
-      +-------+--------+
-      |Incident process|
-       +----------------+
-               ^
-               |symptoms
-       +-------+--------+
-       |     SAIN       |
-       |                |
-       +----------------+
-                ^
-                |metrics
-+---------------+-----------------+
-|                                 |
-|Network in the Autonomous Domain |
-|                                 |
-+---------------------------------+
-~~~~
-{:#sain title="Interworking with SAIN" artwork-align="center"}
-
-A network service can be decomposed into some sub-services, and specific
-metrics can be monitored for sub-services.  For example, a tunnel
-service can be decomposed into some peer tunnel interface sub-
-services and IP connectivity sub-service.  If some metrics are
-evaluated to indicate unhealthy for specific sub-service, some
-symptoms will be present.  Incident process comprising both Incident Client and
-Incident Server functionalities may identify the network incident
-based on symptoms, and then report it to Incident Handler within the
-Operation Support System (OSS).  So, SAIN can be one way to identify
-network incident, services, sub-services and metrics can be preconfigured via
-APIs defined by service assurance YANG model {{?RFC9418}} and the network incident
-will be reported if symptoms match certain condition or characteristic considered as
-an indication of a problem or potential problem.
-
-## Relationship with RFC8969
-
-{{?RFC8969}} defines a framework for network automation using YANG, this
-framework breaks down YANG modules into three layers, service layer,
-network layer and device layer, and contains service deployment,
-service optimization/assurance, and service diagnosis.  Network incident
-works at the network layer and aggregates alarms, metrics and other
-information from device layer, it's helpful to provide service
-assurance.  And the network incident diagnosis may be one way of service
-diagnosis.
-
-## Relationship with Trace Context
-
-W3C defines a common trace context {{W3C-Trace-Context}} for distributed
-system tracing, {{?I-D.ietf-netconf-trace-ctx-extension}} defines a
-netconf extension for {{W3C-Trace-Context}} and
-{{?I-D.ietf-netconf-configuration-tracing}} defines a mechanism for
-configuration tracing.  If some errors occur when services are
-deploying, it's very easy to identify these errors by distributed
-system tracing, and a network incident should be reported.
-
-## Relationship with network anomaly architecture
-
-Network anomaly architecture {{?I-D.ietf-nmop-network-anomaly-architecture}}
-focuses on improving supervised and semi-supervised machine learning systems
-and evaluating anomaly detection algorithms and technologies. It also can be
-used to monitor network changes holistically by monitoring all 3 network planes
-simultaneously and detect whether that change is service disruptive. In case of
-disruptive changes, the anomaly can be upgraded into the network incident
-which trigger troubleshooting tickets generation.
-
 # Functional Interface Requirements between the Client and the Server
 
 ## Incident Identification
@@ -1067,6 +922,151 @@ implement a deterministic translation layer between the "ietf-incident" model
 states and external ticket states (e.g., Open, Assigned, In-Progress, Resolved)
 to prevent split-brain visibility scenarios where an incident is closed in the
 network layer but remains active in the ticketing system, or vice versa.
+
+## Interworking with Alarm Management
+
+~~~~
+            +-----------------------------+
+            |         OSS                 |
+            | +--------+    +-----------+ |
+            | |Alarm   |    | Incident  | |
+            | |handler |    |  handler  | |
+            | +--------+    +-----------+ |
+            +---^---------------^---------+
+                |               |
+                |alarm          |incident
+            +---|---------------|---------+
+            |   |  controller   |         |
+            |   |               |         |
+            |+--+----+      +-----------+ |
+            ||Alarm  |      |  Incident | |
+            ||process+----->|   Process | |
+            ||       |alarm |           | |
+            |+-------+      +-----------+ |
+            |   ^              ^          |
+            +---|--------------|----------+
+                |alarm         | metrics/trace/etc.
+                |              |
+        +-------+--------------+---------------+
+        |                                      |
+        |   Network in the Autonomous Domain   |
+        |                                      |
+        +--------------------------------------+
+~~~~
+{:#alarm title="Interworking with Alarm Management" artwork-align="center"}
+
+A YANG model for the alarm management {{?RFC8632}} defines a standard
+interface to manage the lifecycle of alarms.  Alarms represent the
+undesirable state of network resources {{!I-D.ietf-nmop-terminology}},
+The alarm data model also defines the Probable Root Causes and impacted services fields,
+but there may be insufficient information to determine them at lower layer
+system (mainly in devices level), so alarms do not always tell the status of
+network services or necessarily point to the Probable Root Causes of problems.
+As described in {{?RFC8632}}, the alarm management acts as a starting point
+for high-level fault management. While Network Incident Management often
+works at the network level, so it is possible to have enough information
+to perform data correlation and Service Impact Assessment.  Alarms can work as
+one of data sources of Network Incident Management and may be aggregated
+into a few network incidents by the correlation analysis, network service
+impact and Probable Root Causes may be determined during the incident process.
+
+Network Incident also contains some related alarms, if needed users can query
+the information of alarms by alarm management interface {{?RFC8632}}.
+In some cases, e.g., cutover scenario, the Incident Server may use alarm
+management interface {{?RFC8632}} to shelve some alarms.
+
+Alarm management may keep the original process, alarms are reported
+from network to network controller or network analytic platform and
+then reported to upper-layer system (e.g., the alarm handler within
+the OSS).
+
+Similarly, the network incident is reported from the network to the network
+controller or network analytic platform and then reported to the upper-layer
+system (e.g., Incident Handler within the OSS). Upper-layer system may store
+these network incidents and provide the information for fault analysis (e.g.,
+deeper customer incident analysis based on network incident).
+
+Different from alarm management, incident process within the controller comprising
+both Incident Client and Incident Server functionalities provides not only network
+incident reporting but also diagnosis and resolution functions, it's possible to
+support self-healing and may be helpful for single-domain closed-loop control.
+
+Incident Management is not a substitute for alarm management.
+Instead, they can work together to implement fault management.
+
+## Interworking with SAIN
+
+SAIN {{?RFC9417}} defines an architecture of network service assurance.
+
+~~~~
+      +----------------+
+      |Incident Handler|
+      +----------------+
+              ^
+              |incident
+      +-------+--------+
+      |Incident process|
+       +----------------+
+               ^
+               |symptoms
+       +-------+--------+
+       |     SAIN       |
+       |                |
+       +----------------+
+                ^
+                |metrics
++---------------+-----------------+
+|                                 |
+|Network in the Autonomous Domain |
+|                                 |
++---------------------------------+
+~~~~
+{:#sain title="Interworking with SAIN" artwork-align="center"}
+
+A network service can be decomposed into some sub-services, and specific
+metrics can be monitored for sub-services.  For example, a tunnel
+service can be decomposed into some peer tunnel interface sub-
+services and IP connectivity sub-service.  If some metrics are
+evaluated to indicate unhealthy for specific sub-service, some
+symptoms will be present.  Incident process comprising both Incident Client and
+Incident Server functionalities may identify the network incident
+based on symptoms, and then report it to Incident Handler within the
+Operation Support System (OSS).  So, SAIN can be one way to identify
+network incident, services, sub-services and metrics can be preconfigured via
+APIs defined by service assurance YANG model {{?RFC9418}} and the network incident
+will be reported if symptoms match certain condition or characteristic considered as
+an indication of a problem or potential problem.
+
+## Relationship with RFC8969
+
+{{?RFC8969}} defines a framework for network automation using YANG, this
+framework breaks down YANG modules into three layers, service layer,
+network layer and device layer, and contains service deployment,
+service optimization/assurance, and service diagnosis.  Network incident
+works at the network layer and aggregates alarms, metrics and other
+information from device layer, it's helpful to provide service
+assurance.  And the network incident diagnosis may be one way of service
+diagnosis.
+
+## Relationship with Trace Context
+
+W3C defines a common trace context {{W3C-Trace-Context}} for distributed
+system tracing, {{?I-D.ietf-netconf-trace-ctx-extension}} defines a
+netconf extension for {{W3C-Trace-Context}} and
+{{?I-D.ietf-netconf-configuration-tracing}} defines a mechanism for
+configuration tracing.  If some errors occur when services are
+deploying, it's very easy to identify these errors by distributed
+system tracing, and a network incident should be reported.
+
+## Relationship with network anomaly architecture
+
+Network anomaly architecture {{?I-D.ietf-nmop-network-anomaly-architecture}}
+focuses on improving supervised and semi-supervised machine learning systems
+and evaluating anomaly detection algorithms and technologies. It also can be
+used to monitor network changes holistically by monitoring all 3 network planes
+simultaneously and detect whether that change is service disruptive. In case of
+disruptive changes, the anomaly can be upgraded into the network incident
+which trigger troubleshooting tickets generation.
 
 # Security Considerations
 
