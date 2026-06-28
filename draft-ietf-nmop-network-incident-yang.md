@@ -1492,6 +1492,22 @@ repair suggestions.
 
 # Changes between Revisions
 
+  v08 - v09
+
+   * Second alignment with RFC9940
+
+   * Fix document references to match Model references
+
+   * Allow create incident without knowing the source
+
+   * Make incident-no mandatory
+
+   * Add clarification text for min-element set to unknown
+
+   * Update YANG model tree diagram to align with update of YANG data model
+
+   * Create ietf-incident-tree diagram
+
   v07 - v08
 
    * Add a new section to clarify Relationship with network anomaly architecture;
