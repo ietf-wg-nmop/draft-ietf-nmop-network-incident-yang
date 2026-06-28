@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 29 December 2026                                     Telefonica
+Expires: 30 December 2026                                     Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                            27 June 2026
+                                                            28 June 2026
 
 
            A YANG Data Model for Network Incident Management
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 29 December 2026.
+   This Internet-Draft will expire on 30 December 2026.
 
 Copyright Notice
 
@@ -2694,6 +2694,23 @@ A.5.  Service Complaint triggered Network Diagnosis
    suggestions.
 
 Appendix B.  Changes between Revisions
+
+   v08 - v09
+
+   *  Second alignment with RFC9940
+
+   *  Fix document references to match Model references
+
+   *  Allow create incident without knowing the source
+
+   *  Make incident-no mandatory
+
+   *  Add clarification text for min-element set to unknown
+
+   *  Update YANG model tree diagram to align with update of YANG data
+      model
+
+   *  Create ietf-incident-tree diagram
 
    v07 - v08
 
