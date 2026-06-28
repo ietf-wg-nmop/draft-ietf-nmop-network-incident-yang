@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 29 December 2026                                     Telefonica
+Expires: 30 December 2026                                     Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                            27 June 2026
+                                                            28 June 2026
 
 
            A YANG Data Model for Network Incident Management
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 29 December 2026.
+   This Internet-Draft will expire on 30 December 2026.
 
 Copyright Notice
 
@@ -1907,6 +1907,23 @@ Table of Contents
    to prevent split-brain visibility scenarios where an incident is
    closed in the network layer but remains active in the ticketing
    system, or vice versa.
+
+   This incident data model states that the tuple (name, type and
+   incident-id) corresponds to a single incident instance.  This means
+   that incident notifications for the same name and same type and
+   incident-id are matched to update the same incident instance.  These
+   three leafs are therefore used as the key in the incident list:
+
+    list incident {
+      key "name type incident-id";
+      ...
+    }
+
+   In the meanwhile, in order to improve processing efficiency, this
+   incident data model also allows using the unique sequence number
+   'incident-no' to identify each incident instance, this means that
+   incident rpcs or notifications for the same incident-no are matched
+   to update the same incident instance.
 
 9.1.  Interworking with Alarm Management
 
