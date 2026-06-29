@@ -3524,7 +3524,7 @@ Reference:  RFC XXXX
 <p id="section-12-1">The authors would like to thank Mohamed Boucadair, Robert Wilton,
 Benoit Claise, Oscar Gonzalez de Dios, Adrian Farrel, Mahesh
 Jethanandani, Balazs Lengyel, Dhruv Dhody,Bo Wu, Qiufang Ma, Haomian Zheng,
-YuanYao，Wei Wang, Peng Liu, Zongpeng Du, Zhengqiang Li, Andrew Liu
+YuanYao, Wei Wang, Peng Liu, Zongpeng Du, Zhengqiang Li, Andrew Liu
 , Joe Clark, Roland Scott, Alex Huang Feng, Kai Gao,  Jensen Zhang,
 Ziyang Xing, Mingshuang Jin, Aihua Guo, Zhidong Yin, Guoxiang Liu, Kaichun Wu
 for their valuable comments and great input to this work.<a href="#section-12-1" class="pilcrow">¶</a></p>
@@ -3734,7 +3734,7 @@ for their valuable comments and great input to this work.<a href="#section-12-1"
 <a href="#appendix-A.1" class="section-number selfRef">A.1. </a><a href="#name-network-incident-correlated" class="section-name selfRef">Network Incident Correlated with Specific Network Topology and the Network Service</a>
         </h3>
 <p id="appendix-A.1-1">In this example, we show a network incident that are associated with the service-instance
-"optical-svc-A", the node ‘D1’, the network topology ‘L2-Topo’ and the domain ‘FAN’.
+"optical-svc-A", the node 'D1', the network topology 'L2-Topo' and the domain 'FAN'.
 The Probable Root Cause is also analysed.<a href="#appendix-A.1-1" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A.1-2">
 <pre>
@@ -3951,14 +3951,22 @@ and maintaining task-id list.<a href="#appendix-A.3-4" class="pilcrow">¶</a></p
 <p id="appendix-A.3-6">"ietf-incident" module can be further
 extended to include "incident-diagnosis-task" list with the following diagnosis
 information:<a href="#appendix-A.3-6" class="pilcrow">¶</a></p>
-<p id="appendix-A.3-7">• The current status (e.g., created, diagnosing, diagnosed, finished) of each
-  diagnosis task.<a href="#appendix-A.3-7" class="pilcrow">¶</a></p>
-<p id="appendix-A.3-8">• Task start time, end time, diagnosis result (succeeded, failed), failure
-  description, etc.<a href="#appendix-A.3-8" class="pilcrow">¶</a></p>
-<p id="appendix-A.3-9">• Probable Root Causes, probable events, repair recommendations, etc.<a href="#appendix-A.3-9" class="pilcrow">¶</a></p>
-<p id="appendix-A.3-10">so that OSS system can use NETCONF &lt;get-config&gt; operation to look up
-the diagnosis task detailed information based on such module extension.<a href="#appendix-A.3-10" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="appendix-A.3-11">
+<ul class="normal">
+<li class="normal" id="appendix-A.3-7.1">
+            <p id="appendix-A.3-7.1.1">The current status (e.g., created, diagnosing, diagnosed, finished) of each
+diagnosis task.<a href="#appendix-A.3-7.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="appendix-A.3-7.2">
+            <p id="appendix-A.3-7.2.1">Task start time, end time, diagnosis result (succeeded, failed), failure
+description, etc.<a href="#appendix-A.3-7.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="appendix-A.3-7.3">
+            <p id="appendix-A.3-7.3.1">Probable Root Causes, probable events, repair recommendations, etc.<a href="#appendix-A.3-7.3.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="appendix-A.3-8">so that OSS system can use NETCONF &lt;get-config&gt; operation to look up
+the diagnosis task detailed information based on such module extension.<a href="#appendix-A.3-8" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="appendix-A.3-9">
 <pre>
 augment /inc:incidents/inc:incident:
 +--ro incident-diagnosis-tasks
@@ -3972,17 +3980,17 @@ augment /inc:incidents/inc:incident:
 |   +--ro diagnosis-result? enumeration
 |   +--ro diagnosis-result-description? string
 |   +--ro probable-causes leafref //List &lt;RootCause&gt;
-…
+...
 |   +--ro probable-events leafref //List &lt;Event&gt;
-…
+...
 |   +-- ro repair-advices
 |   +-- ro state enumeration // Incident states such as Creation, Update, Clear
-…
-</pre><a href="#appendix-A.3-11" class="pilcrow">¶</a>
+...
+</pre><a href="#appendix-A.3-9" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A.3-12">In addition, the new Diagnosis Task Notification can be defined to support
-Diagnosis Task related attributes reporting.<a href="#appendix-A.3-12" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="appendix-A.3-13">
+<p id="appendix-A.3-10">In addition, the new Diagnosis Task Notification can be defined to support
+Diagnosis Task related attributes reporting.<a href="#appendix-A.3-10" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="appendix-A.3-11">
 <pre>
     +---n task-notification
     |  +--ro task-id?                        string
@@ -4009,10 +4017,10 @@ Diagnosis Task related attributes reporting.<a href="#appendix-A.3-12" class="pi
     |  |     +--ro event-id?   leafref
     |  +--ro repair-advices?   string
     |  +--ro incident-status?  incident-status-value
-</pre><a href="#appendix-A.3-13" class="pilcrow">¶</a>
+</pre><a href="#appendix-A.3-11" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A.3-14">So that the controller can send diagnosis task notification to the OSS system upon diagnosis task
-completes and outputs repair suggestion.<a href="#appendix-A.3-14" class="pilcrow">¶</a></p>
+<p id="appendix-A.3-12">So that the controller can send diagnosis task notification to the OSS system upon diagnosis task
+completes and outputs repair suggestion.<a href="#appendix-A.3-12" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="multi-domain-fault-demarcation-with-network-incident-management">
