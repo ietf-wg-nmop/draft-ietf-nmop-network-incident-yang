@@ -1153,7 +1153,7 @@ Reference:  RFC XXXX
 The authors would like to thank Mohamed Boucadair, Robert Wilton,
 Benoit Claise, Oscar Gonzalez de Dios, Adrian Farrel, Mahesh
 Jethanandani, Balazs Lengyel, Dhruv Dhody,Bo Wu, Qiufang Ma, Haomian Zheng,
-YuanYao，Wei Wang, Peng Liu, Zongpeng Du, Zhengqiang Li, Andrew Liu
+YuanYao, Wei Wang, Peng Liu, Zongpeng Du, Zhengqiang Li, Andrew Liu
 , Joe Clark, Roland Scott, Alex Huang Feng, Kai Gao,  Jensen Zhang,
 Ziyang Xing, Mingshuang Jin, Aihua Guo, Zhidong Yin, Guoxiang Liu, Kaichun Wu
 for their valuable comments and great input to this work.
@@ -1165,7 +1165,7 @@ for their valuable comments and great input to this work.
 ## Network Incident Correlated with Specific Network Topology and the Network Service
 
 In this example, we show a network incident that are associated with the service-instance
-"optical-svc-A", the node ‘D1’, the network topology ‘L2-Topo’ and the domain ‘FAN’.
+"optical-svc-A", the node 'D1', the network topology 'L2-Topo' and the domain 'FAN'.
 The Probable Root Cause is also analysed.
 
 ~~~~
@@ -1370,13 +1370,13 @@ and maintaining task-id list.
 extended to include "incident-diagnosis-task" list with the following diagnosis
 information:
 
-• The current status (e.g., created, diagnosing, diagnosed, finished) of each
+- The current status (e.g., created, diagnosing, diagnosed, finished) of each
   diagnosis task.
 
-• Task start time, end time, diagnosis result (succeeded, failed), failure
+- Task start time, end time, diagnosis result (succeeded, failed), failure
   description, etc.
 
-• Probable Root Causes, probable events, repair recommendations, etc.
+- Probable Root Causes, probable events, repair recommendations, etc.
 
 so that OSS system can use NETCONF &lt;get-config&gt; operation to look up
 the diagnosis task detailed information based on such module extension.
@@ -1394,12 +1394,12 @@ augment /inc:incidents/inc:incident:
 |   +--ro diagnosis-result? enumeration
 |   +--ro diagnosis-result-description? string
 |   +--ro probable-causes leafref //List <RootCause>
-…
+...
 |   +--ro probable-events leafref //List <Event>
-…
+...
 |   +-- ro repair-advices
 |   +-- ro state enumeration // Incident states such as Creation, Update, Clear
-…
+...
 ~~~~
 
 In addition, the new Diagnosis Task Notification can be defined to support
