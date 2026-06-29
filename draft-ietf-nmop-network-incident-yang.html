@@ -2458,7 +2458,8 @@ module ietf-incident {
     description
       "Optical transport network domain.";
     reference
-      "RFC9376: Applicability of GMPLS for beyond 100 Gbit/s Optical Transport Network";
+      "RFC9376: Applicability of GMPLS for beyond 100 Gbit/s Optical
+       Transport Network";
 
   }
 
@@ -2467,7 +2468,8 @@ module ietf-incident {
     description
       "Ip domain.";
         reference
-          "RFC1136: Administrative Domains and Routing Domains A Model for Routing in the Internet";
+          "RFC1136: Administrative Domains and Routing Domains A Model
+       for Routing in the Internet";
   }
 
   identity ptn {
@@ -2475,7 +2477,8 @@ module ietf-incident {
     description
       "Packet transport network domain.";
       reference
-       "RFC6373: MPLS Transport Profile (MPLS-TP) Control Plane Framework";
+       "RFC6373: MPLS Transport Profile (MPLS-TP) Control Plane
+        Framework";
 
   }
 
@@ -2569,7 +2572,8 @@ module ietf-incident {
     description
       "The abstract identity for Event type";
     reference
-      "RFC9940: Some Key Terms for Network Fault and Problem Management";
+      "RFC9940: Some Key Terms for Network Fault and Problem
+       Management";
 
   }
 
@@ -2624,7 +2628,8 @@ module ietf-incident {
       (i.e.,cause of the incident) for example an interface
       fails to work.";
     reference
-      "RFC9940: Some Key Terms for Network Fault and Problem Management";
+      "RFC9940: Some Key Terms for Network Fault and Problem
+       Management";
 
   }
 
@@ -2835,7 +2840,8 @@ module ietf-incident {
         "The unique qualifier of an incident instance type.
         This leaf is used when the 'type' leaf cannot
         uniquely identify the incident instance type.  Normally,
-        this is not the case, and this leaf is the empty string.";
+        this is not the case, and this leaf is the empty string.
+        ";
     }
     leaf-list service-instance {
       type string;
@@ -2917,11 +2923,11 @@ module ietf-incident {
         key "node-ref";
         description
           "The source components of incident. An Incident might
-           be created even if we don't know yet the sources (hence
-           we can not populate source list in the sources container).
-           Therefore the min-elements for the source list is set to 0.
-           Once the Incident is diagnosed, the source(s) will be
-           populated.";
+           be created even if we don't know yet the sources
+           (hence we can not populate source list in the sources
+           container). Therefore the min-elements for the source
+           list is set to 0. Once the Incident is diagnosed, the
+           source(s) will be populated.";
         uses resources-info;
       }
     }
@@ -3202,7 +3208,8 @@ module ietf-incident {
         type uint64;
         mandatory true;
         description
-        "The unique sequence number of the incident instance based on the name type incident-id keys.";
+        "The unique sequence number of the incident instance based on
+         the name type incident-id keys.";
       }
       uses incident-info;
       uses incident-time-info;
