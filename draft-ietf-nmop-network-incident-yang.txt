@@ -1078,7 +1078,7 @@ Table of Contents
         Relating to IETF Documents
         (https://trustee.ietf.org/license-info).
 
-        This version of this YANG module is part of RFC 9940
+        This version of this YANG module is part of RFC xxxx
         (https://www.rfc-editor.org/info/rfc9940); ; see the RFC
         itself for full legal notices.
 
@@ -1093,7 +1093,7 @@ Table of Contents
          "Merge incident yang with incident type yang
           and fix broken ref.";
        reference
-         "RFC9940: YANG module for network incident management.";
+         "RFCxxxx: YANG module for network incident management.";
      }
 
      // Identities
