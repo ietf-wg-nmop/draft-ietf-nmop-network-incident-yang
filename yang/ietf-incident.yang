@@ -574,9 +574,13 @@ module ietf-incident {
         "The source components.";
       list source {
         key "node-ref";
-        min-elements 0;
         description
-          "The source components of incident.";
+          "The source components of incident. An Incident might
+           be created even if we don't know yet the sources (hence
+           we can not populate source list in the sources container).
+           Therefore the min-elements for the source list is set to 0.
+           Once the Incident is diagnosed, the source(s) will be
+           populated.";
         uses resources-info;
       }
     }
