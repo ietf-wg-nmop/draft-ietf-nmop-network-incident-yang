@@ -179,7 +179,7 @@ service and network topology at various different layers, which not only can
 be used at a specific layer in one domain but also can be used to
 span across layers for multi-layer network troubleshooting.
 
-As described in {{!I-D.ietf-nmop-terminology}}{{TMF724A}}, a network incident refers
+As described in {{!RFC9940}}{{TMF724A}}, a network incident refers
 to an undesired Occurrence such as an unexpected interruption of a network service,
 degradation of the quality of a network service, or the below-target performance of
 a network service. Different data sources, including alarms, metrics, and other anomaly
@@ -960,7 +960,7 @@ the same incident instance.
 
 A YANG model for the alarm management {{?RFC8632}} defines a standard
 interface to manage the lifecycle of alarms.  Alarms represent the
-undesirable state of network resources {{!I-D.ietf-nmop-terminology}},
+undesirable state of network resources {{!RFC9940}},
 The alarm data model also defines the Probable Root Causes and impacted services fields,
 but there may be insufficient information to determine them at lower layer
 system (mainly in devices level), so alarms do not always tell the status of
