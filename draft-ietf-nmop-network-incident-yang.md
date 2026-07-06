@@ -1061,15 +1061,26 @@ configuration tracing.  If some errors occur when services are
 deploying, it's very easy to identify these errors by distributed
 system tracing, and a network incident should be reported.
 
-## Relationship with network anomaly architecture
+## Relationship with Network Anomaly Detection Architecture
 
-Network anomaly architecture {{?I-D.ietf-nmop-network-anomaly-architecture}}
-focuses on improving supervised and semi-supervised machine learning systems
-and evaluating anomaly detection algorithms and technologies. It also can be
-used to monitor network changes holistically by monitoring all 3 network planes
-simultaneously and detect whether that change is service disruptive. In case of
-disruptive changes, the anomaly can be upgraded into the network incident
-which trigger troubleshooting tickets generation.
+{{?I-D.ietf-nmop-network-anomaly-architecture}} and related network anomaly
+detection documents describe how anomaly detection is applied to detect service
+interruption in IP networks by performing outlier detection on all 3 network
+planes, preserve relationships among them and score the result with a concern and
+with a confidence score. Section 3 of {{?I-D.ietf-nmop-network-anomaly-architecture}}
+describes the elements of the system architecture where the "Alarm Management System"
+maps to the "Incident Server" in Section 4 of this document. The "relevant-state"
+YANG notification defined in Section 8.2 of {{?I-D.ietf-nmop-network-anomaly-lifecycle}}
+defines an "id" which should be mapped to "event-id" in the 'ietf-incident' YANG module
+described in this document on the "Incident Server". {{?I-D.ietf-nmop-network-anomaly-semantics}}
+augments relevant-state YANG notification with 'ietf-network-anomaly-symptom' YANG module
+symptom semantics described in Section 4.2 and service and network relationships with
+'ietf-network-anomaly-service-topology' YANG module in Section 4.3. "hostname" in
+"vpn-node-termination" grouping of 'ietf-network-anomaly-service-topology' YANG module maps
+to "node-ref" in " node-ref " grouping respectively the "vpn-id" in the "vpn-service" list of
+the "vpn-service" grouping maps to the "service-instance" leaf-list of the "incident-info"
+grouping in 'ietf-incident' YANG module. Thus, preserving the mapping between relevant-state
+notification id, service id and hostname in the network where the outlier was detected.
 
 # Security Considerations
 
