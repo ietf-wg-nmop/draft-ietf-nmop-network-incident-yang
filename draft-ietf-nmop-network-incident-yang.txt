@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 7 January 2027                                       Telefonica
+Expires: 9 January 2027                                       Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                             6 July 2026
+                                                             8 July 2026
 
 
            A YANG Data Model for Network Incident Management
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 January 2027.
+   This Internet-Draft will expire on 9 January 2027.
 
 Copyright Notice
 
@@ -137,7 +137,7 @@ Table of Contents
    fewer network incidents and there are many solutions in the market
    today that essentially do this to some degree.  However, conventional
    solutions such as data compression are time-consuming and labor-
-   intensive, usually rely on maintenance engineers' experience for data
+   intensive, usually rely on maintenance engineers'experience for data
    analysis, which, in many cases, result in low processing efficiency,
    inaccurate Probable Cause identification and duplicated tickets.  It
    is also difficult to assess the impact of alarms, performance metrics
@@ -2324,25 +2324,25 @@ Informative References
               Graf, T., Du, W., Francois, P., and A. H. Feng, "A
               Framework for a Network Anomaly Detection Architecture",
               Work in Progress, Internet-Draft, draft-ietf-nmop-network-
-              anomaly-architecture-07, 18 January 2026,
+              anomaly-architecture-08, 6 July 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
-              network-anomaly-architecture-07>.
+              network-anomaly-architecture-08>.
 
    [I-D.ietf-nmop-network-anomaly-lifecycle]
               Riccobene, V., Graf, T., Du, W., and A. H. Feng, "An
               Experiment: Network Anomaly Detection Lifecycle", Work in
               Progress, Internet-Draft, draft-ietf-nmop-network-anomaly-
-              lifecycle-05, 12 February 2026,
+              lifecycle-06, 6 July 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
-              network-anomaly-lifecycle-05>.
+              network-anomaly-lifecycle-06>.
 
    [I-D.ietf-nmop-network-anomaly-semantics]
               Graf, T., Du, W., Feng, A. H., and V. Riccobene, "Semantic
               Metadata Annotation for Network Anomaly Detection", Work
               in Progress, Internet-Draft, draft-ietf-nmop-network-
-              anomaly-semantics-05, 19 January 2026,
+              anomaly-semantics-06, 6 July 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
-              network-anomaly-semantics-05>.
+              network-anomaly-semantics-06>.
 
    [I-D.ietf-opsawg-scheduling-oam-tests]
               Contreras, L. M., Lopez, V., and Q. Wu, "A YANG Data Model
@@ -2357,8 +2357,8 @@ Informative References
               and S. Schneider, "Research Challenges in Coupling
               Artificial Intelligence and Network Management", Work in
               Progress, Internet-Draft, draft-irtf-nmrg-ai-challenges-
-              05, 18 March 2025, <https://datatracker.ietf.org/doc/html/
-              draft-irtf-nmrg-ai-challenges-05>.
+              06, 6 July 2026, <https://datatracker.ietf.org/doc/html/
+              draft-irtf-nmrg-ai-challenges-06>.
 
    [ITU-T-G-7710]
               "ITU-T G.7710/Y.1701 - Common equipment management
