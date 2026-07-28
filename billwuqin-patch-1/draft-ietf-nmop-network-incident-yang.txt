@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 21 December 2026                                     Telefonica
+Expires: 29 January 2027                                      Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                            19 June 2026
+                                                            28 July 2026
 
 
            A YANG Data Model for Network Incident Management
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 December 2026.
+   This Internet-Draft will expire on 29 January 2027.
 
 Copyright Notice
 
@@ -65,11 +65,6 @@ Table of Contents
      3.2.  Incident Derivation from L3VPN Service Unavailability
      3.3.  Multi-layer Fault Demarcation
    4.  Network Incident Management Architecture
-     4.1.  Interworking with Alarm Management
-     4.2.  Interworking with SAIN
-     4.3.  Relationship with RFC8969
-     4.4.  Relationship with Trace Context
-     4.5.  Relationship with network anomaly architecture
    5.  Functional Interface Requirements between the Client and the
            Server
      5.1.  Incident Identification
@@ -88,10 +83,16 @@ Table of Contents
      7.5.  Incident Resolution
      7.6.  RPC Failure
    8.  Network Incident Management YANG Module
-   9.  Security Considerations
-   10. IANA Considerations
-     10.1.  The "IETF XML" Registry
-     10.2.  The "YANG Module Names" Registry
+   9.  Operational Consideration
+     9.1.  Interworking with Alarm Management
+     9.2.  Interworking with SAIN
+     9.3.  Relationship with RFC8969
+     9.4.  Relationship with Trace Context
+     9.5.  Relationship with Network Anomaly Detection Architecture
+   10. Security Considerations
+   11. IANA Considerations
+     11.1.  The "IETF XML" Registry
+     11.2.  The "YANG Module Names" Registry
    Acknowledgements
    References
      Normative References
@@ -136,13 +137,13 @@ Table of Contents
    fewer network incidents and there are many solutions in the market
    today that essentially do this to some degree.  However, conventional
    solutions such as data compression are time-consuming and labor-
-   intensive, usually rely on maintenance engineers' experience for data
+   intensive, usually rely on maintenance engineers'experience for data
    analysis, which, in many cases, result in low processing efficiency,
-   inaccurate probable cause identification and duplicated tickets.  It
-   is also difficult to assess the impact of alarms, performance metrics
-   and other anomaly data on network services without known relation
-   across layers of the entire network topology data or the relation
-   with other network topology data.
+   inaccurate Probable Root Cause identification and duplicated tickets.
+   It is also difficult to assess the impact of alarms, performance
+   metrics and other anomaly data on network services without known
+   relation across layers of the entire network topology data or the
+   relation with other network topology data.
 
    To address these challenges, a network-wide incident-centric solution
    is specified to establish the global view on dependency relationships
@@ -151,12 +152,12 @@ Table of Contents
    but also can be used to span across layers for multi-layer network
    troubleshooting.
 
-   A network incident refers to an undesired occurrence, such as an
-   unexpected interruption of a network service, degradation of a
-   network service quality, or sub-health of a network service
-   [I-D.ietf-nmop-terminology][TMF724A].  Different data sources,
-   including alarms, metrics, and other anomaly information, can be
-   correlated and combined into one or a few network incidents,
+   As described in [RFC9940][TMF724A], a network incident refers to an
+   undesired Occurrence such as an unexpected interruption of a network
+   service, degradation of the quality of a network service, or the
+   below-target performance of a network service.  Different data
+   sources, including alarms, metrics, and other anomaly information,
+   can be correlated and combined into one or a few network incidents,
    regardless of layer, informed by correlation analysis and service
    impact assessment.  For example, if the protocol-related interface
    fails to work properly, a large amount of alarms may be reported to
@@ -183,7 +184,7 @@ Table of Contents
 
    This document defines a YANG data model for network incident
    lifecycle management, which improves troubleshooting efficiency, and
-   improves network automation [RFC8969] with RPC operations in this
+   improves network automation [RFC8969] with rpc operations in this
    YANG module.
 
 2.  Conventions and Definitions
@@ -194,8 +195,8 @@ Table of Contents
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
-   The following terms are defined in [RFC8632],
-   [RFC9543],[I-D.ietf-nmop-terminology] and are not redefined here:
+   The following terms are defined in [RFC8632], [RFC9543],[RFC9940] and
+   are not redefined here:
 
    *  Alarm
 
@@ -210,6 +211,8 @@ Table of Contents
    *  Anomaly
 
    *  Cause
+
+   *  Symptom
 
    *  Characteristic
 
@@ -235,16 +238,12 @@ Table of Contents
       sources including alarms, metrics, and other anomaly information
       and aggregates them into one or a few network incidents
       irrespective of layer through data correlation analysis and the
-      Service Impact Assessment.  One fault on the network device can
-      cause multiple network incidents, e.g., multiple service offerings
-      that are dependent on that device and take different route will go
-      down, e.g., suffer increased latency as redundant routes become
-      more congested.  A network incident might impact one or a set of
-      network services.  The network incident can also been seen as
-      customer incident [TMF724A] when service SLA [RFC9543] associated
-      with one specific network service and network incident has been
-      affected.  How customer incident is translated from the network
-      incident is beyond the scope of this document.
+      Service Impact Assessment.  A network incident might impact one or
+      a set of network services.  The network incident can also been
+      seen as customer incident [TMF724A] when service SLA [RFC9543]
+      associated with one specific network service and network incident
+      has been affected.  How customer incident is translated from the
+      network incident is beyond the scope of this document.
 
    Incident Management System:  An entity that implements network
       incident management.  It includes (but not limited to) Incident
@@ -271,16 +270,16 @@ Table of Contents
       ongoing incident (specifically, regarding network outage or
       service impairments and their associated subsequent failures and
       symptoms) and prevents the problem from recurring, then such
-      factor is considered as a probable root cause of a problem.
+      factor is considered as a Probable Root Cause of a problem.
 
       Since one Fault may give rise to another Fault or Problem, a
-      probable root cause is commonly meant to describe the original
+      Probable Root Cause is commonly meant to describe the original
       event or combination of circumstances that is the foundation of
       all related Faults.
 
       Conversely, a causal factor is a contributing action that
       influences the outcome of the incident or event but is not the
-      probable cause.
+      Probable Root Cause.
 
 3.  Sample Use Cases
 
@@ -309,7 +308,7 @@ Table of Contents
 
    With the help of the Network Incident Management, massive alarms can
    be aggregated into a few network incidents based on service impact
-   asessment, so the number of trouble tickets will be reduced.  At the
+   assessment, so the number of trouble tickets will be reduced.  At the
    same time, the efficiency of network troubleshooting can be largely
    improved, which addresses the pain point of traditional trouble
    ticket dispatching.
@@ -352,8 +351,8 @@ Table of Contents
    First, faults occurring at a packet-layer device might further cause
    fault (e.g., Wavelength Division Multiplexing (WDM) client fault) at
    an optical-layer device.  Second, faults occurring at an optical-
-   layer device might further cause fault (e.g., Layer 3 link down) at a
-   packet- layer device.  Third, faults occurring at the inter-layer
+   layer device might further cause faults (e.g., Layer 3 link down) at
+   a packet- layer device.  Third, faults occurring at the inter-layer
    link between a packet-layer device and an optical-layer device might
    further cause faults at both devices.  Multiple operation teams are
    usually needed to first analyse a large amount of alarms (triggered
@@ -483,162 +482,11 @@ Table of Contents
       'cleared' if the incident can be fixed.  For more detailed
       workflow, please refer to section 5.3.
 
-4.1.  Interworking with Alarm Management
-
-                        +-----------------------------+
-                        |         OSS                 |
-                        | +--------+    +-----------+ |
-                        | |Alarm   |    | Incident  | |
-                        | |handler |    |  handler  | |
-                        | +--------+    +-----------+ |
-                        +---^---------------^---------+
-                            |               |
-                            |alarm          |incident
-                        +---|---------------|---------+
-                        |   |  controller   |         |
-                        |   |               |         |
-                        |+--+----+      +-----------+ |
-                        ||Alarm  |      |  Incident | |
-                        ||process+----->|   Process | |
-                        ||       |alarm |           | |
-                        |+-------+      +-----------+ |
-                        |   ^              ^          |
-                        +---|--------------|----------+
-                            |alarm         | metrics/trace/etc.
-                            |              |
-                    +-------+--------------+---------------+
-                    |                                      |
-                    |   Network in the Autonomous Domain   |
-                    |                                      |
-                    +--------------------------------------+
-
-                Figure 2: Interworking with Alarm Management
-
-   A YANG model for the alarm management [RFC8632] defines a standard
-   interface to manage the lifecycle of alarms.  Alarms represent the
-   undesirable state of network resources [I-D.ietf-nmop-terminology],
-   The alarm data model also defines the Probable Root Causes and
-   impacted services fields, but there may be insufficient information
-   to determine them at lower layer system (mainly in devices level), so
-   alarms do not always tell the status of network services or
-   necessarily point to the Probable Root Causes of problems.  As
-   described in [RFC8632], the alarm management acts as a starting point
-   for high-level fault management.  While Network Incident Management
-   often works at the network level, so it is possible to have enough
-   information to perform data correlation and Service Impact
-   Assessment.  Alarms can work as one of data sources of Network
-   Incident Management and may be aggregated into a few network
-   incidents by the correlation analysis, network service impact and
-   Probable Root Causes may be determined during the incident process.
-
-   Network Incident also contains some related alarms, if needed users
-   can query the information of alarms by alarm management interface
-   [RFC8632].  In some cases, e.g., cutover scenario, the Incident
-   Server may use alarm management interface [RFC8632] to shelve some
-   alarms.
-
-   Alarm management may keep the original process, alarms are reported
-   from network to network controller or network analytic platform and
-   then reported to upper-layer system (e.g., the alarm handler within
-   the OSS).
-
-   Similarly, the network incident is reported from the network to the
-   network controller or network analytic platform and then reported to
-   the upper-layer system (e.g., Incident Handler within the OSS).
-   Upper-layer system may store these network incidents and provide the
-   information for fault analysis (e.g., deeper customer incident
-   analysis based on network incident).
-
-   Different from alarm management, incident process within the
-   controller comprising both Incident Client and Incident Server
-   functionalities provides not only network incident reporting but also
-   diagnosis and resolution functions, it's possible to support self-
-   healing and may be helpful for single-domain closed-loop control.
-
-   Incident Management is not a substitute for alarm management.
-   Instead, they can work together to implement fault management.
-
-4.2.  Interworking with SAIN
-
-   SAIN [RFC9417] defines an architecture of network service assurance.
-
-                          +----------------+
-                          |Incident Handler|
-                          +----------------+
-                                  ^
-                                  |incident
-                          +-------+--------+
-                          |Incident process|
-                           +----------------+
-                                   ^
-                                   |symptoms
-                           +-------+--------+
-                           |     SAIN       |
-                           |                |
-                           +----------------+
-                                    ^
-                                    |metrics
-                    +---------------+-----------------+
-                    |                                 |
-                    |Network in the Autonomous Domain |
-                    |                                 |
-                    +---------------------------------+
-
-                      Figure 3: Interworking with SAIN
-
-   A network service can be decomposed into some sub-services, and
-   specific metrics can be monitored for sub-services.  For example, a
-   tunnel service can be decomposed into some peer tunnel interface sub-
-   services and IP connectivity sub-service.  If some metrics are
-   evaluated to indicate unhealthy for specific sub-service, some
-   symptoms will be present.  Incident process comprising both Incident
-   Client and Incident Server functionalities may identify the network
-   incident based on symptoms, and then report it to Incident Handler
-   within the Operation Support System (OSS).  So, SAIN can be one way
-   to identify network incident, services, sub-services and metrics can
-   be preconfigured via APIs defined by service assurance YANG model
-   [RFC9418] and the network incident will be reported if symptoms match
-   certain condition or characteristic considered as an indication of a
-   problem or potential problem.
-
-4.3.  Relationship with RFC8969
-
-   [RFC8969] defines a framework for network automation using YANG, this
-   framework breaks down YANG modules into three layers, service layer,
-   network layer and device layer, and contains service deployment,
-   service optimization/assurance, and service diagnosis.  Network
-   incident works at the network layer and aggregates alarms, metrics
-   and other information from device layer, it's helpful to provide
-   service assurance.  And the network incident diagnosis may be one way
-   of service diagnosis.
-
-4.4.  Relationship with Trace Context
-
-   W3C defines a common trace context [W3C-Trace-Context] for
-   distributed system tracing, [I-D.ietf-netconf-trace-ctx-extension]
-   defines a netconf extension for [W3C-Trace-Context] and
-   [I-D.ietf-netconf-configuration-tracing] defines a mechanism for
-   configuration tracing.  If some errors occur when services are
-   deploying, it's very easy to identify these errors by distributed
-   system tracing, and a network incident should be reported.
-
-4.5.  Relationship with network anomaly architecture
-
-   Network anomaly architecture
-   [I-D.ietf-nmop-network-anomaly-architecture] focuses on improving
-   supervised and semi-supervised machine learning systems and
-   evaluating anomaly detection algorithms and technologies.  It also
-   can be used to monitor network changes holistically by monitoring all
-   3 network planes simultaneously and detect whether that change is
-   service disruptive.  In case of disruptive changes, the anomaly can
-   be upgraded into the network incident which trigger troubleshooting
-   tickets generation.
-
 5.  Functional Interface Requirements between the Client and the Server
 
 5.1.  Incident Identification
 
-   As depicted in Figure 4, multiple alarms, metrics, or hybrid can be
+   As depicted in Figure 2, multiple alarms, metrics, or hybrid can be
    aggregated into a network incident after analysis.
 
                              +--------------+
@@ -676,7 +524,7 @@ Table of Contents
                            +--| metric1   |
                               +-----------+
 
-                     Figure 4: Incident Identification
+                     Figure 2: Incident Identification
 
    The Network Incident Management server MUST be capable of identifying
    network incidents.  Multiple alarms, metrics and other information
@@ -713,7 +561,7 @@ Table of Contents
                     |                    |
                     +-^-^------------^---+
                       | |            |
-                  IGP | |Interface   |IGP Peer
+                  igp | |Interface   |igp Peer
                  Down | |Down        | Abnormal
                       | |            |
            VPN A      | |            |
@@ -724,9 +572,9 @@ Table of Contents
            |    +---+       +---+         +---+        +---+   |
            +---------------------------------------------------+
 
-           Figure 5: Example 1 of Network Incident Identification
+           Figure 3: Example 1 of Network Incident Identification
 
-   As described in Figure 5, vpn a is deployed from PE1 to PE2, if a
+   As described in Figure 3, vpn a is deployed from PE1 to PE2, if a
    interface of P1 is going down, many alarms are triggered, such as
    interface down, igp down, and igp peer abnormal from P2.
 
@@ -736,7 +584,7 @@ Table of Contents
    unavailable' is repeated, the problem can be raised.
 
    Note that Incident Server within the controller can rely on data
-   correlation technology such as service impact asessment and data
+   correlation technology such as service impact assessment and data
    analytic component to evaluate the real effect on the relevant
    service and understand whether lower level or device level network
    anomaly, e.g., igp down, has impact on the service.
@@ -766,9 +614,9 @@ Table of Contents
           |    +---+       +---+         +---+        +---+    |
           +----------------------------------------------------+
 
-           Figure 6: Example 2 of Network Incident Identification
+           Figure 4: Example 2 of Network Incident Identification
 
-   As described in Figure 6, controller collect the network metrics from
+   As described in Figure 4, controller collect the network metrics from
    network elements, it finds the packet loss of P1 and the path delay
    of P2 exceed the thresholds, a network incident 'VPN A degradation'
    may be triggered after the Service Impact Assessment.
@@ -793,7 +641,7 @@ Table of Contents
    the network incident by invoking other functions, such as routing
    calculation function, configuration function, dispatching a ticket or
    asking the server to resolve it.  Generally, the Incident Client
-   would attempt to directly resolve the probable cause.  If the
+   would attempt to directly resolve the Probable Cause.  If the
    Probable Root Cause cannot be resolved, an alternative solution
    SHOULD be required.  For example, if a network incident caused by a
    physical component failure, it cannot be automatically resolved, the
@@ -877,55 +725,139 @@ Table of Contents
    notification to report network incident state changes and three rpcs
    to manage the network incidents.
 
- module: ietf-incident
-   +--ro incidents
-      +--ro incident* [name type incident-id]
-         +--ro incident-no         uint64
-         +--ro name                string
-         +--ro type                identityref
-         +--ro incident-id?        string
-         +--ro service-instance*   string
-         +--ro domain              identityref
-         +--ro priority            incident-priority
-         +--ro status?             enumeration
-         +--ro ack-status?         enumeration
-         +--ro category            identityref
-         +--ro detail?             string
-         +--ro resolve-advice?     String
-         +--ro sources
-         ...
-         +--ro probable-causes
-         ...
-         +--ro probable-events
-         ...
-         +--ro events
-         ...
-         +--ro raise-time? yang:date-and-time
-         +--ro occur-time? yang:date-and-time
-         +--ro clear-time? yang:date-and-time
-         +--ro ack-time? yang:date-and-time
-         +--ro last-updated? yang:date-and-time
- rpcs:
-   +---x incident-acknowledge
-   ...
-   +---x incident-diagnose
-   ...
-   +---x incident-resolve
+   =============== NOTE: '\' line wrapping per RFC 8792 ================
 
- notifications:
-   +---n incident-notification
-          +--ro incident-no?
-                          -> /inc:incidents/inc:incident/inc:incident-no
-          ...
-          +--ro time? yang:date-and-time
+   module: ietf-incident
+
+     +--ro incidents
+        +--ro incident* [name type incident-id]
+           +--ro incident-no         uint64
+           +--ro name                string
+           +--ro type                identityref
+           +--ro incident-id         string
+           +--ro service-instance*   string
+           +--ro domain              identityref
+           +--ro priority            incident-priority
+           +--ro status?             enumeration
+           +--ro ack-status?         enumeration
+           +--ro category            identityref
+           +--ro detail?             string
+           +--ro resolve-advice?     string
+           +--ro sources
+           |  +--ro source* [node-ref]
+           |     +--ro node-ref       -> /nw:networks/network[nw:\
+                       network-id=current()/../network-ref]/node/node-id
+           |     +--ro network-ref?   -> /nw:networks/network/network-id
+           |     +--ro resource* [name]
+           |        +--ro name    al:resource
+           +--ro probable-causes
+           |  +--ro probable-cause* [node-ref]
+           |     +--ro node-ref       -> /nw:networks/network[nw:\
+                       network-id=current()/../network-ref]/node/node-id
+           |     +--ro network-ref?   -> /nw:networks/network/network-id
+           |     +--ro resource* [name]
+           |     |  +--ro name          al:resource
+           |     |  +--ro cause-name?   identityref
+           |     |  +--ro detail?       string
+           |     +--ro cause-name?    identityref
+           |     +--ro detail?        string
+           +--ro probable-events
+           |  +--ro probable-event* [type event-id]
+           |     +--ro type        -> ../../../events/event/type
+           |     +--ro event-id    -> ../../../events/event[type = \
+                                             current()/../type]/event-id
+           +--ro events
+           |  +--ro event* [type event-id]
+           |     +--ro type           identityref
+           |     +--ro event-id       string
+           |     +--ro (event-type-info)?
+           |        +--:(alarm)
+           |           +--ro alarm
+           |              +--ro resource?               -> /al:alarms/\
+                                               alarm-list/alarm/resource
+           |              +--ro alarm-type-id?          -> /al:alarms/\
+     alarm-list/alarm[al:resource = current()/../resource]/alarm-type-id
+           |              +--ro alarm-type-qualifier?   -> /al:alarms/\
+   alarm-list/alarm[al:resource = current()/../resource][al:alarm-type-\
+                id = current()/../alarm-type-id]/al:alarm-type-qualifier
+           +--ro raise-time?         yang:date-and-time
+           +--ro occur-time?         yang:date-and-time
+           +--ro clear-time?         yang:date-and-time
+           +--ro ack-time?           yang:date-and-time
+           +--ro last-updated?       yang:date-and-time
+
+     rpcs:
+       +---x incident-acknowledge
+       |  +---w input
+       |     +---w incident-no*   incident-ref
+       +---x incident-diagnose
+       |  +---w input
+       |     +---w incident-no*   incident-ref
+       +---x incident-resolve
+          +---w input
+             +---w incident-no*   incident-ref
+
+     notifications:
+       +---n incident-notification
+          +--ro incident-no         incident-ref
+          +--ro name?               string
+          +--ro type?               identityref
+          +--ro incident-id?        string
+          +--ro service-instance*   string
+          +--ro domain              identityref
+          +--ro priority            incident-priority
+          +--ro status?             enumeration
+          +--ro ack-status?         enumeration
+          +--ro category            identityref
+          +--ro detail?             string
+          +--ro resolve-advice?     string
+          +--ro sources
+          |  +--ro source* [node-ref]
+          |     +--ro node-ref       -> /nw:networks/network[nw:network\
+                              -id=current()/../network-ref]/node/node-id
+          |     +--ro network-ref?   -> /nw:networks/network/network-id
+          |     +--ro resource* [name]
+          |        +--ro name    al:resource
+          +--ro probable-causes
+          |  +--ro probable-cause* [node-ref]
+          |     +--ro node-ref       -> /nw:networks/network[nw:network\
+                              -id=current()/../network-ref]/node/node-id
+          |     +--ro network-ref?   -> /nw:networks/network/network-id
+          |     +--ro resource* [name]
+          |     |  +--ro name          al:resource
+          |     |  +--ro cause-name?   identityref
+          |     |  +--ro detail?       string
+          |     +--ro cause-name?    identityref
+          |     +--ro detail?        string
+          +--ro probable-events
+          |  +--ro probable-event* [type event-id]
+          |     +--ro type        -> ../../../events/event/type
+          |     +--ro event-id    -> ../../../events/event[type = \
+                                             current()/../type]/event-id
+          +--ro events
+          |  +--ro event* [type event-id]
+          |     +--ro type           identityref
+          |     +--ro event-id       string
+          |     +--ro (event-type-info)?
+          |        +--:(alarm)
+          |           +--ro alarm
+          |              +--ro resource?               -> /al:alarms/\
+                                               alarm-list/alarm/resource
+          |              +--ro alarm-type-id?          -> /al:alarms/\
+     alarm-list/alarm[al:resource = current()/../resource]/alarm-type-id
+          |              +--ro alarm-type-qualifier?   -> /al:alarms/\
+   alarm-list/alarm[al:resource = current()/../resource][al:alarm-type-\
+                id = current()/../alarm-type-id]/al:alarm-type-qualifier
+
+                    Figure 5: Incident YANG Tree Diagram
 
 7.2.  Incident Notifications
 
    notifications:
      +---n incident-notification
-        +--ro incident-no?        incident-ref
-        +--ro name                string
-        +--ro type                identityref
+        +--ro incident-no         incident-ref
+        +--ro name?               string
+        +--ro type?               identityref
         +--ro incident-id?        string
         +--ro service-instance*   string
         +--ro domain              identityref
@@ -1032,7 +964,7 @@ Table of Contents
 
 7.6.  RPC Failure
 
-   If the RPC fails, the RPC error response MUST indicate the reason for
+   If the rpc fails, the rpc error response MUST indicate the reason for
    the failure.  The structures defined in this document MUST encode
    specific errors and be inserted in the error response to indicate the
    reason for the failure.
@@ -1146,8 +1078,8 @@ Table of Contents
         Relating to IETF Documents
         (https://trustee.ietf.org/license-info).
 
-        This version of this YANG module is part of RFC XXXX
-        (https://www.rfc-editor.org/info/rfcXXXX); ; see the RFC
+        This version of this YANG module is part of RFC xxxx
+        (https://www.rfc-editor.org/info/rfc9940); ; see the RFC
         itself for full legal notices.
 
         The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL', 'SHALL
@@ -1161,7 +1093,7 @@ Table of Contents
          "Merge incident yang with incident type yang
           and fix broken ref.";
        reference
-         "RFC XXX: YANG module for network incident management.";
+         "RFCxxxx: YANG module for network incident management.";
      }
 
      // Identities
@@ -1201,7 +1133,8 @@ Table of Contents
        description
          "Optical transport network domain.";
        reference
-         "RFC9376: Applicability of GMPLS for beyond 100 Gbit/s Optical Transport Network";
+         "RFC9376: Applicability of GMPLS for beyond 100 Gbit/s Optical
+          Transport Network";
 
      }
 
@@ -1210,7 +1143,8 @@ Table of Contents
        description
          "Ip domain.";
            reference
-             "RFC1136: Administrative Domains and Routing Domains A Model for Routing in the Internet";
+             "RFC1136: Administrative Domains and Routing Domains A Model
+          for Routing in the Internet";
      }
 
      identity ptn {
@@ -1218,7 +1152,8 @@ Table of Contents
        description
          "Packet transport network domain.";
          reference
-          "RFC6373: MPLS Transport Profile (MPLS-TP) Control Plane Framework";
+          "RFC6373: MPLS Transport Profile (MPLS-TP) Control Plane
+           Framework";
 
      }
 
@@ -1312,7 +1247,8 @@ Table of Contents
        description
          "The abstract identity for Event type";
        reference
-         "RFCXXXX: Some Key Terms for Network Fault and Problem Management";
+         "RFC9940: Some Key Terms for Network Fault and Problem
+          Management";
 
      }
 
@@ -1367,7 +1303,8 @@ Table of Contents
          (i.e.,cause of the incident) for example an interface
          fails to work.";
        reference
-         "RFCXXXX: Some Key Terms for Network Fault and Problem Management";
+         "RFC9940: Some Key Terms for Network Fault and Problem
+          Management";
 
      }
 
@@ -1562,7 +1499,6 @@ Table of Contents
           incident.";
        leaf name {
          type string;
-         mandatory true;
          description
            "The name of an incident.";
        }
@@ -1570,7 +1506,6 @@ Table of Contents
          type identityref {
            base incident-class;
          }
-         mandatory true;
          description
            "The type of an incident.";
        }
@@ -1580,7 +1515,8 @@ Table of Contents
            "The unique qualifier of an incident instance type.
            This leaf is used when the 'type' leaf cannot
            uniquely identify the incident instance type.  Normally,
-           this is not the case, and this leaf is the empty string.";
+           this is not the case, and this leaf is the empty string.
+           ";
        }
        leaf-list service-instance {
          type string;
@@ -1660,9 +1596,13 @@ Table of Contents
            "The source components.";
          list source {
            key "node-ref";
-           min-elements 1;
            description
-             "The source components of incident.";
+             "The source components of incident. An Incident might
+              be created even if we don't know yet the sources
+              (hence we can not populate source list in the sources
+              container). Therefore the min-elements for the source
+              list is set to 0. Once the Incident is diagnosed, the
+              source(s) will be populated.";
            uses resources-info;
          }
        }
@@ -1794,7 +1734,8 @@ Table of Contents
          leaf-list incident-no {
            type incident-ref;
            description
-             "The identifier of an incident instance.";
+             "The unique sequence number of an incident instance
+              based on the name type incident-id keys.";
          }
        }
      }
@@ -1808,7 +1749,8 @@ Table of Contents
          leaf-list incident-no {
            type incident-ref;
            description
-             "The identifier of an incident instance.";
+             "The unique sequence number of an incident instance
+              based on the name type incident-id keys.";
          }
        }
      }
@@ -1822,7 +1764,8 @@ Table of Contents
          leaf-list incident-no {
            type incident-ref;
            description
-             "The identifier of an incident instance.";
+             "The unique sequence number of an incident instance
+              based on the name type incident-id keys.";
          }
        }
      }
@@ -1914,6 +1857,7 @@ Table of Contents
           the incident is raised, updated or cleared.";
        leaf incident-no {
          type incident-ref;
+         mandatory true;
          description
            "The identifier of an incident instance.";
        }
@@ -1939,7 +1883,8 @@ Table of Contents
            type uint64;
            mandatory true;
            description
-           "The unique sequence number of the incident instance.";
+           "The unique sequence number of the incident instance based on
+            the name type incident-id keys.";
          }
          uses incident-info;
          uses incident-time-info;
@@ -1948,7 +1893,217 @@ Table of Contents
    }
    <CODE ENDS>
 
-9.  Security Considerations
+9.  Operational Consideration
+
+   The "ietf-incident" YANG module introduces an incident-centric
+   architecture designed to overcome the structural silo of traditional
+   management systems that handle alarms and performance metrics
+   separately at different network layers.  Operators must ensure that
+   the underlying management system feeding this model maintains
+   continuous, real-time read access to diverse end to end network
+   topology data spanning multiple layers.
+
+   Because accurate multi-layer troubleshooting depends on establishing
+   a global view of cross-layer dependency relationships, any disruption
+   or stale state in the underlying network topology discovery
+   mechanisms will directly degrade the accuracy of the incident
+   process's probable root cause identification and service impact
+   analysis.
+
+   In addition, the YANG module defined in this document is intended to
+   automate and streamline incident dispatching at the network layer,
+   but integration with trouble-ticketing management system at the OSS
+   layer is also required.  Operators should implement a deterministic
+   translation layer between the "ietf-incident" model states and
+   external ticket states (e.g., Open, Assigned, In-Progress, Resolved)
+   to prevent split-brain visibility scenarios where an incident is
+   closed in the network layer but remains active in the ticketing
+   system, or vice versa.
+
+   This incident data model states that the tuple (name, type and
+   incident-id) corresponds to a single incident instance.  This means
+   that incident notifications for the same name and same type and
+   incident-id are matched to update the same incident instance.  These
+   three leafs are therefore used as the key in the incident list:
+
+    list incident {
+      key "name type incident-id";
+      ...
+    }
+
+   In the meanwhile, in order to improve processing efficiency, this
+   incident data model also allows using the unique sequence number
+   'incident-no' to identify each incident instance, this means that
+   incident rpcs or notifications for the same incident-no are matched
+   to update the same incident instance.
+
+9.1.  Interworking with Alarm Management
+
+                        +-----------------------------+
+                        |         OSS                 |
+                        | +--------+    +-----------+ |
+                        | |Alarm   |    | Incident  | |
+                        | |handler |    |  handler  | |
+                        | +--------+    +-----------+ |
+                        +---^---------------^---------+
+                            |               |
+                            |alarm          |incident
+                        +---|---------------|---------+
+                        |   |  controller   |         |
+                        |   |               |         |
+                        |+--+----+      +-----------+ |
+                        ||Alarm  |      |  Incident | |
+                        ||process+----->|   Process | |
+                        ||       |alarm |           | |
+                        |+-------+      +-----------+ |
+                        |   ^              ^          |
+                        +---|--------------|----------+
+                            |alarm         | metrics/trace/etc.
+                            |              |
+                    +-------+--------------+---------------+
+                    |                                      |
+                    |   Network in the Autonomous Domain   |
+                    |                                      |
+                    +--------------------------------------+
+
+                Figure 6: Interworking with Alarm Management
+
+   A YANG model for the alarm management [RFC8632] defines a standard
+   interface to manage the lifecycle of alarms.  Alarms represent the
+   undesirable state of network resources [RFC9940], The alarm data
+   model also defines the Probable Root Causes and impacted services
+   fields, but there may be insufficient information to determine them
+   at lower layer system (mainly in devices level), so alarms do not
+   always tell the status of network services or necessarily point to
+   the Probable Root Causes of problems.  As described in [RFC8632], the
+   alarm management acts as a starting point for high-level fault
+   management.  While Network Incident Management often works at the
+   network level, so it is possible to have enough information to
+   perform data correlation and Service Impact Assessment.  Alarms can
+   work as one of data sources of Network Incident Management and may be
+   aggregated into a few network incidents by the correlation analysis,
+   network service impact and Probable Root Causes may be determined
+   during the incident process.
+
+   Network Incident also contains some related alarms, if needed users
+   can query the information of alarms by alarm management interface
+   [RFC8632].  In some cases, e.g., cutover scenario, the Incident
+   Server may use alarm management interface [RFC8632] to shelve some
+   alarms.
+
+   Alarm management may keep the original process, alarms are reported
+   from network to network controller or network analytic platform and
+   then reported to upper-layer system (e.g., the alarm handler within
+   the OSS).
+
+   Similarly, the network incident is reported from the network to the
+   network controller or network analytic platform and then reported to
+   the upper-layer system (e.g., Incident Handler within the OSS).
+   Upper-layer system may store these network incidents and provide the
+   information for fault analysis (e.g., deeper customer incident
+   analysis based on network incident).
+
+   Different from alarm management, incident process within the
+   controller comprising both Incident Client and Incident Server
+   functionalities provides not only network incident reporting but also
+   diagnosis and resolution functions, it's possible to support self-
+   healing and may be helpful for single-domain closed-loop control.
+
+   Incident Management is not a substitute for alarm management.
+   Instead, they can work together to implement fault management.
+
+9.2.  Interworking with SAIN
+
+   SAIN [RFC9417] defines an architecture of network service assurance.
+
+                          +----------------+
+                          |Incident Handler|
+                          +----------------+
+                                  ^
+                                  |incident
+                          +-------+--------+
+                          |Incident process|
+                           +----------------+
+                                   ^
+                                   |symptoms
+                           +-------+--------+
+                           |     SAIN       |
+                           |                |
+                           +----------------+
+                                    ^
+                                    |metrics
+                    +---------------+-----------------+
+                    |                                 |
+                    |Network in the Autonomous Domain |
+                    |                                 |
+                    +---------------------------------+
+
+                      Figure 7: Interworking with SAIN
+
+   A network service can be decomposed into some sub-services, and
+   specific metrics can be monitored for sub-services.  For example, a
+   tunnel service can be decomposed into some peer tunnel interface sub-
+   services and IP connectivity sub-service.  If some metrics are
+   evaluated to indicate unhealthy for specific sub-service, some
+   symptoms will be present.  Incident process comprising both Incident
+   Client and Incident Server functionalities may identify the network
+   incident based on symptoms, and then report it to Incident Handler
+   within the Operation Support System (OSS).  So, SAIN can be one way
+   to identify network incident, services, sub-services and metrics can
+   be preconfigured via APIs defined by service assurance YANG model
+   [RFC9418] and the network incident will be reported if symptoms match
+   certain condition or characteristic considered as an indication of a
+   problem or potential problem.
+
+9.3.  Relationship with RFC8969
+
+   [RFC8969] defines a framework for network automation using YANG, this
+   framework breaks down YANG modules into three layers, service layer,
+   network layer and device layer, and contains service deployment,
+   service optimization/assurance, and service diagnosis.  Network
+   incident works at the network layer and aggregates alarms, metrics
+   and other information from device layer, it's helpful to provide
+   service assurance.  And the network incident diagnosis may be one way
+   of service diagnosis.
+
+9.4.  Relationship with Trace Context
+
+   W3C defines a common trace context [W3C-Trace-Context] for
+   distributed system tracing, [I-D.ietf-netconf-trace-ctx-extension]
+   defines a netconf extension for [W3C-Trace-Context] and
+   [I-D.ietf-netconf-configuration-tracing] defines a mechanism for
+   configuration tracing.  If some errors occur when services are
+   deploying, it's very easy to identify these errors by distributed
+   system tracing, and a network incident should be reported.
+
+9.5.  Relationship with Network Anomaly Detection Architecture
+
+   [I-D.ietf-nmop-network-anomaly-architecture] and related network
+   anomaly detection documents describe how anomaly detection is applied
+   to detect service interruption in IP networks by performing outlier
+   detection on all 3 network planes, preserve relationships among them
+   and score the result with a concern and with a confidence score.
+   Section 3 of [I-D.ietf-nmop-network-anomaly-architecture] describes
+   the elements of the system architecture where the "Alarm Management
+   System" maps to the "Incident Server" in Section 4 of this document.
+   The "relevant-state" YANG notification defined in Section 8.2 of
+   [I-D.ietf-nmop-network-anomaly-lifecycle] defines an "id" which
+   should be mapped to "event-id" in the 'ietf-incident' YANG module
+   described in this document on the "Incident Server".
+   [I-D.ietf-nmop-network-anomaly-semantics] augments relevant-state
+   YANG notification with 'ietf-network-anomaly-symptom' YANG module
+   symptom semantics described in Section 4.2 and service and network
+   relationships with 'ietf-network-anomaly-service-topology' YANG
+   module in Section 4.3. "hostname" in "vpn-node-termination" grouping
+   of 'ietf-network-anomaly-service-topology' YANG module maps to "node-
+   ref" in " node-ref " grouping respectively the "vpn-id" in the "vpn-
+   service" list of the "vpn-service" grouping maps to the "service-
+   instance" leaf-list of the "incident-info" grouping in 'ietf-
+   incident' YANG module.  Thus, preserving the mapping between
+   relevant-state notification id, service id and hostname in the
+   network where the outlier was detected.
+
+10.  Security Considerations
 
    The YANG module specified in this document defines a data model that
    is designed to be accessed via YANG-based management protocols, such
@@ -1976,21 +2131,20 @@ Table of Contents
    the network.  Care must be taken to ensure that this list is accessed
    only by authorized users.
 
-   Some of the RPC operations in this YANG module may be considered
+   Some of the rpc operations in this YANG module may be considered
    sensitive or vulnerable in some network environments.  It is thus
    important to control access to these operations.  These are the
    operations and their sensitivity/vulnerability:
 
-   "incident-diagnose": This RPC operation performs network incident
+   "incident-diagnose": This rpc operation performs network incident
    diagnosis and Probable Root Cause locating.  If a malicious or buggy
    client performs an unexpectedly large number of this operation, the
-   result might be an excessive use of system resources
-   [I-D.ietf-nmop-terminology] on the server side as well as network
-   resources.  Servers MUST ensure they have sufficient resources to
-   fulfill this request; otherwise, they MUST reject the request using
-   RPC errors defined in section 7.6.
+   result might be an excessive use of system resources [RFC9940] on the
+   server side as well as network resources.  Servers MUST ensure they
+   have sufficient resources to fulfill this request; otherwise, they
+   MUST reject the request using rpc errors defined in section 7.6.
 
-   "incident-resolve": This RPC operation is used to resolve the network
+   "incident-resolve": This rpc operation is used to resolve the network
    incident.  If a malicious or buggy client performs an unexpectedly
    large number of this operation, the result might be an excessive use
    of system resources on the server side as well as network resources.
@@ -1998,9 +2152,9 @@ Table of Contents
    request; otherwise, they MUST reject the request without compromise
    on security of data-at-rest in the server.
 
-10.  IANA Considerations
+11.  IANA Considerations
 
-10.1.  The "IETF XML" Registry
+11.1.  The "IETF XML" Registry
 
    IANA is requested to register the following URI in the "ns" registry
    within the "IETF XML Registry" group [RFC3688]:
@@ -2009,7 +2163,7 @@ Table of Contents
    Registrant Contact: The IESG.
    XML: N/A, the requested URIs are XML namespaces.
 
-10.2.  The "YANG Module Names" Registry
+11.2.  The "YANG Module Names" Registry
 
    IANA is requested to register the following YANG module in the "YANG
    Module Names" registry [RFC6020] within the "YANG Parameters"
@@ -2021,30 +2175,23 @@ Table of Contents
    Prefix: inc
    Reference:  RFC XXXX
 
-   // RFC Ed.: replace XXXX and remove this comment
+   // RFC Ed.: Replace RFC xxxx with this RFC id, when published and
+   remove this comment
 
 Acknowledgements
 
    The authors would like to thank Mohamed Boucadair, Robert Wilton,
    Benoit Claise, Oscar Gonzalez de Dios, Adrian Farrel, Mahesh
    Jethanandani, Balazs Lengyel, Dhruv Dhody,Bo Wu, Qiufang Ma, Haomian
-   Zheng, YuanYao，Wei Wang, Peng Liu, Zongpeng Du, Zhengqiang Li, Andrew
-   Liu , Joe Clark, Roland Scott, Alex Huang Feng, Kai Gao, Jensen
-   Zhang, Ziyang Xing, Mingshuang Jin, Aihua Guo, Zhidong Yin, Guoxiang
-   Liu, Kaichun Wu for their valuable comments and great input to this
-   work.
+   Zheng, YuanYao, Wei Wang, Peng Liu, Zongpeng Du, Zhengqiang Li,
+   Andrew Liu , Joe Clark, Roland Scott, Alex Huang Feng, Kai Gao,
+   Jensen Zhang, Ziyang Xing, Mingshuang Jin, Aihua Guo, Zhidong Yin,
+   Guoxiang Liu, Kaichun Wu for their valuable comments and great input
+   to this work.
 
 References
 
 Normative References
-
-   [I-D.ietf-nmop-terminology]
-              Davis, N., Farrel, A., Graf, T., Wu, Q., and C. Yu, "Some
-              Key Terms for Network Fault and Problem Management", Work
-              in Progress, Internet-Draft, draft-ietf-nmop-terminology-
-              23, 18 August 2025,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
-              terminology-23>.
 
    [RFC1136]  "Administrative Domains and Routing Domains A Model for
               Routing in the Internet", December 1989,
@@ -2102,6 +2249,10 @@ Normative References
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
+   [RFC8340]  Bjorklund, M. and L. Berger, Ed., "YANG Tree Diagrams",
+              BCP 215, RFC 8340, DOI 10.17487/RFC8340, March 2018,
+              <https://www.rfc-editor.org/rfc/rfc8340>.
+
    [RFC8341]  Bierman, A. and M. Bjorklund, "Network Configuration
               Access Control Model", STD 91, RFC 8341,
               DOI 10.17487/RFC8341, March 2018,
@@ -2136,6 +2287,11 @@ Normative References
               Transport Network", March 2023,
               <https://www.rfc-editor.org/info/rfc9376>.
 
+   [RFC9940]  Davis, N., Ed., Farrel, A., Ed., Graf, T., Wu, Q., and C.
+              Yu, "Some Key Terms for Network Fault and Problem
+              Management", RFC 9940, DOI 10.17487/RFC9940, April 2026,
+              <https://www.rfc-editor.org/rfc/rfc9940>.
+
 Informative References
 
    [BERT]     "BERT (language model)", n.d.,
@@ -2161,33 +2317,49 @@ Informative References
               Gagliano, R., Larsson, K., and J. Lindblad, "NETCONF
               Extension to support Trace Context propagation", Work in
               Progress, Internet-Draft, draft-ietf-netconf-trace-ctx-
-              extension-06, 17 March 2026,
+              extension-07, 4 July 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-netconf-
-              trace-ctx-extension-06>.
+              trace-ctx-extension-07>.
 
    [I-D.ietf-nmop-network-anomaly-architecture]
               Graf, T., Du, W., Francois, P., and A. H. Feng, "A
               Framework for a Network Anomaly Detection Architecture",
               Work in Progress, Internet-Draft, draft-ietf-nmop-network-
-              anomaly-architecture-07, 18 January 2026,
+              anomaly-architecture-08, 6 July 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
-              network-anomaly-architecture-07>.
+              network-anomaly-architecture-08>.
+
+   [I-D.ietf-nmop-network-anomaly-lifecycle]
+              Riccobene, V., Graf, T., Du, W., and A. H. Feng, "An
+              Experiment: Network Anomaly Detection Lifecycle", Work in
+              Progress, Internet-Draft, draft-ietf-nmop-network-anomaly-
+              lifecycle-06, 6 July 2026,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
+              network-anomaly-lifecycle-06>.
+
+   [I-D.ietf-nmop-network-anomaly-semantics]
+              Graf, T., Du, W., Feng, A. H., and V. Riccobene, "Semantic
+              Metadata Annotation for Network Anomaly Detection", Work
+              in Progress, Internet-Draft, draft-ietf-nmop-network-
+              anomaly-semantics-06, 6 July 2026,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
+              network-anomaly-semantics-06>.
 
    [I-D.ietf-opsawg-scheduling-oam-tests]
               Contreras, L. M., Lopez, V., and Q. Wu, "A YANG Data Model
               for Network Diagnosis using Scheduled Sequences of OAM
               Tests", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-scheduling-oam-tests-06, 7 May 2026,
+              opsawg-scheduling-oam-tests-07, 5 July 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              scheduling-oam-tests-06>.
+              scheduling-oam-tests-07>.
 
    [I-D.irtf-nmrg-ai-challenges]
               François, J., Clemm, A., Papadimitriou, D., Fernandes, S.,
               and S. Schneider, "Research Challenges in Coupling
               Artificial Intelligence and Network Management", Work in
               Progress, Internet-Draft, draft-irtf-nmrg-ai-challenges-
-              05, 18 March 2025, <https://datatracker.ietf.org/doc/html/
-              draft-irtf-nmrg-ai-challenges-05>.
+              06, 6 July 2026, <https://datatracker.ietf.org/doc/html/
+              draft-irtf-nmrg-ai-challenges-06>.
 
    [ITU-T-G-7710]
               "ITU-T G.7710/Y.1701 - Common equipment management
@@ -2245,9 +2417,9 @@ Appendix A.  Examples of Network Incident Format Representation
 A.1.  Network Incident Correlated with Specific Network Topology and the
       Network Service
 
-   In this example, we show a nework incident that are associated with
-   the service-instance "optical-svc-A", the node ‘D1’, the network
-   topology ‘L2-Topo’ and the domain ‘FAN’. The Probable Root Cause is
+   In this example, we show a network incident that are associated with
+   the service-instance "optical-svc-A", the node 'D1', the network
+   topology 'L2-Topo' and the domain 'FAN'.  The Probable Root Cause is
    also analysed.
 
    {
@@ -2317,7 +2489,7 @@ A.1.  Network Incident Correlated with Specific Network Topology and the
 A.2.  Network Incident Correlated with Trouble Tickets
 
    In this document, the objective of the Incident Management is to
-   identify probable causes and reduce duplicated tickets.
+   identify Probable Causes and reduce duplicated tickets.
 
    Traditionally, troubleshooting ticket is created upon critical alert
    is received, e.g., due to excessive BGP flaps on a particular device
@@ -2351,10 +2523,10 @@ A.2.  Network Incident Correlated with Trouble Tickets
         |   +----------------------------------------+   |
         +------------------------------------------------+
 
-             Figure 7: Correlation with troubleshooting tickets
+             Figure 8: Correlation with troubleshooting tickets
 
    In order to manage the correlation between network incidents and
-   trouble tickets in the YANG data model, three RPCs to manage the
+   trouble tickets in the YANG data model, three rpcs to manage the
    network incidents and one notification to report on network incident
    state changes defined in "ietf-incident" module can be further
    extended to include "ticket-no" attribute so that such correlation
@@ -2389,7 +2561,7 @@ A.2.  Network Incident Correlated with Trouble Tickets
 
 A.3.  Intent Based Networking with Incident Diagnosis Task List
 
-   In this document, the incident-diagnosis RPC defined in "ietf-
+   In this document, the incident-diagnosis rpc defined in "ietf-
    incident" module can be used to identify Probable Root Causes; and an
    incident update notification can be triggered to report the diagnosis
    status if successful.
@@ -2415,11 +2587,11 @@ A.3.  Intent Based Networking with Incident Diagnosis Task List
    |   +----------------------------------------+   |
    +------------------------------------------------+
 
-   To do so, the new "diagnosis task creation" RPC can be further
+   To do so, the new "diagnosis task creation" rpc can be further
    defined to support "task-id" attribute in the output parameters and
-   other auxiliary attributes in the input parameters. such RPC can be
+   other auxiliary attributes in the input parameters. such rpc can be
    used to return task-id from the controller.  The controller is
-   responsbile for task-id allocation and maintaining task-id list.
+   responsible for task-id allocation and maintaining task-id list.
 
        +---x diagnose-task-creation
        |  +---w input
@@ -2443,13 +2615,14 @@ A.3.  Intent Based Networking with Incident Diagnosis Task List
    "ietf-incident" module can be further extended to include "incident-
    diagnosis-task" list with the following diagnosis information:
 
-   • The current status (e.g., created, diagnosing, diagnosed, finished)
-   of each diagnosis task.
+   *  The current status (e.g., created, diagnosing, diagnosed,
+      finished) of each diagnosis task.
 
-   • Task start time, end time, diagnosis result (succeeded, failed),
-   failure description, etc.
+   *  Task start time, end time, diagnosis result (succeeded, failed),
+      failure description, etc.
 
-   • Probable Root Causes, probable events, repair recommendations, etc.
+   *  Probable Root Causes, probable events, repair recommendations,
+      etc.
 
    so that OSS system can use NETCONF <get-config> operation to look up
    the diagnosis task detailed information based on such module
@@ -2458,21 +2631,21 @@ A.3.  Intent Based Networking with Incident Diagnosis Task List
 augment /inc:incidents/inc:incident:
 +--ro incident-diagnosis-tasks
 |   +--ro incident-diagnosis-task* [task-id]
-|   +--ro task-id? String
+|   +--ro task-id? string
 |   +--ro incident-no* incident-ref
 |   +--ro ticket-no? string
 |   +--ro start-time? yang:date-and-time
 |   +--ro end-time? yang:date-and-time
 |   +--ro task-state? enumeration
 |   +--ro diagnosis-result? enumeration
-|   +--ro diagnosis-result-description? String
+|   +--ro diagnosis-result-description? string
 |   +--ro probable-causes leafref //List <RootCause>
-…
+...
 |   +--ro probable-events leafref //List <Event>
-…
+...
 |   +-- ro repair-advices
 |   +-- ro state enumeration // Incident states such as Creation, Update, Clear
-…
+...
 
    In addition, the new Diagnosis Task Notification can be defined to
    support Diagnosis Task related attributes reporting.
@@ -2514,14 +2687,14 @@ A.4.  Multi-Domain Fault Demarcation with Network Incident Management
    IP network are received and base station incident from user side
    results from network incident in other domains, the OSS system is
    unable to find network side problem simply based on base station
-   incident.  Therefore incident diagnosis RPC will be invoked with IP
+   incident.  Therefore incident diagnosis rpc will be invoked with IP
    address of Base station and incident start time as input and sent to
    the network controller.  The network controller can use network
    diagnosis related intent based interface to find the corresponding
    network side port according to the base station IP address, and then
    further associated with transmission path (current path, historical
    path) to the base station and current and historical network
-   performance, netowrk resources, and incident status data, to diagnose
+   performance, network resources, and incident status data, to diagnose
    the Probable Root Cause of the network incident and provide repair
    suggestions.
 
@@ -2549,16 +2722,16 @@ A.4.  Multi-Domain Fault Demarcation with Network Incident Management
                                    |
            Diagnosis Key Parameters:
            {
-           ticket-no, String
-           incident-no, String
+           ticket-no, string
+           incident-no, string
            occur-time, yang:date-and-time
-           context? String
+           context? string
            related-events?  leafref //List <Event>
            related-objects? leafref //List <ResourceObject>
             ....
            }
 
-                  Figure 8: Multi-Domain Fault Demarcation
+                  Figure 9: Multi-Domain Fault Demarcation
 
 A.5.  Service Complaint triggered Network Diagnosis
 
@@ -2587,10 +2760,10 @@ A.5.  Service Complaint triggered Network Diagnosis
 
                                    IP Autonomous Domain
 
-          Figure 9: Service Complaint triggered Network Diagnosis
+          Figure 10: Service Complaint triggered Network Diagnosis
 
    Similarly, in case of service degradation for a lease line service
-   recieving from the customer, the OSS system can request network
+   receiving from the customer, the OSS system can request network
    diagnosis at the network side conducted by the network controller.
    The network controller can use network diagnosis related intent based
    interface to find the corresponding network side port based on the
@@ -2602,6 +2775,36 @@ A.5.  Service Complaint triggered Network Diagnosis
 
 Appendix B.  Changes between Revisions
 
+   v08 - v09
+
+   *  Second alignment with RFC9940
+
+   *  Fix document references to match Model references
+
+   *  Allow create incident without knowing the source
+
+   *  Make incident-no mandatory
+
+   *  Add clarification text for min-element set to unknown
+
+   *  Update YANG model tree diagram to align with update of YANG data
+      model
+
+   *  Create ietf-incident-tree diagram
+
+   v07 - v08
+
+   *  Add a new section to clarify Relationship with network anomaly
+      architecture;
+
+   *  Clarify the relation with OAM Schdule YANG in section 4;
+
+   *  Abstract update;
+
+   *  Terminology alignment with RFC9940;
+
+   *  Other Editorial changes;
+
    v06 - v07
 
    *  Fix Yanglint issue in the YANG data model.
@@ -2612,7 +2815,7 @@ Appendix B.  Changes between Revisions
 
    *  Probable Root Cause Definition Polishing.
 
-   *  Tree diagram update for RPC error construct
+   *  Tree diagram update for rpc error construct
 
    v05 - v06
 
@@ -2644,7 +2847,7 @@ Appendix B.  Changes between Revisions
 
    *  Add two new examples in the Appendix to explore correlation
       between troubleshooting ticket and incident management and intent
-      based network diagonisis interaction.
+      based network diagnoisis interaction.
 
    v02 - v03
 
@@ -2687,7 +2890,7 @@ Appendix B.  Changes between Revisions
 
    *  Clarify the relationship between events and cause.
 
-   *  Clarify synchronous nature of these RPCs.
+   *  Clarify synchronous nature of these rpcs.
 
    *  Clarify the relationship between inter-layer and inter-domain.
 
@@ -2725,63 +2928,6 @@ Appendix B.  Changes between Revisions
 
    *  open issues is tracked in https://github.com/billwuqin/network-
       incident/issues
-
-   v03 - v04 (draft-feng-opsawg-incident-management)
-
-   *  Update incident defintion based on TMF incident API profile
-      specification.
-
-   *  Update use case on Multi-layer Fault Demarcation based on side
-      meeting discussion and IETF 119 session discussion.
-
-   *  Update section 5.1 to explain how network incident is generated
-      based on other factors.
-
-   *  Add one new use cases on Security Events noise reduction based on
-      Situation Awareness.
-
-   *  Other Editorial changes.
-
-   v02 - v03 (draft-feng-opsawg-incident-management)
-
-   *  Add one new use cases on Incident Generation.
-
-   *  Add reference to Precision Availability Metric defined in IPPM PAM
-      WG document.
-
-   v01 - v02
-
-   *  A few Editorial change to YANG data models in section 8.
-
-   *  Add some text to the model design overview.
-
-   *  Revise sample use cases section to focus on two key use cases.
-
-   *  Motivation and goal clarification in the introduction section.
-
-   v00 - v01 (draft-feng-opsawg-incident-management)
-
-   *  Modify the introduction.
-
-   *  Rename incident agent to Incident Server.
-
-   *  Add the interworking with alarm management.
-
-   *  Add the interworking with SAIN.
-
-   *  Add the relationship with RFC8969.
-
-   *  Add the relationship with observation timestamp and trace context.
-
-   *  Clarify the incident identification process.
-
-   *  Modify the work flow of incident diagnosis and resolution.
-
-   *  Remove identities and typedefs from ietf-incident YANG module, and
-      create a new YANG module called ietf-incident-types.
-
-   *  Modify ietf-incident YANG module, for example, modify incident-
-      diagnose rpc and incident-resolve rpc.
 
 Contributors
 
