@@ -168,7 +168,7 @@ many solutions in the market today that essentially do this to some degree.
 However, conventional solutions such as data compression are time-consuming
 and labor-intensive, usually rely on maintenance engineers'experience for data
 analysis, which, in many cases, result in low processing efficiency, inaccurate
-Probable Cause identification and duplicated tickets. It is also difficult to
+Probable Root Cause identification and duplicated tickets. It is also difficult to
 assess the impact of alarms, performance metrics and other anomaly data on network
 services without known relation across layers of the entire network topology data
 or the relation with other network topology data.
@@ -900,7 +900,7 @@ multiple layers.
 Because accurate multi-layer troubleshooting depends on establishing a global view
 of cross-layer dependency relationships, any disruption or stale state in the
 underlying network topology discovery mechanisms will directly degrade the accuracy
-of the incident process's probable cause identification and service impact analysis.
+of the incident process's probable root cause identification and service impact analysis.
 
 In addition, the YANG module defined in this document is intended to automate and
 streamline incident dispatching at the network layer, but integration with
