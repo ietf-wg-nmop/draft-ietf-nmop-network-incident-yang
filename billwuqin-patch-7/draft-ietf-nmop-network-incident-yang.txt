@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 7 January 2027                                       Telefonica
+Expires: 30 January 2027                                      Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                             6 July 2026
+                                                            29 July 2026
 
 
            A YANG Data Model for Network Incident Management
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 January 2027.
+   This Internet-Draft will expire on 30 January 2027.
 
 Copyright Notice
 
@@ -88,7 +88,7 @@ Table of Contents
      9.2.  Interworking with SAIN
      9.3.  Relationship with RFC8969
      9.4.  Relationship with Trace Context
-     9.5.  Relationship with network anomaly architecture
+     9.5.  Relationship with Network Anomaly Detection Architecture
    10. Security Considerations
    11. IANA Considerations
      11.1.  The "IETF XML" Registry
@@ -137,13 +137,13 @@ Table of Contents
    fewer network incidents and there are many solutions in the market
    today that essentially do this to some degree.  However, conventional
    solutions such as data compression are time-consuming and labor-
-   intensive, usually rely on maintenance engineers' experience for data
+   intensive, usually rely on maintenance engineers'experience for data
    analysis, which, in many cases, result in low processing efficiency,
-   inaccurate Probable Cause identification and duplicated tickets.  It
-   is also difficult to assess the impact of alarms, performance metrics
-   and other anomaly data on network services without known relation
-   across layers of the entire network topology data or the relation
-   with other network topology data.
+   inaccurate Probable Root Cause identification and duplicated tickets.
+   It is also difficult to assess the impact of alarms, performance
+   metrics and other anomaly data on network services without known
+   relation across layers of the entire network topology data or the
+   relation with other network topology data.
 
    To address these challenges, a network-wide incident-centric solution
    is specified to establish the global view on dependency relationships
@@ -266,18 +266,19 @@ Table of Contents
       control the incident server and cannot instruct it to perform
       network incident diagnosis or resolution.
 
-   Probable Root Cause:  If removing a factor completely resolves the
-      ongoing incident (specifically, regarding network outage or
-      service impairments and their associated subsequent failures and
-      symptoms) and prevents the problem from recurring, then such
-      factor is considered as a Probable Root Cause of a problem.
+   Probable Root Cause:  If removing a fault condition completely
+      resolves the ongoing incident (specifically, regarding network
+      outage or service impairments and their associated subsequent
+      failures and symptoms) and prevents the problem from recurring,
+      then such fault condition is considered as a Probable Root Cause
+      of a problem.
 
       Since one Fault may give rise to another Fault or Problem, a
       Probable Root Cause is commonly meant to describe the original
       event or combination of circumstances that is the foundation of
       all related Faults.
 
-      Conversely, a causal factor is a contributing action that
+      Conversely, a causal fault condition is a contributing action that
       influences the outcome of the incident or event but is not the
       Probable Cause.
 
@@ -1269,20 +1270,12 @@ Table of Contents
              "RFC5277:NETCONF Event Notifications";
      }
 
-     identity log {
+     identity metric {
        base event-type;
        description
-         "Log event type.";
-           reference
-             "RFC5424: The Syslog Protocol";
-     }
-
-     identity kpi {
-       base event-type;
-       description
-         "KPI event type.";
+         "Metric event type.";
        reference
-         "RFC2330: Framework for IP Performance Metrics";
+         "RFC9375: YANG Data Model for Network Incident Management";
      }
 
      identity unknown {
@@ -1291,13 +1284,13 @@ Table of Contents
          "Unknown event type.";
      }
 
-     identity incident-class {
+     identity incident-type {
        description
          "The abstract identity for Incident category.";
      }
 
      identity problem {
-       base incident-class;
+       base incident-type;
        description
          "It indicates the class of the incident is a problem
          (i.e.,cause of the incident) for example an interface
@@ -1309,7 +1302,7 @@ Table of Contents
      }
 
      identity sla-violation {
-       base incident-class;
+       base incident-type;
        description
          "It indicates the class of the incident is a sla
           violation, for example high CPU rate may cause
@@ -1504,7 +1497,7 @@ Table of Contents
        }
        leaf type {
          type identityref {
-           base incident-class;
+           base incident-type;
          }
          description
            "The type of an incident.";
@@ -1672,7 +1665,9 @@ Table of Contents
            }
            choice event-type-info {
              description
-               "Event type information.";
+               "Various different event type information.
+               In case of the other event type, it will be specified in the extension
+               module.";
              case alarm {
                when "derived-from-or-self(type, 'alarm')" {
                  description
@@ -1719,6 +1714,70 @@ Table of Contents
                  }
                }
              }
+                     case metric {
+               when "derived-from-or-self(type, 'metric')" {
+                 description
+                   "Only applies when type is metric.";
+               }
+                           container metric {
+                 description
+                   "Metric type event. Performance metrics
+                                   exceeding SLO thresholds.";
+                 leaf resource {
+                   type leafref {
+                     path "/al:alarms/al:alarm-list/al:alarm"
+                        + "/al:resource";
+                   }
+                   description
+                     "Network resource.";
+                   reference
+                     "RFC 8632: A YANG Data Model for Alarm
+                      Management";
+                 }
+                             leaf metric-name {
+                               type string;
+                                   description "Metric Name.";
+                                   }
+                 leaf threshold-value {
+                               type string;
+                                   description "Threshold value for the specific metric.";
+                                   }
+                 leaf observed-value {
+                               type string;
+                               description "Observed value for the specific metric";
+                                   }
+                       }
+                    }
+                    case notification {
+               when "derived-from-or-self(type, 'notif')" {
+                 description
+                   "Only applies when type is notification.";
+               }
+                           container notification {
+                 description
+                   "Notification type event.";
+                             leaf event-time {
+                               type yang:date-and-time;
+                                   description "The date and time the event was generated by the network node.";
+                                   }
+                 leaf hostname {
+                               type inet:hostname;
+                                   description "The hostname of the network node. This value is usually
+                   configured on the node by the administrator to identify
+                   the node in the network uniquely.";
+                                   }
+                 leaf sequence-number {
+                               type yang:counter32;
+                               description "Unique sequence number for each published message
+                   by the publisher process. The initial number is 1 and
+                   counts up by 1 at every published notification message
+                   until it reaches 4294967295. Then, it wraps around and
+                   restarts at 0. The value 0 is used to detect wrap
+                   arounds.";
+                                   }
+                       }
+                    }
+                    }
            }
          }
        }
@@ -1907,17 +1966,18 @@ Table of Contents
    a global view of cross-layer dependency relationships, any disruption
    or stale state in the underlying network topology discovery
    mechanisms will directly degrade the accuracy of the incident
-   process's probable cause identification and service impact analysis.
+   process's probable root cause identification and service impact
+   analysis.
 
    In addition, the YANG module defined in this document is intended to
-   automate and streamline incident dispatching at the network layer,
-   but integration with trouble-ticketing management system at the OSS
-   layer is also required.  Operators should implement a deterministic
-   translation layer between the "ietf-incident" model states and
-   external ticket states (e.g., Open, Assigned, In-Progress, Resolved)
-   to prevent split-brain visibility scenarios where an incident is
-   closed in the network layer but remains active in the ticketing
-   system, or vice versa.
+   automate and streamline incident dispatching at the network layer so
+   that integration with trouble-ticketing management system at the OSS
+   layer is required.  Operators should implement a deterministic
+   translation layer between the "ietf-incident" model states (e.g.,
+   raised, cleared, acknowledged) and external ticket states (e.g.,
+   Open, Assigned, In-Progress, Resolved) to prevent split-brain
+   visibility scenarios where an incident is closed in the network layer
+   but remains active in the ticketing system, or vice versa.
 
    This incident data model states that the tuple (name, type and
    incident-id) corresponds to a single incident instance.  This means
@@ -2075,17 +2135,32 @@ Table of Contents
    deploying, it's very easy to identify these errors by distributed
    system tracing, and a network incident should be reported.
 
-9.5.  Relationship with network anomaly architecture
+9.5.  Relationship with Network Anomaly Detection Architecture
 
-   Network anomaly architecture
-   [I-D.ietf-nmop-network-anomaly-architecture] focuses on improving
-   supervised and semi-supervised machine learning systems and
-   evaluating anomaly detection algorithms and technologies.  It also
-   can be used to monitor network changes holistically by monitoring all
-   3 network planes simultaneously and detect whether that change is
-   service disruptive.  In case of disruptive changes, the anomaly can
-   be upgraded into the network incident which trigger troubleshooting
-   tickets generation.
+   [I-D.ietf-nmop-network-anomaly-architecture] and related network
+   anomaly detection documents describe how anomaly detection is applied
+   to detect service interruption in IP networks by performing outlier
+   detection on all 3 network planes, preserve relationships among them
+   and score the result with a concern and with a confidence score.
+   Section 3 of [I-D.ietf-nmop-network-anomaly-architecture] describes
+   the elements of the system architecture where the "Alarm Management
+   System" maps to the "Incident Server" in Section 4 of this document.
+   The "relevant-state" YANG notification defined in Section 8.2 of
+   [I-D.ietf-nmop-network-anomaly-lifecycle] defines an "id" which
+   should be mapped to "event-id" in the 'ietf-incident' YANG module
+   described in this document on the "Incident Server".
+   [I-D.ietf-nmop-network-anomaly-semantics] augments relevant-state
+   YANG notification with 'ietf-network-anomaly-symptom' YANG module
+   symptom semantics described in Section 4.2 and service and network
+   relationships with 'ietf-network-anomaly-service-topology' YANG
+   module in Section 4.3. "hostname" in "vpn-node-termination" grouping
+   of 'ietf-network-anomaly-service-topology' YANG module maps to "node-
+   ref" in " node-ref " grouping respectively the "vpn-id" in the "vpn-
+   service" list of the "vpn-service" grouping maps to the "service-
+   instance" leaf-list of the "incident-info" grouping in 'ietf-
+   incident' YANG module.  Thus, preserving the mapping between
+   relevant-state notification id, service id and hostname in the
+   network where the outlier was detected.
 
 10.  Security Considerations
 
@@ -2309,9 +2384,25 @@ Informative References
               Graf, T., Du, W., Francois, P., and A. H. Feng, "A
               Framework for a Network Anomaly Detection Architecture",
               Work in Progress, Internet-Draft, draft-ietf-nmop-network-
-              anomaly-architecture-07, 18 January 2026,
+              anomaly-architecture-08, 6 July 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
-              network-anomaly-architecture-07>.
+              network-anomaly-architecture-08>.
+
+   [I-D.ietf-nmop-network-anomaly-lifecycle]
+              Riccobene, V., Graf, T., Du, W., and A. H. Feng, "An
+              Experiment: Network Anomaly Detection Lifecycle", Work in
+              Progress, Internet-Draft, draft-ietf-nmop-network-anomaly-
+              lifecycle-06, 6 July 2026,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
+              network-anomaly-lifecycle-06>.
+
+   [I-D.ietf-nmop-network-anomaly-semantics]
+              Graf, T., Du, W., Feng, A. H., and V. Riccobene, "Semantic
+              Metadata Annotation for Network Anomaly Detection", Work
+              in Progress, Internet-Draft, draft-ietf-nmop-network-
+              anomaly-semantics-06, 6 July 2026,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
+              network-anomaly-semantics-06>.
 
    [I-D.ietf-opsawg-scheduling-oam-tests]
               Contreras, L. M., Lopez, V., and Q. Wu, "A YANG Data Model
@@ -2326,8 +2417,8 @@ Informative References
               and S. Schneider, "Research Challenges in Coupling
               Artificial Intelligence and Network Management", Work in
               Progress, Internet-Draft, draft-irtf-nmrg-ai-challenges-
-              05, 18 March 2025, <https://datatracker.ietf.org/doc/html/
-              draft-irtf-nmrg-ai-challenges-05>.
+              06, 6 July 2026, <https://datatracker.ietf.org/doc/html/
+              draft-irtf-nmrg-ai-challenges-06>.
 
    [ITU-T-G-7710]
               "ITU-T G.7710/Y.1701 - Common equipment management
