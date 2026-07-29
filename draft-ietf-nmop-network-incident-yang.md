@@ -903,12 +903,13 @@ underlying network topology discovery mechanisms will directly degrade the accur
 of the incident process's probable root cause identification and service impact analysis.
 
 In addition, the YANG module defined in this document is intended to automate and
-streamline incident dispatching at the network layer, but integration with
-trouble-ticketing management system at the OSS layer is also required. Operators should
+streamline incident dispatching at the network layer so that integration with
+trouble-ticketing management system at the OSS layer is required. Operators should
 implement a deterministic translation layer between the "ietf-incident" model
-states and external ticket states (e.g., Open, Assigned, In-Progress, Resolved)
-to prevent split-brain visibility scenarios where an incident is closed in the
-network layer but remains active in the ticketing system, or vice versa.
+states (e.g., raised, cleared, acknowledged) and external ticket states (e.g., Open,
+Assigned, In-Progress, Resolved) to prevent split-brain visibility scenarios where
+an incident is closed in the network layer but remains active in the ticketing
+system, or vice versa.
 
 This incident data model states that the tuple (name, type and incident-id) corresponds to
 a single incident instance. This means that incident notifications for the
