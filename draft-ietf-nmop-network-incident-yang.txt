@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 9 January 2027                                       Telefonica
+Expires: 30 January 2027                                      Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                             8 July 2026
+                                                            29 July 2026
 
 
            A YANG Data Model for Network Incident Management
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 January 2027.
+   This Internet-Draft will expire on 30 January 2027.
 
 Copyright Notice
 
@@ -139,11 +139,11 @@ Table of Contents
    solutions such as data compression are time-consuming and labor-
    intensive, usually rely on maintenance engineers'experience for data
    analysis, which, in many cases, result in low processing efficiency,
-   inaccurate Probable Cause identification and duplicated tickets.  It
-   is also difficult to assess the impact of alarms, performance metrics
-   and other anomaly data on network services without known relation
-   across layers of the entire network topology data or the relation
-   with other network topology data.
+   inaccurate Probable Root Cause identification and duplicated tickets.
+   It is also difficult to assess the impact of alarms, performance
+   metrics and other anomaly data on network services without known
+   relation across layers of the entire network topology data or the
+   relation with other network topology data.
 
    To address these challenges, a network-wide incident-centric solution
    is specified to establish the global view on dependency relationships
@@ -279,7 +279,7 @@ Table of Contents
 
       Conversely, a causal factor is a contributing action that
       influences the outcome of the incident or event but is not the
-      Probable Cause.
+      Probable Root Cause.
 
 3.  Sample Use Cases
 
@@ -1907,7 +1907,8 @@ Table of Contents
    a global view of cross-layer dependency relationships, any disruption
    or stale state in the underlying network topology discovery
    mechanisms will directly degrade the accuracy of the incident
-   process's probable cause identification and service impact analysis.
+   process's probable root cause identification and service impact
+   analysis.
 
    In addition, the YANG module defined in this document is intended to
    automate and streamline incident dispatching at the network layer,
