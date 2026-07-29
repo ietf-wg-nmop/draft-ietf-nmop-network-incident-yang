@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 29 January 2027                                      Telefonica
+Expires: 30 January 2027                                      Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                            28 July 2026
+                                                            29 July 2026
 
 
            A YANG Data Model for Network Incident Management
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 29 January 2027.
+   This Internet-Draft will expire on 30 January 2027.
 
 Copyright Notice
 
@@ -1672,7 +1672,9 @@ Table of Contents
            }
            choice event-type-info {
              description
-               "Various different event type information.";
+               "Various different event type information. By default it is alarm event type.
+               In case of the other event type, it will be specified in the extension
+               module.";
              default alarm;
              case alarm {
                when "derived-from-or-self(type, 'alarm')" {
