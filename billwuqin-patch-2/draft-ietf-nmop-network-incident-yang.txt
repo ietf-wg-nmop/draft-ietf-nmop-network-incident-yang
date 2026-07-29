@@ -1672,10 +1672,9 @@ Table of Contents
            }
            choice event-type-info {
              description
-               "Various different event type information. By default it is alarm event type.
+               "Various different event type information.
                In case of the other event type, it will be specified in the extension
                module.";
-             default alarm;
              case alarm {
                when "derived-from-or-self(type, 'alarm')" {
                  description
