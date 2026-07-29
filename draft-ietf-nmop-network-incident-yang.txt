@@ -1291,13 +1291,13 @@ Table of Contents
          "Unknown event type.";
      }
 
-     identity incident-class {
+     identity incident-type {
        description
          "The abstract identity for Incident category.";
      }
 
      identity problem {
-       base incident-class;
+       base incident-type;
        description
          "It indicates the class of the incident is a problem
          (i.e.,cause of the incident) for example an interface
@@ -1309,7 +1309,7 @@ Table of Contents
      }
 
      identity sla-violation {
-       base incident-class;
+       base incident-type;
        description
          "It indicates the class of the incident is a sla
           violation, for example high CPU rate may cause
@@ -1504,7 +1504,7 @@ Table of Contents
        }
        leaf type {
          type identityref {
-           base incident-class;
+           base incident-type;
          }
          description
            "The type of an incident.";
