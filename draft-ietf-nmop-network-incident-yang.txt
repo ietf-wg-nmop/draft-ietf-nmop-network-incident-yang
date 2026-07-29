@@ -266,20 +266,21 @@ Table of Contents
       control the incident server and cannot instruct it to perform
       network incident diagnosis or resolution.
 
-   Probable Root Cause:  If removing a factor completely resolves the
-      ongoing incident (specifically, regarding network outage or
-      service impairments and their associated subsequent failures and
-      symptoms) and prevents the problem from recurring, then such
-      factor is considered as a Probable Root Cause of a problem.
+   Probable Root Cause:  If removing a fault condition completely
+      resolves the ongoing incident (specifically, regarding network
+      outage or service impairments and their associated subsequent
+      failures and symptoms) and prevents the problem from recurring,
+      then such fault condition is considered as a Probable Root Cause
+      of a problem.
 
       Since one Fault may give rise to another Fault or Problem, a
       Probable Root Cause is commonly meant to describe the original
       event or combination of circumstances that is the foundation of
       all related Faults.
 
-      Conversely, a causal factor is a contributing action that
+      Conversely, a causal fault condition is a contributing action that
       influences the outcome of the incident or event but is not the
-      Probable Root Cause.
+      Probable Cause.
 
 3.  Sample Use Cases
 
