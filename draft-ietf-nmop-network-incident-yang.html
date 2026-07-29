@@ -2599,12 +2599,12 @@ module ietf-incident {
           "RFC5424: The Syslog Protocol";
   }
 
-  identity kpi {
+  identity metric {
     base event-type;
     description
-      "KPI event type.";
+      "Metric event type.";
     reference
-      "RFC2330: Framework for IP Performance Metrics";
+      "RFC9375: YANG Data Model for Network Incident Management";
   }
 
   identity unknown {
@@ -2994,7 +2994,9 @@ module ietf-incident {
         }
         choice event-type-info {
           description
-            "Event type information.";
+            "Various different event type information.
+            In case of the other event type, it will be specified in the extension
+            module.";
           case alarm {
             when "derived-from-or-self(type, 'alarm')" {
               description
