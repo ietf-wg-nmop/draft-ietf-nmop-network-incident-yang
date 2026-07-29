@@ -30,7 +30,7 @@ cause analysis.
     Jinja2 3.1.6
     lxml 6.1.1
     natsort 8.4.0
-    platformdirs 4.10.0
+    platformdirs 4.10.1
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.33.1
@@ -70,7 +70,6 @@ cause analysis.
   src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin-ext.woff2') format('woff2');
   unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
-
 @font-face {
   font-family: 'Lora';
   font-style: italic;
@@ -119,7 +118,6 @@ cause analysis.
   src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-
 @font-face {
   font-family: 'Lora';
   font-style: normal;
@@ -184,7 +182,6 @@ cause analysis.
   font-display: swap;
   src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
 }
 
 @font-face {
@@ -1057,7 +1054,7 @@ svg {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Hu, et al.</td>
-<td class="center">Expires 7 January 2027</td>
+<td class="center">Expires 30 January 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1070,12 +1067,12 @@ svg {
 <dd class="internet-draft">draft-ietf-nmop-network-incident-yang-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-07-06" class="published">6 July 2026</time>
+<time datetime="2026-07-29" class="published">29 July 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-01-07">7 January 2027</time></dd>
+<dd class="expires"><time datetime="2027-01-30">30 January 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1128,7 +1125,7 @@ cause analysis.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 7 January 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 30 January 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1345,22 +1342,22 @@ System (OSS) have increased dramatically (in many cases multiple
 orders of magnitude) with the growth of service types and complexity
 and greatly overwhelm OSS platforms <span>[<a href="#TMF724A" class="cite xref">TMF724A</a>]</span>; with existing known dependency
 relationships between metric, alarm, and events at each layer (e.g., packet
-layer or optical layer), it is possible to compress series of
-alarms (see Section 3.5.3 of <span>[<a href="#RFC8632" class="cite xref">RFC8632</a>]</span> ) into fewer network
-incidents and there are many solutions in the market today that essentially do
-this to some degree. However, conventional solutions such as data compression
-are time-consuming and labor-intensive, usually rely on maintenance engineers'
-experience for data analysis, which, in many cases, result in low processing
-efficiency, inaccurate Probable Cause identification and duplicated tickets.
-It is also difficult to assess the impact of alarms, performance metrics and other
-anomaly data on network services without known relation across layers of
-the entire network topology data or the relation with other network topology data.<a href="#section-1-2" class="pilcrow">¶</a></p>
+layer or optical layer), it is possible to compress series of alarms
+(see Section 3.5.3 of <span>[<a href="#RFC8632" class="cite xref">RFC8632</a>]</span> ) into fewer network incidents and there are
+many solutions in the market today that essentially do this to some degree.
+However, conventional solutions such as data compression are time-consuming
+and labor-intensive, usually rely on maintenance engineers'experience for data
+analysis, which, in many cases, result in low processing efficiency, inaccurate
+Probable Cause identification and duplicated tickets. It is also difficult to
+assess the impact of alarms, performance metrics and other anomaly data on network
+services without known relation across layers of the entire network topology data
+or the relation with other network topology data.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <p id="section-1-3">To address these challenges, a network-wide incident-centric solution
 is specified to establish the global view on dependency relationships with both network
 service and network topology at various different layers, which not only can
 be used at a specific layer in one domain but also can be used to
 span across layers for multi-layer network troubleshooting.<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">As described in <span>[<a href="#I-D.ietf-nmop-terminology" class="cite xref">I-D.ietf-nmop-terminology</a>]</span><span>[<a href="#TMF724A" class="cite xref">TMF724A</a>]</span>, a network incident refers
+<p id="section-1-4">As described in <span>[<a href="#RFC9940" class="cite xref">RFC9940</a>]</span><span>[<a href="#TMF724A" class="cite xref">TMF724A</a>]</span>, a network incident refers
 to an undesired Occurrence such as an unexpected interruption of a network service,
 degradation of the quality of a network service, or the below-target performance of
 a network service. Different data sources, including alarms, metrics, and other anomaly
@@ -1378,7 +1375,7 @@ sub-service. Therefore symptoms will occur if services/sub-services are unhealth
 incident when it causes degradation of the network services.<a href="#section-1-4" class="pilcrow">¶</a></p>
 <p id="section-1-5">In addition, Artificial Intelligence (AI) and Machine Learning (ML)
 are key technologies in the processing of large amounts of data with
-complex data correlations (see <span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-ai-challenges-05#section-6.1" class="relref">Section 6.1</a> of [<a href="#I-D.irtf-nmrg-ai-challenges" class="cite xref">I-D.irtf-nmrg-ai-challenges</a>]</span> ).
+complex data correlations (see <span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-ai-challenges-06#section-6.1" class="relref">Section 6.1</a> of [<a href="#I-D.irtf-nmrg-ai-challenges" class="cite xref">I-D.irtf-nmrg-ai-challenges</a>]</span> ).
 For example, Neural Network Algorithm or Hierarchy Aggregation Algorithm can be used
 to replace manual alarm data correlation. Through online and offline self-learning,
 these algorithms can be continuously optimized to improve the efficiency of
@@ -2594,20 +2591,12 @@ module ietf-incident {
           "RFC5277:NETCONF Event Notifications";
   }
 
-  identity log {
+  identity metric {
     base event-type;
     description
-      "Log event type.";
-        reference
-          "RFC5424: The Syslog Protocol";
-  }
-
-  identity kpi {
-    base event-type;
-    description
-      "KPI event type.";
+      "Metric event type.";
     reference
-      "RFC2330: Framework for IP Performance Metrics";
+      "RFC9375: YANG Data Model for Network Incident Management";
   }
 
   identity unknown {
@@ -2616,13 +2605,13 @@ module ietf-incident {
       "Unknown event type.";
   }
 
-  identity incident-class {
+  identity incident-type {
     description
       "The abstract identity for Incident category.";
   }
 
   identity problem {
-    base incident-class;
+    base incident-type;
     description
       "It indicates the class of the incident is a problem
       (i.e.,cause of the incident) for example an interface
@@ -2634,7 +2623,7 @@ module ietf-incident {
   }
 
   identity sla-violation {
-    base incident-class;
+    base incident-type;
     description
       "It indicates the class of the incident is a sla
        violation, for example high CPU rate may cause
@@ -2829,7 +2818,7 @@ module ietf-incident {
     }
     leaf type {
       type identityref {
-        base incident-class;
+        base incident-type;
       }
       description
         "The type of an incident.";
@@ -2997,7 +2986,9 @@ module ietf-incident {
         }
         choice event-type-info {
           description
-            "Event type information.";
+            "Various different event type information.
+            In case of the other event type, it will be specified in the extension
+            module.";
           case alarm {
             when "derived-from-or-self(type, 'alarm')" {
               description
@@ -3044,6 +3035,70 @@ module ietf-incident {
               }
             }
           }
+                  case metric {
+            when "derived-from-or-self(type, 'metric')" {
+              description
+                "Only applies when type is metric.";
+            }
+                        container metric {
+              description
+                "Metric type event. Performance metrics
+                                exceeding SLO thresholds.";
+              leaf resource {
+                type leafref {
+                  path "/al:alarms/al:alarm-list/al:alarm"
+                     + "/al:resource";
+                }
+                description
+                  "Network resource.";
+                reference
+                  "RFC 8632: A YANG Data Model for Alarm
+                   Management";
+              }
+                          leaf metric-name {
+                            type string;
+                                description "Metric Name.";
+                                }
+              leaf threshold-value {
+                            type string;
+                                description "Threshold value for the specific metric.";
+                                }
+              leaf observed-value {
+                            type string;
+                            description "Observed value for the specific metric";
+                                }
+                    }
+                 }
+                 case notification {
+            when "derived-from-or-self(type, 'notif')" {
+              description
+                "Only applies when type is notification.";
+            }
+                        container notification {
+              description
+                "Notification type event.";
+                          leaf event-time {
+                            type yang:date-and-time;
+                                description "The date and time the event was generated by the network node.";
+                                }
+              leaf hostname {
+                            type inet:hostname;
+                                description "The hostname of the network node. This value is usually
+                configured on the node by the administrator to identify
+                the node in the network uniquely.";
+                                }
+              leaf sequence-number {
+                            type yang:counter32;
+                            description "Unique sequence number for each published message
+                by the publisher process. The initial number is 1 and
+                counts up by 1 at every published notification message
+                until it reaches 4294967295. Then, it wraps around and
+                restarts at 0. The value 0 is used to detect wrap
+                arounds.";
+                                }
+                    }
+                 }
+                 }
         }
       }
     }
@@ -3304,7 +3359,7 @@ the same incident instance.<a href="#section-9-6" class="pilcrow">¶</a></p>
 </div>
 <p id="section-9.1-2">A YANG model for the alarm management <span>[<a href="#RFC8632" class="cite xref">RFC8632</a>]</span> defines a standard
 interface to manage the lifecycle of alarms.  Alarms represent the
-undesirable state of network resources <span>[<a href="#I-D.ietf-nmop-terminology" class="cite xref">I-D.ietf-nmop-terminology</a>]</span>,
+undesirable state of network resources <span>[<a href="#RFC9940" class="cite xref">RFC9940</a>]</span>,
 The alarm data model also defines the Probable Root Causes and impacted services fields,
 but there may be insufficient information to determine them at lower layer
 system (mainly in devices level), so alarms do not always tell the status of
@@ -3559,10 +3614,6 @@ for their valuable comments and great input to this work.<a href="#section-12-1"
 <a href="#name-normative-references" class="section-name selfRef">Normative References</a>
         </h3>
 <dl class="references">
-<dt id="I-D.ietf-nmop-terminology">[I-D.ietf-nmop-terminology]</dt>
-        <dd>
-<span class="refAuthor">Davis, N.</span>, <span class="refAuthor">Farrel, A.</span>, <span class="refAuthor">Graf, T.</span>, <span class="refAuthor">Wu, Q.</span>, and <span class="refAuthor">C. Yu</span>, <span class="refTitle">"Some Key Terms for Network Fault and Problem Management"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-nmop-terminology-23</span>, <time datetime="2025-08-18" class="refDate">18 August 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-nmop-terminology-23">https://datatracker.ietf.org/doc/html/draft-ietf-nmop-terminology-23</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="RFC1136">[RFC1136]</dt>
         <dd>
 <span class="refTitle">"Administrative Domains and Routing Domains A Model for Routing in the Internet"</span>, <time datetime="1989-12" class="refDate">December 1989</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc1136">https://www.rfc-editor.org/info/rfc1136</a>&gt;</span>. </dd>
@@ -3686,15 +3737,15 @@ for their valuable comments and great input to this work.<a href="#section-12-1"
 <dd class="break"></dd>
 <dt id="I-D.ietf-nmop-network-anomaly-architecture">[I-D.ietf-nmop-network-anomaly-architecture]</dt>
         <dd>
-<span class="refAuthor">Graf, T.</span>, <span class="refAuthor">Du, W.</span>, <span class="refAuthor">Francois, P.</span>, and <span class="refAuthor">A. H. Feng</span>, <span class="refTitle">"A Framework for a Network Anomaly Detection Architecture"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-nmop-network-anomaly-architecture-07</span>, <time datetime="2026-01-18" class="refDate">18 January 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-nmop-network-anomaly-architecture-07">https://datatracker.ietf.org/doc/html/draft-ietf-nmop-network-anomaly-architecture-07</a>&gt;</span>. </dd>
+<span class="refAuthor">Graf, T.</span>, <span class="refAuthor">Du, W.</span>, <span class="refAuthor">Francois, P.</span>, and <span class="refAuthor">A. H. Feng</span>, <span class="refTitle">"A Framework for a Network Anomaly Detection Architecture"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-nmop-network-anomaly-architecture-08</span>, <time datetime="2026-07-06" class="refDate">6 July 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-nmop-network-anomaly-architecture-08">https://datatracker.ietf.org/doc/html/draft-ietf-nmop-network-anomaly-architecture-08</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-nmop-network-anomaly-lifecycle">[I-D.ietf-nmop-network-anomaly-lifecycle]</dt>
         <dd>
-<span class="refAuthor">Riccobene, V.</span>, <span class="refAuthor">Graf, T.</span>, <span class="refAuthor">Du, W.</span>, and <span class="refAuthor">A. H. Feng</span>, <span class="refTitle">"An Experiment: Network Anomaly Detection Lifecycle"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-nmop-network-anomaly-lifecycle-05</span>, <time datetime="2026-02-12" class="refDate">12 February 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-nmop-network-anomaly-lifecycle-05">https://datatracker.ietf.org/doc/html/draft-ietf-nmop-network-anomaly-lifecycle-05</a>&gt;</span>. </dd>
+<span class="refAuthor">Riccobene, V.</span>, <span class="refAuthor">Graf, T.</span>, <span class="refAuthor">Du, W.</span>, and <span class="refAuthor">A. H. Feng</span>, <span class="refTitle">"An Experiment: Network Anomaly Detection Lifecycle"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-nmop-network-anomaly-lifecycle-06</span>, <time datetime="2026-07-06" class="refDate">6 July 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-nmop-network-anomaly-lifecycle-06">https://datatracker.ietf.org/doc/html/draft-ietf-nmop-network-anomaly-lifecycle-06</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-nmop-network-anomaly-semantics">[I-D.ietf-nmop-network-anomaly-semantics]</dt>
         <dd>
-<span class="refAuthor">Graf, T.</span>, <span class="refAuthor">Du, W.</span>, <span class="refAuthor">Feng, A. H.</span>, and <span class="refAuthor">V. Riccobene</span>, <span class="refTitle">"Semantic Metadata Annotation for Network Anomaly Detection"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-nmop-network-anomaly-semantics-05</span>, <time datetime="2026-01-19" class="refDate">19 January 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-nmop-network-anomaly-semantics-05">https://datatracker.ietf.org/doc/html/draft-ietf-nmop-network-anomaly-semantics-05</a>&gt;</span>. </dd>
+<span class="refAuthor">Graf, T.</span>, <span class="refAuthor">Du, W.</span>, <span class="refAuthor">Feng, A. H.</span>, and <span class="refAuthor">V. Riccobene</span>, <span class="refTitle">"Semantic Metadata Annotation for Network Anomaly Detection"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-nmop-network-anomaly-semantics-06</span>, <time datetime="2026-07-06" class="refDate">6 July 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-nmop-network-anomaly-semantics-06">https://datatracker.ietf.org/doc/html/draft-ietf-nmop-network-anomaly-semantics-06</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-opsawg-scheduling-oam-tests">[I-D.ietf-opsawg-scheduling-oam-tests]</dt>
         <dd>
@@ -3702,7 +3753,7 @@ for their valuable comments and great input to this work.<a href="#section-12-1"
 <dd class="break"></dd>
 <dt id="I-D.irtf-nmrg-ai-challenges">[I-D.irtf-nmrg-ai-challenges]</dt>
         <dd>
-<span class="refAuthor">François, J.</span>, <span class="refAuthor">Clemm, A.</span>, <span class="refAuthor">Papadimitriou, D.</span>, <span class="refAuthor">Fernandes, S.</span>, and <span class="refAuthor">S. Schneider</span>, <span class="refTitle">"Research Challenges in Coupling Artificial Intelligence and Network Management"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-irtf-nmrg-ai-challenges-05</span>, <time datetime="2025-03-18" class="refDate">18 March 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-ai-challenges-05">https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-ai-challenges-05</a>&gt;</span>. </dd>
+<span class="refAuthor">François, J.</span>, <span class="refAuthor">Clemm, A.</span>, <span class="refAuthor">Papadimitriou, D.</span>, <span class="refAuthor">Fernandes, S.</span>, and <span class="refAuthor">S. Schneider</span>, <span class="refTitle">"Research Challenges in Coupling Artificial Intelligence and Network Management"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-irtf-nmrg-ai-challenges-06</span>, <time datetime="2026-07-06" class="refDate">6 July 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-ai-challenges-06">https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-ai-challenges-06</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="ITU-T-G-7710">[ITU-T-G-7710]</dt>
         <dd>
