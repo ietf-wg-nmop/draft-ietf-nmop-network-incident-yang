@@ -757,7 +757,8 @@ module ietf-incident {
                    number is 1 and counts up by 1 at every
                    published notification message until it reaches
                    4294967295. Then, it wraps around and restarts
-                   at 0. The value 0 is used to detect wrap arounds.";
+                   at 0. The value 0 is used to detect wrap
+                   arounds.";
               }
             }
           }
