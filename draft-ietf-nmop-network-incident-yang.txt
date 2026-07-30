@@ -1015,6 +1015,8 @@ Table of Contents
    [RFC8632],[RFC8791].
 
    <CODE BEGINS> file "ietf-incident@2025-09-16.yang"
+   =============== NOTE: '\' line wrapping per RFC 8792 ================
+
    module ietf-incident {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-incident";
@@ -1023,7 +1025,12 @@ Table of Contents
      import ietf-yang-types {
        prefix yang;
        reference
-         "RFC 6991: Common YANG Data Types";
+         "RFC 9991: Common YANG Data Types";
+     }
+     import ietf-inet-types {
+       prefix inet;
+       reference
+         "RFC 9991: Common YANG Data Types";
      }
      import ietf-alarms {
        prefix al;
@@ -1038,9 +1045,9 @@ Table of Contents
      import ietf-yang-structure-ext {
        prefix sx;
        reference
-             "RFC 8791: YANG Data Structure Extensions";
-
+         "RFC 8791: YANG Data Structure Extensions";
      }
+
      organization
        "IETF NMOP Working Group";
      contact
@@ -1136,26 +1143,24 @@ Table of Contents
        reference
          "RFC9376: Applicability of GMPLS for beyond 100 Gbit/s Optical
           Transport Network";
-
      }
 
      identity ip {
        base single-domain;
        description
          "Ip domain.";
-           reference
-             "RFC1136: Administrative Domains and Routing Domains A Model
-          for Routing in the Internet";
+       reference
+         "RFC1136: Administrative Domains and Routing Domains A Model
+             for Routing in the Internet";
      }
 
      identity ptn {
        base ip;
        description
          "Packet transport network domain.";
-         reference
-          "RFC6373: MPLS Transport Profile (MPLS-TP) Control Plane
-           Framework";
-
+       reference
+         "RFC6373: MPLS Transport Profile (MPLS-TP) Control Plane
+          Framework";
      }
 
      identity cross-domain {
@@ -1173,45 +1178,40 @@ Table of Contents
        base incident-category;
        description
          "Device category.";
-         reference
+       reference
          "RFC8348: A YANG Data Model for Hardware Management";
-
      }
 
      identity power-environment {
        base device;
        description
          "Power environment category.";
-         reference
+       reference
          "RFC8348: A YANG Data Model for Hardware Management";
-
      }
 
      identity device-hardware {
        base device;
        description
          "Device hardware category.";
-         reference
+       reference
          "RFC8348: A YANG Data Model for Hardware Management";
-
      }
 
      identity device-software {
        base device;
        description
          "Device software category";
-         reference
+       reference
          "RFC8348: A YANG Data Model for Hardware Management";
-
      }
 
      identity line-card {
        base device-hardware;
        description
          "Line card category.";
-         reference
+       reference
          "RFC8348: A YANG Data Model for Hardware Management";
-
      }
 
      identity maintenance {
@@ -1250,7 +1250,6 @@ Table of Contents
        reference
          "RFC9940: Some Key Terms for Network Fault and Problem
           Management";
-
      }
 
      identity alarm {
@@ -1259,15 +1258,14 @@ Table of Contents
          "Alarm event type.";
        reference
          "RFC8632: A YANG Data Model for Alarm Management";
-
      }
 
      identity notif {
        base event-type;
        description
          "Notification event type.";
-           reference
-             "RFC5277:NETCONF Event Notifications";
+       reference
+         "RFC5277:NETCONF Event Notifications";
      }
 
      identity metric {
@@ -1293,12 +1291,11 @@ Table of Contents
        base incident-type;
        description
          "It indicates the class of the incident is a problem
-         (i.e.,cause of the incident) for example an interface
-         fails to work.";
+          (i.e.,cause of the incident) for example an interface
+          fails to work.";
        reference
          "RFC9940: Some Key Terms for Network Fault and Problem
           Management";
-
      }
 
      identity sla-violation {
@@ -1506,9 +1503,9 @@ Table of Contents
          type string;
          description
            "The unique qualifier of an incident instance type.
-           This leaf is used when the 'type' leaf cannot
-           uniquely identify the incident instance type.  Normally,
-           this is not the case, and this leaf is the empty string.
+            This leaf is used when the 'type' leaf cannot
+            uniquely identify the incident instance type.  Normally,
+            this is not the case, and this leaf is the empty string.
            ";
        }
        leaf-list service-instance {
@@ -1712,15 +1709,15 @@ Table of Contents
                  }
                }
              }
-                     case metric {
+             case metric {
                when "derived-from-or-self(type, 'metric')" {
                  description
                    "Only applies when type is metric.";
                }
-                           container metric {
+               container metric {
                  description
                    "Metric type event. Performance metrics
-                                   exceeding SLO thresholds.";
+                           \texceeding SLO thresholds.";
                  leaf resource {
                    type leafref {
                      path "/al:alarms/al:alarm-list/al:alarm"
@@ -1732,50 +1729,61 @@ Table of Contents
                      "RFC 8632: A YANG Data Model for Alarm
                       Management";
                  }
-                             leaf metric-name {
-                               type string;
-                                   description "Metric Name.";
-                                   }
+                 leaf metric-name {
+                   type string;
+                   description
+                     "Metric Name.";
+                 }
                  leaf threshold-value {
-                               type string;
-                                   description "Threshold value for the specific metric.";
-                                   }
+                   type string;
+                   description
+                     "Threshold value for the specific metric.";
+                 }
                  leaf observed-value {
-                               type string;
-                               description "Observed value for the specific metric";
-                                   }
-                       }
-                    }
-                    case notification {
+                   type string;
+                   description
+                     "Observed value for the specific metric";
+                 }
+               }
+             }
+             case notification {
                when "derived-from-or-self(type, 'notif')" {
                  description
                    "Only applies when type is notification.";
                }
-                           container notification {
+               container notification {
                  description
                    "Notification type event.";
-                             leaf event-time {
-                               type yang:date-and-time;
-                                   description "The date and time the event was generated by the network node.";
-                                   }
+                 leaf event-time {
+                   type yang:date-and-time;
+                   description
+                     "The date and time the event was generated by the \
+                                                         network node.";
+                 }
                  leaf hostname {
-                               type inet:hostname;
-                                   description "The hostname of the network node. This value is usually
-                   configured on the node by the administrator to identify
-                   the node in the network uniquely.";
-                                   }
+                   type inet:host;
+                   description
+                     "The hostname of the network node. This value is \
+                                                                 usually
+                      configured on the node by the administrator to \
+                                                                identify
+                      the node in the network uniquely.";
+                 }
                  leaf sequence-number {
-                               type yang:counter32;
-                               description "Unique sequence number for each published message
-                   by the publisher process. The initial number is 1 and
-                   counts up by 1 at every published notification message
-                   until it reaches 4294967295. Then, it wraps around and
-                   restarts at 0. The value 0 is used to detect wrap
-                   arounds.";
-                                   }
-                       }
-                    }
-                    }
+                   type yang:counter32;
+                   description
+                     "Unique sequence number for each published message
+                      by the publisher process. The initial number is \
+                                                                   1 and
+                      counts up by 1 at every published notification \
+                                                                 message
+                      until it reaches 4294967295. Then, it wraps \
+                                                              around and
+                      restarts at 0. The value 0 is used to detect wrap
+                      arounds.";
+                 }
+               }
+             }
            }
          }
        }
@@ -1940,8 +1948,9 @@ Table of Contents
            type uint64;
            mandatory true;
            description
-           "The unique sequence number of the incident instance based on
-            the name type incident-id keys.";
+             "The unique sequence number of the incident instance \
+                                                                based on
+              the name type incident-id keys.";
          }
          uses incident-info;
          uses incident-time-info;
