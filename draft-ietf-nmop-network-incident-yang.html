@@ -2336,8 +2336,6 @@ resource-unavailable
 <div class="breakable sourcecode" id="section-8-2">
 <pre>&lt;CODE BEGINS&gt; file "ietf-incident@2025-09-16.yang"
 
-=============== NOTE: '\' line wrapping per RFC 8792 ================
-
 module ietf-incident {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-incident";
@@ -3097,8 +3095,8 @@ module ietf-incident {
                    number is 1 and counts up by 1 at every
                    published notification message until it reaches
                    4294967295. Then, it wraps around and restarts
-                   at 0. The value 0 is used to detect wrap arounds.\
-                                                                   ";
+                   at 0. The value 0 is used to detect wrap
+                   arounds.";
               }
             }
           }
