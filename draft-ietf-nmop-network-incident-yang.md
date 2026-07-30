@@ -884,7 +884,7 @@ This module imports types defined in {{!RFC6991}}, {{!RFC8345}},
 
 ~~~~
 <CODE BEGINS> file "ietf-incident@2025-09-16.yang"
-{::include-fold ./yang/ietf-incident.yang}
+{::include ./yang/ietf-incident.yang}
 <CODE ENDS>
 ~~~~
 
