@@ -1541,6 +1541,20 @@ repair suggestions.
 
 # Changes between Revisions
 
+  v10 - v11
+
+   * Remove log identity
+
+   * Add other cases such metric, notification
+
+   * Replace incident-class with incident-type
+
+   * Replace factor with fault condition
+
+   * Reference RFC9375 for metric event type
+
+   * Replace probable cause with probable root cause
+
   v08 - v09
 
    * Second alignment with RFC9940
