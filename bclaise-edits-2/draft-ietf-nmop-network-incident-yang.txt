@@ -2621,7 +2621,7 @@ A.2.  Network Incident Correlated with Trouble Tickets
     |   +--ro incident-no? incident-ref
     |   +--ro ticket-no? string
     +--
-   …
+   ...
 
 A.3.  Intent Based Networking with Incident Diagnosis Task List
 
