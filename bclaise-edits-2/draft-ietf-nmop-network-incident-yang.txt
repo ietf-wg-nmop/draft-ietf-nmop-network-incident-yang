@@ -2839,7 +2839,8 @@ A.5.  Service Complaint triggered Network Diagnosis
 
 Appendix B.  Changes between Revisions
 
-   v10 - v11
+   NOTE TO THE RFC-EDITOR: Please remove this appendix before
+   publication v10 - v11
 
    *  Remove log identity
 
