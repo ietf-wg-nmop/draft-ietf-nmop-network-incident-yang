@@ -6,7 +6,7 @@ category: std
 docname: draft-ietf-nmop-network-incident-yang-latest
 submissiontype: IETF
 number:
-date:f
+date:
 consensus: true
 v: 3
 area: "Operations and Management"
