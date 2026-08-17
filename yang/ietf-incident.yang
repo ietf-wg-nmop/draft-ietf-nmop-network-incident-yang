@@ -6,12 +6,12 @@ module ietf-incident {
   import ietf-yang-types {
     prefix yang;
     reference
-      "RFC 9991: Common YANG Data Types";
+      "RFC 9911: Common YANG Data Types";
   }
   import ietf-inet-types {
     prefix inet;
     reference
-      "RFC 9991: Common YANG Data Types";
+      "RFC 9911: Common YANG Data Types";
   }
   import ietf-alarms {
     prefix al;
@@ -41,7 +41,7 @@ module ietf-incident {
                <mailto:hutong@cmhi.chinamobile.com>
      Author:   Luis Miguel Contreras Murillo
                <mailto:luismiguel.contrerasmurillo@telefonica.com>
-     Author :  Qin Wu
+     Author:  Qin Wu
                <mailto:bill.wu@huawei.com>
      Author:   Nigel Davis
                <mailto:ndavis@ciena.com>";
@@ -57,7 +57,7 @@ module ietf-incident {
        - incident diagnose: diagnose an incident instance.
        - incident resolve: resolve an incident instance.
 
-     Copyright (c) 2024 IETF Trust and the persons identified as
+     Copyright (c) 2026 IETF Trust and the persons identified as
      authors of the code.  All rights reserved.
 
      Redistribution and use in source and binary forms, with or
@@ -67,8 +67,8 @@ module ietf-incident {
      Relating to IETF Documents
      (https://trustee.ietf.org/license-info).
 
-     This version of this YANG module is part of RFC xxxx
-     (https://www.rfc-editor.org/info/rfc9940); ; see the RFC
+     This version of this YANG module is part of RFC XXXX
+     (https://www.rfc-editor.org/info/rfcXXXX); see the RFC
      itself for full legal notices.
 
      The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL', 'SHALL
@@ -82,7 +82,7 @@ module ietf-incident {
       "Merge incident yang with incident type yang
        and fix broken ref.";
     reference
-      "RFCxxxx: YANG module for network incident management.";
+      "RFC XXXX: YANG module for network incident management.";
   }
 
   // Identities
@@ -246,7 +246,7 @@ module ietf-incident {
     description
       "Notification event type.";
     reference
-      "RFC5277:NETCONF Event Notifications";
+      "RFC5277: NETCONF Event Notifications";
   }
 
   identity metric {
@@ -913,7 +913,7 @@ module ietf-incident {
     leaf time {
       type yang:date-and-time;
       description
-        "Occuring time of an incident instance.";
+        "Occurring time of an incident instance.";
     }
   }
 
