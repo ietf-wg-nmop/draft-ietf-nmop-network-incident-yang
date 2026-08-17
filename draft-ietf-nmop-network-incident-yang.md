@@ -87,14 +87,6 @@ normative:
    title: NETCONF Event Notifications
    date: 2008-07
    target: https://www.rfc-editor.org/info/rfc5277
- RFC5424:
-   title: The Syslog Protocol
-   date: 2009-03
-   target: https://www.rfc-editor.org/info/rfc5424
- RFC2330:
-   title: Framework for IP Performance Metrics
-   date: 1998-05
-   target: https://www.rfc-editor.org/info/rfc2330
  RFC1136:
    title: Administrative Domains and Routing Domains A Model for Routing in the Internet
    date: 1989-12
@@ -166,7 +158,7 @@ layer or optical layer), it is possible to compress series of alarms
 (see Section 3.5.3 of {{?RFC8632}} ) into fewer network incidents and there are
 many solutions in the market today that essentially do this to some degree.
 However, conventional solutions such as data compression are time-consuming
-and labor-intensive, usually rely on maintenance engineers'experience for data
+and labor-intensive, usually rely on maintenance engineers' experience for data
 analysis, which, in many cases, result in low processing efficiency, inaccurate
 Probable Root Cause identification and duplicated tickets. It is also difficult to
 assess the impact of alarms, performance metrics and other anomaly data on network
@@ -347,7 +339,7 @@ This SLA information can be bound with two SAPs or multiple SAPs defined in {{?R
 so that the service orchestration layer can use these interfaces to commit the
 delivery of a service on specific point-to-point service topology or point to
 multi-point topology. When a given SLO threshold is violated, a network incident
-(or customer incident {{TMF724A}} associated with an L3VPN service may be derived.
+(or customer incident {{TMF724A}} associated with an L3VPN service may be derived).
 
 ## Multi-layer Fault Demarcation
 
@@ -883,12 +875,12 @@ This module imports types defined in {{!RFC9911}}, {{!RFC8345}},
 {{!RFC8632}}, {{!RFC8791}}.
 
 ~~~~
-<CODE BEGINS> file "ietf-incident@2025-09-16.yang"
+<CODE BEGINS> file "ietf-incident@2026-07-30.yang"
 {::include ./yang/ietf-incident.yang}
 <CODE ENDS>
 ~~~~
 
-# Operational Consideration
+# Operational Considerations
 
 The "ietf-incident" YANG module introduces an incident-centric architecture
 designed to overcome the structural silo of traditional management systems
