@@ -6,7 +6,7 @@ category: std
 docname: draft-ietf-nmop-network-incident-yang-latest
 submissiontype: IETF
 number:
-date:
+date:f
 consensus: true
 v: 3
 area: "Operations and Management"
@@ -880,7 +880,7 @@ resource-unavailable
 # Network Incident Management YANG Module
 
 This module imports types defined in {{!RFC9911}}, {{!RFC8345}},
-{{!RFC8632}},{{!RFC8791}}.
+{{!RFC8632}}, {{!RFC8791}}.
 
 ~~~~
 <CODE BEGINS> file "ietf-incident@2025-09-16.yang"
