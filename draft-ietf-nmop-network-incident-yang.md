@@ -567,13 +567,13 @@ VPN A      | |            |
 ~~~~
 {:#exam1 title="Example 1 of Network Incident Identification" artwork-align="center"}
 
-As described in {{exam1}}, vpn a is deployed from PE1 to PE2, if a
+As described in {{exam1}}, VPN a is deployed from PE1 to PE2, if a
 interface of P1 is going down, many alarms are triggered, such as
 interface down, igp down, and igp peer abnormal from P2.
 
 These alarms are aggregated and analyzed by the controller/incident
-server, and then the network incident 'vpn unavailable' is triggered
-by the controller/Incident Server. If the network incident 'vpn unavailable'
+server, and then the network incident 'VPN unavailable' is triggered
+by the controller/Incident Server. If the network incident 'VPN unavailable'
 is repeated, the problem can be raised.
 
 Note that Incident Server within the controller can rely on data correlation technology such as
@@ -879,7 +879,7 @@ resource-unavailable
 
 # Network Incident Management YANG Module
 
-This module imports types defined in {{!RFC6991}}, {{!RFC8345}},
+This module imports types defined in {{!RFC9911}}, {{!RFC8345}},
 {{!RFC8632}},{{!RFC8791}}.
 
 ~~~~
