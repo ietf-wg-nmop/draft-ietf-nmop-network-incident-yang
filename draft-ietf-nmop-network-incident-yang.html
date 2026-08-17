@@ -1237,7 +1237,7 @@ cause analysis.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
             <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-network-incident-management-y" class="internal xref">Network Incident Management YANG Module</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-operational-consideration" class="internal xref">Operational Consideration</a></p>
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-operational-considerations" class="internal xref">Operational Considerations</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1">
                 <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="auto internal xref">9.1</a>.  <a href="#name-interworking-with-alarm-man" class="internal xref">Interworking with Alarm Management</a></p>
@@ -1346,7 +1346,7 @@ layer or optical layer), it is possible to compress series of alarms
 (see Section 3.5.3 of <span>[<a href="#RFC8632" class="cite xref">RFC8632</a>]</span> ) into fewer network incidents and there are
 many solutions in the market today that essentially do this to some degree.
 However, conventional solutions such as data compression are time-consuming
-and labor-intensive, usually rely on maintenance engineers'experience for data
+and labor-intensive, usually rely on maintenance engineers' experience for data
 analysis, which, in many cases, result in low processing efficiency, inaccurate
 Probable Root Cause identification and duplicated tickets. It is also difficult to
 assess the impact of alarms, performance metrics and other anomaly data on network
@@ -1574,7 +1574,7 @@ of end-to-end latency as follows:<a href="#section-3.2-2" class="pilcrow">¶</a>
 so that the service orchestration layer can use these interfaces to commit the
 delivery of a service on specific point-to-point service topology or point to
 multi-point topology. When a given SLO threshold is violated, a network incident
-(or customer incident <span>[<a href="#TMF724A" class="cite xref">TMF724A</a>]</span> associated with an L3VPN service may be derived.<a href="#section-3.2-4" class="pilcrow">¶</a></p>
+(or customer incident <span>[<a href="#TMF724A" class="cite xref">TMF724A</a>]</span> associated with an L3VPN service may be derived).<a href="#section-3.2-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="multi-layer-fault-demarcation">
@@ -1827,7 +1827,7 @@ VPN A      | |            |
 <a href="#name-example-1-of-network-incide" class="selfRef">Example 1 of Network Incident Identification</a>
           </figcaption></figure>
 </div>
-<p id="section-5.1-6">As described in <a href="#exam1" class="auto internal xref">Figure 3</a>, vpn a is deployed from PE1 to PE2, if a
+<p id="section-5.1-6">As described in <a href="#exam1" class="auto internal xref">Figure 3</a>, vpn a is deployed from PE1 to PE2, if an
 interface of P1 is going down, many alarms are triggered, such as
 interface down, igp down, and igp peer abnormal from P2.<a href="#section-5.1-6" class="pilcrow">¶</a></p>
 <p id="section-5.1-7">These alarms are aggregated and analyzed by the controller/incident
@@ -2334,7 +2334,7 @@ resource-unavailable
 <p id="section-8-1">This module imports types defined in <span>[<a href="#RFC6991" class="cite xref">RFC6991</a>]</span>, <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>,
 <span>[<a href="#RFC8632" class="cite xref">RFC8632</a>]</span>,<span>[<a href="#RFC8791" class="cite xref">RFC8791</a>]</span>.<a href="#section-8-1" class="pilcrow">¶</a></p>
 <div class="breakable sourcecode" id="section-8-2">
-<pre>&lt;CODE BEGINS&gt; file "ietf-incident@2025-09-16.yang"
+<pre>&lt;CODE BEGINS&gt; file "ietf-incident@2026-07-30.yang"
 
 module ietf-incident {
   yang-version 1.1;
@@ -3281,10 +3281,10 @@ module ietf-incident {
 </div>
 </section>
 </div>
-<div id="operational-consideration">
+<div id="operational-considerations">
 <section id="section-9">
-      <h2 id="name-operational-consideration">
-<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-operational-consideration" class="section-name selfRef">Operational Consideration</a>
+      <h2 id="name-operational-considerations">
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-operational-considerations" class="section-name selfRef">Operational Considerations</a>
       </h2>
 <p id="section-9-1">The "ietf-incident" YANG module introduces an incident-centric architecture
 designed to overcome the structural silo of traditional management systems
@@ -3627,10 +3627,6 @@ for their valuable comments and great input to this work.<a href="#section-12-1"
         <dd>
 <span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="RFC2330">[RFC2330]</dt>
-        <dd>
-<span class="refTitle">"Framework for IP Performance Metrics"</span>, <time datetime="1998-05" class="refDate">May 1998</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2330">https://www.rfc-editor.org/info/rfc2330</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="RFC3688">[RFC3688]</dt>
         <dd>
 <span class="refAuthor">Mealling, M.</span>, <span class="refTitle">"The IETF XML Registry"</span>, <span class="seriesInfo">BCP 81</span>, <span class="seriesInfo">RFC 3688</span>, <span class="seriesInfo">DOI 10.17487/RFC3688</span>, <time datetime="2004-01" class="refDate">January 2004</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc3688">https://www.rfc-editor.org/rfc/rfc3688</a>&gt;</span>. </dd>
@@ -3642,10 +3638,6 @@ for their valuable comments and great input to this work.<a href="#section-12-1"
 <dt id="RFC5277">[RFC5277]</dt>
         <dd>
 <span class="refTitle">"NETCONF Event Notifications"</span>, <time datetime="2008-07" class="refDate">July 2008</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc5277">https://www.rfc-editor.org/info/rfc5277</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC5424">[RFC5424]</dt>
-        <dd>
-<span class="refTitle">"The Syslog Protocol"</span>, <time datetime="2009-03" class="refDate">March 2009</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc5424">https://www.rfc-editor.org/info/rfc5424</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC6020">[RFC6020]</dt>
         <dd>

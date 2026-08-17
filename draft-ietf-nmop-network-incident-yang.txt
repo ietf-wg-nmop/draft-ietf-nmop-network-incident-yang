@@ -83,7 +83,7 @@ Table of Contents
      7.5.  Incident Resolution
      7.6.  RPC Failure
    8.  Network Incident Management YANG Module
-   9.  Operational Consideration
+   9.  Operational Considerations
      9.1.  Interworking with Alarm Management
      9.2.  Interworking with SAIN
      9.3.  Relationship with RFC8969
@@ -137,7 +137,7 @@ Table of Contents
    fewer network incidents and there are many solutions in the market
    today that essentially do this to some degree.  However, conventional
    solutions such as data compression are time-consuming and labor-
-   intensive, usually rely on maintenance engineers'experience for data
+   intensive, usually rely on maintenance engineers' experience for data
    analysis, which, in many cases, result in low processing efficiency,
    inaccurate Probable Root Cause identification and duplicated tickets.
    It is also difficult to assess the impact of alarms, performance
@@ -341,7 +341,7 @@ Table of Contents
    point-to-point service topology or point to multi-point topology.
    When a given SLO threshold is violated, a network incident (or
    customer incident [TMF724A] associated with an L3VPN service may be
-   derived.
+   derived).
 
 3.3.  Multi-layer Fault Demarcation
 
@@ -575,7 +575,7 @@ Table of Contents
 
            Figure 3: Example 1 of Network Incident Identification
 
-   As described in Figure 3, vpn a is deployed from PE1 to PE2, if a
+   As described in Figure 3, vpn a is deployed from PE1 to PE2, if an
    interface of P1 is going down, many alarms are triggered, such as
    interface down, igp down, and igp peer abnormal from P2.
 
@@ -1014,7 +1014,7 @@ Table of Contents
    This module imports types defined in [RFC6991], [RFC8345],
    [RFC8632],[RFC8791].
 
-   <CODE BEGINS> file "ietf-incident@2025-09-16.yang"
+   <CODE BEGINS> file "ietf-incident@2026-07-30.yang"
    module ietf-incident {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-incident";
@@ -1957,7 +1957,7 @@ Table of Contents
    }
    <CODE ENDS>
 
-9.  Operational Consideration
+9.  Operational Considerations
 
    The "ietf-incident" YANG module introduces an incident-centric
    architecture designed to overcome the structural silo of traditional
@@ -2266,9 +2266,6 @@ Normative References
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/rfc/rfc2119>.
 
-   [RFC2330]  "Framework for IP Performance Metrics", May 1998,
-              <https://www.rfc-editor.org/info/rfc2330>.
-
    [RFC3688]  Mealling, M., "The IETF XML Registry", BCP 81, RFC 3688,
               DOI 10.17487/RFC3688, January 2004,
               <https://www.rfc-editor.org/rfc/rfc3688>.
@@ -2279,9 +2276,6 @@ Normative References
 
    [RFC5277]  "NETCONF Event Notifications", July 2008,
               <https://www.rfc-editor.org/info/rfc5277>.
-
-   [RFC5424]  "The Syslog Protocol", March 2009,
-              <https://www.rfc-editor.org/info/rfc5424>.
 
    [RFC6020]  Bjorklund, M., Ed., "YANG - A Data Modeling Language for
               the Network Configuration Protocol (NETCONF)", RFC 6020,
