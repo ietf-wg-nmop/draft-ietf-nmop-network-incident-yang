@@ -1078,7 +1078,7 @@ augments relevant-state YANG notification with 'ietf-network-anomaly-symptom' YA
 symptom semantics described in Section 4.2 and service and network relationships with
 'ietf-network-anomaly-service-topology' YANG module in Section 4.3. "hostname" in
 "vpn-node-termination" grouping of 'ietf-network-anomaly-service-topology' YANG module maps
-to "node-ref" in " node-ref " grouping respectively the "vpn-id" in the "vpn-service" list of
+to "node-ref" in "node-ref" grouping respectively the "vpn-id" in the "vpn-service" list of
 the "vpn-service" grouping maps to the "service-instance" leaf-list of the "incident-info"
 grouping in 'ietf-incident' YANG module. Thus, preserving the mapping between relevant-state
 notification id, service id and hostname in the network where the outlier was detected.
