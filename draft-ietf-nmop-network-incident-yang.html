@@ -30,7 +30,7 @@ cause analysis.
     Jinja2 3.1.6
     lxml 6.1.1
     natsort 8.4.0
-    platformdirs 4.10.1
+    platformdirs 4.11.0
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.33.1
@@ -1050,11 +1050,11 @@ svg {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">Network Incident Management</td>
-<td class="right">July 2026</td>
+<td class="right">August 2026</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Hu, et al.</td>
-<td class="center">Expires 31 January 2027</td>
+<td class="center">Expires 18 February 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1067,12 +1067,12 @@ svg {
 <dd class="internet-draft">draft-ietf-nmop-network-incident-yang-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-07-30" class="published">30 July 2026</time>
+<time datetime="2026-08-17" class="published">17 August 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-01-31">31 January 2027</time></dd>
+<dd class="expires"><time datetime="2027-02-18">18 February 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1125,7 +1125,7 @@ cause analysis.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 31 January 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 18 February 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -2344,12 +2344,12 @@ module ietf-incident {
   import ietf-yang-types {
     prefix yang;
     reference
-      "RFC 9991: Common YANG Data Types";
+      "RFC 9911: Common YANG Data Types";
   }
   import ietf-inet-types {
     prefix inet;
     reference
-      "RFC 9991: Common YANG Data Types";
+      "RFC 9911: Common YANG Data Types";
   }
   import ietf-alarms {
     prefix al;
@@ -2379,7 +2379,7 @@ module ietf-incident {
                &lt;mailto:hutong@cmhi.chinamobile.com&gt;
      Author:   Luis Miguel Contreras Murillo
                &lt;mailto:luismiguel.contrerasmurillo@telefonica.com&gt;
-     Author :  Qin Wu
+     Author:  Qin Wu
                &lt;mailto:bill.wu@huawei.com&gt;
      Author:   Nigel Davis
                &lt;mailto:ndavis@ciena.com&gt;";
@@ -2395,7 +2395,7 @@ module ietf-incident {
        - incident diagnose: diagnose an incident instance.
        - incident resolve: resolve an incident instance.
 
-     Copyright (c) 2024 IETF Trust and the persons identified as
+     Copyright (c) 2026 IETF Trust and the persons identified as
      authors of the code.  All rights reserved.
 
      Redistribution and use in source and binary forms, with or
@@ -2405,8 +2405,8 @@ module ietf-incident {
      Relating to IETF Documents
      (https://trustee.ietf.org/license-info).
 
-     This version of this YANG module is part of RFC xxxx
-     (https://www.rfc-editor.org/info/rfc9940); ; see the RFC
+     This version of this YANG module is part of RFC XXXX
+     (https://www.rfc-editor.org/info/rfcXXXX); see the RFC
      itself for full legal notices.
 
      The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL', 'SHALL
@@ -2420,7 +2420,7 @@ module ietf-incident {
       "Merge incident yang with incident type yang
        and fix broken ref.";
     reference
-      "RFCxxxx: YANG module for network incident management.";
+      "RFC XXXX: YANG module for network incident management.";
   }
 
   // Identities
@@ -2584,7 +2584,7 @@ module ietf-incident {
     description
       "Notification event type.";
     reference
-      "RFC5277:NETCONF Event Notifications";
+      "RFC5277: NETCONF Event Notifications";
   }
 
   identity metric {
@@ -2592,7 +2592,7 @@ module ietf-incident {
     description
       "Metric event type.";
     reference
-      "RFC9375: YANG Data Model for Network Incident Management";
+      "RFC 9375: YANG Data Model for Network Incident Management";
   }
 
   identity unknown {
@@ -3250,7 +3250,7 @@ module ietf-incident {
     leaf time {
       type yang:date-and-time;
       description
-        "Occuring time of an incident instance.";
+        "Occurring time of an incident instance.";
     }
   }
 

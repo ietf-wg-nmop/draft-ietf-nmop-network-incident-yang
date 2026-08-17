@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 31 January 2027                                      Telefonica
+Expires: 18 February 2027                                     Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                            30 July 2026
+                                                          17 August 2026
 
 
            A YANG Data Model for Network Incident Management
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 31 January 2027.
+   This Internet-Draft will expire on 18 February 2027.
 
 Copyright Notice
 
@@ -1023,12 +1023,12 @@ Table of Contents
      import ietf-yang-types {
        prefix yang;
        reference
-         "RFC 9991: Common YANG Data Types";
+         "RFC 9911: Common YANG Data Types";
      }
      import ietf-inet-types {
        prefix inet;
        reference
-         "RFC 9991: Common YANG Data Types";
+         "RFC 9911: Common YANG Data Types";
      }
      import ietf-alarms {
        prefix al;
@@ -1058,7 +1058,7 @@ Table of Contents
                   <mailto:hutong@cmhi.chinamobile.com>
         Author:   Luis Miguel Contreras Murillo
                   <mailto:luismiguel.contrerasmurillo@telefonica.com>
-        Author :  Qin Wu
+        Author:  Qin Wu
                   <mailto:bill.wu@huawei.com>
         Author:   Nigel Davis
                   <mailto:ndavis@ciena.com>";
@@ -1074,7 +1074,7 @@ Table of Contents
           - incident diagnose: diagnose an incident instance.
           - incident resolve: resolve an incident instance.
 
-        Copyright (c) 2024 IETF Trust and the persons identified as
+        Copyright (c) 2026 IETF Trust and the persons identified as
         authors of the code.  All rights reserved.
 
         Redistribution and use in source and binary forms, with or
@@ -1084,8 +1084,8 @@ Table of Contents
         Relating to IETF Documents
         (https://trustee.ietf.org/license-info).
 
-        This version of this YANG module is part of RFC xxxx
-        (https://www.rfc-editor.org/info/rfc9940); ; see the RFC
+        This version of this YANG module is part of RFC XXXX
+        (https://www.rfc-editor.org/info/rfcXXXX); see the RFC
         itself for full legal notices.
 
         The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL', 'SHALL
@@ -1099,7 +1099,7 @@ Table of Contents
          "Merge incident yang with incident type yang
           and fix broken ref.";
        reference
-         "RFCxxxx: YANG module for network incident management.";
+         "RFC XXXX: YANG module for network incident management.";
      }
 
      // Identities
@@ -1263,7 +1263,7 @@ Table of Contents
        description
          "Notification event type.";
        reference
-         "RFC5277:NETCONF Event Notifications";
+         "RFC5277: NETCONF Event Notifications";
      }
 
      identity metric {
@@ -1271,7 +1271,7 @@ Table of Contents
        description
          "Metric event type.";
        reference
-         "RFC9375: YANG Data Model for Network Incident Management";
+         "RFC 9375: YANG Data Model for Network Incident Management";
      }
 
      identity unknown {
@@ -1929,7 +1929,7 @@ Table of Contents
        leaf time {
          type yang:date-and-time;
          description
-           "Occuring time of an incident instance.";
+           "Occurring time of an incident instance.";
        }
      }
 
