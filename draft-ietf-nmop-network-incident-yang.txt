@@ -575,13 +575,13 @@ Table of Contents
 
            Figure 3: Example 1 of Network Incident Identification
 
-   As described in Figure 3, vpn a is deployed from PE1 to PE2, if an
+   As described in Figure 3, VPN a is deployed from PE1 to PE2, if a
    interface of P1 is going down, many alarms are triggered, such as
    interface down, igp down, and igp peer abnormal from P2.
 
    These alarms are aggregated and analyzed by the controller/incident
-   server, and then the network incident 'vpn unavailable' is triggered
-   by the controller/Incident Server.  If the network incident 'vpn
+   server, and then the network incident 'VPN unavailable' is triggered
+   by the controller/Incident Server.  If the network incident 'VPN
    unavailable' is repeated, the problem can be raised.
 
    Note that Incident Server within the controller can rely on data
@@ -1011,8 +1011,8 @@ Table of Contents
 
 8.  Network Incident Management YANG Module
 
-   This module imports types defined in [RFC6991], [RFC8345],
-   [RFC8632],[RFC8791].
+   This module imports types defined in [RFC9911], [RFC8345], [RFC8632],
+   [RFC8791].
 
    <CODE BEGINS> file "ietf-incident@2026-07-30.yang"
    module ietf-incident {
@@ -2161,7 +2161,7 @@ Table of Contents
    relationships with 'ietf-network-anomaly-service-topology' YANG
    module in Section 4.3. "hostname" in "vpn-node-termination" grouping
    of 'ietf-network-anomaly-service-topology' YANG module maps to "node-
-   ref" in " node-ref " grouping respectively the "vpn-id" in the "vpn-
+   ref" in "node-ref" grouping respectively the "vpn-id" in the "vpn-
    service" list of the "vpn-service" grouping maps to the "service-
    instance" leaf-list of the "incident-info" grouping in 'ietf-
    incident' YANG module.  Thus, preserving the mapping between
@@ -2292,10 +2292,6 @@ Normative References
               Framework", September 2011,
               <https://www.rfc-editor.org/info/rfc6373>.
 
-   [RFC6991]  Schoenwaelder, J., Ed., "Common YANG Data Types",
-              RFC 6991, DOI 10.17487/RFC6991, July 2013,
-              <https://www.rfc-editor.org/rfc/rfc6991>.
-
    [RFC7950]  Bjorklund, M., Ed., "The YANG 1.1 Data Modeling Language",
               RFC 7950, DOI 10.17487/RFC7950, August 2016,
               <https://www.rfc-editor.org/rfc/rfc7950>.
@@ -2345,6 +2341,10 @@ Normative References
    [RFC9376]  "Applicability of GMPLS for beyond 100 Gbit/s Optical
               Transport Network", March 2023,
               <https://www.rfc-editor.org/info/rfc9376>.
+
+   [RFC9911]  Schönwälder, J., Ed., "Common YANG Data Types", RFC 9911,
+              DOI 10.17487/RFC9911, December 2025,
+              <https://www.rfc-editor.org/rfc/rfc9911>.
 
    [RFC9940]  Davis, N., Ed., Farrel, A., Ed., Graf, T., Wu, Q., and C.
               Yu, "Some Key Terms for Network Fault and Problem
@@ -2616,7 +2616,7 @@ A.2.  Network Incident Correlated with Trouble Tickets
     |   +--ro incident-no? incident-ref
     |   +--ro ticket-no? string
     +--
-   …
+   ...
 
 A.3.  Intent Based Networking with Incident Diagnosis Task List
 
@@ -2834,7 +2834,8 @@ A.5.  Service Complaint triggered Network Diagnosis
 
 Appendix B.  Changes between Revisions
 
-   v10 - v11
+   NOTE TO THE RFC-EDITOR: Please remove this appendix before
+   publication v10 - v11
 
    *  Remove log identity
 

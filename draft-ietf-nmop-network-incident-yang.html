@@ -1827,12 +1827,12 @@ VPN A      | |            |
 <a href="#name-example-1-of-network-incide" class="selfRef">Example 1 of Network Incident Identification</a>
           </figcaption></figure>
 </div>
-<p id="section-5.1-6">As described in <a href="#exam1" class="auto internal xref">Figure 3</a>, vpn a is deployed from PE1 to PE2, if an
+<p id="section-5.1-6">As described in <a href="#exam1" class="auto internal xref">Figure 3</a>, VPN a is deployed from PE1 to PE2, if a
 interface of P1 is going down, many alarms are triggered, such as
 interface down, igp down, and igp peer abnormal from P2.<a href="#section-5.1-6" class="pilcrow">¶</a></p>
 <p id="section-5.1-7">These alarms are aggregated and analyzed by the controller/incident
-server, and then the network incident 'vpn unavailable' is triggered
-by the controller/Incident Server. If the network incident 'vpn unavailable'
+server, and then the network incident 'VPN unavailable' is triggered
+by the controller/Incident Server. If the network incident 'VPN unavailable'
 is repeated, the problem can be raised.<a href="#section-5.1-7" class="pilcrow">¶</a></p>
 <p id="section-5.1-8">Note that Incident Server within the controller can rely on data correlation technology such as
 service impact assessment and data analytic component to evaluate the real effect
@@ -2331,8 +2331,8 @@ resource-unavailable
       <h2 id="name-network-incident-management-y">
 <a href="#section-8" class="section-number selfRef">8. </a><a href="#name-network-incident-management-y" class="section-name selfRef">Network Incident Management YANG Module</a>
       </h2>
-<p id="section-8-1">This module imports types defined in <span>[<a href="#RFC6991" class="cite xref">RFC6991</a>]</span>, <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>,
-<span>[<a href="#RFC8632" class="cite xref">RFC8632</a>]</span>,<span>[<a href="#RFC8791" class="cite xref">RFC8791</a>]</span>.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<p id="section-8-1">This module imports types defined in <span>[<a href="#RFC9911" class="cite xref">RFC9911</a>]</span>, <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>,
+<span>[<a href="#RFC8632" class="cite xref">RFC8632</a>]</span>, <span>[<a href="#RFC8791" class="cite xref">RFC8791</a>]</span>.<a href="#section-8-1" class="pilcrow">¶</a></p>
 <div class="breakable sourcecode" id="section-8-2">
 <pre>&lt;CODE BEGINS&gt; file "ietf-incident@2026-07-30.yang"
 
@@ -3498,7 +3498,7 @@ augments relevant-state YANG notification with 'ietf-network-anomaly-symptom' YA
 symptom semantics described in Section 4.2 and service and network relationships with
 'ietf-network-anomaly-service-topology' YANG module in Section 4.3. "hostname" in
 "vpn-node-termination" grouping of 'ietf-network-anomaly-service-topology' YANG module maps
-to "node-ref" in " node-ref " grouping respectively the "vpn-id" in the "vpn-service" list of
+to "node-ref" in "node-ref" grouping respectively the "vpn-id" in the "vpn-service" list of
 the "vpn-service" grouping maps to the "service-instance" leaf-list of the "incident-info"
 grouping in 'ietf-incident' YANG module. Thus, preserving the mapping between relevant-state
 notification id, service id and hostname in the network where the outlier was detected.<a href="#section-9.5-1" class="pilcrow">¶</a></p>
@@ -3652,10 +3652,6 @@ for their valuable comments and great input to this work.<a href="#section-12-1"
         <dd>
 <span class="refTitle">"MPLS Transport Profile (MPLS-TP) Control Plane Framework"</span>, <time datetime="2011-09" class="refDate">September 2011</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc6373">https://www.rfc-editor.org/info/rfc6373</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="RFC6991">[RFC6991]</dt>
-        <dd>
-<span class="refAuthor">Schoenwaelder, J., Ed.</span>, <span class="refTitle">"Common YANG Data Types"</span>, <span class="seriesInfo">RFC 6991</span>, <span class="seriesInfo">DOI 10.17487/RFC6991</span>, <time datetime="2013-07" class="refDate">July 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6991">https://www.rfc-editor.org/rfc/rfc6991</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="RFC7950">[RFC7950]</dt>
         <dd>
 <span class="refAuthor">Bjorklund, M., Ed.</span>, <span class="refTitle">"The YANG 1.1 Data Modeling Language"</span>, <span class="seriesInfo">RFC 7950</span>, <span class="seriesInfo">DOI 10.17487/RFC7950</span>, <time datetime="2016-08" class="refDate">August 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7950">https://www.rfc-editor.org/rfc/rfc7950</a>&gt;</span>. </dd>
@@ -3703,6 +3699,10 @@ for their valuable comments and great input to this work.<a href="#section-12-1"
 <dt id="RFC9376">[RFC9376]</dt>
         <dd>
 <span class="refTitle">"Applicability of GMPLS for beyond 100 Gbit/s Optical Transport Network"</span>, <time datetime="2023-03" class="refDate">March 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9376">https://www.rfc-editor.org/info/rfc9376</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9911">[RFC9911]</dt>
+        <dd>
+<span class="refAuthor">Schönwälder, J., Ed.</span>, <span class="refTitle">"Common YANG Data Types"</span>, <span class="seriesInfo">RFC 9911</span>, <span class="seriesInfo">DOI 10.17487/RFC9911</span>, <time datetime="2025-12" class="refDate">December 2025</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9911">https://www.rfc-editor.org/rfc/rfc9911</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9940">[RFC9940]</dt>
       <dd>
@@ -3960,7 +3960,7 @@ rpcs:
  |   +--ro incident-no? incident-ref
  |   +--ro ticket-no? string
  +--
-…
+...
 </pre><a href="#appendix-A.2-5" class="pilcrow">¶</a>
 </div>
 </section>
@@ -4214,7 +4214,8 @@ repair suggestions.<a href="#appendix-A.5-2" class="pilcrow">¶</a></p>
       <h2 id="name-changes-between-revisions">
 <a href="#appendix-B" class="section-number selfRef">Appendix B. </a><a href="#name-changes-between-revisions" class="section-name selfRef">Changes between Revisions</a>
       </h2>
-<p id="appendix-B-1">v10 - v11<a href="#appendix-B-1" class="pilcrow">¶</a></p>
+<p id="appendix-B-1">NOTE TO THE RFC-EDITOR: Please remove this appendix before publication
+  v10 - v11<a href="#appendix-B-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-B-2.1">
           <p id="appendix-B-2.1.1">Remove log identity<a href="#appendix-B-2.1.1" class="pilcrow">¶</a></p>
