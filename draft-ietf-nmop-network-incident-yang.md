@@ -1319,7 +1319,7 @@ rpcs:
  |   +--ro incident-no? incident-ref
  |   +--ro ticket-no? string
  +--
-…
+...
 ~~~~
 
 ##  Intent Based Networking with Incident Diagnosis Task List
