@@ -559,13 +559,13 @@ VPN A      | |            |
 ~~~~
 {:#exam1 title="Example 1 of Network Incident Identification" artwork-align="center"}
 
-As described in {{exam1}}, vpn a is deployed from PE1 to PE2, if an
+As described in {{exam1}}, VPN a is deployed from PE1 to PE2, if a
 interface of P1 is going down, many alarms are triggered, such as
 interface down, igp down, and igp peer abnormal from P2.
 
 These alarms are aggregated and analyzed by the controller/incident
-server, and then the network incident 'vpn unavailable' is triggered
-by the controller/Incident Server. If the network incident 'vpn unavailable'
+server, and then the network incident 'VPN unavailable' is triggered
+by the controller/Incident Server. If the network incident 'VPN unavailable'
 is repeated, the problem can be raised.
 
 Note that Incident Server within the controller can rely on data correlation technology such as
@@ -871,8 +871,8 @@ resource-unavailable
 
 # Network Incident Management YANG Module
 
-This module imports types defined in {{!RFC6991}}, {{!RFC8345}},
-{{!RFC8632}},{{!RFC8791}}.
+This module imports types defined in {{!RFC9911}}, {{!RFC8345}},
+{{!RFC8632}}, {{!RFC8791}}.
 
 ~~~~
 <CODE BEGINS> file "ietf-incident@2026-07-30.yang"
@@ -1070,7 +1070,7 @@ augments relevant-state YANG notification with 'ietf-network-anomaly-symptom' YA
 symptom semantics described in Section 4.2 and service and network relationships with
 'ietf-network-anomaly-service-topology' YANG module in Section 4.3. "hostname" in
 "vpn-node-termination" grouping of 'ietf-network-anomaly-service-topology' YANG module maps
-to "node-ref" in " node-ref " grouping respectively the "vpn-id" in the "vpn-service" list of
+to "node-ref" in "node-ref" grouping respectively the "vpn-id" in the "vpn-service" list of
 the "vpn-service" grouping maps to the "service-instance" leaf-list of the "incident-info"
 grouping in 'ietf-incident' YANG module. Thus, preserving the mapping between relevant-state
 notification id, service id and hostname in the network where the outlier was detected.
@@ -1311,7 +1311,7 @@ rpcs:
  |   +--ro incident-no? incident-ref
  |   +--ro ticket-no? string
  +--
-…
+...
 ~~~~
 
 ##  Intent Based Networking with Incident Diagnosis Task List
@@ -1533,6 +1533,7 @@ repair suggestions.
 
 # Changes between Revisions
 
+NOTE TO THE RFC-EDITOR: Please remove this appendix before publication
   v10 - v11
 
    * Remove log identity
