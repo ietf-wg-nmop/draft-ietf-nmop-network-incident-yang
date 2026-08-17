@@ -1541,6 +1541,7 @@ repair suggestions.
 
 # Changes between Revisions
 
+NOTE TO THE RFC-EDITOR: Please remove this appendix before publication
   v10 - v11
 
    * Remove log identity
