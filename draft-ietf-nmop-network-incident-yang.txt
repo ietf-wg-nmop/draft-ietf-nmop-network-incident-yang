@@ -1389,7 +1389,7 @@ Table of Contents
          enum medium {
            description
              "Network services are not affected, or the
-              services are slightly affected,but corrective
+              services are slightly affected, but corrective
               measures need to be taken.";
          }
          enum low {
