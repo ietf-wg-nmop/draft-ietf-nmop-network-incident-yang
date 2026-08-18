@@ -112,14 +112,6 @@ informative:
    title: W3C Recommendation on Trace Context
    target: https://www.w3.org/TR/2021/REC-trace-context-1-20211123/
    date: 2021
- ITU-T-G-7710:
-   title: ITU-T G.7710/Y.1701 - Common equipment management function requirements
-   target: https://www.itu.int/rec/T-REC-G.7710
-   date: 2020
- ITU-T-X-733:
-   title: ITU-T X.733 - Information technology - Open Systems Interconnection - Systems Management - Alarm reporting function
-   target: https://www.itu.int/rec/T-REC-X.733/fr
-   date: 1999
 
 --- abstract
 
@@ -191,10 +183,10 @@ incident when it causes degradation of the network services.
 In addition, Artificial Intelligence (AI) and Machine Learning (ML)
 are key technologies in the processing of large amounts of data with
 complex data correlations (see {{Section 6.1 of ?I-D.irtf-nmrg-ai-challenges}} ).
-For example, Neural Network Algorithm or Hierarchy Aggregation Algorithm can be used
-to replace manual alarm data correlation. Through online and offline self-learning,
-these algorithms can be continuously optimized to improve the efficiency of
-fault diagnosis.
+For example, Neural Network Algorithm or Hierarchy Aggregation Algorithm
+{{BERT}} can be used to replace manual alarm data correlation. Through online
+and offline self-learning, these algorithms can be continuously optimized to
+improve the efficiency of fault diagnosis.
 
 This document defines a YANG data model for network incident lifecycle
 management, which improves troubleshooting efficiency, and improves
@@ -270,6 +262,11 @@ Incident Handler:
 : An entity that can receive network incident notification, store and query the information of
   network incidents for data analysis. Unlike the Incident Client, it does not control the incident
   server and cannot instruct it to perform network incident diagnosis or resolution.
+
+Incident Process:
+: A multi-step workflow used by network operation teams to identify, analyze, and resolve unexpected
+service disruptions or quality reductions, with the primary goal of restoring normal operations as
+quickly as possible while minimizing service impact.
 
 Probable Root Cause:
 : If removing a fault condition completely resolves the ongoing incident (specifically, regarding network
@@ -892,7 +889,7 @@ multiple layers.
 Because accurate multi-layer troubleshooting depends on establishing a global view
 of cross-layer dependency relationships, any disruption or stale state in the
 underlying network topology discovery mechanisms will directly degrade the accuracy
-of the incident process's probable root cause identification and service impact analysis.
+of the Incident Process's probable root cause identification and service impact analysis.
 
 In addition, the YANG module defined in this document is intended to automate and
 streamline incident dispatching at the network layer so that integration with
@@ -964,7 +961,7 @@ works at the network level, so it is possible to have enough information
 to perform data correlation and Service Impact Assessment.  Alarms can work as
 one of data sources of Network Incident Management and may be aggregated
 into a few network incidents by the correlation analysis, network service
-impact and Probable Root Causes may be determined during the incident process.
+impact and Probable Root Causes may be determined during the Incident Process.
 
 Network Incident also contains some related alarms, if needed users can query
 the information of alarms by alarm management interface {{?RFC8632}}.
@@ -982,7 +979,7 @@ system (e.g., Incident Handler within the OSS). Upper-layer system may store
 these network incidents and provide the information for fault analysis (e.g.,
 deeper customer incident analysis based on network incident).
 
-Different from alarm management, incident process within the controller comprising
+Different from alarm management, Incident Process within the controller comprising
 both Incident Client and Incident Server functionalities provides not only network
 incident reporting but also diagnosis and resolution functions, it's possible to
 support self-healing and may be helpful for single-domain closed-loop control.
@@ -1001,7 +998,7 @@ SAIN {{?RFC9417}} defines an architecture of network service assurance.
               ^
               |incident
       +-------+--------+
-      |Incident process|
+      |Incident Process|
        +----------------+
                ^
                |symptoms
@@ -1024,7 +1021,7 @@ metrics can be monitored for sub-services.  For example, a tunnel
 service can be decomposed into some peer tunnel interface sub-
 services and IP connectivity sub-service.  If some metrics are
 evaluated to indicate unhealthy for specific sub-service, some
-symptoms will be present.  Incident process comprising both Incident Client and
+symptoms will be present.  Incident Process comprising both Incident Client and
 Incident Server functionalities may identify the network incident
 based on symptoms, and then report it to Incident Handler within the
 Operation Support System (OSS).  So, SAIN can be one way to identify
@@ -1174,17 +1171,19 @@ The Probable Root Cause is also analysed.
 
 ~~~~
 {
+  "name": "line fault",
+  "type": "problem",
   "incident-no": 56433218,
   "incident-qualifier": "line fault",
   "service-instance": ["optical-svc-A"],
-  "domain": "FAN",
+  "domain": "PTN",
   "priority": "critical",
   "occur-time": "2026-03-10T04:01:12Z",
   "clear-time": "2026-03-10T06:01:12Z",
   "ack-time": "2026-03-10T05:01:12Z",
   "last-updated": "2026-03-10T05:31:12Z",
   "ack-status": "unacknowledged",
-  "category": "Line",
+  "category": "Network",
   "source": [
     {
       "node-ref": "example:D1",
