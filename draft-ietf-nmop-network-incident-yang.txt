@@ -177,10 +177,10 @@ Table of Contents
    are key technologies in the processing of large amounts of data with
    complex data correlations (see Section 6.1 of
    [I-D.irtf-nmrg-ai-challenges] ).  For example, Neural Network
-   Algorithm or Hierarchy Aggregation Algorithm can be used to replace
-   manual alarm data correlation.  Through online and offline self-
-   learning, these algorithms can be continuously optimized to improve
-   the efficiency of fault diagnosis.
+   Algorithm or Hierarchy Aggregation Algorithm [BERT] can be used to
+   replace manual alarm data correlation.  Through online and offline
+   self-learning, these algorithms can be continuously optimized to
+   improve the efficiency of fault diagnosis.
 
    This document defines a YANG data model for network incident
    lifecycle management, which improves troubleshooting efficiency, and
@@ -2419,16 +2419,6 @@ Informative References
               Progress, Internet-Draft, draft-irtf-nmrg-ai-challenges-
               06, 6 July 2026, <https://datatracker.ietf.org/doc/html/
               draft-irtf-nmrg-ai-challenges-06>.
-
-   [ITU-T-G-7710]
-              "ITU-T G.7710/Y.1701 - Common equipment management
-              function requirements", 2020,
-              <https://www.itu.int/rec/T-REC-G.7710>.
-
-   [ITU-T-X-733]
-              "ITU-T X.733 - Information technology - Open Systems
-              Interconnection - Systems Management - Alarm reporting
-              function", 1999, <https://www.itu.int/rec/T-REC-X.733/fr>.
 
    [RFC8969]  Wu, Q., Ed., Boucadair, M., Ed., Lopez, D., Xie, C., and
               L. Geng, "A Framework for Automating Service and Network
