@@ -177,10 +177,10 @@ Table of Contents
    are key technologies in the processing of large amounts of data with
    complex data correlations (see Section 6.1 of
    [I-D.irtf-nmrg-ai-challenges] ).  For example, Neural Network
-   Algorithm or Hierarchy Aggregation Algorithm can be used to replace
-   manual alarm data correlation.  Through online and offline self-
-   learning, these algorithms can be continuously optimized to improve
-   the efficiency of fault diagnosis.
+   Algorithm or Hierarchy Aggregation Algorithm [BERT] can be used to
+   replace manual alarm data correlation.  Through online and offline
+   self-learning, these algorithms can be continuously optimized to
+   improve the efficiency of fault diagnosis.
 
    This document defines a YANG data model for network incident
    lifecycle management, which improves troubleshooting efficiency, and
@@ -265,6 +265,12 @@ Table of Contents
       for data analysis.  Unlike the Incident Client, it does not
       control the incident server and cannot instruct it to perform
       network incident diagnosis or resolution.
+
+   Incident Process:  A multi-step workflow used by network operation
+      teams to identify, analyze, and resolve unexpected service
+      disruptions or quality reductions, with the primary goal of
+      restoring normal operations as quickly as possible while
+      minimizing service impact.
 
    Probable Root Cause:  If removing a fault condition completely
       resolves the ongoing incident (specifically, regarding network
@@ -760,7 +766,7 @@ Table of Contents
            |     |  +--ro name          al:resource
            |     |  +--ro cause-name?   identityref
            |     |  +--ro detail?       string
-           |     +--ro cause-name?    identityref
+           |     +--ro cause-name?    string
            |     +--ro detail?        string
            +--ro probable-events
            |  +--ro probable-event* [type event-id]
@@ -1368,11 +1374,6 @@ Table of Contents
           the diagnosis/resolution operation.";
      }
 
-     identity cause-name {
-       description
-         "Base identity for the cause name.";
-     }
-
      // Typedefs
 
      typedef incident-priority {
@@ -1417,9 +1418,7 @@ Table of Contents
        description
          "The information of probable cause.";
        leaf cause-name {
-         type identityref {
-           base cause-name;
-         }
+         type string;
          description
            "The name of cause.";
        }
@@ -1498,7 +1497,7 @@ Table of Contents
          description
            "The type of an incident.";
        }
-       leaf incident-id {
+       leaf incident-qualifier {
          type string;
          description
            "The unique qualifier of an incident instance type.
@@ -1941,7 +1940,7 @@ Table of Contents
        description
          "The information of incidents.";
        list incident {
-         key "name type incident-id";
+         key "name type incident-qualifier";
          description
            "The information of incident.";
          leaf incident-no {
@@ -1971,8 +1970,8 @@ Table of Contents
    Because accurate multi-layer troubleshooting depends on establishing
    a global view of cross-layer dependency relationships, any disruption
    or stale state in the underlying network topology discovery
-   mechanisms will directly degrade the accuracy of the incident
-   process's probable root cause identification and service impact
+   mechanisms will directly degrade the accuracy of the Incident
+   Process's probable root cause identification and service impact
    analysis.
 
    In addition, the YANG module defined in this document is intended to
@@ -2048,7 +2047,7 @@ Table of Contents
    work as one of data sources of Network Incident Management and may be
    aggregated into a few network incidents by the correlation analysis,
    network service impact and Probable Root Causes may be determined
-   during the incident process.
+   during the Incident Process.
 
    Network Incident also contains some related alarms, if needed users
    can query the information of alarms by alarm management interface
@@ -2068,7 +2067,7 @@ Table of Contents
    information for fault analysis (e.g., deeper customer incident
    analysis based on network incident).
 
-   Different from alarm management, incident process within the
+   Different from alarm management, Incident Process within the
    controller comprising both Incident Client and Incident Server
    functionalities provides not only network incident reporting but also
    diagnosis and resolution functions, it's possible to support self-
@@ -2087,7 +2086,7 @@ Table of Contents
                                   ^
                                   |incident
                           +-------+--------+
-                          |Incident process|
+                          |Incident Process|
                            +----------------+
                                    ^
                                    |symptoms
@@ -2110,7 +2109,7 @@ Table of Contents
    tunnel service can be decomposed into some peer tunnel interface sub-
    services and IP connectivity sub-service.  If some metrics are
    evaluated to indicate unhealthy for specific sub-service, some
-   symptoms will be present.  Incident process comprising both Incident
+   symptoms will be present.  Incident Process comprising both Incident
    Client and Incident Server functionalities may identify the network
    incident based on symptoms, and then report it to Incident Handler
    within the Operation Support System (OSS).  So, SAIN can be one way
@@ -2420,16 +2419,6 @@ Informative References
               06, 6 July 2026, <https://datatracker.ietf.org/doc/html/
               draft-irtf-nmrg-ai-challenges-06>.
 
-   [ITU-T-G-7710]
-              "ITU-T G.7710/Y.1701 - Common equipment management
-              function requirements", 2020,
-              <https://www.itu.int/rec/T-REC-G.7710>.
-
-   [ITU-T-X-733]
-              "ITU-T X.733 - Information technology - Open Systems
-              Interconnection - Systems Management - Alarm reporting
-              function", 1999, <https://www.itu.int/rec/T-REC-X.733/fr>.
-
    [RFC8969]  Wu, Q., Ed., Boucadair, M., Ed., Lopez, D., Xie, C., and
               L. Geng, "A Framework for Automating Service and Network
               Management with YANG", RFC 8969, DOI 10.17487/RFC8969,
@@ -2482,17 +2471,19 @@ A.1.  Network Incident Correlated with Specific Network Topology and the
    also analysed.
 
    {
+     "name": "line fault",
+     "type": "problem",
      "incident-no": 56433218,
      "incident-qualifier": "line fault",
      "service-instance": ["optical-svc-A"],
-     "domain": "FAN",
+     "domain": "PTN",
      "priority": "critical",
      "occur-time": "2026-03-10T04:01:12Z",
      "clear-time": "2026-03-10T06:01:12Z",
      "ack-time": "2026-03-10T05:01:12Z",
      "last-updated": "2026-03-10T05:31:12Z",
      "ack-status": "unacknowledged",
-     "category": "Line",
+     "category": "Network",
      "source": [
        {
          "node-ref": "example:D1",
