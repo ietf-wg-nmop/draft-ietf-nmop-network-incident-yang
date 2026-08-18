@@ -23,7 +23,7 @@ Abstract
    lifecycle management.  This YANG module is meant to provide a
    standard way to report, diagnose, and help reduce troubleshooting
    tickets and resolve network incidents for the sake of network service
-   health and probable cause analysis.
+   health and probable root cause analysis.
 
 Status of This Memo
 
@@ -286,7 +286,7 @@ Table of Contents
 
       Conversely, a causal fault condition is a contributing action that
       influences the outcome of the incident or event but is not the
-      Probable Cause.
+      Probable Root Cause.
 
 3.  Sample Use Cases
 
