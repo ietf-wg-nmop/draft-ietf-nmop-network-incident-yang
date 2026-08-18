@@ -690,7 +690,7 @@ the network incident include Probable Root Cause, priority, impact,
 suggestion, etc.
 
 At the top of "ietf-incident" module is the Network Incident.
-Network incident is represented as a list and indexed by "incident-id".
+Network incident is represented as a list and indexed by "incident-qualifier".
 Each Network Incident is associated with a network service instance, domain and
 sources.  Under sources, there is one or more sources.  Each source
 corresponds to node defined in the network topology model and network
@@ -711,7 +711,7 @@ notifications:
      +--ro incident-no         incident-ref
      +--ro name?               string
      +--ro type?               identityref
-     +--ro incident-id?        string
+     +--ro incident-qualifier? string
      +--ro service-instance*   string
      +--ro domain              identityref
      +--ro priority            incident-priority
@@ -900,14 +900,14 @@ Assigned, In-Progress, Resolved) to prevent split-brain visibility scenarios whe
 an incident is closed in the network layer but remains active in the ticketing
 system, or vice versa.
 
-This incident data model states that the tuple (name, type and incident-id) corresponds to
+This incident data model states that the tuple (name, type and incident-qualifier) corresponds to
 a single incident instance. This means that incident notifications for the
-same name and same type and incident-id are matched to update the same
+same name and same type and incident-qualifier are matched to update the same
 incident instance.  These three leafs are therefore used as the key in
 the incident list:
 
      list incident {
-       key "name type incident-id";
+       key "name type incident-qualifier";
        ...
      }
 
@@ -1174,7 +1174,7 @@ The Probable Root Cause is also analysed.
   "name": "line fault",
   "type": "problem",
   "incident-no": 56433218,
-  "incident-id": "ltp fault",
+  "incident-qualifier": "line fault",
   "service-instance": ["optical-svc-A"],
   "domain": "PTN",
   "priority": "critical",
