@@ -315,7 +315,7 @@ module ietf-incident {
   identity probable-cause-unlocated {
     base diagnose-error;
     description
-      "Fail to locate the probable causes when performing the
+      "Fail to locate the probable root causes when performing the
        diagnosis operation. The detailed reason MUST be included
        in the 'description'.";
   }
@@ -323,7 +323,7 @@ module ietf-incident {
   identity probable-cause-unresolved {
     base resolve-error;
     description
-      "Fail to resolve the probable causes when performing the
+      "Fail to resolve the probable root causes when performing the
        resolution operation. The detailed reason MUST be included
        in the 'description'";
   }
@@ -398,7 +398,7 @@ module ietf-incident {
 
   grouping probable-cause-info {
     description
-      "The information of probable cause.";
+      "The information of probable root cause.";
     leaf cause-name {
       type identityref {
         base cause-name;
@@ -580,30 +580,30 @@ module ietf-incident {
     }
     container probable-causes {
       description
-        "The probable cause objects.";
+        "The probable root cause objects.";
       list probable-cause {
         key "node-ref";
         description
-          "The probable causes of incident.";
+          "The probable root causes of incident.";
         uses resources-info {
           augment "resource" {
             description
-              "Augment probable cause information.";
-            //if probable cause object is a resource of a node
+              "Augment probable root cause information.";
+            //if probable root cause object is a resource of a node
             uses probable-cause-info;
           }
         }
-        //if probable cause object is a node
+        //if probable root cause object is a node
         uses probable-cause-info;
       }
     }
     container probable-events {
       description
-        "The probable cause related events of the incident.";
+        "The probable root cause related events of the incident.";
       list probable-event {
         key "type event-id";
         description
-          "The probable cause related event of the incident.";
+          "The probable root cause related event of the incident.";
         leaf type {
           type leafref {
             path "../../../events/event/type";
