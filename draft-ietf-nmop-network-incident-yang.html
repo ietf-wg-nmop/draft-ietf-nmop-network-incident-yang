@@ -2689,11 +2689,6 @@ module ietf-incident {
        the diagnosis/resolution operation.";
   }
 
-  identity cause-name {
-    description
-      "Base identity for the cause name.";
-  }
-
   // Typedefs
 
   typedef incident-priority {
@@ -2738,9 +2733,7 @@ module ietf-incident {
     description
       "The information of probable cause.";
     leaf cause-name {
-      type identityref {
-        base cause-name;
-      }
+      type string;
       description
         "The name of cause.";
     }
