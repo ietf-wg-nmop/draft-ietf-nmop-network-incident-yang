@@ -1533,6 +1533,27 @@ repair suggestions.
 # Changes between Revisions
 
 NOTE TO THE RFC-EDITOR: Please remove this appendix before publication
+
+  v11 - v12
+
+  * Replace incident-id with incident-qualifier
+
+  * Add a new definition for the incident process
+
+  * replace probable cause with probable root cause in the YANG model
+
+  * Clean up probable cause in the normative text
+
+  * Remove cause-name identity to align with example in A.1
+
+  * Change the type of root cause into string
+
+  * Fix invalide yang instance in the appendix A.1
+
+  * Clean up unused references
+
+  * Other Editorial changes
+
   v10 - v11
 
    * Remove log identity
