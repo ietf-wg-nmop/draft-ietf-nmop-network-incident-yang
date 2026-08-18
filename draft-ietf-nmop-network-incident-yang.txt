@@ -724,9 +724,9 @@ Table of Contents
 
    At the top of "ietf-incident" module is the Network Incident.
    Network incident is represented as a list and indexed by "incident-
-   id".  Each Network Incident is associated with a network service
-   instance, domain and sources.  Under sources, there is one or more
-   sources.  Each source corresponds to node defined in the network
+   qualifier".  Each Network Incident is associated with a network
+   service instance, domain and sources.  Under sources, there is one or
+   more sources.  Each source corresponds to node defined in the network
    topology model and network resource in the network device, e.g.,
    interface.  In addition, "ietf-incident" supports one general
    notification to report network incident state changes and three rpcs
@@ -865,7 +865,7 @@ Table of Contents
         +--ro incident-no         incident-ref
         +--ro name?               string
         +--ro type?               identityref
-        +--ro incident-id?        string
+        +--ro incident-qualifier? string
         +--ro service-instance*   string
         +--ro domain              identityref
         +--ro priority            incident-priority
@@ -1985,13 +1985,13 @@ Table of Contents
    but remains active in the ticketing system, or vice versa.
 
    This incident data model states that the tuple (name, type and
-   incident-id) corresponds to a single incident instance.  This means
-   that incident notifications for the same name and same type and
-   incident-id are matched to update the same incident instance.  These
-   three leafs are therefore used as the key in the incident list:
+   incident-qualifier) corresponds to a single incident instance.  This
+   means that incident notifications for the same name and same type and
+   incident-qualifier are matched to update the same incident instance.
+   These three leafs are therefore used as the key in the incident list:
 
     list incident {
-      key "name type incident-id";
+      key "name type incident-qualifier";
       ...
     }
 
@@ -2474,7 +2474,7 @@ A.1.  Network Incident Correlated with Specific Network Topology and the
      "name": "line fault",
      "type": "problem",
      "incident-no": 56433218,
-     "incident-id": "ltp fault",
+     "incident-qualifier": "line fault",
      "service-instance": ["optical-svc-A"],
      "domain": "PTN",
      "priority": "critical",
