@@ -1497,7 +1497,7 @@ Table of Contents
          description
            "The type of an incident.";
        }
-       leaf incident-id {
+       leaf incident-qualifier {
          type string;
          description
            "The unique qualifier of an incident instance type.
@@ -1940,7 +1940,7 @@ Table of Contents
        description
          "The information of incidents.";
        list incident {
-         key "name type incident-id";
+         key "name type incident-qualifier";
          description
            "The information of incident.";
          leaf incident-no {
