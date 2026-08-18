@@ -119,7 +119,7 @@ This document defines a YANG Module for the network incident lifecycle
 management.  This YANG module is meant to provide a standard way to
 report, diagnose, and help reduce troubleshooting tickets and resolve
 network incidents for the sake of network service health and probable
-cause analysis.
+root cause analysis.
 
 --- middle
 
@@ -278,7 +278,7 @@ Probable Root Cause:
   related Faults.
 
 : Conversely, a causal fault condition is a contributing action that influences the outcome of the incident or
-  event but is not the Probable Cause.
+  event but is not the Probable Root Cause.
 
 
 # Sample Use Cases
