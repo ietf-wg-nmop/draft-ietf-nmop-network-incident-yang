@@ -266,7 +266,7 @@ Table of Contents
       control the incident server and cannot instruct it to perform
       network incident diagnosis or resolution.
 
-   Incident process:  A multi-step workflow used by network operation
+   Incident Process:  A multi-step workflow used by network operation
       teams to identify, analyze, and resolve unexpected service
       disruptions or quality reductions, with the primary goal of
       restoring normal operations as quickly as possible while
@@ -1977,8 +1977,8 @@ Table of Contents
    Because accurate multi-layer troubleshooting depends on establishing
    a global view of cross-layer dependency relationships, any disruption
    or stale state in the underlying network topology discovery
-   mechanisms will directly degrade the accuracy of the incident
-   process's probable root cause identification and service impact
+   mechanisms will directly degrade the accuracy of the Incident
+   Process's probable root cause identification and service impact
    analysis.
 
    In addition, the YANG module defined in this document is intended to
@@ -2054,7 +2054,7 @@ Table of Contents
    work as one of data sources of Network Incident Management and may be
    aggregated into a few network incidents by the correlation analysis,
    network service impact and Probable Root Causes may be determined
-   during the incident process.
+   during the Incident Process.
 
    Network Incident also contains some related alarms, if needed users
    can query the information of alarms by alarm management interface
@@ -2074,7 +2074,7 @@ Table of Contents
    information for fault analysis (e.g., deeper customer incident
    analysis based on network incident).
 
-   Different from alarm management, incident process within the
+   Different from alarm management, Incident Process within the
    controller comprising both Incident Client and Incident Server
    functionalities provides not only network incident reporting but also
    diagnosis and resolution functions, it's possible to support self-
@@ -2093,7 +2093,7 @@ Table of Contents
                                   ^
                                   |incident
                           +-------+--------+
-                          |Incident process|
+                          |Incident Process|
                            +----------------+
                                    ^
                                    |symptoms
@@ -2116,7 +2116,7 @@ Table of Contents
    tunnel service can be decomposed into some peer tunnel interface sub-
    services and IP connectivity sub-service.  If some metrics are
    evaluated to indicate unhealthy for specific sub-service, some
-   symptoms will be present.  Incident process comprising both Incident
+   symptoms will be present.  Incident Process comprising both Incident
    Client and Incident Server functionalities may identify the network
    incident based on symptoms, and then report it to Incident Handler
    within the Operation Support System (OSS).  So, SAIN can be one way

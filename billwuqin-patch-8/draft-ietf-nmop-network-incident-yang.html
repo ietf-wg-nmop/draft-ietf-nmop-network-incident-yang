@@ -23,14 +23,14 @@ cause analysis.
 <meta content="draft-ietf-nmop-network-incident-yang-latest" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.34.0
-    Python 3.14.5
+    Python 3.14.7
     ConfigArgParse 1.7.5
     google-i18n-address 3.1.1
     intervaltree 3.2.1
     Jinja2 3.1.6
     lxml 6.1.1
     natsort 8.4.0
-    platformdirs 4.11.0
+    platformdirs 4.11.3
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.33.1
@@ -1485,7 +1485,7 @@ network incidents for data analysis. Unlike the Incident Client, it does not con
 server and cannot instruct it to perform network incident diagnosis or resolution.<a href="#section-2-5.12.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-5.13">Incident process:</dt>
+<dt id="section-2-5.13">Incident Process:</dt>
         <dd style="margin-left: 1.5em" id="section-2-5.14">
           <p id="section-2-5.14.1">A multi-step workflow used by network operation teams to identify, analyze, and resolve unexpected
 service disruptions or quality reductions, with the primary goal of restoring normal operations as
@@ -3303,7 +3303,7 @@ multiple layers.<a href="#section-9-1" class="pilcrow">¶</a></p>
 <p id="section-9-2">Because accurate multi-layer troubleshooting depends on establishing a global view
 of cross-layer dependency relationships, any disruption or stale state in the
 underlying network topology discovery mechanisms will directly degrade the accuracy
-of the incident process's probable root cause identification and service impact analysis.<a href="#section-9-2" class="pilcrow">¶</a></p>
+of the Incident Process's probable root cause identification and service impact analysis.<a href="#section-9-2" class="pilcrow">¶</a></p>
 <p id="section-9-3">In addition, the YANG module defined in this document is intended to automate and
 streamline incident dispatching at the network layer so that integration with
 trouble-ticketing management system at the OSS layer is required. Operators should
@@ -3383,7 +3383,7 @@ works at the network level, so it is possible to have enough information
 to perform data correlation and Service Impact Assessment.  Alarms can work as
 one of data sources of Network Incident Management and may be aggregated
 into a few network incidents by the correlation analysis, network service
-impact and Probable Root Causes may be determined during the incident process.<a href="#section-9.1-2" class="pilcrow">¶</a></p>
+impact and Probable Root Causes may be determined during the Incident Process.<a href="#section-9.1-2" class="pilcrow">¶</a></p>
 <p id="section-9.1-3">Network Incident also contains some related alarms, if needed users can query
 the information of alarms by alarm management interface <span>[<a href="#RFC8632" class="cite xref">RFC8632</a>]</span>.
 In some cases, e.g., cutover scenario, the Incident Server may use alarm
@@ -3397,7 +3397,7 @@ controller or network analytic platform and then reported to the upper-layer
 system (e.g., Incident Handler within the OSS). Upper-layer system may store
 these network incidents and provide the information for fault analysis (e.g.,
 deeper customer incident analysis based on network incident).<a href="#section-9.1-5" class="pilcrow">¶</a></p>
-<p id="section-9.1-6">Different from alarm management, incident process within the controller comprising
+<p id="section-9.1-6">Different from alarm management, Incident Process within the controller comprising
 both Incident Client and Incident Server functionalities provides not only network
 incident reporting but also diagnosis and resolution functions, it's possible to
 support self-healing and may be helpful for single-domain closed-loop control.<a href="#section-9.1-6" class="pilcrow">¶</a></p>
@@ -3421,7 +3421,7 @@ Instead, they can work together to implement fault management.<a href="#section-
               ^
               |incident
       +-------+--------+
-      |Incident process|
+      |Incident Process|
        +----------------+
                ^
                |symptoms
@@ -3447,7 +3447,7 @@ metrics can be monitored for sub-services.  For example, a tunnel
 service can be decomposed into some peer tunnel interface sub-
 services and IP connectivity sub-service.  If some metrics are
 evaluated to indicate unhealthy for specific sub-service, some
-symptoms will be present.  Incident process comprising both Incident Client and
+symptoms will be present.  Incident Process comprising both Incident Client and
 Incident Server functionalities may identify the network incident
 based on symptoms, and then report it to Incident Handler within the
 Operation Support System (OSS).  So, SAIN can be one way to identify
