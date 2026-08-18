@@ -1,11 +1,11 @@
 module: ietf-incident
 
   +--ro incidents
-     +--ro incident* [name type incident-id]
+     +--ro incident* [name type incident-qualifier]
         +--ro incident-no         uint64
         +--ro name                string
         +--ro type                identityref
-        +--ro incident-id         string
+        +--ro incident-qualifier  string
         +--ro service-instance*   string
         +--ro domain              identityref
         +--ro priority            incident-priority
@@ -66,7 +66,7 @@ module: ietf-incident
        +--ro incident-no         incident-ref
        +--ro name?               string
        +--ro type?               identityref
-       +--ro incident-id?        string
+       +--ro incident-qualifier? string
        +--ro service-instance*   string
        +--ro domain              identityref
        +--ro priority            incident-priority
