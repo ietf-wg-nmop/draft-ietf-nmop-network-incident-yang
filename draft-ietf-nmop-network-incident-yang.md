@@ -1166,17 +1166,19 @@ The Probable Root Cause is also analysed.
 
 ~~~~
 {
+  "name": "line fault",
+  "type": "problem",
   "incident-no": 56433218,
-  "incident-id": "line fault",
+  "incident-id": "ltp fault",
   "service-instance": ["optical-svc-A"],
-  "domain": "FAN",
+  "domain": "PTN",
   "priority": "critical",
   "occur-time": "2026-03-10T04:01:12Z",
   "clear-time": "2026-03-10T06:01:12Z",
   "ack-time": "2026-03-10T05:01:12Z",
   "last-updated": "2026-03-10T05:31:12Z",
   "ack-status": "unacknowledged",
-  "category": "Line",
+  "category": "Network",
   "source": [
     {
       "node-ref": "example:D1",
