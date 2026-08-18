@@ -112,14 +112,6 @@ informative:
    title: W3C Recommendation on Trace Context
    target: https://www.w3.org/TR/2021/REC-trace-context-1-20211123/
    date: 2021
- ITU-T-G-7710:
-   title: ITU-T G.7710/Y.1701 - Common equipment management function requirements
-   target: https://www.itu.int/rec/T-REC-G.7710
-   date: 2020
- ITU-T-X-733:
-   title: ITU-T X.733 - Information technology - Open Systems Interconnection - Systems Management - Alarm reporting function
-   target: https://www.itu.int/rec/T-REC-X.733/fr
-   date: 1999
 
 --- abstract
 
@@ -191,10 +183,10 @@ incident when it causes degradation of the network services.
 In addition, Artificial Intelligence (AI) and Machine Learning (ML)
 are key technologies in the processing of large amounts of data with
 complex data correlations (see {{Section 6.1 of ?I-D.irtf-nmrg-ai-challenges}} ).
-For example, Neural Network Algorithm or Hierarchy Aggregation Algorithm can be used
-to replace manual alarm data correlation. Through online and offline self-learning,
-these algorithms can be continuously optimized to improve the efficiency of
-fault diagnosis.
+For example, Neural Network Algorithm or Hierarchy Aggregation Algorithm
+{{BERT}} can be used to replace manual alarm data correlation. Through online
+and offline self-learning, these algorithms can be continuously optimized to
+improve the efficiency of fault diagnosis.
 
 This document defines a YANG data model for network incident lifecycle
 management, which improves troubleshooting efficiency, and improves
