@@ -263,6 +263,11 @@ Incident Handler:
   network incidents for data analysis. Unlike the Incident Client, it does not control the incident
   server and cannot instruct it to perform network incident diagnosis or resolution.
 
+Incident Process:
+: A multi-step workflow used by network operation teams to identify, analyze, and resolve unexpected
+service disruptions or quality reductions, with the primary goal of restoring normal operations as
+quickly as possible while minimizing service impact.
+
 Probable Root Cause:
 : If removing a fault condition completely resolves the ongoing incident (specifically, regarding network
   outage or service impairments and their associated subsequent failures and symptoms) and prevents
@@ -884,7 +889,7 @@ multiple layers.
 Because accurate multi-layer troubleshooting depends on establishing a global view
 of cross-layer dependency relationships, any disruption or stale state in the
 underlying network topology discovery mechanisms will directly degrade the accuracy
-of the incident process's probable root cause identification and service impact analysis.
+of the Incident Process's probable root cause identification and service impact analysis.
 
 In addition, the YANG module defined in this document is intended to automate and
 streamline incident dispatching at the network layer so that integration with
@@ -956,7 +961,7 @@ works at the network level, so it is possible to have enough information
 to perform data correlation and Service Impact Assessment.  Alarms can work as
 one of data sources of Network Incident Management and may be aggregated
 into a few network incidents by the correlation analysis, network service
-impact and Probable Root Causes may be determined during the incident process.
+impact and Probable Root Causes may be determined during the Incident Process.
 
 Network Incident also contains some related alarms, if needed users can query
 the information of alarms by alarm management interface {{?RFC8632}}.
@@ -974,7 +979,7 @@ system (e.g., Incident Handler within the OSS). Upper-layer system may store
 these network incidents and provide the information for fault analysis (e.g.,
 deeper customer incident analysis based on network incident).
 
-Different from alarm management, incident process within the controller comprising
+Different from alarm management, Incident Process within the controller comprising
 both Incident Client and Incident Server functionalities provides not only network
 incident reporting but also diagnosis and resolution functions, it's possible to
 support self-healing and may be helpful for single-domain closed-loop control.
@@ -993,7 +998,7 @@ SAIN {{?RFC9417}} defines an architecture of network service assurance.
               ^
               |incident
       +-------+--------+
-      |Incident process|
+      |Incident Process|
        +----------------+
                ^
                |symptoms
@@ -1016,7 +1021,7 @@ metrics can be monitored for sub-services.  For example, a tunnel
 service can be decomposed into some peer tunnel interface sub-
 services and IP connectivity sub-service.  If some metrics are
 evaluated to indicate unhealthy for specific sub-service, some
-symptoms will be present.  Incident process comprising both Incident Client and
+symptoms will be present.  Incident Process comprising both Incident Client and
 Incident Server functionalities may identify the network incident
 based on symptoms, and then report it to Incident Handler within the
 Operation Support System (OSS).  So, SAIN can be one way to identify
