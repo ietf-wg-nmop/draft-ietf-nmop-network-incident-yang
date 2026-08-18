@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 18 February 2027                                     Telefonica
+Expires: 19 February 2027                                     Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                          17 August 2026
+                                                          18 August 2026
 
 
            A YANG Data Model for Network Incident Management
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 18 February 2027.
+   This Internet-Draft will expire on 19 February 2027.
 
 Copyright Notice
 
@@ -731,11 +731,11 @@ Table of Contents
    module: ietf-incident
 
      +--ro incidents
-        +--ro incident* [name type incident-id]
+        +--ro incident* [name type incident-qualifier]
            +--ro incident-no         uint64
            +--ro name                string
            +--ro type                identityref
-           +--ro incident-id         string
+           +--ro incident-qualifier  string
            +--ro service-instance*   string
            +--ro domain              identityref
            +--ro priority            incident-priority
@@ -803,7 +803,7 @@ Table of Contents
           +--ro incident-no         incident-ref
           +--ro name?               string
           +--ro type?               identityref
-          +--ro incident-id?        string
+          +--ro incident-qualifier? string
           +--ro service-instance*   string
           +--ro domain              identityref
           +--ro priority            incident-priority
