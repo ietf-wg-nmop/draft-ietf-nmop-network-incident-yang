@@ -271,6 +271,11 @@ Incident Handler:
   network incidents for data analysis. Unlike the Incident Client, it does not control the incident
   server and cannot instruct it to perform network incident diagnosis or resolution.
 
+Incident process:
+: A multi-step workflow used by network operation teams to identify, analyze, and resolve unexpected
+service disruptions or quality reductions, with the primary goal of restoring normal operations as
+quickly as possible while minimizing service impact.
+
 Probable Root Cause:
 : If removing a fault condition completely resolves the ongoing incident (specifically, regarding network
   outage or service impairments and their associated subsequent failures and symptoms) and prevents
