@@ -481,7 +481,7 @@ module ietf-incident {
       description
         "The type of an incident.";
     }
-    leaf incident-id {
+    leaf incident-qualifier {
       type string;
       description
         "The unique qualifier of an incident instance type.
