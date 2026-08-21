@@ -1730,12 +1730,12 @@ Table of Contents
                      "Metric Name.";
                  }
                  leaf threshold-value {
-                   type string;
+                   type decimal64;
                    description
                      "Threshold value for the specific metric.";
                  }
                  leaf observed-value {
-                   type string;
+                   type decimal64;
                    description
                      "Observed value for the specific metric.";
                  }
