@@ -2384,12 +2384,12 @@ module ietf-incident {
   import ietf-yang-types {
     prefix yang;
     reference
-      "RFC 9911: Common YANG Data Types";
+      "RFC 9911: Common YANG Data Types, Section 3";
   }
   import ietf-inet-types {
     prefix inet;
     reference
-      "RFC 9911: Common YANG Data Types";
+      "RFC 9911: Common YANG Data Types, Section 4";
   }
   import ietf-alarms {
     prefix al;
@@ -2410,8 +2410,8 @@ module ietf-incident {
   organization
     "IETF NMOP Working Group";
   contact
-    "WG Web:   &lt;https://datatracker.ietf.org/wg/nmop/&gt;;
-     WG List:  &lt;mailto:nmop@ietf.org&gt;
+    "WG Web:   https://datatracker.ietf.org/wg/nmop/;
+     WG List:  NMOP &lt;mailto:nmop@ietf.org&gt;
 
      Author:   Chong Feng
                &lt;mailto:fengchongllly@gmail.com&gt;
@@ -2445,9 +2445,12 @@ module ietf-incident {
      Relating to IETF Documents
      (https://trustee.ietf.org/license-info).
 
-     This version of this YANG module is part of RFC XXXX
-     (https://www.rfc-editor.org/info/rfcXXXX); see the RFC
-     itself for full legal notices.
+     All revisions of IETF and IANA published modules can be found
+     at the YANG Parameters registry group
+     (https://www.iana.org/assignments/yang-parameters).
+
+     This version of this YANG module is part of RFC XXXX; see
+     the RFC itself for full legal notices.
 
      The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL', 'SHALL
      NOT', 'SHOULD', 'SHOULD NOT', 'RECOMMENDED', 'NOT RECOMMENDED',
@@ -2457,75 +2460,74 @@ module ietf-incident {
 
   revision 2026-07-30 {
     description
-      "Merge incident yang with incident type yang
-       and fix broken ref.";
+      "Initial version.";
     reference
-      "RFC XXXX: YANG module for network incident management.";
+      "RFC XXXX: A YANG Data Model for Network Incident Management.";
   }
 
   // Identities
 
   identity incident-domain {
     description
-      "The abstract identity to indicate the domain of
+      "The base identity to indicate the domain of
        an incident.";
   }
 
   identity single-domain {
     base incident-domain;
     description
-      "Single domain.";
+      "Indicates single domain.";
   }
 
   identity access {
     base single-domain;
     description
-      "access domain.";
+      "Indicates access domain.";
   }
 
   identity ran {
     base access;
     description
-      "Radio access network domain.";
+      "Indicates a radio access network domain.";
   }
 
   identity transport {
     base single-domain;
     description
-      "Transport domain.";
+      "Indicates a transport domain.";
   }
 
   identity otn {
     base transport;
     description
-      "Optical transport network domain.";
+      "Indicates an optical transport network domain.";
     reference
-      "RFC9376: Applicability of GMPLS for beyond 100 Gbit/s Optical
-       Transport Network";
+      "RFC 9376: Applicability of GMPLS for beyond 100 Gbit/s Optical
+                Transport Network";
   }
 
   identity ip {
     base single-domain;
     description
-      "Ip domain.";
+      "Indicates an IP domain.";
     reference
-      "RFC1136: Administrative Domains and Routing Domains A Model
-          for Routing in the Internet";
+      "RFC 1136: Administrative Domains and Routing Domains A Model
+                 for Routing in the Internet";
   }
 
   identity ptn {
     base ip;
     description
-      "Packet transport network domain.";
+      "Indicartes a packet transport network domain.";
     reference
-      "RFC6373: MPLS Transport Profile (MPLS-TP) Control Plane
-       Framework";
+      "RFC 6373: MPLS Transport Profile (MPLS-TP) Control Plane
+                 Framework";
   }
 
   identity cross-domain {
     base incident-domain;
     description
-      "Cross domain.";
+      "Indicates a cross domain.";
   }
 
   identity incident-category {
@@ -2538,7 +2540,7 @@ module ietf-incident {
     description
       "Device category.";
     reference
-      "RFC8348: A YANG Data Model for Hardware Management";
+      "RFC 8348: A YANG Data Model for Hardware Management";
   }
 
   identity power-environment {
@@ -2546,7 +2548,7 @@ module ietf-incident {
     description
       "Power environment category.";
     reference
-      "RFC8348: A YANG Data Model for Hardware Management";
+      "RFC 8348: A YANG Data Model for Hardware Management";
   }
 
   identity device-hardware {
@@ -2554,7 +2556,7 @@ module ietf-incident {
     description
       "Device hardware category.";
     reference
-      "RFC8348: A YANG Data Model for Hardware Management";
+      "RFC 8348: A YANG Data Model for Hardware Management";
   }
 
   identity device-software {
@@ -2562,7 +2564,7 @@ module ietf-incident {
     description
       "Device software category.";
     reference
-      "RFC8348: A YANG Data Model for Hardware Management";
+      "RFC 8348: A YANG Data Model for Hardware Management";
   }
 
   identity line-card {
@@ -2570,7 +2572,7 @@ module ietf-incident {
     description
       "Line card category.";
     reference
-      "RFC8348: A YANG Data Model for Hardware Management";
+      "RFC 8348: A YANG Data Model for Hardware Management";
   }
 
   identity maintenance {
@@ -2607,7 +2609,7 @@ module ietf-incident {
     description
       "The abstract identity for Event type.";
     reference
-      "RFC9940: Some Key Terms for Network Fault and Problem
+      "RFC 9940: Some Key Terms for Network Fault and Problem
        Management";
   }
 
@@ -2616,7 +2618,7 @@ module ietf-incident {
     description
       "Alarm event type.";
     reference
-      "RFC8632: A YANG Data Model for Alarm Management";
+      "RFC 8632: A YANG Data Model for Alarm Management";
   }
 
   identity notif {
@@ -2624,7 +2626,7 @@ module ietf-incident {
     description
       "Notification event type.";
     reference
-      "RFC5277: NETCONF Event Notifications";
+      "RF 5277: NETCONF Event Notifications";
   }
 
   identity metric {
@@ -2632,8 +2634,8 @@ module ietf-incident {
     description
       "Metric event type.";
     reference
-      "RFC9375: A YANG Data Model for Network and VPN
-      Service Performance Monitoring";
+      "RFC 9375: A YANG Data Model for Network and VPN
+                 Service Performance Monitoring";
   }
 
   identity unknown {
@@ -2651,11 +2653,11 @@ module ietf-incident {
     base incident-type;
     description
       "It indicates the class of the incident is a problem
-       (i.e.,cause of the incident) for example an interface
+       (i.e., cause of the incident) for example an interface
        fails to work.";
     reference
-      "RFC9940: Some Key Terms for Network Fault and Problem
-       Management";
+      "RFC 9940: Some Key Terms for Network Fault and Problem
+                 Management";
   }
 
   identity sla-violation {
@@ -2756,7 +2758,7 @@ module ietf-incident {
       }
     }
     description
-      "Define the priority of incident.";
+      "Defines the priority of incident.";
   }
 
   typedef incident-ref {
@@ -2764,7 +2766,7 @@ module ietf-incident {
       path "/inc:incidents/inc:incident/inc:incident-no";
     }
     description
-      "Reference a network incident.";
+      "Provides a reference to a network incident.";
   }
 
   // Groupings
@@ -2775,7 +2777,7 @@ module ietf-incident {
     leaf cause-name {
       type string;
       description
-        "The name of cause.";
+        "Specifies the cause name.";
     }
     leaf detail {
       type string;
@@ -2858,8 +2860,8 @@ module ietf-incident {
         "The unique qualifier of an incident instance type.
          This leaf is used when the 'type' leaf cannot
          uniquely identify the incident instance type.  Normally,
-         this is not the case, and this leaf is the empty string.
-        ";
+         this is not the case, and this leaf is the empty
+         string.";
     }
     leaf-list service-instance {
       type string;
@@ -3045,7 +3047,7 @@ module ietf-incident {
                   "Alarm type id.";
                 reference
                   "RFC 8632: A YANG Data Model for Alarm
-                    Management";
+                             Management";
               }
               leaf alarm-type-qualifier {
                 type leafref {
@@ -3058,7 +3060,7 @@ module ietf-incident {
                   "Alarm type qualifier.";
                 reference
                   "RFC 8632: A YANG Data Model for Alarm
-                   Management";
+                             Management";
               }
             }
           }
@@ -3077,7 +3079,7 @@ module ietf-incident {
                   "Network resource.";
                 reference
                   "RFC 8632: A YANG Data Model for Alarm
-                   Management";
+                             Management";
               }
               leaf metric-name {
                 type string;
