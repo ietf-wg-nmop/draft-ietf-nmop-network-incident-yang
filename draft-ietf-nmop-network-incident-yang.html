@@ -2420,7 +2420,7 @@ module ietf-incident {
      NOT', 'SHOULD', 'SHOULD NOT', 'RECOMMENDED', 'NOT RECOMMENDED',
      'MAY', and 'OPTIONAL' in this document are to be interpreted as
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
-     they appear in all capitals, as shown here. ";
+     they appear in all capitals, as shown here.";
 
   revision 2026-07-30 {
     description
@@ -3263,6 +3263,7 @@ module ietf-incident {
       "The information of incidents.";
     list incident {
       key "name type incident-qualifier";
+      unique "incident-no";
       description
         "The information of incident.";
       leaf incident-no {
