@@ -1717,10 +1717,7 @@ Table of Contents
                    "Metric type event. Performance metrics
                     exceeding SLO thresholds.";
                  leaf resource {
-                   type leafref {
-                     path "/al:alarms/al:alarm-list/al:alarm"
-                        + "/al:resource";
-                   }
+                   type al:resource;
                    description
                      "Network resource.";
                    reference
