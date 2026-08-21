@@ -735,21 +735,20 @@ Table of Contents
    =============== NOTE: '\' line wrapping per RFC 8792 ================
 
    module: ietf-incident
-
      +--ro incidents
         +--ro incident* [name type incident-qualifier]
-           +--ro incident-no         uint64
-           +--ro name                string
-           +--ro type                identityref
-           +--ro incident-qualifier  string
-           +--ro service-instance*   string
-           +--ro domain              identityref
-           +--ro priority            incident-priority
-           +--ro status?             enumeration
-           +--ro ack-status?         enumeration
-           +--ro category            identityref
-           +--ro detail?             string
-           +--ro resolve-advice?     string
+           +--ro incident-no           uint64
+           +--ro name                  string
+           +--ro type                  identityref
+           +--ro incident-qualifier    string
+           +--ro service-instance*     string
+           +--ro domain                identityref
+           +--ro priority              incident-priority
+           +--ro status?               enumeration
+           +--ro ack-status?           enumeration
+           +--ro category              identityref
+           +--ro detail?               string
+           +--ro resolve-advice?       string
            +--ro sources
            |  +--ro source* [node-ref]
            |     +--ro node-ref       -> /nw:networks/network[nw:\
@@ -764,9 +763,9 @@ Table of Contents
            |     +--ro network-ref?   -> /nw:networks/network/network-id
            |     +--ro resource* [name]
            |     |  +--ro name          al:resource
-           |     |  +--ro cause-name?   identityref
+           |     |  +--ro cause-name?   string
            |     |  +--ro detail?       string
-           |     +--ro cause-name?    identityref
+           |     +--ro cause-name?    string
            |     +--ro detail?        string
            +--ro probable-events
            |  +--ro probable-event* [type event-id]
@@ -775,23 +774,34 @@ Table of Contents
                                              current()/../type]/event-id
            +--ro events
            |  +--ro event* [type event-id]
-           |     +--ro type           identityref
-           |     +--ro event-id       string
+           |     +--ro type                  identityref
+           |     +--ro event-id              string
            |     +--ro (event-type-info)?
            |        +--:(alarm)
-           |           +--ro alarm
-           |              +--ro resource?               -> /al:alarms/\
+           |        |  +--ro alarm
+           |        |     +--ro resource?               -> /al:alarms/\
                                                alarm-list/alarm/resource
-           |              +--ro alarm-type-id?          -> /al:alarms/\
+           |        |     +--ro alarm-type-id?          -> /al:alarms/\
      alarm-list/alarm[al:resource = current()/../resource]/alarm-type-id
-           |              +--ro alarm-type-qualifier?   -> /al:alarms/\
+           |        |     +--ro alarm-type-qualifier?   -> /al:alarms/\
    alarm-list/alarm[al:resource = current()/../resource][al:alarm-type-\
                 id = current()/../alarm-type-id]/al:alarm-type-qualifier
-           +--ro raise-time?         yang:date-and-time
-           +--ro occur-time?         yang:date-and-time
-           +--ro clear-time?         yang:date-and-time
-           +--ro ack-time?           yang:date-and-time
-           +--ro last-updated?       yang:date-and-time
+           |        +--:(metric)
+           |        |  +--ro metric
+           |        |     +--ro resource?          al:resource
+           |        |     +--ro metric-name?       string
+           |        |     +--ro threshold-value?   decimal64
+           |        |     +--ro observed-value?    decimal64
+           |        +--:(notification)
+           |           +--ro notification
+           |              +--ro event-time?        yang:date-and-time
+           |              +--ro hostname?          inet:host
+           |              +--ro sequence-number?   yang:counter32
+           +--ro raise-time?           yang:date-and-time
+           +--ro occur-time?           yang:date-and-time
+           +--ro clear-time?           yang:date-and-time
+           +--ro ack-time?             yang:date-and-time
+           +--ro last-updated?         yang:date-and-time
 
      rpcs:
        +---x incident-acknowledge
@@ -806,18 +816,18 @@ Table of Contents
 
      notifications:
        +---n incident-notification
-          +--ro incident-no         incident-ref
-          +--ro name?               string
-          +--ro type?               identityref
-          +--ro incident-qualifier? string
-          +--ro service-instance*   string
-          +--ro domain              identityref
-          +--ro priority            incident-priority
-          +--ro status?             enumeration
-          +--ro ack-status?         enumeration
-          +--ro category            identityref
-          +--ro detail?             string
-          +--ro resolve-advice?     string
+          +--ro incident-no           incident-ref
+          +--ro name?                 string
+          +--ro type?                 identityref
+          +--ro incident-qualifier?   string
+          +--ro service-instance*     string
+          +--ro domain                identityref
+          +--ro priority              incident-priority
+          +--ro status?               enumeration
+          +--ro ack-status?           enumeration
+          +--ro category              identityref
+          +--ro detail?               string
+          +--ro resolve-advice?       string
           +--ro sources
           |  +--ro source* [node-ref]
           |     +--ro node-ref       -> /nw:networks/network[nw:network\
@@ -832,9 +842,9 @@ Table of Contents
           |     +--ro network-ref?   -> /nw:networks/network/network-id
           |     +--ro resource* [name]
           |     |  +--ro name          al:resource
-          |     |  +--ro cause-name?   identityref
+          |     |  +--ro cause-name?   string
           |     |  +--ro detail?       string
-          |     +--ro cause-name?    identityref
+          |     +--ro cause-name?    string
           |     +--ro detail?        string
           +--ro probable-events
           |  +--ro probable-event* [type event-id]
@@ -843,18 +853,30 @@ Table of Contents
                                              current()/../type]/event-id
           +--ro events
           |  +--ro event* [type event-id]
-          |     +--ro type           identityref
-          |     +--ro event-id       string
+          |     +--ro type                  identityref
+          |     +--ro event-id              string
           |     +--ro (event-type-info)?
           |        +--:(alarm)
-          |           +--ro alarm
-          |              +--ro resource?               -> /al:alarms/\
+          |        |  +--ro alarm
+          |        |     +--ro resource?               -> /al:alarms/\
                                                alarm-list/alarm/resource
-          |              +--ro alarm-type-id?          -> /al:alarms/\
+          |        |     +--ro alarm-type-id?          -> /al:alarms/\
      alarm-list/alarm[al:resource = current()/../resource]/alarm-type-id
-          |              +--ro alarm-type-qualifier?   -> /al:alarms/\
+          |        |     +--ro alarm-type-qualifier?   -> /al:alarms/\
    alarm-list/alarm[al:resource = current()/../resource][al:alarm-type-\
                 id = current()/../alarm-type-id]/al:alarm-type-qualifier
+          |        +--:(metric)
+          |        |  +--ro metric
+          |        |     +--ro resource?          al:resource
+          |        |     +--ro metric-name?       string
+          |        |     +--ro threshold-value?   decimal64
+          |        |     +--ro observed-value?    decimal64
+          |        +--:(notification)
+          |           +--ro notification
+          |              +--ro event-time?        yang:date-and-time
+          |              +--ro hostname?          inet:host
+          |              +--ro sequence-number?   yang:counter32
+          +--ro time?                 yang:date-and-time
 
                     Figure 5: Incident YANG Tree Diagram
 
