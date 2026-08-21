@@ -126,7 +126,7 @@ root cause analysis.
 # Introduction
 
 {{?RFC8969}} defines a framework for Automating Service and Network
-Management with YANG {{!RFC7950}} to full life cycle network management.
+Management with YANG {{!RFC7950}} for full life cycle network management.
 A set of YANG data models have already been developed in IETF for network
 performance monitoring and fault monitoring, e.g., a YANG
 data model for alarm management {{?RFC8632}} defines a standard
@@ -1341,6 +1341,7 @@ such multiple step task and provide more detailed network diagnosis information.
 |   +----------------------------------------+   |
 +------------------------------------------------+
 ~~~~
+{:#exam4 title="Diagnosis Task Management" artwork-align="center"}
 
 To do so, the new "diagnosis task creation" rpc can be further defined to
 support "task-id" attribute in the output parameters and other auxiliary
@@ -1385,24 +1386,24 @@ so that OSS system can use NETCONF &lt;get-config&gt; operation to look up
 the diagnosis task detailed information based on such module extension.
 
 ~~~~
-augment /inc:incidents/inc:incident:
-+--ro incident-diagnosis-tasks
-|   +--ro incident-diagnosis-task* [task-id]
-|   +--ro task-id? string
-|   +--ro incident-no* incident-ref
-|   +--ro ticket-no? string
-|   +--ro start-time? yang:date-and-time
-|   +--ro end-time? yang:date-and-time
-|   +--ro task-state? enumeration
-|   +--ro diagnosis-result? enumeration
-|   +--ro diagnosis-result-description? string
-|   +--ro probable-causes leafref //List <RootCause>
-...
-|   +--ro probable-events leafref //List <Event>
-...
-|   +-- ro repair-advices
-|   +-- ro state enumeration // Incident states such as Creation, Update, Clear
-...
+    augment /inc:incidents/inc:incident:
+    +--ro incident-diagnosis-tasks
+    |   +--ro incident-diagnosis-task* [task-id]
+    |   +--ro task-id? string
+    |   +--ro incident-no* incident-ref
+    |   +--ro ticket-no? string
+    |   +--ro start-time? yang:date-and-time
+    |   +--ro end-time? yang:date-and-time
+    |   +--ro task-state? enumeration
+    |   +--ro diagnosis-result? enumeration
+    |   +--ro diagnosis-result-description? string
+    |   +--ro probable-causes leafref //List <RootCause>
+    ...
+    |   +--ro probable-events leafref //List <Event>
+    ...
+    |   +-- ro repair-advices
+    |   +-- ro state enumeration // Incident states such as Creation, Update, Clear
+    ...
 ~~~~
 
 In addition, the new Diagnosis Task Notification can be defined to support
@@ -1489,7 +1490,7 @@ related-objects? leafref //List <ResourceObject>
 }
 
 ~~~~
-{:#exam4 title="Multi-Domain Fault Demarcation" artwork-align="center"}
+{:#exam5 title="Multi-Domain Fault Demarcation" artwork-align="center"}
 
 ## Service Complaint triggered Network Diagnosis
 
@@ -1520,7 +1521,7 @@ related-objects? leafref //List <ResourceObject>
 
                            IP Autonomous Domain
 ~~~~
-{:#exam5 title="Service Complaint triggered Network Diagnosis " artwork-align="center"}
+{:#exam6 title="Service Complaint triggered Network Diagnosis " artwork-align="center"}
 
 Similarly, in case of service degradation for a lease line service receiving from the customer,
 the OSS system can request network diagnosis at the network side conducted by the network controller.
