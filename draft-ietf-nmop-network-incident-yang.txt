@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 19 February 2027                                     Telefonica
+Expires: 22 February 2027                                     Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                          18 August 2026
+                                                          21 August 2026
 
 
            A YANG Data Model for Network Incident Management
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 February 2027.
+   This Internet-Draft will expire on 22 February 2027.
 
 Copyright Notice
 
@@ -766,7 +766,7 @@ Table of Contents
            |     |  +--ro name          al:resource
            |     |  +--ro cause-name?   identityref
            |     |  +--ro detail?       string
-           |     +--ro cause-name?    string
+           |     +--ro cause-name?    identityref
            |     +--ro detail?        string
            +--ro probable-events
            |  +--ro probable-event* [type event-id]
@@ -1205,7 +1205,7 @@ Table of Contents
      identity device-software {
        base device;
        description
-         "Device software category";
+         "Device software category.";
        reference
          "RFC8348: A YANG Data Model for Hardware Management";
      }
@@ -1239,7 +1239,7 @@ Table of Contents
      identity overlay {
        base incident-category;
        description
-         "Overlay category";
+         "Overlay category.";
      }
 
      identity vm {
@@ -1250,7 +1250,7 @@ Table of Contents
 
      identity event-type {
        description
-         "The abstract identity for Event type";
+         "The abstract identity for Event type.";
        reference
          "RFC9940: Some Key Terms for Network Fault and Problem
           Management";
@@ -1348,7 +1348,7 @@ Table of Contents
        description
          "Fail to resolve the Probable Root Causes when performing the
           resolution operation. The detailed reason MUST be included
-          in the 'description'";
+          in the 'description'.";
      }
 
      identity permission-denied {
@@ -1477,7 +1477,7 @@ Table of Contents
          type yang:date-and-time;
          description
            "The latest time when an incident instance is
-            updated";
+            updated.";
        }
      }
 
@@ -1687,7 +1687,7 @@ Table of Contents
                         + "/al:alarm-type-id";
                    }
                    description
-                     "Alarm type id";
+                     "Alarm type id.";
                    reference
                      "RFC 8632: A YANG Data Model for Alarm
                        Management";
@@ -1700,7 +1700,7 @@ Table of Contents
                         + "/alarm-type-id]/al:alarm-type-qualifier";
                    }
                    description
-                     "Alarm type qualifier";
+                     "Alarm type qualifier.";
                    reference
                      "RFC 8632: A YANG Data Model for Alarm
                       Management";
@@ -1740,7 +1740,7 @@ Table of Contents
                  leaf observed-value {
                    type string;
                    description
-                     "Observed value for the specific metric";
+                     "Observed value for the specific metric.";
                  }
                }
              }
