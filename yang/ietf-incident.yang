@@ -182,7 +182,7 @@ module ietf-incident {
   identity device-software {
     base device;
     description
-      "Device software category";
+      "Device software category.";
     reference
       "RFC8348: A YANG Data Model for Hardware Management";
   }
@@ -216,7 +216,7 @@ module ietf-incident {
   identity overlay {
     base incident-category;
     description
-      "Overlay category";
+      "Overlay category.";
   }
 
   identity vm {
@@ -227,7 +227,7 @@ module ietf-incident {
 
   identity event-type {
     description
-      "The abstract identity for Event type";
+      "The abstract identity for Event type.";
     reference
       "RFC9940: Some Key Terms for Network Fault and Problem
        Management";
@@ -325,7 +325,7 @@ module ietf-incident {
     description
       "Fail to resolve the Probable Root Causes when performing the
        resolution operation. The detailed reason MUST be included
-       in the 'description'";
+       in the 'description'.";
   }
 
   identity permission-denied {
@@ -454,7 +454,7 @@ module ietf-incident {
       type yang:date-and-time;
       description
         "The latest time when an incident instance is
-         updated";
+         updated.";
     }
   }
 
@@ -664,7 +664,7 @@ module ietf-incident {
                      + "/al:alarm-type-id";
                 }
                 description
-                  "Alarm type id";
+                  "Alarm type id.";
                 reference
                   "RFC 8632: A YANG Data Model for Alarm
                     Management";
@@ -677,7 +677,7 @@ module ietf-incident {
                      + "/alarm-type-id]/al:alarm-type-qualifier";
                 }
                 description
-                  "Alarm type qualifier";
+                  "Alarm type qualifier.";
                 reference
                   "RFC 8632: A YANG Data Model for Alarm
                    Management";
@@ -717,7 +717,7 @@ module ietf-incident {
               leaf observed-value {
                 type string;
                 description
-                  "Observed value for the specific metric";
+                  "Observed value for the specific metric.";
               }
             }
           }
