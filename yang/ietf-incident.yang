@@ -707,12 +707,16 @@ module ietf-incident {
                   "Metric Name.";
               }
               leaf threshold-value {
-                type decimal64;
+                type decimal64 {
+                  fraction-digits 2;
+                }
                 description
                   "Threshold value for the specific metric.";
               }
               leaf observed-value {
-                type decimal64;
+                type decimal64 {
+                  fraction-digits 2;
+                }
                 description
                   "Observed value for the specific metric.";
               }
