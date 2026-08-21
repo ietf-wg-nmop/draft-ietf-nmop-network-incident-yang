@@ -1323,7 +1323,7 @@ root cause analysis.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
 <p id="section-1-1"><span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</span> defines a framework for Automating Service and Network
-Management with YANG <span>[<a href="#RFC7950" class="cite xref">RFC7950</a>]</span> to full life cycle network management.
+Management with YANG <span>[<a href="#RFC7950" class="cite xref">RFC7950</a>]</span> for full life cycle network management.
 A set of YANG data models have already been developed in IETF for network
 performance monitoring and fault monitoring, e.g., a YANG
 data model for alarm management <span>[<a href="#RFC8632" class="cite xref">RFC8632</a>]</span> defines a standard
@@ -3971,7 +3971,9 @@ status if successful.<a href="#appendix-A.3-1" class="pilcrow">¶</a></p>
 <p id="appendix-A.3-2">In some cases, workflows may span a long duration or involve multiple steps
 task. In such case, intent based networking concept can be used to support
 such multiple step task and provide more detailed network diagnosis information.<a href="#appendix-A.3-2" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="appendix-A.3-3">
+<span id="name-diagnosis-task-management"></span><div id="exam4">
+<figure id="figure-9">
+          <div class="alignCenter art-text artwork" id="appendix-A.3-3.1">
 <pre>
 +------------------------------------------------+
 | OSS                                            |
@@ -3988,7 +3990,11 @@ such multiple step task and provide more detailed network diagnosis information.
 |   |           Incident Process             |   |
 |   +----------------------------------------+   |
 +------------------------------------------------+
-</pre><a href="#appendix-A.3-3" class="pilcrow">¶</a>
+</pre>
+</div>
+<figcaption><a href="#figure-9" class="selfRef">Figure 9</a>:
+<a href="#name-diagnosis-task-management" class="selfRef">Diagnosis Task Management</a>
+          </figcaption></figure>
 </div>
 <p id="appendix-A.3-4">To do so, the new "diagnosis task creation" rpc can be further defined to
 support "task-id" attribute in the output parameters and other auxiliary
@@ -4037,24 +4043,24 @@ description, etc.<a href="#appendix-A.3-7.2.1" class="pilcrow">¶</a></p>
 the diagnosis task detailed information based on such module extension.<a href="#appendix-A.3-8" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A.3-9">
 <pre>
-augment /inc:incidents/inc:incident:
-+--ro incident-diagnosis-tasks
-|   +--ro incident-diagnosis-task* [task-id]
-|   +--ro task-id? string
-|   +--ro incident-no* incident-ref
-|   +--ro ticket-no? string
-|   +--ro start-time? yang:date-and-time
-|   +--ro end-time? yang:date-and-time
-|   +--ro task-state? enumeration
-|   +--ro diagnosis-result? enumeration
-|   +--ro diagnosis-result-description? string
-|   +--ro probable-causes leafref //List &lt;RootCause&gt;
-...
-|   +--ro probable-events leafref //List &lt;Event&gt;
-...
-|   +-- ro repair-advices
-|   +-- ro state enumeration // Incident states such as Creation, Update, Clear
-...
+    augment /inc:incidents/inc:incident:
+    +--ro incident-diagnosis-tasks
+    |   +--ro incident-diagnosis-task* [task-id]
+    |   +--ro task-id? string
+    |   +--ro incident-no* incident-ref
+    |   +--ro ticket-no? string
+    |   +--ro start-time? yang:date-and-time
+    |   +--ro end-time? yang:date-and-time
+    |   +--ro task-state? enumeration
+    |   +--ro diagnosis-result? enumeration
+    |   +--ro diagnosis-result-description? string
+    |   +--ro probable-causes leafref //List &lt;RootCause&gt;
+    ...
+    |   +--ro probable-events leafref //List &lt;Event&gt;
+    ...
+    |   +-- ro repair-advices
+    |   +-- ro state enumeration // Incident states such as Creation, Update, Clear
+    ...
 </pre><a href="#appendix-A.3-9" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A.3-10">In addition, the new Diagnosis Task Notification can be defined to support
@@ -4108,8 +4114,8 @@ corresponding network side port  according to the base station IP address, and t
 associated with transmission path (current path, historical path) to the base station and
 current and historical network performance, network resources, and incident status data, to
 diagnose the Probable Root Cause of the network incident and provide repair suggestions.<a href="#appendix-A.4-1" class="pilcrow">¶</a></p>
-<span id="name-multi-domain-fault-demarcati"></span><div id="exam4">
-<figure id="figure-9">
+<span id="name-multi-domain-fault-demarcati"></span><div id="exam5">
+<figure id="figure-10">
           <div class="alignCenter art-text artwork" id="appendix-A.4-2.1">
 <pre>
  +------------------------------------------------+
@@ -4147,7 +4153,7 @@ related-objects? leafref //List &lt;ResourceObject&gt;
 
 </pre>
 </div>
-<figcaption><a href="#figure-9" class="selfRef">Figure 9</a>:
+<figcaption><a href="#figure-10" class="selfRef">Figure 10</a>:
 <a href="#name-multi-domain-fault-demarcati" class="selfRef">Multi-Domain Fault Demarcation</a>
           </figcaption></figure>
 </div>
@@ -4158,8 +4164,8 @@ related-objects? leafref //List &lt;ResourceObject&gt;
         <h3 id="name-service-complaint-triggered">
 <a href="#appendix-A.5" class="section-number selfRef">A.5. </a><a href="#name-service-complaint-triggered" class="section-name selfRef">Service Complaint triggered Network Diagnosis</a>
         </h3>
-<span id="name-service-complaint-triggered-"></span><div id="exam5">
-<figure id="figure-10">
+<span id="name-service-complaint-triggered-"></span><div id="exam6">
+<figure id="figure-11">
           <div class="alignCenter art-text artwork" id="appendix-A.5-1.1">
 <pre>
                                    Customer
@@ -4188,7 +4194,7 @@ related-objects? leafref //List &lt;ResourceObject&gt;
                            IP Autonomous Domain
 </pre>
 </div>
-<figcaption><a href="#figure-10" class="selfRef">Figure 10</a>:
+<figcaption><a href="#figure-11" class="selfRef">Figure 11</a>:
 <a href="#name-service-complaint-triggered-" class="selfRef">Service Complaint triggered Network Diagnosis</a>
           </figcaption></figure>
 </div>
