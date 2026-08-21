@@ -918,6 +918,7 @@ module ietf-incident {
       "The information of incidents.";
     list incident {
       key "name type incident-qualifier";
+      unique "incident-no";
       description
         "The information of incident.";
       leaf incident-no {
