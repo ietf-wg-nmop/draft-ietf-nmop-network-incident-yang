@@ -414,7 +414,7 @@ fiber) based on the Probable Root Cause.
          |           |             |Telemetry   |OAM Test
          |           |             |            |
          |           |             |            |
-+--------+-----------+-------------V------------V-------+
++--------+-----------+-------------|------------V-------+
 |                                                       |
 |                                                       |
 |          Network in the Autonomous Domain             |
@@ -435,15 +435,15 @@ incident lifecycle management.
 The Incident Client can be deployed within a single domain as the Incident Server or across domains
 with the global view of network data. It can be deployed either in the same network operation
 platforms, network analytic platforms, controllers as the Incident Server within a single domain, or
-at the upper-layer network operation platforms, network analytic platforms or controllers (i.e.,multi-domain
-controllers), to invoke the functionalities provided by the Incident Server in each domain to meet business
-requirements of the fault management.
+at the upper-layer network operation platforms, network analytic platforms or controllers
+(i.e., multi-domain controllers), to invoke the functionalities provided by the Incident Server in
+each domain to meet business requirements of the fault management.
 
 A typical workflow of network incident lifecycle management is as follows:
 
 * Some alarm or abnormal operations, network performance metrics, network diagnosis information
   {{?I-D.ietf-opsawg-scheduling-oam-tests}} are reported from the network to the Incident Server.
-  The Incident Server receives these alarms/abnormal operations/metrics and try to analyze the
+  The Incident Server receives these alarms/abnormal operations/metrics and tries to analyze the
   correlation of them, e.g., generate a symptom if some metrics are evaluated as unhealthy, the
   Probable Root Cause can be detected based on the data correlation analysis. If a network incident
   is identified, the "incident report" notification will be reported to the Incident Client. The
