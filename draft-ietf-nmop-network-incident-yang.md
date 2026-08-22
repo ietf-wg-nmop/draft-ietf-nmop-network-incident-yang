@@ -442,7 +442,7 @@ requirements of the fault management.
 A typical workflow of network incident lifecycle management is as follows:
 
 * Some alarm or abnormal operations, network performance metrics, network diagnosis information
-  {{?I-D.ietf-opsawg-scheduling-oam-tests}} are reported from the network to the Incident Server.
+  {{!I-D.ietf-opsawg-scheduling-oam-tests}} are reported from the network to the Incident Server.
   The Incident Server receives these alarms/abnormal operations/metrics and try to analyze the
   correlation of them, e.g., generate a symptom if some metrics are evaluated as unhealthy, the
   Probable Root Cause can be detected based on the data correlation analysis. If a network incident
@@ -890,12 +890,12 @@ This module imports types defined in {{!RFC9911}}, {{!RFC8345}},
 
 # Operational Considerations
 
-The "ietf-incident" YANG module introduces an incident-centric architecture
-designed to overcome the structural silo of traditional management systems
-that handle alarms and performance metrics separately at different network layers.
-Operators must ensure that the underlying management system feeding this model maintains
-continuous, real-time read access to diverse end to end network topology data spanning
-multiple layers.
+The "ietf-incident" YANG module introduces an incident-centric
+architecture designed to overcome the structural silo of management
+systems that handle alarms and performance metrics separately at
+different network layers. Operators must ensure that the underlying management
+system feeding this model maintains continuous, real-time read access to
+diverse end to end network topology data spanning multiple layers.
 
 Because accurate multi-layer troubleshooting depends on establishing a global view
 of cross-layer dependency relationships, any disruption or stale state in the
@@ -1250,12 +1250,12 @@ The Probable Root Cause is also analysed.
 
 ##  Network Incident Correlated with Trouble Tickets
 
-In this document, the objective of the Incident Management is to identify Probable
-Causes and reduce duplicated tickets.
+In this document, the objective of the Incident Management is to identify
+Probable Causes and reduce duplicated tickets.
 
-Traditionally, troubleshooting ticket is created upon critical
-alert is received, e.g., due to excessive BGP flaps on a particular
-device by the OSS system. Such troubleshooting ticket will trigger
+Previously, a troubleshooting ticket was created upon receipt of a
+critical alert by the OSS system, e.g., due to excessive BGP flaps on
+a particular device. Such troubleshooting ticket will trigger
 Network Incident Management in the network controller. Therefore
 normally troubleshooting tickets and network incident are managed
 by the OSS and the network controller respectively. However
