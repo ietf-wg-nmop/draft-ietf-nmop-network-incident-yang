@@ -891,7 +891,7 @@ This module imports types defined in {{!RFC9911}}, {{!RFC8345}},
 # Operational Considerations
 
 The "ietf-incident" YANG module introduces an incident-centric
-architecture designed to overcome the structural silo of management 
+architecture designed to overcome the structural silo of management
 systems that handle alarms and performance metrics separately at
 different network layers. Operators must ensure that the underlying management
 system feeding this model maintains continuous, real-time read access to
