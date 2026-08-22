@@ -286,7 +286,7 @@ Probable Root Cause:
 ## Incident-Based Trouble Tickets Dispatching
 
 Usually, the dispatching of trouble tickets in a network is mostly
-based on alarms data analysis and often requires operators' maintenance
+based on alarm data analysis and often requires operators' maintenance
 engineers.  These operators' maintenance engineers are responsible for
 monitoring and detecting and correlating alarms, e.g., that alarms at
 both endpoints of a specific tunnel or at both optical and IP layers
@@ -300,16 +300,16 @@ granularity data correlation rules for the alarm management. This approach
 seems to improve fault management automation.  However, some trouble
 tickets might be missed if the filtering conditions are too restrictive.
 If the filtering conditions are not restrictive, it might end up with
-multiple trouble tickets being dispatched to the same network fault.
+multiple trouble tickets being dispatched for the same network fault.
 It is hard to achieve a perfect balance between the network
 management automation and duplicated trouble tickets under the
 conventional working situations.
 
-With the help of the Network Incident Management, massive alarms can
-be aggregated into a few network incidents based on service impact
-assessment, so the number of trouble tickets will be reduced.
-At the same time, the efficiency of network troubleshooting can be
-largely improved, which addresses the pain point of traditional trouble
+With the help of the Network Incident Management, massive sets of
+alarms can be aggregated into a few network incidents based on
+service impact assessment, so the number of trouble tickets will
+be reduced. At the same time, the efficiency of network troubleshooting
+can be largely improved, which addresses the pain points of trouble
 ticket dispatching.
 
 ## Incident Derivation from L3VPN Service Unavailability
@@ -340,16 +340,16 @@ multi-point topology. When a given SLO threshold is violated, a network incident
 
 ## Multi-layer Fault Demarcation
 
-When a fault occurs in a network that contains both packet-layer
+When a fault occurs in a network that contains both packet layer
 devices and optical-layer devices, it may cause correlative faults in
 both layers, i.e., packet layer and optical layer.  Specifically,
 fault propagation could be classified into three typical types.
-First, faults occurring at a packet-layer device might further cause fault
+First, faults occurring at a packet layer device might further cause fault
 (e.g., Wavelength Division Multiplexing (WDM) client fault) at an
 optical-layer device.  Second, faults occurring at an optical-layer
-device might further cause faults (e.g., Layer 3 link down) at a packet-
+device might further cause faults (e.g., Layer 3 link down) at a packet
 layer device.  Third, faults occurring at the inter-layer link between a
-packet-layer device and an optical-layer device might further cause
+packet layer device and an optical-layer device might further cause
 faults at both devices.  Multiple operation teams are usually
 needed to first analyse a large amount of alarms (triggered by the
 above-mentioned faults) from single network layer (either packet layer or
@@ -365,13 +365,13 @@ management system, then such management system comprehensively analyzes the
 topology relationship and service relationship between the Probable Root Causes of
 both layers. The inner relationship among the alarms will be identified
 and finally the Probable Root Cause will be located among multiple layers.
-By cooperating with the integrated Optical time-domain reflectometer
-(OTDR) embedded within the network device, we can determine the target optical
-exchange station before site visits.  Therefore, the overall fault
-demarcation process is simplified and automated, the analysis result
-could be reported and visualized in time.  In this case, operation
-teams only have to confirm the analyzing result and dispatch site
-engineers to perform relevant maintenance actions (e.g., splice
+By cooperating with a test tool that checks fiber optic cables (e.g.,the
+integrated Optical time-domain reflectometer (OTDR)) embedded within the
+network device, we can determine the target optical exchange station before
+site visits. Therefore, the overall fault demarcation process is simplified
+and automated, the analysis result could be reported and visualized in time.
+In this case, operation teams only have to confirm the analyzing result and
+dispatch site engineers to perform relevant maintenance actions (e.g., splice
 fiber) based on the Probable Root Cause.
 
 
