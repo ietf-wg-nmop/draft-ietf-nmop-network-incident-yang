@@ -203,6 +203,8 @@ and are not redefined here:
 
 *  Resource
 
+*  Fault
+
 *  Event
 
 *  Problem
@@ -227,21 +229,23 @@ Service Impact Assessment:
 :  A process that uses algorithmic techniques (e.g., machine learning, automated
    reasoning, conformance checking, graph traversal, among others) to evaluate
    whether the network service has been impacted by the network incident and map
-   the network incident to one or a set of network service, which can reduce the volume of
+   the network incident to one or a set of network services, which can reduce the volume of
    fault/alarms reporting, facilitate troubleshooting, and assure network service
    performance and availability.
 
 Incident Management:
 :  Lifecycle management of network incidents, including network incident
    identification, reporting, acknowledgement, diagnosis, and resolution.
-   Different from the traditional fault management, it takes various different
+   Unlike previous fault management, it takes various different
    data sources including alarms, metrics, and other anomaly information and aggregates
    them into one or a few network incidents irrespective of layer
    through data correlation analysis and the Service Impact Assessment. A network
    incident might impact one or a set of network services. The network incident can also been
-   seen as customer incident {{TMF724A}} when service SLA {{?RFC9543}} associated with one specific
-   network service and network incident has been affected. How customer incident is
-   translated from the network incident is beyond the scope of this document.
+   seen as customer incident {{TMF724A}} when the service SLA {{?RFC9543}} associated with one specific
+   network service and network incident has been affected. How a customer incident is
+   translated from the network incident is beyond the scope of this document. Note that
+   a customer incident specifically arises when an issue or problem identified by a customer
+   (or derived from a service-level threshold/SLO violation) impacts their service experience.
 
 Incident Management System:
 :  An entity that implements network incident
@@ -259,7 +263,7 @@ Incident Client:
    to diagnose, help resolve, etc. In addition, it can trigger issue tickets and involve repair crew to fix the problem.
 
 Incident Handler:
-: An entity that can receive network incident notification, store and query the information of
+: An entity that can receive network incident notifications, store and query the information of
   network incidents for data analysis. Unlike the Incident Client, it does not control the incident
   server and cannot instruct it to perform network incident diagnosis or resolution.
 
@@ -278,7 +282,7 @@ Probable Root Cause:
   related Faults.
 
 : Conversely, a causal fault condition is a contributing action that influences the outcome of the incident or
-  event but is not the Probable Root Cause.
+  event, but is not the Probable Root Cause.
 
 
 # Sample Use Cases
