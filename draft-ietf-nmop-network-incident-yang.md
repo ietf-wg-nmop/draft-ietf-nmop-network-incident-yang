@@ -880,8 +880,7 @@ resource-unavailable
 # Network Incident Management YANG Module
 
 This module uses types defined in {{!RFC9911}}, {{!RFC8345}},
-{{!RFC8632}}, {{!RFC8791}},{{!RFC9376}},{{!RFC1136}}{{!RFC6373}}
-{{!RFC8348}},{{!RFC9940}},{{!RFC8632}},{{!RFC5277}},{{!RFC9375}}.
+{{!RFC8632}}, {{!RFC8791}},{{!RFC9940}},{{!RFC8632}},{{!RFC9375}}.
 ~~~~
 <CODE BEGINS> file "ietf-incident@2026-07-30.yang"
 {::include ./yang/ietf-incident.yang}
