@@ -248,7 +248,7 @@ module ietf-incident {
     description
       "Notification event type.";
     reference
-      "RF 5277: NETCONF Event Notifications";
+      "RFC 5277: NETCONF Event Notifications";
   }
 
   identity metric {
