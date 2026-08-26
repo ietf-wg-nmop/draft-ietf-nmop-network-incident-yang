@@ -627,7 +627,7 @@ SHOULD be required.  For example, if a network incident caused by a physical
 component failure, it cannot be automatically resolved, the standby
 link can be used to bypass the faulty component.
 
-Incident Server will monitor the status of the network incident, if the faults
+Incident Server monitors the status of the network incident, if the faults
 are fixed, the Incident Server will update the status of network incident to
 'cleared', and report the updated network incident to the client.
 
@@ -765,7 +765,7 @@ three rpcs to manage the network incidents.
 ~~~~
 
 A general notification, incident-notification, is provided here.
-When a network incident instance is identified, the notification will be
+When a network incident instance is identified, the notification is
 sent.  After a notification is generated, if the incident
 server performs self diagnosis or the Incident Client uses the interfaces
 provided by the Incident Server to deliver diagnosis and
@@ -782,7 +782,7 @@ would be set to 'cleared'.
 |  |  +---w incident-no*   incident-ref
 ~~~~
 After an incident is generated, updated, or cleared, the operator
-needs to confirm the incident to ensure that the client knows the incident.
+confirms the incident to ensure that the client knows the incident.
 
 In some scenarios where automatic diagnosis and resolution are supported, the
 status of an incident may be updated multiple times or even automatically
@@ -821,7 +821,7 @@ document.
 
 Network incident resolve rpc allows multiple network incident instances to be
 resolved at a time.  If a network incident instance is successfully
-resolved, a separate notification will be triggered to update the network incident
+resolved, a separate notification is triggered to update the network incident
 status to 'cleared'.  If the network incident content is changed during this
 process, a notification update will be triggered.
 
