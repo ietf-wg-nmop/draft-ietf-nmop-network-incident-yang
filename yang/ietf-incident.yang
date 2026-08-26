@@ -140,7 +140,7 @@ module ietf-incident {
   identity ptn {
     base ip;
     description
-      "Indicartes a packet transport network domain.";
+      "Indicates a packet transport network domain.";
     reference
       "RFC 6373: MPLS Transport Profile (MPLS-TP) Control Plane
                  Framework";
