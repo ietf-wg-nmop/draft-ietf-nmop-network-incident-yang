@@ -478,14 +478,13 @@ aggregated into a network incident after analysis.
 |
 |  +--------------+
 +--|  Incident3   |
-+--+-----------+
- |  +-----------+
- +--+ alarm1    |
- |  +-----------+
- |
- |  +-----------+
- +--| metric1   |
-    +-----------+
+|  +--+-----------+
+|     |  +-----------+
+|     +--+ alarm1    |
+|     |  +-----------+
+|     |  +-----------+
+|     +--| metric1   |
+|        +-----------+
 ~~~~
 {:#ident title="Incident Identification" artwork-align="center"}
 
@@ -790,8 +789,8 @@ asynchronously.
 
 ~~~~
 +---x incident-resolve
- +---w input
- |  +---w incident-no*   incident-ref
+|  +---w input
+|  |  +---w incident-no*   incident-ref
 ~~~~
 
 After the Probable Root Causes and impacts are determined, incident-resolve
