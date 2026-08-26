@@ -1108,6 +1108,13 @@ ensure they have sufficient resources to fulfill this request;
 otherwise, they MUST reject the request without compromise on security of
 data-at-rest in the server.
 
+"incident-acknowledge": This rpc operation is used to confirm the incident
+to ensure that the client knows the incident. If a malicious or buggy client
+repeatedly confirms multiple incidents at a time, the result might be an
+excessive use of system resources on the server side as well as network resources.
+Servers MUST ensure they have sufficient resources to fulfill this request;
+otherwise, they MUST reject the request using rpc errors defined in section 7.6.
+
 # IANA Considerations
 
 ## The "IETF XML" Registry
