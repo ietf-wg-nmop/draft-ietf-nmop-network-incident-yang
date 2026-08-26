@@ -1141,9 +1141,9 @@ Reference:  RFC XXXX
 
 The authors would like to thank Mohamed Boucadair, Robert Wilton,
 Benoit Claise, Oscar Gonzalez de Dios, Adrian Farrel, Mahesh
-Jethanandani, Balazs Lengyel, Dhruv Dhody,Bo Wu, Qiufang Ma, Haomian Zheng,
-YuanYao, Wei Wang, Peng Liu, Zongpeng Du, Zhengqiang Li, Andrew Liu
-, Joe Clark, Roland Scott, Alex Huang Feng, Kai Gao,  Jensen Zhang,
+Jethanandani, Aitken, Paul, Balazs Lengyel, Dhruv Dhody,Bo Wu, Qiufang Ma,
+Haomian Zheng, YuanYao, Wei Wang, Peng Liu, Zongpeng Du, Zhengqiang Li,
+Andrew Liu, Joe Clark, Roland Scott, Alex Huang Feng, Kai Gao, Jensen Zhang,
 Ziyang Xing, Mingshuang Jin, Aihua Guo, Zhidong Yin, Guoxiang Liu, Kaichun Wu
 for their valuable comments and great input to this work.
 
@@ -1172,25 +1172,27 @@ The Probable Root Cause is also analysed.
   "last-updated": "2026-03-10T05:31:12Z",
   "ack-status": "unacknowledged",
   "category": "Network",
-  "source": [
+  "sources": {
+    "source": [
+      {
+        "node-ref": "example:D1",
+        "network-ref": "example:L2-topo",
+        "resource": [
+          {
+            "name": "7985e01a-5aad-11ea-b214-286ed488cf99"
+          }
+        ]
+       }
+     ]
+  },
+  "probable-causes": {
     {
-      "node-ref": "example:D1",
-      "network-ref": "example:L2-topo",
-      "resource": [
-        {
-          "name": "7985e01a-5aad-11ea-b214-286ed488cf99"
-        }
-      ]
-    }
-  ],
-  "probable-causes": [
-    {
-      "name": "Feeder fiber great loss change",
-      "detail-information": "The connector of the optical fiber
+      "cause-name": "Feeder fiber great loss change",
+      "detail": "The connector of the optical fiber
        is contaminated, Or the optical fiber is bent too much.",
       "probable-cause": {
-        "network-ref": "example:L2-topo",
         "node-ref": "example:D1",
+        "network-ref": "example:L2-topo",
         "resource": [
           {
             "name": "7985e01a-5aad-11ea-b214-286ed488cf99",
@@ -1201,27 +1203,31 @@ The Probable Root Cause is also analysed.
         ]
       }
     }
-  ],
-  "probable-event": [
-    {
-      "event-id": "8921834",
-      "type": "alarm"
-    }
-  ],
-  "events": [
-    {
-      "event-id": "8921832",
-      "type": "alarm"
-    },
-    {
-      "event-id": "8921833",
-      "type": "alarm"
-    },
-    {
-      "event-id": "8921834",
-      "type": "alarm"
-    }
-  ]
+  },
+  "probable-events": {
+    "probable-event": [
+      {
+        "event-id": "8921834",
+        "type": "alarm"
+      }
+    ]
+  },
+  "events": {
+    "event" [
+      {
+        "event-id": "8921832",
+        "type": "alarm"
+      },
+      {
+        "event-id": "8921833",
+        "type": "alarm"
+      },
+      {
+        "event-id": "8921834",
+        "type": "alarm"
+      }
+    ]
+ }
 }
 ~~~~
 
@@ -1523,7 +1529,7 @@ repair suggestions.
 
 NOTE TO THE RFC-EDITOR: Please remove this appendix before publication
 
-  v14 - v13
+  v14 - v15
 
   * Replace incident-id with incident-qualifier
 
