@@ -779,8 +779,7 @@ would be set to 'cleared'.
 ~~~~
 +---x incident-acknowledge
 |  +---w input
-|  |  +---w incident-no*
-|  |          -> /inc:incidents/inc:incident/inc:incident-no
+|  |  +---w incident-no*   incident-ref
 ~~~~
 After an incident is generated, updated, or cleared, the operator
 needs to confirm the incident to ensure that the client knows the incident.
@@ -795,8 +794,7 @@ at a time.
 ~~~~
 +---x incident-diagnose
 |  +---w input
-|  |  +---w incident-no*
-|  |          -> /inc:incidents/inc:incident/inc:incident-no
+|  |  +---w incident-no*   incident-ref
 ~~~~
 After a network incident is generated, network incident diagnose rpc can be used to
 diagnose the network incident and locate the Probable Root Causes.  On-demand Diagnosis
@@ -813,8 +811,7 @@ asynchronously.
 ~~~~
 +---x incident-resolve
  +---w input
- |  +---w incident-no*
- |          -> /inc:incidents/inc:incident/inc:incident-no
+ |  +---w incident-no*   incident-ref
 ~~~~
 
 After the Probable Root Causes and impacts are determined, incident-resolve
