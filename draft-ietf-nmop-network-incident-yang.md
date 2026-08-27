@@ -1538,6 +1538,45 @@ the transmission path (current path, historical path) and current and historical
 network resources, and incident status data to diagnose the Probable Root Cause of the fault and provide
 repair suggestions.
 
+# Implementation Status
+
+This section records the status of known implementations of the YANG
+module defined by this specification at the time of posting of this
+document and is based on a proposal described in {{?RFC7942}}.  The
+description of implementations in this section is intended to assist
+the IETF in its decision processes in progressing drafts to RFCs.
+Please note that the listing of any individual implementation here
+does not imply endorsement by the IETF.  Furthermore, no effort has
+been spent to verify the information presented here that was supplied
+by IETF contributors.  This is not intended as, and must not be
+construed to be, a catalog of available implementations or their
+features.  Readers are advised to note that other implementations may
+exist.
+
+According to {{?RFC7942}}, "this will allow reviewers and working groups
+to assign due consideration to documents that have the benefit of
+running code, which may serve as evidence of valuable experimentation
+and feedback that have made the implemented protocols more mature.
+It is up to the individual working groups to use this information as
+they see fit".
+
+Note to the RFC Editor: As per {{?RFC7942}} guidelines, please remove
+this Implementation Status apendix prior publication.
+
+## Huawei Implementation
+
+Huawei iMaster NCE has implemented incident model with the intent management framework
+and AI tools to support intelligent incident management.
+
+The Huawei Implementation of Incident model covers the following
+a) RESTCONF support
+b) Incident Lifecycle management including incident instance lifecycle
+   and operator incident lifecycle.
+c) Incident Notification
+
+Contact information: Qin Wu
+   (bill.wu@huawei.com)
+
 # Changes between Revisions
 
 NOTE TO THE RFC-EDITOR: Please remove this appendix before publication
