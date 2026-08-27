@@ -623,19 +623,19 @@ after determining the impact is not trivial.
 
 ## Identifying the Incident Instance
 
-An incident id is used as an identifier of an incident instance, if
-an incident instance is identified, a new incident ID is created.
-The incident id must be unique in the whole system.
+An 'incident-no' is used as an identifier of an incident instance, if
+an incident instance is identified, a new 'incident-no' is created.
+The 'incident-no' must be unique in the whole system.
 
 ## The Incident Lifecycle
 
 The network incident model clearly separates network incident instance lifecycle
-from operator incident lifecycle.
+from operator incident lifecycle:
 
-o Network incident instance lifecycle: The network incident instrumentation
+- Network incident instance lifecycle: The network incident instrumentation
   that controls whether a network incident is raised, updated, or cleared.
 
-o Operator incident lifecycle: Operators acting upon the network incident with RPCs
+- Operator incident lifecycle: Operators acting upon the network incident with rpcs
   like acknowledged, diagnosed and resolved.
 
 ### Network Incident Instance Lifecycle
