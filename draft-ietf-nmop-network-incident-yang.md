@@ -492,14 +492,15 @@ aggregated into a network incident after analysis.
 ~~~~
 {:#ident title="Incident Identification" artwork-align="center"}
 
-The Network Incident Management server MUST be capable of identifying
+The Network Incident Management server must be capable of identifying
 network incidents.  Multiple alarms, metrics and other information are
 reported to Incident Server, and the server must analyze it and find
 out the correlations of them, if the correlation match the network incident
 rules, network incident will be identified, and reported to the client.
-If the network incident is repeated many times, the problem needs to be raised.
-Service Impact Assessment SHOULD be performed if a network incident is identified,
-and the content of network incident SHOULD be updated if impacted network
+If the network incident is repeated many times, the problem needs to be
+raised based on the incident and the operator's policy.
+Service Impact Assessment should be performed if a network incident is identified,
+and the content of network incident should be updated if impacted network
 services are detected.
 
 AI/ML may be used to identify the network incident.  Expert system and online
@@ -526,11 +527,11 @@ to knowledge base next time.
          |                    |
          +-^-^------------^---+
            | |            |
-       igp | |Interface   |igp Peer
+       IGP | |Interface   |IGP Peer
       Down | |Down        | Abnormal
            | |            |
 VPN A      | |            |
-+-----------+-+------------+------------------------+
++----------+-+------------+-------------------------+
 | \  +---+       ++-++         +-+-+        +---+  /|
 |  \ |   |       |   |         |   |        |   | / |
 |   \|PE1+-------| P1+X--------|P2 +--------|PE2|/  |
@@ -539,9 +540,9 @@ VPN A      | |            |
 ~~~~
 {:#exam1 title="Example 1 of Network Incident Identification" artwork-align="center"}
 
-As described in {{exam1}}, VPN a is deployed from PE1 to PE2, if a
+As described in {{exam1}}, VPN a is deployed from PE1 to PE2, if an
 interface of P1 is going down, many alarms are triggered, such as
-interface down, igp down, and igp peer abnormal from P2.
+interface down, IGP down, and IGP peer abnormal from P2.
 
 These alarms are aggregated and analyzed by the controller/incident
 server, and then the network incident 'VPN unavailable' is triggered
@@ -551,7 +552,7 @@ is repeated, the problem can be raised.
 Note that Incident Server within the controller can rely on data correlation technology such as
 service impact assessment and data analytic component to evaluate the real effect
 on the relevant service and understand whether lower level or device level network
-anomaly, e.g., igp down, has impact on the service.
+anomaly, e.g., IGP down, has impact on the service.
 
 ~~~~
          +----------------------+
@@ -589,42 +590,42 @@ triggered after the Service Impact Assessment.
 ## Incident Diagnosis
 
 After a network incident is reported to the network Incident Client, the
-Incident Client MAY diagnose the incident to determine the Probable Root Cause.
+Incident Client may diagnose the incident to determine the Probable Root Cause.
 Some diagnosis operations may affect the running network services.  The
 Incident Client can choose not to perform that diagnosis operation after
 determining the impact is not trivial.  The Incident Server can also perform
-self-diagnosis.  However, the self-diagnosis MUST NOT affect the running
+self-diagnosis.  However, the self-diagnosis must not affect the running
 network services.  Possible diagnosis methods include link reachability
 detection, link quality detection, alarm/log analysis, and short-term
 fine-grained monitoring of network quality metrics, etc.
 
 ## Incident Resolution
 
-After the Probable Root Cause is diagnosed, the Incident Client MAY resolve the
-network incident.  The Incident Client MAY choose resolve the network
+After the Probable Root Cause is diagnosed, the Incident Client may resolve the
+network incident.  The Incident Client may choose to resolve the network
 incident by invoking other functions, such as routing calculation function,
 configuration function, dispatching a ticket or asking the server to resolve it.
 Generally, the Incident Client would attempt to directly resolve the Probable
-Cause.  If the Probable Root Cause cannot be resolved, an alternative solution
-SHOULD be required.  For example, if a network incident caused by a physical
-component failure, it cannot be automatically resolved, the standby
+Root Cause.  If the Probable Root Cause cannot be resolved, an alternative
+solution should be required.  For example, if a network incident caused by a
+physical component failure, it cannot be automatically resolved, the standby
 link can be used to bypass the faulty component.
 
 Incident Server monitors the status of the network incident, if the faults
 are fixed, the Incident Server will update the status of network incident to
 'cleared', and report the updated network incident to the client.
 
-Network incident resolution may affect the running network services.  The
-client can choose not to perform those operations after determining
-the impact is not trivial.
+Network incident resolution may affect the running network services. The
+client can choose not to perform those operations based on operator's policy
+after determining the impact is not trivial.
 
 # Incident Data Model Concepts
 
 ## Identifying the Incident Instance
 
-An 'incident-no' is used as an identifier of an incident instance, if
-an incident instance is identified, a new 'incident-no' is created.
-The 'incident-no' MUST be unique in the whole system.
+An incident id is used as an identifier of an incident instance, if
+an incident instance is identified, a new incident ID is created.
+The incident id must be unique in the whole system.
 
 ## The Incident Lifecycle
 
@@ -654,9 +655,9 @@ Operators can act upon network incident with network incident RPCs. From an oper
 the lifecycle of a network incident instance includes 'acknowledged', 'diagnosed', and
 'resolved'.
 
-When a network incident instance is generated, the operator SHOULD acknowledge the network incident
-with 'incident-acknowledge' RPC. And then the operator attempts to diagnose the network incident
-with 'incident-diagnose' RPC (for example, find out the Probable Root Cause and affected components).
+When a network incident instance is generated, the operator should acknowledge the network incident
+with 'incident-acknowledge' rpc. And then the operator attempts to diagnose the network incident
+with 'incident-diagnose' rpc (for example, find out the Probable Root Cause and affected components).
 Diagnosis is not mandatory. If the Probable Root Cause and affected components are known when the
 network incident is generated, diagnosis is not required.  After locating the Probable Root Cause and
 affected components, operator can try to resolve the network incident by invoking 'incident-resolve'
@@ -810,8 +811,8 @@ process, a notification update will be triggered.
 
 ## RPC Failure
 
-If the RPC fails, the RPC error response MUST indicate the reason for the
-failure. The structures defined in this document MUST encode specific errors
+If the rpc fails, the rpc error response must indicate the reason for the
+failure. The structures defined in this document must encode specific errors
 and be inserted in the error response to indicate the reason for the failure.
 
 The tree diagram {{!RFC8340}} for structures is defined as follows:
@@ -1100,16 +1101,16 @@ operations and their sensitivity/vulnerability:
 diagnosis and Probable Root Cause locating. If a malicious or buggy client
 performs an unexpectedly large number of this operation, the result
 might be an excessive use of system resources {{!RFC9940}}
-on the server side as well as network resources.  Servers MUST
+on the server side as well as network resources.  Servers must
 ensure they have sufficient resources to fulfill this request; otherwise,
-they MUST reject the request using RPC errors defined in section 7.6.
+they must reject the request using rpc errors defined in section 7.6.
 
 "incident-resolve": This RPC operation is used to resolve the network
 incident. If a malicious or buggy client performs an unexpectedly large
 number of this operation, the result might be an excessive use of system
-resources on the server side as well as network resources.  Servers MUST
+resources on the server side as well as network resources.  Servers must
 ensure they have sufficient resources to fulfill this request;
-otherwise, they MUST reject the request without compromise on security of
+otherwise, they must reject the request without compromise on security of
 data-at-rest in the server.
 
 "incident-acknowledge": This rpc operation is used to confirm the incident
