@@ -359,24 +359,39 @@ module ietf-incident {
     type enumeration {
       enum critical {
         description
-          "The incident MUST be handled immediately.";
+          "The 'critical' priority level indicates that a service-
+          affecting condition has occurred and an immediate
+          corrective action is required.  Such a priority can be
+          reported, for example, when a resource becomes totally out
+          of service and its capability must be restored.";
       }
       enum high {
         description
-          "The incident should be handled as soon as
-           possible.";
+          "The 'high' priority level indicates that a service-
+          affecting condition has developed and an urgent corrective
+          action is required.  Such a priority can be reported, for
+          example, when there is a severe degradation in the
+          capability of the resource and its full capability must be
+          restored.";
       }
       enum medium {
         description
-          "Network services are not affected, or the
-           services are slightly affected, but corrective
-           measures need to be taken.";
+          "The 'medium' severity level indicates the existence of a
+          non-service-affecting fault condition and that corrective
+          action should be taken in order to prevent a more serious
+          (for example, service-affecting) fault.  Such a priority
+          can be reported, for example, when the detected alarm
+          condition is not currently degrading the capacity of the
+          resource.";
       }
       enum low {
         description
-          "Potential or imminent service-affecting
-           incidents are detected,but services are
-           not affected currently.";
+          "The 'low' priority level indicates the detection of a
+          potential or impending service-affecting fault, before any
+          significant effects have been felt.  Action should be
+          taken to further diagnose (if necessary) and correct the
+          problem in order to prevent it from becoming a more
+          serious service-affecting fault.";
       }
     }
     description
