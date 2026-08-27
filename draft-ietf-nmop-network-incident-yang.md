@@ -1559,6 +1559,17 @@ this Implementation Status apendix prior publication.
 
 ## Huawei Implementation
 
+Huawei iMaster NCE has implemented incident model with the intent management framework
+and AI tools to support intelligent incident management.
+
+The Huawei Implementation of Incident model covers the following
+a) RESTCONF support
+b) Incident Lifecycle management including incident instance lifecycle
+   and operator incident lifecycle.
+c) Incident Notification
+
+Contact information: Qin Wu
+   (bill.wu@huawei.com)
 
 # Changes between Revisions
 
