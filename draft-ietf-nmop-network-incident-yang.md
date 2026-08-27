@@ -1559,7 +1559,6 @@ this Implementation Status apendix prior publication.
 
 ## Huawei Implementation
 
-TBD
 
 # Changes between Revisions
 
