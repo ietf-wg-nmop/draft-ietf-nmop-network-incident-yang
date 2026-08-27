@@ -639,9 +639,9 @@ the impact is not trivial.
 
 ## Identifying the Incident Instance
 
-An 'incident-id' is used as an identifier of an incident instance, if
-an incident instance is identified, a new 'incident-id' is created.
-The 'incident-id' must be unique in the whole system.
+An 'incident-no' is used as an identifier of an incident instance, if
+an incident instance is identified, a new 'incident-no' is created.
+The 'incident-no' must be unique in the whole system.
 
 ## The Incident Lifecycle
 
