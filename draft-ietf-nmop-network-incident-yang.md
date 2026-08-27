@@ -1403,7 +1403,8 @@ the diagnosis task detailed information based on such module extension.
     |   +--ro probable-events leafref //List <Event>
     ...
     |   +-- ro repair-advices
-    |   +-- ro state enumeration // Incident states such as Creation, Update, Clear
+    |   +-- ro state enumeration // Incident states such as
+                                 // Creation, Update, Clear
     ...
 ~~~~
 
