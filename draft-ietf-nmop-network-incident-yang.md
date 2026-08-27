@@ -137,14 +137,14 @@ assess the impact of alarms, performance metrics and other anomaly data on netwo
 services without known relation across layers of the entire network topology data
 or the relation with other network topology data.
 
-To address these challenges, a network-wide incident-centric solution
-is specified to establish the global view on dependency relationships with both network
-service and network topology at various different layers, which not only can
-be used at a specific layer in one domain but also can be used to
+To address these challenges, this document specifies a network-wide,
+incident-centric solution to establish the global view on dependency
+relationships with both network service and network topology at various different
+layers, which not only can be used at a specific layer in one domain but also can be used to
 span across layers for multi-layer network troubleshooting.
 
-As described in {{!RFC9940}}{{TMF724A}}, a network incident refers
-to an undesired Occurrence such as an unexpected interruption of a network service,
+As described in {{!RFC9940}}, a network incident refers
+to an undesired occurrence such as an unexpected interruption of a network service,
 degradation of the quality of a network service, or the below-target performance of
 a network service. Different data sources, including alarms, metrics, and other anomaly
 information, can be correlated and combined into one or a few network
@@ -170,7 +170,7 @@ improve the efficiency of fault diagnosis.
 
 This document defines a YANG data model for network incident lifecycle
 management, which improves troubleshooting efficiency, and improves
-network automation {{?RFC8969}} with rpc operations in this YANG module.
+network automation {{?RFC8969}} with remote process call (RPC) operations in this YANG module.
 
 # Conventions and Definitions
 
@@ -431,16 +431,16 @@ A typical workflow of network incident lifecycle management is as follows:
   the network service is impacted.
 
 * Incident Client receives the network incident from the "incident report" notification
-  reported by Incident Server, and acknowledges it with the subsequent "incident ack" rpc operation.
-  The Incident Client may further invoke the "incident diagnose" rpc to diagnose this network
+  reported by Incident Server, and acknowledges it with the subsequent "incident ack" RPC operation.
+  The Incident Client may further invoke the "incident diagnose" RPC to diagnose this network
   incident to find the Probable Root Causes.
 
 * If the Probable Root Causes have been found, the Incident Client can resolve this
-  network incident by invoking the 'incident resolve' rpc operation to ask the Incident Server to resolve it,
+  network incident by invoking the 'incident resolve' RPC operation to ask the Incident Server to resolve it,
  or dispatching a troubleshooting ticket or using other network functions (routing calculation,
   configuration, etc.) without being known by the Incident Server.
 
-* In case of the 'incident resolve' rpc operation invoked by the Incident Client, the Incident Server
+* In case of the 'incident resolve' RPC operation invoked by the Incident Client, the Incident Server
   will monitor the status of the network incident and update the status of network incident to 'cleared'
   if the incident can be fixed. For more detailed workflow, please refer to section 5.3.
 
@@ -630,7 +630,7 @@ from operator incident lifecycle.
 o Network incident instance lifecycle: The network incident instrumentation
   that controls whether a network incident is raised, updated, or cleared.
 
-o Operator incident lifecycle: Operators acting upon the network incident with rpcs
+o Operator incident lifecycle: Operators acting upon the network incident with RPCs
   like acknowledged, diagnosed and resolved.
 
 ### Network Incident Instance Lifecycle
@@ -646,17 +646,17 @@ resolved, the status changes to 'cleared'.
 
 ### Operator Incident Lifecycle
 
-Operators can act upon network incident with network incident rpcs. From an operator perspective,
+Operators can act upon network incident with network incident RPCs. From an operator perspective,
 the lifecycle of a network incident instance includes 'acknowledged', 'diagnosed', and
 'resolved'.
 
 When a network incident instance is generated, the operator SHOULD acknowledge the network incident
-with 'incident-acknowledge' rpc. And then the operator attempts to diagnose the network incident
-with 'incident-diagnose' rpc (for example, find out the Probable Root Cause and affected components).
+with 'incident-acknowledge' RPC. And then the operator attempts to diagnose the network incident
+with 'incident-diagnose' RPC (for example, find out the Probable Root Cause and affected components).
 Diagnosis is not mandatory. If the Probable Root Cause and affected components are known when the
 network incident is generated, diagnosis is not required.  After locating the Probable Root Cause and
 affected components, operator can try to resolve the network incident by invoking 'incident-resolve'
-rpc.
+RPC.
 
 # Incident Data Model Design
 
@@ -675,7 +675,7 @@ sources.  Under sources, there is one or more sources.  Each source
 corresponds to node defined in the network topology model and network
 resource in the network device, e.g., interface.  In addition, "ietf-incident"
 supports one general notification to report network incident state changes and
-three rpcs to manage the network incidents.
+three RPCs to manage the network incidents.
 
 ~~~~
 {::include-fold ./yang/ietf-incident-tree.txt}
@@ -765,7 +765,7 @@ confirms the incident to ensure that the client knows the incident.
 
 In some scenarios where automatic diagnosis and resolution are supported, the
 status of an incident may be updated multiple times or even automatically
-resolved. Therefore the incident-acknowledge rpc can confirm multiple incidents
+resolved. Therefore the incident-acknowledge RPC can confirm multiple incidents
 at a time.
 
 ## Incident Diagnose
@@ -775,7 +775,7 @@ at a time.
 |  +---w input
 |  |  +---w incident-no*   incident-ref
 ~~~~
-After a network incident is generated, network incident diagnose rpc can be used to
+After a network incident is generated, network incident diagnose RPC can be used to
 diagnose the network incident and locate the Probable Root Causes.  On-demand Diagnosis
 can be performed on some detection tasks, such as bfd detection, flow
 detection, telemetry collection, short-term threshold alarm,
@@ -794,11 +794,11 @@ asynchronously.
 ~~~~
 
 After the Probable Root Causes and impacts are determined, incident-resolve
-rpc can be used to resolve the incident (if the server can resolve
+RPC can be used to resolve the incident (if the server can resolve
 it).  How to resolve an incident instance is out of the scope of this
 document.
 
-Network incident resolve rpc allows multiple network incident instances to be
+Network incident resolve RPC allows multiple network incident instances to be
 resolved at a time.  If a network incident instance is successfully
 resolved, a separate notification is triggered to update the network incident
 status to 'cleared'.  If the network incident content is changed during this
@@ -806,7 +806,7 @@ process, a notification update will be triggered.
 
 ## RPC Failure
 
-If the rpc fails, the rpc error response MUST indicate the reason for the
+If the RPC fails, the RPC error response MUST indicate the reason for the
 failure. The structures defined in this document MUST encode specific errors
 and be inserted in the error response to indicate the reason for the failure.
 
@@ -901,7 +901,7 @@ the incident list:
 
 In the meanwhile, in order to improve processing efficiency, this incident data model also
 allows using the unique sequence number 'incident-no' to identify each incident instance,
-this means that incident rpcs or notifications for the same incident-no are matched to update
+this means that incident RPCs or notifications for the same incident-no are matched to update
 the same incident instance.
 
 ## Interworking with Alarm Management
@@ -1087,20 +1087,20 @@ of the network. Intruders may exploit the vulnerabilities of the network
 to lead to further negative impact on the network. Care must be taken to
 ensure that this list is accessed only by authorized users.
 
-Some of the rpc operations in this YANG module may be considered
+Some of the RPC operations in this YANG module may be considered
 sensitive or vulnerable in some network environments.  It is thus
 important to control access to these operations.  These are the
 operations and their sensitivity/vulnerability:
 
-"incident-diagnose": This rpc operation performs network incident
+"incident-diagnose": This RPC operation performs network incident
 diagnosis and Probable Root Cause locating. If a malicious or buggy client
 performs an unexpectedly large number of this operation, the result
 might be an excessive use of system resources {{!RFC9940}}
 on the server side as well as network resources.  Servers MUST
 ensure they have sufficient resources to fulfill this request; otherwise,
-they MUST reject the request using rpc errors defined in section 7.6.
+they MUST reject the request using RPC errors defined in section 7.6.
 
-"incident-resolve": This rpc operation is used to resolve the network
+"incident-resolve": This RPC operation is used to resolve the network
 incident. If a malicious or buggy client performs an unexpectedly large
 number of this operation, the result might be an excessive use of system
 resources on the server side as well as network resources.  Servers MUST
@@ -1279,7 +1279,7 @@ becomes necessary.
 {:#exam3 title="Correlation with troubleshooting tickets" artwork-align="center"}
 
 In order to manage the correlation between network incidents and
-trouble tickets in the YANG data model, three rpcs to manage the
+trouble tickets in the YANG data model, three RPCs to manage the
 network incidents and one notification to report on network incident
 state changes defined in "ietf-incident" module can be further
 extended to include "ticket-no" attribute so that such correlation
@@ -1316,7 +1316,7 @@ rpcs:
 
 ##  Intent Based Networking with Incident Diagnosis Task List
 
-In this document, the incident-diagnosis rpc defined in "ietf-
+In this document, the incident-diagnosis RPC defined in "ietf-
 incident" module can be used to identify Probable Root Causes; and an
 incident update notification can be triggered to report the diagnosis
 status if successful.
@@ -1344,9 +1344,9 @@ such multiple step task and provide more detailed network diagnosis information.
 ~~~~
 {:#exam4 title="Diagnosis Task Management" artwork-align="center"}
 
-To do so, the new "diagnosis task creation" rpc can be further defined to
+To do so, the new "diagnosis task creation" RPC can be further defined to
 support "task-id" attribute in the output parameters and other auxiliary
-attributes in the input parameters. such rpc can be used to return task-id
+attributes in the input parameters. such RPC can be used to return task-id
 from the controller. The controller is responsible for task-id allocation
 and maintaining task-id list.
 
@@ -1448,7 +1448,7 @@ Take multi-domain fault demarcation as an example, when both base station incide
 in the RAN network and Network Link incident in the IP network are received and base station
 incident from user side results from network incident in other domains, the OSS system
 is unable to find network side problem simply based on base station incident. Therefore
-incident diagnosis rpc will be invoked with IP address of Base station
+incident diagnosis RPC will be invoked with IP address of Base station
 and incident start time as input and sent to the network controller.
 The network controller can use network diagnosis related intent based interface to find the
 corresponding network side port  according to the base station IP address, and then further
@@ -1609,7 +1609,7 @@ NOTE TO THE RFC-EDITOR: Please remove this appendix before publication
 
    * Probable Root Cause Definition Polishing.
 
-   * Tree diagram update for rpc error construct
+   * Tree diagram update for RPC error construct
 
   v05 - v06
 
@@ -1670,11 +1670,11 @@ NOTE TO THE RFC-EDITOR: Please remove this appendix before publication
 
    * Add json example in the appendix.
 
-   * Add failure handling process for rpc error.
+   * Add failure handling process for RPC error.
 
    * Clarify the relationship between events and cause.
 
-   * Clarify synchronous nature of these rpcs.
+   * Clarify synchronous nature of these RPCs.
 
    * Clarify the relationship between inter-layer and inter-domain.
 
