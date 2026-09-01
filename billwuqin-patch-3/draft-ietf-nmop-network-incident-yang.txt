@@ -89,10 +89,12 @@ Table of Contents
      9.3.  Relationship with RFC8969
      9.4.  Relationship with Trace Context
      9.5.  Relationship with Network Anomaly Detection Architecture
-   10. Security Considerations
-   11. IANA Considerations
-     11.1.  The "IETF XML" Registry
-     11.2.  The "YANG Module Names" Registry
+   10. Implementation Status
+     10.1.  Huawei Implementation
+   11. Security Considerations
+   12. IANA Considerations
+     12.1.  The "IETF XML" Registry
+     12.2.  The "YANG Module Names" Registry
    Acknowledgements
    References
      Normative References
@@ -105,9 +107,7 @@ Table of Contents
      A.4.  Multi-Domain Fault Demarcation with Network Incident
            Management
      A.5.  Service Complaint triggered Network Diagnosis
-   Appendix B.  Implementation Status
-     B.1.  Huawei Implementation
-   Appendix C.  Changes between Revisions
+   Appendix B.  Changes between Revisions
    Contributors
    Authors' Addresses
 
@@ -687,7 +687,7 @@ Table of Contents
       raised, updated, or cleared.
 
    *  Operator incident lifecycle: Operators acting upon the network
-      incident with rpcs like acknowledged, diagnosed and resolved.
+      incident with RPCs like acknowledged, diagnosed and resolved.
 
 6.2.1.  Network Incident Instance Lifecycle
 
@@ -708,9 +708,9 @@ Table of Contents
    instance includes 'acknowledged', 'diagnosed', and 'resolved'.
 
    When a network incident instance is generated, the operator should
-   acknowledge the network incident with 'incident-acknowledge' rpc.
+   acknowledge the network incident with 'incident-acknowledge' RPC.
    And then the operator attempts to diagnose the network incident with
-   'incident-diagnose' rpc (for example, find out the Probable Root
+   'incident-diagnose' PRC (for example, find out the Probable Root
    Cause and affected components).  Diagnosis is not mandatory.  If the
    Probable Root Cause and affected components are known when the
    network incident is generated, diagnosis is not required.  After
@@ -1006,7 +1006,7 @@ Table of Contents
 
 7.6.  RPC Failure
 
-   If the rpc fails, the rpc error response must indicate the reason for
+   If the RPC fails, the RPC error response must indicate the reason for
    the failure.  The structures defined in this document must encode
    specific errors and be inserted in the error response to indicate the
    reason for the failure.
@@ -2222,7 +2222,45 @@ Table of Contents
    relevant-state notification id, service id and hostname in the
    network where the outlier was detected.
 
-10.  Security Considerations
+10.  Implementation Status
+
+   This section records the status of known implementations of the YANG
+   module defined by this specification at the time of posting of this
+   document and is based on a proposal described in [RFC7942].  The
+   description of implementations in this section is intended to assist
+   the IETF in its decision processes in progressing drafts to RFCs.
+   Please note that the listing of any individual implementation here
+   does not imply endorsement by the IETF.  Furthermore, no effort has
+   been spent to verify the information presented here that was supplied
+   by IETF contributors.  This is not intended as, and must not be
+   construed to be, a catalog of available implementations or their
+   features.  Readers are advised to note that other implementations may
+   exist.
+
+   According to [RFC7942], "this will allow reviewers and working groups
+   to assign due consideration to documents that have the benefit of
+   running code, which may serve as evidence of valuable experimentation
+   and feedback that have made the implemented protocols more mature.
+   It is up to the individual working groups to use this information as
+   they see fit".
+
+   Note to the RFC Editor: As per [RFC7942] guidelines, please remove
+   this Implementation Status apendix prior publication.
+
+10.1.  Huawei Implementation
+
+   Huawei iMaster NCE has implemented incident model with the intent
+   management framework and AI tools to support intelligent incident
+   management.
+
+   The Huawei Implementation of Incident model covers the following a)
+   RESTCONF support b) Incident Lifecycle management including incident
+   instance lifecycle and operator incident lifecycle. c) Incident
+   Notification
+
+   Contact information: Qin Wu (bill.wu@huawei.com)
+
+11.  Security Considerations
 
    The YANG module specified in this document defines a data model that
    is designed to be accessed via YANG-based management protocols, such
@@ -2273,19 +2311,19 @@ Table of Contents
    request; otherwise, they can choose to reject the request without
    compromise on security of data-at-rest in the server.
 
-   "incident-acknowledge": This rpc operation is used to confirm the
+   "incident-acknowledge": This RPC operation is used to confirm the
    incident to ensure that the client knows the incident.  If a
    malicious or buggy client repeatedly confirms multiple incidents at a
    time, the result might be an excessive use of system resources on the
-   server side as well as network resources.  Servers MUST ensure they
-   have sufficient resources to fulfill this request; otherwise, they
-   can choose to block connection (e.g., block abusive IP address) to
-   this client and/or reject the request using rpc errors defined in
+   server side as well as network resources.  Servers need to ensure
+   they have sufficient resources to fulfill this request; otherwise,
+   they can choose to block connection (e.g., block abusive IP address)
+   to this client and/or reject the request using rpc errors defined in
    section 7.6.
 
-11.  IANA Considerations
+12.  IANA Considerations
 
-11.1.  The "IETF XML" Registry
+12.1.  The "IETF XML" Registry
 
    IANA is requested to register the following URI in the "ns" registry
    within the "IETF XML Registry" group [RFC3688]:
@@ -2294,7 +2332,7 @@ Table of Contents
    Registrant Contact: The IESG.
    XML: N/A, the requested URIs are XML namespaces.
 
-11.2.  The "YANG Module Names" Registry
+12.2.  The "YANG Module Names" Registry
 
    IANA is requested to register the following YANG module in the "YANG
    Module Names" registry [RFC6020] within the "YANG Parameters"
@@ -2912,45 +2950,7 @@ A.5.  Service Complaint triggered Network Diagnosis
    diagnose the Probable Root Cause of the fault and provide repair
    suggestions.
 
-Appendix B.  Implementation Status
-
-   This section records the status of known implementations of the YANG
-   module defined by this specification at the time of posting of this
-   document and is based on a proposal described in [RFC7942].  The
-   description of implementations in this section is intended to assist
-   the IETF in its decision processes in progressing drafts to RFCs.
-   Please note that the listing of any individual implementation here
-   does not imply endorsement by the IETF.  Furthermore, no effort has
-   been spent to verify the information presented here that was supplied
-   by IETF contributors.  This is not intended as, and must not be
-   construed to be, a catalog of available implementations or their
-   features.  Readers are advised to note that other implementations may
-   exist.
-
-   According to [RFC7942], "this will allow reviewers and working groups
-   to assign due consideration to documents that have the benefit of
-   running code, which may serve as evidence of valuable experimentation
-   and feedback that have made the implemented protocols more mature.
-   It is up to the individual working groups to use this information as
-   they see fit".
-
-   Note to the RFC Editor: As per [RFC7942] guidelines, please remove
-   this Implementation Status apendix prior publication.
-
-B.1.  Huawei Implementation
-
-   Huawei iMaster NCE has implemented incident model with the intent
-   management framework and AI tools to support intelligent incident
-   management.
-
-   The Huawei Implementation of Incident model covers the following a)
-   RESTCONF support b) Incident Lifecycle management including incident
-   instance lifecycle and operator incident lifecycle. c) Incident
-   Notification
-
-   Contact information: Qin Wu (bill.wu@huawei.com)
-
-Appendix C.  Changes between Revisions
+Appendix B.  Changes between Revisions
 
    NOTE TO THE RFC-EDITOR: Please remove this appendix before
    publication
