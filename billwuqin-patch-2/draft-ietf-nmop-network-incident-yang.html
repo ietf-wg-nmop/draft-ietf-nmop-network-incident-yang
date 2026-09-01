@@ -1966,7 +1966,7 @@ from operator incident lifecycle:<a href="#section-6.2-1" class="pilcrow">¶</a>
 that controls whether a network incident is raised, updated, or cleared.<a href="#section-6.2-2.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-6.2-2.2">
-            <p id="section-6.2-2.2.1">Operator incident lifecycle: Operators acting upon the network incident with rpcs
+            <p id="section-6.2-2.2.1">Operator incident lifecycle: Operators acting upon the network incident with RPCs
 like acknowledged, diagnosed and resolved.<a href="#section-6.2-2.2.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
@@ -1994,8 +1994,8 @@ resolved, the status changes to 'cleared'.<a href="#section-6.2.1-1" class="pilc
 the lifecycle of a network incident instance includes 'acknowledged', 'diagnosed', and
 'resolved'.<a href="#section-6.2.2-1" class="pilcrow">¶</a></p>
 <p id="section-6.2.2-2">When a network incident instance is generated, the operator should acknowledge the network incident
-with 'incident-acknowledge' rpc. And then the operator attempts to diagnose the network incident
-with 'incident-diagnose' rpc (for example, find out the Probable Root Cause and affected components).
+with 'incident-acknowledge' RPC. And then the operator attempts to diagnose the network incident
+with 'incident-diagnose' PRC (for example, find out the Probable Root Cause and affected components).
 Diagnosis is not mandatory. If the Probable Root Cause and affected components are known when the
 network incident is generated, diagnosis is not required.  After locating the Probable Root Cause and
 affected components, operator can try to resolve the network incident by invoking 'incident-resolve'
@@ -2332,7 +2332,7 @@ process, a notification update will be triggered.<a href="#section-7.5-3" class=
         <h3 id="name-rpc-failure">
 <a href="#section-7.6" class="section-number selfRef">7.6. </a><a href="#name-rpc-failure" class="section-name selfRef">RPC Failure</a>
         </h3>
-<p id="section-7.6-1">If the rpc fails, the rpc error response must indicate the reason for the
+<p id="section-7.6-1">If the RPC fails, the RPC error response must indicate the reason for the
 failure. The structures defined in this document must encode specific errors
 and be inserted in the error response to indicate the reason for the failure.<a href="#section-7.6-1" class="pilcrow">¶</a></p>
 <p id="section-7.6-2">The tree diagram <span>[<a href="#RFC8340" class="cite xref">RFC8340</a>]</span> for structures is defined as follows:<a href="#section-7.6-2" class="pilcrow">¶</a></p>
@@ -3611,7 +3611,7 @@ performs an unexpectedly large number of this operation, the result
 might be an excessive use of system resources <span>[<a href="#RFC9940" class="cite xref">RFC9940</a>]</span>
 on the server side as well as network resources.  Servers must
 ensure they have sufficient resources to fulfill this request; otherwise,
-they must reject the request using rpc errors defined in section 7.6.<a href="#section-10-6" class="pilcrow">¶</a></p>
+they must reject the request using RPC errors defined in section 7.6.<a href="#section-10-6" class="pilcrow">¶</a></p>
 <p id="section-10-7">"incident-resolve": This RPC operation is used to resolve the network
 incident. If a malicious or buggy client performs an unexpectedly large
 number of this operation, the result might be an excessive use of system
@@ -3619,12 +3619,12 @@ resources on the server side as well as network resources.  Servers must
 ensure they have sufficient resources to fulfill this request;
 otherwise, they must reject the request without compromise on security of
 data-at-rest in the server.<a href="#section-10-7" class="pilcrow">¶</a></p>
-<p id="section-10-8">"incident-acknowledge": This rpc operation is used to confirm the incident
+<p id="section-10-8">"incident-acknowledge": This RPC operation is used to confirm the incident
 to ensure that the client knows the incident. If a malicious or buggy client
 repeatedly confirms multiple incidents at a time, the result might be an
 excessive use of system resources on the server side as well as network resources.
 Servers must ensure they have sufficient resources to fulfill this request;
-otherwise, they must reject the request using rpc errors defined in section 7.6.<a href="#section-10-8" class="pilcrow">¶</a></p>
+otherwise, they must reject the request using RPC errors defined in section 7.6.<a href="#section-10-8" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
