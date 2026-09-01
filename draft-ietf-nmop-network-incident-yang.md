@@ -1157,8 +1157,9 @@ data-at-rest in the server.
 to ensure that the client knows the incident. If a malicious or buggy client
 repeatedly confirms multiple incidents at a time, the result might be an
 excessive use of system resources on the server side as well as network resources.
-Servers MUST ensure they have sufficient resources to fulfill this request;
-otherwise, they MUST reject the request using RPC errors defined in section 7.6.
+Servers must ensure they have sufficient resources to fulfill this request;
+otherwise, they must reject the request using RPC errors defined in section 7.6.
+
 
 # IANA Considerations
 
