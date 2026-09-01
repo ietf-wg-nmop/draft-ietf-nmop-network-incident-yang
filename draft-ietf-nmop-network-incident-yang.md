@@ -635,7 +635,7 @@ from operator incident lifecycle:
 - Network incident instance lifecycle: The network incident instrumentation
   that controls whether a network incident is raised, updated, or cleared.
 
-- Operator incident lifecycle: Operators acting upon the network incident with rpcs
+- Operator incident lifecycle: Operators acting upon the network incident with RPCs
   like acknowledged, diagnosed and resolved.
 
 ### Network Incident Instance Lifecycle
@@ -656,8 +656,8 @@ the lifecycle of a network incident instance includes 'acknowledged', 'diagnosed
 'resolved'.
 
 When a network incident instance is generated, the operator should acknowledge the network incident
-with 'incident-acknowledge' rpc. And then the operator attempts to diagnose the network incident
-with 'incident-diagnose' rpc (for example, find out the Probable Root Cause and affected components).
+with 'incident-acknowledge' RPC. And then the operator attempts to diagnose the network incident
+with 'incident-diagnose' PRC (for example, find out the Probable Root Cause and affected components).
 Diagnosis is not mandatory. If the Probable Root Cause and affected components are known when the
 network incident is generated, diagnosis is not required.  After locating the Probable Root Cause and
 affected components, operator can try to resolve the network incident by invoking 'incident-resolve'
@@ -811,7 +811,7 @@ process, a notification update will be triggered.
 
 ## RPC Failure
 
-If the rpc fails, the rpc error response must indicate the reason for the
+If the RPC fails, the RPC error response must indicate the reason for the
 failure. The structures defined in this document must encode specific errors
 and be inserted in the error response to indicate the reason for the failure.
 
@@ -1065,6 +1065,46 @@ the "vpn-service" grouping maps to the "service-instance" leaf-list of the "inci
 grouping in 'ietf-incident' YANG module. Thus, preserving the mapping between relevant-state
 notification id, service id and hostname in the network where the outlier was detected.
 
+# Implementation Status
+
+This section records the status of known implementations of the YANG
+module defined by this specification at the time of posting of this
+document and is based on a proposal described in {{?RFC7942}}.  The
+description of implementations in this section is intended to assist
+the IETF in its decision processes in progressing drafts to RFCs.
+Please note that the listing of any individual implementation here
+does not imply endorsement by the IETF.  Furthermore, no effort has
+been spent to verify the information presented here that was supplied
+by IETF contributors.  This is not intended as, and must not be
+construed to be, a catalog of available implementations or their
+features.  Readers are advised to note that other implementations may
+exist.
+
+According to {{?RFC7942}}, "this will allow reviewers and working groups
+to assign due consideration to documents that have the benefit of
+running code, which may serve as evidence of valuable experimentation
+and feedback that have made the implemented protocols more mature.
+It is up to the individual working groups to use this information as
+they see fit".
+
+Note to the RFC Editor: As per {{?RFC7942}} guidelines, please remove
+this Implementation Status apendix prior publication.
+
+## Huawei Implementation
+
+Huawei iMaster NCE has implemented incident model with the intent management framework
+and AI tools to support intelligent incident management.
+
+The Huawei Implementation of Incident model covers the following
+a) RESTCONF support
+b) Incident Lifecycle management including incident instance lifecycle
+   and operator incident lifecycle.
+c) Incident Notification
+
+Contact information: Qin Wu
+   (bill.wu@huawei.com)
+
+
 # Security Considerations
 
 The YANG module specified in this document defines a data model that is
@@ -1115,11 +1155,11 @@ ensure they have sufficient resources to fulfill this request;
 otherwise, they can choose to reject the request without compromise on security of
 data-at-rest in the server.
 
-"incident-acknowledge": This rpc operation is used to confirm the incident
+"incident-acknowledge": This RPC operation is used to confirm the incident
 to ensure that the client knows the incident. If a malicious or buggy client
 repeatedly confirms multiple incidents at a time, the result might be an
 excessive use of system resources on the server side as well as network resources.
-Servers MUST ensure they have sufficient resources to fulfill this request;
+Servers need to ensure they have sufficient resources to fulfill this request;
 otherwise, they can choose to block connection (e.g., block abusive IP address)
 to this client and/or reject the request using rpc errors defined in
 section 7.6.
@@ -1541,45 +1581,6 @@ corresponding network side port based on the dedicated line service, and then fu
 the transmission path (current path, historical path) and current and historical network performance,
 network resources, and incident status data to diagnose the Probable Root Cause of the fault and provide
 repair suggestions.
-
-# Implementation Status
-
-This section records the status of known implementations of the YANG
-module defined by this specification at the time of posting of this
-document and is based on a proposal described in {{?RFC7942}}.  The
-description of implementations in this section is intended to assist
-the IETF in its decision processes in progressing drafts to RFCs.
-Please note that the listing of any individual implementation here
-does not imply endorsement by the IETF.  Furthermore, no effort has
-been spent to verify the information presented here that was supplied
-by IETF contributors.  This is not intended as, and must not be
-construed to be, a catalog of available implementations or their
-features.  Readers are advised to note that other implementations may
-exist.
-
-According to {{?RFC7942}}, "this will allow reviewers and working groups
-to assign due consideration to documents that have the benefit of
-running code, which may serve as evidence of valuable experimentation
-and feedback that have made the implemented protocols more mature.
-It is up to the individual working groups to use this information as
-they see fit".
-
-Note to the RFC Editor: As per {{?RFC7942}} guidelines, please remove
-this Implementation Status apendix prior publication.
-
-## Huawei Implementation
-
-Huawei iMaster NCE has implemented incident model with the intent management framework
-and AI tools to support intelligent incident management.
-
-The Huawei Implementation of Incident model covers the following
-a) RESTCONF support
-b) Incident Lifecycle management including incident instance lifecycle
-   and operator incident lifecycle.
-c) Incident Notification
-
-Contact information: Qin Wu
-   (bill.wu@huawei.com)
 
 # Changes between Revisions
 
