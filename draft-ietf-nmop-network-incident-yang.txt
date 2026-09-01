@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 28 February 2027                                     Telefonica
+Expires: 5 March 2027                                         Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                          27 August 2026
+                                                        1 September 2026
 
 
            A YANG Data Model for Network Incident Management
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 28 February 2027.
+   This Internet-Draft will expire on 5 March 2027.
 
 Copyright Notice
 
@@ -687,7 +687,7 @@ Table of Contents
       raised, updated, or cleared.
 
    *  Operator incident lifecycle: Operators acting upon the network
-      incident with rpcs like acknowledged, diagnosed and resolved.
+      incident with RPCs like acknowledged, diagnosed and resolved.
 
 6.2.1.  Network Incident Instance Lifecycle
 
@@ -708,9 +708,9 @@ Table of Contents
    instance includes 'acknowledged', 'diagnosed', and 'resolved'.
 
    When a network incident instance is generated, the operator should
-   acknowledge the network incident with 'incident-acknowledge' rpc.
+   acknowledge the network incident with 'incident-acknowledge' RPC.
    And then the operator attempts to diagnose the network incident with
-   'incident-diagnose' rpc (for example, find out the Probable Root
+   'incident-diagnose' PRC (for example, find out the Probable Root
    Cause and affected components).  Diagnosis is not mandatory.  If the
    Probable Root Cause and affected components are known when the
    network incident is generated, diagnosis is not required.  After
@@ -1006,7 +1006,7 @@ Table of Contents
 
 7.6.  RPC Failure
 
-   If the rpc fails, the rpc error response must indicate the reason for
+   If the RPC fails, the RPC error response must indicate the reason for
    the failure.  The structures defined in this document must encode
    specific errors and be inserted in the error response to indicate the
    reason for the failure.
@@ -2261,7 +2261,7 @@ Table of Contents
    result might be an excessive use of system resources [RFC9940] on the
    server side as well as network resources.  Servers must ensure they
    have sufficient resources to fulfill this request; otherwise, they
-   must reject the request using rpc errors defined in section 7.6.
+   must reject the request using RPC errors defined in section 7.6.
 
    "incident-resolve": This RPC operation is used to resolve the network
    incident.  If a malicious or buggy client performs an unexpectedly
@@ -2271,13 +2271,13 @@ Table of Contents
    request; otherwise, they must reject the request without compromise
    on security of data-at-rest in the server.
 
-   "incident-acknowledge": This rpc operation is used to confirm the
+   "incident-acknowledge": This RPC operation is used to confirm the
    incident to ensure that the client knows the incident.  If a
    malicious or buggy client repeatedly confirms multiple incidents at a
    time, the result might be an excessive use of system resources on the
    server side as well as network resources.  Servers MUST ensure they
    have sufficient resources to fulfill this request; otherwise, they
-   MUST reject the request using rpc errors defined in section 7.6.
+   MUST reject the request using RPC errors defined in section 7.6.
 
 11.  IANA Considerations
 
@@ -2457,12 +2457,12 @@ Informative References
               configuration-tracing-06>.
 
    [I-D.ietf-netconf-trace-ctx-extension]
-              Gagliano, R., Larsson, K., and J. Lindblad, "NETCONF
-              Extension to support Trace Context propagation", Work in
-              Progress, Internet-Draft, draft-ietf-netconf-trace-ctx-
-              extension-07, 4 July 2026,
+              Gagliano, R., Rennerskog, C., Larsson, K., and J.
+              Lindblad, "NETCONF Extension to support Trace Context
+              propagation", Work in Progress, Internet-Draft, draft-
+              ietf-netconf-trace-ctx-extension-08, 27 August 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-netconf-
-              trace-ctx-extension-07>.
+              trace-ctx-extension-08>.
 
    [I-D.ietf-nmop-network-anomaly-architecture]
               Graf, T., Du, W., Francois, P., and A. H. Feng, "A
