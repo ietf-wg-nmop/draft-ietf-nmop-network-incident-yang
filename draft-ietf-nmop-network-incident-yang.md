@@ -635,7 +635,7 @@ from operator incident lifecycle:
 - Network incident instance lifecycle: The network incident instrumentation
   that controls whether a network incident is raised, updated, or cleared.
 
-- Operator incident lifecycle: Operators acting upon the network incident with rpcs
+- Operator incident lifecycle: Operators acting upon the network incident with RPCs
   like acknowledged, diagnosed and resolved.
 
 ### Network Incident Instance Lifecycle
@@ -656,8 +656,8 @@ the lifecycle of a network incident instance includes 'acknowledged', 'diagnosed
 'resolved'.
 
 When a network incident instance is generated, the operator should acknowledge the network incident
-with 'incident-acknowledge' rpc. And then the operator attempts to diagnose the network incident
-with 'incident-diagnose' rpc (for example, find out the Probable Root Cause and affected components).
+with 'incident-acknowledge' RPC. And then the operator attempts to diagnose the network incident
+with 'incident-diagnose' PRC (for example, find out the Probable Root Cause and affected components).
 Diagnosis is not mandatory. If the Probable Root Cause and affected components are known when the
 network incident is generated, diagnosis is not required.  After locating the Probable Root Cause and
 affected components, operator can try to resolve the network incident by invoking 'incident-resolve'
@@ -811,7 +811,7 @@ process, a notification update will be triggered.
 
 ## RPC Failure
 
-If the rpc fails, the rpc error response must indicate the reason for the
+If the RPC fails, the RPC error response must indicate the reason for the
 failure. The structures defined in this document must encode specific errors
 and be inserted in the error response to indicate the reason for the failure.
 
@@ -1103,7 +1103,7 @@ performs an unexpectedly large number of this operation, the result
 might be an excessive use of system resources {{!RFC9940}}
 on the server side as well as network resources.  Servers must
 ensure they have sufficient resources to fulfill this request; otherwise,
-they must reject the request using rpc errors defined in section 7.6.
+they must reject the request using RPC errors defined in section 7.6.
 
 "incident-resolve": This RPC operation is used to resolve the network
 incident. If a malicious or buggy client performs an unexpectedly large
@@ -1113,12 +1113,12 @@ ensure they have sufficient resources to fulfill this request;
 otherwise, they must reject the request without compromise on security of
 data-at-rest in the server.
 
-"incident-acknowledge": This rpc operation is used to confirm the incident
+"incident-acknowledge": This RPC operation is used to confirm the incident
 to ensure that the client knows the incident. If a malicious or buggy client
 repeatedly confirms multiple incidents at a time, the result might be an
 excessive use of system resources on the server side as well as network resources.
 Servers must ensure they have sufficient resources to fulfill this request;
-otherwise, they must reject the request using rpc errors defined in section 7.6.
+otherwise, they must reject the request using RPC errors defined in section 7.6.
 
 # IANA Considerations
 
