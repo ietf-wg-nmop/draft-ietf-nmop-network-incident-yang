@@ -3654,20 +3654,24 @@ performs an unexpectedly large number of this operation, the result
 might be an excessive use of system resources <span>[<a href="#RFC9940" class="cite xref">RFC9940</a>]</span>
 on the server side as well as network resources.  Servers must
 ensure they have sufficient resources to fulfill this request; otherwise,
-they must reject the request using RPC errors defined in section 7.6.<a href="#section-11-6" class="pilcrow">¶</a></p>
+they can choose to block the connnection (e.g., block abusive IP address)
+to this client and/or reject the request using rpc errors defined in
+section 7.6.<a href="#section-11-6" class="pilcrow">¶</a></p>
 <p id="section-11-7">"incident-resolve": This RPC operation is used to resolve the network
 incident. If a malicious or buggy client performs an unexpectedly large
 number of this operation, the result might be an excessive use of system
 resources on the server side as well as network resources.  Servers must
 ensure they have sufficient resources to fulfill this request;
-otherwise, they must reject the request without compromise on security of
+otherwise, they can choose to reject the request without compromise on security of
 data-at-rest in the server.<a href="#section-11-7" class="pilcrow">¶</a></p>
 <p id="section-11-8">"incident-acknowledge": This RPC operation is used to confirm the incident
 to ensure that the client knows the incident. If a malicious or buggy client
 repeatedly confirms multiple incidents at a time, the result might be an
 excessive use of system resources on the server side as well as network resources.
-Servers must ensure they have sufficient resources to fulfill this request;
-otherwise, they must reject the request using RPC errors defined in section 7.6.<a href="#section-11-8" class="pilcrow">¶</a></p>
+Servers need to ensure they have sufficient resources to fulfill this request;
+otherwise, they can choose to block connection (e.g., block abusive IP address)
+to this client and/or reject the request using rpc errors defined in
+section 7.6.<a href="#section-11-8" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
