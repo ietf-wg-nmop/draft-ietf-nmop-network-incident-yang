@@ -248,13 +248,10 @@ module ietf-incident {
     description
       "Notification event type.";
     reference
-      "RFC 5277: NETCONF Event Notifications";
-    reference
-      "RFC 8639: Subscription to YANG Notifications";
-    reference
-      "RFC 8641: Subscription to YANG Notifications for Datastore Updates";
-    reference
-      "RFC xxxx: Extensible YANG Model for YANG-Push Notifications";
+      "RFC 5277: NETCONF Event Notifications and
+       RFC 8639: Subscription to YANG Notifications and
+       RFC 8641: Subscription to YANG Notifications for Datastore Updates and
+       RFC xxxx: Extensible YANG Model for YANG-Push Notifications";
   }
 
   identity metric {
