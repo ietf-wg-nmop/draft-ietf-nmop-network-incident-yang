@@ -918,7 +918,10 @@ module ietf-incident {
       type incident-ref;
       mandatory true;
       description
-        "The identifier of an incident instance.";
+        "The identifier of an incident instance. with incident-no
+         used in both incident-notification and RPCs, an Incident
+         Client know which notification is the result of a given
+         RPC.";
     }
     uses incident-info;
     leaf time {
