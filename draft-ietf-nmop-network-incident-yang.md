@@ -111,7 +111,7 @@ A set of YANG data models have already been developed in IETF for network
 performance monitoring and fault monitoring, e.g., a YANG
 data model for alarm management {{?RFC8632}} defines a standard
 interface for alarm management.  A data model for Network and VPN
-Service Performance Monitoring {{?RFC9375}} defines a standard interface
+Service Performance Monitoring {{!RFC9375}} defines a standard interface
 for network performance management.  In addition, distributed tracing
 mechanism defined in {{W3C-Trace-Context}} can be used to analyze
 and debug operations, such as configuration transactions, across
