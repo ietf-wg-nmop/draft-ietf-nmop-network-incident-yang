@@ -864,7 +864,7 @@ incident-not-found
 # Network Incident Management YANG Module
 
 This module uses types defined in {{!RFC9911}}, {{!RFC8345}},{{!RFC8639}},
-{{RFC8641}}, {{!RFC8632}}, {{!RFC8791}}, {{!RFC9376}}, {{!RFC1136}}, {{!RFC6373}},
+{{!RFC8641}}, {{!RFC8632}}, {{!RFC8791}}, {{!RFC9376}}, {{!RFC1136}}, {{!RFC6373}},
 {{!RFC8348}}, {{!RFC9940}}, {{!RFC8632}}, {{!RFC5277}}, {{!RFC9375}},
 {{!I-D.ietf-netconf-notif-envelope}}.
 
