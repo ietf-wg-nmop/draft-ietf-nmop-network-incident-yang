@@ -95,7 +95,7 @@ informative:
 
 --- abstract
 
-This document defines a YANG Module for the network incident lifecycle
+This document defines a YANG data model for the network incident lifecycle
 management.  This YANG module provides a standard way to
 report, diagnose, and help reduce troubleshooting tickets and resolve
 network incidents for the sake of network service health and probable
@@ -111,7 +111,7 @@ A set of YANG data models have already been developed in IETF for network
 performance monitoring and fault monitoring, e.g., a YANG
 data model for alarm management {{?RFC8632}} defines a standard
 interface for alarm management.  A data model for Network and VPN
-Service Performance Monitoring {{?RFC9375}} defines a standard interface
+Service Performance Monitoring {{!RFC9375}} defines a standard interface
 for network performance management.  In addition, distributed tracing
 mechanism defined in {{W3C-Trace-Context}} can be used to analyze
 and debug operations, such as configuration transactions, across
@@ -127,8 +127,8 @@ orders of magnitude) with the growth of service types and complexity
 and greatly overwhelm OSS platforms {{TMF724A}}; with existing known dependency
 relationships between metric, alarm, and events at each layer (e.g., packet
 layer or optical layer), it is possible to compress series of alarms
-(see Section 3.5.3 of {{?RFC8632}} ) into fewer network incidents and there are
-many solutions in the market today that essentially do this to some degree.
+(see Section 3.5.3 of {{?RFC8632}}) into fewer network incidents and there are
+many solutions in the market when this document was written that essentially do this to some degree.
 However, conventional solutions such as data compression are time-consuming
 and labor-intensive, usually rely on maintenance engineers' experience for data
 analysis, which, in many cases, result in low processing efficiency, inaccurate
@@ -162,7 +162,7 @@ incident when it causes degradation of the network services.
 
 In addition, Artificial Intelligence (AI) and Machine Learning (ML)
 are key technologies in the processing of large amounts of data with
-complex data correlations (see {{Section 6.1 of ?I-D.irtf-nmrg-ai-challenges}} ).
+complex data correlations (see {{Section 6.1 of ?I-D.irtf-nmrg-ai-challenges}}).
 For example, Neural Network Algorithm or Hierarchy Aggregation Algorithm
 {{BERT}} can be used to replace manual alarm data correlation. Through online
 and offline self-learning, these algorithms can be continuously optimized to
@@ -209,11 +209,11 @@ Service Impact Assessment:
 :  A process that uses algorithmic techniques (e.g., machine learning, automated
    reasoning, conformance checking, graph traversal, among others) to evaluate
    whether the network service has been impacted by the network incident and map
-   the network incident to one or a set of network services, which can reduce the volume of
+   the network incident to one or a set of network services. This process can reduce the volume of
    fault/alarms reporting, facilitate troubleshooting, and assure network service
    performance and availability.
 
-Incident Management:
+Network Incident Management:
 :  Lifecycle management of network incidents, including network incident
    identification, reporting, acknowledgement, diagnosis, and resolution.
    Unlike previous fault management, it takes various different
@@ -228,8 +228,8 @@ Incident Management:
    (or derived from a service-level threshold/SLO violation) impacts their service experience.
 
 Incident Management System:
-:  An entity that implements network incident
-   management. It includes (but not limited to) Incident Server
+:  An entity that implements network Incident
+   Management. It includes (but not limited to) Incident Server
    and Incident Client.
 
 Incident Server:
@@ -257,9 +257,9 @@ Probable Root Cause:
   outage or service impairments and their associated subsequent failures and symptoms) and prevents
   the problem from recurring, then such fault condition is considered as a Probable Root Cause of a problem.
 
-: Since one Fault may give rise to another Fault or Problem, a Probable Root Cause is commonly meant
+: Since one fault may give rise to another fault or problem, a Probable Root Cause is commonly meant
   to describe the original event or combination of circumstances that is the foundation of all
-  related Faults.
+  related faults.
 
 : Conversely, a causal fault condition is a contributing action that influences the outcome of the incident or
   event, but is not the Probable Root Cause.
@@ -272,7 +272,7 @@ Probable Root Cause:
 Usually, the dispatching of trouble tickets in a network is mostly
 based on alarm data analysis and often requires operators' maintenance
 engineers.  These operators' maintenance engineers are responsible for
-monitoring and detecting and correlating alarms, e.g., that alarms at
+monitoring, detecting and correlating alarms, e.g., that alarms at
 both endpoints of a specific tunnel or at both optical and IP layers
 which are associated with the same network fault.  Therefore, they can
 correlate these alarms to the same trouble ticket, which offers a low
@@ -291,7 +291,7 @@ conventional working situations.
 
 With the help of the Network Incident Management, massive sets of
 alarms can be aggregated into a few network incidents based on
-service impact assessment, so the number of trouble tickets will
+Service Impact Assessment, so the number of trouble tickets will
 be reduced. At the same time, the efficiency of network troubleshooting
 can be largely improved, which addresses the pain points of trouble
 ticket dispatching.
@@ -304,7 +304,7 @@ being delivered to customers.
 
 SLOs {{?RFC9543}} can be used to characterize the ability of a particular set of
 nodes to communicate according to certain measurable expectations
-{{?I-D.ietf-ippm-pam}}.  For example, an SLA might state that any given
+{{?RFC9544}}.  For example, an SLA might state that any given
 SLO applies to at least a certain percentage of packets, allowing for
 a certain level of packet loss and exceeding packet delay threshold
 to take place.  For example, an SLA might establish a multi-tiered SLO
@@ -329,12 +329,11 @@ devices and optical-layer devices, it may cause correlative faults in
 both layers, i.e., packet layer and optical layer.  Specifically,
 fault propagation could be classified into three typical types.
 First, faults occurring at a packet layer device might further cause fault
-(e.g., Wavelength Division Multiplexing (WDM) client fault) at an
-optical-layer device.  Second, faults occurring at an optical-layer
-device might further cause faults (e.g., Layer 3 link down) at a packet
-layer device.  Third, faults occurring at the inter-layer link between a
-packet layer device and an optical-layer device might further cause
-faults at both devices.  Multiple operation teams are usually
+at an optical-layer device (e.g., Wavelength Division Multiplexing (WDM) client fault).
+Second, faults occurring at an optical-layer device might further cause faults
+at a packet layer device (e.g., Layer 3 link down).  Third, faults occurring at
+the inter-layer link between a packet layer device and an optical-layer device
+might further cause faults at both devices.  Multiple operation teams are usually
 needed to first analyse a large amount of alarms (triggered by the
 above-mentioned faults) from single network layer (either packet layer or
 optical layer) independently, then cooperate to locate the Probable Root Cause
@@ -354,7 +353,7 @@ integrated Optical time-domain reflectometer (OTDR)) embedded within the
 network device, we can determine the target optical exchange station before
 site visits. Therefore, the overall fault demarcation process is simplified
 and automated, the analysis result could be reported and visualized in time.
-In this case, operation teams only have to confirm the analyzing result and
+In this case, operation teams only have to confirm the analyzed result and
 dispatch site engineers to perform relevant maintenance actions (e.g., splice
 fiber) based on the Probable Root Cause.
 
@@ -362,34 +361,34 @@ fiber) based on the Probable Root Cause.
 # Network Incident Management Architecture
 
 ~~~~
-    +------------------------------------------------+
-    |                                                |
-    |                                                |
-    |               Incident  Client                 |
-    |                                                |
-    |                                                |
-    +----^-----------+------------+------------+-----+
-         |           |            |            |
-         |Incident   |Incident    |Incident    |Incident
-         |Report     |  Ack       |Diagnose    |Resolve
-         |           |            |            |
-         |           |            |            |
-         |           |            |            |
-    +----+-----------V------------V------------V-----+
-    |                                                |
-    |                                                |
-    |                                                |
-    |                                                |
-    |                                                |
-    |                                                |
-    |                Incident Server                 |
-    |                                                |
-    |                                                |
-    |                                                |
-    |                                                |
-    |                                                |
-    |                                                |
-    +----^-----------^-------------^------------^----+
+    +-------------------------------------------------+
+    |                                                 |
+    |                                                 |
+    |               Incident  Client                  |
+    |                                                 |
+    |                                                 |
+    +----^------------+------------+------------+-----+
+         |            |            |            |
+         |Incident    |Incident    |Incident    |Incident
+         |Notification|  Ack       |Diagnose    |Resolve
+         |            |            |            |
+         |            |            |            |
+         |            |            |            |
+    +----+------------V------------V------------V-----+
+    |                                                 |
+    |                                                 |
+    |                                                 |
+    |                                                 |
+    |                                                 |
+    |                                                 |
+    |                Incident Server                  |
+    |                                                 |
+    |                                                 |
+    |                                                 |
+    |                                                 |
+    |                                                 |
+    |                                                 |
+    +----^-----------^-------------^------------^-----+
          |           |             |            |
          |           |             |            |
          |Alarm      |Abnormal     |Network     |Network
@@ -408,7 +407,7 @@ fiber) based on the Probable Root Cause.
  {:#arch title="Network Incident Management Architecture" artwork-align="center"}
 
 {{arch}} illustrates the Network Incident Management architecture.  Two key
-components for the Incident Management are the Incident Client
+components for the Network Incident Management are the Incident Client
 and the Incident Server.
 
 The Incident Server can be deployed in network operation platforms, network analytic
@@ -430,21 +429,21 @@ A typical workflow of network incident lifecycle management is as follows:
   The Incident Server receives these alarms/abnormal operations/metrics and try to analyze the
   correlation of them, e.g., generate a symptom if some metrics are evaluated as unhealthy, the
   Probable Root Cause can be detected based on the data correlation analysis. If a network incident
-  is identified, the "incident report" notification will be reported to the Incident Client. The
+  is identified, the "incident-notification" notification will be reported to the Incident Client. The
   impact of network services will be further analyzed and will update the network incident if
   the network service is impacted.
 
-* Incident Client receives the network incident from the "incident report" notification
-  reported by Incident Server, and acknowledges it with the subsequent "incident ack" RPC operation.
-  The Incident Client may further invoke the "incident diagnose" RPC to diagnose this network
+* Incident Client receives the network incident from the "incident-notification" notification
+  reported by Incident Server, and acknowledges it with the subsequent 'incident-acknowledge' RPC operation.
+  The Incident Client may further invoke the 'incident-diagnose' RPC to diagnose this network
   incident to find the Probable Root Causes.
 
 * If the Probable Root Causes have been found, the Incident Client can resolve this
-  network incident by invoking the 'incident resolve' RPC operation to ask the Incident Server to resolve it,
+  network incident by invoking the 'incident-resolve' RPC operation to ask the Incident Server to resolve it,
  or dispatching a troubleshooting ticket or using other network functions (routing calculation,
   configuration, etc.) without being known by the Incident Server.
 
-* In case of the 'incident resolve' RPC operation invoked by the Incident Client, the Incident Server
+* In case of the 'incident-resolve' RPC operation invoked by the Incident Client, the Incident Server
   will monitor the status of the network incident and update the status of network incident to 'cleared'
   if the incident can be fixed. For more detailed workflow, please refer to section 5.3.
 
@@ -492,11 +491,11 @@ aggregated into a network incident after analysis.
 ~~~~
 {:#ident title="Incident Identification" artwork-align="center"}
 
-The Network Incident Management server must be capable of identifying
+The Incident Server must be capable of identifying
 network incidents.  Multiple alarms, metrics and other information are
-reported to Incident Server, and the server must analyze it and find
+reported to the Incident Server, and the server must analyze it and find
 out the correlations of them, if the correlation match the network incident
-rules, network incident will be identified, and reported to the client.
+rules, network incident is identified, and reported to the client.
 If the network incident is repeated many times, the problem needs to be
 raised based on the incident and the operator's policy.
 Service Impact Assessment should be performed if a network incident is identified,
@@ -507,10 +506,10 @@ AI/ML may be used to identify the network incident.  Expert system and online
 learning can help AI to identify the correlation of alarms, metrics
 and other information by time-base correlation algorithm, topology-based
 correlation algorithm, etc.  For example, if the interface is down, then
-many protocol alarms will be reported, AI will think these alarms
-have some correlations.  These new correlations will be put into the
-knowledge base, and the network incident will be identified faster according
-to knowledge base next time.
+many protocol alarms will be reported, AI may find some correlations within the
+raised alarms.  These new correlations will be put into the knowledge base
+{{?I-D.mackey-nmop-kg-for-netops}}, and the network incident will be identified
+faster according to knowledge base next time.
 
 ~~~~
         +----------------------+
@@ -540,19 +539,19 @@ VPN A      | |            |
 ~~~~
 {:#exam1 title="Example 1 of Network Incident Identification" artwork-align="center"}
 
-As described in {{exam1}}, VPN a is deployed from PE1 to PE2, if an
+As described in {{exam1}}, VPN A a is deployed from PE1 to PE2, if an
 interface of P1 is going down, many alarms are triggered, such as
 interface down, IGP down, and IGP peer abnormal from P2.
 
-These alarms are aggregated and analyzed by the controller/incident
-server, and then the network incident 'VPN unavailable' is triggered
+These alarms are aggregated and analyzed by the controller/Incident
+Server, and then the network incident 'VPN unavailable' is triggered
 by the controller/Incident Server. If the network incident 'VPN unavailable'
 is repeated, the problem can be raised.
 
 Note that Incident Server within the controller can rely on data correlation technology such as
-service impact assessment and data analytic component to evaluate the real effect
+Service Impact Assessment and data analytic component to evaluate the real effect
 on the relevant service and understand whether lower level or device level network
-anomaly, e.g., IGP down, has impact on the service.
+anomaly has impact on the service (e.g., IGP down).
 
 ~~~~
          +----------------------+
@@ -770,7 +769,7 @@ confirms the incident to ensure that the client knows the incident.
 
 In some scenarios where automatic diagnosis and resolution are supported, the
 status of an incident may be updated multiple times or even automatically
-resolved. Therefore the incident-acknowledge RPC can confirm multiple incidents
+resolved. Therefore the 'incident-acknowledge' RPC can confirm multiple incidents
 at a time.
 
 ## Incident Diagnose
@@ -780,7 +779,7 @@ at a time.
 |  +---w input
 |  |  +---w incident-no*   incident-ref
 ~~~~
-After a network incident is generated, network incident diagnose RPC can be used to
+After a network incident is generated, 'incident-diagnose' RPC can be used to
 diagnose the network incident and locate the Probable Root Causes.  On-demand Diagnosis
 can be performed on some detection tasks, such as bfd detection, flow
 detection, telemetry collection, short-term threshold alarm,
@@ -803,7 +802,7 @@ RPC can be used to resolve the incident (if the server can resolve
 it).  How to resolve an incident instance is out of the scope of this
 document.
 
-Network incident resolve RPC allows multiple network incident instances to be
+'incident-resolve' RPC allows multiple network incident instances to be
 resolved at a time.  If a network incident instance is successfully
 resolved, a separate notification is triggered to update the network incident
 status to 'cleared'.  If the network incident content is changed during this
@@ -862,7 +861,8 @@ resource-unavailable
 
 This module uses types defined in {{!RFC9911}}, {{!RFC8345}},
 {{!RFC8632}}, {{!RFC8791}}, {{!RFC9376}}, {{!RFC1136}}, {{!RFC6373}},
-{{!RFC8348}}, {{!RFC9940}}, {{!RFC8632}}, {{!RFC5277}}, {{!RFC9375}}.
+{{!RFC8348}}, {{!RFC9940}}, {{!RFC8632}}, {{!RFC5277}}, {{!RFC9375}}
+,{{!I-D.ietf-netconf-notif-envelope}}.
 
 ~~~~
 <CODE BEGINS> file "ietf-incident@2026-07-30.yang"
@@ -977,7 +977,7 @@ both Incident Client and Incident Server functionalities provides not only netwo
 incident reporting but also diagnosis and resolution functions, it's possible to
 support self-healing and may be helpful for single-domain closed-loop control.
 
-Incident Management is not a substitute for alarm management.
+Network Incident Management is not a substitute for alarm management.
 Instead, they can work together to implement fault management.
 
 ## Interworking with SAIN
@@ -1093,7 +1093,7 @@ this Implementation Status apendix prior publication.
 ## Huawei Implementation
 
 Huawei iMaster NCE has implemented incident model with the intent management framework
-and AI tools to support intelligent incident management.
+and AI tools to support intelligent Network Incident Management.
 
 The Huawei Implementation of Incident model covers the following
 a) RESTCONF support
@@ -1289,7 +1289,7 @@ The Probable Root Cause is also analysed.
 
 ##  Network Incident Correlated with Trouble Tickets
 
-In this document, the objective of the Incident Management is to identify
+In this document, the objective of the Network Incident Management is to identify
 Probable Causes and reduce duplicated tickets.
 
 Previously, a troubleshooting ticket was created upon receipt of a
