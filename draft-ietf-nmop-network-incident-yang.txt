@@ -1056,9 +1056,10 @@ Table of Contents
 
 8.  Network Incident Management YANG Module
 
-   This module uses types defined in [RFC9911], [RFC8345], [RFC8632],
-   [RFC8791], [RFC9376], [RFC1136], [RFC6373], [RFC8348], [RFC9940],
-   [RFC8632], [RFC5277], [RFC9375] ,[I-D.ietf-netconf-notif-envelope].
+   This module uses types defined in [RFC9911], [RFC8345],[RFC8639],
+   [RFC8641], [RFC8632], [RFC8791], [RFC9376], [RFC1136], [RFC6373],
+   [RFC8348], [RFC9940], [RFC8632], [RFC5277], [RFC9375],
+   [I-D.ietf-netconf-notif-envelope].
 
    <CODE BEGINS> file "ietf-incident@2026-07-30.yang"
    module ietf-incident {
@@ -2484,6 +2485,15 @@ Normative References
    [RFC8632]  Vallin, S. and M. Bjorklund, "A YANG Data Model for Alarm
               Management", RFC 8632, DOI 10.17487/RFC8632, September
               2019, <https://www.rfc-editor.org/rfc/rfc8632>.
+
+   [RFC8639]  Voit, E., Clemm, A., Gonzalez Prieto, A., Nilsen-Nygaard,
+              E., and A. Tripathy, "Subscription to YANG Notifications",
+              RFC 8639, DOI 10.17487/RFC8639, September 2019,
+              <https://www.rfc-editor.org/rfc/rfc8639>.
+
+   [RFC8641]  Clemm, A. and E. Voit, "Subscription to YANG Notifications
+              for Datastore Updates", RFC 8641, DOI 10.17487/RFC8641,
+              September 2019, <https://www.rfc-editor.org/rfc/rfc8641>.
 
    [RFC8791]  Bierman, A., Björklund, M., and K. Watsen, "YANG Data
               Structure Extensions", RFC 8791, DOI 10.17487/RFC8791,
