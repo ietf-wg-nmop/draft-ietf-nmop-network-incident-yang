@@ -842,6 +842,7 @@ as follows:
 incident-acknowledge-error-info
 -----------------------------------
 repeated-acknowledge
+incident-not-found
 
 incident-diagnose-error-info
 -----------------------------------
@@ -849,6 +850,7 @@ probable-cause-unlocated
 permission-denied
 operation-timeout
 resource-unavailable
+incident-not-found
 
 incident-resolve-error-info
 -----------------------------------
@@ -856,6 +858,7 @@ probable-cause-unresolved
 permission-denied
 operation-timeout
 resource-unavailable
+incident-not-found
 ~~~
 
 # Network Incident Management YANG Module
