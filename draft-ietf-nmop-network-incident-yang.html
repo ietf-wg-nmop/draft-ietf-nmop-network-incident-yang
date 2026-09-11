@@ -2620,7 +2620,7 @@ module ietf-incident {
   identity vm {
     base incident-category;
     description
-      "VM category.";
+      "Virtual Machine category.";
   }
 
   identity event-type {
@@ -2645,6 +2645,12 @@ module ietf-incident {
       "Notification event type.";
     reference
       "RFC 5277: NETCONF Event Notifications";
+    reference
+      "RFC 8639: Subscription to YANG Notifications";
+    reference
+      "RFC 8641: Subscription to YANG Notifications for Datastore Updates";
+    reference
+      "RFC xxxx: Extensible YANG Model for YANG-Push Notifications";
   }
 
   identity metric {
@@ -2708,6 +2714,15 @@ module ietf-incident {
     base acknowledge-error;
     description
       "The incident referred to has already been acknowledged.";
+  }
+
+  identity incident-not-found {
+    base acknowledge-error;
+    base diagnose-error;
+    base resolve-error;
+    description
+      "The incident is triggered when the incident does not
+       exist in the datastore and a Client performs the RPCs.";
   }
 
   identity probable-cause-unlocated {
@@ -2846,6 +2861,7 @@ module ietf-incident {
     }
     leaf occur-time {
       type yang:date-and-time;
+      mandatory true;
       description
         "The time when an incident instance occurs.
          It's the occur time of the first event during
@@ -3168,6 +3184,11 @@ module ietf-incident {
                    at 0. The value 0 is used to detect wrap
                    arounds.";
               }
+              anydata contents {
+                description
+                  "This contains the values defined by the 'notification'
+                   statement unchanged.";
+              }
             }
           }
         }
@@ -3184,9 +3205,10 @@ module ietf-incident {
     input {
       leaf-list incident-no {
         type incident-ref;
+        min-elements 1;
         description
-          "The unique sequence number of an incident instance
-           based on the name type incident-qualifier keys.";
+          "The unique number of an incident instance
+           based on the name type incident-id keys.";
       }
     }
   }
@@ -3199,9 +3221,10 @@ module ietf-incident {
     input {
       leaf-list incident-no {
         type incident-ref;
+        min-elements 1;
         description
-          "The unique sequence number of an incident instance
-           based on the name type incident-qualifier keys.";
+          "The unique number of an incident instance
+           based on the name type incident-id keys.";
       }
     }
   }
@@ -3214,9 +3237,10 @@ module ietf-incident {
     input {
       leaf-list incident-no {
         type incident-ref;
+        min-elements 1;
         description
-          "The unique sequence number of an incident instance
-           based on the name type incident-qualifier keys.";
+          "The unique number of an incident instance
+           based on the name type incident-id keys.";
       }
     }
   }
@@ -3320,7 +3344,9 @@ module ietf-incident {
     leaf time {
       type yang:date-and-time;
       description
-        "Occurring time of an incident instance.";
+        "Occurring time of an incident instance.
+         It matches the occur-time in
+         incident-time-info grouping";
     }
   }
 
