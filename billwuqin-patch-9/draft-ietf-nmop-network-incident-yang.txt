@@ -1379,6 +1379,15 @@ Table of Contents
          "The incident referred to has already been acknowledged.";
      }
 
+     identity incident-not-found {
+       base acknowledge-error;
+       base diagnose-error;
+       base resolve-error;
+       description
+         "The incident is triggered when the incident does not
+          exist in the datastore and a Client performs the RPCs.";
+     }
+
      identity probable-cause-unlocated {
        base diagnose-error;
        description
