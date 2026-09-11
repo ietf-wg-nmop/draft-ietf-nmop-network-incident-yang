@@ -1488,7 +1488,7 @@ one network incident, performing network incident diagnosis, resolution and pred
           <p id="section-2-5.10.1">An entity that can manage network incidents based on global view on network topology data correlation.
 For example, it can receive network incident notifications, query the
 information of network incidents, instruct an Incident Server
-to diagnose, help resolve, etc. In addition, it can trigger issue tickets and involve repair crew to fix the problem.<a href="#section-2-5.10.1" class="pilcrow">¶</a></p>
+to diagnose, help , etc. In addition, it can trigger issue tickets and involve repair crew to fix the problem.<a href="#section-2-5.10.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-5.11">Incident Handler:</dt>
@@ -1500,14 +1500,14 @@ server and cannot instruct it to perform network incident diagnosis or resolutio
         <dd class="break"></dd>
 <dt id="section-2-5.13">Incident Process:</dt>
         <dd style="margin-left: 1.5em" id="section-2-5.14">
-          <p id="section-2-5.14.1">A multi-step workflow used by network operation teams to identify, analyze, and resolve unexpected
+          <p id="section-2-5.14.1">A multi-step workflow used by network operation teams to identify, analyze, and  unexpected
 service disruptions or quality reductions, with the primary goal of restoring normal operations as
 quickly as possible while minimizing service impact.<a href="#section-2-5.14.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-5.15">Probable Root Cause:</dt>
         <dd style="margin-left: 1.5em" id="section-2-5.16">
-          <p id="section-2-5.16.1">If removing a fault condition completely resolves the ongoing incident (specifically, regarding network
+          <p id="section-2-5.16.1">If removing a fault condition completely s the ongoing incident (specifically, regarding network
 outage or service impairments and their associated subsequent failures and symptoms) and prevents
 the problem from recurring, then such fault condition is considered as a Probable Root Cause of a problem.<a href="#section-2-5.16.1" class="pilcrow">¶</a></p>
 </dd>
@@ -1918,18 +1918,19 @@ fine-grained monitoring of network quality metrics, etc.<a href="#section-5.2-1"
         <h3 id="name-incident-resolution">
 <a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-incident-resolution" class="section-name selfRef">Incident Resolution</a>
         </h3>
-<p id="section-5.3-1">After the Probable Root Cause is diagnosed, the Incident Client may resolve the
+<p id="section-5.3-1">After the Probable Root Cause is diagnosed, the Incident Client may  the
 network incident.  The Incident Client may choose to resolve the network
 incident by invoking other functions, such as routing calculation function,
 configuration function, dispatching a ticket or asking the server to resolve it.
 Generally, the Incident Client would attempt to directly resolve the Probable
 Root Cause.  If the Probable Root Cause cannot be resolved, an alternative
 solution should be required.  For example, if a network incident caused by a
-physical component failure, it cannot be automatically resolved, the standby
+physical component failure and cannot be automatically resolved, the standby
 link can be used to bypass the faulty component.<a href="#section-5.3-1" class="pilcrow">¶</a></p>
 <p id="section-5.3-2">Incident Server monitors the status of the network incident, if the faults
 are fixed, the Incident Server will update the status of network incident to
-'cleared', and report the updated network incident to the client.<a href="#section-5.3-2" class="pilcrow">¶</a></p>
+'cleared', and report the updated network incident to the client. Please refer
+to Section 6.2 for the Incident Lifecycle and its status.<a href="#section-5.3-2" class="pilcrow">¶</a></p>
 <p id="section-5.3-3">Network incident resolution may affect the running network services. The
 client can choose not to perform those operations based on operator's policy
 after determining the impact is not trivial.<a href="#section-5.3-3" class="pilcrow">¶</a></p>
@@ -1962,11 +1963,11 @@ from operator incident lifecycle:<a href="#section-6.2-1" class="pilcrow">¶</a>
 <ul class="normal">
 <li class="normal" id="section-6.2-2.1">
             <p id="section-6.2-2.1.1">Network incident instance lifecycle: The network incident instrumentation
-that controls whether a network incident is raised, updated, or cleared.<a href="#section-6.2-2.1.1" class="pilcrow">¶</a></p>
+that controls whether a network incident is 'raised', 'updated', or 'cleared'.<a href="#section-6.2-2.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-6.2-2.2">
             <p id="section-6.2-2.2.1">Operator incident lifecycle: Operators acting upon the network incident with RPCs
-like acknowledged, diagnosed and resolved.<a href="#section-6.2-2.2.1" class="pilcrow">¶</a></p>
+like 'incident-acknowledge', 'incident-diagnose' and 'incident-resolve'.<a href="#section-6.2-2.2.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 <div id="network-incident-instance-lifecycle">
@@ -2024,7 +2025,7 @@ suggestion, etc.<a href="#section-7.1-1" class="pilcrow">¶</a></p>
 Network incident is represented as a list and indexed by "incident-qualifier".
 Each Network Incident is associated with a network service instance, domain and
 sources.  Under sources, there is one or more sources.  Each source
-corresponds to node defined in the network topology model and network
+corresponds to a node defined in the network topology model and network
 resource in the network device, e.g., interface.  In addition, "ietf-incident"
 supports one general notification to report network incident state changes and
 three RPCs to manage the network incidents.<a href="#section-7.1-2" class="pilcrow">¶</a></p>
@@ -2250,11 +2251,11 @@ alarm-list/alarm[al:resource = current()/../resource][al:alarm-type-\
        +--ro time?                 yang:date-and-time
 </pre><a href="#section-7.2-1" class="pilcrow">¶</a>
 </div>
-<p id="section-7.2-2">A general notification, incident-notification, is provided here.
+<p id="section-7.2-2">A general notification, "incident-notification", is provided here.
 When a network incident instance is identified, the notification is
-sent.  After a notification is generated, if the incident
-server performs self diagnosis or the Incident Client uses the interfaces
-provided by the Incident Server to deliver diagnosis and
+sent from the incident server to the incident client .  After a notification
+is generated, if the incident server performs self diagnosis or the Incident
+Client uses the interfaces provided by the Incident Server to deliver diagnosis and
 resolution actions, the notification update behavior is triggered,
 for example, the Probable Root Cause objects and affected objects are updated.
 When a network incident is successfully resolved, the status of the network incident
@@ -4019,8 +4020,8 @@ The Probable Root Cause is also analysed.<a href="#appendix-A.1-1" class="pilcro
         <h3 id="name-network-incident-correlated-">
 <a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-network-incident-correlated-" class="section-name selfRef">Network Incident Correlated with Trouble Tickets</a>
         </h3>
-<p id="appendix-A.2-1">In this document, the objective of the Network Incident Management is to identify
-Probable Causes and reduce duplicated tickets.<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-1">In this document, the objective of the Incident Management is to identify
+Probable Root Causes and reduce duplicated tickets.<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
 <p id="appendix-A.2-2">Previously, a troubleshooting ticket was created upon receipt of a
 critical alert by the OSS system, e.g., due to excessive BGP flaps on
 a particular device. Such troubleshooting ticket will trigger
