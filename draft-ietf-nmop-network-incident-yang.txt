@@ -1036,6 +1036,7 @@ Table of Contents
    incident-acknowledge-error-info
    -----------------------------------
    repeated-acknowledge
+   incident-not-found
 
    incident-diagnose-error-info
    -----------------------------------
@@ -1043,6 +1044,7 @@ Table of Contents
    permission-denied
    operation-timeout
    resource-unavailable
+   incident-not-found
 
    incident-resolve-error-info
    -----------------------------------
@@ -1050,6 +1052,7 @@ Table of Contents
    permission-denied
    operation-timeout
    resource-unavailable
+   incident-not-found
 
 8.  Network Incident Management YANG Module
 
