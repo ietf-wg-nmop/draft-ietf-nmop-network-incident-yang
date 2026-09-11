@@ -224,7 +224,7 @@ module ietf-incident {
   identity vm {
     base incident-category;
     description
-      "VM category.";
+      "Virtual Machine category.";
   }
 
   identity event-type {
@@ -249,6 +249,12 @@ module ietf-incident {
       "Notification event type.";
     reference
       "RFC 5277: NETCONF Event Notifications";
+    reference
+      "RFC 8639: Subscription to YANG Notifications";
+    reference
+      "RFC 8641: Subscription to YANG Notifications for Datastore Updates";
+    reference
+      "RFC xxxx: Extensible YANG Model for YANG-Push Notifications";
   }
 
   identity metric {
@@ -256,7 +262,7 @@ module ietf-incident {
     description
       "Metric event type.";
     reference
-      "RFC 9375: A YANG Data Model for Network and VPN 
+      "RFC 9375: A YANG Data Model for Network and VPN
                  Service Performance Monitoring";
   }
 
@@ -772,6 +778,11 @@ module ietf-incident {
                    at 0. The value 0 is used to detect wrap
                    arounds.";
               }
+              anydata contents {
+                description
+                  "This contains the values defined by the 'notification'
+                   statement unchanged.";
+              }
             }
           }
         }
@@ -788,8 +799,9 @@ module ietf-incident {
     input {
       leaf-list incident-no {
         type incident-ref;
+        min-elements 1;
         description
-          "The unique sequence number of an incident instance
+          "The unique number of an incident instance
            based on the name type incident-id keys.";
       }
     }
@@ -803,8 +815,9 @@ module ietf-incident {
     input {
       leaf-list incident-no {
         type incident-ref;
+        min-elements 1;
         description
-          "The unique sequence number of an incident instance
+          "The unique  number of an incident instance
            based on the name type incident-id keys.";
       }
     }
@@ -818,8 +831,9 @@ module ietf-incident {
     input {
       leaf-list incident-no {
         type incident-ref;
+        min-elements 1;
         description
-          "The unique sequence number of an incident instance
+          "The unique number of an incident instance
            based on the name type incident-id keys.";
       }
     }
