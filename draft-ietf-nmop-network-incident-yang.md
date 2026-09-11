@@ -96,10 +96,9 @@ informative:
 --- abstract
 
 This document defines a YANG Module for the network incident lifecycle
-management.  This YANG module provides a standard way to
-report, diagnose, and help reduce troubleshooting tickets and 
-network incidents for the sake of network service health and probable
-root cause analysis.
+management.  This YANG module provides a standard way to report, diagnose,
+and help reduce troubleshooting tickets and network incidents for the sake
+of network service health and probable root cause analysis.
 
 --- middle
 
