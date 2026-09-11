@@ -177,7 +177,7 @@ network automation {{?RFC8969}} with remote process call (RPC) operations in thi
 
 {::boilerplate bcp14-tagged}
 
-The following terms are defined in {{?RFC9543}},{{!RFC9940}}
+The following terms are defined in {{!RFC9543}},{{!RFC9940}}
 and are not redefined here:
 
 *  Alarm
@@ -200,7 +200,7 @@ and are not redefined here:
 
 *  Characteristic
 
-* Occurrence
+*  Occurrence
 
 *  SLA (Service Level Agreement)
 
