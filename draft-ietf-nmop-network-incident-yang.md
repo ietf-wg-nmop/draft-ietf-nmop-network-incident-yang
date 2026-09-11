@@ -82,8 +82,9 @@ normative:
 
 informative:
  BERT:
-   title:  BERT (language model)
-   target: https://en.wikipedia.org/wiki/BERT_(language_model)
+   title:  BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
+   target: https://aclanthology.org/N19-1423/
+   date: 2019
  TMF724A:
    title: Incident Management API Profile v1.0.0
    target: https://www.tmforum.org/resources/standard/tmf724a-incident-management-api-profile-v1-0-0/
@@ -144,7 +145,7 @@ layers, which not only can be used at a specific layer in one domain but also ca
 span across layers for multi-layer network troubleshooting.
 
 As described in {{!RFC9940}}, a network incident refers
-to an undesired occurrence such as an unexpected interruption of a network service,
+to an undesired Occurrence such as an unexpected interruption of a network service,
 degradation of the quality of a network service, or the below-target performance of
 a network service. Different data sources, including alarms, metrics, and other anomaly
 information, can be correlated and combined into one or a few network
@@ -176,7 +177,7 @@ network automation {{?RFC8969}} with remote process call (RPC) operations in thi
 
 {::boilerplate bcp14-tagged}
 
-The following terms are defined in {{?RFC8632}}, {{?RFC9543}},{{!RFC9940}}
+The following terms are defined in {{?RFC9543}},{{!RFC9940}}
 and are not redefined here:
 
 *  Alarm
@@ -198,6 +199,8 @@ and are not redefined here:
 *  Symptom
 
 *  Characteristic
+
+* Occurrence
 
 *  SLA (Service Level Agreement)
 
@@ -320,7 +323,7 @@ This SLA information can be bound with two SAPs or multiple SAPs defined in {{?R
 so that the service orchestration layer can use these interfaces to commit the
 delivery of a service on specific point-to-point service topology or point to
 multi-point topology. When a given SLO threshold is violated, a network incident
-(or customer incident {{TMF724A}} associated with an L3VPN service may be derived).
+(or customer incident {{TMF724A}} associated with an L3VPN service) may be derived.
 
 ## Multi-layer Fault Demarcation
 
@@ -494,7 +497,7 @@ aggregated into a network incident after analysis.
 The Incident Server must be capable of identifying
 network incidents.  Multiple alarms, metrics and other information are
 reported to the Incident Server, and the server must analyze it and find
-out the correlations of them, if the correlation match the network incident
+out the correlations of them, if the correlation matches the network incident
 rules, network incident is identified, and reported to the client.
 If the network incident is repeated many times, the problem needs to be
 raised based on the incident and the operator's policy.
@@ -1218,71 +1221,85 @@ In this example, we show a network incident that are associated with the service
 The Probable Root Cause is also analysed.
 
 ~~~~
-   {
-     "name": "line fault",
-     "type": "problem",
-     "incident-no": 56433218,
-     "incident-qualifier": "line fault",
-     "service-instance": ["optical-svc-A"],
-     "domain": "PTN",
-     "priority": "critical",
-     "occur-time": "2026-03-10T04:01:12Z",
-     "clear-time": "2026-03-10T06:01:12Z",
-     "ack-time": "2026-03-10T05:01:12Z",
-     "last-updated": "2026-03-10T05:31:12Z",
-     "ack-status": "unacknowledged",
-     "category": "Network",
-     "source": [
-       {
-         "node-ref": "example:D1",
-         "network-ref": "example:L2-topo",
-         "resource": [
-           {
-             "name": "7985e01a-5aad-11ea-b214-286ed488cf99"
-           }
-         ]
-       }
-     ],
-     "probable-causes": [
-       {
-         "name": "Feeder fiber great loss change",
-         "detail-information": "The connector of the optical fiber\n
-          is contaminated, Or the optical fiber is bent too much.",
-         "probable-cause": {
-           "network-ref": "example:L2-topo",
-           "node-ref": "example:D1",
-           "resource": [
-             {
-               "name": "7985e01a-5aad-11ea-b214-286ed488cf99",
-               "cause-name": "ltp",
-               "detail": "Frame=0, Slot=6, Subslot=65535, Port=7,\n
-                ODF= ODF001,  Level1Splitter= splitter0025"
-             }
-           ]
-         }
-       }
-     ],
-     "probable-event": [
-       {
-         "event-id": "8921834",
-         "type": "alarm"
-       }
-     ],
-     "events": [
-       {
-         "event-id": "8921832",
-         "type": "alarm"
-       },
-       {
-         "event-id": "8921833",
-         "type": "alarm"
-       },
-       {
-         "event-id": "8921834",
-         "type": "alarm"
-       }
-     ]
-   }
+{
+  "ietf-incident:incidents": {
+    "incident": [
+      {
+        "name": "line fault",
+        "type": "ietf-incident:problem",
+        "incident-qualifier": "line fault",
+        "incident-no": 56433218,
+        "service-instance": [
+          "optical-svc-A"
+        ],
+        "domain": "ptn",
+        "priority": "critical",
+        "occur-time": "2026-03-10T04:01:12Z",
+        "clear-time": "2026-03-10T06:01:12Z",
+        "ack-time": "2026-03-10T05:01:12Z",
+        "last-updated": "2026-03-10T05:31:12Z",
+        "ack-status": "unacknowledged",
+        "category": "ietf-incident:network",
+        "sources": {
+          "source": [
+            {
+              "node-ref": "example:D1",
+              "network-ref": "example:L2-topo",
+              "resource": [
+                {
+                  "name": "7985e01a-5aad-11ea-b214-286ed488cf99"
+                }
+              ]
+            }
+          ]
+        },
+        "probable-causes": {
+          "probable-cause": [
+            {
+              "name": "Feeder fiber great loss change",
+              "detail-information": "The connector of the optical fiber is contaminated, Or the optical fiber is bent too much.",
+              "probable-cause": {
+                "network-ref": "example:L2-topo",
+                "node-ref": "example:D1",
+                "resource": [
+                  {
+                    "name": "7985e01a-5aad-11ea-b214-286ed488cf99",
+                    "cause-name": "ltp",
+                    "detail": "Frame=0, Slot=6, Subslot=65535, Port=7, ODF= ODF001, Level1Splitter= splitter0025"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "probable-events": {
+          "probable-event": [
+            {
+              "event-id": "8921834",
+              "type": "alarm"
+            }
+          ]
+        },
+        "events": {
+          "event": [
+            {
+              "event-id": "8921832",
+              "type": "alarm"
+            },
+            {
+              "event-id": "8921833",
+              "type": "alarm"
+            },
+            {
+              "event-id": "8921834",
+              "type": "alarm"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
 ~~~~
 
 ##  Network Incident Correlated with Trouble Tickets
