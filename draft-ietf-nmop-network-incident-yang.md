@@ -600,13 +600,13 @@ fine-grained monitoring of network quality metrics, etc.
 
 ## Incident Resolution
 
-After the Probable Root Cause is diagnosed, the Incident Client may  the
+After the Probable Root Cause is diagnosed, the Incident Client may resolve the
 network incident.  The Incident Client may choose to resolve the network
 incident by invoking other functions, such as routing calculation function,
 configuration function, dispatching a ticket or asking the server to resolve it.
 Generally, the Incident Client would attempt to directly resolve the Probable
 Root Cause.  If the Probable Root Cause cannot be resolved, an alternative
-solution should be required.  For example, if a network incident caused by a
+solution should be sought.  For example, if a network incident caused by a
 physical component failure and cannot be automatically resolved, the standby
 link can be used to bypass the faulty component.
 
@@ -879,7 +879,7 @@ This module uses types defined in {{!RFC9911}}, {{!RFC8345}},{{!RFC8639}},
 The "ietf-incident" YANG module introduces an incident-centric
 architecture designed to overcome the structural silo of management
 systems that handle alarms and performance metrics separately at
-different network layers. Operators must ensure that the underlying management
+different network layers. Operators need to ensure that the underlying management
 system feeding this model maintains continuous, real-time read access to
 diverse end to end network topology data spanning multiple layers.
 
