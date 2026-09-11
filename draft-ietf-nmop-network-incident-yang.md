@@ -240,7 +240,7 @@ Incident Client:
 :  An entity that can manage network incidents based on global view on network topology data correlation.
    For example, it can receive network incident notifications, query the
    information of network incidents, instruct an Incident Server
-   to diagnose, help resolve, etc. In addition, it can trigger issue tickets and involve repair crew to fix the problem.
+   to diagnose, help , etc. In addition, it can trigger issue tickets and involve repair crew to fix the problem.
 
 Incident Handler:
 : An entity that can receive network incident notifications, store and query the information of
@@ -248,12 +248,12 @@ Incident Handler:
   server and cannot instruct it to perform network incident diagnosis or resolution.
 
 Incident Process:
-: A multi-step workflow used by network operation teams to identify, analyze, and resolve unexpected
+: A multi-step workflow used by network operation teams to identify, analyze, and  unexpected
 service disruptions or quality reductions, with the primary goal of restoring normal operations as
 quickly as possible while minimizing service impact.
 
 Probable Root Cause:
-: If removing a fault condition completely resolves the ongoing incident (specifically, regarding network
+: If removing a fault condition completely s the ongoing incident (specifically, regarding network
   outage or service impairments and their associated subsequent failures and symptoms) and prevents
   the problem from recurring, then such fault condition is considered as a Probable Root Cause of a problem.
 
@@ -600,19 +600,20 @@ fine-grained monitoring of network quality metrics, etc.
 
 ## Incident Resolution
 
-After the Probable Root Cause is diagnosed, the Incident Client may resolve the
+After the Probable Root Cause is diagnosed, the Incident Client may  the
 network incident.  The Incident Client may choose to resolve the network
 incident by invoking other functions, such as routing calculation function,
 configuration function, dispatching a ticket or asking the server to resolve it.
 Generally, the Incident Client would attempt to directly resolve the Probable
 Root Cause.  If the Probable Root Cause cannot be resolved, an alternative
 solution should be required.  For example, if a network incident caused by a
-physical component failure, it cannot be automatically resolved, the standby
+physical component failure and cannot be automatically resolved, the standby
 link can be used to bypass the faulty component.
 
 Incident Server monitors the status of the network incident, if the faults
 are fixed, the Incident Server will update the status of network incident to
-'cleared', and report the updated network incident to the client.
+'cleared', and report the updated network incident to the client. Please refer
+to Section 6.2 for the Incident Lifecycle and its status.
 
 Network incident resolution may affect the running network services. The
 client can choose not to perform those operations based on operator's policy
@@ -632,10 +633,10 @@ The network incident model clearly separates network incident instance lifecycle
 from operator incident lifecycle:
 
 - Network incident instance lifecycle: The network incident instrumentation
-  that controls whether a network incident is raised, updated, or cleared.
+  that controls whether a network incident is 'raised', 'updated', or 'cleared'.
 
 - Operator incident lifecycle: Operators acting upon the network incident with RPCs
-  like acknowledged, diagnosed and resolved.
+  like 'incident-acknowledge', 'incident-diagnose' and 'incident-resolve'.
 
 ### Network Incident Instance Lifecycle
 
@@ -676,7 +677,7 @@ At the top of "ietf-incident" module is the Network Incident.
 Network incident is represented as a list and indexed by "incident-qualifier".
 Each Network Incident is associated with a network service instance, domain and
 sources.  Under sources, there is one or more sources.  Each source
-corresponds to node defined in the network topology model and network
+corresponds to a node defined in the network topology model and network
 resource in the network device, e.g., interface.  In addition, "ietf-incident"
 supports one general notification to report network incident state changes and
 three RPCs to manage the network incidents.
@@ -747,11 +748,11 @@ three RPCs to manage the network incidents.
        +--ro time?                 yang:date-and-time
 ~~~~
 
-A general notification, incident-notification, is provided here.
+A general notification, "incident-notification", is provided here.
 When a network incident instance is identified, the notification is
-sent.  After a notification is generated, if the incident
-server performs self diagnosis or the Incident Client uses the interfaces
-provided by the Incident Server to deliver diagnosis and
+sent from the incident server to the incident client .  After a notification
+is generated, if the incident server performs self diagnosis or the Incident
+Client uses the interfaces provided by the Incident Server to deliver diagnosis and
 resolution actions, the notification update behavior is triggered,
 for example, the Probable Root Cause objects and affected objects are updated.
 When a network incident is successfully resolved, the status of the network incident
@@ -1289,8 +1290,8 @@ The Probable Root Cause is also analysed.
 
 ##  Network Incident Correlated with Trouble Tickets
 
-In this document, the objective of the Network Incident Management is to identify
-Probable Causes and reduce duplicated tickets.
+In this document, the objective of the Incident Management is to identify
+Probable Root Causes and reduce duplicated tickets.
 
 Previously, a troubleshooting ticket was created upon receipt of a
 critical alert by the OSS system, e.g., due to excessive BGP flaps on
