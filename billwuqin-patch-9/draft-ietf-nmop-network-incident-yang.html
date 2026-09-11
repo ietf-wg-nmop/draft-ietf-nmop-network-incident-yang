@@ -11,7 +11,7 @@
 <meta content="Nigel Davis" name="author">
 <meta content="Chong Feng" name="author">
 <meta content="
-       This document defines a YANG Module for the network incident lifecycle
+       This document defines a YANG data model for the network incident lifecycle
 management.  This YANG module provides a standard way to
 report, diagnose, and help reduce troubleshooting tickets and resolve
 network incidents for the sake of network service health and probable
@@ -1100,7 +1100,7 @@ svg {
 <h1 id="title">A YANG Data Model for Network Incident Management</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">This document defines a YANG Module for the network incident lifecycle
+<p id="section-abstract-1">This document defines a YANG data model for the network incident lifecycle
 management.  This YANG module provides a standard way to
 report, diagnose, and help reduce troubleshooting tickets and resolve
 network incidents for the sake of network service health and probable
@@ -1351,8 +1351,8 @@ orders of magnitude) with the growth of service types and complexity
 and greatly overwhelm OSS platforms <span>[<a href="#TMF724A" class="cite xref">TMF724A</a>]</span>; with existing known dependency
 relationships between metric, alarm, and events at each layer (e.g., packet
 layer or optical layer), it is possible to compress series of alarms
-(see Section 3.5.3 of <span>[<a href="#RFC8632" class="cite xref">RFC8632</a>]</span> ) into fewer network incidents and there are
-many solutions in the market today that essentially do this to some degree.
+(see Section 3.5.3 of <span>[<a href="#RFC8632" class="cite xref">RFC8632</a>]</span>) into fewer network incidents and there are
+many solutions in the market when this document was written that essentially do this to some degree.
 However, conventional solutions such as data compression are time-consuming
 and labor-intensive, usually rely on maintenance engineers' experience for data
 analysis, which, in many cases, result in low processing efficiency, inaccurate
@@ -1383,7 +1383,7 @@ sub-service. Therefore symptoms will occur if services/sub-services are unhealth
 incident when it causes degradation of the network services.<a href="#section-1-4" class="pilcrow">¶</a></p>
 <p id="section-1-5">In addition, Artificial Intelligence (AI) and Machine Learning (ML)
 are key technologies in the processing of large amounts of data with
-complex data correlations (see <span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-ai-challenges-06#section-6.1" class="relref">Section 6.1</a> of [<a href="#I-D.irtf-nmrg-ai-challenges" class="cite xref">I-D.irtf-nmrg-ai-challenges</a>]</span> ).
+complex data correlations (see <span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-ai-challenges-06#section-6.1" class="relref">Section 6.1</a> of [<a href="#I-D.irtf-nmrg-ai-challenges" class="cite xref">I-D.irtf-nmrg-ai-challenges</a>]</span>).
 For example, Neural Network Algorithm or Hierarchy Aggregation Algorithm
 <span>[<a href="#BERT" class="cite xref">BERT</a>]</span> can be used to replace manual alarm data correlation. Through online
 and offline self-learning, these algorithms can be continuously optimized to
@@ -1449,12 +1449,12 @@ and are not redefined here:<a href="#section-2-2" class="pilcrow">¶</a></p>
           <p id="section-2-5.2.1">A process that uses algorithmic techniques (e.g., machine learning, automated
 reasoning, conformance checking, graph traversal, among others) to evaluate
 whether the network service has been impacted by the network incident and map
-the network incident to one or a set of network services, which can reduce the volume of
+the network incident to one or a set of network services. This process can reduce the volume of
 fault/alarms reporting, facilitate troubleshooting, and assure network service
 performance and availability.<a href="#section-2-5.2.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-5.3">Incident Management:</dt>
+<dt id="section-2-5.3">Network Incident Management:</dt>
         <dd style="margin-left: 1.5em" id="section-2-5.4">
           <p id="section-2-5.4.1">Lifecycle management of network incidents, including network incident
 identification, reporting, acknowledgement, diagnosis, and resolution.
@@ -1472,8 +1472,8 @@ a customer incident specifically arises when an issue or problem identified by a
         <dd class="break"></dd>
 <dt id="section-2-5.5">Incident Management System:</dt>
         <dd style="margin-left: 1.5em" id="section-2-5.6">
-          <p id="section-2-5.6.1">An entity that implements network incident
-management. It includes (but not limited to) Incident Server
+          <p id="section-2-5.6.1">An entity that implements network Incident
+Management. It includes (but not limited to) Incident Server
 and Incident Client.<a href="#section-2-5.6.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
@@ -1488,7 +1488,7 @@ one network incident, performing network incident diagnosis, resolution and pred
           <p id="section-2-5.10.1">An entity that can manage network incidents based on global view on network topology data correlation.
 For example, it can receive network incident notifications, query the
 information of network incidents, instruct an Incident Server
-to diagnose, help resolve, etc. In addition, it can trigger issue tickets and involve repair crew to fix the problem.<a href="#section-2-5.10.1" class="pilcrow">¶</a></p>
+to diagnose, help , etc. In addition, it can trigger issue tickets and involve repair crew to fix the problem.<a href="#section-2-5.10.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-5.11">Incident Handler:</dt>
@@ -1500,23 +1500,23 @@ server and cannot instruct it to perform network incident diagnosis or resolutio
         <dd class="break"></dd>
 <dt id="section-2-5.13">Incident Process:</dt>
         <dd style="margin-left: 1.5em" id="section-2-5.14">
-          <p id="section-2-5.14.1">A multi-step workflow used by network operation teams to identify, analyze, and resolve unexpected
+          <p id="section-2-5.14.1">A multi-step workflow used by network operation teams to identify, analyze, and  unexpected
 service disruptions or quality reductions, with the primary goal of restoring normal operations as
 quickly as possible while minimizing service impact.<a href="#section-2-5.14.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-5.15">Probable Root Cause:</dt>
         <dd style="margin-left: 1.5em" id="section-2-5.16">
-          <p id="section-2-5.16.1">If removing a fault condition completely resolves the ongoing incident (specifically, regarding network
+          <p id="section-2-5.16.1">If removing a fault condition completely s the ongoing incident (specifically, regarding network
 outage or service impairments and their associated subsequent failures and symptoms) and prevents
 the problem from recurring, then such fault condition is considered as a Probable Root Cause of a problem.<a href="#section-2-5.16.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-5.17"></dt>
         <dd style="margin-left: 1.5em" id="section-2-5.18">
-          <p id="section-2-5.18.1">Since one Fault may give rise to another Fault or Problem, a Probable Root Cause is commonly meant
+          <p id="section-2-5.18.1">Since one fault may give rise to another fault or problem, a Probable Root Cause is commonly meant
 to describe the original event or combination of circumstances that is the foundation of all
-related Faults.<a href="#section-2-5.18.1" class="pilcrow">¶</a></p>
+related faults.<a href="#section-2-5.18.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-5.19"></dt>
@@ -1541,7 +1541,7 @@ event, but is not the Probable Root Cause.<a href="#section-2-5.20.1" class="pil
 <p id="section-3.1-1">Usually, the dispatching of trouble tickets in a network is mostly
 based on alarm data analysis and often requires operators' maintenance
 engineers.  These operators' maintenance engineers are responsible for
-monitoring and detecting and correlating alarms, e.g., that alarms at
+monitoring, detecting and correlating alarms, e.g., that alarms at
 both endpoints of a specific tunnel or at both optical and IP layers
 which are associated with the same network fault.  Therefore, they can
 correlate these alarms to the same trouble ticket, which offers a low
@@ -1558,7 +1558,7 @@ management automation and duplicated trouble tickets under the
 conventional working situations.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
 <p id="section-3.1-3">With the help of the Network Incident Management, massive sets of
 alarms can be aggregated into a few network incidents based on
-service impact assessment, so the number of trouble tickets will
+Service Impact Assessment, so the number of trouble tickets will
 be reduced. At the same time, the efficiency of network troubleshooting
 can be largely improved, which addresses the pain points of trouble
 ticket dispatching.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
@@ -1574,7 +1574,7 @@ network reference points where network services can be delivered or are
 being delivered to customers.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
 <p id="section-3.2-2">SLOs <span>[<a href="#RFC9543" class="cite xref">RFC9543</a>]</span> can be used to characterize the ability of a particular set of
 nodes to communicate according to certain measurable expectations
-<span>[<a href="#I-D.ietf-ippm-pam" class="cite xref">I-D.ietf-ippm-pam</a>]</span>.  For example, an SLA might state that any given
+<span>[<a href="#RFC9544" class="cite xref">RFC9544</a>]</span>.  For example, an SLA might state that any given
 SLO applies to at least a certain percentage of packets, allowing for
 a certain level of packet loss and exceeding packet delay threshold
 to take place.  For example, an SLA might establish a multi-tiered SLO
@@ -1607,12 +1607,11 @@ devices and optical-layer devices, it may cause correlative faults in
 both layers, i.e., packet layer and optical layer.  Specifically,
 fault propagation could be classified into three typical types.
 First, faults occurring at a packet layer device might further cause fault
-(e.g., Wavelength Division Multiplexing (WDM) client fault) at an
-optical-layer device.  Second, faults occurring at an optical-layer
-device might further cause faults (e.g., Layer 3 link down) at a packet
-layer device.  Third, faults occurring at the inter-layer link between a
-packet layer device and an optical-layer device might further cause
-faults at both devices.  Multiple operation teams are usually
+at an optical-layer device (e.g., Wavelength Division Multiplexing (WDM) client fault).
+Second, faults occurring at an optical-layer device might further cause faults
+at a packet layer device (e.g., Layer 3 link down).  Third, faults occurring at
+the inter-layer link between a packet layer device and an optical-layer device
+might further cause faults at both devices.  Multiple operation teams are usually
 needed to first analyse a large amount of alarms (triggered by the
 above-mentioned faults) from single network layer (either packet layer or
 optical layer) independently, then cooperate to locate the Probable Root Cause
@@ -1631,7 +1630,7 @@ integrated Optical time-domain reflectometer (OTDR)) embedded within the
 network device, we can determine the target optical exchange station before
 site visits. Therefore, the overall fault demarcation process is simplified
 and automated, the analysis result could be reported and visualized in time.
-In this case, operation teams only have to confirm the analyzing result and
+In this case, operation teams only have to confirm the analyzed result and
 dispatch site engineers to perform relevant maintenance actions (e.g., splice
 fiber) based on the Probable Root Cause.<a href="#section-3.3-2" class="pilcrow">¶</a></p>
 </section>
@@ -1647,34 +1646,34 @@ fiber) based on the Probable Root Cause.<a href="#section-3.3-2" class="pilcrow"
 <figure id="figure-1">
         <div class="alignCenter art-text artwork" id="section-4-1.1">
 <pre>
-    +------------------------------------------------+
-    |                                                |
-    |                                                |
-    |               Incident  Client                 |
-    |                                                |
-    |                                                |
-    +----^-----------+------------+------------+-----+
-         |           |            |            |
-         |Incident   |Incident    |Incident    |Incident
-         |Report     |  Ack       |Diagnose    |Resolve
-         |           |            |            |
-         |           |            |            |
-         |           |            |            |
-    +----+-----------V------------V------------V-----+
-    |                                                |
-    |                                                |
-    |                                                |
-    |                                                |
-    |                                                |
-    |                                                |
-    |                Incident Server                 |
-    |                                                |
-    |                                                |
-    |                                                |
-    |                                                |
-    |                                                |
-    |                                                |
-    +----^-----------^-------------^------------^----+
+    +-------------------------------------------------+
+    |                                                 |
+    |                                                 |
+    |               Incident  Client                  |
+    |                                                 |
+    |                                                 |
+    +----^------------+------------+------------+-----+
+         |            |            |            |
+         |Incident    |Incident    |Incident    |Incident
+         |Notification|  Ack       |Diagnose    |Resolve
+         |            |            |            |
+         |            |            |            |
+         |            |            |            |
+    +----+------------V------------V------------V-----+
+    |                                                 |
+    |                                                 |
+    |                                                 |
+    |                                                 |
+    |                                                 |
+    |                                                 |
+    |                Incident Server                  |
+    |                                                 |
+    |                                                 |
+    |                                                 |
+    |                                                 |
+    |                                                 |
+    |                                                 |
+    +----^-----------^-------------^------------^-----+
          |           |             |            |
          |           |             |            |
          |Alarm      |Abnormal     |Network     |Network
@@ -1696,7 +1695,7 @@ fiber) based on the Probable Root Cause.<a href="#section-3.3-2" class="pilcrow"
         </figcaption></figure>
 </div>
 <p id="section-4-2"><a href="#arch" class="auto internal xref">Figure 1</a> illustrates the Network Incident Management architecture.  Two key
-components for the Incident Management are the Incident Client
+components for the Network Incident Management are the Incident Client
 and the Incident Server.<a href="#section-4-2" class="pilcrow">¶</a></p>
 <p id="section-4-3">The Incident Server can be deployed in network operation platforms, network analytic
 platforms, controllers <span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</span> in each domain and provides functionality such as network
@@ -1716,24 +1715,24 @@ each domain to meet business requirements of the fault management.<a href="#sect
 The Incident Server receives these alarms/abnormal operations/metrics and try to analyze the
 correlation of them, e.g., generate a symptom if some metrics are evaluated as unhealthy, the
 Probable Root Cause can be detected based on the data correlation analysis. If a network incident
-is identified, the "incident report" notification will be reported to the Incident Client. The
+is identified, the "incident-notification" notification will be reported to the Incident Client. The
 impact of network services will be further analyzed and will update the network incident if
 the network service is impacted.<a href="#section-4-6.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-4-6.2">
-          <p id="section-4-6.2.1">Incident Client receives the network incident from the "incident report" notification
-reported by Incident Server, and acknowledges it with the subsequent "incident ack" RPC operation.
-The Incident Client may further invoke the "incident diagnose" RPC to diagnose this network
+          <p id="section-4-6.2.1">Incident Client receives the network incident from the "incident-notification" notification
+reported by Incident Server, and acknowledges it with the subsequent 'incident-acknowledge' RPC operation.
+The Incident Client may further invoke the 'incident-diagnose' RPC to diagnose this network
 incident to find the Probable Root Causes.<a href="#section-4-6.2.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-4-6.3">
           <p id="section-4-6.3.1">If the Probable Root Causes have been found, the Incident Client can resolve this
-network incident by invoking the 'incident resolve' RPC operation to ask the Incident Server to resolve it,
+network incident by invoking the 'incident-resolve' RPC operation to ask the Incident Server to resolve it,
  or dispatching a troubleshooting ticket or using other network functions (routing calculation,
 configuration, etc.) without being known by the Incident Server.<a href="#section-4-6.3.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-4-6.4">
-          <p id="section-4-6.4.1">In case of the 'incident resolve' RPC operation invoked by the Incident Client, the Incident Server
+          <p id="section-4-6.4.1">In case of the 'incident-resolve' RPC operation invoked by the Incident Client, the Incident Server
 will monitor the status of the network incident and update the status of network incident to 'cleared'
 if the incident can be fixed. For more detailed workflow, please refer to section 5.3.<a href="#section-4-6.4.1" class="pilcrow">¶</a></p>
 </li>
@@ -1795,11 +1794,11 @@ aggregated into a network incident after analysis.<a href="#section-5.1-1" class
 <a href="#name-incident-identification-2" class="selfRef">Incident Identification</a>
           </figcaption></figure>
 </div>
-<p id="section-5.1-3">The Network Incident Management server must be capable of identifying
+<p id="section-5.1-3">The Incident Server must be capable of identifying
 network incidents.  Multiple alarms, metrics and other information are
-reported to Incident Server, and the server must analyze it and find
+reported to the Incident Server, and the server must analyze it and find
 out the correlations of them, if the correlation match the network incident
-rules, network incident will be identified, and reported to the client.
+rules, network incident is identified, and reported to the client.
 If the network incident is repeated many times, the problem needs to be
 raised based on the incident and the operator's policy.
 Service Impact Assessment should be performed if a network incident is identified,
@@ -1809,10 +1808,10 @@ services are detected.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
 learning can help AI to identify the correlation of alarms, metrics
 and other information by time-base correlation algorithm, topology-based
 correlation algorithm, etc.  For example, if the interface is down, then
-many protocol alarms will be reported, AI will think these alarms
-have some correlations.  These new correlations will be put into the
-knowledge base, and the network incident will be identified faster according
-to knowledge base next time.<a href="#section-5.1-4" class="pilcrow">¶</a></p>
+many protocol alarms will be reported, AI may find some correlations within the
+raised alarms.  These new correlations will be put into the knowledge base
+<span>[<a href="#I-D.mackey-nmop-kg-for-netops" class="cite xref">I-D.mackey-nmop-kg-for-netops</a>]</span>, and the network incident will be identified
+faster according to knowledge base next time.<a href="#section-5.1-4" class="pilcrow">¶</a></p>
 <span id="name-example-1-of-network-incide"></span><div id="exam1">
 <figure id="figure-3">
           <div class="alignCenter art-text artwork" id="section-5.1-5.1">
@@ -1847,17 +1846,17 @@ VPN A      | |            |
 <a href="#name-example-1-of-network-incide" class="selfRef">Example 1 of Network Incident Identification</a>
           </figcaption></figure>
 </div>
-<p id="section-5.1-6">As described in <a href="#exam1" class="auto internal xref">Figure 3</a>, VPN a is deployed from PE1 to PE2, if an
+<p id="section-5.1-6">As described in <a href="#exam1" class="auto internal xref">Figure 3</a>, VPN A a is deployed from PE1 to PE2, if an
 interface of P1 is going down, many alarms are triggered, such as
 interface down, IGP down, and IGP peer abnormal from P2.<a href="#section-5.1-6" class="pilcrow">¶</a></p>
-<p id="section-5.1-7">These alarms are aggregated and analyzed by the controller/incident
-server, and then the network incident 'VPN unavailable' is triggered
+<p id="section-5.1-7">These alarms are aggregated and analyzed by the controller/Incident
+Server, and then the network incident 'VPN unavailable' is triggered
 by the controller/Incident Server. If the network incident 'VPN unavailable'
 is repeated, the problem can be raised.<a href="#section-5.1-7" class="pilcrow">¶</a></p>
 <p id="section-5.1-8">Note that Incident Server within the controller can rely on data correlation technology such as
-service impact assessment and data analytic component to evaluate the real effect
+Service Impact Assessment and data analytic component to evaluate the real effect
 on the relevant service and understand whether lower level or device level network
-anomaly, e.g., IGP down, has impact on the service.<a href="#section-5.1-8" class="pilcrow">¶</a></p>
+anomaly has impact on the service (e.g., IGP down).<a href="#section-5.1-8" class="pilcrow">¶</a></p>
 <span id="name-example-2-of-network-incide"></span><div id="exam2">
 <figure id="figure-4">
           <div class="alignCenter art-text artwork" id="section-5.1-9.1">
@@ -1919,18 +1918,19 @@ fine-grained monitoring of network quality metrics, etc.<a href="#section-5.2-1"
         <h3 id="name-incident-resolution">
 <a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-incident-resolution" class="section-name selfRef">Incident Resolution</a>
         </h3>
-<p id="section-5.3-1">After the Probable Root Cause is diagnosed, the Incident Client may resolve the
+<p id="section-5.3-1">After the Probable Root Cause is diagnosed, the Incident Client may  the
 network incident.  The Incident Client may choose to resolve the network
 incident by invoking other functions, such as routing calculation function,
 configuration function, dispatching a ticket or asking the server to resolve it.
 Generally, the Incident Client would attempt to directly resolve the Probable
 Root Cause.  If the Probable Root Cause cannot be resolved, an alternative
 solution should be required.  For example, if a network incident caused by a
-physical component failure, it cannot be automatically resolved, the standby
+physical component failure and cannot be automatically resolved, the standby
 link can be used to bypass the faulty component.<a href="#section-5.3-1" class="pilcrow">¶</a></p>
 <p id="section-5.3-2">Incident Server monitors the status of the network incident, if the faults
 are fixed, the Incident Server will update the status of network incident to
-'cleared', and report the updated network incident to the client.<a href="#section-5.3-2" class="pilcrow">¶</a></p>
+'cleared', and report the updated network incident to the client. Please refer
+to Section 6.2 for the Incident Lifecycle and its status.<a href="#section-5.3-2" class="pilcrow">¶</a></p>
 <p id="section-5.3-3">Network incident resolution may affect the running network services. The
 client can choose not to perform those operations based on operator's policy
 after determining the impact is not trivial.<a href="#section-5.3-3" class="pilcrow">¶</a></p>
@@ -1963,11 +1963,11 @@ from operator incident lifecycle:<a href="#section-6.2-1" class="pilcrow">¶</a>
 <ul class="normal">
 <li class="normal" id="section-6.2-2.1">
             <p id="section-6.2-2.1.1">Network incident instance lifecycle: The network incident instrumentation
-that controls whether a network incident is raised, updated, or cleared.<a href="#section-6.2-2.1.1" class="pilcrow">¶</a></p>
+that controls whether a network incident is 'raised', 'updated', or 'cleared'.<a href="#section-6.2-2.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-6.2-2.2">
             <p id="section-6.2-2.2.1">Operator incident lifecycle: Operators acting upon the network incident with RPCs
-like acknowledged, diagnosed and resolved.<a href="#section-6.2-2.2.1" class="pilcrow">¶</a></p>
+like 'incident-acknowledge', 'incident-diagnose' and 'incident-resolve'.<a href="#section-6.2-2.2.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 <div id="network-incident-instance-lifecycle">
@@ -2025,7 +2025,7 @@ suggestion, etc.<a href="#section-7.1-1" class="pilcrow">¶</a></p>
 Network incident is represented as a list and indexed by "incident-qualifier".
 Each Network Incident is associated with a network service instance, domain and
 sources.  Under sources, there is one or more sources.  Each source
-corresponds to node defined in the network topology model and network
+corresponds to a node defined in the network topology model and network
 resource in the network device, e.g., interface.  In addition, "ietf-incident"
 supports one general notification to report network incident state changes and
 three RPCs to manage the network incidents.<a href="#section-7.1-2" class="pilcrow">¶</a></p>
@@ -2251,11 +2251,11 @@ alarm-list/alarm[al:resource = current()/../resource][al:alarm-type-\
        +--ro time?                 yang:date-and-time
 </pre><a href="#section-7.2-1" class="pilcrow">¶</a>
 </div>
-<p id="section-7.2-2">A general notification, incident-notification, is provided here.
+<p id="section-7.2-2">A general notification, "incident-notification", is provided here.
 When a network incident instance is identified, the notification is
-sent.  After a notification is generated, if the incident
-server performs self diagnosis or the Incident Client uses the interfaces
-provided by the Incident Server to deliver diagnosis and
+sent from the incident server to the incident client .  After a notification
+is generated, if the incident server performs self diagnosis or the Incident
+Client uses the interfaces provided by the Incident Server to deliver diagnosis and
 resolution actions, the notification update behavior is triggered,
 for example, the Probable Root Cause objects and affected objects are updated.
 When a network incident is successfully resolved, the status of the network incident
@@ -2278,7 +2278,7 @@ would be set to 'cleared'.<a href="#section-7.2-2" class="pilcrow">¶</a></p>
 confirms the incident to ensure that the client knows the incident.<a href="#section-7.3-2" class="pilcrow">¶</a></p>
 <p id="section-7.3-3">In some scenarios where automatic diagnosis and resolution are supported, the
 status of an incident may be updated multiple times or even automatically
-resolved. Therefore the incident-acknowledge RPC can confirm multiple incidents
+resolved. Therefore the 'incident-acknowledge' RPC can confirm multiple incidents
 at a time.<a href="#section-7.3-3" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -2294,7 +2294,7 @@ at a time.<a href="#section-7.3-3" class="pilcrow">¶</a></p>
 |  |  +---w incident-no*   incident-ref
 </pre><a href="#section-7.4-1" class="pilcrow">¶</a>
 </div>
-<p id="section-7.4-2">After a network incident is generated, network incident diagnose RPC can be used to
+<p id="section-7.4-2">After a network incident is generated, 'incident-diagnose' RPC can be used to
 diagnose the network incident and locate the Probable Root Causes.  On-demand Diagnosis
 can be performed on some detection tasks, such as bfd detection, flow
 detection, telemetry collection, short-term threshold alarm,
@@ -2320,7 +2320,7 @@ asynchronously.<a href="#section-7.4-3" class="pilcrow">¶</a></p>
 RPC can be used to resolve the incident (if the server can resolve
 it).  How to resolve an incident instance is out of the scope of this
 document.<a href="#section-7.5-2" class="pilcrow">¶</a></p>
-<p id="section-7.5-3">Network incident resolve RPC allows multiple network incident instances to be
+<p id="section-7.5-3">'incident-resolve' RPC allows multiple network incident instances to be
 resolved at a time.  If a network incident instance is successfully
 resolved, a separate notification is triggered to update the network incident
 status to 'cleared'.  If the network incident content is changed during this
@@ -2389,7 +2389,8 @@ resource-unavailable
       </h2>
 <p id="section-8-1">This module uses types defined in <span>[<a href="#RFC9911" class="cite xref">RFC9911</a>]</span>, <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>,
 <span>[<a href="#RFC8632" class="cite xref">RFC8632</a>]</span>, <span>[<a href="#RFC8791" class="cite xref">RFC8791</a>]</span>, <span>[<a href="#RFC9376" class="cite xref">RFC9376</a>]</span>, <span>[<a href="#RFC1136" class="cite xref">RFC1136</a>]</span>, <span>[<a href="#RFC6373" class="cite xref">RFC6373</a>]</span>,
-<span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span>, <span>[<a href="#RFC9940" class="cite xref">RFC9940</a>]</span>, <span>[<a href="#RFC8632" class="cite xref">RFC8632</a>]</span>, <span>[<a href="#RFC5277" class="cite xref">RFC5277</a>]</span>, <span>[<a href="#RFC9375" class="cite xref">RFC9375</a>]</span>.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span>, <span>[<a href="#RFC9940" class="cite xref">RFC9940</a>]</span>, <span>[<a href="#RFC8632" class="cite xref">RFC8632</a>]</span>, <span>[<a href="#RFC5277" class="cite xref">RFC5277</a>]</span>, <span>[<a href="#RFC9375" class="cite xref">RFC9375</a>]</span>
+,<span>[<a href="#I-D.ietf-netconf-notif-envelope" class="cite xref">I-D.ietf-netconf-notif-envelope</a>]</span>.<a href="#section-8-1" class="pilcrow">¶</a></p>
 <div class="breakable sourcecode" id="section-8-2">
 <pre>&lt;CODE BEGINS&gt; file "ietf-incident@2026-07-30.yang"
 
@@ -3222,7 +3223,7 @@ module ietf-incident {
         type incident-ref;
         min-elements 1;
         description
-          "The unique  number of an incident instance
+          "The unique number of an incident instance
            based on the name type incident-id keys.";
       }
     }
@@ -3247,7 +3248,7 @@ module ietf-incident {
   sx:structure incident-acknowledge-error-info {
     container incident-acknowledge-error-info {
       description
-        "This structure data MAY be inserted in the RPC error
+        "This structure data must be inserted in the RPC error
          response to indicate the reason for the
          incident acknowledge failure.";
       leaf incident-no {
@@ -3275,7 +3276,7 @@ module ietf-incident {
   sx:structure incident-diagnose-error-info {
     container incident-diagnose-error-info {
       description
-        "This structure data MAY be inserted in
+        "This structure data must be inserted in
          the RPC error response to indicate the
          reason for the incident diagnose failure.";
       leaf incident-no {
@@ -3303,7 +3304,7 @@ module ietf-incident {
   sx:structure incident-resolve-error-info {
     container incident-resolve-error-info {
       description
-        "This structure data MAY be inserted in
+        "This structure data must be inserted in
          the RPC error response to indicate the
          reason for the incident resolution failure.";
       leaf incident-no {
@@ -3365,7 +3366,7 @@ module ietf-incident {
         mandatory true;
         description
           "The unique sequence number of the incident
-           instance based on the name type incident-id keys.";
+           instance based on the name type incident-qualifier keys.";
       }
       uses incident-info;
       uses incident-time-info;
@@ -3489,7 +3490,7 @@ deeper customer incident analysis based on network incident).<a href="#section-9
 both Incident Client and Incident Server functionalities provides not only network
 incident reporting but also diagnosis and resolution functions, it's possible to
 support self-healing and may be helpful for single-domain closed-loop control.<a href="#section-9.1-6" class="pilcrow">¶</a></p>
-<p id="section-9.1-7">Incident Management is not a substitute for alarm management.
+<p id="section-9.1-7">Network Incident Management is not a substitute for alarm management.
 Instead, they can work together to implement fault management.<a href="#section-9.1-7" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -3632,7 +3633,7 @@ this Implementation Status apendix prior publication.<a href="#section-10-3" cla
 <a href="#section-10.1" class="section-number selfRef">10.1. </a><a href="#name-huawei-implementation" class="section-name selfRef">Huawei Implementation</a>
         </h3>
 <p id="section-10.1-1">Huawei iMaster NCE has implemented incident model with the intent management framework
-and AI tools to support intelligent incident management.<a href="#section-10.1-1" class="pilcrow">¶</a></p>
+and AI tools to support intelligent Network Incident Management.<a href="#section-10.1-1" class="pilcrow">¶</a></p>
 <p id="section-10.1-2">The Huawei Implementation of Incident model covers the following
 a) RESTCONF support
 b) Incident Lifecycle management including incident instance lifecycle
@@ -3768,6 +3769,10 @@ for their valuable comments and great input to this work.<a href="#section-13-1"
 <a href="#name-normative-references" class="section-name selfRef">Normative References</a>
         </h3>
 <dl class="references">
+<dt id="I-D.ietf-netconf-notif-envelope">[I-D.ietf-netconf-notif-envelope]</dt>
+        <dd>
+<span class="refAuthor">Feng, A. H.</span>, <span class="refAuthor">Francois, P.</span>, <span class="refAuthor">Graf, T.</span>, and <span class="refAuthor">B. Claise</span>, <span class="refTitle">"Extensible YANG Model for YANG-Push Notifications"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-netconf-notif-envelope-05</span>, <time datetime="2026-05-18" class="refDate">18 May 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-netconf-notif-envelope-05">https://datatracker.ietf.org/doc/html/draft-ietf-netconf-notif-envelope-05</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="I-D.ietf-opsawg-scheduling-oam-tests">[I-D.ietf-opsawg-scheduling-oam-tests]</dt>
         <dd>
 <span class="refAuthor">Contreras, L. M.</span>, <span class="refAuthor">Lopez, V.</span>, and <span class="refAuthor">Q. Wu</span>, <span class="refTitle">"A YANG Data Model for Network Diagnosis using Scheduled Sequences of OAM Tests"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-scheduling-oam-tests-07</span>, <time datetime="2026-07-05" class="refDate">5 July 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-scheduling-oam-tests-07">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-scheduling-oam-tests-07</a>&gt;</span>. </dd>
@@ -3877,10 +3882,6 @@ for their valuable comments and great input to this work.<a href="#section-13-1"
         <dd>
 <span class="refTitle">"BERT (language model)"</span>, <span>n.d.</span>, <span>&lt;<a href="https://en.wikipedia.org/wiki/BERT_(language_model)">https://en.wikipedia.org/wiki/BERT_(language_model)</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="I-D.ietf-ippm-pam">[I-D.ietf-ippm-pam]</dt>
-        <dd>
-<span class="refAuthor">Mirsky, G.</span>, <span class="refAuthor">Halpern, J. M.</span>, <span class="refAuthor">Min, X.</span>, <span class="refAuthor">Clemm, A.</span>, <span class="refAuthor">Strassner, J.</span>, and <span class="refAuthor">J. François</span>, <span class="refTitle">"Precision Availability Metrics for Services Governed by Service Level Objectives (SLOs)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ippm-pam-09</span>, <time datetime="2023-12-01" class="refDate">1 December 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ippm-pam-09">https://datatracker.ietf.org/doc/html/draft-ietf-ippm-pam-09</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="I-D.ietf-netconf-configuration-tracing">[I-D.ietf-netconf-configuration-tracing]</dt>
         <dd>
 <span class="refAuthor">Quilbeuf, J.</span>, <span class="refAuthor">Claise, B.</span>, <span class="refAuthor">Graf, T.</span>, <span class="refAuthor">Lopez, D.</span>, and <span class="refAuthor">S. Qiong</span>, <span class="refTitle">"External Trace ID for Configuration Tracing"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-netconf-configuration-tracing-06</span>, <time datetime="2025-11-03" class="refDate">3 November 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-netconf-configuration-tracing-06">https://datatracker.ietf.org/doc/html/draft-ietf-netconf-configuration-tracing-06</a>&gt;</span>. </dd>
@@ -3904,6 +3905,10 @@ for their valuable comments and great input to this work.<a href="#section-13-1"
 <dt id="I-D.irtf-nmrg-ai-challenges">[I-D.irtf-nmrg-ai-challenges]</dt>
         <dd>
 <span class="refAuthor">François, J.</span>, <span class="refAuthor">Clemm, A.</span>, <span class="refAuthor">Papadimitriou, D.</span>, <span class="refAuthor">Fernandes, S.</span>, and <span class="refAuthor">S. Schneider</span>, <span class="refTitle">"Research Challenges in Coupling Artificial Intelligence and Network Management"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-irtf-nmrg-ai-challenges-06</span>, <time datetime="2026-07-06" class="refDate">6 July 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-ai-challenges-06">https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-ai-challenges-06</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.mackey-nmop-kg-for-netops">[I-D.mackey-nmop-kg-for-netops]</dt>
+        <dd>
+<span class="refAuthor">Mackey, M.</span>, <span class="refAuthor">Claise, B.</span>, <span class="refAuthor">Graf, T.</span>, <span class="refAuthor">Keller, H.</span>, <span class="refAuthor">Voyer, D.</span>, <span class="refAuthor">Lucente, P.</span>, and <span class="refAuthor">I. D. Martinez-Casanueva</span>, <span class="refTitle">"Knowledge Graph Framework for Network Operations"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-mackey-nmop-kg-for-netops-04</span>, <time datetime="2026-04-07" class="refDate">7 April 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-mackey-nmop-kg-for-netops-04">https://datatracker.ietf.org/doc/html/draft-mackey-nmop-kg-for-netops-04</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7942">[RFC7942]</dt>
         <dd>
@@ -3929,6 +3934,10 @@ for their valuable comments and great input to this work.<a href="#section-13-1"
         <dd>
 <span class="refAuthor">Farrel, A., Ed.</span>, <span class="refAuthor">Drake, J., Ed.</span>, <span class="refAuthor">Rokui, R.</span>, <span class="refAuthor">Homma, S.</span>, <span class="refAuthor">Makhijani, K.</span>, <span class="refAuthor">Contreras, L.</span>, and <span class="refAuthor">J. Tantsura</span>, <span class="refTitle">"A Framework for Network Slices in Networks Built from IETF Technologies"</span>, <span class="seriesInfo">RFC 9543</span>, <span class="seriesInfo">DOI 10.17487/RFC9543</span>, <time datetime="2024-03" class="refDate">March 2024</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9543">https://www.rfc-editor.org/rfc/rfc9543</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC9544">[RFC9544]</dt>
+        <dd>
+<span class="refAuthor">Mirsky, G.</span>, <span class="refAuthor">Halpern, J.</span>, <span class="refAuthor">Min, X.</span>, <span class="refAuthor">Clemm, A.</span>, <span class="refAuthor">Strassner, J.</span>, and <span class="refAuthor">J. François</span>, <span class="refTitle">"Precision Availability Metrics (PAMs) for Services Governed by Service Level Objectives (SLOs)"</span>, <span class="seriesInfo">RFC 9544</span>, <span class="seriesInfo">DOI 10.17487/RFC9544</span>, <time datetime="2024-03" class="refDate">March 2024</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9544">https://www.rfc-editor.org/rfc/rfc9544</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="TMF724A">[TMF724A]</dt>
         <dd>
 <span class="refTitle">"Incident Management API Profile v1.0.0"</span>, <time datetime="2023" class="refDate">2023</time>, <span>&lt;<a href="https://www.tmforum.org/resources/standard/tmf724a-incident-management-api-profile-v1-0-0/">https://www.tmforum.org/resources/standard/tmf724a-incident-management-api-profile-v1-0-0/</a>&gt;</span>. </dd>
@@ -3953,81 +3962,75 @@ for their valuable comments and great input to this work.<a href="#section-13-1"
 <a href="#appendix-A.1" class="section-number selfRef">A.1. </a><a href="#name-network-incident-correlated" class="section-name selfRef">Network Incident Correlated with Specific Network Topology and the Network Service</a>
         </h3>
 <p id="appendix-A.1-1">In this example, we show a network incident that are associated with the service-instance
-"optical-svc-A", the node 'D1', the network topology 'L2-Topo' and the domain 'FAN'.
+"optical-svc-A", the node 'D1', the network topology 'L2-Topo' and the domain 'PTN'.
 The Probable Root Cause is also analysed.<a href="#appendix-A.1-1" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A.1-2">
 <pre>
-{
-  "name": "line fault",
-  "type": "problem",
-  "incident-no": 56433218,
-  "incident-qualifier": "line fault",
-  "service-instance": ["optical-svc-A"],
-  "domain": "PTN",
-  "priority": "critical",
-  "occur-time": "2026-03-10T04:01:12Z",
-  "clear-time": "2026-03-10T06:01:12Z",
-  "ack-time": "2026-03-10T05:01:12Z",
-  "last-updated": "2026-03-10T05:31:12Z",
-  "ack-status": "unacknowledged",
-  "category": "Network",
-  "sources": {
-    "source": [
-      {
-        "node-ref": "example:D1",
-        "network-ref": "example:L2-topo",
-        "resource": [
-          {
-            "name": "7985e01a-5aad-11ea-b214-286ed488cf99"
-          }
-        ]
+   {
+     "name": "line fault",
+     "type": "problem",
+     "incident-no": 56433218,
+     "incident-qualifier": "line fault",
+     "service-instance": ["optical-svc-A"],
+     "domain": "PTN",
+     "priority": "critical",
+     "occur-time": "2026-03-10T04:01:12Z",
+     "clear-time": "2026-03-10T06:01:12Z",
+     "ack-time": "2026-03-10T05:01:12Z",
+     "last-updated": "2026-03-10T05:31:12Z",
+     "ack-status": "unacknowledged",
+     "category": "Network",
+     "source": [
+       {
+         "node-ref": "example:D1",
+         "network-ref": "example:L2-topo",
+         "resource": [
+           {
+             "name": "7985e01a-5aad-11ea-b214-286ed488cf99"
+           }
+         ]
+       }
+     ],
+     "probable-causes": [
+       {
+         "name": "Feeder fiber great loss change",
+         "detail-information": "The connector of the optical fiber\n
+          is contaminated, Or the optical fiber is bent too much.",
+         "probable-cause": {
+           "network-ref": "example:L2-topo",
+           "node-ref": "example:D1",
+           "resource": [
+             {
+               "name": "7985e01a-5aad-11ea-b214-286ed488cf99",
+               "cause-name": "ltp",
+               "detail": "Frame=0, Slot=6, Subslot=65535, Port=7,\n
+                ODF= ODF001,  Level1Splitter= splitter0025"
+             }
+           ]
+         }
+       }
+     ],
+     "probable-event": [
+       {
+         "event-id": "8921834",
+         "type": "alarm"
+       }
+     ],
+     "events": [
+       {
+         "event-id": "8921832",
+         "type": "alarm"
+       },
+       {
+         "event-id": "8921833",
+         "type": "alarm"
+       },
+       {
+         "event-id": "8921834",
+         "type": "alarm"
        }
      ]
-  },
-  "probable-causes": {
-    {
-      "cause-name": "Feeder fiber great loss change",
-      "detail": "The connector of the optical fiber
-       is contaminated, Or the optical fiber is bent too much.",
-      "probable-cause": {
-        "node-ref": "example:D1",
-        "network-ref": "example:L2-topo",
-        "resource": [
-          {
-            "name": "7985e01a-5aad-11ea-b214-286ed488cf99",
-            "cause-name": "ltp",
-            "detail": "Frame=0, Slot=6, Subslot=65535, Port=7,
-            ODF= ODF001,  Level1Splitter= splitter0025"
-          }
-        ]
-      }
-    }
-  },
-  "probable-events": {
-    "probable-event": [
-      {
-        "event-id": "8921834",
-        "type": "alarm"
-      }
-    ]
-  },
-  "events": {
-    "event" [
-      {
-        "event-id": "8921832",
-        "type": "alarm"
-      },
-      {
-        "event-id": "8921833",
-        "type": "alarm"
-      },
-      {
-        "event-id": "8921834",
-        "type": "alarm"
-      }
-    ]
- }
-}
+   }
 </pre><a href="#appendix-A.1-2" class="pilcrow">¶</a>
 </div>
 </section>
@@ -4038,7 +4041,7 @@ The Probable Root Cause is also analysed.<a href="#appendix-A.1-1" class="pilcro
 <a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-network-incident-correlated-" class="section-name selfRef">Network Incident Correlated with Trouble Tickets</a>
         </h3>
 <p id="appendix-A.2-1">In this document, the objective of the Incident Management is to identify
-Probable Causes and reduce duplicated tickets.<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
+Probable Root Causes and reduce duplicated tickets.<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
 <p id="appendix-A.2-2">Previously, a troubleshooting ticket was created upon receipt of a
 critical alert by the OSS system, e.g., due to excessive BGP flaps on
 a particular device. Such troubleshooting ticket will trigger
