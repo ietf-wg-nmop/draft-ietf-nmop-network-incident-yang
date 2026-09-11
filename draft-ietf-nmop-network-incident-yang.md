@@ -82,7 +82,7 @@ normative:
 
 informative:
  BERT:
-   title:  BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
+   title:  Pre-training of Deep Bidirectional Transformers for Language Understanding
    target: https://aclanthology.org/N19-1423/
    date: 2019
  TMF724A:
