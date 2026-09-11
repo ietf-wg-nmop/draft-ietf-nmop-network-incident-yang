@@ -1210,7 +1210,7 @@ for their valuable comments and great input to this work.
 ## Network Incident Correlated with Specific Network Topology and the Network Service
 
 In this example, we show a network incident that are associated with the service-instance
-"optical-svc-A", the node 'D1', the network topology 'L2-Topo' and the domain 'FAN'.
+"optical-svc-A", the node 'D1', the network topology 'L2-Topo' and the domain 'PTN'.
 The Probable Root Cause is also analysed.
 
 ~~~~
