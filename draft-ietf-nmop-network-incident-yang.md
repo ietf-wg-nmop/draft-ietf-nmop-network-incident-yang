@@ -1211,81 +1211,75 @@ for their valuable comments and great input to this work.
 ## Network Incident Correlated with Specific Network Topology and the Network Service
 
 In this example, we show a network incident that are associated with the service-instance
-"optical-svc-A", the node 'D1', the network topology 'L2-Topo' and the domain 'FAN'.
+"optical-svc-A", the node 'D1', the network topology 'L2-Topo' and the domain 'PTN'.
 The Probable Root Cause is also analysed.
 
 ~~~~
-{
-  "name": "line fault",
-  "type": "problem",
-  "incident-no": 56433218,
-  "incident-qualifier": "line fault",
-  "service-instance": ["optical-svc-A"],
-  "domain": "PTN",
-  "priority": "critical",
-  "occur-time": "2026-03-10T04:01:12Z",
-  "clear-time": "2026-03-10T06:01:12Z",
-  "ack-time": "2026-03-10T05:01:12Z",
-  "last-updated": "2026-03-10T05:31:12Z",
-  "ack-status": "unacknowledged",
-  "category": "Network",
-  "sources": {
-    "source": [
-      {
-        "node-ref": "example:D1",
-        "network-ref": "example:L2-topo",
-        "resource": [
-          {
-            "name": "7985e01a-5aad-11ea-b214-286ed488cf99"
-          }
-        ]
+   {
+     "name": "line fault",
+     "type": "problem",
+     "incident-no": 56433218,
+     "incident-qualifier": "line fault",
+     "service-instance": ["optical-svc-A"],
+     "domain": "PTN",
+     "priority": "critical",
+     "occur-time": "2026-03-10T04:01:12Z",
+     "clear-time": "2026-03-10T06:01:12Z",
+     "ack-time": "2026-03-10T05:01:12Z",
+     "last-updated": "2026-03-10T05:31:12Z",
+     "ack-status": "unacknowledged",
+     "category": "Network",
+     "source": [
+       {
+         "node-ref": "example:D1",
+         "network-ref": "example:L2-topo",
+         "resource": [
+           {
+             "name": "7985e01a-5aad-11ea-b214-286ed488cf99"
+           }
+         ]
+       }
+     ],
+     "probable-causes": [
+       {
+         "name": "Feeder fiber great loss change",
+         "detail-information": "The connector of the optical fiber\n
+          is contaminated, Or the optical fiber is bent too much.",
+         "probable-cause": {
+           "network-ref": "example:L2-topo",
+           "node-ref": "example:D1",
+           "resource": [
+             {
+               "name": "7985e01a-5aad-11ea-b214-286ed488cf99",
+               "cause-name": "ltp",
+               "detail": "Frame=0, Slot=6, Subslot=65535, Port=7,\n
+                ODF= ODF001,  Level1Splitter= splitter0025"
+             }
+           ]
+         }
+       }
+     ],
+     "probable-event": [
+       {
+         "event-id": "8921834",
+         "type": "alarm"
+       }
+     ],
+     "events": [
+       {
+         "event-id": "8921832",
+         "type": "alarm"
+       },
+       {
+         "event-id": "8921833",
+         "type": "alarm"
+       },
+       {
+         "event-id": "8921834",
+         "type": "alarm"
        }
      ]
-  },
-  "probable-causes": {
-    {
-      "cause-name": "Feeder fiber great loss change",
-      "detail": "The connector of the optical fiber
-       is contaminated, Or the optical fiber is bent too much.",
-      "probable-cause": {
-        "node-ref": "example:D1",
-        "network-ref": "example:L2-topo",
-        "resource": [
-          {
-            "name": "7985e01a-5aad-11ea-b214-286ed488cf99",
-            "cause-name": "ltp",
-            "detail": "Frame=0, Slot=6, Subslot=65535, Port=7,
-            ODF= ODF001,  Level1Splitter= splitter0025"
-          }
-        ]
-      }
-    }
-  },
-  "probable-events": {
-    "probable-event": [
-      {
-        "event-id": "8921834",
-        "type": "alarm"
-      }
-    ]
-  },
-  "events": {
-    "event" [
-      {
-        "event-id": "8921832",
-        "type": "alarm"
-      },
-      {
-        "event-id": "8921833",
-        "type": "alarm"
-      },
-      {
-        "event-id": "8921834",
-        "type": "alarm"
-      }
-    ]
- }
-}
+   }
 ~~~~
 
 ##  Network Incident Correlated with Trouble Tickets
