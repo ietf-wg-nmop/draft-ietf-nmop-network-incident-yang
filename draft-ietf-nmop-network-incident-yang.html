@@ -3186,7 +3186,7 @@ module ietf-incident {
         type incident-ref;
         description
           "The unique sequence number of an incident instance
-           based on the name type incident-id keys.";
+           based on the name type incident-qualifier keys.";
       }
     }
   }
@@ -3201,7 +3201,7 @@ module ietf-incident {
         type incident-ref;
         description
           "The unique sequence number of an incident instance
-           based on the name type incident-id keys.";
+           based on the name type incident-qualifier keys.";
       }
     }
   }
@@ -3216,7 +3216,7 @@ module ietf-incident {
         type incident-ref;
         description
           "The unique sequence number of an incident instance
-           based on the name type incident-id keys.";
+           based on the name type incident-qualifier keys.";
       }
     }
   }
@@ -3224,7 +3224,7 @@ module ietf-incident {
   sx:structure incident-acknowledge-error-info {
     container incident-acknowledge-error-info {
       description
-        "This structure data MAY be inserted in the RPC error
+        "This structure data must be inserted in the RPC error
          response to indicate the reason for the
          incident acknowledge failure.";
       leaf incident-no {
@@ -3252,7 +3252,7 @@ module ietf-incident {
   sx:structure incident-diagnose-error-info {
     container incident-diagnose-error-info {
       description
-        "This structure data MAY be inserted in
+        "This structure data must be inserted in
          the RPC error response to indicate the
          reason for the incident diagnose failure.";
       leaf incident-no {
@@ -3280,7 +3280,7 @@ module ietf-incident {
   sx:structure incident-resolve-error-info {
     container incident-resolve-error-info {
       description
-        "This structure data MAY be inserted in
+        "This structure data must be inserted in
          the RPC error response to indicate the
          reason for the incident resolution failure.";
       leaf incident-no {
@@ -3340,7 +3340,7 @@ module ietf-incident {
         mandatory true;
         description
           "The unique sequence number of the incident
-           instance based on the name type incident-id keys.";
+           instance based on the name type incident-qualifier keys.";
       }
       uses incident-info;
       uses incident-time-info;
