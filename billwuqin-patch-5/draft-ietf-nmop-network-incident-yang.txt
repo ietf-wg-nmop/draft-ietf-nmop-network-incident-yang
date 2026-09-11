@@ -1054,7 +1054,7 @@ Table of Contents
 
    This module uses types defined in [RFC9911], [RFC8345], [RFC8632],
    [RFC8791], [RFC9376], [RFC1136], [RFC6373], [RFC8348], [RFC9940],
-   [RFC8632], [RFC5277], [RFC9375].
+   [RFC8632], [RFC5277], [RFC9375] ,[I-D.ietf-netconf-notif-envelope].
 
    <CODE BEGINS> file "ietf-incident@2026-07-30.yang"
    module ietf-incident {
@@ -2361,6 +2361,14 @@ Acknowledgements
 References
 
 Normative References
+
+   [I-D.ietf-netconf-notif-envelope]
+              Feng, A. H., Francois, P., Graf, T., and B. Claise,
+              "Extensible YANG Model for YANG-Push Notifications", Work
+              in Progress, Internet-Draft, draft-ietf-netconf-notif-
+              envelope-05, 18 May 2026,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-netconf-
+              notif-envelope-05>.
 
    [I-D.ietf-opsawg-scheduling-oam-tests]
               Contreras, L. M., Lopez, V., and Q. Wu, "A YANG Data Model
