@@ -3333,7 +3333,9 @@ module ietf-incident {
     leaf time {
       type yang:date-and-time;
       description
-        "Occurring time of an incident instance.";
+        "Occurring time of an incident instance.
+         It matches the occur-time in
+         incident-time-info grouping";
     }
   }
 
