@@ -1299,16 +1299,19 @@ root cause analysis.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
                 <p id="section-toc.1-1.15.2.1.1"><a href="#appendix-A.1" class="auto internal xref">A.1</a>.  <a href="#name-network-incident-correlated" class="internal xref">Network Incident Correlated with Specific Network Topology and the Network Service</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15.2.2">
-                <p id="section-toc.1-1.15.2.2.1"><a href="#appendix-A.2" class="auto internal xref">A.2</a>.  <a href="#name-network-incident-correlated-" class="internal xref">Network Incident Correlated with Trouble Tickets</a></p>
+                <p id="section-toc.1-1.15.2.2.1"><a href="#appendix-A.2" class="auto internal xref">A.2</a>.  <a href="#name-json-example-on-incident-no" class="internal xref">JSON Example on Incident Notifications</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15.2.3">
-                <p id="section-toc.1-1.15.2.3.1"><a href="#appendix-A.3" class="auto internal xref">A.3</a>.  <a href="#name-intent-based-networking-wit" class="internal xref">Intent Based Networking with Incident Diagnosis Task List</a></p>
+                <p id="section-toc.1-1.15.2.3.1"><a href="#appendix-A.3" class="auto internal xref">A.3</a>.  <a href="#name-network-incident-correlated-" class="internal xref">Network Incident Correlated with Trouble Tickets</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15.2.4">
-                <p id="section-toc.1-1.15.2.4.1"><a href="#appendix-A.4" class="auto internal xref">A.4</a>.  <a href="#name-multi-domain-fault-demarcat" class="internal xref">Multi-Domain Fault Demarcation with Network Incident Management</a></p>
+                <p id="section-toc.1-1.15.2.4.1"><a href="#appendix-A.4" class="auto internal xref">A.4</a>.  <a href="#name-intent-based-networking-wit" class="internal xref">Intent Based Networking with Incident Diagnosis Task List</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15.2.5">
-                <p id="section-toc.1-1.15.2.5.1"><a href="#appendix-A.5" class="auto internal xref">A.5</a>.  <a href="#name-service-complaint-triggered" class="internal xref">Service Complaint triggered Network Diagnosis</a></p>
+                <p id="section-toc.1-1.15.2.5.1"><a href="#appendix-A.5" class="auto internal xref">A.5</a>.  <a href="#name-multi-domain-fault-demarcat" class="internal xref">Multi-Domain Fault Demarcation with Network Incident Management</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15.2.6">
+                <p id="section-toc.1-1.15.2.6.1"><a href="#appendix-A.6" class="auto internal xref">A.6</a>.  <a href="#name-service-complaint-triggered" class="internal xref">Service Complaint triggered Network Diagnosis</a></p>
 </li>
             </ul>
 </li>
@@ -3763,7 +3766,7 @@ Reference:  RFC XXXX
       </h2>
 <p id="section-13-1">The authors would like to thank Mohamed Boucadair, Robert Wilton,
 Benoit Claise, Oscar Gonzalez de Dios, Adrian Farrel, Mahesh
-Jethanandani, Aitken, Paul, Balazs Lengyel, Dhruv Dhody,Bo Wu, Qiufang Ma,
+Jethanandani, Paul Aitken, Balazs Lengyel, Dhruv Dhody,Bo Wu, Qiufang Ma,
 Haomian Zheng, YuanYao, Wei Wang, Peng Liu, Zongpeng Du, Zhengqiang Li,
 Andrew Liu, Joe Clark, Roland Scott, Alex Huang Feng, Kai Gao, Jensen Zhang,
 Ziyang Xing, Mingshuang Jin, Aihua Guo, Zhidong Yin, Guoxiang Liu, Kaichun Wu
@@ -4055,14 +4058,97 @@ The Probable Root Cause is also analysed.<a href="#appendix-A.1-1" class="pilcro
 </div>
 </section>
 </div>
-<div id="network-incident-correlated-with-trouble-tickets">
+<div id="json-example-on-incident-notifications">
 <section id="appendix-A.2">
-        <h3 id="name-network-incident-correlated-">
-<a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-network-incident-correlated-" class="section-name selfRef">Network Incident Correlated with Trouble Tickets</a>
+        <h3 id="name-json-example-on-incident-no">
+<a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-json-example-on-incident-no" class="section-name selfRef">JSON Example on Incident Notifications</a>
         </h3>
-<p id="appendix-A.2-1">In this document, the objective of the Incident Management is to identify
-Probable Root Causes and reduce duplicated tickets.<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
-<p id="appendix-A.2-2">Previously, a troubleshooting ticket was created upon receipt of a
+<p id="appendix-A.2-1">In this example, we show an example of the Incident notification in JSON encoding for the incident base model.<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="appendix-A.2-2">
+<pre>
+{
+  "example-incident-module:incident-notification": {
+    "incident-no": "INC-2026-98765",
+    "name": "Link Failure Core Router",
+    "type": "example-types:hardware-fault",
+    "incident-qualifier": "interface-down",
+    "service-instance": [
+      "srv-mpls-vpn-01",
+      "srv-voip-05"
+    ],
+    "domain": "example-types:transport-network",
+    "priority": "critical",
+    "status": "active",
+    "ack-status": "unacknowledged",
+    "category": "example-types:network-infrastructure",
+    "detail": "Interface GigabitEthernet0/0/1 reports a Link Down state due to loss of signal.",
+    "resolve-advice": "Check physical fiber connections and optics transceiver at local node.",
+    "sources": {
+      "source": [
+        {
+          "node-ref": "router-core-01",
+          "network-ref": "backbone-east",
+          "resource": [
+            {
+              "name": "GigabitEthernet0/0/1"
+            }
+          ]
+        }
+      ]
+    },
+    "probable-causes": {
+      "probable-cause": [
+        {
+          "node-ref": "router-core-01",
+          "network-ref": "backbone-east",
+          "resource": [
+            {
+              "name": "GigabitEthernet0/0/1",
+              "cause-name": "example-types:los-of-signal",
+              "detail": "Laser rx power below operational threshold."
+            }
+          ],
+          "cause-name": "example-types:interface-hardware-failure",
+          "detail": "SFP module may need replacement."
+        }
+      ]
+    },
+    "probable-events": {
+      "probable-event": [
+        {
+          "type": "example-types:link-down-event",
+          "event-id": "EV-10293"
+        }
+      ]
+    },
+    "events": {
+      "event": [
+        {
+          "type": "example-types:alarm-event",
+          "event-id": "AL-55443",
+          "alarm": {
+            "resource": "GigabitEthernet0/0/1",
+            "alarm-type-id": "link-down",
+            "alarm-type-qualifier": "port-failure"
+          }
+        }
+      ]
+    },
+    "time": "2026-09-12T08:47:00Z"
+  }
+}
+</pre><a href="#appendix-A.2-2" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="network-incident-correlated-with-trouble-tickets">
+<section id="appendix-A.3">
+        <h3 id="name-network-incident-correlated-">
+<a href="#appendix-A.3" class="section-number selfRef">A.3. </a><a href="#name-network-incident-correlated-" class="section-name selfRef">Network Incident Correlated with Trouble Tickets</a>
+        </h3>
+<p id="appendix-A.3-1">In this document, the objective of the Incident Management is to identify
+Probable Root Causes and reduce duplicated tickets.<a href="#appendix-A.3-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.3-2">Previously, a troubleshooting ticket was created upon receipt of a
 critical alert by the OSS system, e.g., due to excessive BGP flaps on
 a particular device. Such troubleshooting ticket will trigger
 Network Incident Management in the network controller. Therefore
@@ -4071,10 +4157,10 @@ by the OSS and the network controller respectively. However
 Network troubleshooting is sometimes complicated and requires data
 gathering and analysis from many different tools from the controllers,
 therefore correlation between troubleshooting ticket and network incident
-becomes necessary.<a href="#appendix-A.2-2" class="pilcrow">¶</a></p>
+becomes necessary.<a href="#appendix-A.3-2" class="pilcrow">¶</a></p>
 <span id="name-correlation-with-troublesho"></span><div id="exam3">
 <figure id="figure-8">
-          <div class="alignCenter art-text artwork" id="appendix-A.2-3.1">
+          <div class="alignCenter art-text artwork" id="appendix-A.3-3.1">
 <pre>
 +------------------------------------------------+
 |OSS +---------------------------------------+   |
@@ -4102,7 +4188,7 @@ becomes necessary.<a href="#appendix-A.2-2" class="pilcrow">¶</a></p>
 <a href="#name-correlation-with-troublesho" class="selfRef">Correlation with troubleshooting tickets</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.2-4">In order to manage the correlation between network incidents and
+<p id="appendix-A.3-4">In order to manage the correlation between network incidents and
 trouble tickets in the YANG data model, three RPCs to manage the
 network incidents and one notification to report on network incident
 state changes defined in "ietf-incident" module can be further
@@ -4111,8 +4197,8 @@ can be carried in the incident update notification and report the
 upper-layer OSS system. Such correlation can be used by the incident
 handler in the upper-layer OSS system for
 further fault demarcation, e.g., identify whether the fault is on the
-user side or on the network side.<a href="#appendix-A.2-4" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="appendix-A.2-5">
+user side or on the network side.<a href="#appendix-A.3-4" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="appendix-A.3-5">
 <pre>
 rpcs:
  +---x incident-acknowledge
@@ -4136,25 +4222,25 @@ rpcs:
  |   +--ro ticket-no? string
  +--
 ...
-</pre><a href="#appendix-A.2-5" class="pilcrow">¶</a>
+</pre><a href="#appendix-A.3-5" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
 <div id="intent-based-networking-with-incident-diagnosis-task-list">
-<section id="appendix-A.3">
+<section id="appendix-A.4">
         <h3 id="name-intent-based-networking-wit">
-<a href="#appendix-A.3" class="section-number selfRef">A.3. </a><a href="#name-intent-based-networking-wit" class="section-name selfRef">Intent Based Networking with Incident Diagnosis Task List</a>
+<a href="#appendix-A.4" class="section-number selfRef">A.4. </a><a href="#name-intent-based-networking-wit" class="section-name selfRef">Intent Based Networking with Incident Diagnosis Task List</a>
         </h3>
-<p id="appendix-A.3-1">In this document, the incident-diagnosis RPC defined in "ietf-
+<p id="appendix-A.4-1">In this document, the incident-diagnosis RPC defined in "ietf-
 incident" module can be used to identify Probable Root Causes; and an
 incident update notification can be triggered to report the diagnosis
-status if successful.<a href="#appendix-A.3-1" class="pilcrow">¶</a></p>
-<p id="appendix-A.3-2">In some cases, workflows may span a long duration or involve multiple steps
+status if successful.<a href="#appendix-A.4-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.4-2">In some cases, workflows may span a long duration or involve multiple steps
 task. In such case, intent based networking concept can be used to support
-such multiple step task and provide more detailed network diagnosis information.<a href="#appendix-A.3-2" class="pilcrow">¶</a></p>
+such multiple step task and provide more detailed network diagnosis information.<a href="#appendix-A.4-2" class="pilcrow">¶</a></p>
 <span id="name-diagnosis-task-management"></span><div id="exam4">
 <figure id="figure-9">
-          <div class="alignCenter art-text artwork" id="appendix-A.3-3.1">
+          <div class="alignCenter art-text artwork" id="appendix-A.4-3.1">
 <pre>
 +------------------------------------------------+
 | OSS                                            |
@@ -4177,12 +4263,12 @@ such multiple step task and provide more detailed network diagnosis information.
 <a href="#name-diagnosis-task-management" class="selfRef">Diagnosis Task Management</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.3-4">To do so, the new "diagnosis task creation" RPC can be further defined to
+<p id="appendix-A.4-4">To do so, the new "diagnosis task creation" RPC can be further defined to
 support "task-id" attribute in the output parameters and other auxiliary
 attributes in the input parameters. such RPC can be used to return task-id
 from the controller. The controller is responsible for task-id allocation
-and maintaining task-id list.<a href="#appendix-A.3-4" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="appendix-A.3-5">
+and maintaining task-id list.<a href="#appendix-A.4-4" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="appendix-A.4-5">
 <pre>
     +---x diagnose-task-creation
     |  +---w input
@@ -4202,27 +4288,27 @@ and maintaining task-id list.<a href="#appendix-A.3-4" class="pilcrow">¶</a></p
     |  |           +---w name    al:resource
     |  +--ro output
     |     +--ro task-id?   string
-</pre><a href="#appendix-A.3-5" class="pilcrow">¶</a>
+</pre><a href="#appendix-A.4-5" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A.3-6">"ietf-incident" module can be further
+<p id="appendix-A.4-6">"ietf-incident" module can be further
 extended to include "incident-diagnosis-task" list with the following diagnosis
-information:<a href="#appendix-A.3-6" class="pilcrow">¶</a></p>
+information:<a href="#appendix-A.4-6" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.3-7.1">
-            <p id="appendix-A.3-7.1.1">The current status (e.g., created, diagnosing, diagnosed, finished) of each
-diagnosis task.<a href="#appendix-A.3-7.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-A.4-7.1">
+            <p id="appendix-A.4-7.1.1">The current status (e.g., created, diagnosing, diagnosed, finished) of each
+diagnosis task.<a href="#appendix-A.4-7.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-A.3-7.2">
-            <p id="appendix-A.3-7.2.1">Task start time, end time, diagnosis result (succeeded, failed), failure
-description, etc.<a href="#appendix-A.3-7.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-A.4-7.2">
+            <p id="appendix-A.4-7.2.1">Task start time, end time, diagnosis result (succeeded, failed), failure
+description, etc.<a href="#appendix-A.4-7.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-A.3-7.3">
-            <p id="appendix-A.3-7.3.1">Probable Root Causes, probable events, repair recommendations, etc.<a href="#appendix-A.3-7.3.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-A.4-7.3">
+            <p id="appendix-A.4-7.3.1">Probable Root Causes, probable events, repair recommendations, etc.<a href="#appendix-A.4-7.3.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
-<p id="appendix-A.3-8">so that OSS system can use NETCONF &lt;get-config&gt; operation to look up
-the diagnosis task detailed information based on such module extension.<a href="#appendix-A.3-8" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="appendix-A.3-9">
+<p id="appendix-A.4-8">so that OSS system can use NETCONF &lt;get-config&gt; operation to look up
+the diagnosis task detailed information based on such module extension.<a href="#appendix-A.4-8" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="appendix-A.4-9">
 <pre>
     augment /inc:incidents/inc:incident:
     +--ro incident-diagnosis-tasks
@@ -4243,11 +4329,11 @@ the diagnosis task detailed information based on such module extension.<a href="
     |   +-- ro state enumeration // Incident states such as
                                  // Creation, Update, Clear
     ...
-</pre><a href="#appendix-A.3-9" class="pilcrow">¶</a>
+</pre><a href="#appendix-A.4-9" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A.3-10">In addition, the new Diagnosis Task Notification can be defined to support
-Diagnosis Task related attributes reporting.<a href="#appendix-A.3-10" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="appendix-A.3-11">
+<p id="appendix-A.4-10">In addition, the new Diagnosis Task Notification can be defined to support
+Diagnosis Task related attributes reporting.<a href="#appendix-A.4-10" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="appendix-A.4-11">
 <pre>
     +---n task-notification
     |  +--ro task-id?                        string
@@ -4274,18 +4360,18 @@ Diagnosis Task related attributes reporting.<a href="#appendix-A.3-10" class="pi
     |  |     +--ro event-id?   leafref
     |  +--ro repair-advices?   string
     |  +--ro incident-status?  incident-status-value
-</pre><a href="#appendix-A.3-11" class="pilcrow">¶</a>
+</pre><a href="#appendix-A.4-11" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A.3-12">So that the controller can send diagnosis task notification to the OSS system upon diagnosis task
-completes and outputs repair suggestion.<a href="#appendix-A.3-12" class="pilcrow">¶</a></p>
+<p id="appendix-A.4-12">So that the controller can send diagnosis task notification to the OSS system upon diagnosis task
+completes and outputs repair suggestion.<a href="#appendix-A.4-12" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="multi-domain-fault-demarcation-with-network-incident-management">
-<section id="appendix-A.4">
+<section id="appendix-A.5">
         <h3 id="name-multi-domain-fault-demarcat">
-<a href="#appendix-A.4" class="section-number selfRef">A.4. </a><a href="#name-multi-domain-fault-demarcat" class="section-name selfRef">Multi-Domain Fault Demarcation with Network Incident Management</a>
+<a href="#appendix-A.5" class="section-number selfRef">A.5. </a><a href="#name-multi-domain-fault-demarcat" class="section-name selfRef">Multi-Domain Fault Demarcation with Network Incident Management</a>
         </h3>
-<p id="appendix-A.4-1">Take multi-domain fault demarcation as an example, when both base station incident
+<p id="appendix-A.5-1">Take multi-domain fault demarcation as an example, when both base station incident
 in the RAN network and Network Link incident in the IP network are received and base station
 incident from user side results from network incident in other domains, the OSS system
 is unable to find network side problem simply based on base station incident. Therefore
@@ -4295,10 +4381,10 @@ The network controller can use network diagnosis related intent based interface 
 corresponding network side port  according to the base station IP address, and then further
 associated with transmission path (current path, historical path) to the base station and
 current and historical network performance, network resources, and incident status data, to
-diagnose the Probable Root Cause of the network incident and provide repair suggestions.<a href="#appendix-A.4-1" class="pilcrow">¶</a></p>
+diagnose the Probable Root Cause of the network incident and provide repair suggestions.<a href="#appendix-A.5-1" class="pilcrow">¶</a></p>
 <span id="name-multi-domain-fault-demarcati"></span><div id="exam5">
 <figure id="figure-10">
-          <div class="alignCenter art-text artwork" id="appendix-A.4-2.1">
+          <div class="alignCenter art-text artwork" id="appendix-A.5-2.1">
 <pre>
  +------------------------------------------------+
  |OSS +------------------------------------------+|
@@ -4342,13 +4428,13 @@ related-objects? leafref //List &lt;ResourceObject&gt;
 </section>
 </div>
 <div id="service-complaint-triggered-network-diagnosis">
-<section id="appendix-A.5">
+<section id="appendix-A.6">
         <h3 id="name-service-complaint-triggered">
-<a href="#appendix-A.5" class="section-number selfRef">A.5. </a><a href="#name-service-complaint-triggered" class="section-name selfRef">Service Complaint triggered Network Diagnosis</a>
+<a href="#appendix-A.6" class="section-number selfRef">A.6. </a><a href="#name-service-complaint-triggered" class="section-name selfRef">Service Complaint triggered Network Diagnosis</a>
         </h3>
 <span id="name-service-complaint-triggered-"></span><div id="exam6">
 <figure id="figure-11">
-          <div class="alignCenter art-text artwork" id="appendix-A.5-1.1">
+          <div class="alignCenter art-text artwork" id="appendix-A.6-1.1">
 <pre>
                                    Customer
                                    Complaint
@@ -4380,13 +4466,13 @@ related-objects? leafref //List &lt;ResourceObject&gt;
 <a href="#name-service-complaint-triggered-" class="selfRef">Service Complaint triggered Network Diagnosis</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.5-2">Similarly, in case of service degradation for a lease line service receiving from the customer,
+<p id="appendix-A.6-2">Similarly, in case of service degradation for a lease line service receiving from the customer,
 the OSS system can request network diagnosis at the network side conducted by the network controller.
 The network controller can use network diagnosis related intent based interface to find the
 corresponding network side port based on the dedicated line service, and then further associate
 the transmission path (current path, historical path) and current and historical network performance,
 network resources, and incident status data to diagnose the Probable Root Cause of the fault and provide
-repair suggestions.<a href="#appendix-A.5-2" class="pilcrow">¶</a></p>
+repair suggestions.<a href="#appendix-A.6-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
