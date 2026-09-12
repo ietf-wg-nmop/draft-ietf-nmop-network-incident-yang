@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 15 March 2027                                        Telefonica
+Expires: 16 March 2027                                        Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                       11 September 2026
+                                                       12 September 2026
 
 
            A YANG Data Model for Network Incident Management
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 March 2027.
+   This Internet-Draft will expire on 16 March 2027.
 
 Copyright Notice
 
@@ -1477,6 +1477,7 @@ Table of Contents
      typedef incident-ref {
        type leafref {
          path "/inc:incidents/inc:incident/inc:incident-no";
+         require-instance false;
        }
        description
          "Provides a reference to a network incident.";
@@ -1613,7 +1614,6 @@ Table of Contents
                "An incident is cleared.";
            }
          }
-         default "raised";
          description
            "The status of an incident instance.";
        }
@@ -1628,7 +1628,6 @@ Table of Contents
                "The incident hasn't been acknowledged.";
            }
          }
-         default "unacknowledged";
          description
            "The acknowledge status of an incident.";
        }
@@ -1744,6 +1743,7 @@ Table of Contents
                    type leafref {
                      path "/al:alarms/al:alarm-list/al:alarm"
                         + "/al:resource";
+                     require-instance false;
                    }
                    description
                      "Network resource.";
