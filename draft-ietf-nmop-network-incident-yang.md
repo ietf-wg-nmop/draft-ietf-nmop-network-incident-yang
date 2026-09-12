@@ -1129,12 +1129,15 @@ important to control read access (e.g., via get, get-config, or
 notification) to these data nodes.  These are the subtrees and data
 nodes and their sensitivity/vulnerability:
 
-'/incidents/incident': This list specifies the network incident entries.
-Unauthorized read access of this list can allow intruders to access
-network incident information and potentially get a picture of the broken state
-of the network. Intruders may exploit the vulnerabilities of the network
-to lead to further negative impact on the network. Care MUST be taken to
-ensure that this list is accessed only by authorized users.
+'/incidents/incident': This list specifies the network incident entries,
+such as the service-instance leaf-list and the sources/probable-causes
+containers may reveal customer-identifiable information (e.g.,which VPN services
+are affected, which customer endpoints are involved). Unauthorized read access
+of this list can allow intruders to access network incident information and
+potentially get a picture of the broken state of the network. Intruders may
+exploit the vulnerabilities of the network to lead to further negative impact
+on the network. Care must be taken to ensure that this list is accessed only
+by authorized users.
 
 Some of the RPC operations in this YANG module may be considered
 sensitive or vulnerable in some network environments.  It is thus
