@@ -1204,7 +1204,7 @@ Reference:  RFC XXXX
 
 The authors would like to thank Mohamed Boucadair, Robert Wilton,
 Benoit Claise, Oscar Gonzalez de Dios, Adrian Farrel, Mahesh
-Jethanandani, Aitken, Paul, Balazs Lengyel, Dhruv Dhody,Bo Wu, Qiufang Ma,
+Jethanandani, Paul Aitken, Balazs Lengyel, Dhruv Dhody,Bo Wu, Qiufang Ma,
 Haomian Zheng, YuanYao, Wei Wang, Peng Liu, Zongpeng Du, Zhengqiang Li,
 Andrew Liu, Joe Clark, Roland Scott, Alex Huang Feng, Kai Gao, Jensen Zhang,
 Ziyang Xing, Mingshuang Jin, Aihua Guo, Zhidong Yin, Guoxiang Liu, Kaichun Wu
@@ -1286,6 +1286,84 @@ The Probable Root Cause is also analysed.
        }
      ]
    }
+~~~~
+
+## JSON Example on Incident Notifications
+
+In this example, we show an example of the Incident notification in JSON encoding for the incident base model.
+
+~~~~
+{
+  "example-incident-module:incident-notification": {
+    "incident-no": "INC-2026-98765",
+    "name": "Link Failure Core Router",
+    "type": "example-types:hardware-fault",
+    "incident-qualifier": "interface-down",
+    "service-instance": [
+      "srv-mpls-vpn-01",
+      "srv-voip-05"
+    ],
+    "domain": "example-types:transport-network",
+    "priority": "critical",
+    "status": "active",
+    "ack-status": "unacknowledged",
+    "category": "example-types:network-infrastructure",
+    "detail": "Interface GigabitEthernet0/0/1 reports a Link Down state due to loss of signal.",
+    "resolve-advice": "Check physical fiber connections and optics transceiver at local node.",
+    "sources": {
+      "source": [
+        {
+          "node-ref": "router-core-01",
+          "network-ref": "backbone-east",
+          "resource": [
+            {
+              "name": "GigabitEthernet0/0/1"
+            }
+          ]
+        }
+      ]
+    },
+    "probable-causes": {
+      "probable-cause": [
+        {
+          "node-ref": "router-core-01",
+          "network-ref": "backbone-east",
+          "resource": [
+            {
+              "name": "GigabitEthernet0/0/1",
+              "cause-name": "example-types:los-of-signal",
+              "detail": "Laser rx power below operational threshold."
+            }
+          ],
+          "cause-name": "example-types:interface-hardware-failure",
+          "detail": "SFP module may need replacement."
+        }
+      ]
+    },
+    "probable-events": {
+      "probable-event": [
+        {
+          "type": "example-types:link-down-event",
+          "event-id": "EV-10293"
+        }
+      ]
+    },
+    "events": {
+      "event": [
+        {
+          "type": "example-types:alarm-event",
+          "event-id": "AL-55443",
+          "alarm": {
+            "resource": "GigabitEthernet0/0/1",
+            "alarm-type-id": "link-down",
+            "alarm-type-qualifier": "port-failure"
+          }
+        }
+      ]
+    },
+    "time": "2026-09-12T08:47:00Z"
+  }
+}
 ~~~~
 
 ##  Network Incident Correlated with Trouble Tickets
