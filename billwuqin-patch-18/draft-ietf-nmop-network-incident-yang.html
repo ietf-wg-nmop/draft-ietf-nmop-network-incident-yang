@@ -1054,7 +1054,7 @@ svg {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Hu, et al.</td>
-<td class="center">Expires 15 March 2027</td>
+<td class="center">Expires 16 March 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1067,12 +1067,12 @@ svg {
 <dd class="internet-draft">draft-ietf-nmop-network-incident-yang-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-09-11" class="published">11 September 2026</time>
+<time datetime="2026-09-12" class="published">12 September 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-03-15">15 March 2027</time></dd>
+<dd class="expires"><time datetime="2027-03-16">16 March 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1125,7 +1125,7 @@ root cause analysis.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 15 March 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 16 March 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1299,16 +1299,19 @@ root cause analysis.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
                 <p id="section-toc.1-1.15.2.1.1"><a href="#appendix-A.1" class="auto internal xref">A.1</a>.  <a href="#name-network-incident-correlated" class="internal xref">Network Incident Correlated with Specific Network Topology and the Network Service</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15.2.2">
-                <p id="section-toc.1-1.15.2.2.1"><a href="#appendix-A.2" class="auto internal xref">A.2</a>.  <a href="#name-network-incident-correlated-" class="internal xref">Network Incident Correlated with Trouble Tickets</a></p>
+                <p id="section-toc.1-1.15.2.2.1"><a href="#appendix-A.2" class="auto internal xref">A.2</a>.  <a href="#name-json-example-on-incident-no" class="internal xref">JSON Example on Incident Notifications</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15.2.3">
-                <p id="section-toc.1-1.15.2.3.1"><a href="#appendix-A.3" class="auto internal xref">A.3</a>.  <a href="#name-intent-based-networking-wit" class="internal xref">Intent Based Networking with Incident Diagnosis Task List</a></p>
+                <p id="section-toc.1-1.15.2.3.1"><a href="#appendix-A.3" class="auto internal xref">A.3</a>.  <a href="#name-network-incident-correlated-" class="internal xref">Network Incident Correlated with Trouble Tickets</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15.2.4">
-                <p id="section-toc.1-1.15.2.4.1"><a href="#appendix-A.4" class="auto internal xref">A.4</a>.  <a href="#name-multi-domain-fault-demarcat" class="internal xref">Multi-Domain Fault Demarcation with Network Incident Management</a></p>
+                <p id="section-toc.1-1.15.2.4.1"><a href="#appendix-A.4" class="auto internal xref">A.4</a>.  <a href="#name-intent-based-networking-wit" class="internal xref">Intent Based Networking with Incident Diagnosis Task List</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15.2.5">
-                <p id="section-toc.1-1.15.2.5.1"><a href="#appendix-A.5" class="auto internal xref">A.5</a>.  <a href="#name-service-complaint-triggered" class="internal xref">Service Complaint triggered Network Diagnosis</a></p>
+                <p id="section-toc.1-1.15.2.5.1"><a href="#appendix-A.5" class="auto internal xref">A.5</a>.  <a href="#name-multi-domain-fault-demarcat" class="internal xref">Multi-Domain Fault Demarcation with Network Incident Management</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15.2.6">
+                <p id="section-toc.1-1.15.2.6.1"><a href="#appendix-A.6" class="auto internal xref">A.6</a>.  <a href="#name-service-complaint-triggered" class="internal xref">Service Complaint triggered Network Diagnosis</a></p>
 </li>
             </ul>
 </li>
@@ -1797,15 +1800,15 @@ aggregated into a network incident after analysis.<a href="#section-5.1-1" class
 <a href="#name-incident-identification-2" class="selfRef">Incident Identification</a>
           </figcaption></figure>
 </div>
-<p id="section-5.1-3">The Incident Server must be capable of identifying
+<p id="section-5.1-3">The Incident Server is capable of identifying
 network incidents.  Multiple alarms, metrics and other information are
-reported to the Incident Server, and the server must analyze it and find
-out the correlations of them, if the correlation matches the network incident
+reported to the Incident Server, and the server needs to analyze it and find
+out the correlations of them, if the correlation match the network incident
 rules, network incident is identified, and reported to the client.
 If the network incident is repeated many times, the problem needs to be
 raised based on the incident and the operator's policy.
-Service Impact Assessment should be performed if a network incident is identified,
-and the content of network incident should be updated if impacted network
+Service Impact Assessment <span class="bcp14">SHOULD</span> be performed if a network incident is identified,
+and the content of network incident <span class="bcp14">SHOULD</span> be updated if impacted network
 services are detected.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
 <p id="section-5.1-4">AI/ML may be used to identify the network incident.  Expert system and online
 learning can help AI to identify the correlation of alarms, metrics
@@ -1910,7 +1913,7 @@ Incident Client may diagnose the incident to determine the Probable Root Cause.
 Some diagnosis operations may affect the running network services.  The
 Incident Client can choose not to perform that diagnosis operation after
 determining the impact is not trivial.  The Incident Server can also perform
-self-diagnosis.  However, the self-diagnosis must not affect the running
+self-diagnosis.  However, the self-diagnosis <span class="bcp14">MUST</span> not affect the running
 network services.  Possible diagnosis methods include link reachability
 detection, link quality detection, alarm/log analysis, and short-term
 fine-grained monitoring of network quality metrics, etc.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
@@ -1921,13 +1924,13 @@ fine-grained monitoring of network quality metrics, etc.<a href="#section-5.2-1"
         <h3 id="name-incident-resolution">
 <a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-incident-resolution" class="section-name selfRef">Incident Resolution</a>
         </h3>
-<p id="section-5.3-1">After the Probable Root Cause is diagnosed, the Incident Client may  the
+<p id="section-5.3-1">After the Probable Root Cause is diagnosed, the Incident Client may resolve the
 network incident.  The Incident Client may choose to resolve the network
 incident by invoking other functions, such as routing calculation function,
 configuration function, dispatching a ticket or asking the server to resolve it.
 Generally, the Incident Client would attempt to directly resolve the Probable
 Root Cause.  If the Probable Root Cause cannot be resolved, an alternative
-solution should be required.  For example, if a network incident caused by a
+solution <span class="bcp14">SHOULD</span> be sought.  For example, if a network incident caused by a
 physical component failure and cannot be automatically resolved, the standby
 link can be used to bypass the faulty component.<a href="#section-5.3-1" class="pilcrow">¶</a></p>
 <p id="section-5.3-2">Incident Server monitors the status of the network incident, if the faults
@@ -1953,7 +1956,7 @@ after determining the impact is not trivial.<a href="#section-5.3-3" class="pilc
         </h3>
 <p id="section-6.1-1">An 'incident-no' is used as an identifier of an incident instance, if
 an incident instance is identified, a new 'incident-no' is created.
-The 'incident-no' must be unique in the whole system.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
+The 'incident-no' <span class="bcp14">MUST</span> be unique in the whole system.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="the-incident-lifecycle">
@@ -1996,7 +1999,7 @@ resolved, the status changes to 'cleared'.<a href="#section-6.2.1-1" class="pilc
 <p id="section-6.2.2-1">Operators can act upon network incident with network incident RPCs. From an operator perspective,
 the lifecycle of a network incident instance includes 'acknowledged', 'diagnosed', and
 'resolved'.<a href="#section-6.2.2-1" class="pilcrow">¶</a></p>
-<p id="section-6.2.2-2">When a network incident instance is generated, the operator should acknowledge the network incident
+<p id="section-6.2.2-2">When a network incident instance is generated, the operator <span class="bcp14">SHOULD</span> acknowledge the network incident
 with 'incident-acknowledge' RPC. And then the operator attempts to diagnose the network incident
 with 'incident-diagnose' PRC (for example, find out the Probable Root Cause and affected components).
 Diagnosis is not mandatory. If the Probable Root Cause and affected components are known when the
@@ -2335,8 +2338,8 @@ process, a notification update will be triggered.<a href="#section-7.5-3" class=
         <h3 id="name-rpc-failure">
 <a href="#section-7.6" class="section-number selfRef">7.6. </a><a href="#name-rpc-failure" class="section-name selfRef">RPC Failure</a>
         </h3>
-<p id="section-7.6-1">If the RPC fails, the RPC error response must indicate the reason for the
-failure. The structures defined in this document must encode specific errors
+<p id="section-7.6-1">If the RPC fails, the RPC error response <span class="bcp14">MUST</span> indicate the reason for the
+failure. The structures defined in this document <span class="bcp14">MUST</span> encode specific errors
 and be inserted in the error response to indicate the reason for the failure.<a href="#section-7.6-1" class="pilcrow">¶</a></p>
 <p id="section-7.6-2">The tree diagram <span>[<a href="#RFC8340" class="cite xref">RFC8340</a>]</span> for structures is defined as follows:<a href="#section-7.6-2" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-7.6-3">
@@ -2815,6 +2818,7 @@ module ietf-incident {
   typedef incident-ref {
     type leafref {
       path "/inc:incidents/inc:incident/inc:incident-no";
+      require-instance false;
     }
     description
       "Provides a reference to a network incident.";
@@ -2951,7 +2955,6 @@ module ietf-incident {
             "An incident is cleared.";
         }
       }
-      default "raised";
       description
         "The status of an incident instance.";
     }
@@ -2966,7 +2969,6 @@ module ietf-incident {
             "The incident hasn't been acknowledged.";
         }
       }
-      default "unacknowledged";
       description
         "The acknowledge status of an incident.";
     }
@@ -3082,6 +3084,7 @@ module ietf-incident {
                 type leafref {
                   path "/al:alarms/al:alarm-list/al:alarm"
                      + "/al:resource";
+                  require-instance false;
                 }
                 description
                   "Network resource.";
@@ -3398,7 +3401,7 @@ module ietf-incident {
 <p id="section-9-1">The "ietf-incident" YANG module introduces an incident-centric
 architecture designed to overcome the structural silo of management
 systems that handle alarms and performance metrics separately at
-different network layers. Operators must ensure that the underlying management
+different network layers. Operators need to ensure that the underlying management
 system feeding this model maintains continuous, real-time read access to
 diverse end to end network topology data spanning multiple layers.<a href="#section-9-1" class="pilcrow">¶</a></p>
 <p id="section-9-2">Because accurate multi-layer troubleshooting depends on establishing a global view
@@ -3584,7 +3587,7 @@ netconf extension for <span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-
 <span>[<a href="#I-D.ietf-netconf-configuration-tracing" class="cite xref">I-D.ietf-netconf-configuration-tracing</a>]</span> defines a mechanism for
 configuration tracing.  If some errors occur when services are
 deploying, it's very easy to identify these errors by distributed
-system tracing, and a network incident should be reported.<a href="#section-9.4-1" class="pilcrow">¶</a></p>
+system tracing, and a network incident <span class="bcp14">SHOULD</span> be reported.<a href="#section-9.4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="relationship-with-network-anomaly-detection-architecture">
@@ -3600,7 +3603,7 @@ with a confidence score. Section 3 of <span>[<a href="#I-D.ietf-nmop-network-ano
 describes the elements of the system architecture where the "Alarm Management System"
 maps to the "Incident Server" in Section 4 of this document. The "relevant-state"
 YANG notification defined in Section 8.2 of <span>[<a href="#I-D.ietf-nmop-network-anomaly-lifecycle" class="cite xref">I-D.ietf-nmop-network-anomaly-lifecycle</a>]</span>
-defines an "id" which should be mapped to "event-id" in the 'ietf-incident' YANG module
+defines an "id" which <span class="bcp14">SHOULD</span> be mapped to "event-id" in the 'ietf-incident' YANG module
 described in this document on the "Incident Server". <span>[<a href="#I-D.ietf-nmop-network-anomaly-semantics" class="cite xref">I-D.ietf-nmop-network-anomaly-semantics</a>]</span>
 augments relevant-state YANG notification with 'ietf-network-anomaly-symptom' YANG module
 symptom semantics described in Section 4.2 and service and network relationships with
@@ -3627,7 +3630,7 @@ the IETF in its decision processes in progressing drafts to RFCs.
 Please note that the listing of any individual implementation here
 does not imply endorsement by the IETF.  Furthermore, no effort has
 been spent to verify the information presented here that was supplied
-by IETF contributors.  This is not intended as, and must not be
+by IETF contributors.  This is not intended as, and <span class="bcp14">MUST</span> not be
 construed to be, a catalog of available implementations or their
 features.  Readers are advised to note that other implementations may
 exist.<a href="#section-10-1" class="pilcrow">¶</a></p>
@@ -3677,12 +3680,15 @@ sensitive or vulnerable in some network environments.  It is thus
 important to control read access (e.g., via get, get-config, or
 notification) to these data nodes.  These are the subtrees and data
 nodes and their sensitivity/vulnerability:<a href="#section-11-3" class="pilcrow">¶</a></p>
-<p id="section-11-4">'/incidents/incident': This list specifies the network incident entries.
-Unauthorized read access of this list can allow intruders to access
-network incident information and potentially get a picture of the broken state
-of the network. Intruders may exploit the vulnerabilities of the network
-to lead to further negative impact on the network. Care must be taken to
-ensure that this list is accessed only by authorized users.<a href="#section-11-4" class="pilcrow">¶</a></p>
+<p id="section-11-4">'/incidents/incident': This list specifies the network incident entries,
+such as the service-instance leaf-list and the sources/probable-causes
+containers may reveal customer-identifiable information (e.g.,which VPN services
+are affected, which customer endpoints are involved). Unauthorized read access
+of this list can allow intruders to access network incident information and
+potentially get a picture of the broken state of the network. Intruders may
+exploit the vulnerabilities of the network to lead to further negative impact
+on the network. Care must be taken to ensure that this list is accessed only
+by authorized users.<a href="#section-11-4" class="pilcrow">¶</a></p>
 <p id="section-11-5">Some of the RPC operations in this YANG module may be considered
 sensitive or vulnerable in some network environments.  It is thus
 important to control access to these operations.  These are the
@@ -3691,7 +3697,7 @@ operations and their sensitivity/vulnerability:<a href="#section-11-5" class="pi
 diagnosis and Probable Root Cause locating. If a malicious or buggy client
 performs an unexpectedly large number of this operation, the result
 might be an excessive use of system resources <span>[<a href="#RFC9940" class="cite xref">RFC9940</a>]</span>
-on the server side as well as network resources.  Servers must
+on the server side as well as network resources.  Servers <span class="bcp14">MUST</span>
 ensure they have sufficient resources to fulfill this request; otherwise,
 they can choose to block the connnection (e.g., block abusive IP address)
 to this client and/or reject the request using rpc errors defined in
@@ -3699,7 +3705,7 @@ section 7.6.<a href="#section-11-6" class="pilcrow">¶</a></p>
 <p id="section-11-7">"incident-resolve": This RPC operation is used to resolve the network
 incident. If a malicious or buggy client performs an unexpectedly large
 number of this operation, the result might be an excessive use of system
-resources on the server side as well as network resources.  Servers must
+resources on the server side as well as network resources.  Servers <span class="bcp14">MUST</span>
 ensure they have sufficient resources to fulfill this request;
 otherwise, they can choose to reject the request without compromise on security of
 data-at-rest in the server.<a href="#section-11-7" class="pilcrow">¶</a></p>
@@ -3763,7 +3769,7 @@ Reference:  RFC XXXX
       </h2>
 <p id="section-13-1">The authors would like to thank Mohamed Boucadair, Robert Wilton,
 Benoit Claise, Oscar Gonzalez de Dios, Adrian Farrel, Mahesh
-Jethanandani, Aitken, Paul, Balazs Lengyel, Dhruv Dhody,Bo Wu, Qiufang Ma,
+Jethanandani, Paul Aitken, Balazs Lengyel, Dhruv Dhody,Bo Wu, Qiufang Ma,
 Haomian Zheng, YuanYao, Wei Wang, Peng Liu, Zongpeng Du, Zhengqiang Li,
 Andrew Liu, Joe Clark, Roland Scott, Alex Huang Feng, Kai Gao, Jensen Zhang,
 Ziyang Xing, Mingshuang Jin, Aihua Guo, Zhidong Yin, Guoxiang Liu, Kaichun Wu
@@ -4071,14 +4077,97 @@ The Probable Root Cause is also analysed.<a href="#appendix-A.1-1" class="pilcro
 </div>
 </section>
 </div>
-<div id="network-incident-correlated-with-trouble-tickets">
+<div id="json-example-on-incident-notifications">
 <section id="appendix-A.2">
-        <h3 id="name-network-incident-correlated-">
-<a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-network-incident-correlated-" class="section-name selfRef">Network Incident Correlated with Trouble Tickets</a>
+        <h3 id="name-json-example-on-incident-no">
+<a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-json-example-on-incident-no" class="section-name selfRef">JSON Example on Incident Notifications</a>
         </h3>
-<p id="appendix-A.2-1">In this document, the objective of the Incident Management is to identify
-Probable Root Causes and reduce duplicated tickets.<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
-<p id="appendix-A.2-2">Previously, a troubleshooting ticket was created upon receipt of a
+<p id="appendix-A.2-1">In this example, we show an example of the Incident notification in JSON encoding for the incident base model.<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="appendix-A.2-2">
+<pre>
+{
+  "example-incident-module:incident-notification": {
+    "incident-no": "INC-2026-98765",
+    "name": "Link Failure Core Router",
+    "type": "example-types:hardware-fault",
+    "incident-qualifier": "interface-down",
+    "service-instance": [
+      "srv-mpls-vpn-01",
+      "srv-voip-05"
+    ],
+    "domain": "example-types:transport-network",
+    "priority": "critical",
+    "status": "active",
+    "ack-status": "unacknowledged",
+    "category": "example-types:network-infrastructure",
+    "detail": "Interface GigabitEthernet0/0/1 reports a Link Down state due to loss of signal.",
+    "resolve-advice": "Check physical fiber connections and optics transceiver at local node.",
+    "sources": {
+      "source": [
+        {
+          "node-ref": "router-core-01",
+          "network-ref": "backbone-east",
+          "resource": [
+            {
+              "name": "GigabitEthernet0/0/1"
+            }
+          ]
+        }
+      ]
+    },
+    "probable-causes": {
+      "probable-cause": [
+        {
+          "node-ref": "router-core-01",
+          "network-ref": "backbone-east",
+          "resource": [
+            {
+              "name": "GigabitEthernet0/0/1",
+              "cause-name": "example-types:los-of-signal",
+              "detail": "Laser rx power below operational threshold."
+            }
+          ],
+          "cause-name": "example-types:interface-hardware-failure",
+          "detail": "SFP module may need replacement."
+        }
+      ]
+    },
+    "probable-events": {
+      "probable-event": [
+        {
+          "type": "example-types:link-down-event",
+          "event-id": "EV-10293"
+        }
+      ]
+    },
+    "events": {
+      "event": [
+        {
+          "type": "example-types:alarm-event",
+          "event-id": "AL-55443",
+          "alarm": {
+            "resource": "GigabitEthernet0/0/1",
+            "alarm-type-id": "link-down",
+            "alarm-type-qualifier": "port-failure"
+          }
+        }
+      ]
+    },
+    "time": "2026-09-12T08:47:00Z"
+  }
+}
+</pre><a href="#appendix-A.2-2" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="network-incident-correlated-with-trouble-tickets">
+<section id="appendix-A.3">
+        <h3 id="name-network-incident-correlated-">
+<a href="#appendix-A.3" class="section-number selfRef">A.3. </a><a href="#name-network-incident-correlated-" class="section-name selfRef">Network Incident Correlated with Trouble Tickets</a>
+        </h3>
+<p id="appendix-A.3-1">In this document, the objective of the Incident Management is to identify
+Probable Root Causes and reduce duplicated tickets.<a href="#appendix-A.3-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.3-2">Previously, a troubleshooting ticket was created upon receipt of a
 critical alert by the OSS system, e.g., due to excessive BGP flaps on
 a particular device. Such troubleshooting ticket will trigger
 Network Incident Management in the network controller. Therefore
@@ -4087,10 +4176,10 @@ by the OSS and the network controller respectively. However
 Network troubleshooting is sometimes complicated and requires data
 gathering and analysis from many different tools from the controllers,
 therefore correlation between troubleshooting ticket and network incident
-becomes necessary.<a href="#appendix-A.2-2" class="pilcrow">¶</a></p>
+becomes necessary.<a href="#appendix-A.3-2" class="pilcrow">¶</a></p>
 <span id="name-correlation-with-troublesho"></span><div id="exam3">
 <figure id="figure-8">
-          <div class="alignCenter art-text artwork" id="appendix-A.2-3.1">
+          <div class="alignCenter art-text artwork" id="appendix-A.3-3.1">
 <pre>
 +------------------------------------------------+
 |OSS +---------------------------------------+   |
@@ -4118,7 +4207,7 @@ becomes necessary.<a href="#appendix-A.2-2" class="pilcrow">¶</a></p>
 <a href="#name-correlation-with-troublesho" class="selfRef">Correlation with troubleshooting tickets</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.2-4">In order to manage the correlation between network incidents and
+<p id="appendix-A.3-4">In order to manage the correlation between network incidents and
 trouble tickets in the YANG data model, three RPCs to manage the
 network incidents and one notification to report on network incident
 state changes defined in "ietf-incident" module can be further
@@ -4127,8 +4216,8 @@ can be carried in the incident update notification and report the
 upper-layer OSS system. Such correlation can be used by the incident
 handler in the upper-layer OSS system for
 further fault demarcation, e.g., identify whether the fault is on the
-user side or on the network side.<a href="#appendix-A.2-4" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="appendix-A.2-5">
+user side or on the network side.<a href="#appendix-A.3-4" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="appendix-A.3-5">
 <pre>
 rpcs:
  +---x incident-acknowledge
@@ -4152,25 +4241,25 @@ rpcs:
  |   +--ro ticket-no? string
  +--
 ...
-</pre><a href="#appendix-A.2-5" class="pilcrow">¶</a>
+</pre><a href="#appendix-A.3-5" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
 <div id="intent-based-networking-with-incident-diagnosis-task-list">
-<section id="appendix-A.3">
+<section id="appendix-A.4">
         <h3 id="name-intent-based-networking-wit">
-<a href="#appendix-A.3" class="section-number selfRef">A.3. </a><a href="#name-intent-based-networking-wit" class="section-name selfRef">Intent Based Networking with Incident Diagnosis Task List</a>
+<a href="#appendix-A.4" class="section-number selfRef">A.4. </a><a href="#name-intent-based-networking-wit" class="section-name selfRef">Intent Based Networking with Incident Diagnosis Task List</a>
         </h3>
-<p id="appendix-A.3-1">In this document, the incident-diagnosis RPC defined in "ietf-
+<p id="appendix-A.4-1">In this document, the incident-diagnosis RPC defined in "ietf-
 incident" module can be used to identify Probable Root Causes; and an
 incident update notification can be triggered to report the diagnosis
-status if successful.<a href="#appendix-A.3-1" class="pilcrow">¶</a></p>
-<p id="appendix-A.3-2">In some cases, workflows may span a long duration or involve multiple steps
+status if successful.<a href="#appendix-A.4-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.4-2">In some cases, workflows may span a long duration or involve multiple steps
 task. In such case, intent based networking concept can be used to support
-such multiple step task and provide more detailed network diagnosis information.<a href="#appendix-A.3-2" class="pilcrow">¶</a></p>
+such multiple step task and provide more detailed network diagnosis information.<a href="#appendix-A.4-2" class="pilcrow">¶</a></p>
 <span id="name-diagnosis-task-management"></span><div id="exam4">
 <figure id="figure-9">
-          <div class="alignCenter art-text artwork" id="appendix-A.3-3.1">
+          <div class="alignCenter art-text artwork" id="appendix-A.4-3.1">
 <pre>
 +------------------------------------------------+
 | OSS                                            |
@@ -4193,12 +4282,12 @@ such multiple step task and provide more detailed network diagnosis information.
 <a href="#name-diagnosis-task-management" class="selfRef">Diagnosis Task Management</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.3-4">To do so, the new "diagnosis task creation" RPC can be further defined to
+<p id="appendix-A.4-4">To do so, the new "diagnosis task creation" RPC can be further defined to
 support "task-id" attribute in the output parameters and other auxiliary
 attributes in the input parameters. such RPC can be used to return task-id
 from the controller. The controller is responsible for task-id allocation
-and maintaining task-id list.<a href="#appendix-A.3-4" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="appendix-A.3-5">
+and maintaining task-id list.<a href="#appendix-A.4-4" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="appendix-A.4-5">
 <pre>
     +---x diagnose-task-creation
     |  +---w input
@@ -4218,27 +4307,27 @@ and maintaining task-id list.<a href="#appendix-A.3-4" class="pilcrow">¶</a></p
     |  |           +---w name    al:resource
     |  +--ro output
     |     +--ro task-id?   string
-</pre><a href="#appendix-A.3-5" class="pilcrow">¶</a>
+</pre><a href="#appendix-A.4-5" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A.3-6">"ietf-incident" module can be further
+<p id="appendix-A.4-6">"ietf-incident" module can be further
 extended to include "incident-diagnosis-task" list with the following diagnosis
-information:<a href="#appendix-A.3-6" class="pilcrow">¶</a></p>
+information:<a href="#appendix-A.4-6" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.3-7.1">
-            <p id="appendix-A.3-7.1.1">The current status (e.g., created, diagnosing, diagnosed, finished) of each
-diagnosis task.<a href="#appendix-A.3-7.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-A.4-7.1">
+            <p id="appendix-A.4-7.1.1">The current status (e.g., created, diagnosing, diagnosed, finished) of each
+diagnosis task.<a href="#appendix-A.4-7.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-A.3-7.2">
-            <p id="appendix-A.3-7.2.1">Task start time, end time, diagnosis result (succeeded, failed), failure
-description, etc.<a href="#appendix-A.3-7.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-A.4-7.2">
+            <p id="appendix-A.4-7.2.1">Task start time, end time, diagnosis result (succeeded, failed), failure
+description, etc.<a href="#appendix-A.4-7.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-A.3-7.3">
-            <p id="appendix-A.3-7.3.1">Probable Root Causes, probable events, repair recommendations, etc.<a href="#appendix-A.3-7.3.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-A.4-7.3">
+            <p id="appendix-A.4-7.3.1">Probable Root Causes, probable events, repair recommendations, etc.<a href="#appendix-A.4-7.3.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
-<p id="appendix-A.3-8">so that OSS system can use NETCONF &lt;get-config&gt; operation to look up
-the diagnosis task detailed information based on such module extension.<a href="#appendix-A.3-8" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="appendix-A.3-9">
+<p id="appendix-A.4-8">so that OSS system can use NETCONF &lt;get-config&gt; operation to look up
+the diagnosis task detailed information based on such module extension.<a href="#appendix-A.4-8" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="appendix-A.4-9">
 <pre>
     augment /inc:incidents/inc:incident:
     +--ro incident-diagnosis-tasks
@@ -4259,11 +4348,11 @@ the diagnosis task detailed information based on such module extension.<a href="
     |   +-- ro state enumeration // Incident states such as
                                  // Creation, Update, Clear
     ...
-</pre><a href="#appendix-A.3-9" class="pilcrow">¶</a>
+</pre><a href="#appendix-A.4-9" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A.3-10">In addition, the new Diagnosis Task Notification can be defined to support
-Diagnosis Task related attributes reporting.<a href="#appendix-A.3-10" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="appendix-A.3-11">
+<p id="appendix-A.4-10">In addition, the new Diagnosis Task Notification can be defined to support
+Diagnosis Task related attributes reporting.<a href="#appendix-A.4-10" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="appendix-A.4-11">
 <pre>
     +---n task-notification
     |  +--ro task-id?                        string
@@ -4290,18 +4379,18 @@ Diagnosis Task related attributes reporting.<a href="#appendix-A.3-10" class="pi
     |  |     +--ro event-id?   leafref
     |  +--ro repair-advices?   string
     |  +--ro incident-status?  incident-status-value
-</pre><a href="#appendix-A.3-11" class="pilcrow">¶</a>
+</pre><a href="#appendix-A.4-11" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A.3-12">So that the controller can send diagnosis task notification to the OSS system upon diagnosis task
-completes and outputs repair suggestion.<a href="#appendix-A.3-12" class="pilcrow">¶</a></p>
+<p id="appendix-A.4-12">So that the controller can send diagnosis task notification to the OSS system upon diagnosis task
+completes and outputs repair suggestion.<a href="#appendix-A.4-12" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="multi-domain-fault-demarcation-with-network-incident-management">
-<section id="appendix-A.4">
+<section id="appendix-A.5">
         <h3 id="name-multi-domain-fault-demarcat">
-<a href="#appendix-A.4" class="section-number selfRef">A.4. </a><a href="#name-multi-domain-fault-demarcat" class="section-name selfRef">Multi-Domain Fault Demarcation with Network Incident Management</a>
+<a href="#appendix-A.5" class="section-number selfRef">A.5. </a><a href="#name-multi-domain-fault-demarcat" class="section-name selfRef">Multi-Domain Fault Demarcation with Network Incident Management</a>
         </h3>
-<p id="appendix-A.4-1">Take multi-domain fault demarcation as an example, when both base station incident
+<p id="appendix-A.5-1">Take multi-domain fault demarcation as an example, when both base station incident
 in the RAN network and Network Link incident in the IP network are received and base station
 incident from user side results from network incident in other domains, the OSS system
 is unable to find network side problem simply based on base station incident. Therefore
@@ -4311,10 +4400,10 @@ The network controller can use network diagnosis related intent based interface 
 corresponding network side port  according to the base station IP address, and then further
 associated with transmission path (current path, historical path) to the base station and
 current and historical network performance, network resources, and incident status data, to
-diagnose the Probable Root Cause of the network incident and provide repair suggestions.<a href="#appendix-A.4-1" class="pilcrow">¶</a></p>
+diagnose the Probable Root Cause of the network incident and provide repair suggestions.<a href="#appendix-A.5-1" class="pilcrow">¶</a></p>
 <span id="name-multi-domain-fault-demarcati"></span><div id="exam5">
 <figure id="figure-10">
-          <div class="alignCenter art-text artwork" id="appendix-A.4-2.1">
+          <div class="alignCenter art-text artwork" id="appendix-A.5-2.1">
 <pre>
  +------------------------------------------------+
  |OSS +------------------------------------------+|
@@ -4358,13 +4447,13 @@ related-objects? leafref //List &lt;ResourceObject&gt;
 </section>
 </div>
 <div id="service-complaint-triggered-network-diagnosis">
-<section id="appendix-A.5">
+<section id="appendix-A.6">
         <h3 id="name-service-complaint-triggered">
-<a href="#appendix-A.5" class="section-number selfRef">A.5. </a><a href="#name-service-complaint-triggered" class="section-name selfRef">Service Complaint triggered Network Diagnosis</a>
+<a href="#appendix-A.6" class="section-number selfRef">A.6. </a><a href="#name-service-complaint-triggered" class="section-name selfRef">Service Complaint triggered Network Diagnosis</a>
         </h3>
 <span id="name-service-complaint-triggered-"></span><div id="exam6">
 <figure id="figure-11">
-          <div class="alignCenter art-text artwork" id="appendix-A.5-1.1">
+          <div class="alignCenter art-text artwork" id="appendix-A.6-1.1">
 <pre>
                                    Customer
                                    Complaint
@@ -4396,13 +4485,13 @@ related-objects? leafref //List &lt;ResourceObject&gt;
 <a href="#name-service-complaint-triggered-" class="selfRef">Service Complaint triggered Network Diagnosis</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.5-2">Similarly, in case of service degradation for a lease line service receiving from the customer,
+<p id="appendix-A.6-2">Similarly, in case of service degradation for a lease line service receiving from the customer,
 the OSS system can request network diagnosis at the network side conducted by the network controller.
 The network controller can use network diagnosis related intent based interface to find the
 corresponding network side port based on the dedicated line service, and then further associate
 the transmission path (current path, historical path) and current and historical network performance,
 network resources, and incident status data to diagnose the Probable Root Cause of the fault and provide
-repair suggestions.<a href="#appendix-A.5-2" class="pilcrow">¶</a></p>
+repair suggestions.<a href="#appendix-A.6-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
