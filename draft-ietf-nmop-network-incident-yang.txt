@@ -156,7 +156,7 @@ Table of Contents
    multi-layer network troubleshooting.
 
    As described in [RFC9940], a network incident refers to an undesired
-   occurrence such as an unexpected interruption of a network service,
+   Occurrence such as an unexpected interruption of a network service,
    degradation of the quality of a network service, or the below-target
    performance of a network service.  Different data sources, including
    alarms, metrics, and other anomaly information, can be correlated and
@@ -197,8 +197,8 @@ Table of Contents
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
-   The following terms are defined in [RFC8632], [RFC9543],[RFC9940] and
-   are not redefined here:
+   The following terms are defined in [RFC9543],[RFC9940] and are not
+   redefined here:
 
    *  Alarm
 
@@ -219,6 +219,8 @@ Table of Contents
    *  Symptom
 
    *  Characteristic
+
+   *  Occurrence
 
    *  SLA (Service Level Agreement)
 
@@ -350,8 +352,8 @@ Table of Contents
    these interfaces to commit the delivery of a service on specific
    point-to-point service topology or point to multi-point topology.
    When a given SLO threshold is violated, a network incident (or
-   customer incident [TMF724A] associated with an L3VPN service may be
-   derived).
+   customer incident [TMF724A] associated with an L3VPN service) may be
+   derived.
 
 3.3.  Multi-layer Fault Demarcation
 
@@ -2526,6 +2528,12 @@ Normative References
               DOI 10.17487/RFC9376, March 2023,
               <https://www.rfc-editor.org/rfc/rfc9376>.
 
+   [RFC9543]  Farrel, A., Ed., Drake, J., Ed., Rokui, R., Homma, S.,
+              Makhijani, K., Contreras, L., and J. Tantsura, "A
+              Framework for Network Slices in Networks Built from IETF
+              Technologies", RFC 9543, DOI 10.17487/RFC9543, March 2024,
+              <https://www.rfc-editor.org/rfc/rfc9543>.
+
    [RFC9911]  Schönwälder, J., Ed., "Common YANG Data Types", RFC 9911,
               DOI 10.17487/RFC9911, December 2025,
               <https://www.rfc-editor.org/rfc/rfc9911>.
@@ -2537,8 +2545,9 @@ Normative References
 
 Informative References
 
-   [BERT]     "BERT (language model)", n.d.,
-              <https://en.wikipedia.org/wiki/BERT_(language_model)>.
+   [BERT]     "Pre-training of Deep Bidirectional Transformers for
+              Language Understanding", 2019,
+              <https://aclanthology.org/N19-1423/>.
 
    [I-D.ietf-netconf-configuration-tracing]
               Quilbeuf, J., Claise, B., Graf, T., Lopez, D., and S.
@@ -2621,12 +2630,6 @@ Informative References
               RFC 9418, DOI 10.17487/RFC9418, July 2023,
               <https://www.rfc-editor.org/rfc/rfc9418>.
 
-   [RFC9543]  Farrel, A., Ed., Drake, J., Ed., Rokui, R., Homma, S.,
-              Makhijani, K., Contreras, L., and J. Tantsura, "A
-              Framework for Network Slices in Networks Built from IETF
-              Technologies", RFC 9543, DOI 10.17487/RFC9543, March 2024,
-              <https://www.rfc-editor.org/rfc/rfc9543>.
-
    [RFC9544]  Mirsky, G., Halpern, J., Min, X., Clemm, A., Strassner,
               J., and J. François, "Precision Availability Metrics
               (PAMs) for Services Governed by Service Level Objectives
@@ -2652,71 +2655,87 @@ A.1.  Network Incident Correlated with Specific Network Topology and the
    topology 'L2-Topo' and the domain 'PTN'.  The Probable Root Cause is
    also analysed.
 
+{
+  "ietf-incident:incidents": {
+    "incident": [
       {
         "name": "line fault",
-        "type": "problem",
-        "incident-no": 56433218,
+        "type": "ietf-incident:problem",
         "incident-qualifier": "line fault",
-        "service-instance": ["optical-svc-A"],
-        "domain": "PTN",
+        "incident-no": 56433218,
+        "service-instance": [
+          "optical-svc-A"
+        ],
+        "domain": "ptn",
         "priority": "critical",
         "occur-time": "2026-03-10T04:01:12Z",
         "clear-time": "2026-03-10T06:01:12Z",
         "ack-time": "2026-03-10T05:01:12Z",
         "last-updated": "2026-03-10T05:31:12Z",
         "ack-status": "unacknowledged",
-        "category": "Network",
-        "source": [
-          {
-            "node-ref": "example:D1",
-            "network-ref": "example:L2-topo",
-            "resource": [
-              {
-                "name": "7985e01a-5aad-11ea-b214-286ed488cf99"
-              }
-            ]
-          }
-        ],
-        "probable-causes": [
-          {
-            "name": "Feeder fiber great loss change",
-            "detail-information": "The connector of the optical fiber\n
-             is contaminated, Or the optical fiber is bent too much.",
-            "probable-cause": {
-              "network-ref": "example:L2-topo",
+        "category": "ietf-incident:network",
+        "sources": {
+          "source": [
+            {
               "node-ref": "example:D1",
+              "network-ref": "example:L2-topo",
               "resource": [
                 {
-                  "name": "7985e01a-5aad-11ea-b214-286ed488cf99",
-                  "cause-name": "ltp",
-                  "detail": "Frame=0, Slot=6, Subslot=65535, Port=7,\n
-                   ODF= ODF001,  Level1Splitter= splitter0025"
+                  "name": "7985e01a-5aad-11ea-b214-286ed488cf99"
                 }
               ]
             }
-          }
-        ],
-        "probable-event": [
-          {
-            "event-id": "8921834",
-            "type": "alarm"
-          }
-        ],
-        "events": [
-          {
-            "event-id": "8921832",
-            "type": "alarm"
-          },
-          {
-            "event-id": "8921833",
-            "type": "alarm"
-          },
-          {
-            "event-id": "8921834",
-            "type": "alarm"
-          }
-        ]
+          ]
+        },
+        "probable-causes": {
+          "probable-cause": [
+            {
+              "name": "Feeder fiber great loss change",
+              "detail-information": "The connector of the optical fiber is contaminated,\n
+                                     Or the optical fiber is bent too much.",
+              "probable-cause": {
+                "network-ref": "example:L2-topo",
+                "node-ref": "example:D1",
+                "resource": [
+                  {
+                    "name": "7985e01a-5aad-11ea-b214-286ed488cf99",
+                    "cause-name": "ltp",
+                    "detail": "Frame=0, Slot=6, Subslot=65535, Port=7, ODF= ODF001,\n
+                               Level1Splitter= splitter0025"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "probable-events": {
+          "probable-event": [
+            {
+              "event-id": "8921834",
+              "type": "alarm"
+            }
+          ]
+        },
+        "events": {
+          "event": [
+            {
+              "event-id": "8921832",
+              "type": "alarm"
+            },
+            {
+              "event-id": "8921833",
+              "type": "alarm"
+            },
+            {
+              "event-id": "8921834",
+              "type": "alarm"
+            }
+          ]
+        }
       }
+    ]
+  }
+}
 
 A.2.  JSON Example on Incident Notifications
 

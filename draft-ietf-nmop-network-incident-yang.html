@@ -1369,7 +1369,7 @@ relationships with both network service and network topology at various differen
 layers, which not only can be used at a specific layer in one domain but also can be used to
 span across layers for multi-layer network troubleshooting.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <p id="section-1-4">As described in <span>[<a href="#RFC9940" class="cite xref">RFC9940</a>]</span>, a network incident refers
-to an undesired occurrence such as an unexpected interruption of a network service,
+to an undesired Occurrence such as an unexpected interruption of a network service,
 degradation of the quality of a network service, or the below-target performance of
 a network service. Different data sources, including alarms, metrics, and other anomaly
 information, can be correlated and combined into one or a few network
@@ -1405,7 +1405,7 @@ network automation <span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</spa
 "<span class="bcp14">MAY</span>", and "<span class="bcp14">OPTIONAL</span>" in this document are to be interpreted as
 described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="cite xref">RFC8174</a>]</span> when, and only when, they
 appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶</a></p>
-<p id="section-2-2">The following terms are defined in <span>[<a href="#RFC8632" class="cite xref">RFC8632</a>]</span>, <span>[<a href="#RFC9543" class="cite xref">RFC9543</a>]</span>,<span>[<a href="#RFC9940" class="cite xref">RFC9940</a>]</span>
+<p id="section-2-2">The following terms are defined in <span>[<a href="#RFC9543" class="cite xref">RFC9543</a>]</span>,<span>[<a href="#RFC9940" class="cite xref">RFC9940</a>]</span>
 and are not redefined here:<a href="#section-2-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-2-3.1">
@@ -1439,10 +1439,13 @@ and are not redefined here:<a href="#section-2-2" class="pilcrow">¶</a></p>
           <p id="section-2-3.10.1">Characteristic<a href="#section-2-3.10.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.11">
-          <p id="section-2-3.11.1">SLA (Service Level Agreement)<a href="#section-2-3.11.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.11.1">Occurrence<a href="#section-2-3.11.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.12">
-          <p id="section-2-3.12.1">SLO (Service Level Objective)<a href="#section-2-3.12.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.12.1">SLA (Service Level Agreement)<a href="#section-2-3.12.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-2-3.13">
+          <p id="section-2-3.13.1">SLO (Service Level Objective)<a href="#section-2-3.13.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <p id="section-2-4">The following terms are defined in this document:<a href="#section-2-4" class="pilcrow">¶</a></p>
@@ -1597,7 +1600,7 @@ of end-to-end latency as follows:<a href="#section-3.2-2" class="pilcrow">¶</a>
 so that the service orchestration layer can use these interfaces to commit the
 delivery of a service on specific point-to-point service topology or point to
 multi-point topology. When a given SLO threshold is violated, a network incident
-(or customer incident <span>[<a href="#TMF724A" class="cite xref">TMF724A</a>]</span> associated with an L3VPN service may be derived).<a href="#section-3.2-4" class="pilcrow">¶</a></p>
+(or customer incident <span>[<a href="#TMF724A" class="cite xref">TMF724A</a>]</span> associated with an L3VPN service) may be derived.<a href="#section-3.2-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="multi-layer-fault-demarcation">
@@ -3884,6 +3887,10 @@ for their valuable comments and great input to this work.<a href="#section-13-1"
         <dd>
 <span class="refAuthor">Wang, Q., Ed.</span>, <span class="refAuthor">Valiveti, R., Ed.</span>, <span class="refAuthor">Zheng, H., Ed.</span>, <span class="refAuthor">van Helvoort, H.</span>, and <span class="refAuthor">S. Belotti</span>, <span class="refTitle">"Applicability of GMPLS for beyond 100 Gbit/s Optical Transport Network"</span>, <span class="seriesInfo">RFC 9376</span>, <span class="seriesInfo">DOI 10.17487/RFC9376</span>, <time datetime="2023-03" class="refDate">March 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9376">https://www.rfc-editor.org/rfc/rfc9376</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC9543">[RFC9543]</dt>
+        <dd>
+<span class="refAuthor">Farrel, A., Ed.</span>, <span class="refAuthor">Drake, J., Ed.</span>, <span class="refAuthor">Rokui, R.</span>, <span class="refAuthor">Homma, S.</span>, <span class="refAuthor">Makhijani, K.</span>, <span class="refAuthor">Contreras, L.</span>, and <span class="refAuthor">J. Tantsura</span>, <span class="refTitle">"A Framework for Network Slices in Networks Built from IETF Technologies"</span>, <span class="seriesInfo">RFC 9543</span>, <span class="seriesInfo">DOI 10.17487/RFC9543</span>, <time datetime="2024-03" class="refDate">March 2024</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9543">https://www.rfc-editor.org/rfc/rfc9543</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC9911">[RFC9911]</dt>
         <dd>
 <span class="refAuthor">Schönwälder, J., Ed.</span>, <span class="refTitle">"Common YANG Data Types"</span>, <span class="seriesInfo">RFC 9911</span>, <span class="seriesInfo">DOI 10.17487/RFC9911</span>, <time datetime="2025-12" class="refDate">December 2025</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9911">https://www.rfc-editor.org/rfc/rfc9911</a>&gt;</span>. </dd>
@@ -3903,7 +3910,7 @@ for their valuable comments and great input to this work.<a href="#section-13-1"
 <dl class="references">
 <dt id="BERT">[BERT]</dt>
         <dd>
-<span class="refTitle">"BERT (language model)"</span>, <span>n.d.</span>, <span>&lt;<a href="https://en.wikipedia.org/wiki/BERT_(language_model)">https://en.wikipedia.org/wiki/BERT_(language_model)</a>&gt;</span>. </dd>
+<span class="refTitle">"Pre-training of Deep Bidirectional Transformers for Language Understanding"</span>, <time datetime="2019" class="refDate">2019</time>, <span>&lt;<a href="https://aclanthology.org/N19-1423/">https://aclanthology.org/N19-1423/</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-netconf-configuration-tracing">[I-D.ietf-netconf-configuration-tracing]</dt>
         <dd>
@@ -3953,10 +3960,6 @@ for their valuable comments and great input to this work.<a href="#section-13-1"
         <dd>
 <span class="refAuthor">Claise, B.</span>, <span class="refAuthor">Quilbeuf, J.</span>, <span class="refAuthor">Lucente, P.</span>, <span class="refAuthor">Fasano, P.</span>, and <span class="refAuthor">T. Arumugam</span>, <span class="refTitle">"A YANG Data Model for Service Assurance"</span>, <span class="seriesInfo">RFC 9418</span>, <span class="seriesInfo">DOI 10.17487/RFC9418</span>, <time datetime="2023-07" class="refDate">July 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9418">https://www.rfc-editor.org/rfc/rfc9418</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="RFC9543">[RFC9543]</dt>
-        <dd>
-<span class="refAuthor">Farrel, A., Ed.</span>, <span class="refAuthor">Drake, J., Ed.</span>, <span class="refAuthor">Rokui, R.</span>, <span class="refAuthor">Homma, S.</span>, <span class="refAuthor">Makhijani, K.</span>, <span class="refAuthor">Contreras, L.</span>, and <span class="refAuthor">J. Tantsura</span>, <span class="refTitle">"A Framework for Network Slices in Networks Built from IETF Technologies"</span>, <span class="seriesInfo">RFC 9543</span>, <span class="seriesInfo">DOI 10.17487/RFC9543</span>, <time datetime="2024-03" class="refDate">March 2024</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9543">https://www.rfc-editor.org/rfc/rfc9543</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="RFC9544">[RFC9544]</dt>
         <dd>
 <span class="refAuthor">Mirsky, G.</span>, <span class="refAuthor">Halpern, J.</span>, <span class="refAuthor">Min, X.</span>, <span class="refAuthor">Clemm, A.</span>, <span class="refAuthor">Strassner, J.</span>, and <span class="refAuthor">J. François</span>, <span class="refTitle">"Precision Availability Metrics (PAMs) for Services Governed by Service Level Objectives (SLOs)"</span>, <span class="seriesInfo">RFC 9544</span>, <span class="seriesInfo">DOI 10.17487/RFC9544</span>, <time datetime="2024-03" class="refDate">March 2024</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9544">https://www.rfc-editor.org/rfc/rfc9544</a>&gt;</span>. </dd>
@@ -3989,71 +3992,87 @@ for their valuable comments and great input to this work.<a href="#section-13-1"
 The Probable Root Cause is also analysed.<a href="#appendix-A.1-1" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A.1-2">
 <pre>
-   {
-     "name": "line fault",
-     "type": "problem",
-     "incident-no": 56433218,
-     "incident-qualifier": "line fault",
-     "service-instance": ["optical-svc-A"],
-     "domain": "PTN",
-     "priority": "critical",
-     "occur-time": "2026-03-10T04:01:12Z",
-     "clear-time": "2026-03-10T06:01:12Z",
-     "ack-time": "2026-03-10T05:01:12Z",
-     "last-updated": "2026-03-10T05:31:12Z",
-     "ack-status": "unacknowledged",
-     "category": "Network",
-     "source": [
-       {
-         "node-ref": "example:D1",
-         "network-ref": "example:L2-topo",
-         "resource": [
-           {
-             "name": "7985e01a-5aad-11ea-b214-286ed488cf99"
-           }
-         ]
-       }
-     ],
-     "probable-causes": [
-       {
-         "name": "Feeder fiber great loss change",
-         "detail-information": "The connector of the optical fiber\n
-          is contaminated, Or the optical fiber is bent too much.",
-         "probable-cause": {
-           "network-ref": "example:L2-topo",
-           "node-ref": "example:D1",
-           "resource": [
-             {
-               "name": "7985e01a-5aad-11ea-b214-286ed488cf99",
-               "cause-name": "ltp",
-               "detail": "Frame=0, Slot=6, Subslot=65535, Port=7,\n
-                ODF= ODF001,  Level1Splitter= splitter0025"
-             }
-           ]
-         }
-       }
-     ],
-     "probable-event": [
-       {
-         "event-id": "8921834",
-         "type": "alarm"
-       }
-     ],
-     "events": [
-       {
-         "event-id": "8921832",
-         "type": "alarm"
-       },
-       {
-         "event-id": "8921833",
-         "type": "alarm"
-       },
-       {
-         "event-id": "8921834",
-         "type": "alarm"
-       }
-     ]
-   }
+{
+  "ietf-incident:incidents": {
+    "incident": [
+      {
+        "name": "line fault",
+        "type": "ietf-incident:problem",
+        "incident-qualifier": "line fault",
+        "incident-no": 56433218,
+        "service-instance": [
+          "optical-svc-A"
+        ],
+        "domain": "ptn",
+        "priority": "critical",
+        "occur-time": "2026-03-10T04:01:12Z",
+        "clear-time": "2026-03-10T06:01:12Z",
+        "ack-time": "2026-03-10T05:01:12Z",
+        "last-updated": "2026-03-10T05:31:12Z",
+        "ack-status": "unacknowledged",
+        "category": "ietf-incident:network",
+        "sources": {
+          "source": [
+            {
+              "node-ref": "example:D1",
+              "network-ref": "example:L2-topo",
+              "resource": [
+                {
+                  "name": "7985e01a-5aad-11ea-b214-286ed488cf99"
+                }
+              ]
+            }
+          ]
+        },
+        "probable-causes": {
+          "probable-cause": [
+            {
+              "name": "Feeder fiber great loss change",
+              "detail-information": "The connector of the optical fiber is contaminated,\n
+                                     Or the optical fiber is bent too much.",
+              "probable-cause": {
+                "network-ref": "example:L2-topo",
+                "node-ref": "example:D1",
+                "resource": [
+                  {
+                    "name": "7985e01a-5aad-11ea-b214-286ed488cf99",
+                    "cause-name": "ltp",
+                    "detail": "Frame=0, Slot=6, Subslot=65535, Port=7, ODF= ODF001,\n
+                               Level1Splitter= splitter0025"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "probable-events": {
+          "probable-event": [
+            {
+              "event-id": "8921834",
+              "type": "alarm"
+            }
+          ]
+        },
+        "events": {
+          "event": [
+            {
+              "event-id": "8921832",
+              "type": "alarm"
+            },
+            {
+              "event-id": "8921833",
+              "type": "alarm"
+            },
+            {
+              "event-id": "8921834",
+              "type": "alarm"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
 </pre><a href="#appendix-A.1-2" class="pilcrow">¶</a>
 </div>
 </section>
