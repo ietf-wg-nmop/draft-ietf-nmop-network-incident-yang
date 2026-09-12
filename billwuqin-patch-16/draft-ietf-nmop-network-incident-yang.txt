@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 15 March 2027                                        Telefonica
+Expires: 16 March 2027                                        Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                       11 September 2026
+                                                       12 September 2026
 
 
            A YANG Data Model for Network Incident Management
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 March 2027.
+   This Internet-Draft will expire on 16 March 2027.
 
 Copyright Notice
 
@@ -537,15 +537,15 @@ Table of Contents
 
                      Figure 2: Incident Identification
 
-   The Incident Server must be capable of identifying network incidents.
+   The Incident Server is capable of identifying network incidents.
    Multiple alarms, metrics and other information are reported to the
-   Incident Server, and the server must analyze it and find out the
+   Incident Server, and the server needs to analyze it and find out the
    correlations of them, if the correlation match the network incident
    rules, network incident is identified, and reported to the client.
    If the network incident is repeated many times, the problem needs to
    be raised based on the incident and the operator's policy.  Service
-   Impact Assessment should be performed if a network incident is
-   identified, and the content of network incident should be updated if
+   Impact Assessment SHOULD be performed if a network incident is
+   identified, and the content of network incident SHOULD be updated if
    impacted network services are detected.
 
    AI/ML may be used to identify the network incident.  Expert system
@@ -640,7 +640,7 @@ Table of Contents
    running network services.  The Incident Client can choose not to
    perform that diagnosis operation after determining the impact is not
    trivial.  The Incident Server can also perform self-diagnosis.
-   However, the self-diagnosis must not affect the running network
+   However, the self-diagnosis MUST not affect the running network
    services.  Possible diagnosis methods include link reachability
    detection, link quality detection, alarm/log analysis, and short-term
    fine-grained monitoring of network quality metrics, etc.
@@ -654,7 +654,7 @@ Table of Contents
    ticket or asking the server to resolve it.  Generally, the Incident
    Client would attempt to directly resolve the Probable Root Cause.  If
    the Probable Root Cause cannot be resolved, an alternative solution
-   should be sought.  For example, if a network incident caused by a
+   SHOULD be sought.  For example, if a network incident caused by a
    physical component failure and cannot be automatically resolved, the
    standby link can be used to bypass the faulty component.
 
@@ -674,7 +674,7 @@ Table of Contents
 
    An 'incident-no' is used as an identifier of an incident instance, if
    an incident instance is identified, a new 'incident-no' is created.
-   The 'incident-no' must be unique in the whole system.
+   The 'incident-no' MUST be unique in the whole system.
 
 6.2.  The Incident Lifecycle
 
@@ -707,7 +707,7 @@ Table of Contents
    From an operator perspective, the lifecycle of a network incident
    instance includes 'acknowledged', 'diagnosed', and 'resolved'.
 
-   When a network incident instance is generated, the operator should
+   When a network incident instance is generated, the operator SHOULD
    acknowledge the network incident with 'incident-acknowledge' RPC.
    And then the operator attempts to diagnose the network incident with
    'incident-diagnose' PRC (for example, find out the Probable Root
@@ -1007,8 +1007,8 @@ Table of Contents
 
 7.6.  RPC Failure
 
-   If the RPC fails, the RPC error response must indicate the reason for
-   the failure.  The structures defined in this document must encode
+   If the RPC fails, the RPC error response MUST indicate the reason for
+   the failure.  The structures defined in this document MUST encode
    specific errors and be inserted in the error response to indicate the
    reason for the failure.
 
@@ -2230,7 +2230,7 @@ Table of Contents
    [I-D.ietf-netconf-configuration-tracing] defines a mechanism for
    configuration tracing.  If some errors occur when services are
    deploying, it's very easy to identify these errors by distributed
-   system tracing, and a network incident should be reported.
+   system tracing, and a network incident SHOULD be reported.
 
 9.5.  Relationship with Network Anomaly Detection Architecture
 
@@ -2244,7 +2244,7 @@ Table of Contents
    System" maps to the "Incident Server" in Section 4 of this document.
    The "relevant-state" YANG notification defined in Section 8.2 of
    [I-D.ietf-nmop-network-anomaly-lifecycle] defines an "id" which
-   should be mapped to "event-id" in the 'ietf-incident' YANG module
+   SHOULD be mapped to "event-id" in the 'ietf-incident' YANG module
    described in this document on the "Incident Server".
    [I-D.ietf-nmop-network-anomaly-semantics] augments relevant-state
    YANG notification with 'ietf-network-anomaly-symptom' YANG module
@@ -2269,7 +2269,7 @@ Table of Contents
    Please note that the listing of any individual implementation here
    does not imply endorsement by the IETF.  Furthermore, no effort has
    been spent to verify the information presented here that was supplied
-   by IETF contributors.  This is not intended as, and must not be
+   by IETF contributors.  This is not intended as, and MUST not be
    construed to be, a catalog of available implementations or their
    features.  Readers are advised to note that other implementations may
    exist.
@@ -2322,7 +2322,7 @@ Table of Contents
    to access network incident information and potentially get a picture
    of the broken state of the network.  Intruders may exploit the
    vulnerabilities of the network to lead to further negative impact on
-   the network.  Care must be taken to ensure that this list is accessed
+   the network.  Care MUST be taken to ensure that this list is accessed
    only by authorized users.
 
    Some of the RPC operations in this YANG module may be considered
@@ -2334,7 +2334,7 @@ Table of Contents
    diagnosis and Probable Root Cause locating.  If a malicious or buggy
    client performs an unexpectedly large number of this operation, the
    result might be an excessive use of system resources [RFC9940] on the
-   server side as well as network resources.  Servers must ensure they
+   server side as well as network resources.  Servers MUST ensure they
    have sufficient resources to fulfill this request; otherwise, they
    can choose to block the connnection (e.g., block abusive IP address)
    to this client and/or reject the request using rpc errors defined in
@@ -2344,7 +2344,7 @@ Table of Contents
    incident.  If a malicious or buggy client performs an unexpectedly
    large number of this operation, the result might be an excessive use
    of system resources on the server side as well as network resources.
-   Servers must ensure they have sufficient resources to fulfill this
+   Servers MUST ensure they have sufficient resources to fulfill this
    request; otherwise, they can choose to reject the request without
    compromise on security of data-at-rest in the server.
 
