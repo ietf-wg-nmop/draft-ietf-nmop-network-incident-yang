@@ -491,15 +491,15 @@ aggregated into a network incident after analysis.
 ~~~~
 {:#ident title="Incident Identification" artwork-align="center"}
 
-The Incident Server must be capable of identifying
+The Incident Server is capable of identifying
 network incidents.  Multiple alarms, metrics and other information are
-reported to the Incident Server, and the server must analyze it and find
+reported to the Incident Server, and the server needs to analyze it and find
 out the correlations of them, if the correlation match the network incident
 rules, network incident is identified, and reported to the client.
 If the network incident is repeated many times, the problem needs to be
 raised based on the incident and the operator's policy.
-Service Impact Assessment should be performed if a network incident is identified,
-and the content of network incident should be updated if impacted network
+Service Impact Assessment SHOULD be performed if a network incident is identified,
+and the content of network incident SHOULD be updated if impacted network
 services are detected.
 
 AI/ML may be used to identify the network incident.  Expert system and online
@@ -593,20 +593,20 @@ Incident Client may diagnose the incident to determine the Probable Root Cause.
 Some diagnosis operations may affect the running network services.  The
 Incident Client can choose not to perform that diagnosis operation after
 determining the impact is not trivial.  The Incident Server can also perform
-self-diagnosis.  However, the self-diagnosis must not affect the running
+self-diagnosis.  However, the self-diagnosis MUST not affect the running
 network services.  Possible diagnosis methods include link reachability
 detection, link quality detection, alarm/log analysis, and short-term
 fine-grained monitoring of network quality metrics, etc.
 
 ## Incident Resolution
 
-After the Probable Root Cause is diagnosed, the Incident Client may  the
+After the Probable Root Cause is diagnosed, the Incident Client may resolve the
 network incident.  The Incident Client may choose to resolve the network
 incident by invoking other functions, such as routing calculation function,
 configuration function, dispatching a ticket or asking the server to resolve it.
 Generally, the Incident Client would attempt to directly resolve the Probable
 Root Cause.  If the Probable Root Cause cannot be resolved, an alternative
-solution should be required.  For example, if a network incident caused by a
+solution SHOULD be sought.  For example, if a network incident caused by a
 physical component failure and cannot be automatically resolved, the standby
 link can be used to bypass the faulty component.
 
@@ -625,7 +625,7 @@ after determining the impact is not trivial.
 
 An 'incident-no' is used as an identifier of an incident instance, if
 an incident instance is identified, a new 'incident-no' is created.
-The 'incident-no' must be unique in the whole system.
+The 'incident-no' MUST be unique in the whole system.
 
 ## The Incident Lifecycle
 
@@ -655,7 +655,7 @@ Operators can act upon network incident with network incident RPCs. From an oper
 the lifecycle of a network incident instance includes 'acknowledged', 'diagnosed', and
 'resolved'.
 
-When a network incident instance is generated, the operator should acknowledge the network incident
+When a network incident instance is generated, the operator SHOULD acknowledge the network incident
 with 'incident-acknowledge' RPC. And then the operator attempts to diagnose the network incident
 with 'incident-diagnose' PRC (for example, find out the Probable Root Cause and affected components).
 Diagnosis is not mandatory. If the Probable Root Cause and affected components are known when the
@@ -811,8 +811,8 @@ process, a notification update will be triggered.
 
 ## RPC Failure
 
-If the RPC fails, the RPC error response must indicate the reason for the
-failure. The structures defined in this document must encode specific errors
+If the RPC fails, the RPC error response MUST indicate the reason for the
+failure. The structures defined in this document MUST encode specific errors
 and be inserted in the error response to indicate the reason for the failure.
 
 The tree diagram {{!RFC8340}} for structures is defined as follows:
@@ -879,7 +879,7 @@ This module uses types defined in {{!RFC9911}}, {{!RFC8345}},{{!RFC8639}},
 The "ietf-incident" YANG module introduces an incident-centric
 architecture designed to overcome the structural silo of management
 systems that handle alarms and performance metrics separately at
-different network layers. Operators must ensure that the underlying management
+different network layers. Operators need to ensure that the underlying management
 system feeding this model maintains continuous, real-time read access to
 diverse end to end network topology data spanning multiple layers.
 
@@ -1046,7 +1046,7 @@ netconf extension for {{W3C-Trace-Context}} and
 {{?I-D.ietf-netconf-configuration-tracing}} defines a mechanism for
 configuration tracing.  If some errors occur when services are
 deploying, it's very easy to identify these errors by distributed
-system tracing, and a network incident should be reported.
+system tracing, and a network incident SHOULD be reported.
 
 ## Relationship with Network Anomaly Detection Architecture
 
@@ -1058,7 +1058,7 @@ with a confidence score. Section 3 of {{?I-D.ietf-nmop-network-anomaly-architect
 describes the elements of the system architecture where the "Alarm Management System"
 maps to the "Incident Server" in Section 4 of this document. The "relevant-state"
 YANG notification defined in Section 8.2 of {{?I-D.ietf-nmop-network-anomaly-lifecycle}}
-defines an "id" which should be mapped to "event-id" in the 'ietf-incident' YANG module
+defines an "id" which SHOULD be mapped to "event-id" in the 'ietf-incident' YANG module
 described in this document on the "Incident Server". {{?I-D.ietf-nmop-network-anomaly-semantics}}
 augments relevant-state YANG notification with 'ietf-network-anomaly-symptom' YANG module
 symptom semantics described in Section 4.2 and service and network relationships with
@@ -1079,7 +1079,7 @@ the IETF in its decision processes in progressing drafts to RFCs.
 Please note that the listing of any individual implementation here
 does not imply endorsement by the IETF.  Furthermore, no effort has
 been spent to verify the information presented here that was supplied
-by IETF contributors.  This is not intended as, and must not be
+by IETF contributors.  This is not intended as, and MUST not be
 construed to be, a catalog of available implementations or their
 features.  Readers are advised to note that other implementations may
 exist.
@@ -1148,7 +1148,7 @@ operations and their sensitivity/vulnerability:
 diagnosis and Probable Root Cause locating. If a malicious or buggy client
 performs an unexpectedly large number of this operation, the result
 might be an excessive use of system resources {{!RFC9940}}
-on the server side as well as network resources.  Servers must
+on the server side as well as network resources.  Servers MUST
 ensure they have sufficient resources to fulfill this request; otherwise,
 they can choose to block the connnection (e.g., block abusive IP address)
 to this client and/or reject the request using rpc errors defined in
@@ -1157,7 +1157,7 @@ section 7.6.
 "incident-resolve": This RPC operation is used to resolve the network
 incident. If a malicious or buggy client performs an unexpectedly large
 number of this operation, the result might be an excessive use of system
-resources on the server side as well as network resources.  Servers must
+resources on the server side as well as network resources.  Servers MUST
 ensure they have sufficient resources to fulfill this request;
 otherwise, they can choose to reject the request without compromise on security of
 data-at-rest in the server.
