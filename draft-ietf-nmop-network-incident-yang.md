@@ -1698,9 +1698,19 @@ NOTE TO THE RFC-EDITOR: Please remove this appendix before publication
 
   * Change the type of root cause into string
 
-  * Fix invalide yang instance in the appendix A.1
+  * Fix invalid yang instance in the appendix A.1
 
   * Clean up unused references
+
+  * Fix Incident priority issue raised by Adrian
+
+  * Add JSON example on YANG notification for Base Model
+
+  * Add Security Consideration for incident-acknowledgement
+
+  * Add implementation status section
+
+  * Add incident-not-found support
 
   * Other Editorial changes
 
