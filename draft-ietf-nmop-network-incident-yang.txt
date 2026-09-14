@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 16 March 2027                                        Telefonica
+Expires: 18 March 2027                                        Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                       12 September 2026
+                                                       14 September 2026
 
 
            A YANG Data Model for Network Incident Management
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 16 March 2027.
+   This Internet-Draft will expire on 18 March 2027.
 
 Copyright Notice
 
@@ -3123,9 +3123,19 @@ Appendix B.  Changes between Revisions
 
    *  Change the type of root cause into string
 
-   *  Fix invalide yang instance in the appendix A.1
+   *  Fix invalid yang instance in the appendix A.1
 
    *  Clean up unused references
+
+   *  Fix Incident priority issue raised by Adrian
+
+   *  Add JSON example on YANG notification for Base Model
+
+   *  Add Security Consideration for incident-acknowledgement
+
+   *  Add implementation status section
+
+   *  Add incident-not-found support
 
    *  Other Editorial changes
 
