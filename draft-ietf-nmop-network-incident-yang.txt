@@ -1483,7 +1483,10 @@ Table of Contents
          require-instance false;
        }
        description
-         "Provides a reference to a network incident.";
+         "Provides a reference to a network incident using incident-no
+          note that incident no is unique but not incident list key.
+          The incident-ref is used for correlation between incident no
+          and incident list key in the RPCs and Notification.";
      }
 
      // Groupings
@@ -1749,7 +1752,7 @@ Table of Contents
                      require-instance false;
                    }
                    description
-                     "Network resource.";
+                     "This is an identification of the alarming resource.";
                    reference
                      "RFC 8632: A YANG Data Model for Alarm
                       Management";
@@ -1759,6 +1762,7 @@ Table of Contents
                      path "/al:alarms/al:alarm-list/al:alarm"
                         + "[al:resource = current()/../resource]"
                         + "/al:alarm-type-id";
+                     require-instance false;
                    }
                    description
                      "Alarm type id.";
@@ -1772,6 +1776,7 @@ Table of Contents
                         + "[al:resource = current()/../resource]"
                         + "[al:alarm-type-id = current()/.."
                         + "/alarm-type-id]/al:alarm-type-qualifier";
+                     require-instance false;
                    }
                    description
                      "Alarm type qualifier.";
@@ -1793,7 +1798,8 @@ Table of Contents
                  leaf resource {
                    type al:resource;
                    description
-                     "Network resource.";
+                     "This is an identification of the network resource such as
+                                              interface, where the metric can be collected or measured.";
                    reference
                      "RFC 8632: A YANG Data Model for Alarm
                                 Management";
@@ -2021,9 +2027,9 @@ Table of Contents
        leaf time {
          type yang:date-and-time;
          description
-           "Occurring time of an incident instance.
-            It matches the occur-time in
-            incident-time-info grouping";
+           " The time when an incident instance occurs.
+            It is the occur time of the first event during
+            incident detection.";
        }
      }
 
