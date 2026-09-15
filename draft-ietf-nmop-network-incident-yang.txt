@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 18 March 2027                                        Telefonica
+Expires: 19 March 2027                                        Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                       14 September 2026
+                                                       15 September 2026
 
 
            A YANG Data Model for Network Incident Management
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 18 March 2027.
+   This Internet-Draft will expire on 19 March 2027.
 
 Copyright Notice
 
@@ -643,7 +643,7 @@ Table of Contents
    running network services.  The Incident Client can choose not to
    perform that diagnosis operation after determining the impact is not
    trivial.  The Incident Server can also perform self-diagnosis.
-   However, the self-diagnosis MUST not affect the running network
+   However, the self-diagnosis MUST NOT affect the running network
    services.  Possible diagnosis methods include link reachability
    detection, link quality detection, alarm/log analysis, and short-term
    fine-grained monitoring of network quality metrics, etc.
@@ -1061,7 +1061,7 @@ Table of Contents
 
    This module uses types defined in [RFC9911], [RFC8345],[RFC8639],
    [RFC8641], [RFC8632], [RFC8791], [RFC9376], [RFC1136], [RFC6373],
-   [RFC8348], [RFC9940], [RFC8632], [RFC5277], [RFC9375],
+   [RFC8348], [RFC9940], [RFC5277], [RFC9375],
    [I-D.ietf-netconf-notif-envelope].
 
    <CODE BEGINS> file "ietf-incident@2026-07-30.yang"
@@ -2272,7 +2272,7 @@ Table of Contents
    Please note that the listing of any individual implementation here
    does not imply endorsement by the IETF.  Furthermore, no effort has
    been spent to verify the information presented here that was supplied
-   by IETF contributors.  This is not intended as, and MUST not be
+   by IETF contributors.  This is not intended as, and MUST NOT be
    construed to be, a catalog of available implementations or their
    features.  Readers are advised to note that other implementations may
    exist.
@@ -2285,7 +2285,7 @@ Table of Contents
    they see fit".
 
    Note to the RFC Editor: As per [RFC7942] guidelines, please remove
-   this Implementation Status apendix prior publication.
+   this Implementation Status Section prior to publication.
 
 10.1.  Huawei Implementation
 
@@ -2306,8 +2306,9 @@ Table of Contents
    is designed to be accessed via YANG-based management protocols, such
    as NETCONF [RFC6241] and RESTCONF [RFC8040].  These YANG-based
    management protocols (1) have to use a secure transport layer (e.g.,
-   SSH [RFC4252], TLS [RFC8446], and QUIC [RFC9000]) and (2) have to use
-   mutual authentication.
+   SSH Transport Layer [RFC4253]) and (2) have to use mutual
+   authentication (e.g., SSH [RFC4252], TLS [RFC8446], and QUIC
+   [RFC9000]).
 
    The Network Configuration Access Control Model (NACM) [RFC8341]
    provides the means to restrict access for particular NETCONF or
@@ -2323,7 +2324,7 @@ Table of Contents
    '/incidents/incident': This list specifies the network incident
    entries, such as the service-instance leaf-list and the sources/
    probable-causes containers may reveal customer-identifiable
-   information (e.g.,which VPN services are affected, which customer
+   information (e.g., which VPN services are affected, which customer
    endpoints are involved).  Unauthorized read access of this list can
    allow intruders to access network incident information and
    potentially get a picture of the broken state of the network.
@@ -2342,7 +2343,7 @@ Table of Contents
    result might be an excessive use of system resources [RFC9940] on the
    server side as well as network resources.  Servers MUST ensure they
    have sufficient resources to fulfill this request; otherwise, they
-   can choose to block the connnection (e.g., block abusive IP address)
+   can choose to block the connection (e.g., block abusive IP address)
    to this client and/or reject the request using rpc errors defined in
    section 7.6.
 
@@ -2409,22 +2410,9 @@ Normative References
               Feng, A. H., Francois, P., Graf, T., and B. Claise,
               "Extensible YANG Model for YANG-Push Notifications", Work
               in Progress, Internet-Draft, draft-ietf-netconf-notif-
-              envelope-05, 18 May 2026,
+              envelope-06, 14 September 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-netconf-
-              notif-envelope-05>.
-
-   [I-D.ietf-opsawg-scheduling-oam-tests]
-              Contreras, L. M., Lopez, V., and Q. Wu, "A YANG Data Model
-              for Network Diagnosis using Scheduled Sequences of OAM
-              Tests", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-scheduling-oam-tests-07, 5 July 2026,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              scheduling-oam-tests-07>.
-
-   [RFC1136]  Hares, S. and D. Katz, "Administrative Domains and Routing
-              Domains: A model for routing in the Internet", RFC 1136,
-              DOI 10.17487/RFC1136, December 1989,
-              <https://www.rfc-editor.org/rfc/rfc1136>.
+              notif-envelope-06>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -2439,6 +2427,10 @@ Normative References
               Authentication Protocol", RFC 4252, DOI 10.17487/RFC4252,
               January 2006, <https://www.rfc-editor.org/rfc/rfc4252>.
 
+   [RFC4253]  Ylonen, T. and C. Lonvick, Ed., "The Secure Shell (SSH)
+              Transport Layer Protocol", RFC 4253, DOI 10.17487/RFC4253,
+              January 2006, <https://www.rfc-editor.org/rfc/rfc4253>.
+
    [RFC5277]  Chisholm, S. and H. Trevino, "NETCONF Event
               Notifications", RFC 5277, DOI 10.17487/RFC5277, July 2008,
               <https://www.rfc-editor.org/rfc/rfc5277>.
@@ -2452,12 +2444,6 @@ Normative References
               and A. Bierman, Ed., "Network Configuration Protocol
               (NETCONF)", RFC 6241, DOI 10.17487/RFC6241, June 2011,
               <https://www.rfc-editor.org/rfc/rfc6241>.
-
-   [RFC6373]  Andersson, L., Ed., Berger, L., Ed., Fang, L., Ed., Bitar,
-              N., Ed., and E. Gray, Ed., "MPLS Transport Profile (MPLS-
-              TP) Control Plane Framework", RFC 6373,
-              DOI 10.17487/RFC6373, September 2011,
-              <https://www.rfc-editor.org/rfc/rfc6373>.
 
    [RFC7950]  Bjorklund, M., Ed., "The YANG 1.1 Data Modeling Language",
               RFC 7950, DOI 10.17487/RFC7950, August 2016,
@@ -2522,12 +2508,6 @@ Normative References
               DOI 10.17487/RFC9375, April 2023,
               <https://www.rfc-editor.org/rfc/rfc9375>.
 
-   [RFC9376]  Wang, Q., Ed., Valiveti, R., Ed., Zheng, H., Ed., van
-              Helvoort, H., and S. Belotti, "Applicability of GMPLS for
-              beyond 100 Gbit/s Optical Transport Network", RFC 9376,
-              DOI 10.17487/RFC9376, March 2023,
-              <https://www.rfc-editor.org/rfc/rfc9376>.
-
    [RFC9543]  Farrel, A., Ed., Drake, J., Ed., Rokui, R., Homma, S.,
               Makhijani, K., Contreras, L., and J. Tantsura, "A
               Framework for Network Slices in Networks Built from IETF
@@ -2589,6 +2569,14 @@ Informative References
               <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
               network-anomaly-semantics-06>.
 
+   [I-D.ietf-opsawg-scheduling-oam-tests]
+              Contreras, L. M., Lopez, V., and Q. Wu, "A YANG Data Model
+              for Network Diagnosis using Scheduled Sequences of OAM
+              Tests", Work in Progress, Internet-Draft, draft-ietf-
+              opsawg-scheduling-oam-tests-09, 14 September 2026,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
+              scheduling-oam-tests-09>.
+
    [I-D.irtf-nmrg-ai-challenges]
               François, J., Clemm, A., Papadimitriou, D., Fernandes, S.,
               and S. Schneider, "Research Challenges in Coupling
@@ -2605,6 +2593,17 @@ Informative References
               April 2026, <https://datatracker.ietf.org/doc/html/draft-
               mackey-nmop-kg-for-netops-04>.
 
+   [RFC1136]  Hares, S. and D. Katz, "Administrative Domains and Routing
+              Domains: A model for routing in the Internet", RFC 1136,
+              DOI 10.17487/RFC1136, December 1989,
+              <https://www.rfc-editor.org/rfc/rfc1136>.
+
+   [RFC6373]  Andersson, L., Ed., Berger, L., Ed., Fang, L., Ed., Bitar,
+              N., Ed., and E. Gray, Ed., "MPLS Transport Profile (MPLS-
+              TP) Control Plane Framework", RFC 6373,
+              DOI 10.17487/RFC6373, September 2011,
+              <https://www.rfc-editor.org/rfc/rfc6373>.
+
    [RFC7942]  Sheffer, Y. and A. Farrel, "Improving Awareness of Running
               Code: The Implementation Status Section", BCP 205,
               RFC 7942, DOI 10.17487/RFC7942, July 2016,
@@ -2614,6 +2613,12 @@ Informative References
               L. Geng, "A Framework for Automating Service and Network
               Management with YANG", RFC 8969, DOI 10.17487/RFC8969,
               January 2021, <https://www.rfc-editor.org/rfc/rfc8969>.
+
+   [RFC9376]  Wang, Q., Ed., Valiveti, R., Ed., Zheng, H., Ed., van
+              Helvoort, H., and S. Belotti, "Applicability of GMPLS for
+              beyond 100 Gbit/s Optical Transport Network", RFC 9376,
+              DOI 10.17487/RFC9376, March 2023,
+              <https://www.rfc-editor.org/rfc/rfc9376>.
 
    [RFC9408]  Boucadair, M., Ed., Gonzalez de Dios, O., Barguil, S., Wu,
               Q., and V. Lopez, "A YANG Network Data Model for Service
@@ -2691,8 +2696,9 @@ A.1.  Network Incident Correlated with Specific Network Topology and the
           "probable-cause": [
             {
               "name": "Feeder fiber great loss change",
-              "detail-information": "The connector of the optical fiber is contaminated,\n
-                                     Or the optical fiber is bent too much.",
+              "detail-information": "The connector of the optical fiber is\
+                                     contaminated, Or the optical fiber is\
+                                     bent too much.",
               "probable-cause": {
                 "network-ref": "example:L2-topo",
                 "node-ref": "example:D1",
@@ -2700,8 +2706,8 @@ A.1.  Network Incident Correlated with Specific Network Topology and the
                   {
                     "name": "7985e01a-5aad-11ea-b214-286ed488cf99",
                     "cause-name": "ltp",
-                    "detail": "Frame=0, Slot=6, Subslot=65535, Port=7, ODF= ODF001,\n
-                               Level1Splitter= splitter0025"
+                    "detail": "Frame=0, Slot=6, Subslot=65535, Port=7,\
+                               ODF= ODF001,Level1Splitter= splitter0025"
                   }
                 ]
               }
@@ -2757,8 +2763,10 @@ A.2.  JSON Example on Incident Notifications
     "status": "active",
     "ack-status": "unacknowledged",
     "category": "example-types:network-infrastructure",
-    "detail": "Interface GigabitEthernet0/0/1 reports a Link Down state due to loss of signal.",
-    "resolve-advice": "Check physical fiber connections and optics transceiver at local node.",
+    "detail": "Interface GigabitEthernet0/0/1 reports a Link Down state due\
+               to loss of signal.",
+    "resolve-advice": "Check physical fiber connections and optics transceiver\
+                       at local node.",
     "sources": {
       "source": [
         {
