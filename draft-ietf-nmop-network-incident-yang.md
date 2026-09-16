@@ -800,8 +800,8 @@ the network incident asynchronously.
 ~~~~
 rpcs:
 +---x incident-resolve
-|  +---w input
-|  |  +---w incident-no*   incident-ref
+   +---w input
+   |  +---w incident-no*   incident-ref
 ~~~~
 
 After the Probable Root Causes and impacts are determined, incident-resolve
