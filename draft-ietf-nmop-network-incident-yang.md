@@ -243,7 +243,7 @@ Incident Client:
 :  An entity that can manage network incidents based on global view on network topology data correlation.
    For example, it can receive network incident notifications, query the
    information of network incidents, instruct an Incident Server
-   to diagnose, help , etc. In addition, it can trigger issue tickets and involve repair crew to fix the problem.
+   to diagnose, help resolve, etc. In addition, it can trigger issue tickets and involve repair crew to fix the problem.
 
 Incident Handler:
 : An entity that can receive network incident notifications, store and query the information of
