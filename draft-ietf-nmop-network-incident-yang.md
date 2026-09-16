@@ -144,7 +144,7 @@ relationships with both network service and network topology at various differen
 layers, which not only can be used at a specific layer in one domain but also can be used to
 span across layers for multi-layer network troubleshooting.
 
-As described in {{!RFC9940}}, a network incident refers
+As described in {{?RFC9940}}, a network incident refers
 to an undesired Occurrence such as an unexpected interruption of a network service,
 degradation of the quality of a network service, or the below-target performance of
 a network service. Different data sources, including alarms, metrics, and other anomaly
@@ -177,7 +177,7 @@ network automation {{?RFC8969}} with remote process call (RPC) operations in thi
 
 {::boilerplate bcp14-tagged}
 
-The following terms are defined in {{!RFC9543}},{{!RFC9940}}
+The following terms are defined in {{!RFC9543}},{{?RFC9940}}
 and are not redefined here:
 
 *  Alarm
@@ -677,7 +677,7 @@ the network incident include Probable Root Cause, priority, impact,
 suggestion, etc.
 
 At the top of "ietf-incident" module is the Network Incident.
-Network incident is represented as a list and indexed by "incident-qualifier".
+Network incident is represented as a list and indexed by "name type incident-qualifier".
 Each Network Incident is associated with a network service instance, domain and
 sources.  Under sources, there is one or more sources.  Each source
 corresponds to a node defined in the network topology model and network
@@ -764,6 +764,7 @@ incident would be set to 'cleared'.
 ## Incident Acknowledge
 
 ~~~~
+rpcs:
 +---x incident-acknowledge
 |  +---w input
 |  |  +---w incident-no*   incident-ref
@@ -779,6 +780,7 @@ at a time.
 ## Incident Diagnose
 
 ~~~~
+rpcs:
 +---x incident-diagnose
 |  +---w input
 |  |  +---w incident-no*   incident-ref
@@ -796,6 +798,7 @@ the network incident asynchronously.
 ## Incident Resolution
 
 ~~~~
+rpcs:
 +---x incident-resolve
 |  +---w input
 |  |  +---w incident-no*   incident-ref
@@ -866,10 +869,9 @@ incident-not-found
 
 # Network Incident Management YANG Module
 
-This module uses types defined in {{!RFC9911}}, {{!RFC8345}},{{!RFC8639}},
-{{!RFC8641}}, {{!RFC8632}}, {{!RFC8791}}, {{?RFC9376}}, {{?RFC1136}}, {{?RFC6373}},
-{{!RFC8348}}, {{!RFC9940}}, {{!RFC5277}}, {{!RFC9375}},
-{{!I-D.ietf-netconf-notif-envelope}}.
+This module imports types from {{!RFC9911}}, {{!RFC8632}}, {{!RFC8345}}, {{!RFC8791}}
+and uses types defined in {{?RFC9376}}, {{?RFC1136}}, {{?RFC6373}}, {{!RFC8348}},
+{{!RFC8632}}, {{!RFC5277}}, {{?RFC9940}}, {{!RFC9375}}.
 
 ~~~~
 <CODE BEGINS> file "ietf-incident@2026-07-30.yang"
@@ -951,7 +953,7 @@ incident-no are matched to update the same incident instance.
 
 A YANG model for the alarm management {{?RFC8632}} defines a standard
 interface to manage the lifecycle of alarms.  Alarms represent the
-undesirable state of network resources {{!RFC9940}},
+undesirable state of network resources {{?RFC9940}},
 The alarm data model also defines the Probable Root Causes and impacted
 services fields, but there may be insufficient information to determine them
 at lower layer system (mainly in devices level), so alarms do not always tell
@@ -1120,8 +1122,8 @@ Contact information: Qin Wu
 The YANG module specified in this document defines a data model that is
 designed to be accessed via YANG-based management protocols, such as
 NETCONF {{!RFC6241}} and RESTCONF {{!RFC8040}}. These YANG-based management
-protocols (1) have to use a secure transport layer (e.g., SSH Transport Layer
-{{!RFC4253}}) and (2) have to use mutual authentication (e.g., SSH {{!RFC4252}},
+protocols (1) MUST use a secure transport layer (e.g., SSH Transport Layer
+{{!RFC4253}}) and (2) MUST use mutual authentication (e.g., SSH {{!RFC4252}},
 TLS {{!RFC8446}}, and QUIC {{!RFC9000}}).
 
 The Network Configuration Access Control Model (NACM) {{!RFC8341}}
@@ -1153,7 +1155,7 @@ operations and their sensitivity/vulnerability:
 "incident-diagnose": This RPC operation performs network incident
 diagnosis and Probable Root Cause locating. If a malicious or buggy client
 performs an unexpectedly large number of this operation, the result
-might be an excessive use of system resources {{!RFC9940}}
+might be an excessive use of system resources {{?RFC9940}}
 on the server side as well as network resources.  Servers MUST
 ensure they have sufficient resources to fulfill this request; otherwise,
 they can choose to block the connection (e.g., block abusive IP address)
@@ -1172,7 +1174,7 @@ data-at-rest in the server.
 to ensure that the client knows the incident. If a malicious or buggy client
 repeatedly confirms multiple incidents at a time, the result might be an
 excessive use of system resources on the server side as well as network resources.
-Servers need to ensure they have sufficient resources to fulfill this request;
+Servers MUST ensure they have sufficient resources to fulfill this request;
 otherwise, they can choose to block connection (e.g., block abusive IP address)
 to this client and/or reject the request using rpc errors defined in
 section 7.6.
