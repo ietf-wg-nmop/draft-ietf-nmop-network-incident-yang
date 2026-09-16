@@ -1319,8 +1319,10 @@ Table of Contents
        reference
          "RFC 5277: NETCONF Event Notifications and
           RFC 8639: Subscription to YANG Notifications and
-          RFC 8641: Subscription to YANG Notifications for Datastore Updates and
-          I-D.ietf-netconf-notif-envelope: Extensible YANG Model for YANG-Push Notifications";
+          RFC 8641: Subscription to YANG Notifications for
+                    Datastore Updates and
+          I-D.ietf-netconf-notif-envelope: Extensible YANG
+                        Model for YANG-Push Notifications";
      }
 
      identity metric {
@@ -1755,7 +1757,8 @@ Table of Contents
                      require-instance false;
                    }
                    description
-                     "This is an identification of the alarming resource.";
+                     "This is an identification of the alarming
+                      resource.";
                    reference
                      "RFC 8632: A YANG Data Model for Alarm
                       Management";
@@ -1801,8 +1804,9 @@ Table of Contents
                  leaf resource {
                    type al:resource;
                    description
-                     "This is an identification of the network resource such as
-                                              interface, where the metric can be collected or measured.";
+                     "This is an identification of the network
+                      resource such as interface, where the metric
+                      can be collected or measured.";
                    reference
                      "RFC 8632: A YANG Data Model for Alarm
                                 Management";
@@ -1872,8 +1876,8 @@ Table of Contents
                  }
                  anydata contents {
                    description
-                     "This contains the values defined by the 'notification'
-                      statement unchanged.";
+                     "This contains the values defined by the
+                      'notification' statement unchanged.";
                  }
                }
              }
