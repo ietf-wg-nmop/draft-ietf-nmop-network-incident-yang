@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 19 March 2027                                        Telefonica
+Expires: 20 March 2027                                        Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                       15 September 2026
+                                                       16 September 2026
 
 
            A YANG Data Model for Network Incident Management
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 March 2027.
+   This Internet-Draft will expire on 20 March 2027.
 
 Copyright Notice
 
@@ -732,14 +732,14 @@ Table of Contents
    suggestion, etc.
 
    At the top of "ietf-incident" module is the Network Incident.
-   Network incident is represented as a list and indexed by "incident-
-   qualifier".  Each Network Incident is associated with a network
-   service instance, domain and sources.  Under sources, there is one or
-   more sources.  Each source corresponds to a node defined in the
-   network topology model and network resource in the network device,
-   e.g., interface.  In addition, "ietf-incident" supports one general
-   notification to report network incident state changes and three RPCs
-   to manage the network incidents.
+   Network incident is represented as a list and indexed by "name type
+   incident-qualifier".  Each Network Incident is associated with a
+   network service instance, domain and sources.  Under sources, there
+   is one or more sources.  Each source corresponds to a node defined in
+   the network topology model and network resource in the network
+   device, e.g., interface.  In addition, "ietf-incident" supports one
+   general notification to report network incident state changes and
+   three RPCs to manage the network incidents.
 
    =============== NOTE: '\' line wrapping per RFC 8792 ================
 
@@ -961,6 +961,7 @@ Table of Contents
 
 7.3.  Incident Acknowledge
 
+   rpcs:
    +---x incident-acknowledge
    |  +---w input
    |  |  +---w incident-no*   incident-ref
@@ -975,6 +976,7 @@ Table of Contents
 
 7.4.  Incident Diagnose
 
+   rpcs:
    +---x incident-diagnose
    |  +---w input
    |  |  +---w incident-no*   incident-ref
@@ -992,9 +994,10 @@ Table of Contents
 
 7.5.  Incident Resolution
 
+   rpcs:
    +---x incident-resolve
-   |  +---w input
-   |  |  +---w incident-no*   incident-ref
+      +---w input
+      |  +---w incident-no*   incident-ref
 
    After the Probable Root Causes and impacts are determined, incident-
    resolve RPC can be used to resolve the incident (if the server can
@@ -1059,10 +1062,9 @@ Table of Contents
 
 8.  Network Incident Management YANG Module
 
-   This module uses types defined in [RFC9911], [RFC8345],[RFC8639],
-   [RFC8641], [RFC8632], [RFC8791], [RFC9376], [RFC1136], [RFC6373],
-   [RFC8348], [RFC9940], [RFC5277], [RFC9375],
-   [I-D.ietf-netconf-notif-envelope].
+   This module imports types from [RFC9911], [RFC8632], [RFC8345],
+   [RFC8791] and uses types defined in [RFC9376], [RFC1136], [RFC6373],
+   [RFC8348], [RFC8632], [RFC5277], [RFC9940], [RFC9375].
 
    <CODE BEGINS> file "ietf-incident@2026-07-30.yang"
    module ietf-incident {
@@ -2311,10 +2313,9 @@ Table of Contents
    The YANG module specified in this document defines a data model that
    is designed to be accessed via YANG-based management protocols, such
    as NETCONF [RFC6241] and RESTCONF [RFC8040].  These YANG-based
-   management protocols (1) have to use a secure transport layer (e.g.,
-   SSH Transport Layer [RFC4253]) and (2) have to use mutual
-   authentication (e.g., SSH [RFC4252], TLS [RFC8446], and QUIC
-   [RFC9000]).
+   management protocols (1) MUST use a secure transport layer (e.g., SSH
+   Transport Layer [RFC4253]) and (2) MUST use mutual authentication
+   (e.g., SSH [RFC4252], TLS [RFC8446], and QUIC [RFC9000]).
 
    The Network Configuration Access Control Model (NACM) [RFC8341]
    provides the means to restrict access for particular NETCONF or
@@ -2365,10 +2366,10 @@ Table of Contents
    incident to ensure that the client knows the incident.  If a
    malicious or buggy client repeatedly confirms multiple incidents at a
    time, the result might be an excessive use of system resources on the
-   server side as well as network resources.  Servers need to ensure
-   they have sufficient resources to fulfill this request; otherwise,
-   they can choose to block connection (e.g., block abusive IP address)
-   to this client and/or reject the request using rpc errors defined in
+   server side as well as network resources.  Servers MUST ensure they
+   have sufficient resources to fulfill this request; otherwise, they
+   can choose to block connection (e.g., block abusive IP address) to
+   this client and/or reject the request using rpc errors defined in
    section 7.6.
 
 12.  IANA Considerations
@@ -2411,14 +2412,6 @@ Acknowledgements
 References
 
 Normative References
-
-   [I-D.ietf-netconf-notif-envelope]
-              Feng, A. H., Francois, P., Graf, T., and B. Claise,
-              "Extensible YANG Model for YANG-Push Notifications", Work
-              in Progress, Internet-Draft, draft-ietf-netconf-notif-
-              envelope-06, 14 September 2026,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-netconf-
-              notif-envelope-06>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -2490,15 +2483,6 @@ Normative References
               Management", RFC 8632, DOI 10.17487/RFC8632, September
               2019, <https://www.rfc-editor.org/rfc/rfc8632>.
 
-   [RFC8639]  Voit, E., Clemm, A., Gonzalez Prieto, A., Nilsen-Nygaard,
-              E., and A. Tripathy, "Subscription to YANG Notifications",
-              RFC 8639, DOI 10.17487/RFC8639, September 2019,
-              <https://www.rfc-editor.org/rfc/rfc8639>.
-
-   [RFC8641]  Clemm, A. and E. Voit, "Subscription to YANG Notifications
-              for Datastore Updates", RFC 8641, DOI 10.17487/RFC8641,
-              September 2019, <https://www.rfc-editor.org/rfc/rfc8641>.
-
    [RFC8791]  Bierman, A., Björklund, M., and K. Watsen, "YANG Data
               Structure Extensions", RFC 8791, DOI 10.17487/RFC8791,
               June 2020, <https://www.rfc-editor.org/rfc/rfc8791>.
@@ -2523,11 +2507,6 @@ Normative References
    [RFC9911]  Schönwälder, J., Ed., "Common YANG Data Types", RFC 9911,
               DOI 10.17487/RFC9911, December 2025,
               <https://www.rfc-editor.org/rfc/rfc9911>.
-
-   [RFC9940]  Davis, N., Ed., Farrel, A., Ed., Graf, T., Wu, Q., and C.
-              Yu, "Some Key Terms for Network Fault and Problem
-              Management", RFC 9940, DOI 10.17487/RFC9940, April 2026,
-              <https://www.rfc-editor.org/rfc/rfc9940>.
 
 Informative References
 
@@ -2646,6 +2625,11 @@ Informative References
               (PAMs) for Services Governed by Service Level Objectives
               (SLOs)", RFC 9544, DOI 10.17487/RFC9544, March 2024,
               <https://www.rfc-editor.org/rfc/rfc9544>.
+
+   [RFC9940]  Davis, N., Ed., Farrel, A., Ed., Graf, T., Wu, Q., and C.
+              Yu, "Some Key Terms for Network Fault and Problem
+              Management", RFC 9940, DOI 10.17487/RFC9940, April 2026,
+              <https://www.rfc-editor.org/rfc/rfc9940>.
 
    [TMF724A]  "Incident Management API Profile v1.0.0", 2023,
               <https://www.tmforum.org/resources/standard/tmf724a-
