@@ -1064,7 +1064,8 @@ Table of Contents
 
    This module imports types from [RFC9911], [RFC8632], [RFC8345],
    [RFC8791] and uses types defined in [RFC9376], [RFC1136], [RFC6373],
-   [RFC8348], [RFC8632], [RFC5277], [RFC9940], [RFC9375].
+   [RFC8348], [RFC8632], [RFC5277], [RFC9940], [RFC9375], [RFC5277],
+   [RFC8639], [RFC8641], [I-D.ietf-netconf-notif-envelope].
 
    <CODE BEGINS> file "ietf-incident@2026-07-30.yang"
    module ietf-incident {
@@ -2441,10 +2442,6 @@ Normative References
               Transport Layer Protocol", RFC 4253, DOI 10.17487/RFC4253,
               January 2006, <https://www.rfc-editor.org/rfc/rfc4253>.
 
-   [RFC5277]  Chisholm, S. and H. Trevino, "NETCONF Event
-              Notifications", RFC 5277, DOI 10.17487/RFC5277, July 2008,
-              <https://www.rfc-editor.org/rfc/rfc5277>.
-
    [RFC6020]  Bjorklund, M., Ed., "YANG - A Data Modeling Language for
               the Network Configuration Protocol (NETCONF)", RFC 6020,
               DOI 10.17487/RFC6020, October 2010,
@@ -2480,11 +2477,6 @@ Normative References
               Ananthakrishnan, H., and X. Liu, "A YANG Data Model for
               Network Topologies", RFC 8345, DOI 10.17487/RFC8345, March
               2018, <https://www.rfc-editor.org/rfc/rfc8345>.
-
-   [RFC8348]  Bierman, A., Bjorklund, M., Dong, J., and D. Romascanu, "A
-              YANG Data Model for Hardware Management", RFC 8348,
-              DOI 10.17487/RFC8348, March 2018,
-              <https://www.rfc-editor.org/rfc/rfc8348>.
 
    [RFC8446]  Rescorla, E., "The Transport Layer Security (TLS) Protocol
               Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
@@ -2532,6 +2524,14 @@ Informative References
               configuration-tracing-06, 3 November 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-netconf-
               configuration-tracing-06>.
+
+   [I-D.ietf-netconf-notif-envelope]
+              Feng, A. H., Francois, P., Graf, T., and B. Claise,
+              "Extensible YANG Model for YANG-Push Notifications", Work
+              in Progress, Internet-Draft, draft-ietf-netconf-notif-
+              envelope-06, 14 September 2026,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-netconf-
+              notif-envelope-06>.
 
    [I-D.ietf-netconf-trace-ctx-extension]
               Gagliano, R., Rennerskog, C., Larsson, K., and J.
@@ -2594,6 +2594,10 @@ Informative References
               DOI 10.17487/RFC1136, December 1989,
               <https://www.rfc-editor.org/rfc/rfc1136>.
 
+   [RFC5277]  Chisholm, S. and H. Trevino, "NETCONF Event
+              Notifications", RFC 5277, DOI 10.17487/RFC5277, July 2008,
+              <https://www.rfc-editor.org/rfc/rfc5277>.
+
    [RFC6373]  Andersson, L., Ed., Berger, L., Ed., Fang, L., Ed., Bitar,
               N., Ed., and E. Gray, Ed., "MPLS Transport Profile (MPLS-
               TP) Control Plane Framework", RFC 6373,
@@ -2604,6 +2608,20 @@ Informative References
               Code: The Implementation Status Section", BCP 205,
               RFC 7942, DOI 10.17487/RFC7942, July 2016,
               <https://www.rfc-editor.org/rfc/rfc7942>.
+
+   [RFC8348]  Bierman, A., Bjorklund, M., Dong, J., and D. Romascanu, "A
+              YANG Data Model for Hardware Management", RFC 8348,
+              DOI 10.17487/RFC8348, March 2018,
+              <https://www.rfc-editor.org/rfc/rfc8348>.
+
+   [RFC8639]  Voit, E., Clemm, A., Gonzalez Prieto, A., Nilsen-Nygaard,
+              E., and A. Tripathy, "Subscription to YANG Notifications",
+              RFC 8639, DOI 10.17487/RFC8639, September 2019,
+              <https://www.rfc-editor.org/rfc/rfc8639>.
+
+   [RFC8641]  Clemm, A. and E. Voit, "Subscription to YANG Notifications
+              for Datastore Updates", RFC 8641, DOI 10.17487/RFC8641,
+              September 2019, <https://www.rfc-editor.org/rfc/rfc8641>.
 
    [RFC8969]  Wu, Q., Ed., Boucadair, M., Ed., Lopez, D., Xie, C., and
               L. Geng, "A Framework for Automating Service and Network
