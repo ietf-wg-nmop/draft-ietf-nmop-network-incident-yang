@@ -870,8 +870,9 @@ incident-not-found
 # Network Incident Management YANG Module
 
 This module imports types from {{!RFC9911}}, {{!RFC8632}}, {{!RFC8345}}, {{!RFC8791}}
-and uses types defined in {{?RFC9376}}, {{?RFC1136}}, {{?RFC6373}}, {{!RFC8348}},
-{{!RFC8632}}, {{!RFC5277}}, {{?RFC9940}}, {{!RFC9375}}.
+and uses types defined in {{?RFC9376}}, {{?RFC1136}}, {{?RFC6373}}, {{?RFC8348}},
+{{?RFC8632}}, {{?RFC5277}}, {{?RFC9940}}, {{!RFC9375}}, {{?RFC5277}}, {{?RFC8639}},
+{{?RFC8641}}, {{?I-D.ietf-netconf-notif-envelope}}.
 
 ~~~~
 <CODE BEGINS> file "ietf-incident@2026-07-30.yang"
