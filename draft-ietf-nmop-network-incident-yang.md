@@ -1113,6 +1113,7 @@ a) RESTCONF support
 b) Incident Lifecycle management including incident instance lifecycle
    and operator incident lifecycle.
 c) Incident Notification
+d) Incident List Query
 
 Contact information: Qin Wu
    (bill.wu@huawei.com)
