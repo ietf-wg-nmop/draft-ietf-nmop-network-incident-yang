@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 20 March 2027                                        Telefonica
+Expires: 24 March 2027                                        Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                       16 September 2026
+                                                       20 September 2026
 
 
            A YANG Data Model for Network Incident Management
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 March 2027.
+   This Internet-Draft will expire on 24 March 2027.
 
 Copyright Notice
 
@@ -2316,7 +2316,7 @@ Table of Contents
    The Huawei Implementation of Incident model covers the following a)
    RESTCONF support b) Incident Lifecycle management including incident
    instance lifecycle and operator incident lifecycle. c) Incident
-   Notification
+   Notification d) Incident List Query
 
    Contact information: Qin Wu (bill.wu@huawei.com)
 
@@ -2537,9 +2537,9 @@ Informative References
               Gagliano, R., Rennerskog, C., Larsson, K., and J.
               Lindblad, "NETCONF Extension to support Trace Context
               propagation", Work in Progress, Internet-Draft, draft-
-              ietf-netconf-trace-ctx-extension-08, 27 August 2026,
+              ietf-netconf-trace-ctx-extension-09, 17 September 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-netconf-
-              trace-ctx-extension-08>.
+              trace-ctx-extension-09>.
 
    [I-D.ietf-nmop-network-anomaly-architecture]
               Graf, T., Du, W., Francois, P., and A. H. Feng, "A
