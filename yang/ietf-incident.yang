@@ -378,6 +378,18 @@ module ietf-incident {
       "It indicates the class of cause name is hardware failure.";
   }
 
+  identity interface-hardware-failure {
+    base hardware-failure;
+    description
+      "It indicates the class of cause name is the interface hardware failure.";
+  }
+
+  identity loss-of-signal {
+    base cause-name;
+    description
+      "It indicates the class of cause name is the loss of signal.";
+  }
+
   identity rt-misconfiguration {
     base cause-name;
     description
