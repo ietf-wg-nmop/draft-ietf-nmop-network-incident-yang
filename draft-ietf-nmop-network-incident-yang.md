@@ -1276,7 +1276,7 @@ and the domain 'PTN'. The Probable Root Cause is also analysed.
                 "resource": [
                   {
                     "name": "7985e01a-5aad-11ea-b214-286ed488cf99",
-                    "cause-name": "ltp-misconfiguration",
+                    "cause-name": "interface-hardware-failure",
                     "detail": "Frame=0, Slot=6, Subslot=65535, Port=7,\
                                ODF= ODF001,Level1Splitter= splitter0025"
                   }
