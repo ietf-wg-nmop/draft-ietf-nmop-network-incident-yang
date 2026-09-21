@@ -499,7 +499,7 @@ module ietf-incident {
        resources of a node.";
     uses nw:node-ref;
     list resource {
-      key "name";
+      key "name cause-name";
       description
         "The resources of a network node.";
       leaf name {
@@ -661,7 +661,7 @@ module ietf-incident {
       description
         "The Probable Root Cause objects.";
       list probable-cause {
-        key "node-ref";
+        key "node-ref cause-name";
         description
           "The Probable Root Causes of incident.";
         uses resources-info {
