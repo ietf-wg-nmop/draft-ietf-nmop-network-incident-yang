@@ -20,10 +20,10 @@ module: ietf-incident
         |     +--ro resource* [name]
         |        +--ro name    al:resource
         +--ro probable-causes
-        |  +--ro probable-cause* [node-ref]
+        |  +--ro probable-cause* [node-ref cause-name]
         |     +--ro node-ref       -> /nw:networks/network[nw:network-id=current()/../network-ref]/node/node-id
         |     +--ro network-ref?   -> /nw:networks/network/network-id
-        |     +--ro resource* [name]
+        |     +--ro resource* [name cause-name]
         |     |  +--ro name          al:resource
         |     |  +--ro cause-name?   identityref
         |     |  +--ro detail?       string
@@ -92,10 +92,10 @@ module: ietf-incident
        |     +--ro resource* [name]
        |        +--ro name    al:resource
        +--ro probable-causes
-       |  +--ro probable-cause* [node-ref]
+       |  +--ro probable-cause* [node-ref cause-name]
        |     +--ro node-ref       -> /nw:networks/network[nw:network-id=current()/../network-ref]/node/node-id
        |     +--ro network-ref?   -> /nw:networks/network/network-id
-       |     +--ro resource* [name]
+       |     +--ro resource* [name cause-name]
        |     |  +--ro name          al:resource
        |     |  +--ro cause-name?   identityref
        |     |  +--ro detail?       string
