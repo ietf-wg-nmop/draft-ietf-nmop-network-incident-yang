@@ -1077,6 +1077,8 @@ grouping respectively the "vpn-id" in the "vpn-service" list of the "vpn-service
 grouping maps to the "service-instance" leaf-list of the "incident-info" grouping in
 'ietf-incident' YANG module. Thus, preserving the mapping between relevant-state
 notification id, service id and hostname in the network where the outlier was detected.
+Note that anomaly confidence and concern scores are not carried into probable-cause-info
+and that consumers MUST NOT infer confidence from the presence of a probable cause.
 
 # Implementation Status
 
