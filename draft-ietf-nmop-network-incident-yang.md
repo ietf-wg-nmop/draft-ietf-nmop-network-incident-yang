@@ -1276,7 +1276,7 @@ and the domain 'PTN'. The Probable Root Cause is also analysed.
                 "resource": [
                   {
                     "name": "7985e01a-5aad-11ea-b214-286ed488cf99",
-                    "cause-name": "ltp",
+                    "cause-name": "interface-hardware-failure",
                     "detail": "Frame=0, Slot=6, Subslot=65535, Port=7,\
                                ODF= ODF001,Level1Splitter= splitter0025"
                   }
@@ -1322,7 +1322,7 @@ JSON encoding for the incident base model.
 
 ~~~~
 {
-  "example-incident-module:incident-notification": {
+  "ietf-incident-module:incident-notification": {
     "incident-no": "INC-2026-98765",
     "name": "Link Failure Core Router",
     "type": "example-types:hardware-fault",
@@ -1361,11 +1361,11 @@ JSON encoding for the incident base model.
           "resource": [
             {
               "name": "GigabitEthernet0/0/1",
-              "cause-name": "example-types:los-of-signal",
+              "cause-name": "ietf-incident:los-of-signal",
               "detail": "Laser rx power below operational threshold."
             }
           ],
-          "cause-name": "example-types:interface-hardware-failure",
+          "cause-name": "ietf-incident:interface-hardware-failure",
           "detail": "SFP module may need replacement."
         }
       ]
@@ -1373,7 +1373,7 @@ JSON encoding for the incident base model.
     "probable-events": {
       "probable-event": [
         {
-          "type": "example-types:link-down-event",
+          "type": "ietf-incident:link-down-event",
           "event-id": "EV-10293"
         }
       ]
@@ -1381,7 +1381,7 @@ JSON encoding for the incident base model.
     "events": {
       "event": [
         {
-          "type": "example-types:alarm-event",
+          "type": "ietf-incident:alarm-event",
           "event-id": "AL-55443",
           "alarm": {
             "resource": "GigabitEthernet0/0/1",
