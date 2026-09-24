@@ -177,7 +177,7 @@ network automation {{?RFC8969}} with remote process call (RPC) operations in thi
 
 {::boilerplate bcp14-tagged}
 
-The following terms are defined in {{!RFC9543}},{{?RFC9940}}
+The following terms are defined in {{?RFC9543}},{{?RFC9940}}
 and are not redefined here:
 
 *  Alarm
@@ -1126,7 +1126,7 @@ designed to be accessed via YANG-based management protocols, such as
 NETCONF {{!RFC6241}} and RESTCONF {{!RFC8040}}. These YANG-based management
 protocols (1) MUST use a secure transport layer (e.g., SSH Transport Layer
 {{!RFC4253}}) and (2) MUST use mutual authentication (e.g., SSH {{!RFC4252}},
-TLS {{!RFC8446}}, and QUIC {{!RFC9000}}).
+TLS {{!RFC9846}}, and QUIC {{!RFC9000}}).
 
 The Network Configuration Access Control Model (NACM) {{!RFC8341}}
 provides the means to restrict access for particular NETCONF or
