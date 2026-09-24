@@ -2169,11 +2169,12 @@ Table of Contents
    visibility scenarios where an incident is closed in the network layer
    but remains active in the ticketing system, or vice versa.
 
-   This incident data model states that the tuple (name, type and
-   incident-qualifier) corresponds to a single incident instance.  This
-   means that incident notifications for the same name and same type and
-   incident-qualifier are matched to update the same incident instance.
-   These three leafs are therefore used as the key in the incident list:
+   This incident data model states that the tuple ('name', 'type' and
+   'incident-qualifier') corresponds to a single incident instance.
+   This means that incident notifications for the same 'name' and same
+   'type' and 'incident-qualifier' are matched to update the same
+   incident instance.  These three leafs are therefore used as the key
+   in the incident list:
 
     list incident {
       key "name type incident-qualifier";
@@ -2837,79 +2838,79 @@ A.2.  JSON Example on Incident Notifications
    In this example, we show an example of the Incident notification in
    JSON encoding for the incident base model.
 
-{
-  "ietf-incident-module:incident-notification": {
-    "incident-no": "INC-2026-98765",
-    "name": "Link Failure Core Router",
-    "type": "example-types:hardware-fault",
-    "incident-qualifier": "interface-down",
-    "service-instance": [
-      "srv-mpls-vpn-01",
-      "srv-voip-05"
-    ],
-    "domain": "example-types:transport-network",
-    "priority": "critical",
-    "status": "active",
-    "ack-status": "unacknowledged",
-    "category": "example-types:network-infrastructure",
-    "detail": "Interface GigabitEthernet0/0/1 reports a Link Down state due\
-               to loss of signal.",
-    "resolve-advice": "Check physical fiber connections and optics transceiver\
-                       at local node.",
-    "sources": {
-      "source": [
-        {
-          "node-ref": "router-core-01",
-          "network-ref": "backbone-east",
-          "resource": [
-            {
-              "name": "GigabitEthernet0/0/1"
-            }
-          ]
-        }
-      ]
-    },
-    "probable-causes": {
-      "probable-cause": [
-        {
-          "node-ref": "router-core-01",
-          "network-ref": "backbone-east",
-          "resource": [
-            {
-              "name": "GigabitEthernet0/0/1",
-              "cause-name": "ietf-incident:los-of-signal",
-              "detail": "Laser rx power below operational threshold."
-            }
-          ],
-          "cause-name": "ietf-incident:interface-hardware-failure",
-          "detail": "SFP module may need replacement."
-        }
-      ]
-    },
-    "probable-events": {
-      "probable-event": [
-        {
-          "type": "ietf-incident:link-down",
-          "event-id": "EV-10293"
-        }
-      ]
-    },
-    "events": {
-      "event": [
-        {
-          "type": "ietf-incident:alarm",
-          "event-id": "AL-55443",
-          "alarm": {
-            "resource": "GigabitEthernet0/0/1",
-            "alarm-type-id": "link-down-event",
-            "alarm-type-qualifier": "port-failure"
-          }
-        }
-      ]
-    },
-    "time": "2026-09-12T08:47:00Z"
-  }
-}
+   {
+     "ietf-incident-module:incident-notification": {
+       "incident-no": "INC-2026-98765",
+       "name": "Link Failure Core Router",
+       "type": "example-types:hardware-fault",
+       "incident-qualifier": "interface-down",
+       "service-instance": [
+         "srv-mpls-vpn-01",
+         "srv-voip-05"
+       ],
+       "domain": "example-types:transport-network",
+       "priority": "critical",
+       "status": "active",
+       "ack-status": "unacknowledged",
+       "category": "example-types:network-infrastructure",
+       "detail": "Interface GigabitEthernet0/0/1 reports a Link Down\
+                  state due to loss of signal.",
+       "resolve-advice": "Check physical fiber connections and optics\
+                          transceiver at local node.",
+       "sources": {
+         "source": [
+           {
+             "node-ref": "router-core-01",
+             "network-ref": "backbone-east",
+             "resource": [
+               {
+                 "name": "GigabitEthernet0/0/1"
+               }
+             ]
+           }
+         ]
+       },
+       "probable-causes": {
+         "probable-cause": [
+           {
+             "node-ref": "router-core-01",
+             "network-ref": "backbone-east",
+             "resource": [
+               {
+                 "name": "GigabitEthernet0/0/1",
+                 "cause-name": "ietf-incident:los-of-signal",
+                 "detail": "Laser rx power below operational threshold."
+               }
+             ],
+             "cause-name": "ietf-incident:interface-hardware-failure",
+             "detail": "SFP module may need replacement."
+           }
+         ]
+       },
+       "probable-events": {
+         "probable-event": [
+           {
+             "type": "ietf-incident:link-down",
+             "event-id": "EV-10293"
+           }
+         ]
+       },
+       "events": {
+         "event": [
+           {
+             "type": "ietf-incident:alarm",
+             "event-id": "AL-55443",
+             "alarm": {
+               "resource": "GigabitEthernet0/0/1",
+               "alarm-type-id": "link-down-event",
+               "alarm-type-qualifier": "port-failure"
+             }
+           }
+         ]
+       },
+       "time": "2026-09-12T08:47:00Z"
+     }
+   }
 
 A.3.  Network Incident Correlated with Trouble Tickets
 
@@ -3017,8 +3018,8 @@ A.4.  Intent Based Networking with Incident Diagnosis Task List
    To do so, the new "diagnosis task creation" RPC can be further
    defined to support "task-id" attribute in the output parameters and
    other auxiliary attributes in the input parameters. such RPC can be
-   used to return task-id from the controller.  The controller is
-   responsible for task-id allocation and maintaining task-id list.
+   used to return "task-id" from the controller.  The controller is
+   responsible for "task-id" allocation and maintaining "task-id" list.
 
        +---x diagnose-task-creation
        |  +---w input
@@ -3381,7 +3382,7 @@ Appendix B.  Changes between Revisions
 
    *  Fix pyang compilation issue and yang lint issue.
 
-   *  Fix Broken ref by using node-ref defined in RFC8345.
+   *  Fix Broken ref by using 'node-ref' defined in RFC8345.
 
    *  Update YANG data model based on issues raised in issue tracker of
       the github.
