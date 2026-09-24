@@ -1373,7 +1373,7 @@ JSON encoding for the incident base model.
     "probable-events": {
       "probable-event": [
         {
-          "type": "ietf-incident:link-down-event",
+          "type": "ietf-incident:link-down",
           "event-id": "EV-10293"
         }
       ]
@@ -1381,11 +1381,11 @@ JSON encoding for the incident base model.
     "events": {
       "event": [
         {
-          "type": "ietf-incident:alarm-event",
+          "type": "ietf-incident:alarm",
           "event-id": "AL-55443",
           "alarm": {
             "resource": "GigabitEthernet0/0/1",
-            "alarm-type-id": "link-down",
+            "alarm-type-id": "link-down-event",
             "alarm-type-qualifier": "port-failure"
           }
         }
