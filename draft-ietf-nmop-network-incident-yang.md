@@ -904,9 +904,9 @@ Assigned, In-Progress, Resolved) to prevent split-brain visibility scenarios whe
 an incident is closed in the network layer but remains active in the ticketing
 system, or vice versa.
 
-This incident data model states that the tuple (name, type and incident-qualifier)
+This incident data model states that the tuple ('name', 'type' and 'incident-qualifier')
 corresponds to a single incident instance. This means that incident notifications
-for the same name and same type and incident-qualifier are matched to update the
+for the same 'name' and same 'type' and 'incident-qualifier' are matched to update the
 same incident instance.  These three leafs are therefore used as the key in
 the incident list:
 
@@ -1336,10 +1336,10 @@ JSON encoding for the incident base model.
     "status": "active",
     "ack-status": "unacknowledged",
     "category": "example-types:network-infrastructure",
-    "detail": "Interface GigabitEthernet0/0/1 reports a Link Down state due\
-               to loss of signal.",
-    "resolve-advice": "Check physical fiber connections and optics transceiver\
-                       at local node.",
+    "detail": "Interface GigabitEthernet0/0/1 reports a Link Down\
+               state due to loss of signal.",
+    "resolve-advice": "Check physical fiber connections and optics\
+                       transceiver at local node.",
     "sources": {
       "source": [
         {
@@ -1505,9 +1505,9 @@ information.
 
 To do so, the new "diagnosis task creation" RPC can be further defined to
 support "task-id" attribute in the output parameters and other auxiliary
-attributes in the input parameters. such RPC can be used to return task-id
-from the controller. The controller is responsible for task-id allocation
-and maintaining task-id list.
+attributes in the input parameters. such RPC can be used to return "task-id"
+from the controller. The controller is responsible for "task-id" allocation
+and maintaining "task-id" list.
 
 ~~~~
     +---x diagnose-task-creation
@@ -1860,7 +1860,7 @@ NOTE TO THE RFC-EDITOR: Please remove this appendix before publication
 
    * Fix pyang compilation issue and yang lint issue.
 
-   * Fix Broken ref by using node-ref defined in RFC8345.
+   * Fix Broken ref by using 'node-ref' defined in RFC8345.
 
    * Update YANG data model based on issues raised in issue tracker of the github.
 
