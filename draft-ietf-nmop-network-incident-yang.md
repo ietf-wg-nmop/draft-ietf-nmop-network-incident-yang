@@ -1697,6 +1697,14 @@ to diagnose the Probable Root Cause of the fault and provide repair suggestions.
 
 NOTE TO THE RFC-EDITOR: Please remove this appendix before publication
 
+  v15 - v16
+
+  * Change cause-name type from string to identityref
+
+  * Change probable-cause list key into compound key
+
+  * Keep the incident model independent of confidence
+
   v14 - v15
 
   * Replace incident-id with incident-qualifier
