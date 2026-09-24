@@ -2068,7 +2068,7 @@ module: ietf-incident
         |     +--ro node-ref       -&gt; /nw:networks/network[nw:\
                     network-id=current()/../network-ref]/node/node-id
         |     +--ro network-ref?   -&gt; /nw:networks/network/network-id
-        |     +--ro resource* [name cause-name]
+        |     +--ro resource* [name]
         |     |  +--ro name          al:resource
         |     |  +--ro cause-name?   identityref
         |     |  +--ro detail?       string
