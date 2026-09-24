@@ -40,19 +40,19 @@ module ietf-incident {
      Author:   Tong Hu
                <mailto:hutong@cmhi.chinamobile.com>
      Author:   Luis Miguel Contreras Murillo
-               <mailto:luismiguel.contrerasmurillo@telefonica.com>
+        <mailto:luismiguel.contrerasmurillo@telefonica.com>
      Author:  Qin Wu
                <mailto:bill.wu@huawei.com>
      Author:   Nigel Davis
                <mailto:ndavis@ciena.com>";
   description
-    "This module defines the interfaces for incident management
-     lifecycle.
+    "This module defines the interfaces for incident
+     management lifecycle.
 
      This module is intended for the following use cases:
      * incident lifecycle management:
        - incident report: report incident instance to client
-                          when an incident instance is detected.
+                      when an incident instance is detected.
        - incident acknowledge: acknowledge an incident instance.
        - incident diagnose: diagnose an incident instance.
        - incident resolve: resolve an incident instance.
@@ -324,7 +324,8 @@ module ietf-incident {
   identity repeated-acknowledge {
     base acknowledge-error;
     description
-      "The incident that is referred to has already been acknowledged.";
+      "The incident that is referred to has already been
+       acknowledged.";
   }
 
   identity incident-not-found {
@@ -339,17 +340,17 @@ module ietf-incident {
   identity probable-cause-unlocated {
     base diagnose-error;
     description
-      "Fail to locate the Probable Root Causes when performing the
-       diagnosis operation. The detailed reason MUST be included
-       in the 'description'.";
+      "Fail to locate the Probable Root Causes when performing
+       the diagnosis operation. The detailed reason MUST be
+       included in the 'description'.";
   }
 
   identity probable-cause-unresolved {
     base resolve-error;
     description
-      "Fail to resolve the Probable Root Causes when performing the
-       resolution operation. The detailed reason MUST be included
-       in the 'description'.";
+      "Fail to resolve the Probable Root Causes when performing
+       the resolution operation. The detailed reason MUST be
+       included in the 'description'.";
   }
 
   identity permission-denied {
@@ -383,26 +384,29 @@ module ietf-incident {
   identity hardware-failure {
     base cause-name;
     description
-      "It indicates the class of cause name is hardware failure.";
+      "It indicates the class of cause name is hardware
+       failure.";
   }
 
   identity interface-hardware-failure {
     base hardware-failure;
     description
-      "It indicates the class of cause name is the interface hardware failure.";
+      "It indicates the class of cause name is the
+       interface hardware failure.";
   }
 
   identity loss-of-signal {
     base cause-name;
     description
-      "It indicates the class of cause name is the loss of signal.";
+      "It indicates the class of cause name is the
+       loss of signal.";
   }
 
   identity rt-misconfiguration {
     base cause-name;
     description
-      "It indicates the class of cause name is routing protocol
-       misconfiguration.";
+      "It indicates the class of cause name is
+       routing protocol misconfiguration.";
   }
 
   identity service-misconfiguration {
@@ -422,8 +426,8 @@ module ietf-incident {
   identity protection-failure {
     base cause-name;
     description
-      "It indicates the class of cause name is protection
-       failure.";
+      "It indicates the class of cause name is
+       protection failure.";
   }
   // Typedefs
 
@@ -431,30 +435,33 @@ module ietf-incident {
     type enumeration {
       enum critical {
         description
-          "The 'critical' priority level indicates that a service-
-          affecting condition has occurred and an immediate
-          corrective action is required.  Such a priority can be
-          reported, for example, when a resource becomes totally out
-          of service and its capability must be restored.";
+          "The 'critical' priority level indicates that
+           a service-affecting condition has occurred and
+           an immediate corrective action is required.
+           Such a priority can be reported, for example,
+           when a resource becomes totally out of service
+           and its capability must be restored.";
       }
       enum high {
         description
-          "The 'high' priority level indicates that a service-
-          affecting condition has developed and an urgent corrective
-          action is required.  Such a priority can be reported, for
-          example, when there is a severe degradation in the
-          capability of the resource and its full capability must be
-          restored.";
+          "The 'high' priority level indicates that a
+           service-affecting condition has developed and
+           an urgent corrective action is required. Such
+           a priority can be reported, for example, when
+           there is a severe degradation in the capability
+           of the resource and its full capability must be
+           restored.";
       }
       enum medium {
         description
-          "The 'medium' severity level indicates the existence of a
-          non-service-affecting fault condition and that corrective
-          action should be taken in order to prevent a more serious
-          (for example, service-affecting) fault.  Such a priority
-          can be reported, for example, when the detected alarm
-          condition is not currently degrading the capacity of the
-          resource.";
+          "The 'medium' severity level indicates the
+           existence of a non-service-affecting fault
+           condition and that corrective action should
+           be taken in order to prevent a more serious
+          (for example, service-affecting) fault. Such
+          a priority can be reported, for example, when
+          the detected alarm condition is not currently
+          degrading the capacity of the resource.";
       }
       enum low {
         description
@@ -476,10 +483,11 @@ module ietf-incident {
       require-instance false;
     }
     description
-      "Provides a reference to a network incident using incident-no
-       note that incident no is unique but not incident list key.
-       The incident-ref is used for correlation between incident no
-       and incident list key in the RPCs and Notification.";
+      "Provides a reference to a network incident using
+       incident-no note that incident no is unique but not
+       incident list key. The incident-ref is used for
+       correlation between incident no and incident list
+       key in the RPCs and Notification.";
   }
 
   // Groupings
@@ -573,11 +581,11 @@ module ietf-incident {
     leaf incident-qualifier {
       type string;
       description
-        "The unique qualifier of an incident instance type.
-         This leaf is used when the 'type' leaf cannot
-         uniquely identify the incident instance type.  Normally,
-         this is not the case, and this leaf is the empty
-         string.";
+        "The unique qualifier of an incident instance
+         type. This leaf is used when the 'type' leaf
+         cannot uniquely identify the incident instance
+         type. Normally, this is not the case, and this
+         leaf is the empty string.";
     }
     leaf-list service-instance {
       type string;
@@ -660,8 +668,9 @@ module ietf-incident {
            be created even if we don't know yet the sources
            (hence we can not populate source list in the sources
            container). Therefore the min-elements for the source
-           list is set to 0 which is default value. Once the Incident
-           is diagnosed, the source(s) will be populated.";
+           list is set to 0 which is default value. Once the
+           Incident is diagnosed, the source(s) will be
+           populated.";
         uses resources-info;
       }
     }
@@ -676,7 +685,7 @@ module ietf-incident {
           augment "resource" {
             description
               "Augment Probable Root Cause information.";
-            //if Probable Root Cause object is a resource of a node
+    //if Probable Root Cause object is a resource of a node
             uses probable-cause-info;
           }
         }
@@ -836,8 +845,8 @@ module ietf-incident {
                   "The date and time the event was generated by
                    the network node.";
                 reference
-                  "I-D.ietf-netconf-notif-envelope: Extensible YANG
-                   Model for YANG-Push Notifications";
+                  "I-D.ietf-netconf-notif-envelope: Extensible
+                   YANG Model for YANG-Push Notifications";
               }
               leaf hostname {
                 type inet:host;
@@ -847,8 +856,8 @@ module ietf-incident {
                    administrator to identify the node in the
                    network uniquely.";
                 reference
-                  "I-D.ietf-netconf-notif-envelope: Extensible YANG
-                   Model for YANG-Push Notifications";
+                  "I-D.ietf-netconf-notif-envelope: Extensible
+                   YANG Model for YANG-Push Notifications";
               }
               leaf sequence-number {
                 type yang:counter32;
@@ -861,8 +870,8 @@ module ietf-incident {
                    at 0. The value 0 is used to detect wrap
                    arounds.";
                 reference
-                  "I-D.ietf-netconf-notif-envelope: Extensible YANG
-                   Model for YANG-Push Notifications";
+                  "I-D.ietf-netconf-notif-envelope: Extensible
+                   YANG Model for YANG-Push Notifications";
               }
               anydata contents {
                 description
@@ -931,14 +940,14 @@ module ietf-incident {
   sx:structure incident-acknowledge-error-info {
     container incident-acknowledge-error-info {
       description
-        "This structure data must be inserted in the RPC error
-         response to indicate the reason for the
+        "This structure data must be inserted in the RPC
+         error response to indicate the reason for the
          incident acknowledge failure.";
       leaf incident-no {
         type uint64;
         description
-          "Indicate the incident instance identifier that
-           fails the operation.";
+          "Indicate the incident instance identifier
+           that fails the operation.";
       }
       leaf reason {
         type identityref {
@@ -965,8 +974,8 @@ module ietf-incident {
       leaf incident-no {
         type uint64;
         description
-          "Indicate the incident instance identifier that
-           fails the operation.";
+          "Indicate the incident instance identifier
+           that fails the operation.";
       }
       leaf reason {
         type identityref {
@@ -1006,7 +1015,8 @@ module ietf-incident {
       leaf description {
         type string;
         description
-          "Indicates the detailed description about the failure.";
+          "Indicates the detailed description about the
+           failure.";
       }
     }
   }
@@ -1021,10 +1031,10 @@ module ietf-incident {
       type incident-ref;
       mandatory true;
       description
-        "The identifier of an incident instance. With incident-no
-         used in both incident-notification and RPCs, an Incident
-         Client know which notification is the result of a given
-         RPC.";
+        "The identifier of an incident instance. With
+         incident-no used in both incident-notification
+         and RPCs, an Incident Client know which notification
+         is the result of a given RPC.";
     }
     uses incident-info;
     leaf time {
@@ -1052,7 +1062,8 @@ module ietf-incident {
         mandatory true;
         description
           "The unique identifier of the incident
-           instance based on the name type incident-qualifier keys.";
+           instance based on the name type
+           incident-qualifier keys.";
       }
       uses incident-info;
       uses incident-time-info;
