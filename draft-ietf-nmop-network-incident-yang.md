@@ -719,9 +719,9 @@ three RPCs to manage the network incidents.
        |     +--ro network-ref?   leafref
        |     +--ro resource* [name]
        |     |  +--ro name          al:resource
-       |     |  +--ro cause-name?   string
+       |     |  +--ro cause-name?   identityref
        |     |  +--ro detail?       string
-       |     +--ro cause-name?    string
+       |     +--ro cause-name?    identityref
        |     +--ro detail?        string
        +--ro probable-events
        |  +--ro probable-event* [type event-id]
