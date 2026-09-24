@@ -507,7 +507,7 @@ module ietf-incident {
        resources of a node.";
     uses nw:node-ref;
     list resource {
-      key "name cause-name";
+      key "name";
       description
         "The resources of a network node.";
       leaf name {
