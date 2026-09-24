@@ -243,6 +243,14 @@ module ietf-incident {
       "RFC 8632: A YANG Data Model for Alarm Management";
   }
 
+  identity link-down {
+    base event-type;
+    description
+      "Link down event type.";
+    reference
+      "RFC 8632: A YANG Data Model for Alarm Management";
+  }
+
   identity notif {
     base event-type;
     description
