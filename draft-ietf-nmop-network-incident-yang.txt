@@ -808,7 +808,7 @@ Table of Contents
            |              +--ro event-time?        yang:date-and-time
            |              +--ro hostname?          inet:host
            |              +--ro sequence-number?   yang:counter32
-           |              +--ro contents           <anydata>
+           |              +--ro contents?           <anydata>
            +--ro raise-time?           yang:date-and-time
            +--ro occur-time            yang:date-and-time
            +--ro clear-time?           yang:date-and-time
