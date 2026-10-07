@@ -27,7 +27,7 @@ module: ietf-incident
         |     |  +--ro name          al:resource
         |     |  +--ro cause-name?   identityref
         |     |  +--ro detail?       string
-        |     +--ro cause-name?    identityref
+        |     +--ro cause-name     identityref
         |     +--ro detail?        string
         +--ro probable-events
         |  +--ro probable-event* [type event-id]
@@ -55,7 +55,7 @@ module: ietf-incident
         |              +--ro hostname?          inet:host
         |              +--ro sequence-number?   yang:counter32
         +--ro raise-time?           yang:date-and-time
-        +--ro occur-time?           yang:date-and-time
+        +--ro occur-time            yang:date-and-time
         +--ro clear-time?           yang:date-and-time
         +--ro ack-time?             yang:date-and-time
         +--ro last-updated?         yang:date-and-time
@@ -95,11 +95,11 @@ module: ietf-incident
        |  +--ro probable-cause* [node-ref cause-name]
        |     +--ro node-ref       -> /nw:networks/network[nw:network-id=current()/../network-ref]/node/node-id
        |     +--ro network-ref?   -> /nw:networks/network/network-id
-       |     +--ro resource* [name cause-name]
+       |     +--ro resource* [name]
        |     |  +--ro name          al:resource
        |     |  +--ro cause-name?   identityref
        |     |  +--ro detail?       string
-       |     +--ro cause-name?    identityref
+       |     +--ro cause-name     identityref
        |     +--ro detail?        string
        +--ro probable-events
        |  +--ro probable-event* [type event-id]
@@ -126,4 +126,5 @@ module: ietf-incident
        |              +--ro event-time?        yang:date-and-time
        |              +--ro hostname?          inet:host
        |              +--ro sequence-number?   yang:counter32
+       |              +--ro contents?          <anydata>
        +--ro time?                 yang:date-and-time
