@@ -497,7 +497,7 @@ aggregated into a network incident after analysis.
 The Incident Server is capable of identifying
 network incidents.  Multiple alarms, metrics and other information are
 reported to the Incident Server, and the server needs to analyze it and find
-out the correlations of them, if the correlation match the network incident
+out the correlations of them, if the correlations match the network incident
 rules, network incident is identified, and reported to the client.
 If the network incident is repeated many times, the problem needs to be
 raised based on the incident and the operator's policy.
@@ -1209,6 +1209,11 @@ Reference:  RFC XXXX
 ~~~~
 // RFC Ed.: Replace RFC xxxx with this RFC id, when published and remove this comment
 
+The identity hierarchies defined in this document ("incident-domain",
+"incident-category", and "incident-type") are extended by future
+documents through YANG identity derivation {{!RFC7950}}; no IANA
+registry is created or required for these extensions.
+
 # Acknowledgements
 {:numbered="false"}
 
@@ -1217,8 +1222,8 @@ Benoit Claise, Oscar Gonzalez de Dios, Adrian Farrel, Mahesh
 Jethanandani, Paul Aitken, Balazs Lengyel, Dhruv Dhody,Bo Wu, Qiufang Ma,
 Haomian Zheng, YuanYao, Wei Wang, Peng Liu, Zongpeng Du, Zhengqiang Li,
 Andrew Liu, Joe Clark, Roland Scott, Alex Huang Feng, Kai Gao, Jensen Zhang,
-Ziyang Xing, Mingshuang Jin, Aihua Guo, Zhidong Yin, Guoxiang Liu, Kaichun Wu
-for their valuable comments and great input to this work.
+Ziyang Xing, Mingshuang Jin, Aihua Guo, Zhidong Yin, Guoxiang Liu, Kaichun Wu,
+Dikshit Saumya for their valuable comments and great input to this work.
 
 --- back
 
@@ -1238,7 +1243,7 @@ and the domain 'PTN'. The Probable Root Cause is also analysed.
         "name": "line fault",
         "type": "ietf-incident:problem",
         "incident-qualifier": "line fault",
-        "incident-no": 56433218,
+        "incident-no": "56433218",
         "service-instance": [
           "optical-svc-A"
         ],
@@ -1266,22 +1271,17 @@ and the domain 'PTN'. The Probable Root Cause is also analysed.
         "probable-causes": {
           "probable-cause": [
             {
-              "name": "Feeder fiber great loss change",
-              "detail-information": "The connector of the optical fiber is\
-                                     contaminated, Or the optical fiber is\
-                                     bent too much.",
-              "probable-cause": {
-                "network-ref": "example:L2-topo",
-                "node-ref": "example:D1",
-                "resource": [
-                  {
-                    "name": "7985e01a-5aad-11ea-b214-286ed488cf99",
-                    "cause-name": "interface-hardware-failure",
-                    "detail": "Frame=0, Slot=6, Subslot=65535, Port=7,\
-                               ODF= ODF001,Level1Splitter= splitter0025"
-                  }
-                ]
-              }
+              "node-ref": "example:D1",
+              "network-ref": "example:L2-topo",
+              "cause-name": "loss-of-signal",
+              "detail": "Feeder fiber loss: connector dirty or bent.",
+              "resource": [
+                {
+                  "name": "7985e01a-5aad-11ea-b214-286ed488cf99",
+                  "cause-name": "interface-hardware-failure",
+                  "detail": "Frame=0, Slot=6, Port=7, ODF=ODF001"
+                }
+              ]
             }
           ]
         },
@@ -1322,20 +1322,20 @@ JSON encoding for the incident base model.
 
 ~~~~
 {
-  "ietf-incident-module:incident-notification": {
-    "incident-no": "INC-2026-98765",
+  "ietf-incident:incident-notification": {
+    "incident-no": "98765",
     "name": "Link Failure Core Router",
-    "type": "example-types:hardware-fault",
+    "type": "ietf-incident:problem",
     "incident-qualifier": "interface-down",
     "service-instance": [
       "srv-mpls-vpn-01",
       "srv-voip-05"
     ],
-    "domain": "example-types:transport-network",
+    "domain": "ietf-incident:transport",
     "priority": "critical",
-    "status": "active",
+    "status": "raised",
     "ack-status": "unacknowledged",
-    "category": "example-types:network-infrastructure",
+    "category": "ietf-incident:network",
     "detail": "Interface GigabitEthernet0/0/1 reports a Link Down\
                state due to loss of signal.",
     "resolve-advice": "Check physical fiber connections and optics\
@@ -1361,7 +1361,7 @@ JSON encoding for the incident base model.
           "resource": [
             {
               "name": "GigabitEthernet0/0/1",
-              "cause-name": "ietf-incident:los-of-signal",
+              "cause-name": "ietf-incident:loss-of-signal",
               "detail": "Laser rx power below operational threshold."
             }
           ],
@@ -1373,8 +1373,8 @@ JSON encoding for the incident base model.
     "probable-events": {
       "probable-event": [
         {
-          "type": "ietf-incident:link-down",
-          "event-id": "EV-10293"
+          "type": "ietf-incident:alarm",
+          "event-id": "AL-55443"
         }
       ]
     },
