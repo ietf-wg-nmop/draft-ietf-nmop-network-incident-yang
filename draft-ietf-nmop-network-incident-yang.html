@@ -2073,7 +2073,7 @@ module: ietf-incident
         |     |  +--ro name          al:resource
         |     |  +--ro cause-name?   identityref
         |     |  +--ro detail?       string
-        |     +--ro cause-name?    identityref
+        |     +--ro cause-name     identityref
         |     +--ro detail?        string
         +--ro probable-events
         |  +--ro probable-event* [type event-id]
@@ -2105,8 +2105,9 @@ alarm-list/alarm[al:resource = current()/../resource][al:alarm-type-\
         |              +--ro event-time?        yang:date-and-time
         |              +--ro hostname?          inet:host
         |              +--ro sequence-number?   yang:counter32
+        |              +--ro contents           &lt;anydata&gt;
         +--ro raise-time?           yang:date-and-time
-        +--ro occur-time?           yang:date-and-time
+        +--ro occur-time            yang:date-and-time
         +--ro clear-time?           yang:date-and-time
         +--ro ack-time?             yang:date-and-time
         +--ro last-updated?         yang:date-and-time
@@ -2148,11 +2149,11 @@ alarm-list/alarm[al:resource = current()/../resource][al:alarm-type-\
        |     +--ro node-ref       -&gt; /nw:networks/network[nw:network\
                            -id=current()/../network-ref]/node/node-id
        |     +--ro network-ref?   -&gt; /nw:networks/network/network-id
-       |     +--ro resource* [name cause-name]
+       |     +--ro resource* [name]
        |     |  +--ro name          al:resource
        |     |  +--ro cause-name?   identityref
        |     |  +--ro detail?       string
-       |     +--ro cause-name?    identityref
+       |     +--ro cause-name     identityref
        |     +--ro detail?        string
        +--ro probable-events
        |  +--ro probable-event* [type event-id]
@@ -2184,6 +2185,7 @@ alarm-list/alarm[al:resource = current()/../resource][al:alarm-type-\
        |              +--ro event-time?        yang:date-and-time
        |              +--ro hostname?          inet:host
        |              +--ro sequence-number?   yang:counter32
+       |              +--ro contents?          &lt;anydata&gt;
        +--ro time?                 yang:date-and-time
 </pre>
 </div>
