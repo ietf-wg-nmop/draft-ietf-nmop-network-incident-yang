@@ -197,7 +197,7 @@ Table of Contents
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
-   The following terms are defined in [RFC9543],[RFC9940] and are not
+   The following terms are defined in [RFC9940], [RFC9543] and are not
    redefined here:
 
    *  Alarm
@@ -276,15 +276,17 @@ Table of Contents
       network incident diagnosis or resolution.
 
    Incident Process:  A multi-step workflow used by network operation
-      teams to identify, analyze, and unexpected service disruptions or
-      quality reductions, with the primary goal of restoring normal
-      operations as quickly as possible while minimizing service impact.
+      teams to identify, analyze, and resolve unexpected service
+      disruptions or quality reductions, with the primary goal of
+      restoring normal operations as quickly as possible while
+      minimizing service impact.
 
-   Probable Root Cause:  If removing a fault condition completely s the
-      ongoing incident (specifically, regarding network outage or
-      service impairments and their associated subsequent failures and
-      symptoms) and prevents the problem from recurring, then such fault
-      condition is considered as a Probable Root Cause of a problem.
+   Probable Root Cause:  If removing a fault condition completely
+      resolves the ongoing incident (specifically, regarding network
+      outage or service impairments and their associated subsequent
+      failures and symptoms) and prevents the problem from recurring,
+      then such fault condition is considered as a Probable Root Cause
+      of a problem.
 
       Since one fault may give rise to another fault or problem, a
       Probable Root Cause is commonly meant to describe the original
@@ -588,7 +590,7 @@ Table of Contents
 
            Figure 3: Example 1 of Network Incident Identification
 
-   As described in Figure 3, VPN A a is deployed from PE1 to PE2, if an
+   As described in Figure 3, VPN A is deployed from PE1 to PE2, if an
    interface of P1 is going down, many alarms are triggered, such as
    interface down, IGP down, and IGP peer abnormal from P2.
 
@@ -950,7 +952,7 @@ Table of Contents
 
    A general notification, "incident-notification", is provided here.
    When a network incident instance is identified, the notification is
-   sent from the incident server to the incident client .  After a
+   sent from the incident server to the incident client.  After a
    notification is generated, if the incident server performs self
    diagnosis or the Incident Client uses the interfaces provided by the
    Incident Server to deliver diagnosis and resolution actions, the
@@ -1064,8 +1066,8 @@ Table of Contents
 
    This module imports types from [RFC9911], [RFC8632], [RFC8345],
    [RFC8791] and uses types defined in [RFC9376], [RFC1136], [RFC6373],
-   [RFC8348], [RFC8632], [RFC5277], [RFC9940], [RFC9375], [RFC5277],
-   [RFC8639], [RFC8641], [I-D.ietf-netconf-notif-envelope].
+   [RFC8348], [RFC8632], [RFC5277], [RFC9940], [RFC9375], [RFC8639],
+   [RFC8641], [I-D.ietf-netconf-notif-envelope].
 
    <CODE BEGINS> file "ietf-incident@2026-07-30.yang"
    module ietf-incident {
@@ -2581,6 +2583,11 @@ Normative References
               DOI 10.17487/RFC9911, December 2025,
               <https://www.rfc-editor.org/rfc/rfc9911>.
 
+   [RFC9940]  Davis, N., Ed., Farrel, A., Ed., Graf, T., Wu, Q., and C.
+              Yu, "Some Key Terms for Network Fault and Problem
+              Management", RFC 9940, DOI 10.17487/RFC9940, April 2026,
+              <https://www.rfc-editor.org/rfc/rfc9940>.
+
 Informative References
 
    [BERT]     "Pre-training of Deep Bidirectional Transformers for
@@ -2730,11 +2737,6 @@ Informative References
               (PAMs) for Services Governed by Service Level Objectives
               (SLOs)", RFC 9544, DOI 10.17487/RFC9544, March 2024,
               <https://www.rfc-editor.org/rfc/rfc9544>.
-
-   [RFC9940]  Davis, N., Ed., Farrel, A., Ed., Graf, T., Wu, Q., and C.
-              Yu, "Some Key Terms for Network Fault and Problem
-              Management", RFC 9940, DOI 10.17487/RFC9940, April 2026,
-              <https://www.rfc-editor.org/rfc/rfc9940>.
 
    [TMF724A]  "Incident Management API Profile v1.0.0", 2023,
               <https://www.tmforum.org/resources/standard/tmf724a-

@@ -1393,7 +1393,8 @@ and offline self-learning, these algorithms can be continuously optimized to
 improve the efficiency of fault diagnosis.<a href="#section-1-5" class="pilcrow">¶</a></p>
 <p id="section-1-6">This document defines a YANG data model for network incident lifecycle
 management, which improves troubleshooting efficiency, and improves
-network automation <span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</span> with remote process call (RPC) operations in this YANG module.<a href="#section-1-6" class="pilcrow">¶</a></p>
+network automation <span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</span> with remote process call (RPC) operations
+in this YANG module.<a href="#section-1-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conventions-and-definitions">
@@ -1405,8 +1406,8 @@ network automation <span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</spa
 "<span class="bcp14">MAY</span>", and "<span class="bcp14">OPTIONAL</span>" in this document are to be interpreted as
 described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="cite xref">RFC8174</a>]</span> when, and only when, they
 appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶</a></p>
-<p id="section-2-2">The following terms are defined in <span>[<a href="#RFC9543" class="cite xref">RFC9543</a>]</span>,<span>[<a href="#RFC9940" class="cite xref">RFC9940</a>]</span>
-and are not redefined here:<a href="#section-2-2" class="pilcrow">¶</a></p>
+<p id="section-2-2">The following terms are defined in <span>[<a href="#RFC9940" class="cite xref">RFC9940</a>]</span>, <span>[<a href="#RFC9543" class="cite xref">RFC9543</a>]</span> and
+are not redefined here:<a href="#section-2-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-2-3.1">
           <p id="section-2-3.1.1">Alarm<a href="#section-2-3.1.1" class="pilcrow">¶</a></p>
@@ -1506,14 +1507,14 @@ server and cannot instruct it to perform network incident diagnosis or resolutio
         <dd class="break"></dd>
 <dt id="section-2-5.13">Incident Process:</dt>
         <dd style="margin-left: 1.5em" id="section-2-5.14">
-          <p id="section-2-5.14.1">A multi-step workflow used by network operation teams to identify, analyze, and  unexpected
+          <p id="section-2-5.14.1">A multi-step workflow used by network operation teams to identify, analyze, and resolve unexpected
 service disruptions or quality reductions, with the primary goal of restoring normal operations as
 quickly as possible while minimizing service impact.<a href="#section-2-5.14.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-5.15">Probable Root Cause:</dt>
         <dd style="margin-left: 1.5em" id="section-2-5.16">
-          <p id="section-2-5.16.1">If removing a fault condition completely s the ongoing incident (specifically, regarding network
+          <p id="section-2-5.16.1">If removing a fault condition completely resolves the ongoing incident (specifically, regarding network
 outage or service impairments and their associated subsequent failures and symptoms) and prevents
 the problem from recurring, then such fault condition is considered as a Probable Root Cause of a problem.<a href="#section-2-5.16.1" class="pilcrow">¶</a></p>
 </dd>
@@ -1852,7 +1853,7 @@ VPN A      | |            |
 <a href="#name-example-1-of-network-incide" class="selfRef">Example 1 of Network Incident Identification</a>
           </figcaption></figure>
 </div>
-<p id="section-5.1-6">As described in <a href="#exam1" class="auto internal xref">Figure 3</a>, VPN A a is deployed from PE1 to PE2, if an
+<p id="section-5.1-6">As described in <a href="#exam1" class="auto internal xref">Figure 3</a>, VPN A is deployed from PE1 to PE2, if an
 interface of P1 is going down, many alarms are triggered, such as
 interface down, IGP down, and IGP peer abnormal from P2.<a href="#section-5.1-6" class="pilcrow">¶</a></p>
 <p id="section-5.1-7">These alarms are aggregated and analyzed by the controller/Incident
@@ -2259,7 +2260,7 @@ alarm-list/alarm[al:resource = current()/../resource][al:alarm-type-\
 </div>
 <p id="section-7.2-2">A general notification, "incident-notification", is provided here.
 When a network incident instance is identified, the notification is
-sent from the incident server to the incident client .  After a notification
+sent from the incident server to the incident client. After a notification
 is generated, if the incident server performs self diagnosis or the Incident
 Client uses the interfaces provided by the Incident Server to deliver
 diagnosis and resolution actions, the notification update behavior is triggered,
@@ -2401,7 +2402,7 @@ incident-not-found
       </h2>
 <p id="section-8-1">This module imports types from <span>[<a href="#RFC9911" class="cite xref">RFC9911</a>]</span>, <span>[<a href="#RFC8632" class="cite xref">RFC8632</a>]</span>, <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>, <span>[<a href="#RFC8791" class="cite xref">RFC8791</a>]</span>
 and uses types defined in <span>[<a href="#RFC9376" class="cite xref">RFC9376</a>]</span>, <span>[<a href="#RFC1136" class="cite xref">RFC1136</a>]</span>, <span>[<a href="#RFC6373" class="cite xref">RFC6373</a>]</span>, <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span>,
-<span>[<a href="#RFC8632" class="cite xref">RFC8632</a>]</span>, <span>[<a href="#RFC5277" class="cite xref">RFC5277</a>]</span>, <span>[<a href="#RFC9940" class="cite xref">RFC9940</a>]</span>, <span>[<a href="#RFC9375" class="cite xref">RFC9375</a>]</span>, <span>[<a href="#RFC5277" class="cite xref">RFC5277</a>]</span>, <span>[<a href="#RFC8639" class="cite xref">RFC8639</a>]</span>,
+<span>[<a href="#RFC8632" class="cite xref">RFC8632</a>]</span>, <span>[<a href="#RFC5277" class="cite xref">RFC5277</a>]</span>, <span>[<a href="#RFC9940" class="cite xref">RFC9940</a>]</span>, <span>[<a href="#RFC9375" class="cite xref">RFC9375</a>]</span>, <span>[<a href="#RFC8639" class="cite xref">RFC8639</a>]</span>,
 <span>[<a href="#RFC8641" class="cite xref">RFC8641</a>]</span>, <span>[<a href="#I-D.ietf-netconf-notif-envelope" class="cite xref">I-D.ietf-netconf-notif-envelope</a>]</span>.<a href="#section-8-1" class="pilcrow">¶</a></p>
 <div class="breakable sourcecode" id="section-8-2">
 <pre>&lt;CODE BEGINS&gt; file "ietf-incident@2026-07-30.yang"
@@ -3954,8 +3955,12 @@ Dikshit Saumya for their valuable comments and great input to this work.<a href=
 <span class="refAuthor">Rescorla, E.</span>, <span class="refTitle">"The Transport Layer Security (TLS) Protocol Version 1.3"</span>, <span class="seriesInfo">RFC 9846</span>, <span class="seriesInfo">DOI 10.17487/RFC9846</span>, <time datetime="2026-07" class="refDate">July 2026</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9846">https://www.rfc-editor.org/rfc/rfc9846</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9911">[RFC9911]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Schönwälder, J., Ed.</span>, <span class="refTitle">"Common YANG Data Types"</span>, <span class="seriesInfo">RFC 9911</span>, <span class="seriesInfo">DOI 10.17487/RFC9911</span>, <time datetime="2025-12" class="refDate">December 2025</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9911">https://www.rfc-editor.org/rfc/rfc9911</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9940">[RFC9940]</dt>
+      <dd>
+<span class="refAuthor">Davis, N., Ed.</span>, <span class="refAuthor">Farrel, A., Ed.</span>, <span class="refAuthor">Graf, T.</span>, <span class="refAuthor">Wu, Q.</span>, and <span class="refAuthor">C. Yu</span>, <span class="refTitle">"Some Key Terms for Network Fault and Problem Management"</span>, <span class="seriesInfo">RFC 9940</span>, <span class="seriesInfo">DOI 10.17487/RFC9940</span>, <time datetime="2026-04" class="refDate">April 2026</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9940">https://www.rfc-editor.org/rfc/rfc9940</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -4061,10 +4066,6 @@ Dikshit Saumya for their valuable comments and great input to this work.<a href=
 <dt id="RFC9544">[RFC9544]</dt>
         <dd>
 <span class="refAuthor">Mirsky, G.</span>, <span class="refAuthor">Halpern, J.</span>, <span class="refAuthor">Min, X.</span>, <span class="refAuthor">Clemm, A.</span>, <span class="refAuthor">Strassner, J.</span>, and <span class="refAuthor">J. François</span>, <span class="refTitle">"Precision Availability Metrics (PAMs) for Services Governed by Service Level Objectives (SLOs)"</span>, <span class="seriesInfo">RFC 9544</span>, <span class="seriesInfo">DOI 10.17487/RFC9544</span>, <time datetime="2024-03" class="refDate">March 2024</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9544">https://www.rfc-editor.org/rfc/rfc9544</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC9940">[RFC9940]</dt>
-        <dd>
-<span class="refAuthor">Davis, N., Ed.</span>, <span class="refAuthor">Farrel, A., Ed.</span>, <span class="refAuthor">Graf, T.</span>, <span class="refAuthor">Wu, Q.</span>, and <span class="refAuthor">C. Yu</span>, <span class="refTitle">"Some Key Terms for Network Fault and Problem Management"</span>, <span class="seriesInfo">RFC 9940</span>, <span class="seriesInfo">DOI 10.17487/RFC9940</span>, <time datetime="2026-04" class="refDate">April 2026</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9940">https://www.rfc-editor.org/rfc/rfc9940</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="TMF724A">[TMF724A]</dt>
         <dd>
