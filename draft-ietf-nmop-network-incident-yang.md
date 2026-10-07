@@ -749,7 +749,7 @@ three RPCs to manage the network incidents.
        |              +--ro event-time?        yang:date-and-time
        |              +--ro hostname?          inet:host
        |              +--ro sequence-number?   yang:counter32
-       |              +--ro contents           <anydata>
+       |              +--ro contents?          <anydata>
        +--ro time?                 yang:date-and-time
 ~~~~
 
