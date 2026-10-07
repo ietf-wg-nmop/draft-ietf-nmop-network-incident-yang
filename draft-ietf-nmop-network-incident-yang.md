@@ -144,7 +144,7 @@ relationships with both network service and network topology at various differen
 layers, which not only can be used at a specific layer in one domain but also can be used to
 span across layers for multi-layer network troubleshooting.
 
-As described in {{?RFC9940}}, a network incident refers
+As described in {{!RFC9940}}, a network incident refers
 to an undesired Occurrence such as an unexpected interruption of a network service,
 degradation of the quality of a network service, or the below-target performance of
 a network service. Different data sources, including alarms, metrics, and other anomaly
@@ -171,14 +171,15 @@ improve the efficiency of fault diagnosis.
 
 This document defines a YANG data model for network incident lifecycle
 management, which improves troubleshooting efficiency, and improves
-network automation {{?RFC8969}} with remote process call (RPC) operations in this YANG module.
+network automation {{?RFC8969}} with remote process call (RPC) operations
+in this YANG module.
 
 # Conventions and Definitions
 
 {::boilerplate bcp14-tagged}
 
-The following terms are defined in {{?RFC9543}},{{?RFC9940}}
-and are not redefined here:
+The following terms are defined in {{!RFC9940}}, {{?RFC9543}} and
+are not redefined here:
 
 *  Alarm
 
@@ -251,12 +252,12 @@ Incident Handler:
   server and cannot instruct it to perform network incident diagnosis or resolution.
 
 Incident Process:
-: A multi-step workflow used by network operation teams to identify, analyze, and  unexpected
+: A multi-step workflow used by network operation teams to identify, analyze, and resolve unexpected
 service disruptions or quality reductions, with the primary goal of restoring normal operations as
 quickly as possible while minimizing service impact.
 
 Probable Root Cause:
-: If removing a fault condition completely s the ongoing incident (specifically, regarding network
+: If removing a fault condition completely resolves the ongoing incident (specifically, regarding network
   outage or service impairments and their associated subsequent failures and symptoms) and prevents
   the problem from recurring, then such fault condition is considered as a Probable Root Cause of a problem.
 
@@ -542,7 +543,7 @@ VPN A      | |            |
 ~~~~
 {:#exam1 title="Example 1 of Network Incident Identification" artwork-align="center"}
 
-As described in {{exam1}}, VPN A a is deployed from PE1 to PE2, if an
+As described in {{exam1}}, VPN A is deployed from PE1 to PE2, if an
 interface of P1 is going down, many alarms are triggered, such as
 interface down, IGP down, and IGP peer abnormal from P2.
 
@@ -753,7 +754,7 @@ three RPCs to manage the network incidents.
 
 A general notification, "incident-notification", is provided here.
 When a network incident instance is identified, the notification is
-sent from the incident server to the incident client .  After a notification
+sent from the incident server to the incident client. After a notification
 is generated, if the incident server performs self diagnosis or the Incident
 Client uses the interfaces provided by the Incident Server to deliver
 diagnosis and resolution actions, the notification update behavior is triggered,
@@ -871,7 +872,7 @@ incident-not-found
 
 This module imports types from {{!RFC9911}}, {{!RFC8632}}, {{!RFC8345}}, {{!RFC8791}}
 and uses types defined in {{?RFC9376}}, {{?RFC1136}}, {{?RFC6373}}, {{?RFC8348}},
-{{?RFC8632}}, {{?RFC5277}}, {{?RFC9940}}, {{!RFC9375}}, {{?RFC5277}}, {{?RFC8639}},
+{{?RFC8632}}, {{?RFC5277}}, {{!RFC9940}}, {{!RFC9375}}, {{?RFC8639}},
 {{?RFC8641}}, {{?I-D.ietf-netconf-notif-envelope}}.
 
 ~~~~
@@ -954,7 +955,7 @@ incident-no are matched to update the same incident instance.
 
 A YANG model for the alarm management {{?RFC8632}} defines a standard
 interface to manage the lifecycle of alarms.  Alarms represent the
-undesirable state of network resources {{?RFC9940}},
+undesirable state of network resources {{!RFC9940}},
 The alarm data model also defines the Probable Root Causes and impacted
 services fields, but there may be insufficient information to determine them
 at lower layer system (mainly in devices level), so alarms do not always tell
@@ -1157,7 +1158,7 @@ operations and their sensitivity/vulnerability:
 "incident-diagnose": This RPC operation performs network incident
 diagnosis and Probable Root Cause locating. If a malicious or buggy client
 performs an unexpectedly large number of this operation, the result
-might be an excessive use of system resources {{?RFC9940}}
+might be an excessive use of system resources {{!RFC9940}}
 on the server side as well as network resources.  Servers MUST
 ensure they have sufficient resources to fulfill this request; otherwise,
 they can choose to block the connection (e.g., block abusive IP address)
