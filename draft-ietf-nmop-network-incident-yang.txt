@@ -950,7 +950,7 @@ Table of Contents
           |              +--ro event-time?        yang:date-and-time
           |              +--ro hostname?          inet:host
           |              +--ro sequence-number?   yang:counter32
-          |              +--ro contents           <anydata>
+          |              +--ro contents?          <anydata>
           +--ro time?                 yang:date-and-time
 
    A general notification, "incident-notification", is provided here.
