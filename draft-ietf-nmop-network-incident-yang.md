@@ -715,14 +715,14 @@ three RPCs to manage the network incidents.
        |     +--ro resource* [name]
        |        +--ro name    al:resource
        +--ro probable-causes
-       |  +--ro probable-cause* [node-ref]
+       |  +--ro probable-cause* [node-ref cause-name]
        |     +--ro node-ref       leafref
        |     +--ro network-ref?   leafref
        |     +--ro resource* [name]
        |     |  +--ro name          al:resource
        |     |  +--ro cause-name?   identityref
        |     |  +--ro detail?       string
-       |     +--ro cause-name?    identityref
+       |     +--ro cause-name     identityref
        |     +--ro detail?        string
        +--ro probable-events
        |  +--ro probable-event* [type event-id]
@@ -749,6 +749,7 @@ three RPCs to manage the network incidents.
        |              +--ro event-time?        yang:date-and-time
        |              +--ro hostname?          inet:host
        |              +--ro sequence-number?   yang:counter32
+       |              +--ro contents           <anydata>
        +--ro time?                 yang:date-and-time
 ~~~~
 
