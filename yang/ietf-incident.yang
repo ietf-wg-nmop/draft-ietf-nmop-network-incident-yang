@@ -898,7 +898,7 @@ module ietf-incident {
         description
           "The unique number of an incident instance
            based on the incident-no which is corresponding
-           to the name type incident-id keys.";
+           to the name type incident-qualifier keys.";
       }
     }
   }
@@ -915,7 +915,7 @@ module ietf-incident {
         description
           "The unique number of an incident instance
            based on the incident-no which is corresponding
-           to the name type incident-id keys.";
+           to the name type incident-qualifier keys.";
       }
     }
   }
@@ -932,7 +932,7 @@ module ietf-incident {
         description
           "The unique number of an incident instance
            based on the incident-no which is corresponding
-           to the name type incident-id keys.";
+           to the name type incident-qualifier keys.";
       }
     }
   }
