@@ -1056,7 +1056,7 @@ netconf extension for {{W3C-Trace-Context}} and
 {{?I-D.ietf-netconf-configuration-tracing}} defines a mechanism for
 configuration tracing.  If some errors occur when services are
 deploying, it's very easy to identify these errors by distributed
-system tracing, and a network incident SHOULD be reported.
+system tracing, and a network incident should be reported.
 
 ## Relationship with Network Anomaly Detection Architecture
 
@@ -1068,7 +1068,7 @@ planes, preserve relationships among these 3 network planes. Section 3 of
 architecture where the "Alarm Management System" maps to the "Incident Server" in
 Section 4 of this document. The "relevant-state" YANG notification defined in
 Section 8.2 of {{?I-D.ietf-nmop-network-anomaly-lifecycle}} defines an "id" which
-SHOULD be mapped to "event-id" in the 'ietf-incident' YANG module described in this
+should be mapped to "event-id" in the 'ietf-incident' YANG module described in this
 document on the "Incident Server". {{?I-D.ietf-nmop-network-anomaly-semantics}}
 augments relevant-state YANG notification with 'ietf-network-anomaly-symptom' YANG
 module symptom semantics described in Section 4.2 and service and network
