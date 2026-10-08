@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 10 April 2027                                        Telefonica
+Expires: 11 April 2027                                        Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                          7 October 2026
+                                                          8 October 2026
 
 
            A YANG Data Model for Network Incident Management
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 April 2027.
+   This Internet-Draft will expire on 11 April 2027.
 
 Copyright Notice
 
@@ -1973,7 +1973,7 @@ Table of Contents
            description
              "The unique number of an incident instance
               based on the incident-no which is corresponding
-              to the name type incident-id keys.";
+              to the name type incident-qualifier keys.";
          }
        }
      }
@@ -1990,7 +1990,7 @@ Table of Contents
            description
              "The unique number of an incident instance
               based on the incident-no which is corresponding
-              to the name type incident-id keys.";
+              to the name type incident-qualifier keys.";
          }
        }
      }
@@ -2007,7 +2007,7 @@ Table of Contents
            description
              "The unique number of an incident instance
               based on the incident-no which is corresponding
-              to the name type incident-id keys.";
+              to the name type incident-qualifier keys.";
          }
        }
      }
