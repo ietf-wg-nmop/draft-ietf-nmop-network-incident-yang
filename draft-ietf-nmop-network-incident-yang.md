@@ -629,7 +629,8 @@ after determining the impact is not trivial.
 
 An 'incident-no' is used as an identifier of an incident instance, if
 an incident instance is identified, a new 'incident-no' is created.
-The 'incident-no' MUST be unique in the whole system.
+The 'incident-no' MUST be unique in the whole Incident Management
+System/server.
 
 ## The Incident Lifecycle
 
