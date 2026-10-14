@@ -144,7 +144,7 @@ relationships with both network service and network topology at various differen
 layers, which not only can be used at a specific layer in one domain but also can be used to
 span across layers for multi-layer network troubleshooting.
 
-As described in {{!RFC9940}}, a network incident refers
+As described in {{?RFC9940}}, a network incident refers
 to an undesired Occurrence such as an unexpected interruption of a network service,
 degradation of the quality of a network service, or the below-target performance of
 a network service. Different data sources, including alarms, metrics, and other anomaly
@@ -178,7 +178,7 @@ in this YANG module.
 
 {::boilerplate bcp14-tagged}
 
-The following terms are defined in {{!RFC9940}}, {{?RFC9543}} and
+The following terms are defined in {{?RFC9940}}, {{?RFC9543}} and
 are not redefined here:
 
 *  Alarm
@@ -661,7 +661,7 @@ perspective, the lifecycle of a network incident instance includes 'acknowledged
 
 When a network incident instance is generated, the operator SHOULD acknowledge the
 network incident with 'incident-acknowledge' RPC. And then the operator attempts to
-diagnose the network incident with 'incident-diagnose' PRC (for example, find out the
+diagnose the network incident with 'incident-diagnose' RPC (for example, find out the
 Probable Root Cause and affected components). Diagnosis is not mandatory. If the Probable
 Root Cause and affected components are known when the network incident is generated,
 diagnosis is not required.  After locating the Probable Root Cause and affected components,
@@ -873,7 +873,7 @@ incident-not-found
 
 This module imports types from {{!RFC9911}}, {{!RFC8632}}, {{!RFC8345}}, {{!RFC8791}}
 and uses types defined in {{?RFC9376}}, {{?RFC1136}}, {{?RFC6373}}, {{?RFC8348}},
-{{?RFC8632}}, {{?RFC5277}}, {{!RFC9940}}, {{!RFC9375}}, {{?RFC8639}},
+{{?RFC8632}}, {{?RFC5277}}, {{?RFC9940}}, {{!RFC9375}}, {{?RFC8639}},
 {{?RFC8641}}, {{?I-D.ietf-netconf-notif-envelope}}.
 
 ~~~~
@@ -956,7 +956,7 @@ incident-no are matched to update the same incident instance.
 
 A YANG model for the alarm management {{?RFC8632}} defines a standard
 interface to manage the lifecycle of alarms.  Alarms represent the
-undesirable state of network resources {{!RFC9940}},
+undesirable state of network resources {{?RFC9940}},
 The alarm data model also defines the Probable Root Causes and impacted
 services fields, but there may be insufficient information to determine them
 at lower layer system (mainly in devices level), so alarms do not always tell
@@ -1159,7 +1159,7 @@ operations and their sensitivity/vulnerability:
 "incident-diagnose": This RPC operation performs network incident
 diagnosis and Probable Root Cause locating. If a malicious or buggy client
 performs an unexpectedly large number of this operation, the result
-might be an excessive use of system resources {{!RFC9940}}
+might be an excessive use of system resources {{?RFC9940}}
 on the server side as well as network resources.  Servers MUST
 ensure they have sufficient resources to fulfill this request; otherwise,
 they can choose to block the connection (e.g., block abusive IP address)
