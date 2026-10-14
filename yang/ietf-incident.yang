@@ -454,24 +454,24 @@ module ietf-incident {
       }
       enum medium {
         description
-          "The 'medium' severity level indicates the
+          "The 'medium' priority level indicates the
            existence of a non-service-affecting fault
            condition and that corrective action should
            be taken in order to prevent a more serious
-          (for example, service-affecting) fault. Such
-          a priority can be reported, for example, when
-          the detected alarm condition is not currently
-          degrading the capacity of the resource.";
+           (for example, service-affecting) fault. Such
+           a priority can be reported, for example, when
+           the detected condition is not currently
+           degrading the capacity of the resource.";
       }
       enum low {
         description
           "The 'low' priority level indicates the detection of a
-          potential or impending service-affecting fault, before any
-          significant effects have been felt.  Action should be
-          taken to further diagnose (if necessary) and correct the
-          problem in order to prevent it from becoming a more
-          serious service-affecting fault.";
-      }
+           potential or impending service-affecting fault, before
+           any significant effects have been felt.  Action should
+           be taken to further diagnose (if necessary) and correct
+           the problem in order to prevent it from becoming a more
+           serious service-affecting fault.";
+     }
     }
     description
       "Defines the priority of incident.";
@@ -1040,7 +1040,7 @@ module ietf-incident {
     leaf time {
       type yang:date-and-time;
       description
-        " The time when an incident instance occurs.
+        "The time when an incident instance occurs.
          It is the occur time of the first event during
          incident detection.";
     }
