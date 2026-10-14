@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 11 April 2027                                        Telefonica
+Expires: 17 April 2027                                        Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                          8 October 2026
+                                                         14 October 2026
 
 
            A YANG Data Model for Network Incident Management
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 April 2027.
+   This Internet-Draft will expire on 17 April 2027.
 
 Copyright Notice
 
@@ -715,7 +715,7 @@ Table of Contents
    When a network incident instance is generated, the operator SHOULD
    acknowledge the network incident with 'incident-acknowledge' RPC.
    And then the operator attempts to diagnose the network incident with
-   'incident-diagnose' PRC (for example, find out the Probable Root
+   'incident-diagnose' RPC (for example, find out the Probable Root
    Cause and affected components).  Diagnosis is not mandatory.  If the
    Probable Root Cause and affected components are known when the
    network incident is generated, diagnosis is not required.  After
@@ -1529,24 +1529,24 @@ Table of Contents
          }
          enum medium {
            description
-             "The 'medium' severity level indicates the
+             "The 'medium' priority level indicates the
               existence of a non-service-affecting fault
               condition and that corrective action should
               be taken in order to prevent a more serious
-             (for example, service-affecting) fault. Such
-             a priority can be reported, for example, when
-             the detected alarm condition is not currently
-             degrading the capacity of the resource.";
+              (for example, service-affecting) fault. Such
+              a priority can be reported, for example, when
+              the detected condition is not currently
+              degrading the capacity of the resource.";
          }
          enum low {
            description
              "The 'low' priority level indicates the detection of a
-             potential or impending service-affecting fault, before any
-             significant effects have been felt.  Action should be
-             taken to further diagnose (if necessary) and correct the
-             problem in order to prevent it from becoming a more
-             serious service-affecting fault.";
-         }
+              potential or impending service-affecting fault, before
+              any significant effects have been felt.  Action should
+              be taken to further diagnose (if necessary) and correct
+              the problem in order to prevent it from becoming a more
+              serious service-affecting fault.";
+        }
        }
        description
          "Defines the priority of incident.";
@@ -2115,7 +2115,7 @@ Table of Contents
        leaf time {
          type yang:date-and-time;
          description
-           " The time when an incident instance occurs.
+           "The time when an incident instance occurs.
             It is the occur time of the first event during
             incident detection.";
        }
@@ -2587,11 +2587,6 @@ Normative References
               DOI 10.17487/RFC9911, December 2025,
               <https://www.rfc-editor.org/rfc/rfc9911>.
 
-   [RFC9940]  Davis, N., Ed., Farrel, A., Ed., Graf, T., Wu, Q., and C.
-              Yu, "Some Key Terms for Network Fault and Problem
-              Management", RFC 9940, DOI 10.17487/RFC9940, April 2026,
-              <https://www.rfc-editor.org/rfc/rfc9940>.
-
 Informative References
 
    [BERT]     "Pre-training of Deep Bidirectional Transformers for
@@ -2650,9 +2645,9 @@ Informative References
               Contreras, L. M., Lopez, V., and Q. Wu, "A YANG Data Model
               for Network Diagnosis using Scheduled Sequences of OAM
               Tests", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-scheduling-oam-tests-10, 29 September 2026,
+              opsawg-scheduling-oam-tests-11, 13 October 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              scheduling-oam-tests-10>.
+              scheduling-oam-tests-11>.
 
    [I-D.irtf-nmrg-ai-challenges]
               François, J., Clemm, A., Papadimitriou, D., Fernandes, S.,
@@ -2741,6 +2736,11 @@ Informative References
               (PAMs) for Services Governed by Service Level Objectives
               (SLOs)", RFC 9544, DOI 10.17487/RFC9544, March 2024,
               <https://www.rfc-editor.org/rfc/rfc9544>.
+
+   [RFC9940]  Davis, N., Ed., Farrel, A., Ed., Graf, T., Wu, Q., and C.
+              Yu, "Some Key Terms for Network Fault and Problem
+              Management", RFC 9940, DOI 10.17487/RFC9940, April 2026,
+              <https://www.rfc-editor.org/rfc/rfc9940>.
 
    [TMF724A]  "Incident Management API Profile v1.0.0", 2023,
               <https://www.tmforum.org/resources/standard/tmf724a-

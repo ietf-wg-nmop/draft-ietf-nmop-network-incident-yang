@@ -1054,7 +1054,7 @@ svg {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Hu, et al.</td>
-<td class="center">Expires 11 April 2027</td>
+<td class="center">Expires 17 April 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1067,12 +1067,12 @@ svg {
 <dd class="internet-draft">draft-ietf-nmop-network-incident-yang-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-10-08" class="published">8 October 2026</time>
+<time datetime="2026-10-14" class="published">14 October 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-04-11">11 April 2027</time></dd>
+<dd class="expires"><time datetime="2027-04-17">17 April 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1125,7 +1125,7 @@ root cause analysis.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 11 April 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 17 April 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -2002,7 +2002,7 @@ perspective, the lifecycle of a network incident instance includes 'acknowledged
 'diagnosed', and 'resolved'.<a href="#section-6.2.2-1" class="pilcrow">¶</a></p>
 <p id="section-6.2.2-2">When a network incident instance is generated, the operator <span class="bcp14">SHOULD</span> acknowledge the
 network incident with 'incident-acknowledge' RPC. And then the operator attempts to
-diagnose the network incident with 'incident-diagnose' PRC (for example, find out the
+diagnose the network incident with 'incident-diagnose' RPC (for example, find out the
 Probable Root Cause and affected components). Diagnosis is not mandatory. If the Probable
 Root Cause and affected components are known when the network incident is generated,
 diagnosis is not required.  After locating the Probable Root Cause and affected components,
@@ -2866,24 +2866,24 @@ module ietf-incident {
       }
       enum medium {
         description
-          "The 'medium' severity level indicates the
+          "The 'medium' priority level indicates the
            existence of a non-service-affecting fault
            condition and that corrective action should
            be taken in order to prevent a more serious
-          (for example, service-affecting) fault. Such
-          a priority can be reported, for example, when
-          the detected alarm condition is not currently
-          degrading the capacity of the resource.";
+           (for example, service-affecting) fault. Such
+           a priority can be reported, for example, when
+           the detected condition is not currently
+           degrading the capacity of the resource.";
       }
       enum low {
         description
           "The 'low' priority level indicates the detection of a
-          potential or impending service-affecting fault, before any
-          significant effects have been felt.  Action should be
-          taken to further diagnose (if necessary) and correct the
-          problem in order to prevent it from becoming a more
-          serious service-affecting fault.";
-      }
+           potential or impending service-affecting fault, before
+           any significant effects have been felt.  Action should
+           be taken to further diagnose (if necessary) and correct
+           the problem in order to prevent it from becoming a more
+           serious service-affecting fault.";
+     }
     }
     description
       "Defines the priority of incident.";
@@ -3452,7 +3452,7 @@ module ietf-incident {
     leaf time {
       type yang:date-and-time;
       description
-        " The time when an incident instance occurs.
+        "The time when an incident instance occurs.
          It is the occur time of the first event during
          incident detection.";
     }
@@ -3958,12 +3958,8 @@ Dikshit Saumya for their valuable comments and great input to this work.<a href=
 <span class="refAuthor">Rescorla, E.</span>, <span class="refTitle">"The Transport Layer Security (TLS) Protocol Version 1.3"</span>, <span class="seriesInfo">RFC 9846</span>, <span class="seriesInfo">DOI 10.17487/RFC9846</span>, <time datetime="2026-07" class="refDate">July 2026</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9846">https://www.rfc-editor.org/rfc/rfc9846</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9911">[RFC9911]</dt>
-        <dd>
-<span class="refAuthor">Schönwälder, J., Ed.</span>, <span class="refTitle">"Common YANG Data Types"</span>, <span class="seriesInfo">RFC 9911</span>, <span class="seriesInfo">DOI 10.17487/RFC9911</span>, <time datetime="2025-12" class="refDate">December 2025</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9911">https://www.rfc-editor.org/rfc/rfc9911</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC9940">[RFC9940]</dt>
       <dd>
-<span class="refAuthor">Davis, N., Ed.</span>, <span class="refAuthor">Farrel, A., Ed.</span>, <span class="refAuthor">Graf, T.</span>, <span class="refAuthor">Wu, Q.</span>, and <span class="refAuthor">C. Yu</span>, <span class="refTitle">"Some Key Terms for Network Fault and Problem Management"</span>, <span class="seriesInfo">RFC 9940</span>, <span class="seriesInfo">DOI 10.17487/RFC9940</span>, <time datetime="2026-04" class="refDate">April 2026</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9940">https://www.rfc-editor.org/rfc/rfc9940</a>&gt;</span>. </dd>
+<span class="refAuthor">Schönwälder, J., Ed.</span>, <span class="refTitle">"Common YANG Data Types"</span>, <span class="seriesInfo">RFC 9911</span>, <span class="seriesInfo">DOI 10.17487/RFC9911</span>, <time datetime="2025-12" class="refDate">December 2025</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9911">https://www.rfc-editor.org/rfc/rfc9911</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -4004,7 +4000,7 @@ Dikshit Saumya for their valuable comments and great input to this work.<a href=
 <dd class="break"></dd>
 <dt id="I-D.ietf-opsawg-scheduling-oam-tests">[I-D.ietf-opsawg-scheduling-oam-tests]</dt>
         <dd>
-<span class="refAuthor">Contreras, L. M.</span>, <span class="refAuthor">Lopez, V.</span>, and <span class="refAuthor">Q. Wu</span>, <span class="refTitle">"A YANG Data Model for Network Diagnosis using Scheduled Sequences of OAM Tests"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-scheduling-oam-tests-10</span>, <time datetime="2026-09-29" class="refDate">29 September 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-scheduling-oam-tests-10">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-scheduling-oam-tests-10</a>&gt;</span>. </dd>
+<span class="refAuthor">Contreras, L. M.</span>, <span class="refAuthor">Lopez, V.</span>, and <span class="refAuthor">Q. Wu</span>, <span class="refTitle">"A YANG Data Model for Network Diagnosis using Scheduled Sequences of OAM Tests"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-scheduling-oam-tests-11</span>, <time datetime="2026-10-13" class="refDate">13 October 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-scheduling-oam-tests-11">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-scheduling-oam-tests-11</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.irtf-nmrg-ai-challenges">[I-D.irtf-nmrg-ai-challenges]</dt>
         <dd>
@@ -4069,6 +4065,10 @@ Dikshit Saumya for their valuable comments and great input to this work.<a href=
 <dt id="RFC9544">[RFC9544]</dt>
         <dd>
 <span class="refAuthor">Mirsky, G.</span>, <span class="refAuthor">Halpern, J.</span>, <span class="refAuthor">Min, X.</span>, <span class="refAuthor">Clemm, A.</span>, <span class="refAuthor">Strassner, J.</span>, and <span class="refAuthor">J. François</span>, <span class="refTitle">"Precision Availability Metrics (PAMs) for Services Governed by Service Level Objectives (SLOs)"</span>, <span class="seriesInfo">RFC 9544</span>, <span class="seriesInfo">DOI 10.17487/RFC9544</span>, <time datetime="2024-03" class="refDate">March 2024</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9544">https://www.rfc-editor.org/rfc/rfc9544</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9940">[RFC9940]</dt>
+        <dd>
+<span class="refAuthor">Davis, N., Ed.</span>, <span class="refAuthor">Farrel, A., Ed.</span>, <span class="refAuthor">Graf, T.</span>, <span class="refAuthor">Wu, Q.</span>, and <span class="refAuthor">C. Yu</span>, <span class="refTitle">"Some Key Terms for Network Fault and Problem Management"</span>, <span class="seriesInfo">RFC 9940</span>, <span class="seriesInfo">DOI 10.17487/RFC9940</span>, <time datetime="2026-04" class="refDate">April 2026</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9940">https://www.rfc-editor.org/rfc/rfc9940</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="TMF724A">[TMF724A]</dt>
         <dd>
