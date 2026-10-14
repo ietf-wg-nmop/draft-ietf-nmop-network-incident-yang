@@ -1255,7 +1255,8 @@ and the domain 'PTN'. The Probable Root Cause is also analysed.
         "clear-time": "2026-03-10T06:01:12Z",
         "ack-time": "2026-03-10T05:01:12Z",
         "last-updated": "2026-03-10T05:31:12Z",
-        "ack-status": "unacknowledged",
+        "status": "cleared",
+        "ack-status": "acknowledged",
         "category": "ietf-incident:network",
         "sources": {
           "source": [
