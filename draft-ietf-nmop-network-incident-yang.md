@@ -1478,10 +1478,9 @@ rpcs:
 
 ##  Intent Based Networking with Incident Diagnosis Task List
 
-In this document, the incident-diagnosis RPC defined in "ietf-
-incident" module can be used to identify Probable Root Causes; and an
-incident update notification can be triggered to report the diagnosis
-status if successful.
+In this document, the incident-diagnosis RPC defined in "ietf-incident"
+module can be used to identify Probable Root Causes; and an incident update
+notification can be triggered to report the diagnosis status if successful.
 
 In some cases, workflows may span a long duration or involve multiple steps
 task. In such case, intent based networking concept can be used to support
@@ -1493,14 +1492,14 @@ information.
 | OSS                                            |
 |    +---------------------------------------+   |
 |    |           Incident Handler            |   |
-|    +------+-----------^-----------+--------+   |
+|    +------+-----------^-----------  +------+   |
 +-----------+-----------+-------------+----------+
             |Diagnosis  |Diagnosis    |NETCONF
-            |Task       |Task         |<get-config>
+            |Task       |Task         |<get-data>
             |Creation   |Notification |
 +-----------+-----------+-------------+----------+
-|Controller |           |           |            |
-|   +-------V-----------------------V--------+   |
+|Controller |           |             |          |
+|   +-------V-----------------------  V------+   |
 |   |           Incident Process             |   |
 |   +----------------------------------------+   |
 +------------------------------------------------+
@@ -1546,7 +1545,7 @@ information:
 
 - Probable Root Causes, probable events, repair recommendations, etc.
 
-so that OSS system can use NETCONF &lt;get-config&gt; operation to look up
+so that OSS system can use NETCONF &lt;get-data&gt; operation to look up
 the diagnosis task detailed information based on such module extension.
 
 ~~~~
