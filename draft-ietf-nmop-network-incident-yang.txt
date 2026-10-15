@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 17 April 2027                                        Telefonica
+Expires: 18 April 2027                                        Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                         14 October 2026
+                                                         15 October 2026
 
 
            A YANG Data Model for Network Incident Management
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 April 2027.
+   This Internet-Draft will expire on 18 April 2027.
 
 Copyright Notice
 
@@ -3009,14 +3009,14 @@ A.4.  Intent Based Networking with Incident Diagnosis Task List
             | OSS                                            |
             |    +---------------------------------------+   |
             |    |           Incident Handler            |   |
-            |    +------+-----------^-----------+--------+   |
+            |    +------+-----------^-----------  +------+   |
             +-----------+-----------+-------------+----------+
                         |Diagnosis  |Diagnosis    |NETCONF
-                        |Task       |Task         |<get-config>
+                        |Task       |Task         |<get-data>
                         |Creation   |Notification |
             +-----------+-----------+-------------+----------+
-            |Controller |           |           |            |
-            |   +-------V-----------------------V--------+   |
+            |Controller |           |             |          |
+            |   +-------V-----------------------  V------+   |
             |   |           Incident Process             |   |
             |   +----------------------------------------+   |
             +------------------------------------------------+
@@ -3060,7 +3060,7 @@ A.4.  Intent Based Networking with Incident Diagnosis Task List
    *  Probable Root Causes, probable events, repair recommendations,
       etc.
 
-   so that OSS system can use NETCONF <get-config> operation to look up
+   so that OSS system can use NETCONF <get-data> operation to look up
    the diagnosis task detailed information based on such module
    extension.
 
