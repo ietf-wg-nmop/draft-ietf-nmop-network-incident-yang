@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 20 March 2027                                        Telefonica
+Expires: 19 April 2027                                        Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                       16 September 2026
+                                                         16 October 2026
 
 
            A YANG Data Model for Network Incident Management
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 March 2027.
+   This Internet-Draft will expire on 19 April 2027.
 
 Copyright Notice
 
@@ -197,7 +197,7 @@ Table of Contents
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
-   The following terms are defined in [RFC9543],[RFC9940] and are not
+   The following terms are defined in [RFC9940], [RFC9543] and are not
    redefined here:
 
    *  Alarm
@@ -266,8 +266,8 @@ Table of Contents
       on global view on network topology data correlation.  For example,
       it can receive network incident notifications, query the
       information of network incidents, instruct an Incident Server to
-      diagnose, help , etc.  In addition, it can trigger issue tickets
-      and involve repair crew to fix the problem.
+      diagnose, help resolve, etc.  In addition, it can trigger issue
+      tickets and involve repair crew to fix the problem.
 
    Incident Handler:  An entity that can receive network incident
       notifications, store and query the information of network
@@ -276,15 +276,17 @@ Table of Contents
       network incident diagnosis or resolution.
 
    Incident Process:  A multi-step workflow used by network operation
-      teams to identify, analyze, and unexpected service disruptions or
-      quality reductions, with the primary goal of restoring normal
-      operations as quickly as possible while minimizing service impact.
+      teams to identify, analyze, and resolve unexpected service
+      disruptions or quality reductions, with the primary goal of
+      restoring normal operations as quickly as possible while
+      minimizing service impact.
 
-   Probable Root Cause:  If removing a fault condition completely s the
-      ongoing incident (specifically, regarding network outage or
-      service impairments and their associated subsequent failures and
-      symptoms) and prevents the problem from recurring, then such fault
-      condition is considered as a Probable Root Cause of a problem.
+   Probable Root Cause:  If removing a fault condition completely
+      resolves the ongoing incident (specifically, regarding network
+      outage or service impairments and their associated subsequent
+      failures and symptoms) and prevents the problem from recurring,
+      then such fault condition is considered as a Probable Root Cause
+      of a problem.
 
       Since one fault may give rise to another fault or problem, a
       Probable Root Cause is commonly meant to describe the original
@@ -543,7 +545,7 @@ Table of Contents
    The Incident Server is capable of identifying network incidents.
    Multiple alarms, metrics and other information are reported to the
    Incident Server, and the server needs to analyze it and find out the
-   correlations of them, if the correlation match the network incident
+   correlations of them, if the correlations match the network incident
    rules, network incident is identified, and reported to the client.
    If the network incident is repeated many times, the problem needs to
    be raised based on the incident and the operator's policy.  Service
@@ -588,7 +590,7 @@ Table of Contents
 
            Figure 3: Example 1 of Network Incident Identification
 
-   As described in Figure 3, VPN A a is deployed from PE1 to PE2, if an
+   As described in Figure 3, VPN A is deployed from PE1 to PE2, if an
    interface of P1 is going down, many alarms are triggered, such as
    interface down, IGP down, and IGP peer abnormal from P2.
 
@@ -677,7 +679,8 @@ Table of Contents
 
    An 'incident-no' is used as an identifier of an incident instance, if
    an incident instance is identified, a new 'incident-no' is created.
-   The 'incident-no' MUST be unique in the whole system.
+   The 'incident-no' MUST be unique in the whole Incident Management
+   System/server.
 
 6.2.  The Incident Lifecycle
 
@@ -713,7 +716,7 @@ Table of Contents
    When a network incident instance is generated, the operator SHOULD
    acknowledge the network incident with 'incident-acknowledge' RPC.
    And then the operator attempts to diagnose the network incident with
-   'incident-diagnose' PRC (for example, find out the Probable Root
+   'incident-diagnose' RPC (for example, find out the Probable Root
    Cause and affected components).  Diagnosis is not mandatory.  If the
    Probable Root Cause and affected components are known when the
    network incident is generated, diagnosis is not required.  After
@@ -766,15 +769,15 @@ Table of Contents
            |     +--ro resource* [name]
            |        +--ro name    al:resource
            +--ro probable-causes
-           |  +--ro probable-cause* [node-ref]
+           |  +--ro probable-cause* [node-ref cause-name]
            |     +--ro node-ref       -> /nw:networks/network[nw:\
                        network-id=current()/../network-ref]/node/node-id
            |     +--ro network-ref?   -> /nw:networks/network/network-id
            |     +--ro resource* [name]
            |     |  +--ro name          al:resource
-           |     |  +--ro cause-name?   string
+           |     |  +--ro cause-name?   identityref
            |     |  +--ro detail?       string
-           |     +--ro cause-name?    string
+           |     +--ro cause-name     identityref
            |     +--ro detail?        string
            +--ro probable-events
            |  +--ro probable-event* [type event-id]
@@ -806,8 +809,9 @@ Table of Contents
            |              +--ro event-time?        yang:date-and-time
            |              +--ro hostname?          inet:host
            |              +--ro sequence-number?   yang:counter32
+           |              +--ro contents?           <anydata>
            +--ro raise-time?           yang:date-and-time
-           +--ro occur-time?           yang:date-and-time
+           +--ro occur-time            yang:date-and-time
            +--ro clear-time?           yang:date-and-time
            +--ro ack-time?             yang:date-and-time
            +--ro last-updated?         yang:date-and-time
@@ -845,15 +849,15 @@ Table of Contents
           |     +--ro resource* [name]
           |        +--ro name    al:resource
           +--ro probable-causes
-          |  +--ro probable-cause* [node-ref]
+          |  +--ro probable-cause* [node-ref cause-name]
           |     +--ro node-ref       -> /nw:networks/network[nw:network\
                               -id=current()/../network-ref]/node/node-id
           |     +--ro network-ref?   -> /nw:networks/network/network-id
           |     +--ro resource* [name]
           |     |  +--ro name          al:resource
-          |     |  +--ro cause-name?   string
+          |     |  +--ro cause-name?   identityref
           |     |  +--ro detail?       string
-          |     +--ro cause-name?    string
+          |     +--ro cause-name     identityref
           |     +--ro detail?        string
           +--ro probable-events
           |  +--ro probable-event* [type event-id]
@@ -885,6 +889,7 @@ Table of Contents
           |              +--ro event-time?        yang:date-and-time
           |              +--ro hostname?          inet:host
           |              +--ro sequence-number?   yang:counter32
+          |              +--ro contents?          <anydata>
           +--ro time?                 yang:date-and-time
 
                     Figure 5: Incident YANG Tree Diagram
@@ -912,14 +917,14 @@ Table of Contents
           |     +--ro resource* [name]
           |        +--ro name    al:resource
           +--ro probable-causes
-          |  +--ro probable-cause* [node-ref]
+          |  +--ro probable-cause* [node-ref cause-name]
           |     +--ro node-ref       leafref
           |     +--ro network-ref?   leafref
           |     +--ro resource* [name]
           |     |  +--ro name          al:resource
-          |     |  +--ro cause-name?   string
+          |     |  +--ro cause-name?   identityref
           |     |  +--ro detail?       string
-          |     +--ro cause-name?    string
+          |     +--ro cause-name     identityref
           |     +--ro detail?        string
           +--ro probable-events
           |  +--ro probable-event* [type event-id]
@@ -946,11 +951,12 @@ Table of Contents
           |              +--ro event-time?        yang:date-and-time
           |              +--ro hostname?          inet:host
           |              +--ro sequence-number?   yang:counter32
+          |              +--ro contents?          <anydata>
           +--ro time?                 yang:date-and-time
 
    A general notification, "incident-notification", is provided here.
    When a network incident instance is identified, the notification is
-   sent from the incident server to the incident client .  After a
+   sent from the incident server to the incident client.  After a
    notification is generated, if the incident server performs self
    diagnosis or the Incident Client uses the interfaces provided by the
    Incident Server to deliver diagnosis and resolution actions, the
@@ -1064,7 +1070,8 @@ Table of Contents
 
    This module imports types from [RFC9911], [RFC8632], [RFC8345],
    [RFC8791] and uses types defined in [RFC9376], [RFC1136], [RFC6373],
-   [RFC8348], [RFC8632], [RFC5277], [RFC9940], [RFC9375].
+   [RFC8348], [RFC8632], [RFC5277], [RFC9940], [RFC9375], [RFC8639],
+   [RFC8641], [I-D.ietf-netconf-notif-envelope].
 
    <CODE BEGINS> file "ietf-incident@2026-07-30.yang"
    module ietf-incident {
@@ -1109,19 +1116,19 @@ Table of Contents
         Author:   Tong Hu
                   <mailto:hutong@cmhi.chinamobile.com>
         Author:   Luis Miguel Contreras Murillo
-                  <mailto:luismiguel.contrerasmurillo@telefonica.com>
+           <mailto:luismiguel.contrerasmurillo@telefonica.com>
         Author:  Qin Wu
                   <mailto:bill.wu@huawei.com>
         Author:   Nigel Davis
                   <mailto:ndavis@ciena.com>";
      description
-       "This module defines the interfaces for incident management
-        lifecycle.
+       "This module defines the interfaces for incident
+        management lifecycle.
 
         This module is intended for the following use cases:
         * incident lifecycle management:
           - incident report: report incident instance to client
-                             when an incident instance is detected.
+                         when an incident instance is detected.
           - incident acknowledge: acknowledge an incident instance.
           - incident diagnose: diagnose an incident instance.
           - incident resolve: resolve an incident instance.
@@ -1312,6 +1319,14 @@ Table of Contents
          "RFC 8632: A YANG Data Model for Alarm Management";
      }
 
+     identity link-down {
+       base event-type;
+       description
+         "Link down event type.";
+       reference
+         "RFC 8632: A YANG Data Model for Alarm Management";
+     }
+
      identity notif {
        base event-type;
        description
@@ -1319,8 +1334,10 @@ Table of Contents
        reference
          "RFC 5277: NETCONF Event Notifications and
           RFC 8639: Subscription to YANG Notifications and
-          RFC 8641: Subscription to YANG Notifications for Datastore Updates and
-          RFC xxxx: Extensible YANG Model for YANG-Push Notifications";
+          RFC 8641: Subscription to YANG Notifications for
+                    Datastore Updates and
+          I-D.ietf-netconf-notif-envelope: Extensible YANG
+                        Model for YANG-Push Notifications";
      }
 
      identity metric {
@@ -1340,7 +1357,7 @@ Table of Contents
 
      identity incident-type {
        description
-         "The abstract identity for Incident category.";
+         "The abstract identity for Incident type.";
      }
 
      identity problem {
@@ -1383,7 +1400,8 @@ Table of Contents
      identity repeated-acknowledge {
        base acknowledge-error;
        description
-         "The incident referred to has already been acknowledged.";
+         "The incident that is referred to has already been
+          acknowledged.";
      }
 
      identity incident-not-found {
@@ -1398,17 +1416,17 @@ Table of Contents
      identity probable-cause-unlocated {
        base diagnose-error;
        description
-         "Fail to locate the Probable Root Causes when performing the
-          diagnosis operation. The detailed reason MUST be included
-          in the 'description'.";
+         "Fail to locate the Probable Root Causes when performing
+          the diagnosis operation. The detailed reason MUST be
+          included in the 'description'.";
      }
 
      identity probable-cause-unresolved {
        base resolve-error;
        description
-         "Fail to resolve the Probable Root Causes when performing the
-          resolution operation. The detailed reason MUST be included
-          in the 'description'.";
+         "Fail to resolve the Probable Root Causes when performing
+          the resolution operation. The detailed reason MUST be
+          included in the 'description'.";
      }
 
      identity permission-denied {
@@ -1434,46 +1452,102 @@ Table of Contents
           the diagnosis/resolution operation.";
      }
 
+     identity cause-name {
+       description
+         "Base identity for the cause name.";
+     }
+
+     identity hardware-failure {
+       base cause-name;
+       description
+         "It indicates the class of cause name is hardware
+          failure.";
+     }
+
+     identity interface-hardware-failure {
+       base hardware-failure;
+       description
+         "It indicates the class of cause name is the
+          interface hardware failure.";
+     }
+
+     identity loss-of-signal {
+       base cause-name;
+       description
+         "It indicates the class of cause name is the
+          loss of signal.";
+     }
+
+     identity rt-misconfiguration {
+       base cause-name;
+       description
+         "It indicates the class of cause name is
+          routing protocol misconfiguration.";
+     }
+
+     identity service-misconfiguration {
+       base cause-name;
+       description
+         "It indicates the class of cause name is service
+          misconfiguration.";
+     }
+
+     identity tunnel-misconfiguration {
+       base cause-name;
+       description
+         "It indicates the class of cause name is tunnel
+          misconfiguration.";
+     }
+
+     identity protection-failure {
+       base cause-name;
+       description
+         "It indicates the class of cause name is
+          protection failure.";
+     }
      // Typedefs
 
      typedef incident-priority {
        type enumeration {
          enum critical {
            description
-             "The 'critical' priority level indicates that a service-
-             affecting condition has occurred and an immediate
-             corrective action is required.  Such a priority can be
-             reported, for example, when a resource becomes totally out
-             of service and its capability must be restored.";
+             "The 'critical' priority level indicates that
+              a service-affecting condition has occurred and
+              an immediate corrective action is required.
+              Such a priority can be reported, for example,
+              when a resource becomes totally out of service
+              and its capability must be restored.";
          }
          enum high {
            description
-             "The 'high' priority level indicates that a service-
-             affecting condition has developed and an urgent corrective
-             action is required.  Such a priority can be reported, for
-             example, when there is a severe degradation in the
-             capability of the resource and its full capability must be
-             restored.";
+             "The 'high' priority level indicates that a
+              service-affecting condition has developed and
+              an urgent corrective action is required. Such
+              a priority can be reported, for example, when
+              there is a severe degradation in the capability
+              of the resource and its full capability must be
+              restored.";
          }
          enum medium {
            description
-             "The 'medium' severity level indicates the existence of a
-             non-service-affecting fault condition and that corrective
-             action should be taken in order to prevent a more serious
-             (for example, service-affecting) fault.  Such a priority
-             can be reported, for example, when the detected alarm
-             condition is not currently degrading the capacity of the
-             resource.";
+             "The 'medium' priority level indicates the
+              existence of a non-service-affecting fault
+              condition and that corrective action should
+              be taken in order to prevent a more serious
+              (for example, service-affecting) fault. Such
+              a priority can be reported, for example, when
+              the detected condition is not currently
+              degrading the capacity of the resource.";
          }
          enum low {
            description
              "The 'low' priority level indicates the detection of a
-             potential or impending service-affecting fault, before any
-             significant effects have been felt.  Action should be
-             taken to further diagnose (if necessary) and correct the
-             problem in order to prevent it from becoming a more
-             serious service-affecting fault.";
-         }
+              potential or impending service-affecting fault, before
+              any significant effects have been felt.  Action should
+              be taken to further diagnose (if necessary) and correct
+              the problem in order to prevent it from becoming a more
+              serious service-affecting fault.";
+        }
        }
        description
          "Defines the priority of incident.";
@@ -1485,10 +1559,11 @@ Table of Contents
          require-instance false;
        }
        description
-         "Provides a reference to a network incident using incident-no
-          note that incident no is unique but not incident list key.
-          The incident-ref is used for correlation between incident no
-          and incident list key in the RPCs and Notification.";
+         "Provides a reference to a network incident using
+          incident-no note that incident no is unique but not
+          incident list key. The incident-ref is used for
+          correlation between incident no and incident list
+          key in the RPCs and Notification.";
      }
 
      // Groupings
@@ -1497,7 +1572,9 @@ Table of Contents
        description
          "The information of Probable Root Cause.";
        leaf cause-name {
-         type string;
+         type identityref {
+           base cause-name;
+         }
          description
            "Specifies the cause name.";
        }
@@ -1580,11 +1657,11 @@ Table of Contents
        leaf incident-qualifier {
          type string;
          description
-           "The unique qualifier of an incident instance type.
-            This leaf is used when the 'type' leaf cannot
-            uniquely identify the incident instance type.  Normally,
-            this is not the case, and this leaf is the empty
-            string.";
+           "The unique qualifier of an incident instance
+            type. This leaf is used when the 'type' leaf
+            cannot uniquely identify the incident instance
+            type. Normally, this is not the case, and this
+            leaf is the empty string.";
        }
        leaf-list service-instance {
          type string;
@@ -1667,8 +1744,9 @@ Table of Contents
               be created even if we don't know yet the sources
               (hence we can not populate source list in the sources
               container). Therefore the min-elements for the source
-              list is set to 0. Once the Incident is diagnosed, the
-              source(s) will be populated.";
+              list is set to 0 which is default value. Once the
+              Incident is diagnosed, the source(s) will be
+              populated.";
            uses resources-info;
          }
        }
@@ -1676,14 +1754,14 @@ Table of Contents
          description
            "The Probable Root Cause objects.";
          list probable-cause {
-           key "node-ref";
+           key "node-ref cause-name";
            description
              "The Probable Root Causes of incident.";
            uses resources-info {
              augment "resource" {
                description
                  "Augment Probable Root Cause information.";
-               //if Probable Root Cause object is a resource of a node
+       //if Probable Root Cause object is a resource of a node
                uses probable-cause-info;
              }
            }
@@ -1754,7 +1832,8 @@ Table of Contents
                      require-instance false;
                    }
                    description
-                     "This is an identification of the alarming resource.";
+                     "This is an identification of the alarming
+                      resource.";
                    reference
                      "RFC 8632: A YANG Data Model for Alarm
                       Management";
@@ -1800,8 +1879,9 @@ Table of Contents
                  leaf resource {
                    type al:resource;
                    description
-                     "This is an identification of the network resource such as
-                                              interface, where the metric can be collected or measured.";
+                     "This is an identification of the network
+                      resource such as interface, where the metric
+                      can be collected or measured.";
                    reference
                      "RFC 8632: A YANG Data Model for Alarm
                                 Management";
@@ -1841,7 +1921,8 @@ Table of Contents
                      "The date and time the event was generated by
                       the network node.";
                    reference
-                     "RFC xxxx: Extensible YANG Model for YANG-Push Notifications";
+                     "I-D.ietf-netconf-notif-envelope: Extensible
+                      YANG Model for YANG-Push Notifications";
                  }
                  leaf hostname {
                    type inet:host;
@@ -1851,7 +1932,8 @@ Table of Contents
                       administrator to identify the node in the
                       network uniquely.";
                    reference
-                     "RFC xxxx: Extensible YANG Model for YANG-Push Notifications";
+                     "I-D.ietf-netconf-notif-envelope: Extensible
+                      YANG Model for YANG-Push Notifications";
                  }
                  leaf sequence-number {
                    type yang:counter32;
@@ -1864,12 +1946,13 @@ Table of Contents
                       at 0. The value 0 is used to detect wrap
                       arounds.";
                    reference
-                     "RFC xxxx: Extensible YANG Model for YANG-Push Notifications";
+                     "I-D.ietf-netconf-notif-envelope: Extensible
+                      YANG Model for YANG-Push Notifications";
                  }
                  anydata contents {
                    description
-                     "This contains the values defined by the 'notification'
-                      statement unchanged.";
+                     "This contains the values defined by the
+                      'notification' statement unchanged.";
                  }
                }
              }
@@ -1890,7 +1973,8 @@ Table of Contents
            min-elements 1;
            description
              "The unique number of an incident instance
-              based on the name type incident-id keys.";
+              based on the incident-no which is corresponding
+              to the name type incident-qualifier keys.";
          }
        }
      }
@@ -1906,7 +1990,8 @@ Table of Contents
            min-elements 1;
            description
              "The unique number of an incident instance
-              based on the name type incident-id keys.";
+              based on the incident-no which is corresponding
+              to the name type incident-qualifier keys.";
          }
        }
      }
@@ -1922,7 +2007,8 @@ Table of Contents
            min-elements 1;
            description
              "The unique number of an incident instance
-              based on the name type incident-id keys.";
+              based on the incident-no which is corresponding
+              to the name type incident-qualifier keys.";
          }
        }
      }
@@ -1930,14 +2016,14 @@ Table of Contents
      sx:structure incident-acknowledge-error-info {
        container incident-acknowledge-error-info {
          description
-           "This structure data must be inserted in the RPC error
-            response to indicate the reason for the
+           "This structure data must be inserted in the RPC
+            error response to indicate the reason for the
             incident acknowledge failure.";
          leaf incident-no {
            type uint64;
            description
-             "Indicate the incident instance identifier that
-              fails the operation.";
+             "Indicate the incident instance identifier
+              that fails the operation.";
          }
          leaf reason {
            type identityref {
@@ -1964,8 +2050,8 @@ Table of Contents
          leaf incident-no {
            type uint64;
            description
-             "Indicate the incident instance identifier that
-              fails the operation.";
+             "Indicate the incident instance identifier
+              that fails the operation.";
          }
          leaf reason {
            type identityref {
@@ -2005,7 +2091,8 @@ Table of Contents
          leaf description {
            type string;
            description
-             "Indicates the detailed description about the failure.";
+             "Indicates the detailed description about the
+              failure.";
          }
        }
      }
@@ -2020,16 +2107,16 @@ Table of Contents
          type incident-ref;
          mandatory true;
          description
-           "The identifier of an incident instance. With incident-no
-            used in both incident-notification and RPCs, an Incident
-            Client know which notification is the result of a given
-            RPC.";
+           "The identifier of an incident instance. With
+            incident-no used in both incident-notification
+            and RPCs, an Incident Client know which notification
+            is the result of a given RPC.";
        }
        uses incident-info;
        leaf time {
          type yang:date-and-time;
          description
-           " The time when an incident instance occurs.
+           "The time when an incident instance occurs.
             It is the occur time of the first event during
             incident detection.";
        }
@@ -2051,7 +2138,8 @@ Table of Contents
            mandatory true;
            description
              "The unique identifier of the incident
-              instance based on the name type incident-qualifier keys.";
+              instance based on the name type
+              incident-qualifier keys.";
          }
          uses incident-info;
          uses incident-time-info;
@@ -2087,11 +2175,12 @@ Table of Contents
    visibility scenarios where an incident is closed in the network layer
    but remains active in the ticketing system, or vice versa.
 
-   This incident data model states that the tuple (name, type and
-   incident-qualifier) corresponds to a single incident instance.  This
-   means that incident notifications for the same name and same type and
-   incident-qualifier are matched to update the same incident instance.
-   These three leafs are therefore used as the key in the incident list:
+   This incident data model states that the tuple ('name', 'type' and
+   'incident-qualifier') corresponds to a single incident instance.
+   This means that incident notifications for the same 'name' and same
+   'type' and 'incident-qualifier' are matched to update the same
+   incident instance.  These three leafs are therefore used as the key
+   in the incident list:
 
     list incident {
       key "name type incident-qualifier";
@@ -2241,21 +2330,21 @@ Table of Contents
    [I-D.ietf-netconf-configuration-tracing] defines a mechanism for
    configuration tracing.  If some errors occur when services are
    deploying, it's very easy to identify these errors by distributed
-   system tracing, and a network incident SHOULD be reported.
+   system tracing, and a network incident should be reported.
 
 9.5.  Relationship with Network Anomaly Detection Architecture
 
    [I-D.ietf-nmop-network-anomaly-architecture] and related network
    anomaly detection documents describe how anomaly detection is applied
    to detect service interruption in IP networks by performing outlier
-   detection on all 3 network planes, preserve relationships among them
-   and score the result with a concern and with a confidence score.
-   Section 3 of [I-D.ietf-nmop-network-anomaly-architecture] describes
-   the elements of the system architecture where the "Alarm Management
-   System" maps to the "Incident Server" in Section 4 of this document.
-   The "relevant-state" YANG notification defined in Section 8.2 of
+   detection on all 3 network planes, preserve relationships among these
+   3 network planes.  Section 3 of
+   [I-D.ietf-nmop-network-anomaly-architecture] describes the elements
+   of the system architecture where the "Alarm Management System" maps
+   to the "Incident Server" in Section 4 of this document.  The
+   "relevant-state" YANG notification defined in Section 8.2 of
    [I-D.ietf-nmop-network-anomaly-lifecycle] defines an "id" which
-   SHOULD be mapped to "event-id" in the 'ietf-incident' YANG module
+   should be mapped to "event-id" in the 'ietf-incident' YANG module
    described in this document on the "Incident Server".
    [I-D.ietf-nmop-network-anomaly-semantics] augments relevant-state
    YANG notification with 'ietf-network-anomaly-symptom' YANG module
@@ -2304,7 +2393,7 @@ Table of Contents
    The Huawei Implementation of Incident model covers the following a)
    RESTCONF support b) Incident Lifecycle management including incident
    instance lifecycle and operator incident lifecycle. c) Incident
-   Notification
+   Notification d) Incident List Query
 
    Contact information: Qin Wu (bill.wu@huawei.com)
 
@@ -2313,9 +2402,10 @@ Table of Contents
    The YANG module specified in this document defines a data model that
    is designed to be accessed via YANG-based management protocols, such
    as NETCONF [RFC6241] and RESTCONF [RFC8040].  These YANG-based
-   management protocols (1) MUST use a secure transport layer (e.g., SSH
-   Transport Layer [RFC4253]) and (2) MUST use mutual authentication
-   (e.g., SSH [RFC4252], TLS [RFC8446], and QUIC [RFC9000]).
+   management protocols (1) have to use a secure transport layer (e.g.,
+   SSH Transport Layer [RFC4253]) and (2) have to use mutual
+   authentication (e.g., SSH [RFC4252], TLS [RFC9846], and QUIC
+   [RFC9000]).
 
    The Network Configuration Access Control Model (NACM) [RFC8341]
    provides the means to restrict access for particular NETCONF or
@@ -2398,6 +2488,11 @@ Table of Contents
    // RFC Ed.: Replace RFC xxxx with this RFC id, when published and
    remove this comment
 
+   The identity hierarchies defined in this document ("incident-domain",
+   "incident-category", and "incident-type") are extended by future
+   documents through YANG identity derivation [RFC7950]; no IANA
+   registry is created or required for these extensions.
+
 Acknowledgements
 
    The authors would like to thank Mohamed Boucadair, Robert Wilton,
@@ -2406,8 +2501,8 @@ Acknowledgements
    Ma, Haomian Zheng, YuanYao, Wei Wang, Peng Liu, Zongpeng Du,
    Zhengqiang Li, Andrew Liu, Joe Clark, Roland Scott, Alex Huang Feng,
    Kai Gao, Jensen Zhang, Ziyang Xing, Mingshuang Jin, Aihua Guo,
-   Zhidong Yin, Guoxiang Liu, Kaichun Wu for their valuable comments and
-   great input to this work.
+   Zhidong Yin, Guoxiang Liu, Kaichun Wu, Dikshit Saumya for their
+   valuable comments and great input to this work.
 
 References
 
@@ -2429,10 +2524,6 @@ Normative References
    [RFC4253]  Ylonen, T. and C. Lonvick, Ed., "The Secure Shell (SSH)
               Transport Layer Protocol", RFC 4253, DOI 10.17487/RFC4253,
               January 2006, <https://www.rfc-editor.org/rfc/rfc4253>.
-
-   [RFC5277]  Chisholm, S. and H. Trevino, "NETCONF Event
-              Notifications", RFC 5277, DOI 10.17487/RFC5277, July 2008,
-              <https://www.rfc-editor.org/rfc/rfc5277>.
 
    [RFC6020]  Bjorklund, M., Ed., "YANG - A Data Modeling Language for
               the Network Configuration Protocol (NETCONF)", RFC 6020,
@@ -2470,15 +2561,6 @@ Normative References
               Network Topologies", RFC 8345, DOI 10.17487/RFC8345, March
               2018, <https://www.rfc-editor.org/rfc/rfc8345>.
 
-   [RFC8348]  Bierman, A., Bjorklund, M., Dong, J., and D. Romascanu, "A
-              YANG Data Model for Hardware Management", RFC 8348,
-              DOI 10.17487/RFC8348, March 2018,
-              <https://www.rfc-editor.org/rfc/rfc8348>.
-
-   [RFC8446]  Rescorla, E., "The Transport Layer Security (TLS) Protocol
-              Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
-              <https://www.rfc-editor.org/rfc/rfc8446>.
-
    [RFC8632]  Vallin, S. and M. Bjorklund, "A YANG Data Model for Alarm
               Management", RFC 8632, DOI 10.17487/RFC8632, September
               2019, <https://www.rfc-editor.org/rfc/rfc8632>.
@@ -2498,11 +2580,9 @@ Normative References
               DOI 10.17487/RFC9375, April 2023,
               <https://www.rfc-editor.org/rfc/rfc9375>.
 
-   [RFC9543]  Farrel, A., Ed., Drake, J., Ed., Rokui, R., Homma, S.,
-              Makhijani, K., Contreras, L., and J. Tantsura, "A
-              Framework for Network Slices in Networks Built from IETF
-              Technologies", RFC 9543, DOI 10.17487/RFC9543, March 2024,
-              <https://www.rfc-editor.org/rfc/rfc9543>.
+   [RFC9846]  Rescorla, E., "The Transport Layer Security (TLS) Protocol
+              Version 1.3", RFC 9846, DOI 10.17487/RFC9846, July 2026,
+              <https://www.rfc-editor.org/rfc/rfc9846>.
 
    [RFC9911]  Schönwälder, J., Ed., "Common YANG Data Types", RFC 9911,
               DOI 10.17487/RFC9911, December 2025,
@@ -2522,13 +2602,21 @@ Informative References
               <https://datatracker.ietf.org/doc/html/draft-ietf-netconf-
               configuration-tracing-06>.
 
+   [I-D.ietf-netconf-notif-envelope]
+              Feng, A. H., Francois, P., Graf, T., and B. Claise,
+              "Extensible YANG Model for YANG-Push Notifications", Work
+              in Progress, Internet-Draft, draft-ietf-netconf-notif-
+              envelope-06, 14 September 2026,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-netconf-
+              notif-envelope-06>.
+
    [I-D.ietf-netconf-trace-ctx-extension]
               Gagliano, R., Rennerskog, C., Larsson, K., and J.
               Lindblad, "NETCONF Extension to support Trace Context
               propagation", Work in Progress, Internet-Draft, draft-
-              ietf-netconf-trace-ctx-extension-08, 27 August 2026,
+              ietf-netconf-trace-ctx-extension-09, 17 September 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-netconf-
-              trace-ctx-extension-08>.
+              trace-ctx-extension-09>.
 
    [I-D.ietf-nmop-network-anomaly-architecture]
               Graf, T., Du, W., Francois, P., and A. H. Feng, "A
@@ -2558,9 +2646,9 @@ Informative References
               Contreras, L. M., Lopez, V., and Q. Wu, "A YANG Data Model
               for Network Diagnosis using Scheduled Sequences of OAM
               Tests", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-scheduling-oam-tests-09, 14 September 2026,
+              opsawg-scheduling-oam-tests-11, 13 October 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              scheduling-oam-tests-09>.
+              scheduling-oam-tests-11>.
 
    [I-D.irtf-nmrg-ai-challenges]
               François, J., Clemm, A., Papadimitriou, D., Fernandes, S.,
@@ -2583,6 +2671,10 @@ Informative References
               DOI 10.17487/RFC1136, December 1989,
               <https://www.rfc-editor.org/rfc/rfc1136>.
 
+   [RFC5277]  Chisholm, S. and H. Trevino, "NETCONF Event
+              Notifications", RFC 5277, DOI 10.17487/RFC5277, July 2008,
+              <https://www.rfc-editor.org/rfc/rfc5277>.
+
    [RFC6373]  Andersson, L., Ed., Berger, L., Ed., Fang, L., Ed., Bitar,
               N., Ed., and E. Gray, Ed., "MPLS Transport Profile (MPLS-
               TP) Control Plane Framework", RFC 6373,
@@ -2593,6 +2685,20 @@ Informative References
               Code: The Implementation Status Section", BCP 205,
               RFC 7942, DOI 10.17487/RFC7942, July 2016,
               <https://www.rfc-editor.org/rfc/rfc7942>.
+
+   [RFC8348]  Bierman, A., Bjorklund, M., Dong, J., and D. Romascanu, "A
+              YANG Data Model for Hardware Management", RFC 8348,
+              DOI 10.17487/RFC8348, March 2018,
+              <https://www.rfc-editor.org/rfc/rfc8348>.
+
+   [RFC8639]  Voit, E., Clemm, A., Gonzalez Prieto, A., Nilsen-Nygaard,
+              E., and A. Tripathy, "Subscription to YANG Notifications",
+              RFC 8639, DOI 10.17487/RFC8639, September 2019,
+              <https://www.rfc-editor.org/rfc/rfc8639>.
+
+   [RFC8641]  Clemm, A. and E. Voit, "Subscription to YANG Notifications
+              for Datastore Updates", RFC 8641, DOI 10.17487/RFC8641,
+              September 2019, <https://www.rfc-editor.org/rfc/rfc8641>.
 
    [RFC8969]  Wu, Q., Ed., Boucadair, M., Ed., Lopez, D., Xie, C., and
               L. Geng, "A Framework for Automating Service and Network
@@ -2619,6 +2725,12 @@ Informative References
               Arumugam, "A YANG Data Model for Service Assurance",
               RFC 9418, DOI 10.17487/RFC9418, July 2023,
               <https://www.rfc-editor.org/rfc/rfc9418>.
+
+   [RFC9543]  Farrel, A., Ed., Drake, J., Ed., Rokui, R., Homma, S.,
+              Makhijani, K., Contreras, L., and J. Tantsura, "A
+              Framework for Network Slices in Networks Built from IETF
+              Technologies", RFC 9543, DOI 10.17487/RFC9543, March 2024,
+              <https://www.rfc-editor.org/rfc/rfc9543>.
 
    [RFC9544]  Mirsky, G., Halpern, J., Min, X., Clemm, A., Strassner,
               J., and J. François, "Precision Availability Metrics
@@ -2650,167 +2762,163 @@ A.1.  Network Incident Correlated with Specific Network Topology and the
    topology 'L2-Topo' and the domain 'PTN'.  The Probable Root Cause is
    also analysed.
 
-{
-  "ietf-incident:incidents": {
-    "incident": [
-      {
-        "name": "line fault",
-        "type": "ietf-incident:problem",
-        "incident-qualifier": "line fault",
-        "incident-no": 56433218,
-        "service-instance": [
-          "optical-svc-A"
-        ],
-        "domain": "ptn",
-        "priority": "critical",
-        "occur-time": "2026-03-10T04:01:12Z",
-        "clear-time": "2026-03-10T06:01:12Z",
-        "ack-time": "2026-03-10T05:01:12Z",
-        "last-updated": "2026-03-10T05:31:12Z",
-        "ack-status": "unacknowledged",
-        "category": "ietf-incident:network",
-        "sources": {
-          "source": [
-            {
-              "node-ref": "example:D1",
-              "network-ref": "example:L2-topo",
-              "resource": [
-                {
-                  "name": "7985e01a-5aad-11ea-b214-286ed488cf99"
-                }
-              ]
-            }
-          ]
-        },
-        "probable-causes": {
-          "probable-cause": [
-            {
-              "name": "Feeder fiber great loss change",
-              "detail-information": "The connector of the optical fiber is\
-                                     contaminated, Or the optical fiber is\
-                                     bent too much.",
-              "probable-cause": {
-                "network-ref": "example:L2-topo",
+  {
+    "ietf-incident:incidents": {
+      "incident": [
+        {
+          "name": "line fault",
+          "type": "ietf-incident:problem",
+          "incident-qualifier": "line fault",
+          "incident-no": "56433218",
+          "service-instance": [
+            "optical-svc-A"
+          ],
+          "domain": "ptn",
+          "priority": "critical",
+          "occur-time": "2026-03-10T04:01:12Z",
+          "clear-time": "2026-03-10T06:01:12Z",
+          "ack-time": "2026-03-10T05:01:12Z",
+          "last-updated": "2026-03-10T05:31:12Z",
+          "status": "cleared",
+          "ack-status": "acknowledged",
+          "category": "ietf-incident:network",
+          "sources": {
+            "source": [
+              {
                 "node-ref": "example:D1",
+                "network-ref": "example:L2-topo",
                 "resource": [
                   {
-                    "name": "7985e01a-5aad-11ea-b214-286ed488cf99",
-                    "cause-name": "ltp",
-                    "detail": "Frame=0, Slot=6, Subslot=65535, Port=7,\
-                               ODF= ODF001,Level1Splitter= splitter0025"
+                    "name": "7985e01a-5aad-11ea-b214-286ed488cf99"
                   }
                 ]
               }
-            }
-          ]
-        },
-        "probable-events": {
-          "probable-event": [
-            {
-              "event-id": "8921834",
-              "type": "alarm"
-            }
-          ]
-        },
-        "events": {
-          "event": [
-            {
-              "event-id": "8921832",
-              "type": "alarm"
-            },
-            {
-              "event-id": "8921833",
-              "type": "alarm"
-            },
-            {
-              "event-id": "8921834",
-              "type": "alarm"
-            }
-          ]
+            ]
+          },
+          "probable-causes": {
+            "probable-cause": [
+              {
+                "node-ref": "example:D1",
+                "network-ref": "example:L2-topo",
+                "cause-name": "loss-of-signal",
+                "detail": "Feeder fiber loss: connector dirty or bent.",
+                "resource": [
+                  {
+                    "name": "7985e01a-5aad-11ea-b214-286ed488cf99",
+                    "cause-name": "interface-hardware-failure",
+                    "detail": "Frame=0, Slot=6, Port=7, ODF=ODF001"
+                  }
+                ]
+              }
+            ]
+          },
+          "probable-events": {
+            "probable-event": [
+              {
+                "event-id": "8921834",
+                "type": "alarm"
+              }
+            ]
+          },
+          "events": {
+            "event": [
+              {
+                "event-id": "8921832",
+                "type": "alarm"
+              },
+              {
+                "event-id": "8921833",
+                "type": "alarm"
+              },
+              {
+                "event-id": "8921834",
+                "type": "alarm"
+              }
+            ]
+          }
         }
-      }
-    ]
+      ]
+    }
   }
-}
 
 A.2.  JSON Example on Incident Notifications
 
    In this example, we show an example of the Incident notification in
    JSON encoding for the incident base model.
 
-{
-  "example-incident-module:incident-notification": {
-    "incident-no": "INC-2026-98765",
-    "name": "Link Failure Core Router",
-    "type": "example-types:hardware-fault",
-    "incident-qualifier": "interface-down",
-    "service-instance": [
-      "srv-mpls-vpn-01",
-      "srv-voip-05"
-    ],
-    "domain": "example-types:transport-network",
-    "priority": "critical",
-    "status": "active",
-    "ack-status": "unacknowledged",
-    "category": "example-types:network-infrastructure",
-    "detail": "Interface GigabitEthernet0/0/1 reports a Link Down state due\
-               to loss of signal.",
-    "resolve-advice": "Check physical fiber connections and optics transceiver\
-                       at local node.",
-    "sources": {
-      "source": [
-        {
-          "node-ref": "router-core-01",
-          "network-ref": "backbone-east",
-          "resource": [
-            {
-              "name": "GigabitEthernet0/0/1"
-            }
-          ]
-        }
-      ]
-    },
-    "probable-causes": {
-      "probable-cause": [
-        {
-          "node-ref": "router-core-01",
-          "network-ref": "backbone-east",
-          "resource": [
-            {
-              "name": "GigabitEthernet0/0/1",
-              "cause-name": "example-types:los-of-signal",
-              "detail": "Laser rx power below operational threshold."
-            }
-          ],
-          "cause-name": "example-types:interface-hardware-failure",
-          "detail": "SFP module may need replacement."
-        }
-      ]
-    },
-    "probable-events": {
-      "probable-event": [
-        {
-          "type": "example-types:link-down-event",
-          "event-id": "EV-10293"
-        }
-      ]
-    },
-    "events": {
-      "event": [
-        {
-          "type": "example-types:alarm-event",
-          "event-id": "AL-55443",
-          "alarm": {
-            "resource": "GigabitEthernet0/0/1",
-            "alarm-type-id": "link-down",
-            "alarm-type-qualifier": "port-failure"
-          }
-        }
-      ]
-    },
-    "time": "2026-09-12T08:47:00Z"
-  }
-}
+   {
+     "ietf-incident:incident-notification": {
+       "incident-no": "98765",
+       "name": "Link Failure Core Router",
+       "type": "ietf-incident:problem",
+       "incident-qualifier": "interface-down",
+       "service-instance": [
+         "srv-mpls-vpn-01",
+         "srv-voip-05"
+       ],
+       "domain": "ietf-incident:transport",
+       "priority": "critical",
+       "status": "raised",
+       "ack-status": "unacknowledged",
+       "category": "ietf-incident:network",
+       "detail": "Interface GigabitEthernet0/0/1 reports a Link Down\
+                  state due to loss of signal.",
+       "resolve-advice": "Check physical fiber connections and optics\
+                          transceiver at local node.",
+       "sources": {
+         "source": [
+           {
+             "node-ref": "router-core-01",
+             "network-ref": "backbone-east",
+             "resource": [
+               {
+                 "name": "GigabitEthernet0/0/1"
+               }
+             ]
+           }
+         ]
+       },
+       "probable-causes": {
+         "probable-cause": [
+           {
+             "node-ref": "router-core-01",
+             "network-ref": "backbone-east",
+             "resource": [
+               {
+                 "name": "GigabitEthernet0/0/1",
+                 "cause-name": "ietf-incident:loss-of-signal",
+                 "detail": "Laser rx power below operational threshold."
+               }
+             ],
+             "cause-name": "ietf-incident:interface-hardware-failure",
+             "detail": "SFP module may need replacement."
+           }
+         ]
+       },
+       "probable-events": {
+         "probable-event": [
+           {
+             "type": "ietf-incident:alarm",
+             "event-id": "AL-55443"
+           }
+         ]
+       },
+       "events": {
+         "event": [
+           {
+             "type": "ietf-incident:alarm",
+             "event-id": "AL-55443",
+             "alarm": {
+               "resource": "GigabitEthernet0/0/1",
+               "alarm-type-id": "link-down-event",
+               "alarm-type-qualifier": "port-failure"
+             }
+           }
+         ]
+       },
+       "time": "2026-09-12T08:47:00Z"
+     }
+   }
 
 A.3.  Network Incident Correlated with Trouble Tickets
 
@@ -2901,14 +3009,14 @@ A.4.  Intent Based Networking with Incident Diagnosis Task List
             | OSS                                            |
             |    +---------------------------------------+   |
             |    |           Incident Handler            |   |
-            |    +------+-----------^-----------+--------+   |
+            |    +------+-----------^-----------  +------+   |
             +-----------+-----------+-------------+----------+
                         |Diagnosis  |Diagnosis    |NETCONF
-                        |Task       |Task         |<get-config>
+                        |Task       |Task         |<get-data>
                         |Creation   |Notification |
             +-----------+-----------+-------------+----------+
-            |Controller |           |           |            |
-            |   +-------V-----------------------V--------+   |
+            |Controller |           |             |          |
+            |   +-------V-----------------------  V------+   |
             |   |           Incident Process             |   |
             |   +----------------------------------------+   |
             +------------------------------------------------+
@@ -2918,8 +3026,8 @@ A.4.  Intent Based Networking with Incident Diagnosis Task List
    To do so, the new "diagnosis task creation" RPC can be further
    defined to support "task-id" attribute in the output parameters and
    other auxiliary attributes in the input parameters. such RPC can be
-   used to return task-id from the controller.  The controller is
-   responsible for task-id allocation and maintaining task-id list.
+   used to return "task-id" from the controller.  The controller is
+   responsible for "task-id" allocation and maintaining "task-id" list.
 
        +---x diagnose-task-creation
        |  +---w input
@@ -2952,7 +3060,7 @@ A.4.  Intent Based Networking with Incident Diagnosis Task List
    *  Probable Root Causes, probable events, repair recommendations,
       etc.
 
-   so that OSS system can use NETCONF <get-config> operation to look up
+   so that OSS system can use NETCONF <get-data> operation to look up
    the diagnosis task detailed information based on such module
    extension.
 
@@ -3106,6 +3214,14 @@ Appendix B.  Changes between Revisions
 
    NOTE TO THE RFC-EDITOR: Please remove this appendix before
    publication
+
+   v15 - v16
+
+   *  Change cause-name type from string to identityref
+
+   *  Change probable-cause list key into compound key
+
+   *  Keep the incident model independent of confidence
 
    v14 - v15
 
@@ -3274,7 +3390,7 @@ Appendix B.  Changes between Revisions
 
    *  Fix pyang compilation issue and yang lint issue.
 
-   *  Fix Broken ref by using node-ref defined in RFC8345.
+   *  Fix Broken ref by using 'node-ref' defined in RFC8345.
 
    *  Update YANG data model based on issues raised in issue tracker of
       the github.
