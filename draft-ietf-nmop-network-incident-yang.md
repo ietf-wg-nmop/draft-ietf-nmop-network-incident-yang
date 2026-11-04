@@ -171,7 +171,7 @@ improve the efficiency of fault diagnosis.
 
 This document defines a YANG data model for network incident lifecycle
 management, which improves troubleshooting efficiency, and improves
-network automation {{?RFC8969}} with remote process call (RPC) operations
+network automation {{?RFC8969}} with remote procedure call (RPC) operations
 in this YANG module.
 
 # Conventions and Definitions
@@ -224,7 +224,7 @@ Network Incident Management:
    data sources including alarms, metrics, and other anomaly information and aggregates
    them into one or a few network incidents irrespective of layer
    through data correlation analysis and the Service Impact Assessment. A network
-   incident might impact one or a set of network services. The network incident can also been
+   incident might impact one or a set of network services. The network incident can also be
    seen as customer incident {{TMF724A}} when the service SLA {{?RFC9543}} associated with one specific
    network service and network incident has been affected. How a customer incident is
    translated from the network incident is beyond the scope of this document. Note that
@@ -352,7 +352,7 @@ management system, then such management system comprehensively analyzes the
 topology relationship and service relationship between the Probable Root Causes of
 both layers. The inner relationship among the alarms will be identified
 and finally the Probable Root Cause will be located among multiple layers.
-By cooperating with a test tool that checks fiber optic cables (e.g.,the
+By cooperating with a test tool that checks fiber optic cables (e.g., the
 integrated Optical time-domain reflectometer (OTDR)) embedded within the
 network device, we can determine the target optical exchange station before
 site visits. Therefore, the overall fault demarcation process is simplified
@@ -1222,7 +1222,7 @@ registry is created or required for these extensions.
 
 The authors would like to thank Mohamed Boucadair, Robert Wilton,
 Benoit Claise, Oscar Gonzalez de Dios, Adrian Farrel, Mahesh
-Jethanandani, Paul Aitken, Balazs Lengyel, Dhruv Dhody,Bo Wu, Qiufang Ma,
+Jethanandani, Paul Aitken, Balazs Lengyel, Dhruv Dhody, Bo Wu, Qiufang Ma,
 Haomian Zheng, YuanYao, Wei Wang, Peng Liu, Zongpeng Du, Zhengqiang Li,
 Andrew Liu, Joe Clark, Roland Scott, Alex Huang Feng, Kai Gao, Jensen Zhang,
 Ziyang Xing, Mingshuang Jin, Aihua Guo, Zhidong Yin, Guoxiang Liu, Kaichun Wu,
