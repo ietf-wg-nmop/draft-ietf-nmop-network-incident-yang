@@ -1235,7 +1235,7 @@ Dikshit Saumya for their valuable comments and great input to this work.
 ## Network Incident Correlated with Specific Network Topology and the Network Service
 
 In this example, we show a network incident that are associated with the
-service-instance "optical-svc-A", the node 'D1', the network topology 'L2-Topo'
+service-instance "optical-svc-A", the node 'D1', the network topology 'L2-topo'
 and the domain 'PTN'. The Probable Root Cause is also analysed.
 
 ~~~~
@@ -1340,10 +1340,8 @@ JSON encoding for the incident base model.
     "status": "raised",
     "ack-status": "unacknowledged",
     "category": "ietf-incident:network",
-    "detail": "Interface GigabitEthernet0/0/1 reports a Link Down\
-               state due to loss of signal.",
-    "resolve-advice": "Check physical fiber connections and optics\
-                       transceiver at local node.",
+    "detail": "Interface GigabitEthernet0/0/1 reports a Link Down state due to loss of signal.",
+    "resolve-advice": "Check physical fiber connections and optics transceiver at local node.",
     "sources": {
       "source": [
         {
@@ -1388,9 +1386,9 @@ JSON encoding for the incident base model.
           "type": "ietf-incident:alarm",
           "event-id": "AL-55443",
           "alarm": {
-            "resource": "GigabitEthernet0/0/1",
-            "alarm-type-id": "link-down-event",
-            "alarm-type-qualifier": "port-failure"
+            "resource": "example:GigabitEthernet0/0/1",
+            "alarm-type-id": "example:link-down-event",
+            "alarm-type-qualifier": "example:port-failure"
           }
         }
       ]
