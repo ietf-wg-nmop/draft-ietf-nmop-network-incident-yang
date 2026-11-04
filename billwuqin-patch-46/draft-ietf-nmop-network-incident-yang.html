@@ -17,24 +17,24 @@ report, diagnose, and help reduce troubleshooting tickets and resolve
 network incidents for the sake of network service health and probable
 root cause analysis. 
     " name="description">
-<meta content="xml2rfc 3.34.1" name="generator">
+<meta content="xml2rfc 3.35.0" name="generator">
 <meta content="Network Incident Management" name="keyword">
 <meta content="yang data model" name="keyword">
 <meta content="draft-ietf-nmop-network-incident-yang-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.34.1
-    Python 3.14.7
-    ConfigArgParse 1.7.7
+  xml2rfc 3.35.0
+    Python 3.14.10
+    ConfigArgParse 1.9.0
     google-i18n-address 3.1.1
     intervaltree 3.2.1
     Jinja2 3.1.6
     lxml 6.1.1
     natsort 8.4.0
-    platformdirs 4.11.10
+    platformdirs 4.14.3
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.33.1
-    wcwidth 0.8.4
+    wcwidth 0.9.4
 -->
 <link href="draft-ietf-nmop-network-incident-yang.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -1050,11 +1050,11 @@ svg {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">Network Incident Management</td>
-<td class="right">September 2026</td>
+<td class="right">November 2026</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Hu, et al.</td>
-<td class="center">Expires 28 March 2027</td>
+<td class="center">Expires 8 May 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1067,12 +1067,12 @@ svg {
 <dd class="internet-draft">draft-ietf-nmop-network-incident-yang-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-09-24" class="published">24 September 2026</time>
+<time datetime="2026-11-04" class="published">4 November 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-03-28">28 March 2027</time></dd>
+<dd class="expires"><time datetime="2027-05-08">8 May 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1125,7 +1125,7 @@ root cause analysis.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 28 March 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 8 May 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1393,7 +1393,8 @@ and offline self-learning, these algorithms can be continuously optimized to
 improve the efficiency of fault diagnosis.<a href="#section-1-5" class="pilcrow">¶</a></p>
 <p id="section-1-6">This document defines a YANG data model for network incident lifecycle
 management, which improves troubleshooting efficiency, and improves
-network automation <span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</span> with remote process call (RPC) operations in this YANG module.<a href="#section-1-6" class="pilcrow">¶</a></p>
+network automation <span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</span> with remote process call (RPC) operations
+in this YANG module.<a href="#section-1-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conventions-and-definitions">
@@ -1405,8 +1406,8 @@ network automation <span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</spa
 "<span class="bcp14">MAY</span>", and "<span class="bcp14">OPTIONAL</span>" in this document are to be interpreted as
 described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="cite xref">RFC8174</a>]</span> when, and only when, they
 appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶</a></p>
-<p id="section-2-2">The following terms are defined in <span>[<a href="#RFC9543" class="cite xref">RFC9543</a>]</span>,<span>[<a href="#RFC9940" class="cite xref">RFC9940</a>]</span>
-and are not redefined here:<a href="#section-2-2" class="pilcrow">¶</a></p>
+<p id="section-2-2">The following terms are defined in <span>[<a href="#RFC9940" class="cite xref">RFC9940</a>]</span>, <span>[<a href="#RFC9543" class="cite xref">RFC9543</a>]</span> and
+are not redefined here:<a href="#section-2-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-2-3.1">
           <p id="section-2-3.1.1">Alarm<a href="#section-2-3.1.1" class="pilcrow">¶</a></p>
@@ -1506,14 +1507,14 @@ server and cannot instruct it to perform network incident diagnosis or resolutio
         <dd class="break"></dd>
 <dt id="section-2-5.13">Incident Process:</dt>
         <dd style="margin-left: 1.5em" id="section-2-5.14">
-          <p id="section-2-5.14.1">A multi-step workflow used by network operation teams to identify, analyze, and  unexpected
+          <p id="section-2-5.14.1">A multi-step workflow used by network operation teams to identify, analyze, and resolve unexpected
 service disruptions or quality reductions, with the primary goal of restoring normal operations as
 quickly as possible while minimizing service impact.<a href="#section-2-5.14.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-5.15">Probable Root Cause:</dt>
         <dd style="margin-left: 1.5em" id="section-2-5.16">
-          <p id="section-2-5.16.1">If removing a fault condition completely s the ongoing incident (specifically, regarding network
+          <p id="section-2-5.16.1">If removing a fault condition completely resolves the ongoing incident (specifically, regarding network
 outage or service impairments and their associated subsequent failures and symptoms) and prevents
 the problem from recurring, then such fault condition is considered as a Probable Root Cause of a problem.<a href="#section-2-5.16.1" class="pilcrow">¶</a></p>
 </dd>
@@ -1803,7 +1804,7 @@ aggregated into a network incident after analysis.<a href="#section-5.1-1" class
 <p id="section-5.1-3">The Incident Server is capable of identifying
 network incidents.  Multiple alarms, metrics and other information are
 reported to the Incident Server, and the server needs to analyze it and find
-out the correlations of them, if the correlation match the network incident
+out the correlations of them, if the correlations match the network incident
 rules, network incident is identified, and reported to the client.
 If the network incident is repeated many times, the problem needs to be
 raised based on the incident and the operator's policy.
@@ -1852,7 +1853,7 @@ VPN A      | |            |
 <a href="#name-example-1-of-network-incide" class="selfRef">Example 1 of Network Incident Identification</a>
           </figcaption></figure>
 </div>
-<p id="section-5.1-6">As described in <a href="#exam1" class="auto internal xref">Figure 3</a>, VPN A a is deployed from PE1 to PE2, if an
+<p id="section-5.1-6">As described in <a href="#exam1" class="auto internal xref">Figure 3</a>, VPN A is deployed from PE1 to PE2, if an
 interface of P1 is going down, many alarms are triggered, such as
 interface down, IGP down, and IGP peer abnormal from P2.<a href="#section-5.1-6" class="pilcrow">¶</a></p>
 <p id="section-5.1-7">These alarms are aggregated and analyzed by the controller/Incident
@@ -1956,7 +1957,8 @@ after determining the impact is not trivial.<a href="#section-5.3-3" class="pilc
         </h3>
 <p id="section-6.1-1">An 'incident-no' is used as an identifier of an incident instance, if
 an incident instance is identified, a new 'incident-no' is created.
-The 'incident-no' <span class="bcp14">MUST</span> be unique in the whole system.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
+The 'incident-no' <span class="bcp14">MUST</span> be unique in the whole Incident Management
+System/server.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="the-incident-lifecycle">
@@ -2001,7 +2003,7 @@ perspective, the lifecycle of a network incident instance includes 'acknowledged
 'diagnosed', and 'resolved'.<a href="#section-6.2.2-1" class="pilcrow">¶</a></p>
 <p id="section-6.2.2-2">When a network incident instance is generated, the operator <span class="bcp14">SHOULD</span> acknowledge the
 network incident with 'incident-acknowledge' RPC. And then the operator attempts to
-diagnose the network incident with 'incident-diagnose' PRC (for example, find out the
+diagnose the network incident with 'incident-diagnose' RPC (for example, find out the
 Probable Root Cause and affected components). Diagnosis is not mandatory. If the Probable
 Root Cause and affected components are known when the network incident is generated,
 diagnosis is not required.  After locating the Probable Root Cause and affected components,
@@ -2072,7 +2074,7 @@ module: ietf-incident
         |     |  +--ro name          al:resource
         |     |  +--ro cause-name?   identityref
         |     |  +--ro detail?       string
-        |     +--ro cause-name?    identityref
+        |     +--ro cause-name     identityref
         |     +--ro detail?        string
         +--ro probable-events
         |  +--ro probable-event* [type event-id]
@@ -2104,8 +2106,9 @@ alarm-list/alarm[al:resource = current()/../resource][al:alarm-type-\
         |              +--ro event-time?        yang:date-and-time
         |              +--ro hostname?          inet:host
         |              +--ro sequence-number?   yang:counter32
+        |              +--ro contents?           &lt;anydata&gt;
         +--ro raise-time?           yang:date-and-time
-        +--ro occur-time?           yang:date-and-time
+        +--ro occur-time            yang:date-and-time
         +--ro clear-time?           yang:date-and-time
         +--ro ack-time?             yang:date-and-time
         +--ro last-updated?         yang:date-and-time
@@ -2147,11 +2150,11 @@ alarm-list/alarm[al:resource = current()/../resource][al:alarm-type-\
        |     +--ro node-ref       -&gt; /nw:networks/network[nw:network\
                            -id=current()/../network-ref]/node/node-id
        |     +--ro network-ref?   -&gt; /nw:networks/network/network-id
-       |     +--ro resource* [name cause-name]
+       |     +--ro resource* [name]
        |     |  +--ro name          al:resource
        |     |  +--ro cause-name?   identityref
        |     |  +--ro detail?       string
-       |     +--ro cause-name?    identityref
+       |     +--ro cause-name     identityref
        |     +--ro detail?        string
        +--ro probable-events
        |  +--ro probable-event* [type event-id]
@@ -2183,6 +2186,7 @@ alarm-list/alarm[al:resource = current()/../resource][al:alarm-type-\
        |              +--ro event-time?        yang:date-and-time
        |              +--ro hostname?          inet:host
        |              +--ro sequence-number?   yang:counter32
+       |              +--ro contents?          &lt;anydata&gt;
        +--ro time?                 yang:date-and-time
 </pre>
 </div>
@@ -2220,14 +2224,14 @@ alarm-list/alarm[al:resource = current()/../resource][al:alarm-type-\
        |     +--ro resource* [name]
        |        +--ro name    al:resource
        +--ro probable-causes
-       |  +--ro probable-cause* [node-ref]
+       |  +--ro probable-cause* [node-ref cause-name]
        |     +--ro node-ref       leafref
        |     +--ro network-ref?   leafref
        |     +--ro resource* [name]
        |     |  +--ro name          al:resource
        |     |  +--ro cause-name?   identityref
        |     |  +--ro detail?       string
-       |     +--ro cause-name?    identityref
+       |     +--ro cause-name     identityref
        |     +--ro detail?        string
        +--ro probable-events
        |  +--ro probable-event* [type event-id]
@@ -2254,12 +2258,13 @@ alarm-list/alarm[al:resource = current()/../resource][al:alarm-type-\
        |              +--ro event-time?        yang:date-and-time
        |              +--ro hostname?          inet:host
        |              +--ro sequence-number?   yang:counter32
+       |              +--ro contents?          &lt;anydata&gt;
        +--ro time?                 yang:date-and-time
 </pre><a href="#section-7.2-1" class="pilcrow">¶</a>
 </div>
 <p id="section-7.2-2">A general notification, "incident-notification", is provided here.
 When a network incident instance is identified, the notification is
-sent from the incident server to the incident client .  After a notification
+sent from the incident server to the incident client. After a notification
 is generated, if the incident server performs self diagnosis or the Incident
 Client uses the interfaces provided by the Incident Server to deliver
 diagnosis and resolution actions, the notification update behavior is triggered,
@@ -2401,7 +2406,7 @@ incident-not-found
       </h2>
 <p id="section-8-1">This module imports types from <span>[<a href="#RFC9911" class="cite xref">RFC9911</a>]</span>, <span>[<a href="#RFC8632" class="cite xref">RFC8632</a>]</span>, <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>, <span>[<a href="#RFC8791" class="cite xref">RFC8791</a>]</span>
 and uses types defined in <span>[<a href="#RFC9376" class="cite xref">RFC9376</a>]</span>, <span>[<a href="#RFC1136" class="cite xref">RFC1136</a>]</span>, <span>[<a href="#RFC6373" class="cite xref">RFC6373</a>]</span>, <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span>,
-<span>[<a href="#RFC8632" class="cite xref">RFC8632</a>]</span>, <span>[<a href="#RFC5277" class="cite xref">RFC5277</a>]</span>, <span>[<a href="#RFC9940" class="cite xref">RFC9940</a>]</span>, <span>[<a href="#RFC9375" class="cite xref">RFC9375</a>]</span>, <span>[<a href="#RFC5277" class="cite xref">RFC5277</a>]</span>, <span>[<a href="#RFC8639" class="cite xref">RFC8639</a>]</span>,
+<span>[<a href="#RFC8632" class="cite xref">RFC8632</a>]</span>, <span>[<a href="#RFC5277" class="cite xref">RFC5277</a>]</span>, <span>[<a href="#RFC9940" class="cite xref">RFC9940</a>]</span>, <span>[<a href="#RFC9375" class="cite xref">RFC9375</a>]</span>, <span>[<a href="#RFC8639" class="cite xref">RFC8639</a>]</span>,
 <span>[<a href="#RFC8641" class="cite xref">RFC8641</a>]</span>, <span>[<a href="#I-D.ietf-netconf-notif-envelope" class="cite xref">I-D.ietf-netconf-notif-envelope</a>]</span>.<a href="#section-8-1" class="pilcrow">¶</a></p>
 <div class="breakable sourcecode" id="section-8-2">
 <pre>&lt;CODE BEGINS&gt; file "ietf-incident@2026-07-30.yang"
@@ -2862,24 +2867,24 @@ module ietf-incident {
       }
       enum medium {
         description
-          "The 'medium' severity level indicates the
+          "The 'medium' priority level indicates the
            existence of a non-service-affecting fault
            condition and that corrective action should
            be taken in order to prevent a more serious
-          (for example, service-affecting) fault. Such
-          a priority can be reported, for example, when
-          the detected alarm condition is not currently
-          degrading the capacity of the resource.";
+           (for example, service-affecting) fault. Such
+           a priority can be reported, for example, when
+           the detected condition is not currently
+           degrading the capacity of the resource.";
       }
       enum low {
         description
           "The 'low' priority level indicates the detection of a
-          potential or impending service-affecting fault, before any
-          significant effects have been felt.  Action should be
-          taken to further diagnose (if necessary) and correct the
-          problem in order to prevent it from becoming a more
-          serious service-affecting fault.";
-      }
+           potential or impending service-affecting fault, before
+           any significant effects have been felt.  Action should
+           be taken to further diagnose (if necessary) and correct
+           the problem in order to prevent it from becoming a more
+           serious service-affecting fault.";
+     }
     }
     description
       "Defines the priority of incident.";
@@ -3306,7 +3311,7 @@ module ietf-incident {
         description
           "The unique number of an incident instance
            based on the incident-no which is corresponding
-           to the name type incident-id keys.";
+           to the name type incident-qualifier keys.";
       }
     }
   }
@@ -3323,7 +3328,7 @@ module ietf-incident {
         description
           "The unique number of an incident instance
            based on the incident-no which is corresponding
-           to the name type incident-id keys.";
+           to the name type incident-qualifier keys.";
       }
     }
   }
@@ -3340,7 +3345,7 @@ module ietf-incident {
         description
           "The unique number of an incident instance
            based on the incident-no which is corresponding
-           to the name type incident-id keys.";
+           to the name type incident-qualifier keys.";
       }
     }
   }
@@ -3448,7 +3453,7 @@ module ietf-incident {
     leaf time {
       type yang:date-and-time;
       description
-        " The time when an incident instance occurs.
+        "The time when an incident instance occurs.
          It is the occur time of the first event during
          incident detection.";
     }
@@ -3679,7 +3684,7 @@ netconf extension for <span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-
 <span>[<a href="#I-D.ietf-netconf-configuration-tracing" class="cite xref">I-D.ietf-netconf-configuration-tracing</a>]</span> defines a mechanism for
 configuration tracing.  If some errors occur when services are
 deploying, it's very easy to identify these errors by distributed
-system tracing, and a network incident <span class="bcp14">SHOULD</span> be reported.<a href="#section-9.4-1" class="pilcrow">¶</a></p>
+system tracing, and a network incident should be reported.<a href="#section-9.4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="relationship-with-network-anomaly-detection-architecture">
@@ -3695,7 +3700,7 @@ planes, preserve relationships among these 3 network planes. Section 3 of
 architecture where the "Alarm Management System" maps to the "Incident Server" in
 Section 4 of this document. The "relevant-state" YANG notification defined in
 Section 8.2 of <span>[<a href="#I-D.ietf-nmop-network-anomaly-lifecycle" class="cite xref">I-D.ietf-nmop-network-anomaly-lifecycle</a>]</span> defines an "id" which
-<span class="bcp14">SHOULD</span> be mapped to "event-id" in the 'ietf-incident' YANG module described in this
+should be mapped to "event-id" in the 'ietf-incident' YANG module described in this
 document on the "Incident Server". <span>[<a href="#I-D.ietf-nmop-network-anomaly-semantics" class="cite xref">I-D.ietf-nmop-network-anomaly-semantics</a>]</span>
 augments relevant-state YANG notification with 'ietf-network-anomaly-symptom' YANG
 module symptom semantics described in Section 4.2 and service and network
@@ -3762,8 +3767,8 @@ d) Incident List Query<a href="#section-10.1-2" class="pilcrow">¶</a></p>
 <p id="section-11-1">The YANG module specified in this document defines a data model that is
 designed to be accessed via YANG-based management protocols, such as
 NETCONF <span>[<a href="#RFC6241" class="cite xref">RFC6241</a>]</span> and RESTCONF <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span>. These YANG-based management
-protocols (1) <span class="bcp14">MUST</span> use a secure transport layer (e.g., SSH Transport Layer
-<span>[<a href="#RFC4253" class="cite xref">RFC4253</a>]</span>) and (2) <span class="bcp14">MUST</span> use mutual authentication (e.g., SSH <span>[<a href="#RFC4252" class="cite xref">RFC4252</a>]</span>,
+protocols (1) have to use a secure transport layer (e.g., SSH Transport Layer
+<span>[<a href="#RFC4253" class="cite xref">RFC4253</a>]</span>) and (2) have to use mutual authentication (e.g., SSH <span>[<a href="#RFC4252" class="cite xref">RFC4252</a>]</span>,
 TLS <span>[<a href="#RFC9846" class="cite xref">RFC9846</a>]</span>, and QUIC <span>[<a href="#RFC9000" class="cite xref">RFC9000</a>]</span>).<a href="#section-11-1" class="pilcrow">¶</a></p>
 <p id="section-11-2">The Network Configuration Access Control Model (NACM) <span>[<a href="#RFC8341" class="cite xref">RFC8341</a>]</span>
 provides the means to restrict access for particular NETCONF or
@@ -3852,6 +3857,10 @@ Reference:  RFC XXXX
 </pre><a href="#section-12.2-2" class="pilcrow">¶</a>
 </div>
 <p id="section-12.2-3">// RFC Ed.: Replace RFC xxxx with this RFC id, when published and remove this comment<a href="#section-12.2-3" class="pilcrow">¶</a></p>
+<p id="section-12.2-4">The identity hierarchies defined in this document ("incident-domain",
+"incident-category", and "incident-type") are extended by future
+documents through YANG identity derivation <span>[<a href="#RFC7950" class="cite xref">RFC7950</a>]</span>; no IANA
+registry is created or required for these extensions.<a href="#section-12.2-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -3866,8 +3875,8 @@ Benoit Claise, Oscar Gonzalez de Dios, Adrian Farrel, Mahesh
 Jethanandani, Paul Aitken, Balazs Lengyel, Dhruv Dhody,Bo Wu, Qiufang Ma,
 Haomian Zheng, YuanYao, Wei Wang, Peng Liu, Zongpeng Du, Zhengqiang Li,
 Andrew Liu, Joe Clark, Roland Scott, Alex Huang Feng, Kai Gao, Jensen Zhang,
-Ziyang Xing, Mingshuang Jin, Aihua Guo, Zhidong Yin, Guoxiang Liu, Kaichun Wu
-for their valuable comments and great input to this work.<a href="#section-13-1" class="pilcrow">¶</a></p>
+Ziyang Xing, Mingshuang Jin, Aihua Guo, Zhidong Yin, Guoxiang Liu, Kaichun Wu,
+Dikshit Saumya for their valuable comments and great input to this work.<a href="#section-13-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-combined-references">
@@ -3972,11 +3981,11 @@ for their valuable comments and great input to this work.<a href="#section-13-1"
 <dd class="break"></dd>
 <dt id="I-D.ietf-netconf-notif-envelope">[I-D.ietf-netconf-notif-envelope]</dt>
         <dd>
-<span class="refAuthor">Feng, A. H.</span>, <span class="refAuthor">Francois, P.</span>, <span class="refAuthor">Graf, T.</span>, and <span class="refAuthor">B. Claise</span>, <span class="refTitle">"Extensible YANG Model for YANG-Push Notifications"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-netconf-notif-envelope-06</span>, <time datetime="2026-09-14" class="refDate">14 September 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-netconf-notif-envelope-06">https://datatracker.ietf.org/doc/html/draft-ietf-netconf-notif-envelope-06</a>&gt;</span>. </dd>
+<span class="refAuthor">Feng, A. H.</span>, <span class="refAuthor">Francois, P.</span>, <span class="refAuthor">Graf, T.</span>, and <span class="refAuthor">B. Claise</span>, <span class="refTitle">"Extensible YANG Model for YANG-Push Notifications"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-netconf-notif-envelope-07</span>, <time datetime="2026-10-31" class="refDate">31 October 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-netconf-notif-envelope-07">https://datatracker.ietf.org/doc/html/draft-ietf-netconf-notif-envelope-07</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-netconf-trace-ctx-extension">[I-D.ietf-netconf-trace-ctx-extension]</dt>
         <dd>
-<span class="refAuthor">Gagliano, R.</span>, <span class="refAuthor">Rennerskog, C.</span>, <span class="refAuthor">Larsson, K.</span>, and <span class="refAuthor">J. Lindblad</span>, <span class="refTitle">"NETCONF Extension to support Trace Context propagation"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-netconf-trace-ctx-extension-09</span>, <time datetime="2026-09-17" class="refDate">17 September 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-netconf-trace-ctx-extension-09">https://datatracker.ietf.org/doc/html/draft-ietf-netconf-trace-ctx-extension-09</a>&gt;</span>. </dd>
+<span class="refAuthor">Gagliano, R.</span>, <span class="refAuthor">Rennerskog, C.</span>, <span class="refAuthor">Larsson, K.</span>, and <span class="refAuthor">J. Lindblad</span>, <span class="refTitle">"NETCONF Extension to support Trace Context propagation"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-netconf-trace-ctx-extension-10</span>, <time datetime="2026-10-25" class="refDate">25 October 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-netconf-trace-ctx-extension-10">https://datatracker.ietf.org/doc/html/draft-ietf-netconf-trace-ctx-extension-10</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-nmop-network-anomaly-architecture">[I-D.ietf-nmop-network-anomaly-architecture]</dt>
         <dd>
@@ -3992,7 +4001,7 @@ for their valuable comments and great input to this work.<a href="#section-13-1"
 <dd class="break"></dd>
 <dt id="I-D.ietf-opsawg-scheduling-oam-tests">[I-D.ietf-opsawg-scheduling-oam-tests]</dt>
         <dd>
-<span class="refAuthor">Contreras, L. M.</span>, <span class="refAuthor">Lopez, V.</span>, and <span class="refAuthor">Q. Wu</span>, <span class="refTitle">"A YANG Data Model for Network Diagnosis using Scheduled Sequences of OAM Tests"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-scheduling-oam-tests-09</span>, <time datetime="2026-09-14" class="refDate">14 September 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-scheduling-oam-tests-09">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-scheduling-oam-tests-09</a>&gt;</span>. </dd>
+<span class="refAuthor">Contreras, L. M.</span>, <span class="refAuthor">Lopez, V.</span>, and <span class="refAuthor">Q. Wu</span>, <span class="refTitle">"A YANG Data Model for Network Diagnosis using Scheduled Sequences of OAM Tests"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-scheduling-oam-tests-11</span>, <time datetime="2026-10-13" class="refDate">13 October 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-scheduling-oam-tests-11">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-scheduling-oam-tests-11</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.irtf-nmrg-ai-challenges">[I-D.irtf-nmrg-ai-challenges]</dt>
         <dd>
@@ -4086,7 +4095,7 @@ for their valuable comments and great input to this work.<a href="#section-13-1"
 <a href="#appendix-A.1" class="section-number selfRef">A.1. </a><a href="#name-network-incident-correlated" class="section-name selfRef">Network Incident Correlated with Specific Network Topology and the Network Service</a>
         </h3>
 <p id="appendix-A.1-1">In this example, we show a network incident that are associated with the
-service-instance "optical-svc-A", the node 'D1', the network topology 'L2-Topo'
+service-instance "optical-svc-A", the node 'D1', the network topology 'L2-topo'
 and the domain 'PTN'. The Probable Root Cause is also analysed.<a href="#appendix-A.1-1" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A.1-2">
 <pre>
@@ -4097,7 +4106,7 @@ and the domain 'PTN'. The Probable Root Cause is also analysed.<a href="#appendi
         "name": "line fault",
         "type": "ietf-incident:problem",
         "incident-qualifier": "line fault",
-        "incident-no": 56433218,
+        "incident-no": "56433218",
         "service-instance": [
           "optical-svc-A"
         ],
@@ -4107,7 +4116,8 @@ and the domain 'PTN'. The Probable Root Cause is also analysed.<a href="#appendi
         "clear-time": "2026-03-10T06:01:12Z",
         "ack-time": "2026-03-10T05:01:12Z",
         "last-updated": "2026-03-10T05:31:12Z",
-        "ack-status": "unacknowledged",
+        "status": "cleared",
+        "ack-status": "acknowledged",
         "category": "ietf-incident:network",
         "sources": {
           "source": [
@@ -4125,22 +4135,17 @@ and the domain 'PTN'. The Probable Root Cause is also analysed.<a href="#appendi
         "probable-causes": {
           "probable-cause": [
             {
-              "name": "Feeder fiber great loss change",
-              "detail-information": "The connector of the optical fiber is\
-                                     contaminated, Or the optical fiber is\
-                                     bent too much.",
-              "probable-cause": {
-                "network-ref": "example:L2-topo",
-                "node-ref": "example:D1",
-                "resource": [
-                  {
-                    "name": "7985e01a-5aad-11ea-b214-286ed488cf99",
-                    "cause-name": "interface-hardware-failure",
-                    "detail": "Frame=0, Slot=6, Subslot=65535, Port=7,\
-                               ODF= ODF001,Level1Splitter= splitter0025"
-                  }
-                ]
-              }
+              "node-ref": "example:D1",
+              "network-ref": "example:L2-topo",
+              "cause-name": "loss-of-signal",
+              "detail": "Feeder fiber loss: connector dirty or bent.",
+              "resource": [
+                {
+                  "name": "7985e01a-5aad-11ea-b214-286ed488cf99",
+                  "cause-name": "interface-hardware-failure",
+                  "detail": "Frame=0, Slot=6, Port=7, ODF=ODF001"
+                }
+              ]
             }
           ]
         },
@@ -4186,24 +4191,22 @@ JSON encoding for the incident base model.<a href="#appendix-A.2-1" class="pilcr
 <div class="alignLeft art-text artwork" id="appendix-A.2-2">
 <pre>
 {
-  "ietf-incident-module:incident-notification": {
-    "incident-no": "INC-2026-98765",
+  "ietf-incident:incident-notification": {
+    "incident-no": "98765",
     "name": "Link Failure Core Router",
-    "type": "example-types:hardware-fault",
+    "type": "ietf-incident:problem",
     "incident-qualifier": "interface-down",
     "service-instance": [
       "srv-mpls-vpn-01",
       "srv-voip-05"
     ],
-    "domain": "example-types:transport-network",
+    "domain": "ietf-incident:transport",
     "priority": "critical",
-    "status": "active",
+    "status": "raised",
     "ack-status": "unacknowledged",
-    "category": "example-types:network-infrastructure",
-    "detail": "Interface GigabitEthernet0/0/1 reports a Link Down\
-               state due to loss of signal.",
-    "resolve-advice": "Check physical fiber connections and optics\
-                       transceiver at local node.",
+    "category": "ietf-incident:network",
+    "detail": "Interface GigabitEthernet0/0/1 reports a Link Down state due to loss of signal.",
+    "resolve-advice": "Check physical fiber connections and optics transceiver at local node.",
     "sources": {
       "source": [
         {
@@ -4225,7 +4228,7 @@ JSON encoding for the incident base model.<a href="#appendix-A.2-1" class="pilcr
           "resource": [
             {
               "name": "GigabitEthernet0/0/1",
-              "cause-name": "ietf-incident:los-of-signal",
+              "cause-name": "ietf-incident:loss-of-signal",
               "detail": "Laser rx power below operational threshold."
             }
           ],
@@ -4237,8 +4240,8 @@ JSON encoding for the incident base model.<a href="#appendix-A.2-1" class="pilcr
     "probable-events": {
       "probable-event": [
         {
-          "type": "ietf-incident:link-down",
-          "event-id": "EV-10293"
+          "type": "ietf-incident:alarm",
+          "event-id": "AL-55443"
         }
       ]
     },
@@ -4352,10 +4355,9 @@ rpcs:
         <h3 id="name-intent-based-networking-wit">
 <a href="#appendix-A.4" class="section-number selfRef">A.4. </a><a href="#name-intent-based-networking-wit" class="section-name selfRef">Intent Based Networking with Incident Diagnosis Task List</a>
         </h3>
-<p id="appendix-A.4-1">In this document, the incident-diagnosis RPC defined in "ietf-
-incident" module can be used to identify Probable Root Causes; and an
-incident update notification can be triggered to report the diagnosis
-status if successful.<a href="#appendix-A.4-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.4-1">In this document, the incident-diagnosis RPC defined in "ietf-incident"
+module can be used to identify Probable Root Causes; and an incident update
+notification can be triggered to report the diagnosis status if successful.<a href="#appendix-A.4-1" class="pilcrow">¶</a></p>
 <p id="appendix-A.4-2">In some cases, workflows may span a long duration or involve multiple steps
 task. In such case, intent based networking concept can be used to support
 such multiple step task and provide more detailed network diagnosis
@@ -4368,14 +4370,14 @@ information.<a href="#appendix-A.4-2" class="pilcrow">¶</a></p>
 | OSS                                            |
 |    +---------------------------------------+   |
 |    |           Incident Handler            |   |
-|    +------+-----------^-----------+--------+   |
+|    +------+-----------^-----------  +------+   |
 +-----------+-----------+-------------+----------+
             |Diagnosis  |Diagnosis    |NETCONF
-            |Task       |Task         |&lt;get-config&gt;
+            |Task       |Task         |&lt;get-data&gt;
             |Creation   |Notification |
 +-----------+-----------+-------------+----------+
-|Controller |           |           |            |
-|   +-------V-----------------------V--------+   |
+|Controller |           |             |          |
+|   +-------V-----------------------  V------+   |
 |   |           Incident Process             |   |
 |   +----------------------------------------+   |
 +------------------------------------------------+
@@ -4428,7 +4430,7 @@ description, etc.<a href="#appendix-A.4-7.2.1" class="pilcrow">¶</a></p>
             <p id="appendix-A.4-7.3.1">Probable Root Causes, probable events, repair recommendations, etc.<a href="#appendix-A.4-7.3.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
-<p id="appendix-A.4-8">so that OSS system can use NETCONF &lt;get-config&gt; operation to look up
+<p id="appendix-A.4-8">so that OSS system can use NETCONF &lt;get-data&gt; operation to look up
 the diagnosis task detailed information based on such module extension.<a href="#appendix-A.4-8" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A.4-9">
 <pre>
