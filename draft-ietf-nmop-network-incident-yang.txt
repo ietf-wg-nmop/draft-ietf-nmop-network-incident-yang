@@ -2759,166 +2759,164 @@ A.1.  Network Incident Correlated with Specific Network Topology and the
 
    In this example, we show a network incident that are associated with
    the service-instance "optical-svc-A", the node 'D1', the network
-   topology 'L2-Topo' and the domain 'PTN'.  The Probable Root Cause is
+   topology 'L2-topo' and the domain 'PTN'.  The Probable Root Cause is
    also analysed.
 
-  {
-    "ietf-incident:incidents": {
-      "incident": [
-        {
-          "name": "line fault",
-          "type": "ietf-incident:problem",
-          "incident-qualifier": "line fault",
-          "incident-no": "56433218",
-          "service-instance": [
-            "optical-svc-A"
-          ],
-          "domain": "ptn",
-          "priority": "critical",
-          "occur-time": "2026-03-10T04:01:12Z",
-          "clear-time": "2026-03-10T06:01:12Z",
-          "ack-time": "2026-03-10T05:01:12Z",
-          "last-updated": "2026-03-10T05:31:12Z",
-          "status": "cleared",
-          "ack-status": "acknowledged",
-          "category": "ietf-incident:network",
-          "sources": {
-            "source": [
-              {
-                "node-ref": "example:D1",
-                "network-ref": "example:L2-topo",
-                "resource": [
-                  {
-                    "name": "7985e01a-5aad-11ea-b214-286ed488cf99"
-                  }
-                ]
-              }
-            ]
-          },
-          "probable-causes": {
-            "probable-cause": [
-              {
-                "node-ref": "example:D1",
-                "network-ref": "example:L2-topo",
-                "cause-name": "loss-of-signal",
-                "detail": "Feeder fiber loss: connector dirty or bent.",
-                "resource": [
-                  {
-                    "name": "7985e01a-5aad-11ea-b214-286ed488cf99",
-                    "cause-name": "interface-hardware-failure",
-                    "detail": "Frame=0, Slot=6, Port=7, ODF=ODF001"
-                  }
-                ]
-              }
-            ]
-          },
-          "probable-events": {
-            "probable-event": [
-              {
-                "event-id": "8921834",
-                "type": "alarm"
-              }
-            ]
-          },
-          "events": {
-            "event": [
-              {
-                "event-id": "8921832",
-                "type": "alarm"
-              },
-              {
-                "event-id": "8921833",
-                "type": "alarm"
-              },
-              {
-                "event-id": "8921834",
-                "type": "alarm"
-              }
-            ]
-          }
+{
+  "ietf-incident:incidents": {
+    "incident": [
+      {
+        "name": "line fault",
+        "type": "ietf-incident:problem",
+        "incident-qualifier": "line fault",
+        "incident-no": 56433218,
+        "service-instance": [
+          "optical-svc-A"
+        ],
+        "domain": "ietf-incident:ptn",
+        "priority": "critical",
+        "occur-time": "2026-03-10T04:01:12Z",
+        "clear-time": "2026-03-10T06:01:12Z",
+        "ack-time": "2026-03-10T05:01:12Z",
+        "last-updated": "2026-03-10T05:31:12Z",
+        "status": "cleared",
+        "ack-status": "acknowledged",
+        "category": "ietf-incident:network",
+        "sources": {
+          "source": [
+            {
+              "node-ref": "example:D1",
+              "network-ref": "example:L2-topo",
+              "resource": [
+                {
+                  "name": "7985e01a-5aad-11ea-b214-286ed488cf99"
+                }
+              ]
+            }
+          ]
+        },
+        "probable-causes": {
+          "probable-cause": [
+            {
+              "node-ref": "example:D1",
+              "network-ref": "example:L2-topo",
+              "cause-name": "ietf-incident:loss-of-signal",
+              "detail": "Feeder fiber loss: connector dirty or bent.",
+              "resource": [
+                {
+                  "name": "7985e01a-5aad-11ea-b214-286ed488cf99",
+                  "cause-name": "ietf-incident:interface-hardware-failure",
+                  "detail": "Frame=0, Slot=6, Port=7, ODF=ODF001"
+                }
+              ]
+            }
+          ]
+        },
+        "probable-events": {
+          "probable-event": [
+            {
+              "event-id": "8921834",
+              "type": "ietf-incident:alarm"
+            }
+          ]
+        },
+        "events": {
+          "event": [
+            {
+              "event-id": "8921832",
+              "type": "ietf-incident:alarm"
+            },
+            {
+              "event-id": "8921833",
+              "type": "ietf-incident:alarm"
+            },
+            {
+              "event-id": "8921834",
+              "type": "ietf-incident:alarm"
+            }
+          ]
         }
-      ]
-    }
+      }
+    ]
   }
+}
 
 A.2.  JSON Example on Incident Notifications
 
    In this example, we show an example of the Incident notification in
    JSON encoding for the incident base model.
 
-   {
-     "ietf-incident:incident-notification": {
-       "incident-no": "98765",
-       "name": "Link Failure Core Router",
-       "type": "ietf-incident:problem",
-       "incident-qualifier": "interface-down",
-       "service-instance": [
-         "srv-mpls-vpn-01",
-         "srv-voip-05"
-       ],
-       "domain": "ietf-incident:transport",
-       "priority": "critical",
-       "status": "raised",
-       "ack-status": "unacknowledged",
-       "category": "ietf-incident:network",
-       "detail": "Interface GigabitEthernet0/0/1 reports a Link Down\
-                  state due to loss of signal.",
-       "resolve-advice": "Check physical fiber connections and optics\
-                          transceiver at local node.",
-       "sources": {
-         "source": [
-           {
-             "node-ref": "router-core-01",
-             "network-ref": "backbone-east",
-             "resource": [
-               {
-                 "name": "GigabitEthernet0/0/1"
-               }
-             ]
-           }
-         ]
-       },
-       "probable-causes": {
-         "probable-cause": [
-           {
-             "node-ref": "router-core-01",
-             "network-ref": "backbone-east",
-             "resource": [
-               {
-                 "name": "GigabitEthernet0/0/1",
-                 "cause-name": "ietf-incident:loss-of-signal",
-                 "detail": "Laser rx power below operational threshold."
-               }
-             ],
-             "cause-name": "ietf-incident:interface-hardware-failure",
-             "detail": "SFP module may need replacement."
-           }
-         ]
-       },
-       "probable-events": {
-         "probable-event": [
-           {
-             "type": "ietf-incident:alarm",
-             "event-id": "AL-55443"
-           }
-         ]
-       },
-       "events": {
-         "event": [
-           {
-             "type": "ietf-incident:alarm",
-             "event-id": "AL-55443",
-             "alarm": {
-               "resource": "GigabitEthernet0/0/1",
-               "alarm-type-id": "link-down-event",
-               "alarm-type-qualifier": "port-failure"
-             }
-           }
-         ]
-       },
-       "time": "2026-09-12T08:47:00Z"
-     }
-   }
+{
+  "ietf-incident:incident-notification": {
+    "incident-no": 98765,
+    "name": "Link Failure Core Router",
+    "type": "ietf-incident:problem",
+    "incident-qualifier": "interface-down",
+    "service-instance": [
+      "srv-mpls-vpn-01",
+      "srv-voip-05"
+    ],
+    "domain": "ietf-incident:transport",
+    "priority": "critical",
+    "status": "raised",
+    "ack-status": "unacknowledged",
+    "category": "ietf-incident:network",
+    "detail": "Interface GigabitEthernet0/0/1 reports a Link Down state due to loss of signal.",
+    "resolve-advice": "Check physical fiber connections and optics transceiver at local node.",
+    "sources": {
+      "source": [
+        {
+          "node-ref": "router-core-01",
+          "network-ref": "backbone-east",
+          "resource": [
+            {
+              "name": "GigabitEthernet0/0/1"
+            }
+          ]
+        }
+      ]
+    },
+    "probable-causes": {
+      "probable-cause": [
+        {
+          "node-ref": "router-core-01",
+          "network-ref": "backbone-east",
+          "resource": [
+            {
+              "name": "GigabitEthernet0/0/1",
+              "cause-name": "ietf-incident:loss-of-signal",
+              "detail": "Laser rx power below operational threshold."
+            }
+          ],
+          "cause-name": "ietf-incident:interface-hardware-failure",
+          "detail": "SFP module may need replacement."
+        }
+      ]
+    },
+    "probable-events": {
+      "probable-event": [
+        {
+          "type": "ietf-incident:alarm",
+          "event-id": "AL-55443"
+        }
+      ]
+    },
+    "events": {
+      "event": [
+        {
+          "type": "ietf-incident:alarm",
+          "event-id": "AL-55443",
+          "alarm": {
+            "resource": "GigabitEthernet0/0/1",
+            "alarm-type-id": "link-down-event",
+            "alarm-type-qualifier": "port-failure"
+          }
+        }
+      ]
+    },
+    "time": "2026-09-12T08:47:00Z"
+  }
+}
 
 A.3.  Network Incident Correlated with Trouble Tickets
 
