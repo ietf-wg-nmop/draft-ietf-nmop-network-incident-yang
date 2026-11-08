@@ -1250,7 +1250,7 @@ and the domain 'PTN'. The Probable Root Cause is also analysed.
         "service-instance": [
           "optical-svc-A"
         ],
-        "domain": "ptn",
+        "domain": "ietf-incident:ptn",
         "priority": "critical",
         "occur-time": "2026-03-10T04:01:12Z",
         "clear-time": "2026-03-10T06:01:12Z",
@@ -1277,12 +1277,12 @@ and the domain 'PTN'. The Probable Root Cause is also analysed.
             {
               "node-ref": "example:D1",
               "network-ref": "example:L2-topo",
-              "cause-name": "loss-of-signal",
+              "cause-name": "ietf-incident:loss-of-signal",
               "detail": "Feeder fiber loss: connector dirty or bent.",
               "resource": [
                 {
                   "name": "7985e01a-5aad-11ea-b214-286ed488cf99",
-                  "cause-name": "interface-hardware-failure",
+                  "cause-name": "ietf-incident:interface-hardware-failure",
                   "detail": "Frame=0, Slot=6, Port=7, ODF=ODF001"
                 }
               ]
@@ -1293,7 +1293,7 @@ and the domain 'PTN'. The Probable Root Cause is also analysed.
           "probable-event": [
             {
               "event-id": "8921834",
-              "type": "alarm"
+              "type": "ietf-incident:alarm"
             }
           ]
         },
@@ -1301,15 +1301,15 @@ and the domain 'PTN'. The Probable Root Cause is also analysed.
           "event": [
             {
               "event-id": "8921832",
-              "type": "alarm"
+              "type": "ietf-incident:alarm"
             },
             {
               "event-id": "8921833",
-              "type": "alarm"
+              "type": "ietf-incident:alarm"
             },
             {
               "event-id": "8921834",
-              "type": "alarm"
+              "type": "ietf-incident:alarm"
             }
           ]
         }
