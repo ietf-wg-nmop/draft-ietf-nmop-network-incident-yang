@@ -1235,7 +1235,7 @@ Dikshit Saumya for their valuable comments and great input to this work.
 ## Network Incident Correlated with Specific Network Topology and the Network Service
 
 In this example, we show a network incident that are associated with the
-service-instance "optical-svc-A", the node 'D1', the network topology 'L2-Topo'
+service-instance "optical-svc-A", the node 'D1', the network topology 'L2-topo'
 and the domain 'PTN'. The Probable Root Cause is also analysed.
 
 ~~~~
@@ -1246,11 +1246,11 @@ and the domain 'PTN'. The Probable Root Cause is also analysed.
         "name": "line fault",
         "type": "ietf-incident:problem",
         "incident-qualifier": "line fault",
-        "incident-no": "56433218",
+        "incident-no": 56433218,
         "service-instance": [
           "optical-svc-A"
         ],
-        "domain": "ptn",
+        "domain": "ietf-incident:ptn",
         "priority": "critical",
         "occur-time": "2026-03-10T04:01:12Z",
         "clear-time": "2026-03-10T06:01:12Z",
@@ -1277,12 +1277,12 @@ and the domain 'PTN'. The Probable Root Cause is also analysed.
             {
               "node-ref": "example:D1",
               "network-ref": "example:L2-topo",
-              "cause-name": "loss-of-signal",
+              "cause-name": "ietf-incident:loss-of-signal",
               "detail": "Feeder fiber loss: connector dirty or bent.",
               "resource": [
                 {
                   "name": "7985e01a-5aad-11ea-b214-286ed488cf99",
-                  "cause-name": "interface-hardware-failure",
+                  "cause-name": "ietf-incident:interface-hardware-failure",
                   "detail": "Frame=0, Slot=6, Port=7, ODF=ODF001"
                 }
               ]
@@ -1293,7 +1293,7 @@ and the domain 'PTN'. The Probable Root Cause is also analysed.
           "probable-event": [
             {
               "event-id": "8921834",
-              "type": "alarm"
+              "type": "ietf-incident:alarm"
             }
           ]
         },
@@ -1301,15 +1301,15 @@ and the domain 'PTN'. The Probable Root Cause is also analysed.
           "event": [
             {
               "event-id": "8921832",
-              "type": "alarm"
+              "type": "ietf-incident:alarm"
             },
             {
               "event-id": "8921833",
-              "type": "alarm"
+              "type": "ietf-incident:alarm"
             },
             {
               "event-id": "8921834",
-              "type": "alarm"
+              "type": "ietf-incident:alarm"
             }
           ]
         }
@@ -1327,7 +1327,7 @@ JSON encoding for the incident base model.
 ~~~~
 {
   "ietf-incident:incident-notification": {
-    "incident-no": "98765",
+    "incident-no": 98765,
     "name": "Link Failure Core Router",
     "type": "ietf-incident:problem",
     "incident-qualifier": "interface-down",
@@ -1340,10 +1340,8 @@ JSON encoding for the incident base model.
     "status": "raised",
     "ack-status": "unacknowledged",
     "category": "ietf-incident:network",
-    "detail": "Interface GigabitEthernet0/0/1 reports a Link Down\
-               state due to loss of signal.",
-    "resolve-advice": "Check physical fiber connections and optics\
-                       transceiver at local node.",
+    "detail": "Interface GigabitEthernet0/0/1 reports a Link Down state due to loss of signal.",
+    "resolve-advice": "Check physical fiber connections and optics transceiver at local node.",
     "sources": {
       "source": [
         {
