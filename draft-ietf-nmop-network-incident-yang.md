@@ -1386,9 +1386,9 @@ JSON encoding for the incident base model.
           "type": "ietf-incident:alarm",
           "event-id": "AL-55443",
           "alarm": {
-            "resource": "example:GigabitEthernet0/0/1",
-            "alarm-type-id": "example:link-down-event",
-            "alarm-type-qualifier": "example:port-failure"
+            "resource": "GigabitEthernet0/0/1",
+            "alarm-type-id": "link-down-event",
+            "alarm-type-qualifier": "port-failure"
           }
         }
       ]
