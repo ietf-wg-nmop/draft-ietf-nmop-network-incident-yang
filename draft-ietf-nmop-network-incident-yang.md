@@ -1387,7 +1387,7 @@ JSON encoding for the incident base model.
           "event-id": "AL-55443",
           "alarm": {
             "resource": "GigabitEthernet0/0/1",
-            "alarm-type-id": "link-down-event",
+            "alarm-type-id": "example-alarms:link-down-event",
             "alarm-type-qualifier": "port-failure"
           }
         }
