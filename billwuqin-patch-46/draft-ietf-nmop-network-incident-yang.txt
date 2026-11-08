@@ -2762,84 +2762,84 @@ A.1.  Network Incident Correlated with Specific Network Topology and the
    topology 'L2-topo' and the domain 'PTN'.  The Probable Root Cause is
    also analysed.
 
-  {
-    "ietf-incident:incidents": {
-      "incident": [
-        {
-          "name": "line fault",
-          "type": "ietf-incident:problem",
-          "incident-qualifier": "line fault",
-          "incident-no": 56433218,
-          "service-instance": [
-            "optical-svc-A"
-          ],
-          "domain": "ptn",
-          "priority": "critical",
-          "occur-time": "2026-03-10T04:01:12Z",
-          "clear-time": "2026-03-10T06:01:12Z",
-          "ack-time": "2026-03-10T05:01:12Z",
-          "last-updated": "2026-03-10T05:31:12Z",
-          "status": "cleared",
-          "ack-status": "acknowledged",
-          "category": "ietf-incident:network",
-          "sources": {
-            "source": [
-              {
-                "node-ref": "example:D1",
-                "network-ref": "example:L2-topo",
-                "resource": [
-                  {
-                    "name": "7985e01a-5aad-11ea-b214-286ed488cf99"
-                  }
-                ]
-              }
-            ]
-          },
-          "probable-causes": {
-            "probable-cause": [
-              {
-                "node-ref": "example:D1",
-                "network-ref": "example:L2-topo",
-                "cause-name": "loss-of-signal",
-                "detail": "Feeder fiber loss: connector dirty or bent.",
-                "resource": [
-                  {
-                    "name": "7985e01a-5aad-11ea-b214-286ed488cf99",
-                    "cause-name": "interface-hardware-failure",
-                    "detail": "Frame=0, Slot=6, Port=7, ODF=ODF001"
-                  }
-                ]
-              }
-            ]
-          },
-          "probable-events": {
-            "probable-event": [
-              {
-                "event-id": "8921834",
-                "type": "alarm"
-              }
-            ]
-          },
-          "events": {
-            "event": [
-              {
-                "event-id": "8921832",
-                "type": "alarm"
-              },
-              {
-                "event-id": "8921833",
-                "type": "alarm"
-              },
-              {
-                "event-id": "8921834",
-                "type": "alarm"
-              }
-            ]
-          }
+{
+  "ietf-incident:incidents": {
+    "incident": [
+      {
+        "name": "line fault",
+        "type": "ietf-incident:problem",
+        "incident-qualifier": "line fault",
+        "incident-no": 56433218,
+        "service-instance": [
+          "optical-svc-A"
+        ],
+        "domain": "ietf-incident:ptn",
+        "priority": "critical",
+        "occur-time": "2026-03-10T04:01:12Z",
+        "clear-time": "2026-03-10T06:01:12Z",
+        "ack-time": "2026-03-10T05:01:12Z",
+        "last-updated": "2026-03-10T05:31:12Z",
+        "status": "cleared",
+        "ack-status": "acknowledged",
+        "category": "ietf-incident:network",
+        "sources": {
+          "source": [
+            {
+              "node-ref": "example:D1",
+              "network-ref": "example:L2-topo",
+              "resource": [
+                {
+                  "name": "7985e01a-5aad-11ea-b214-286ed488cf99"
+                }
+              ]
+            }
+          ]
+        },
+        "probable-causes": {
+          "probable-cause": [
+            {
+              "node-ref": "example:D1",
+              "network-ref": "example:L2-topo",
+              "cause-name": "ietf-incident:loss-of-signal",
+              "detail": "Feeder fiber loss: connector dirty or bent.",
+              "resource": [
+                {
+                  "name": "7985e01a-5aad-11ea-b214-286ed488cf99",
+                  "cause-name": "ietf-incident:interface-hardware-failure",
+                  "detail": "Frame=0, Slot=6, Port=7, ODF=ODF001"
+                }
+              ]
+            }
+          ]
+        },
+        "probable-events": {
+          "probable-event": [
+            {
+              "event-id": "8921834",
+              "type": "ietf-incident:alarm"
+            }
+          ]
+        },
+        "events": {
+          "event": [
+            {
+              "event-id": "8921832",
+              "type": "ietf-incident:alarm"
+            },
+            {
+              "event-id": "8921833",
+              "type": "ietf-incident:alarm"
+            },
+            {
+              "event-id": "8921834",
+              "type": "ietf-incident:alarm"
+            }
+          ]
         }
-      ]
-    }
+      }
+    ]
   }
+}
 
 A.2.  JSON Example on Incident Notifications
 
