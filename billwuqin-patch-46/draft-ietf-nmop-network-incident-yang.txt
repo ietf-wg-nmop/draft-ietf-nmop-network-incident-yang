@@ -5,13 +5,13 @@
 NMOP Working Group                                                 T. Hu
 Internet-Draft                                                      CMCC
 Intended status: Standards Track                         L. M. Contreras
-Expires: 8 May 2027                                           Telefonica
+Expires: 12 May 2027                                          Telefonica
                                                                    Q. Wu
                                                                   Huawei
                                                                 N. Davis
                                                                    Ciena
                                                                  C. Feng
-                                                         4 November 2026
+                                                         8 November 2026
 
 
            A YANG Data Model for Network Incident Management
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 May 2027.
+   This Internet-Draft will expire on 12 May 2027.
 
 Copyright Notice
 
@@ -2769,7 +2769,7 @@ A.1.  Network Incident Correlated with Specific Network Topology and the
           "name": "line fault",
           "type": "ietf-incident:problem",
           "incident-qualifier": "line fault",
-          "incident-no": "56433218",
+          "incident-no": 56433218,
           "service-instance": [
             "optical-svc-A"
           ],
@@ -2848,7 +2848,7 @@ A.2.  JSON Example on Incident Notifications
 
 {
   "ietf-incident:incident-notification": {
-    "incident-no": "98765",
+    "incident-no": 98765,
     "name": "Link Failure Core Router",
     "type": "ietf-incident:problem",
     "incident-qualifier": "interface-down",
