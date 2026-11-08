@@ -1246,7 +1246,7 @@ and the domain 'PTN'. The Probable Root Cause is also analysed.
         "name": "line fault",
         "type": "ietf-incident:problem",
         "incident-qualifier": "line fault",
-        "incident-no": "56433218",
+        "incident-no": 56433218,
         "service-instance": [
           "optical-svc-A"
         ],
@@ -1327,7 +1327,7 @@ JSON encoding for the incident base model.
 ~~~~
 {
   "ietf-incident:incident-notification": {
-    "incident-no": "98765",
+    "incident-no": 98765,
     "name": "Link Failure Core Router",
     "type": "ietf-incident:problem",
     "incident-qualifier": "interface-down",
